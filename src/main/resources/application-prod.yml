@@ -1,0 +1,14 @@
+spring:
+  config:
+    activate:
+      on-profile: prod
+
+  jpa:
+    hibernate:
+      ddl-auto: validate  # DB테이블 구조 검증
+    show-sql: false     # 성능 저하 방지
+    
+logging:
+  level:
+    root: INFO
+    com.back.coffeeprod: WARN  # 운영에서는 에러와 경고 위주 로그

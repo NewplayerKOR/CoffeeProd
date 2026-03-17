@@ -1,3 +1,10 @@
 spring:
-  application:
-    name: coffeeprod
+  profiles:
+    active: dev # 기본 실행 환경 설정
+    group:
+      # 각 환경별로 사용할 환경 그룹 설정
+      dev: dev, secret
+      prod: prod, secret
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: Asia/Seoul
