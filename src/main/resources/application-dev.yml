@@ -1,0 +1,17 @@
+spring:
+  config:
+    activate:
+      on-profile: dev
+
+  jpa:
+    hibernate:
+      ddl-auto: update  # Entity 필드 변경시 DB 테이블 자동 변경
+    show-sql: true      # SQL 쿼리 로그 출력
+    properties:
+      hibernate:
+        format_sql: true # 쿼리 정렬
+        default_batch_fetch_size: 100 # N+1 문제 방지 위해 배치 사이즈 설정
+
+logging:
+  level:
+    org.hibernate.SQL: debug # 로깅 레벨 설정
