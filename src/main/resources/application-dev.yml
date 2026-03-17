@@ -10,8 +10,11 @@ spring:
     properties:
       hibernate:
         format_sql: true # 쿼리 정렬
+        highlight_sql: true # SQL 쿼리 하이라이트
         default_batch_fetch_size: 100 # N+1 문제 방지 위해 배치 사이즈 설정
+        dialect: org.hibernate.dialect.PostgreSQLDialect
 
 logging:
   level:
     org.hibernate.SQL: debug # 로깅 레벨 설정
+    org.hibernate.orm.results: trace # 쿼리 결과 파라미터 확인용
