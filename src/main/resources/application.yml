@@ -1,10 +1,26 @@
 spring:
   profiles:
-    active: dev # 기본 실행 환경 설정
+    active: dev # 기본 실행 환경
     group:
-      # 각 환경별로 사용할 환경 그룹 설정
-      dev: dev, secret
-      prod: prod, secret
+      dev: dev
+      prod: prod
+      test: test
+      
+  datasource:
+    url: ${DB_URL}
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
+    driver-class-name: org.postgresql.Driver
+
   jackson:
     date-format: yyyy-MM-dd HH:mm:ss
     time-zone: Asia/Seoul
+jwt:
+  secret-key: ${JWT_SECRET_KEY}
+  access-expiration-time: ${JWT_ACCESS_EXPIRATION}
+  refresh-expiration-time: ${JWT_REFRESH_EXPIRATION}
+
+pg:
+  toss:
+    client-key: ${TOSS_CLIENT_KEY}
+    secret-key: ${TOSS_SECRET_KEY}

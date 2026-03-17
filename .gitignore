@@ -37,4 +37,8 @@ out/
 .vscode/
 
 ### Security ###
-application-secret.yml
+.env
+
+
+### postgreSQL ###
+postgres-data/
