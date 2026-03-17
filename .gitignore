@@ -38,6 +38,3 @@ out/
 
 ### Security ###
 application-secret.yml
-
-### GEMINI ###
-GEMINI.md
