@@ -1,5 +1,6 @@
 package com.back.coffeeprod.domain.member.service;
 
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -17,7 +18,7 @@ import lombok.RequiredArgsConstructor;
 @Transactional(readOnly = true) // 읽기 전용
 public class MemberService {
     private final MemberRepository memberRepository;
-    // private final PasswordEncoder passwordEncoder; // TODO: Security 적용 시 주석 해제
+    private final PasswordEncoder passwordEncoder;
 
     // 일반 회원가입
     @Transactional
@@ -32,10 +33,11 @@ public class MemberService {
             throw new CustomException(ErrorCode.DUPLICATE_NICKNAME);
         }
 
-        // TODO: Security 적용 시 비밀번호 암호화
+        String encodedPassword = passwordEncoder.encode(request.getPassword());
+
         Member member = Member.builder()
                 .email(request.getEmail())
-                .password(request.getPassword())
+                .password(encodedPassword)
                 .name(request.getName())
                 .nickname(request.getNickname())
                 .role(Role.USER) // 기본 역할은 USER
