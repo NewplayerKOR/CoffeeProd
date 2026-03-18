@@ -17,7 +17,6 @@ import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -25,8 +24,6 @@ import lombok.NoArgsConstructor;
 @Entity
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@AllArgsConstructor // Builder를 위해 사용
-@Builder // Builder 패턴을 위한 어노테이션
 @Table(name = "member")
 public class Member extends BaseTimeEntity {
 
@@ -48,27 +45,32 @@ public class Member extends BaseTimeEntity {
     private String nickname;
 
     @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
     private Role role;
 
     @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
     private Grade grade;
 
     private int mileage = 0;
 
     @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
     private MemberStatus status;
 
     @OneToMany(mappedBy = "member", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Address> addresses = new ArrayList<>();
 
+    @Builder
     public Member(String email, String password, String name, String nickname, Role role) {
         this.email = email;
         this.password = password;
         this.name = name;
         this.nickname = nickname;
-        this.role = role;
+        this.role = role != null ? role : Role.USER; // role이 null이면 USER로 설정
         this.grade = Grade.BRONZE; // 기본 등급은 BRONZE
         this.status = MemberStatus.ACTIVE; // 기본 상태는 ACTIVE
+        this.mileage = 0; // 기본 마일리지는 0
     }
 
     public void updateNickname(String nickname) {
