@@ -1,10 +1,11 @@
 package com.back.coffeeprod.domain.member.entity;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.back.coffeeprod.domain.address.entity.Address;
 import com.back.coffeeprod.global.common.entity.BaseTimeEntity;
 
-import java.util.ArrayList;
-import java.util.List;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -62,5 +63,17 @@ public class Member extends BaseTimeEntity {
         this.role = role;
         this.grade = Grade.BRONZE; // 기본 등급은 BRONZE
         this.status = MemberStatus.ACTIVE; // 기본 상태는 ACTIVE
+    }
+
+    public void updateNickname(String nickname) {
+        this.nickname = nickname;
+    }
+
+    public void updateStatus(MemberStatus status) {
+        this.status = status;
+    }
+
+    public void updatePassword(String newPassword) {
+        this.password = newPassword;
     }
 }
