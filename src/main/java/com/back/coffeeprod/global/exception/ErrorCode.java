@@ -10,6 +10,7 @@ public enum ErrorCode {
     // [회원 관련]
     MEMBER_NOT_FOUND(404, "회원 정보를 찾을 수 없습니다."),
     DUPLICATE_EMAIL(409, "이미 사용 중인 이메일입니다."),
+    DUPLICATE_NICKNAME(409, "이미 사용 중인 닉네임입니다."),
 
     // [상품/주문]
     PRODUCT_NOT_FOUND(404, "상품을 찾을 수 없습니다."),
