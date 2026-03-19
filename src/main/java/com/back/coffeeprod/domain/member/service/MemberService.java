@@ -50,13 +50,13 @@ public class MemberService {
 
     // 로그인
     public MemberDto.TokenResponse login(MemberDto.LoginRequest request) {
-        // 이메일로 회원 조회
+        // 이메일로 회원 조회 (실패 시 통합 에러)
         Member member = memberRepository.findByEmail(request.getEmail())
-                .orElseThrow(() -> new CustomException(ErrorCode.MEMBER_NOT_FOUND));
+                .orElseThrow(() -> new CustomException(ErrorCode.INVALID_CREDENTIALS));
 
-        // 비밀번호 검증
+        // 비밀번호 검증 (실패 시 통합 에러)
         if (!passwordEncoder.matches(request.getPassword(), member.getPassword())) {
-            throw new CustomException(ErrorCode.INVALID_PASSWORD);
+            throw new CustomException(ErrorCode.INVALID_CREDENTIALS);
         }
 
         // 비밀번호 일치시 토큰 발급
