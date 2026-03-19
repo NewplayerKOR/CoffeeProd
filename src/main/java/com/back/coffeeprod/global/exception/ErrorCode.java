@@ -9,6 +9,7 @@ public enum ErrorCode {
 
     // [회원 관련]
     MEMBER_NOT_FOUND(404, "회원 정보를 찾을 수 없습니다."),
+    INVALID_PASSWORD(401, "비밀번호가 일치하지 않습니다."),
     DUPLICATE_EMAIL(409, "이미 사용 중인 이메일입니다."),
     DUPLICATE_NICKNAME(409, "이미 사용 중인 닉네임입니다."),
 
