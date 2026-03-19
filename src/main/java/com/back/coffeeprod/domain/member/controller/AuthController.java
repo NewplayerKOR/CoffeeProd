@@ -27,4 +27,14 @@ public class AuthController {
         MemberDto.Response response = memberService.join(request);
         return ResponseEntity.ok(ApiResponse.success(response));
     }
+
+    // 로그인
+    @PostMapping("/login")
+    public ResponseEntity<ApiResponse<MemberDto.TokenResponse>> login(
+            @RequestBody MemberDto.LoginRequest request) {
+
+        MemberDto.TokenResponse tokenResponse = memberService.login(request);
+
+        return ResponseEntity.ok(ApiResponse.success(tokenResponse));
+    }
 }
