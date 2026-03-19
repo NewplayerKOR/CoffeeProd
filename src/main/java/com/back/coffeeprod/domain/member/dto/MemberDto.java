@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 
 public class MemberDto {
 
+    // 회원가입 요청 DTO
     @Getter
     @NoArgsConstructor
     public static class SignupRequest {
@@ -18,12 +19,22 @@ public class MemberDto {
         private String nickname;
     }
 
+    // 로그인 요청 DTO
+    @Getter
+    @NoArgsConstructor
+    public static class LoginRequest {
+        private String email;
+        private String password;
+    }
+
+    // 회원 정보 수정 요청 DTO
     @Getter
     @NoArgsConstructor
     public static class UpdateRequest {
         private String nickname;
     }
 
+    // 회원 정보 응답 DTO
     @Getter
     public static class Response {
         private final Long id;
@@ -42,6 +53,18 @@ public class MemberDto {
             this.grade = member.getGrade();
             this.mileage = member.getMileage();
             this.status = member.getStatus();
+        }
+    }
+
+    // 로그인 시 토큰 반환 객체
+    @Getter
+    public static class TokenResponse {
+        private final String accessToken;
+        private final String refreshToken;
+
+        public TokenResponse(String accessToken, String refreshToken) {
+            this.accessToken = accessToken;
+            this.refreshToken = refreshToken;
         }
     }
 }
