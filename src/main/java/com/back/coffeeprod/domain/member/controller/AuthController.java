@@ -13,7 +13,7 @@ import com.back.coffeeprod.global.common.ApiResponse;
 import lombok.RequiredArgsConstructor;
 
 @RestController
-@RequestMapping("/api1/v1/auth")
+@RequestMapping("/api/v1/auth")
 @RequiredArgsConstructor
 public class AuthController {
 
@@ -26,5 +26,15 @@ public class AuthController {
 
         MemberDto.Response response = memberService.join(request);
         return ResponseEntity.ok(ApiResponse.success(response));
+    }
+
+    // 로그인
+    @PostMapping("/login")
+    public ResponseEntity<ApiResponse<MemberDto.TokenResponse>> login(
+            @RequestBody MemberDto.LoginRequest request) {
+
+        MemberDto.TokenResponse tokenResponse = memberService.login(request);
+
+        return ResponseEntity.ok(ApiResponse.success(tokenResponse));
     }
 }
