@@ -10,6 +10,7 @@ import com.back.coffeeprod.domain.member.entity.Role;
 import com.back.coffeeprod.domain.member.repository.MemberRepository;
 import com.back.coffeeprod.global.exception.CustomException;
 import com.back.coffeeprod.global.exception.ErrorCode;
+import com.back.coffeeprod.global.security.jwt.JwtUtil;
 
 import lombok.RequiredArgsConstructor;
 
@@ -19,6 +20,7 @@ import lombok.RequiredArgsConstructor;
 public class MemberService {
     private final MemberRepository memberRepository;
     private final PasswordEncoder passwordEncoder;
+    private final JwtUtil jwtUtil;
 
     // 일반 회원가입
     @Transactional
@@ -44,6 +46,25 @@ public class MemberService {
                 .build();
 
         return new MemberDto.Response(memberRepository.save(member));
+    }
+
+    // 로그인
+    public MemberDto.TokenResponse login(MemberDto.LoginRequest request) {
+        // 이메일로 회원 조회
+        Member member = memberRepository.findByEmail(request.getEmail())
+                .orElseThrow(() -> new CustomException(ErrorCode.MEMBER_NOT_FOUND));
+
+        // 비밀번호 검증
+        if (!passwordEncoder.matches(request.getPassword(), member.getPassword())) {
+            throw new CustomException(ErrorCode.INVALID_PASSWORD);
+        }
+
+        // 비밀번호 일치시 토큰 발급
+        String accessToken = jwtUtil.generateAccessToken(member.getId(), member.getRole());
+        String refreshToken = jwtUtil.generateRefreshToken(member.getId());
+
+        // 발급된 토큰 반환
+        return new MemberDto.TokenResponse(accessToken, refreshToken);
     }
 
     // 내 정보 조회
