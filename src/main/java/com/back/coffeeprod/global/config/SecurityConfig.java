@@ -8,10 +8,21 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+
+import com.back.coffeeprod.global.security.auth.CustomUserDetailsService;
+import com.back.coffeeprod.global.security.jwt.JwtAuthenticationFilter;
+import com.back.coffeeprod.global.security.jwt.JwtUtil;
+
+import lombok.RequiredArgsConstructor;
 
 @Configuration
 @EnableWebSecurity
+@RequiredArgsConstructor
 public class SecurityConfig {
+
+    private final JwtUtil jwtUtil;
+    private final CustomUserDetailsService customUserDetailsService;
 
     // Spring Security에서 사용할 PasswordEncoder 빈을 정의
     @Bean
@@ -42,9 +53,11 @@ public class SecurityConfig {
                         // 관리자 전용 경로는 ADMIN 권한 필요
                         .requestMatchers("/api/v1/admin/**").hasRole("ADMIN")
                         // 그 외 모든 요청은 인증(로그인) 필요
-                        .anyRequest().authenticated());
+                        .anyRequest().authenticated())
 
-        // TODO: JWT 인증 필터 추가
+                // 기본 로그인 필터대신 작성한 JWT 인증 필터 사용
+                .addFilterBefore(new JwtAuthenticationFilter(jwtUtil, customUserDetailsService),
+                        UsernamePasswordAuthenticationFilter.class);
 
         return http.build();
     }
