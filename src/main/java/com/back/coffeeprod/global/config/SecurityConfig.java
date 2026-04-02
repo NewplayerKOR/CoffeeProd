@@ -50,6 +50,8 @@ public class SecurityConfig {
                         .requestMatchers("/api/v1/auth/**").permitAll()
                         // 에러 페이지 접근 허용
                         .requestMatchers("/error").permitAll()
+                        // Swagger UI 및 API Docs 접근 허용
+                        .requestMatchers("/swagger-ui/**", "/v3/api-docs/**", "/swagger-ui.html").permitAll()
                         // 관리자 전용 경로는 ADMIN 권한 필요
                         .requestMatchers("/api/v1/admin/**").hasRole("ADMIN")
                         // 그 외 모든 요청은 인증(로그인) 필요
