@@ -17,8 +17,8 @@ spring:
     time-zone: Asia/Seoul
 jwt:
   secret-key: ${JWT_SECRET_KEY}
-  access-expiration-time: ${JWT_ACCESS_EXPIRATION}
-  refresh-expiration-time: ${JWT_REFRESH_EXPIRATION}
+  access-expiration: ${JWT_ACCESS_EXPIRATION}
+  refresh-expiration: ${JWT_REFRESH_EXPIRATION}
 
 pg:
   toss:
