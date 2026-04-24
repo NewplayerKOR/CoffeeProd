@@ -16,6 +16,8 @@ public enum ErrorCode {
 
     // [상품/주문]
     PRODUCT_NOT_FOUND(404, "상품을 찾을 수 없습니다."),
+    CATEGORY_NOT_FOUND(404, "카테고리를 찾을 수 없습니다."),
+    DUPLICATE_CATEGORY_NAME(409, "이미 존재하는 카테고리명입니다."),
     OUT_OF_STOCK(400, "재고가 부족합니다."),
     INVALID_ORDER_STATUS(400, "변경할 수 없는 주문 상태입니다."),
 
