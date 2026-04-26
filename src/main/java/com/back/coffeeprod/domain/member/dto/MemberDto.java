@@ -3,7 +3,6 @@ package com.back.coffeeprod.domain.member.dto;
 import com.back.coffeeprod.domain.member.entity.Grade;
 import com.back.coffeeprod.domain.member.entity.Member;
 import com.back.coffeeprod.domain.member.entity.MemberStatus;
-
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -32,6 +31,14 @@ public class MemberDto {
     @NoArgsConstructor
     public static class UpdateRequest {
         private String nickname;
+    }
+
+    // 비밀번호 변경 요청 DTO
+    @Getter
+    @NoArgsConstructor
+    public static class PasswordChangeRequest {
+        private String currentPassword;
+        private String newPassword;
     }
 
     // 회원 정보 응답 DTO
