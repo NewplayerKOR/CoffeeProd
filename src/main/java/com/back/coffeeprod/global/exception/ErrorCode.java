@@ -13,6 +13,7 @@ public enum ErrorCode {
     INVALID_PASSWORD(401, "비밀번호가 일치하지 않습니다."),
     DUPLICATE_EMAIL(409, "이미 사용 중인 이메일입니다."),
     DUPLICATE_NICKNAME(409, "이미 사용 중인 닉네임입니다."),
+    WITHDRAW_MEMBER(401, "탈퇴한 회원입니다."),
 
     // [상품/주문]
     PRODUCT_NOT_FOUND(404, "상품을 찾을 수 없습니다."),
