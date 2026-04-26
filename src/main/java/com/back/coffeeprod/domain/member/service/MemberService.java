@@ -21,16 +21,16 @@ public class MemberService {
     private final PasswordEncoder passwordEncoder;
     private final JwtUtil jwtUtil;
 
-    // 일반 회원가입
+    // 회원가입
     @Transactional
     public MemberDto.Response join(MemberDto.SignupRequest request) {
         // 이메일 중복 검증
-        if (memberRepository.existsByEmail(request.getEmail())) {
+        if (memberRepository.existsByEmailAndStatus(request.getEmail(), MemberStatus.ACTIVE)) {
             throw new CustomException(ErrorCode.DUPLICATE_EMAIL);
         }
 
         // 닉네임 중복 검증
-        if (memberRepository.existsByNickname(request.getNickname())) {
+        if (memberRepository.existsByNicknameAndStatus(request.getNickname(), MemberStatus.ACTIVE)) {
             throw new CustomException(ErrorCode.DUPLICATE_NICKNAME);
         }
 
