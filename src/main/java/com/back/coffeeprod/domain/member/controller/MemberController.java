@@ -1,17 +1,15 @@
 package com.back.coffeeprod.domain.member.controller;
 
+import com.back.coffeeprod.domain.member.dto.MemberDto;
+import com.back.coffeeprod.domain.member.service.MemberService;
+import com.back.coffeeprod.global.common.CommonResponse;
+import com.back.coffeeprod.global.security.auth.CustomUserDetails;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import com.back.coffeeprod.domain.member.dto.MemberDto;
-import com.back.coffeeprod.domain.member.service.MemberService;
-import com.back.coffeeprod.global.common.ApiResponse;
-import com.back.coffeeprod.global.security.auth.CustomUserDetails;
-
-import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequestMapping("/api/v1/members")
@@ -22,7 +20,7 @@ public class MemberController {
 
     // 내 정보 조회
     @GetMapping("/me")
-    public ResponseEntity<ApiResponse<MemberDto.Response>> getMyInfo(
+    public ResponseEntity<CommonResponse<MemberDto.Response>> getMyInfo(
             // CustomUserDetails 가져오기
             @AuthenticationPrincipal CustomUserDetails userDetails) {
 
@@ -31,6 +29,6 @@ public class MemberController {
 
         MemberDto.Response response = memberService.getMyInfo(currentMemberId);
 
-        return ResponseEntity.ok(ApiResponse.success(response));
+        return ResponseEntity.ok(CommonResponse.success(response));
     }
 }

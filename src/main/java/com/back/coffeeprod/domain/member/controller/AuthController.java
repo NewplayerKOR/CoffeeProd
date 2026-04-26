@@ -1,16 +1,14 @@
 package com.back.coffeeprod.domain.member.controller;
 
+import com.back.coffeeprod.domain.member.dto.MemberDto;
+import com.back.coffeeprod.domain.member.service.MemberService;
+import com.back.coffeeprod.global.common.CommonResponse;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import com.back.coffeeprod.domain.member.dto.MemberDto;
-import com.back.coffeeprod.domain.member.service.MemberService;
-import com.back.coffeeprod.global.common.ApiResponse;
-
-import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequestMapping("/api/v1/auth")
@@ -21,20 +19,20 @@ public class AuthController {
 
     // 회원가입
     @PostMapping("/signup")
-    public ResponseEntity<ApiResponse<MemberDto.Response>> signUp(
+    public ResponseEntity<CommonResponse<MemberDto.Response>> signUp(
             @RequestBody MemberDto.SignupRequest request) {
 
         MemberDto.Response response = memberService.join(request);
-        return ResponseEntity.ok(ApiResponse.success(response));
+        return ResponseEntity.ok(CommonResponse.success(response));
     }
 
     // 로그인
     @PostMapping("/login")
-    public ResponseEntity<ApiResponse<MemberDto.TokenResponse>> login(
+    public ResponseEntity<CommonResponse<MemberDto.TokenResponse>> login(
             @RequestBody MemberDto.LoginRequest request) {
 
         MemberDto.TokenResponse tokenResponse = memberService.login(request);
 
-        return ResponseEntity.ok(ApiResponse.success(tokenResponse));
+        return ResponseEntity.ok(CommonResponse.success(tokenResponse));
     }
 }
