@@ -2,6 +2,7 @@ package com.back.coffeeprod.domain.member.service;
 
 import com.back.coffeeprod.domain.member.dto.MemberDto;
 import com.back.coffeeprod.domain.member.entity.Member;
+import com.back.coffeeprod.domain.member.entity.MemberStatus;
 import com.back.coffeeprod.domain.member.entity.Role;
 import com.back.coffeeprod.domain.member.repository.MemberRepository;
 import com.back.coffeeprod.global.exception.CustomException;
@@ -55,6 +56,11 @@ public class MemberService {
         // 비밀번호 검증 (실패 시 통합 에러)
         if (!passwordEncoder.matches(request.getPassword(), member.getPassword())) {
             throw new CustomException(ErrorCode.INVALID_CREDENTIALS);
+        }
+
+        // 회원 상태 검증 - 탈퇴 회원 로그인 불가
+        if (member.getStatus() == MemberStatus.WITHDRAWN) {
+            throw new CustomException(ErrorCode.WITHDRAW_MEMBER);
         }
 
         // 비밀번호 일치시 토큰 발급
