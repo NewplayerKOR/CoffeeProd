@@ -1,25 +1,15 @@
 package com.back.coffeeprod.domain.member.entity;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.back.coffeeprod.domain.address.entity.Address;
 import com.back.coffeeprod.global.common.entity.BaseTimeEntity;
-
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter
@@ -73,6 +63,7 @@ public class Member extends BaseTimeEntity {
         this.mileage = 0; // 기본 마일리지는 0
     }
 
+    // 내 정보 수정 (닉네임)
     public void updateNickname(String nickname) {
         this.nickname = nickname;
     }
@@ -81,7 +72,14 @@ public class Member extends BaseTimeEntity {
         this.status = status;
     }
 
+    // 비밀번호 변경
     public void updatePassword(String newPassword) {
         this.password = newPassword;
     }
+
+    // 회원 탈퇴 (Soft Delete)
+    public void withdraw() {
+        this.status = MemberStatus.WITHDRAWN;
+    }
+
 }
