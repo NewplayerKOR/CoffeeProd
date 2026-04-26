@@ -2,6 +2,7 @@ package com.back.coffeeprod.domain.member.service;
 
 import com.back.coffeeprod.domain.member.dto.MemberDto;
 import com.back.coffeeprod.domain.member.entity.Member;
+import com.back.coffeeprod.domain.member.entity.MemberStatus;
 import com.back.coffeeprod.domain.member.entity.Role;
 import com.back.coffeeprod.domain.member.repository.MemberRepository;
 import com.back.coffeeprod.global.exception.CustomException;
@@ -20,16 +21,16 @@ public class MemberService {
     private final PasswordEncoder passwordEncoder;
     private final JwtUtil jwtUtil;
 
-    // 일반 회원가입
+    // 회원가입
     @Transactional
     public MemberDto.Response join(MemberDto.SignupRequest request) {
         // 이메일 중복 검증
-        if (memberRepository.existsByEmail(request.getEmail())) {
+        if (memberRepository.existsByEmailAndStatus(request.getEmail(), MemberStatus.ACTIVE)) {
             throw new CustomException(ErrorCode.DUPLICATE_EMAIL);
         }
 
         // 닉네임 중복 검증
-        if (memberRepository.existsByNickname(request.getNickname())) {
+        if (memberRepository.existsByNicknameAndStatus(request.getNickname(), MemberStatus.ACTIVE)) {
             throw new CustomException(ErrorCode.DUPLICATE_NICKNAME);
         }
 
@@ -55,6 +56,11 @@ public class MemberService {
         // 비밀번호 검증 (실패 시 통합 에러)
         if (!passwordEncoder.matches(request.getPassword(), member.getPassword())) {
             throw new CustomException(ErrorCode.INVALID_CREDENTIALS);
+        }
+
+        // 회원 상태 검증 - 탈퇴 회원 로그인 불가
+        if (member.getStatus() == MemberStatus.WITHDRAWN) {
+            throw new CustomException(ErrorCode.WITHDRAW_MEMBER);
         }
 
         // 비밀번호 일치시 토큰 발급

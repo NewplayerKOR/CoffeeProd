@@ -77,9 +77,22 @@ public class Member extends BaseTimeEntity {
         this.password = newPassword;
     }
 
-    // 회원 탈퇴 (Soft Delete)
+    /**
+     * 회원 탈퇴 (Soft Delete + 개인정보 익명화)
+     * <p>
+     * 1. status -> WITHDRAWN 변경
+     * 2. 개인식별 정보 (email, name, nickname) 익명화
+     * <p>
+     * - UNIQUE 제약으로 그대로 두면 email/nickname 재활용 불가
+     * - 개인정보보호법상 탈퇴 회원 개인정보 파기 의무
+     * - 주문/결제 이력은 FK로 참조되므로 레코드 자체는 보존
+     */
     public void withdraw() {
         this.status = MemberStatus.WITHDRAWN;
+
+        this.email = "withdrawn_" + this.id + "_" + System.currentTimeMillis() + "@deleted.com";
+        this.name = "알 수 없음";
+        this.nickname = "탈퇴한 회원_" + this.id;
     }
 
 }
