@@ -119,7 +119,7 @@ public class MemberService {
     }
 
     // [내부 공용] ID로 회원 조회
-    private Member findMemberById(Long memberId) {
+    public Member findMemberById(Long memberId) {
         return memberRepository.findById(memberId)
                 .orElseThrow(() -> new CustomException(ErrorCode.MEMBER_NOT_FOUND));
     }
