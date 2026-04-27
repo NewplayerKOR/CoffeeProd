@@ -16,5 +16,5 @@ public interface AddressRepository extends JpaRepository<Address, Long> {
 
     // 특정 회원의 기본 배송지 조회
     // 새 기본 배송지 설정 전 기존의 기본 배송지 해제에 사용
-    Optional<Address> findByMemberIdAndIsDefault(Long memberId);
+    Optional<Address> findByMemberIdAndIsDefaultTrue(Long memberId);
 }

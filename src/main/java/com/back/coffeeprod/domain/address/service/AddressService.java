@@ -101,7 +101,7 @@ public class AddressService {
     public AddressDto.Response setDefaultAddress(Long memberId, Long addressId) {
 
         // 1. 현재 기본 배송지 해제
-        addressRepository.findByMemberIdAndIsDefault(memberId)
+        addressRepository.findByMemberIdAndIsDefaultTrue(memberId)
                 .ifPresent(Address::unsetDefault);
 
         // 2. 새 기본 배송지 설정
