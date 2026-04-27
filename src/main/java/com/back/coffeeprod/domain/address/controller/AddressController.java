@@ -71,7 +71,7 @@ public class AddressController {
             @AuthenticationPrincipal CustomUserDetails userDetails,
 
             @Parameter(description = "수정할 배송지 ID", required = true)
-            @PathVariable Long addressId,
+            @PathVariable("addressId") Long addressId,
 
             @RequestBody AddressDto.Request request) {
 
@@ -92,7 +92,7 @@ public class AddressController {
             @AuthenticationPrincipal CustomUserDetails userDetails,
 
             @Parameter(description = "삭제할 배송지 ID", required = true)
-            @PathVariable Long addressId) {
+            @PathVariable("addressId") Long addressId) {
 
         Long memberId = userDetails.getMember().getId();
         addressService.deleteAddress(memberId, addressId);
@@ -111,7 +111,7 @@ public class AddressController {
             @AuthenticationPrincipal CustomUserDetails userDetails,
 
             @Parameter(description = "설정할 기본 배송지 ID", required = true)
-            @PathVariable Long addressId) {
+            @PathVariable("addressId") Long addressId) {
 
         Long memberId = userDetails.getMember().getId();
         return ResponseEntity.ok(CommonResponse.success(
