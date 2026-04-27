@@ -42,3 +42,4 @@ out/
 
 ### postgreSQL ###
 postgres-data/
+redis-data/

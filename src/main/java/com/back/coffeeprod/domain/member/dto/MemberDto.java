@@ -74,4 +74,24 @@ public class MemberDto {
             this.refreshToken = refreshToken;
         }
     }
+
+    // RefreshToken 재발급 요청 DTO
+    @Getter
+    @NoArgsConstructor
+    public static class RefreshRequest {
+        private String refreshToken;    // 클라이언트가 보관 중인 RefreshToken
+    }
+
+    // AccessToken 단독 응답 DTO
+    // 재발급 시 AccessToken + 새 RefreshToken 함께 반환
+    @Getter
+    public static class ReissueResponse {
+        private final String accessToken;
+        private final String refreshToken;
+
+        public ReissueResponse(String accessToken, String refreshToken) {
+            this.accessToken = accessToken;
+            this.refreshToken = refreshToken;
+        }
+    }
 }
