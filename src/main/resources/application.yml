@@ -5,12 +5,18 @@ spring:
       dev: dev
       prod: prod
       test: test
-      
+
   datasource:
     url: ${DB_URL}
     username: ${DB_USERNAME}
     password: ${DB_PASSWORD}
     driver-class-name: org.postgresql.Driver
+
+  data:
+    redis:
+      host: ${REDIS_HOST}
+      port: ${REDIS_PORT}
+      password: ${REDIS_PASSWORD}
 
   jackson:
     date-format: yyyy-MM-dd HH:mm:ss
