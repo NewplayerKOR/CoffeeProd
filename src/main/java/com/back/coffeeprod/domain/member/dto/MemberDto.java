@@ -63,6 +63,16 @@ public class MemberDto {
         }
     }
 
+    // 이메일 중복 확인 응답 DTO
+    @Getter
+    public static class EmailCheckResponse {
+        private final boolean available;
+
+        public EmailCheckResponse(boolean available) {
+            this.available = available;
+        }
+    }
+
     // 로그인 시 토큰 반환 객체
     @Getter
     public static class TokenResponse {
