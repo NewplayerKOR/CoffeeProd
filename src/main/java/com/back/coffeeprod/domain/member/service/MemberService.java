@@ -8,6 +8,7 @@ import com.back.coffeeprod.domain.member.repository.MemberRepository;
 import com.back.coffeeprod.global.exception.CustomException;
 import com.back.coffeeprod.global.exception.ErrorCode;
 import com.back.coffeeprod.global.security.jwt.JwtUtil;
+import com.back.coffeeprod.global.security.service.RefreshTokenService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -20,6 +21,7 @@ public class MemberService {
     private final MemberRepository memberRepository;
     private final PasswordEncoder passwordEncoder;
     private final JwtUtil jwtUtil;
+    private final RefreshTokenService refreshTokenService;
 
     // 회원가입
     @Transactional
@@ -67,8 +69,60 @@ public class MemberService {
         String accessToken = jwtUtil.generateAccessToken(member.getId(), member.getRole());
         String refreshToken = jwtUtil.generateRefreshToken(member.getId());
 
+        // 발급한 RefreshToken을 Redis에 저장
+        // Key: "refresh: {memberId}", TTL: jwt.refresh-expiration
+        refreshTokenService.save(member.getId(), refreshToken);
+
         // 발급된 토큰 반환
         return new MemberDto.TokenResponse(accessToken, refreshToken);
+    }
+
+    // RefreshToken 재발급
+    public MemberDto.ReissueResponse reissue(MemberDto.RefreshRequest request) {
+        String requestToken = request.getRefreshToken();
+
+        // 1. RefreshToken 자체 유효성 검사 (서명, 만료 여부)
+        if (!jwtUtil.validateToken(requestToken)) {
+            throw new CustomException(ErrorCode.INVALID_TOKEN);
+        }
+
+        // 2. Token에서 memberId 추출
+        Long memberId = jwtUtil.getMemberIdFromToken(requestToken);
+
+        // 3. Redis에 저장된 토큰과 일치 여부 검증
+        if (!refreshTokenService.isValid(memberId, requestToken)) {
+            throw new CustomException(ErrorCode.INVALID_TOKEN);
+        }
+
+        // 4. 회원 조회 (탈퇴 여부 확인)
+        Member member = findMemberById(memberId);
+        if (member.getStatus() == MemberStatus.WITHDRAWN) {
+            throw new CustomException(ErrorCode.WITHDRAW_MEMBER);
+        }
+
+        // 5. 새 토큰 발급
+        String newAccessToken = jwtUtil.generateAccessToken(member.getId(), member.getRole());
+        String newRefreshToken = jwtUtil.generateRefreshToken(member.getId());
+
+        // 6. Redis의 RefreshToken 갱신
+        refreshTokenService.save(member.getId(), newAccessToken);
+
+        return new MemberDto.ReissueResponse(newAccessToken, newRefreshToken);
+    }
+
+    // 로그아웃
+    public void logout(Long memberId) {
+        // Redis에서 RefreshToken 삭제
+        // -> 이후 해당 RefreshToken으로 재발급 요청 시 isValid() = flase -> 거부
+        refreshTokenService.delete(memberId);
+    }
+
+    // 이메일 중복 확인
+    public boolean checkEmail(String email) {
+        // ACTIVE 회원 중 동일 이메일 존재 여부 반환
+        // true -> 사용가능 (중복 없음)
+        // false -> 사용불가 (중복 있음)
+        return !memberRepository.existsByEmailAndStatus(email, MemberStatus.ACTIVE);
     }
 
     // 내 정보 조회
@@ -115,6 +169,8 @@ public class MemberService {
             throw new CustomException(ErrorCode.INVALID_PASSWORD);
         }
 
+        // 탈퇴 시 Redis의 RefreshToken도 삭제
+        refreshTokenService.delete(memberId);
         member.withdraw();
     }
 
