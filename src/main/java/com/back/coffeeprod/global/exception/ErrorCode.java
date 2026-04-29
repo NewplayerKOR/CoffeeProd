@@ -15,6 +15,10 @@ public enum ErrorCode {
     DUPLICATE_NICKNAME(409, "이미 사용 중인 닉네임입니다."),
     WITHDRAW_MEMBER(401, "탈퇴한 회원입니다."),
 
+    // [인증 관련]
+    INVALID_TOKEN(401, "유효하지 않은 토큰입니다."),
+    EXPIRED_TOKEN(401, "만료된 토큰입니다."),
+    
     // [상품/주문]
     PRODUCT_NOT_FOUND(404, "상품을 찾을 수 없습니다."),
     CATEGORY_NOT_FOUND(404, "카테고리를 찾을 수 없습니다."),
