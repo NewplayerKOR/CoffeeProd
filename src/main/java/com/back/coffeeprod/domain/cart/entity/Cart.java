@@ -3,6 +3,7 @@ package com.back.coffeeprod.domain.cart.entity;
 import com.back.coffeeprod.domain.member.entity.Member;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -29,6 +30,7 @@ public class Cart {
     @OneToMany(mappedBy = "cart", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<CartItem> cartItems = new ArrayList<>();
 
+    @Builder
     public Cart(Member member) {
         this.member = member;
     }
