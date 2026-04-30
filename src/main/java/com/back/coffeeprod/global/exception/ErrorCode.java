@@ -18,13 +18,19 @@ public enum ErrorCode {
     // [인증 관련]
     INVALID_TOKEN(401, "유효하지 않은 토큰입니다."),
     EXPIRED_TOKEN(401, "만료된 토큰입니다."),
-    
+
     // [상품/주문]
     PRODUCT_NOT_FOUND(404, "상품을 찾을 수 없습니다."),
     CATEGORY_NOT_FOUND(404, "카테고리를 찾을 수 없습니다."),
     DUPLICATE_CATEGORY_NAME(409, "이미 존재하는 카테고리명입니다."),
     OUT_OF_STOCK(400, "재고가 부족합니다."),
     INVALID_ORDER_STATUS(400, "변경할 수 없는 주문 상태입니다."),
+
+    // [장바구니 관련]
+    CART_NOT_FOUND(404, "장바구니를 찾을 수 없습니다."),
+    CART_ITEM_NOT_FOUND(404, "장바구니 상품을 찾을 수 없습니다."),
+    CART_ACCESS_DENIED(403, "본인의 장바구니만 접근할 수 있습니다."),
+    PRODUCT_NOT_ON_SALE(400, "현재 판매 중인 상품이 아닙니다."),
 
     // [배송지 관련]
     ADDRESS_NOT_FOUND(404, "배송지를 찾을 수 없습니다."),
