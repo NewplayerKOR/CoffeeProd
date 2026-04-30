@@ -19,7 +19,7 @@ public interface OrderRepository extends JpaRepository<Orders, Long> {
             WHERE o.member.id = :memberId
             ORDER BY o.orderDate DESC
             """)
-    Page<Orders> findMemberIdWithItems(
+    Page<Orders> findByMemberIdWithItems(
             @Param("memberId") Long memberId, Pageable pageable);
 
     // 주문 상세 조회 (단건)
