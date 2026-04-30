@@ -95,4 +95,17 @@ public class Member extends BaseTimeEntity {
         this.nickname = "탈퇴한 회원_" + this.id;
     }
 
+    // 마일리지 적립 / 복구
+    public void addMileage(int amount) {
+        this.mileage += amount;
+    }
+
+    // 마일리지 차감
+    public void useMileage(int amount) {
+        if (this.mileage < amount) {
+            throw new IllegalArgumentException("마일리지가 부족합니다.");
+        }
+
+        this.mileage -= amount;
+    }
 }
