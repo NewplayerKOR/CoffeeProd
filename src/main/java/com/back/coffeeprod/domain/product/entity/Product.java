@@ -40,8 +40,8 @@ public class Product extends BaseTimeEntity {
     @Column(columnDefinition = "TEXT")
     private String description;
 
-    @Column(length = 500)
-    private String image_url;
+    @Column(name = "image_url", length = 500)
+    private String imageUrl;
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
@@ -50,27 +50,27 @@ public class Product extends BaseTimeEntity {
 
     @Builder
     public Product(Category category, String name, int price, int stockQuantity,
-                   RoastLevel roastLevel, String description, String image_url) {
+                   RoastLevel roastLevel, String description, String imageUrl) {
         this.category = category;
         this.name = name;
         this.price = price;
         this.stockQuantity = stockQuantity;
         this.roastLevel = roastLevel;
         this.description = description;
-        this.image_url = image_url;
+        this.imageUrl = imageUrl;
         this.status = ProductStatus.ON_SALE;    // 기본 상태: 판매 중
     }
 
     // 상품 전체 정보 수정
     public void update(Category category, String name, int price, int stockQuantity,
-                       RoastLevel roastLevel, String description, String image_url) {
+                       RoastLevel roastLevel, String description, String imageUrl) {
         this.category = category;
         this.name = name;
         this.price = price;
         this.stockQuantity = stockQuantity;
         this.roastLevel = roastLevel;
         this.description = description;
-        this.image_url = image_url;
+        this.imageUrl = imageUrl;
     }
 
     // 상품 상태 변경 (수정 / 품절)

@@ -59,7 +59,7 @@ public class ProductService {
                 .stockQuantity(request.getStockQuantity())
                 .roastLevel(request.getRoastLevel())
                 .description(request.getDescription())
-                .image_url(request.getImage_url())
+                .imageUrl(request.getImage_url())
                 .build();
 
         return new ProductDto.DetailResponse(productRepository.save(product));
