@@ -38,7 +38,7 @@ public class ProductDto {
             this.name = product.getName();
             this.price = product.getPrice();
             this.roastLevel = product.getRoastLevel();
-            this.imageUrl = product.getImage_url();
+            this.imageUrl = product.getImageUrl();
             this.status = product.getStatus();
         }
     }
@@ -66,7 +66,7 @@ public class ProductDto {
             this.stockQuantity = product.getStockQuantity();
             this.roastLevel = product.getRoastLevel();
             this.description = product.getDescription();
-            this.imageUrl = product.getImage_url();
+            this.imageUrl = product.getImageUrl();
             this.status = product.getStatus();
         }
     }
