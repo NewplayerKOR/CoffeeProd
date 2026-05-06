@@ -11,14 +11,19 @@ public interface OrderRepository extends JpaRepository<Orders, Long> {
 
     // 내 주문 목록 조회 (페이지네이션)
     // OrderItem, Product를 JOIN FETCH -> N + 1 방지
-    @Query("""
-            SELECT DISTINCT o FROM Orders o
-            JOIN FETCH o.member
-            JOIN FETCH o.orderItems oi
-            JOIN FETCH oi.product
-            WHERE o.member.id = :memberId
-            ORDER BY o.orderDate DESC
-            """)
+    @Query(
+            value = """
+                    SELECT DISTINCT o FROM Orders o
+                    JOIN FETCH o.member
+                    JOIN FETCH o.orderItems oi
+                    JOIN FETCH oi.product
+                    WHERE o.member.id = :memberId
+                    ORDER BY o.orderDate DESC
+                    """,
+            countQuery = """
+                    SELECT COUNT(DISTINCT o) FROM Orders o
+                    WHERE o.member.id = :memberId
+                    """)
     Page<Orders> findByMemberIdWithItems(
             @Param("memberId") Long memberId, Pageable pageable);
 
@@ -33,12 +38,15 @@ public interface OrderRepository extends JpaRepository<Orders, Long> {
     java.util.Optional<Orders> findByIdWithItems(@Param("orderId") Long orderId);
 
     // 관리자 전체 주문 목록 조회 (페이지네이션)
-    @Query("""
+    @Query(value = """
             SELECT DISTINCT o FROM Orders o
             JOIN FETCH o.member
             JOIN FETCH o.orderItems oi
             JOIN FETCH oi.product
             ORDER BY o.orderDate DESC
-            """)
+            """,
+            countQuery = """
+                    SELECT COUNT(DISTINCT o) FROM Orders o
+                    """)
     Page<Orders> findAllWithItems(Pageable pageable);
 }
