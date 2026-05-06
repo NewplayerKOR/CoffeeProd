@@ -113,7 +113,7 @@ public class OrderService {
     }
 
     // 주문 상세 조회
-    public OrderDto.DetailResponse getOrderDetail(Long memberId, Long orderId) {
+    public OrderDto.DetailResponse getOrder(Long memberId, Long orderId) {
         Orders orders = findOrderByIdWithItems(orderId);
 
         // 본인 주문만 조회 가능
