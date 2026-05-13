@@ -9,10 +9,11 @@ spring:
     show-sql: false     # 성능 저하 방지
     properties:
       hibernate:
+        format_sql: false
         default_batch_fetch_size: 100 # N+1 문제 방지 위해 배치 사이즈 설정
         dialect: org.hibernate.dialect.PostgreSQLDialect
     
 logging:
   level:
-    root: INFO
-    com.back.coffeeprod: WARN  # 운영에서는 에러와 경고 위주 로그
+    root: WARN
+    com.back.coffeeprod: INFO  # 운영에서는 에러와 경고 위주 로그
