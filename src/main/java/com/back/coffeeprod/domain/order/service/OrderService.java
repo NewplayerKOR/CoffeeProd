@@ -41,7 +41,7 @@ public class OrderService {
         List<CartItem> cartItems = cart.getCartItems();
 
         if (cartItems.isEmpty()) {
-            throw new CustomException(ErrorCode.EMTY_CART);
+            throw new CustomException(ErrorCode.EMPTY_CART);
         }
 
         // 2. 배송지 조회 및 본인 소유 검증

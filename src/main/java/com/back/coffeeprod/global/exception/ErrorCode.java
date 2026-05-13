@@ -30,7 +30,7 @@ public enum ErrorCode {
     ORDER_NOT_FOUND(404, "주문을 찾을 수 없습니다."),
     ORDER_ACCESS_DENIED(403, "본인의 주문만 접근할 수 있습니다."),
     INVALID_ORDER_AMOUNT(400, "결제 금액이 주문과 일치하지 않습니다."),
-    EMTY_CART(400, "장바구니가 비어있습니다."),
+    EMPTY_CART(400, "장바구니가 비어있습니다."),
     PAYMENT_FAILED(400, "결제 승인에 실패했습니다."),
     PAYMENT_NOT_FOUND(404, "결제 정보를 찾을 수 없습니다."),
     INVALID_MILEAGE(400, "사용 가능한 마일리지를 초과했습니다."),
