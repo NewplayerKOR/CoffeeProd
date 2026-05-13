@@ -7,6 +7,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Profile;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestClient;
@@ -23,38 +24,51 @@ public class TossPaymentGateway implements PaymentGateway {
             "https://api.tosspayments.com/v1/payments/confirm";
 
     private final RestClient restClient;
-    private final String encodedSecretKey;
 
     public TossPaymentGateway(@Value("${pg.toss.secret-key}") String secretKey) {
-        this.restClient = RestClient.create();
 
-        // 토스 인증 방식: Basic Auth
-        // secretKey 뒤에 ":"를 붙인 후 Base64 인코딩
-        this.encodedSecretKey = Base64.getEncoder().encodeToString((secretKey + ":").getBytes());
+        // Secret Key를 Base64 인코딩 후 Basic 인증 후 헤더로 전달
+        String encodedKey = Base64.getEncoder().encodeToString((secretKey + ":").getBytes());
+
+        this.restClient = RestClient.builder()
+                .defaultHeader(HttpHeaders.AUTHORIZATION, "Basic " + encodedKey)
+                .defaultHeader(HttpHeaders.CONTENT_TYPE,
+                        MediaType.APPLICATION_JSON_VALUE)
+                .build();
     }
 
     @Override
     public TossPaymentResponse confirm(String paymentKey, Long orderId, int amount) {
-        try {
             log.info("[TossPaymentGateway] 결제 승인 요청 - orderId: {}, amount: {}", orderId, amount);
 
-            TossPaymentResponse response = restClient.post()
-                    .uri(TOSS_CONFIRM_URL)
-                    .header(HttpHeaders.AUTHORIZATION, "Basic " + encodedSecretKey)
-                    .contentType(MediaType.APPLICATION_JSON)
-                    .body(Map.of(
-                            "paymentKey", paymentKey,
-                            "orderId", String.valueOf(orderId),
-                            "amount", amount
-                    ))
-                    .retrieve()
-                    .body(TossPaymentResponse.class);
+            // 토스 API 요청 바디
+            Map<String, Object> requestBody = Map.of(
+                    "paymentKey", paymentKey,
+                    "orderId", String.valueOf(orderId),
+                    "amount", amount
+            );
 
-            log.info("[TossPaymentGateway] 결제 승인 성공 - paymentKey: {}", paymentKey);
-            return response;
-        } catch (Exception e) {
-            log.error("[TosspaymentGateway] 결제 승인 실패 - orderId: {}, error: {}", orderId, e.getMessage());
-            throw new CustomException(ErrorCode.PAYMENT_FAILED);
-        }
+            try {
+                TossPaymentResponse response = restClient.post()
+                        .uri(TOSS_CONFIRM_URL)
+                        .body(requestBody)
+                        .retrieve()
+                        // 4xx, 5xx 에러 시 결제 실패로 처리
+                        .onStatus(HttpStatusCode::isError, (req, res) -> {
+                            log.error("[TossPaymentGateway] 결제 승인 실패 - status: {}",
+                                    res.getStatusCode());
+                            throw new CustomException(ErrorCode.PAYMENT_FAILED);
+                        })
+                        .body(TossPaymentResponse.class);
+
+                log.info("[TossPaymentGateway] 결제 승인 완료 - paymentKey: {}", paymentKey);
+                return response;
+
+            } catch (CustomException e) {
+                throw e; // CustomException은 그대로 전파
+            } catch (Exception e) {
+                log.error("[TossPaymentGateway] 결제 승인 중 예외 발생", e);
+                throw new CustomException(ErrorCode.PAYMENT_FAILED);
+            }
     }
 }
