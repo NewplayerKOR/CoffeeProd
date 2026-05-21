@@ -3,6 +3,7 @@ package com.back.coffeeprod.domain.member.dto;
 import com.back.coffeeprod.domain.member.entity.Grade;
 import com.back.coffeeprod.domain.member.entity.Member;
 import com.back.coffeeprod.domain.member.entity.MemberStatus;
+import com.back.coffeeprod.domain.member.entity.Role;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -102,6 +103,47 @@ public class MemberDto {
         public ReissueResponse(String accessToken, String refreshToken) {
             this.accessToken = accessToken;
             this.refreshToken = refreshToken;
+        }
+    }
+
+
+    // -------------------- 관리자 영역 --------------------
+
+    // 관리자 - 회원 등급 변경 요청 DTO
+    @Getter
+    @NoArgsConstructor
+    public static class GradeUpdateRequest {
+        private Grade grade;
+    }
+
+    // 관리자 - 회원 상태 변경 요청 DTO
+    @Getter
+    @NoArgsConstructor
+    public static class StatusUpdateRequest {
+        private MemberStatus status;
+    }
+
+    // 전체 회원 목록 응답 DTO (요약)
+    @Getter
+    public static class AdminResponse {
+        private final Long id;
+        private final String email;
+        private final String name;
+        private final String nickname;
+        private final Role role;
+        private final Grade grade;
+        private final int mileage;
+        private final MemberStatus status;
+
+        public AdminResponse(Member member) {
+            this.id = member.getId();
+            this.email = member.getEmail();
+            this.name = member.getName();
+            this.nickname = member.getNickname();
+            this.role = member.getRole();
+            this.grade = member.getGrade();
+            this.mileage = member.getMileage();
+            this.status = member.getStatus();
         }
     }
 }
