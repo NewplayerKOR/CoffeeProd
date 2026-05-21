@@ -108,4 +108,13 @@ public class Member extends BaseTimeEntity {
 
         this.mileage -= amount;
     }
+
+
+    // --------- 관리자 영역 ---------
+
+    // 관리자 - 등급 변경
+    public void updateGrade(Grade grade) {
+        this.grade = grade;
+    }
+    // 관리자 - 상태 변경 = 기존 updateStatus() 공용 사용
 }
