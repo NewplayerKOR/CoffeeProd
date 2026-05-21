@@ -10,6 +10,8 @@ import com.back.coffeeprod.global.exception.ErrorCode;
 import com.back.coffeeprod.global.security.jwt.JwtUtil;
 import com.back.coffeeprod.global.security.service.RefreshTokenService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -178,5 +180,34 @@ public class MemberService {
     public Member findMemberById(Long memberId) {
         return memberRepository.findById(memberId)
                 .orElseThrow(() -> new CustomException(ErrorCode.MEMBER_NOT_FOUND));
+    }
+
+    // ----------- 관리자  영역 -----------
+    // [관리자] 전체 회원 목록 조회
+    public Page<MemberDto.AdminResponse> getAllMembers(
+            boolean includedWithdrawn, Pageable pageable) {
+
+        return memberRepository.findAllForAdmin(includedWithdrawn, pageable)
+                .map(MemberDto.AdminResponse::new);
+    }
+
+    // [관리자] 회원 등급 변경
+    @Transactional
+    public MemberDto.AdminResponse updateMemberGrade(
+            Long memberId, MemberDto.GradeUpdateRequest request) {
+
+        Member member = findMemberById(memberId);
+        member.updateGrade(request.getGrade());
+        return new MemberDto.AdminResponse(member);
+    }
+
+    // [관리자] 회원 상태 변경 (정지/활성화)
+    @Transactional
+    public MemberDto.AdminResponse updateMemberStatus(
+            Long memberId, MemberDto.StatusUpdateRequest request) {
+
+        Member member = findMemberById(memberId);
+        member.updateStatus(request.getStatus());
+        return new MemberDto.AdminResponse(member);
     }
 }
