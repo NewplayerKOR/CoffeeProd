@@ -38,6 +38,7 @@ out/
 
 ### Security ###
 .env
+.md/
 
 
 ### postgreSQL ###
