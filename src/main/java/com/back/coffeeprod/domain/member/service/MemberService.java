@@ -107,7 +107,8 @@ public class MemberService {
         String newRefreshToken = jwtUtil.generateRefreshToken(member.getId());
 
         // 6. Redis의 RefreshToken 갱신
-        refreshTokenService.save(member.getId(), newAccessToken);
+        refreshTokenService.save(member.getId(), newRefreshToken);
+        //TODO 검증필요1
 
         return new MemberDto.ReissueResponse(newAccessToken, newRefreshToken);
     }

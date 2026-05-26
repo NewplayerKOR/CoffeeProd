@@ -47,7 +47,12 @@ public class SecurityConfig {
                 // 요청에 대한 권한 설정
                 .authorizeHttpRequests(auth -> auth
                         // 인증 없이 접근 허용할 엔드포인트 설정 (예: 회원가입, 로그인)
-                        .requestMatchers("/api/v1/auth/**").permitAll()
+                        .requestMatchers(
+                                "/api/v1/auth/signup",
+                                "/api/v1/auth/login",
+                                "/api/v1/auth/reissue",
+                                "/api/v1/auth/check-email"
+                        ).permitAll()
                         // 에러 페이지 접근 허용
                         .requestMatchers("/error").permitAll()
                         // Swagger UI 및 API Docs 접근 허용
