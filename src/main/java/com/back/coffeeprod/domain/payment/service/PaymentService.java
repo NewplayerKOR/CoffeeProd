@@ -43,7 +43,7 @@ public class PaymentService {
                     request.getOrderId(), orders.getTotalPrice(), request.getAmount());
 
             // 위변조 감지 시 주문 취소 + 재고 복구 처리
-            cancelOrderOnPaymentFailure(orders);
+            cancelOrderOnPaymentFailure(request.getOrderId());
             throw new CustomException(ErrorCode.INVALID_ORDER_AMOUNT);
         }
 
@@ -58,7 +58,7 @@ public class PaymentService {
         } catch (CustomException e) {
             // 결제 실패 시 주문 취소 - 재고 복구
             log.error("[PaymentService] 결제 승인 실패 - orderId: {}", request.getOrderId());
-            cancelOrderOnPaymentFailure(orders);
+            cancelOrderOnPaymentFailure(request.getOrderId());
             throw e;
         }
 
@@ -66,7 +66,7 @@ public class PaymentService {
         // 토스 응답 'DONE' 아니면 결제 실패 처리
         if (!"DONE".equals(tossResponse.getStatus())) {
             log.error("[PaymentService] 결제 상태 비정상 - status: {}", tossResponse.getStatus());
-            cancelOrderOnPaymentFailure(orders);
+            cancelOrderOnPaymentFailure(request.getOrderId());
             throw new CustomException(ErrorCode.PAYMENT_FAILED);
         }
 
@@ -91,32 +91,10 @@ public class PaymentService {
     }
 
 
-
     // [내부] 결제 실패 시 주문 취소 + 재고 복구
-    private void cancelOrderOnPaymentFailure(Orders orders) {
-        // 이미 취소된 주문이면 처리 생략
-        if (orders.getStatus() != OrderStatus.CANCELED) {
-            return;
-        }
+    private void cancelOrderOnPaymentFailure(Long orderId) {
+        orderService.cancelOrderForPaymentFailure(orderId);
 
-        // 재고 복구 - 주문 생성 시 차감했던 재고를 원복
-        orders.getOrderItems()
-                .forEach(item -> item.getProduct().addStock(item.getQuantity()));
-
-        // 마일리지 복구
-        if (orders.getUsedMileage() > 0) {
-            orders.getMember().addMileage(orders.getUsedMileage());
-        }
-
-        // 주문 상태 CANCELED로 변경
-        try {
-            orders.cancel();
-        } catch (IllegalStateException ignored) {
-            // 이미 취소 불가 상태면 무시
-        }
-
-        log.info("[PaymentService] 결제 실패로 인한 주문 취소 처리 - orderId: {}",
-                orders.getId());
+        log.info("[PaymentService] 결제 실패로 인한 주문 취소 처리 - orderId: {}", orderId);
     }
-
 }
