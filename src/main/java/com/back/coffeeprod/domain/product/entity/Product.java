@@ -78,7 +78,8 @@ public class Product extends BaseTimeEntity {
         this.status = status;
     }
 
-    // 재고 차감 (주문 시 호출) - 동시성 제어 필요
+    // 단일 엔티티 내부 검증용 메서드
+    // 주문 생성의 재고 차감은 동시성 제어를 위해 ProductRepository.decreaseStockIfEnough를 사용
     public void decreaseStock(int quantity) {
         if (this.stockQuantity < quantity) {
             throw new CustomException(ErrorCode.OUT_OF_STOCK);

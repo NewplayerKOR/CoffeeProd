@@ -6,6 +6,7 @@ import com.back.coffeeprod.domain.product.entity.RoastLevel;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
@@ -26,5 +27,18 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
             @Param("status") ProductStatus status,
             @Param("keyword") String keyword,
             Pageable pageable
+    );
+
+    // 재고 차감 쿼리
+    @Modifying(clearAutomatically = true, flushAutomatically = true)
+    @Query("""
+        UPDATE Product p
+        SET p.stockQuantity = p.stockQuantity - :quantity
+        WHERE p.id = :quantity
+        AND p.stockQuantity >= :quantity
+        """)
+    int decreaseStockIfEnough(
+            @Param("productId") Long productId,
+            @Param("quantity") int quantity
     );
 }

@@ -12,6 +12,7 @@ import com.back.coffeeprod.domain.order.entity.OrderItem;
 import com.back.coffeeprod.domain.order.entity.OrderStatus;
 import com.back.coffeeprod.domain.order.entity.Orders;
 import com.back.coffeeprod.domain.order.repository.OrderRepository;
+import com.back.coffeeprod.domain.product.repository.ProductRepository;
 import com.back.coffeeprod.global.exception.CustomException;
 import com.back.coffeeprod.global.exception.ErrorCode;
 import lombok.RequiredArgsConstructor;
@@ -32,6 +33,7 @@ public class OrderService {
     private final AddressRepository addressRepository;
     private final MemberService memberService;
     private final CartService cartService;
+    private final ProductRepository productRepository;
 
     // 주문서 임시 생성 (결제 직전)
     @Transactional
@@ -83,6 +85,15 @@ public class OrderService {
 
         // 7. 재고 차감
         for (CartItem cartItem : cartItems) {
+            int updatedRows = productRepository.decreaseStockIfEnough(
+                    cartItem.getProduct().getId(),
+                    cartItem.getQuantity()
+            );
+
+            if (updatedRows == 0) {
+                throw new CustomException(ErrorCode.OUT_OF_STOCK);
+            }
+
             cartItem.getProduct().decreaseStock(cartItem.getQuantity());
         }
 
