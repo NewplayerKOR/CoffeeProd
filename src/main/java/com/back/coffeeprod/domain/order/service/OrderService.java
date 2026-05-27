@@ -9,6 +9,7 @@ import com.back.coffeeprod.domain.member.entity.Member;
 import com.back.coffeeprod.domain.member.service.MemberService;
 import com.back.coffeeprod.domain.order.dto.OrderDto;
 import com.back.coffeeprod.domain.order.entity.OrderItem;
+import com.back.coffeeprod.domain.order.entity.OrderStatus;
 import com.back.coffeeprod.domain.order.entity.Orders;
 import com.back.coffeeprod.domain.order.repository.OrderRepository;
 import com.back.coffeeprod.global.exception.CustomException;
@@ -17,6 +18,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
@@ -143,24 +145,36 @@ public class OrderService {
             throw new CustomException(ErrorCode.ORDER_ACCESS_DENIED);
         }
 
-        // 취소 상태 검증(PENDING, PAID만 가능)
-        // -> 내부에서 불가능한 상태면 IllegalStateException 발생
+        cancelAndRestore(orders);
+
+        return new OrderDto.DetailResponse(orders);
+    }
+
+    // 결제 실패 보상 메서드
+    @Transactional(propagation = Propagation.REQUIRES_NEW)
+    public void cancelOrderForPaymentFailure(Long orderId) {
+        Orders orders = findOrderByIdWithItems(orderId);
+        cancelAndRestore(orders);
+    }
+
+    // 보상 로직
+    private void cancelAndRestore(Orders orders) {
+        if (orders.getStatus() == OrderStatus.CANCELED) {
+            return;
+        }
+
         try {
             orders.cancel();
         } catch (IllegalStateException e) {
             throw new CustomException(ErrorCode.INVALID_ORDER_STATUS);
         }
 
-        // 재고 복구 - 취소된 주문의 각 상품 재고를 원복
         orders.getOrderItems()
                 .forEach(item -> item.getProduct().addStock(item.getQuantity()));
 
-        // 마일리지 복구
         if (orders.getUsedMileage() > 0) {
             orders.getMember().addMileage(orders.getUsedMileage());
         }
-
-        return new OrderDto.DetailResponse(orders);
     }
 
     // [내부 공용] 주문 결제 완료 처리
