@@ -2,6 +2,8 @@ package com.back.coffeeprod.domain.member.entity;
 
 import com.back.coffeeprod.domain.address.entity.Address;
 import com.back.coffeeprod.global.common.entity.BaseTimeEntity;
+import com.back.coffeeprod.global.exception.CustomException;
+import com.back.coffeeprod.global.exception.ErrorCode;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Builder;
@@ -102,8 +104,8 @@ public class Member extends BaseTimeEntity {
 
     // 마일리지 차감
     public void useMileage(int amount) {
-        if (this.mileage < amount) {
-            throw new IllegalArgumentException("마일리지가 부족합니다.");
+        if (amount < 0 || this.mileage < amount) {
+            throw new CustomException(ErrorCode.INVALID_MILEAGE);
         }
 
         this.mileage -= amount;
