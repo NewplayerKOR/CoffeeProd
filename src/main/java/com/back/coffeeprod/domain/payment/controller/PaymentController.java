@@ -59,7 +59,9 @@ public class PaymentController {
             @AuthenticationPrincipal CustomUserDetails userDetails,
             @RequestBody PaymentDto.ConfirmRequest request) {
 
-        PaymentDto.Response response = paymentService.confirmPayment(request);
+        Long memberId = userDetails.getMember().getId();
+        PaymentDto.Response response = paymentService.confirmPayment(memberId, request);
+
         return ResponseEntity.ok(CommonResponse.success(response));
     }
 }
