@@ -62,23 +62,32 @@ public class OrderService {
 
         // 4. 마일리지 검증
         int usedMileage = request.getUsedMileage();
-        if (usedMileage > member.getMileage()) {
+        if (usedMileage < 0 || usedMileage > member.getMileage()) {
             throw new CustomException(ErrorCode.INVALID_MILEAGE);
         }
 
-        // 5. 재고 차감 + 주문 금액 계산
-        // -> 각 상품의 재고를 차감하고 총 금액 합산
-        int totalPrice = 0;
+        // 5. 주문 상품 금액 계산
+        int orderProductTotalPrice = 0;
         for (CartItem cartItem : cartItems) {
-            // 재고 부족시 CustomException(OUT_OF_STOCK) 발생
-            cartItem.getProduct().decreaseStock(cartItem.getQuantity());
-            totalPrice += cartItem.getProduct().getPrice() * cartItem.getQuantity();
+            orderProductTotalPrice += cartItem.getProduct().getPrice() * cartItem.getQuantity();
         }
 
-        // 6. 마일리지 차감 적용
-        totalPrice = Math.max(0, totalPrice - usedMileage);
+        if (usedMileage > orderProductTotalPrice) {
+            throw new CustomException(ErrorCode.INVALID_MILEAGE);
+        }
 
-        // 7. 주문 생성
+        // 6. 마일리지 차감
+        member.useMileage(usedMileage);
+
+        // 7. 재고 차감
+        for (CartItem cartItem : cartItems) {
+            cartItem.getProduct().decreaseStock(cartItem.getQuantity());
+        }
+
+        // 8. 최종 결제 금액 계산
+        int totalPrice = orderProductTotalPrice - usedMileage;
+
+        // 9. 주문 생성
         Orders orders = Orders.builder()
                 .member(member)
                 .totalPrice(totalPrice)
