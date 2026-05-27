@@ -26,7 +26,7 @@ public interface MemberRepository extends JpaRepository<Member, Long> {
 
     // 관리자 - 전체 회원 목록 조회 (탈퇴 회원 포함 여부 선택)
     @Query("""
-            SELECT m FROM Member M
+            SELECT m FROM Member m
             WHERE (:includedWithdrawn = true OR m.status != 'WITHDRAWN')
             ORDER BY m.createdAt DESC
             """)
