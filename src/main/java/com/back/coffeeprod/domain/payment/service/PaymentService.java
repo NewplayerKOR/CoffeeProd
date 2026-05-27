@@ -27,9 +27,13 @@ public class PaymentService {
 
     // 결제 승인 검증
     @Transactional
-    public PaymentDto.Response confirmPayment(PaymentDto.ConfirmRequest request) {
+    public PaymentDto.Response confirmPayment(Long memberId, PaymentDto.ConfirmRequest request) {
         // 1. 주문 조회
         Orders orders = orderService.findOrderById(request.getOrderId());
+
+        if (!orders.getMember().getId().equals(memberId)) {
+            throw new CustomException(ErrorCode.ORDER_ACCESS_DENIED);
+        }
 
         // 2. 주문 상태 검증 - PENDING 상태만 가능
         // 결제된 주문, 취소된 주문에 대한 중복 결제 차단
