@@ -30,11 +30,11 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
     );
 
     // 재고 차감 쿼리
-    @Modifying(clearAutomatically = true, flushAutomatically = true)
+    @Modifying(flushAutomatically = true)
     @Query("""
         UPDATE Product p
         SET p.stockQuantity = p.stockQuantity - :quantity
-        WHERE p.id = :quantity
+        WHERE p.id = :productId
         AND p.stockQuantity >= :quantity
         """)
     int decreaseStockIfEnough(
