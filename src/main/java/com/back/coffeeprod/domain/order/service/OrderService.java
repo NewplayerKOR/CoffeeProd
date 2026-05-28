@@ -93,8 +93,6 @@ public class OrderService {
             if (updatedRows == 0) {
                 throw new CustomException(ErrorCode.OUT_OF_STOCK);
             }
-
-            cartItem.getProduct().decreaseStock(cartItem.getQuantity());
         }
 
         // 8. 최종 결제 금액 계산
