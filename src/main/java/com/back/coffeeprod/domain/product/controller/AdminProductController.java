@@ -60,7 +60,7 @@ public class AdminProductController {
             @ApiResponse(responseCode = "403", description = "관리자 권한 없음"),
             @ApiResponse(responseCode = "404", description = "상품 또는 카테고리를 찾을 수 없음")
     })
-    @PutMapping
+    @PutMapping("/{productId}")
     public ResponseEntity<CommonResponse<ProductDto.DetailResponse>> updateProduct(
             @Parameter(description = "수정할 상품 ID", required = true)
             @PathVariable Long productId,
