@@ -46,6 +46,12 @@ public class CategoryService {
     @Transactional
     public CategoryDto.Response updateCategory(Long categoryId, CategoryDto.Request request) {
         Category category = findCategoryById(categoryId);
+
+        // 자기 자신을 제외한 다른 카테고리와 이름이 중복되면 수정할 수 없음
+        if (categoryRepository.existsByNameAndIdNot(request.getName(), categoryId)) {
+            throw new CustomException(ErrorCode.DUPLICATE_CATEGORY_NAME);
+        }
+
         category.updateName(request.getName()); // Dirty Checking -> 자동 UPDATE
         return new CategoryDto.Response(category);
     }

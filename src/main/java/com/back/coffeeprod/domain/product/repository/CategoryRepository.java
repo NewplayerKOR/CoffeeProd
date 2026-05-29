@@ -7,4 +7,6 @@ public interface CategoryRepository extends JpaRepository<Category, Long> {
 
     // 카테고리명 중복 등록 방지
     boolean existsByName(String name);
+
+    boolean existsByNameAndIdNot(String name, Long categoryId);
 }
