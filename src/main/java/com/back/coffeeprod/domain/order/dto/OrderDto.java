@@ -65,6 +65,35 @@ public class OrderDto {
         }
     }
 
+    @Getter
+    public static class AdminSummaryResponse {
+        private final Long orderId;
+        private final Long memberId;
+        private final String memberEmail;
+        private final OrderStatus status;
+        private final int totalPrice;
+        private final int usedMileage;
+        private final LocalDateTime orderDate;
+        private final String trackingNo;
+        private final int itemCount;
+        private final String firstProductName;
+
+        public AdminSummaryResponse(Orders orders) {
+            this.orderId = orders.getId();
+            this.memberId = orders.getMember().getId();
+            this.memberEmail = orders.getMember().getEmail();
+            this.status = orders.getStatus();
+            this.totalPrice = orders.getTotalPrice();
+            this.usedMileage = orders.getUsedMileage();
+            this.orderDate = orders.getOrderDate();
+            this.trackingNo = orders.getTrackingNo();
+            this.itemCount = orders.getOrderItems().size();
+            this.firstProductName = orders.getOrderItems().isEmpty()
+                    ? ""
+                    : orders.getOrderItems().get(0).getProduct().getName();
+        }
+    }
+
     // 주문 상세 응답 DTO
     @Getter
     public static class DetailResponse {

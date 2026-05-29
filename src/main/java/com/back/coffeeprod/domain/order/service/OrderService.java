@@ -16,6 +16,7 @@ import com.back.coffeeprod.domain.product.repository.ProductRepository;
 import com.back.coffeeprod.global.exception.CustomException;
 import com.back.coffeeprod.global.exception.ErrorCode;
 import lombok.RequiredArgsConstructor;
+import org.hibernate.query.Order;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -126,6 +127,12 @@ public class OrderService {
         return new OrderDto.DetailResponse(orders);
     }
 
+    // [관리자] 전체 주문 목록 조회
+    public Page<OrderDto.AdminSummaryResponse> getAllOrders(Pageable pageable) {
+        return orderRepository.findAll(pageable)
+                .map(OrderDto.AdminSummaryResponse::new);
+    }
+
     // 내 주문 목록 조회
     public Page<OrderDto.SummaryResponse> getMyOrders(Long memberId, Pageable pageable) {
         return orderRepository.findByMemberIdWithItems(memberId, pageable)
@@ -164,6 +171,56 @@ public class OrderService {
     public void cancelOrderForPaymentFailure(Long orderId) {
         Orders orders = findOrderByIdWithItems(orderId);
         cancelAndRestore(orders);
+    }
+
+    // [관리자] 관리자 주문 상태 변경
+    @Transactional
+    public OrderDto.DetailResponse updateOrderStatus(
+            Long orderId,
+            OrderDto.StatusUpdateRequest request
+    ) {
+        Orders orders = findOrderByIdWithItems(orderId);
+        OrderStatus nextStatus = request.getStatus();
+
+        validateOrderStatusTransition(orders, nextStatus, request.getTrackingNo());
+
+        orders.updateStatus(nextStatus, request.getTrackingNo());
+
+        return new OrderDto.DetailResponse(orders);
+    }
+
+    // 주문 상태 전이 검증
+    private void validateOrderStatusTransition(
+            Orders orders,
+            OrderStatus nextStatus,
+            String trackingNo
+    ) {
+        if (nextStatus == null) {
+            throw new CustomException(ErrorCode.INVALID_ORDER_STATUS);
+        }
+
+        OrderStatus currentStatus = orders.getStatus();
+
+        if (currentStatus == OrderStatus.DELIVERED || currentStatus == OrderStatus.CANCELED) {
+            throw new CustomException(ErrorCode.INVALID_ORDER_STATUS);
+        }
+
+        if (nextStatus == OrderStatus.SHIPPED && (trackingNo == null || trackingNo.isBlank())) {
+            throw new CustomException(ErrorCode.INVALID_INPUT_VALUE);
+        }
+
+        boolean allowed = switch (currentStatus) {
+            case PENDING -> nextStatus == OrderStatus.PAID
+                    || nextStatus == OrderStatus.CANCELED;
+            case PAID -> nextStatus == OrderStatus.SHIPPED
+                    || nextStatus == OrderStatus.CANCELED;
+            case SHIPPED -> nextStatus == OrderStatus.DELIVERED;
+            case DELIVERED, CANCELED -> false;
+        };
+
+        if (!allowed) {
+            throw new CustomException(ErrorCode.INVALID_ORDER_STATUS);
+        }
     }
 
     // 보상 로직

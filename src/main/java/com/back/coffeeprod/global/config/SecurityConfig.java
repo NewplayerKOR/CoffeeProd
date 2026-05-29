@@ -53,7 +53,9 @@ public class SecurityConfig {
                                 "/api/v1/auth/signup",
                                 "/api/v1/auth/login",
                                 "/api/v1/auth/reissue",
-                                "/api/v1/auth/check-email"
+                                "/api/v1/auth/check-email",
+                                "/api/v1/products/**",
+                                "/api/v1/categories/**"
                         ).permitAll()
                         // 에러 페이지 접근 허용
                         .requestMatchers("/error").permitAll()
