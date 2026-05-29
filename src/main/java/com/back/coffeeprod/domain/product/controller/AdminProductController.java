@@ -96,7 +96,7 @@ public class AdminProductController {
     // 상품 재고 추가
     @Operation(
             summary = "상품 재고 추가",
-            description = "관리자가 입고된 상품 수량을 기존 재고에 추가합니다. 주문 재고 차감과 별도 흐름입니다."
+            description = "관리자가 입고된 상품 수량을 기존 재고에 추가하며 주문 재고 차감과 별도 흐름입니다."
     )
     @ApiResponses({
             @ApiResponse(responseCode = "200", description = "상품 재고 추가 성공"),
