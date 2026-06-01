@@ -16,10 +16,8 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.context.annotation.ApplicationScope;
 
 //TODO: 관리자 MemberController 구현
 @Tag(name = "Admin-Member", description = "관리자 회원 관리 API")
@@ -59,6 +57,53 @@ public class AdminMemberController {
 
     }
 
+
+    // 회원 등급 변경
+    @Operation(
+            summary = "회원 등급 변경",
+            description = "관리자가 회원의 등급을 변경합니다. BRONZE, SILVER, GOLD 값을 사용할 수 있습니다."
+    )
+    @ApiResponses({
+            @ApiResponse(responseCode = "200", description = "회원등급 변경 성공"),
+            @ApiResponse(responseCode = "401", description = "인증 실패"),
+            @ApiResponse(responseCode = "403", description = "관리자 권한 없음"),
+            @ApiResponse(responseCode = "404", description = "회원을 찾을 수 없음")
+    })
+    @PatchMapping("/{memberId}/grade")
+    public ResponseEntity<CommonResponse<MemberDto.AdminResponse>> updateMemberGrade(
+            @Parameter(description = "등급을 변경할 회원 ID", required = true)
+            @PathVariable Long memberId,
+            @RequestBody MemberDto.GradeUpdateRequest request) {
+
+        MemberDto.AdminResponse response = memberService.updateMemberGrade(memberId,request);
+
+        return ResponseEntity.ok(CommonResponse.success(response));
+    }
+
     // 회원 상태 변경 (정지 / 활성화)
-    //TODO: 회원 상태 변경 작성
+    @Operation(
+            summary = "회원 상태 변경",
+            description = """
+                    관리자가 회원의 상태를 변경합니다.
+                    ACTIVE, SUSPENDED 값을 사용할 수 있습니다.
+                    WITHDRAWN 상태는 사용자 탈퇴 프로세스로만 처리하며 관리자 상태 변경에서 제외합니다.
+                    """
+    )
+    @ApiResponses({
+            @ApiResponse(responseCode = "200", description = "회원 상태 변경 성공"),
+            @ApiResponse(responseCode = "400", description = "잘못된 회원 상태 변경 요청"),
+            @ApiResponse(responseCode = "401", description = "인증 실패"),
+            @ApiResponse(responseCode = "403", description = "관리자 권한 없음"),
+            @ApiResponse(responseCode = "404", description = "회원을 찾을 수 없음")
+    })
+    @PatchMapping("/{memberId}/status")
+    public ResponseEntity<CommonResponse<MemberDto.AdminResponse>> updateMemberStatus(
+            @Parameter(description = "상태를 변경할 회원 ID", required = true)
+            @PathVariable Long memberId,
+            @RequestBody MemberDto.StatusUpdateRequest request) {
+
+        MemberDto.AdminResponse response = memberService.updateMemberStatus(memberId, request);
+
+        return ResponseEntity.ok(CommonResponse.success(response));
+    }
 }
