@@ -10,6 +10,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -49,7 +50,7 @@ public class OrderController {
     @PostMapping
     public ResponseEntity<CommonResponse<OrderDto.DetailResponse>> createOrder(
             @AuthenticationPrincipal CustomUserDetails userDetails,
-            @RequestBody OrderDto.CreateRequest request) {
+            @Valid @RequestBody OrderDto.CreateRequest request) {
 
         Long memberId = userDetails.getMember().getId();
         OrderDto.DetailResponse response = orderService.createOrder(memberId, request);
