@@ -67,6 +67,11 @@ public class MemberService {
             throw new CustomException(ErrorCode.WITHDRAW_MEMBER);
         }
 
+        // 회원 상태 검증 - 정지된 회원 로그인 불가
+        if (member.getStatus() == MemberStatus.SUSPENDED) {
+            throw new CustomException(ErrorCode.SUSPENDED_MEMBER);
+        }
+
         // 비밀번호 일치시 토큰 발급
         String accessToken = jwtUtil.generateAccessToken(member.getId(), member.getRole());
         String refreshToken = jwtUtil.generateRefreshToken(member.getId());
@@ -96,10 +101,14 @@ public class MemberService {
             throw new CustomException(ErrorCode.INVALID_TOKEN);
         }
 
-        // 4. 회원 조회 (탈퇴 여부 확인)
+        // 4. 회원 조회 (탈퇴 & 정지 여부 확인)
         Member member = findMemberById(memberId);
         if (member.getStatus() == MemberStatus.WITHDRAWN) {
             throw new CustomException(ErrorCode.WITHDRAW_MEMBER);
+        }
+
+        if(member.getStatus() == MemberStatus.SUSPENDED) {
+            throw new CustomException(ErrorCode.SUSPENDED_MEMBER);
         }
 
         // 5. 새 토큰 발급
@@ -108,7 +117,6 @@ public class MemberService {
 
         // 6. Redis의 RefreshToken 갱신
         refreshTokenService.save(member.getId(), newRefreshToken);
-        //TODO 검증필요1
 
         return new MemberDto.ReissueResponse(newAccessToken, newRefreshToken);
     }
@@ -208,6 +216,18 @@ public class MemberService {
             Long memberId, MemberDto.StatusUpdateRequest request) {
 
         Member member = findMemberById(memberId);
+        MemberStatus nextStatus = request.getStatus();
+
+        // 탈퇴한 회원은 관리자가 임의로 복구하거나 상태를 변경하지 않는다.
+        if (member.getStatus() == MemberStatus.WITHDRAWN) {
+            throw new CustomException(ErrorCode.INVALID_INPUT_VALUE);
+        }
+
+        // 회원 탈퇴는 사용자 탈퇴 프로세스로만 처리, 관리자 상태에서는 제외
+        if (nextStatus == MemberStatus.WITHDRAWN) {
+            throw new CustomException(ErrorCode.INVALID_INPUT_VALUE);
+        }
+
         member.updateStatus(request.getStatus());
         return new MemberDto.AdminResponse(member);
     }

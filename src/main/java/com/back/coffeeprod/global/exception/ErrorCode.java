@@ -14,6 +14,7 @@ public enum ErrorCode {
     DUPLICATE_EMAIL(409, "이미 사용 중인 이메일입니다."),
     DUPLICATE_NICKNAME(409, "이미 사용 중인 닉네임입니다."),
     WITHDRAW_MEMBER(401, "탈퇴한 회원입니다."),
+    SUSPENDED_MEMBER(403, "정지된 회원입니다."),
 
     // [인증 관련]
     INVALID_TOKEN(401, "유효하지 않은 토큰입니다."),
