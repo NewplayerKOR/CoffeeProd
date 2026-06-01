@@ -10,6 +10,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -50,7 +51,7 @@ public class AddressController {
     @PostMapping
     public ResponseEntity<CommonResponse<AddressDto.Response>> addAddress(
             @AuthenticationPrincipal CustomUserDetails userDetails,
-            @RequestBody AddressDto.Request request) {
+            @Valid @RequestBody AddressDto.Request request) {
 
         Long memberId = userDetails.getMember().getId();
         AddressDto.Response response = addressService.addAddress(memberId, request);
@@ -74,7 +75,7 @@ public class AddressController {
             @Parameter(description = "수정할 배송지 ID", required = true)
             @PathVariable("addressId") Long addressId,
 
-            @RequestBody AddressDto.Request request) {
+            @Valid @RequestBody AddressDto.Request request) {
 
         Long memberId = userDetails.getMember().getId();
         return ResponseEntity.ok(CommonResponse.success(
