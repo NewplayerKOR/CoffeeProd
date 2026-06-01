@@ -2,6 +2,8 @@ package com.back.coffeeprod.domain.payment.dto;
 
 import com.back.coffeeprod.domain.payment.entity.Payment;
 import com.back.coffeeprod.domain.payment.entity.PaymentStatus;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -14,8 +16,14 @@ public class PaymentDto {
     @Getter
     @NoArgsConstructor
     public static class ConfirmRequest {
+
+        @NotNull(message = "paymentKey는 필수입니다.")
         private String paymentKey; // 토스 발급 결제 고유 키
+
+        @NotNull(message = "주문 ID는 필수입니다.")
         private Long orderId;      // 우리 서버의 주문 ID
+
+        @Min(value = 0, message = "결제 금액은 0 이상이어야 합니다.")
         private int amount;        // 결제 금액 (위변조 검증 대상)
     }
 

@@ -1,6 +1,8 @@
 package com.back.coffeeprod.domain.address.dto;
 
 import com.back.coffeeprod.domain.address.entity.Address;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -10,10 +12,27 @@ public class AddressDto {
     @Getter
     @NoArgsConstructor
     public static class Request {
+
+        @NotBlank(message = "수령인은 필수입니다.")
         private String recipient;       // 수령인
+
+        @NotBlank(message = "연락처는 필수입니다.")
+        @Pattern(
+                regexp = "^01[0-9]-?//d{3,4}-?//d{4}$",
+                message = "연락처 형식이 올바르지 않습니다."
+        )
         private String phone;           // 연락처
+
+        @NotBlank(message = "우편번호는 필수입니다.")
+        @Pattern(
+                regexp = "^//d{5}$",
+                message = "우편번호는 5자리 숫자여야 합니다."
+        )
         private String zipcode;         // 우편번호
+
+        @NotBlank(message = "기본 주소는 필수입니다.")
         private String addressLine1;    // 기본 주소
+        
         private String addressLine2;    // 상세 주소 (동/ 호수 등)
     }
 
