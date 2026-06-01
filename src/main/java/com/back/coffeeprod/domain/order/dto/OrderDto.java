@@ -4,6 +4,7 @@ import com.back.coffeeprod.domain.cart.entity.GrindType;
 import com.back.coffeeprod.domain.order.entity.OrderItem;
 import com.back.coffeeprod.domain.order.entity.OrderStatus;
 import com.back.coffeeprod.domain.order.entity.Orders;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
