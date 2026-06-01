@@ -1,5 +1,6 @@
 package com.back.coffeeprod.domain.payment.service;
 
+import com.back.coffeeprod.domain.member.entity.MemberStatus;
 import com.back.coffeeprod.domain.order.entity.OrderStatus;
 import com.back.coffeeprod.domain.order.entity.Orders;
 import com.back.coffeeprod.domain.order.service.OrderService;
@@ -33,6 +34,10 @@ public class PaymentService {
 
         if (!orders.getMember().getId().equals(memberId)) {
             throw new CustomException(ErrorCode.ORDER_ACCESS_DENIED);
+        }
+
+        if (orders.getMember().getStatus() == MemberStatus.SUSPENDED) {
+            throw new CustomException(ErrorCode.SUSPENDED_MEMBER);
         }
 
         // 2. 주문 상태 검증 - PENDING 상태만 가능
