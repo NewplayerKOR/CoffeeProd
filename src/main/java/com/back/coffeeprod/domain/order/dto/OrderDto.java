@@ -4,6 +4,7 @@ import com.back.coffeeprod.domain.cart.entity.GrindType;
 import com.back.coffeeprod.domain.order.entity.OrderItem;
 import com.back.coffeeprod.domain.order.entity.OrderStatus;
 import com.back.coffeeprod.domain.order.entity.Orders;
+import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -17,7 +18,11 @@ public class OrderDto {
     @Getter
     @NoArgsConstructor
     public static class CreateRequest {
+
+        @NotNull(message = "배송지 ID는 필수 입니다.")
         private Long addressId;     // 사용할 배송지 ID
+
+        @Min(value = 0, message = "사용 마일리지는 0원 이상이어야 합니다.")
         private int usedMileage;    // 사용할 마일리지 (0이면 미사용)
     }
 
