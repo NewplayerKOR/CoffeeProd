@@ -28,6 +28,7 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-h2console")
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
     implementation("org.springframework.boot:spring-boot-starter-webmvc")
+    implementation("org.springframework.boot:spring-boot-starter-validation")
     implementation("org.postgresql:postgresql:42.7.10") // PostgreSQL JDBC 드라이버
     implementation("org.springframework.boot:spring-boot-starter-security:4.1.0-M2")
     implementation("io.jsonwebtoken:jjwt-api:0.13.0") // JWT 라이브러리
