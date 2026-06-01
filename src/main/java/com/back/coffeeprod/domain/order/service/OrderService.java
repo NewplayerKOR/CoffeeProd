@@ -6,6 +6,7 @@ import com.back.coffeeprod.domain.cart.entity.Cart;
 import com.back.coffeeprod.domain.cart.entity.CartItem;
 import com.back.coffeeprod.domain.cart.service.CartService;
 import com.back.coffeeprod.domain.member.entity.Member;
+import com.back.coffeeprod.domain.member.entity.MemberStatus;
 import com.back.coffeeprod.domain.member.service.MemberService;
 import com.back.coffeeprod.domain.order.dto.OrderDto;
 import com.back.coffeeprod.domain.order.entity.OrderItem;
@@ -40,6 +41,11 @@ public class OrderService {
     @Transactional
     public OrderDto.DetailResponse createOrder(Long memberId, OrderDto.CreateRequest request) {
         Member member = memberService.findMemberById(memberId);
+
+        // 정지회원 주문 차단
+        if (member.getStatus() == MemberStatus.SUSPENDED) {
+            throw new CustomException(ErrorCode.SUSPENDED_MEMBER);
+        }
 
         // 1. 장바구니 조회 및 빈 장바구니 검증
         Cart cart = cartService.getOrCreateCart(memberId);
