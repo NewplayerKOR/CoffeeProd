@@ -63,10 +63,11 @@ public class AddressController {
     @Operation(summary = "배송지 수정", description = "배송지를 수정합니다. 본인이 등록한 배송지만 수정 가능합니다.")
     @ApiResponses({
             @ApiResponse(responseCode = "200", description = "수정 성공"),
+            @ApiResponse(responseCode = "401", description = "인증 실패"),
             @ApiResponse(responseCode = "403", description = "본인 배송지 아님"),
             @ApiResponse(responseCode = "404", description = "배송지 없음")
     })
-    @PatchMapping("/{addressId}")
+    @PutMapping("/{addressId}")
     public ResponseEntity<CommonResponse<AddressDto.Response>> updateAddress(
             @AuthenticationPrincipal CustomUserDetails userDetails,
 
