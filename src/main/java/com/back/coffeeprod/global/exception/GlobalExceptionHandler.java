@@ -3,8 +3,11 @@ package com.back.coffeeprod.global.exception;
 import com.back.coffeeprod.global.common.CommonResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+
+import java.util.List;
 
 @Slf4j
 @RestControllerAdvice
@@ -32,5 +35,28 @@ public class GlobalExceptionHandler {
         return ResponseEntity
                 .status(errorCode.getStatus())
                 .body(CommonResponse.error(errorCode.getStatus(), errorCode.getMessage()));
+    }
+
+    // 요청 DTO 검증 실패 처리
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    public ResponseEntity<CommonResponse<Void>> handleMethodArgumentNotValidException (
+            MethodArgumentNotValidException e) {
+
+        List<CommonResponse.FieldError> errors = e.getBindingResult()
+                .getFieldErrors()
+                .stream()
+                .map(error -> new CommonResponse.FieldError(
+                        error.getField(),
+                        error.getDefaultMessage()
+                ))
+                .toList();
+
+        return ResponseEntity
+                .badRequest()
+                .body(CommonResponse.validationError(
+                        ErrorCode.INVALID_INPUT_VALUE.getStatus(),
+                        ErrorCode.INVALID_INPUT_VALUE.getMessage(),
+                        errors
+                ));
     }
 }
