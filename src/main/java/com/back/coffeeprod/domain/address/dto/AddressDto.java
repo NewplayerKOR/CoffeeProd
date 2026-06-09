@@ -18,14 +18,14 @@ public class AddressDto {
 
         @NotBlank(message = "연락처는 필수입니다.")
         @Pattern(
-                regexp = "^01[0-9]-?//d{3,4}-?//d{4}$",
+                regexp = "^01[0-9]-?\\d{3,4}-?\\d{4}$",
                 message = "연락처 형식이 올바르지 않습니다."
         )
         private String phone;           // 연락처
 
         @NotBlank(message = "우편번호는 필수입니다.")
         @Pattern(
-                regexp = "^//d{5}$",
+                regexp = "^\\d{5}$",
                 message = "우편번호는 5자리 숫자여야 합니다."
         )
         private String zipcode;         // 우편번호
