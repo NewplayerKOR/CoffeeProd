@@ -8,6 +8,7 @@ import com.back.coffeeprod.domain.cart.entity.GrindType;
 import com.back.coffeeprod.domain.cart.repository.CartItemRepository;
 import com.back.coffeeprod.domain.cart.repository.CartRepository;
 import com.back.coffeeprod.domain.member.entity.Member;
+import com.back.coffeeprod.domain.member.entity.MemberStatus;
 import com.back.coffeeprod.domain.member.entity.Role;
 import com.back.coffeeprod.domain.member.repository.MemberRepository;
 import com.back.coffeeprod.domain.order.dto.OrderDto;
@@ -121,6 +122,56 @@ class PaymentServiceIntegrationTest {
         );
 
         assertEquals(ErrorCode.ORDER_ACCESS_DENIED, exception.getErrorCode());
+        assertEquals(0, testPaymentGateway.getCallCount());
+    }
+
+    @Test
+    void confirmPayment_savesPaymentAndMarksOrderPaid() {
+        Member member = saveMember("success@test.com", "success", 1_000);
+        OrderDto.DetailResponse order = createOrder(member, 10, 2, 300);
+
+        PaymentDto.Response response = paymentService.confirmPayment(
+                member.getId(),
+                confirmRequest(order.getOrderId(), order.getTotalPrice())
+        );
+
+        flushAndClear();
+
+        Orders reloadedOrder = orderRepository.findById(order.getOrderId()).orElseThrow();
+
+        assertEquals(OrderStatus.PAID, reloadedOrder.getStatus());
+        assertEquals(order.getOrderId(), response.getOrderId());
+        assertEquals("test-payment-key", response.getPaymentKey());
+        assertEquals(1, paymentRepository.count());
+        assertEquals(1, testPaymentGateway.getCallCount());
+    }
+
+    @Test
+    void confirmPayment_deniesSuspendedMemberBeforeGatewayCall() {
+        Member member = saveMember("suspended-pay@test.com", "suspendedPay", 1_000);
+        OrderDto.DetailResponse order = createOrder(member, 10, 2, 300);
+        member.updateStatus(MemberStatus.SUSPENDED);
+        memberRepository.save(member);
+
+        CustomException exception = assertThrows(CustomException.class, () ->
+                paymentService.confirmPayment(member.getId(), confirmRequest(order.getOrderId(), order.getTotalPrice()))
+        );
+
+        assertEquals(ErrorCode.SUSPENDED_MEMBER, exception.getErrorCode());
+        assertEquals(0, testPaymentGateway.getCallCount());
+    }
+
+    @Test
+    void confirmPayment_deniesAlreadyPaidOrderBeforeGatewayCall() {
+        Member member = saveMember("already-paid@test.com", "alreadyPaid", 1_000);
+        OrderDto.DetailResponse order = createOrder(member, 10, 2, 300);
+        orderService.markAsPaid(order.getOrderId());
+
+        CustomException exception = assertThrows(CustomException.class, () ->
+                paymentService.confirmPayment(member.getId(), confirmRequest(order.getOrderId(), order.getTotalPrice()))
+        );
+
+        assertEquals(ErrorCode.INVALID_ORDER_STATUS, exception.getErrorCode());
         assertEquals(0, testPaymentGateway.getCallCount());
     }
 
