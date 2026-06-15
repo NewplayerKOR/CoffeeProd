@@ -42,10 +42,10 @@ public class GlobalExceptionHandler {
     public ResponseEntity<CommonResponse<Void>> handleMethodArgumentNotValidException (
             MethodArgumentNotValidException e) {
 
-        List<CommonResponse.FieldError> errors = e.getBindingResult()
+        List<CommonResponse.ValidationError> errors = e.getBindingResult()
                 .getFieldErrors()
                 .stream()
-                .map(error -> new CommonResponse.FieldError(
+                .map(error -> new CommonResponse.ValidationError(
                         error.getField(),
                         error.getDefaultMessage()
                 ))

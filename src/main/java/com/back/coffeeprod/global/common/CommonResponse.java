@@ -1,7 +1,6 @@
 package com.back.coffeeprod.global.common;
 
 import lombok.Getter;
-import org.springframework.validation.FieldError;
 
 import java.util.List;
 
@@ -10,10 +9,10 @@ public class CommonResponse<T> {
     private final int status;
     private final String message;
     private final T data;
-    private final List<FieldError> errors;
+    private final List<ValidationError> errors;
 
     // 외부에서 무분별한 생성 방지
-    private CommonResponse(int status, String message, T data, List<FieldError> errors) {
+    private CommonResponse(int status, String message, T data, List<ValidationError> errors) {
         this.status = status;
         this.message = message;
         this.data = data;
@@ -35,16 +34,17 @@ public class CommonResponse<T> {
         return new CommonResponse<>(status, message, null, null);
     }
 
-    public static <T> CommonResponse<T> validationError(int status, String message, List<FieldError> errors) {
+    // 4. 요청 검증 실패 응답
+    public static <T> CommonResponse<T> validationError(int status, String message, List<ValidationError> errors) {
         return new CommonResponse<>(status, message, null, errors);
     }
 
     @Getter
-    public static class FieldError {
+    public static class ValidationError {
         private final String field;
         private final String message;
 
-        public FieldError(String field, String message) {
+        public ValidationError(String field, String message) {
             this.field = field;
             this.message = message;
         }

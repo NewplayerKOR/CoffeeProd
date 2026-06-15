@@ -3,6 +3,7 @@ package com.back.coffeeprod.domain.payment.dto;
 import com.back.coffeeprod.domain.payment.entity.Payment;
 import com.back.coffeeprod.domain.payment.entity.PaymentStatus;
 import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -17,7 +18,7 @@ public class PaymentDto {
     @NoArgsConstructor
     public static class ConfirmRequest {
 
-        @NotNull(message = "paymentKey는 필수입니다.")
+        @NotBlank(message = "paymentKey는 필수입니다.")
         private String paymentKey; // 토스 발급 결제 고유 키
 
         @NotNull(message = "주문 ID는 필수입니다.")
