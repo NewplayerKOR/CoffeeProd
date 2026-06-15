@@ -1,5 +1,7 @@
 package com.back.coffeeprod.global.config;
 
+import com.back.coffeeprod.global.security.handler.RestAccessDeniedHandler;
+import com.back.coffeeprod.global.security.handler.RestAuthenticationEntryPoint;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
@@ -25,6 +27,8 @@ public class SecurityConfig {
 
     private final JwtUtil jwtUtil;
     private final CustomUserDetailsService customUserDetailsService;
+    private final RestAuthenticationEntryPoint restAuthenticationEntryPoint;
+    private final RestAccessDeniedHandler restAccessDeniedHandler;
 
     // Spring Security에서 사용할 PasswordEncoder 빈을 정의
     @Bean
@@ -45,6 +49,12 @@ public class SecurityConfig {
 
                 // 세션 미사용
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+
+                // 인증 실패/권한 실패 응답을 CommonResponse 형식으로 통일
+                .exceptionHandling(exception -> exception
+                        .authenticationEntryPoint(restAuthenticationEntryPoint)
+                        .accessDeniedHandler(restAccessDeniedHandler)
+                )
 
                 // 요청에 대한 권한 설정
                 .authorizeHttpRequests(auth -> auth
