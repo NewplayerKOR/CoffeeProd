@@ -17,7 +17,6 @@ import com.back.coffeeprod.domain.product.repository.ProductRepository;
 import com.back.coffeeprod.global.exception.CustomException;
 import com.back.coffeeprod.global.exception.ErrorCode;
 import lombok.RequiredArgsConstructor;
-import org.hibernate.query.Order;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
@@ -116,7 +115,7 @@ public class OrderService {
 
         orderRepository.save(orders);
 
-        // 8. 주문 상품 생성 (가격 스냅샷 저장)
+        // 10. 주문 상품 생성 (가격 스냅샷 저장)
         for (CartItem cartItem : cartItems) {
             OrderItem orderItem = OrderItem.builder()
                     .orders(orders)
@@ -128,7 +127,7 @@ public class OrderService {
             orders.getOrderItems().add(orderItem);
         }
 
-        // 9. 장바구니 비우기
+        // 11. 장바구니 비우기
         cart.clear();
 
         return new OrderDto.DetailResponse(orders);

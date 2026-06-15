@@ -6,7 +6,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
-import org.springframework.data.jpa.repository.EntityGraph;
 
 import java.util.List;
 
@@ -50,20 +49,14 @@ public interface OrderRepository extends JpaRepository<Orders, Long> {
             """)
     java.util.Optional<Orders> findByIdWithItems(@Param("orderId") Long orderId);
 
-    // 관리자 전체 주문 목록 조회
-    // 컬렉션 fetch join + Pageable 조합을 피하기 위해 member만 EntityGraph로 함께 조회
-    @Override
-    @EntityGraph(attributePaths = {"member"})
-    Page<Orders> findAll(Pageable pageable);
-
     // 관리자 전체 주문 목록 ID 조회 (페이지네이션)
     @Query(
             value = """
-                SELECT o.id FROM Orders o
-                ORDER BY o.orderDate DESC
-                """,
+                    SELECT o.id FROM Orders o
+                    ORDER BY o.orderDate DESC
+                    """,
             countQuery = """
-                SELECT COUNT(o) FROM Orders o
-                """)
+                    SELECT COUNT(o) FROM Orders o
+                    """)
     Page<Long> findAllIds(Pageable pageable);
 }
