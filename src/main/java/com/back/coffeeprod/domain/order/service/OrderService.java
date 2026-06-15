@@ -19,6 +19,7 @@ import com.back.coffeeprod.global.exception.ErrorCode;
 import lombok.RequiredArgsConstructor;
 import org.hibernate.query.Order;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
@@ -135,14 +136,37 @@ public class OrderService {
 
     // [관리자] 전체 주문 목록 조회
     public Page<OrderDto.AdminSummaryResponse> getAllOrders(Pageable pageable) {
-        return orderRepository.findAll(pageable)
-                .map(OrderDto.AdminSummaryResponse::new);
+        Page<Long> orderIdPage = orderRepository.findAllIds(pageable);
+
+        if (orderIdPage.isEmpty()) {
+            return Page.empty(pageable);
+        }
+
+        // 주문 ID 페이지 조회 후 해당 주문들의 주문상품/상품 정보를 한 번에 조회 한다.
+        List<Orders> orders = orderRepository.findAllWithItemsByIdIn(orderIdPage.getContent());
+
+        List<OrderDto.AdminSummaryResponse> responses = orders.stream()
+                .map(OrderDto.AdminSummaryResponse::new)
+                .toList();
+
+        return new PageImpl<>(responses, pageable, orderIdPage.getTotalElements());
     }
 
     // 내 주문 목록 조회
     public Page<OrderDto.SummaryResponse> getMyOrders(Long memberId, Pageable pageable) {
-        return orderRepository.findByMemberIdWithItems(memberId, pageable)
-                .map(OrderDto.SummaryResponse::new);
+        Page<Long> orderIdPage = orderRepository.findIdsByMemberId(memberId, pageable);
+
+        if (orderIdPage.isEmpty()) {
+            return Page.empty(pageable);
+        }
+
+        List<Orders> orders = orderRepository.findAllWithItemsByIdIn(orderIdPage.getContent());
+
+        List<OrderDto.SummaryResponse> responses = orders.stream()
+                .map(OrderDto.SummaryResponse::new)
+                .toList();
+
+        return new PageImpl<>(responses, pageable, orderIdPage.getTotalElements());
     }
 
     // 주문 상세 조회
