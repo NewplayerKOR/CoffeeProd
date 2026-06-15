@@ -4,6 +4,10 @@ import com.back.coffeeprod.domain.member.entity.Grade;
 import com.back.coffeeprod.domain.member.entity.Member;
 import com.back.coffeeprod.domain.member.entity.MemberStatus;
 import com.back.coffeeprod.domain.member.entity.Role;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -13,9 +17,21 @@ public class MemberDto {
     @Getter
     @NoArgsConstructor
     public static class SignupRequest {
+
+        @NotBlank(message = "이메일은 필수입니다.")
+        @Email(message = "이메일 형식이 올바르지 않습니다.")
         private String email;
+
+        @NotBlank(message = "비밀번호는 필수입니다.")
+        @Size(min = 8, max = 100, message = "비밀번호는 8자 이상 100자 이하로 입력해야 합니다.")
         private String password;
+
+        @NotBlank(message = "이름은 필수입니다.")
+        @Size(max = 50, message = "이름은 50자 이하로 입력해야 합니다.")
         private String name;
+
+        @NotBlank(message = "닉네임은 필수 입니다")
+        @Size(max = 50, message = "닉네임은 50자 이하로 입력해야 합니다.")
         private String nickname;
     }
 
@@ -23,7 +39,12 @@ public class MemberDto {
     @Getter
     @NoArgsConstructor
     public static class LoginRequest {
+
+        @NotBlank(message = "이메일은 필수입니다.")
+        @Email(message = "이메일 형식이 올바르지 않습니다.")
         private String email;
+
+        @NotBlank(message = "비밀번호는 필수입니다.")
         private String password;
     }
 
@@ -31,6 +52,9 @@ public class MemberDto {
     @Getter
     @NoArgsConstructor
     public static class UpdateRequest {
+
+        @NotBlank(message = "닉네임은 필수입니다.")
+        @Size(max = 50, message = "닉네임은 50자 이하로 입력해야 합니다.")
         private String nickname;
     }
 
@@ -38,7 +62,12 @@ public class MemberDto {
     @Getter
     @NoArgsConstructor
     public static class PasswordChangeRequest {
+
+        @NotBlank(message = "현재 비밀번호는 필수입니다.")
         private String currentPassword;
+
+        @NotBlank(message = "새 비밀번호는 필수입니다.")
+        @Size(min = 8, max = 100, message = "새 비밀번호는 8자 이상 100자 이하로 입력해야 합니다.")
         private String newPassword;
     }
 
@@ -90,6 +119,8 @@ public class MemberDto {
     @Getter
     @NoArgsConstructor
     public static class RefreshRequest {
+
+        @NotBlank(message = "RefreshToken은 필수입니다.")
         private String refreshToken;    // 클라이언트가 보관 중인 RefreshToken
     }
 
@@ -113,6 +144,8 @@ public class MemberDto {
     @Getter
     @NoArgsConstructor
     public static class GradeUpdateRequest {
+
+        @NotNull(message = "회원 등급은 필수입니다.")
         private Grade grade;
     }
 
@@ -120,6 +153,8 @@ public class MemberDto {
     @Getter
     @NoArgsConstructor
     public static class StatusUpdateRequest {
+
+        @NotNull(message = "회원 상태는 필수입니다.")
         private MemberStatus status;
     }
 
