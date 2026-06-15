@@ -71,6 +71,15 @@ public class MemberDto {
         private String newPassword;
     }
 
+    // 회원 탈퇴 요청 DTO
+    @Getter
+    @NoArgsConstructor
+    public static class WithdrawRequest {
+
+        @NotBlank(message = "현재 비밀번호는 필수입니다.")
+        private String currentPassword;
+    }
+
     // 회원 정보 응답 DTO
     @Getter
     public static class Response {
