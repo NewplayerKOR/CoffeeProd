@@ -17,6 +17,8 @@ public enum ErrorCode {
     SUSPENDED_MEMBER(403, "정지된 회원입니다."),
 
     // [인증 관련]
+    AUTHENTICATION_REQUIRED(401, "인증이 필요합니다."),
+    ACCESS_DENIED(403, "접근 권한이 없습니다."),
     INVALID_TOKEN(401, "유효하지 않은 토큰입니다."),
     EXPIRED_TOKEN(401, "만료된 토큰입니다."),
 
