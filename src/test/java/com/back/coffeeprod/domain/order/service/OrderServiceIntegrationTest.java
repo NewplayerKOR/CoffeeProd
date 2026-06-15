@@ -27,6 +27,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.util.ReflectionTestUtils;
@@ -169,6 +171,75 @@ class OrderServiceIntegrationTest {
         assertEquals(OrderStatus.CANCELED, reloadedOrder.getStatus());
     }
 
+    @Test
+    void getMyOrders_returnsOnlyMembersOrdersWithItems() {
+        Member member = saveMember("list-user@test.com", "listUser", 1_000);
+        Member otherMember = saveMember("other-list-user@test.com", "otherListUser", 1_000);
+        OrderDto.DetailResponse myOrder = createOrder(member, 10, 2, 300);
+        createOrder(otherMember, 10, 1, 0);
+
+        // 내 주문 목록 조회는 요청 회원의 주문만 페이지 단위로 반환한다.
+        Page<OrderDto.SummaryResponse> response = orderService.getMyOrders(member.getId(), PageRequest.of(0, 10));
+
+        assertEquals(1, response.getTotalElements());
+        assertEquals(myOrder.getOrderId(), response.getContent().get(0).getOrderId());
+        assertEquals("테스트 원두", response.getContent().get(0).getFirstProductName());
+        assertEquals(1, response.getContent().get(0).getItemCount());
+    }
+
+    @Test
+    void getAllOrders_returnsAdminOrderSummariesWithMemberInfo() {
+        Member firstMember = saveMember("admin-list1@test.com", "adminList1", 1_000);
+        Member secondMember = saveMember("admin-list2@test.com", "adminList2", 1_000);
+        createOrder(firstMember, 10, 2, 300);
+        createOrder(secondMember, 10, 1, 0);
+
+        // 관리자 주문 목록 조회는 회원 정보와 주문 요약 정보를 함께 반환한다.
+        Page<OrderDto.AdminSummaryResponse> response = orderService.getAllOrders(PageRequest.of(0, 20));
+
+        assertEquals(2, response.getTotalElements());
+        assertEquals(2, response.getContent().size());
+        assertEquals("테스트 원두", response.getContent().get(0).getFirstProductName());
+    }
+
+    @Test
+    void updateOrderStatus_changesPaidOrderToShippedWithTrackingNo() {
+        Member member = saveMember("ship-user@test.com", "shipUser", 1_000);
+        OrderDto.DetailResponse created = createOrder(member, 10, 2, 300);
+        orderService.markAsPaid(created.getOrderId());
+
+        OrderDto.DetailResponse response = orderService.updateOrderStatus(
+                created.getOrderId(),
+                statusUpdateRequest(OrderStatus.SHIPPED, "TRACK-1234")
+        );
+
+        assertEquals(OrderStatus.SHIPPED, response.getStatus());
+        assertEquals("TRACK-1234", response.getTrackingNo());
+    }
+
+    @Test
+    void updateOrderStatus_requiresTrackingNoWhenShipping() {
+        Member member = saveMember("ship-invalid-user@test.com", "shipInvalidUser", 1_000);
+        OrderDto.DetailResponse created = createOrder(member, 10, 2, 300);
+        orderService.markAsPaid(created.getOrderId());
+
+        CustomException exception = assertThrows(CustomException.class, () ->
+                orderService.updateOrderStatus(
+                        created.getOrderId(),
+                        statusUpdateRequest(OrderStatus.SHIPPED, null)
+                )
+        );
+
+        assertEquals(ErrorCode.INVALID_INPUT_VALUE, exception.getErrorCode());
+    }
+
+    private OrderDto.DetailResponse createOrder(Member member, int stockQuantity, int quantity, int usedMileage) {
+        Address address = saveAddress(member);
+        Product product = saveProduct(stockQuantity, 5_000);
+        saveCartItem(member, product, quantity);
+        return orderService.createOrder(member.getId(), createOrderRequest(address.getId(), usedMileage));
+    }
+
     private Member saveMember(String email, String nickname, int mileage) {
         Member member = Member.builder()
                 .email(email)
@@ -227,6 +298,13 @@ class OrderServiceIntegrationTest {
         OrderDto.CreateRequest request = new OrderDto.CreateRequest();
         ReflectionTestUtils.setField(request, "addressId", addressId);
         ReflectionTestUtils.setField(request, "usedMileage", usedMileage);
+        return request;
+    }
+
+    private OrderDto.StatusUpdateRequest statusUpdateRequest(OrderStatus status, String trackingNo) {
+        OrderDto.StatusUpdateRequest request = new OrderDto.StatusUpdateRequest();
+        ReflectionTestUtils.setField(request, "status", status);
+        ReflectionTestUtils.setField(request, "trackingNo", trackingNo);
         return request;
     }
 
