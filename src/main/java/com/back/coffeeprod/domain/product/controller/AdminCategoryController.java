@@ -8,6 +8,7 @@ import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -36,7 +37,7 @@ public class AdminCategoryController {
     })
     @PostMapping
     public ResponseEntity<CommonResponse<CategoryDto.Response>> createCategory(
-            @RequestBody CategoryDto.Request request) {
+            @Valid @RequestBody CategoryDto.Request request) {
 
         CategoryDto.Response response = categoryService.createCategory(request);
 
@@ -60,7 +61,7 @@ public class AdminCategoryController {
     public ResponseEntity<CommonResponse<CategoryDto.Response>> updateCategory(
             @Parameter(description = "수정할 카테고리 ID", required = true)
             @PathVariable Long categoryId,
-            @RequestBody CategoryDto.Request request) {
+            @Valid @RequestBody CategoryDto.Request request) {
 
         CategoryDto.Response response = categoryService.updateCategory(categoryId, request);
 

@@ -11,6 +11,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -40,7 +41,7 @@ public class AdminProductController {
     })
     @PostMapping
     public ResponseEntity<CommonResponse<ProductDto.DetailResponse>> createProduct(
-            @RequestBody ProductDto.Request request) {
+            @Valid @RequestBody ProductDto.Request request) {
 
         ProductDto.DetailResponse response = productService.createProduct(request);
 
@@ -64,7 +65,7 @@ public class AdminProductController {
     public ResponseEntity<CommonResponse<ProductDto.DetailResponse>> updateProduct(
             @Parameter(description = "수정할 상품 ID", required = true)
             @PathVariable Long productId,
-            @RequestBody ProductDto.Request request) {
+            @Valid @RequestBody ProductDto.Request request) {
 
         ProductDto.DetailResponse response = productService.updateProduct(productId, request);
 
@@ -86,7 +87,7 @@ public class AdminProductController {
     public ResponseEntity<CommonResponse<ProductDto.DetailResponse>> updateProductStatus(
             @Parameter(description = "상태를 변경할 상품 ID", required = true)
             @PathVariable Long productId,
-            @RequestBody ProductDto.StatusRequest request) {
+            @Valid @RequestBody ProductDto.StatusRequest request) {
 
         ProductDto.DetailResponse response = productService.updateProductStatus(productId, request);
 
@@ -108,7 +109,7 @@ public class AdminProductController {
     public ResponseEntity<CommonResponse<ProductDto.DetailResponse>> addStock(
             @Parameter(description = "재고를 추가할 상품 ID", required = true)
             @PathVariable Long productId,
-            @RequestBody ProductDto.StockRequest request) {
+            @Valid @RequestBody ProductDto.StockRequest request) {
 
         ProductDto.DetailResponse response = productService.addStock(productId, request);
 

@@ -10,6 +10,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -60,7 +61,7 @@ public class CartController {
     @PostMapping("/items")
     public ResponseEntity<CommonResponse<CartDto.CartResponse>> addItem(
             @AuthenticationPrincipal CustomUserDetails userDetails,
-            @RequestBody CartDto.AddRequest request) {
+            @Valid @RequestBody CartDto.AddRequest request) {
 
         Long memberId = userDetails.getMember().getId();
         return ResponseEntity.ok(CommonResponse.success(cartService.addItem(memberId, request)));
@@ -85,7 +86,7 @@ public class CartController {
             @Parameter(description = "변경할 장바구니 상품 ID", required = true)
             @PathVariable("cartItemId") Long cartItemId,
 
-            @RequestBody CartDto.UpdateRequest request) {
+            @Valid @RequestBody CartDto.UpdateRequest request) {
 
         Long memberId = userDetails.getMember().getId();
         return ResponseEntity.ok(CommonResponse.success(cartService.updateItem(memberId, cartItemId, request)));
