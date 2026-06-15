@@ -9,6 +9,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -73,7 +74,7 @@ public class AdminMemberController {
     public ResponseEntity<CommonResponse<MemberDto.AdminResponse>> updateMemberGrade(
             @Parameter(description = "등급을 변경할 회원 ID", required = true)
             @PathVariable Long memberId,
-            @RequestBody MemberDto.GradeUpdateRequest request) {
+            @Valid @RequestBody MemberDto.GradeUpdateRequest request) {
 
         MemberDto.AdminResponse response = memberService.updateMemberGrade(memberId,request);
 
@@ -100,7 +101,7 @@ public class AdminMemberController {
     public ResponseEntity<CommonResponse<MemberDto.AdminResponse>> updateMemberStatus(
             @Parameter(description = "상태를 변경할 회원 ID", required = true)
             @PathVariable Long memberId,
-            @RequestBody MemberDto.StatusUpdateRequest request) {
+            @Valid @RequestBody MemberDto.StatusUpdateRequest request) {
 
         MemberDto.AdminResponse response = memberService.updateMemberStatus(memberId, request);
 

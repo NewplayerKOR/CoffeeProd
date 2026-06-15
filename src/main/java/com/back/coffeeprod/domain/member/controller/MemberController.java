@@ -9,6 +9,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -48,7 +49,7 @@ public class MemberController {
     @PatchMapping("/me")
     public ResponseEntity<CommonResponse<MemberDto.Response>> updateMyInfo(
             @AuthenticationPrincipal CustomUserDetails userDetails,
-            @RequestBody MemberDto.UpdateRequest request) {
+            @Valid @RequestBody MemberDto.UpdateRequest request) {
 
         Long memberId = userDetails.getMember().getId();
         return ResponseEntity.ok(CommonResponse.success(memberService.updateMyInfo(memberId, request)));
@@ -63,7 +64,7 @@ public class MemberController {
     @PatchMapping("/me/password")
     public ResponseEntity<CommonResponse<Void>> changePassword(
             @AuthenticationPrincipal CustomUserDetails userDetails,
-            @RequestBody MemberDto.PasswordChangeRequest request) {
+            @Valid @RequestBody MemberDto.PasswordChangeRequest request) {
 
         Long memberId = userDetails.getMember().getId();
         memberService.changePassword(memberId, request);
@@ -79,7 +80,7 @@ public class MemberController {
     @DeleteMapping("/me")
     public ResponseEntity<CommonResponse<Void>> withdraw(
             @AuthenticationPrincipal CustomUserDetails userDetails,
-            @RequestBody MemberDto.PasswordChangeRequest request) {
+            @Valid @RequestBody MemberDto.WithdrawRequest request) {
 
         Long memberId = userDetails.getMember().getId();
         memberService.withdraw(memberId, request.getCurrentPassword());

@@ -9,6 +9,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -30,7 +31,7 @@ public class AuthController {
     })
     @PostMapping("/signup")
     public ResponseEntity<CommonResponse<MemberDto.Response>> signUp(
-            @RequestBody MemberDto.SignupRequest request) {
+            @Valid @RequestBody MemberDto.SignupRequest request) {
 
         return ResponseEntity.ok(CommonResponse.success(memberService.join(request)));
     }
@@ -43,7 +44,7 @@ public class AuthController {
     })
     @PostMapping("/login")
     public ResponseEntity<CommonResponse<MemberDto.TokenResponse>> login(
-            @RequestBody MemberDto.LoginRequest request) {
+            @Valid @RequestBody MemberDto.LoginRequest request) {
 
         return ResponseEntity.ok(CommonResponse.success(memberService.login(request)));
     }
@@ -63,7 +64,7 @@ public class AuthController {
     })
     @PostMapping("/reissue")
     public ResponseEntity<CommonResponse<MemberDto.ReissueResponse>> reissue(
-            @RequestBody MemberDto.RefreshRequest request) {
+            @Valid @RequestBody MemberDto.RefreshRequest request) {
 
         return ResponseEntity.ok(CommonResponse.success(memberService.reissue(request)));
     }
