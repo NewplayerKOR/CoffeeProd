@@ -26,6 +26,7 @@ import org.springframework.test.util.ReflectionTestUtils;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @SpringBootTest
 @ActiveProfiles("test")
@@ -113,6 +114,43 @@ class ProductServiceIntegrationTest {
     }
 
     @Test
+    void getCategory_returnsCategoryDetail() {
+        CategoryDto.Response category = categoryService.createCategory(categoryRequest("싱글 오리진"));
+
+        // 공개 카테고리 단건 조회는 등록된 카테고리 정보를 그대로 반환한다.
+        CategoryDto.Response response = categoryService.getCategory(category.getId());
+
+        assertEquals(category.getId(), response.getId());
+        assertEquals("싱글 오리진", response.getName());
+    }
+
+    @Test
+    void deleteCategory_removesCategoryWithoutProducts() {
+        CategoryDto.Response category = categoryService.createCategory(categoryRequest("삭제 가능 카테고리"));
+
+        categoryService.deleteCategory(category.getId());
+
+        CustomException exception = assertThrows(CustomException.class, () ->
+                categoryService.getCategory(category.getId())
+        );
+
+        assertEquals(ErrorCode.CATEGORY_NOT_FOUND, exception.getErrorCode());
+    }
+
+    @Test
+    void deleteCategory_rejectsCategoryInUse() {
+        CategoryDto.Response category = categoryService.createCategory(categoryRequest("상품 연결 카테고리"));
+        productService.createProduct(productRequest(category.getId(), "연결 상품", 10_000, 5));
+
+        CustomException exception = assertThrows(CustomException.class, () ->
+                categoryService.deleteCategory(category.getId())
+        );
+
+        assertEquals(ErrorCode.CATEGORY_IN_USE, exception.getErrorCode());
+        assertTrue(categoryRepository.existsById(category.getId()));
+    }
+
+    @Test
     void createProduct_savesProductWithCategory() {
         CategoryDto.Response category = categoryService.createCategory(categoryRequest("디카페인"));
 
@@ -130,6 +168,57 @@ class ProductServiceIntegrationTest {
     }
 
     @Test
+    void getAdminProduct_returnsHiddenProductDetail() {
+        CategoryDto.Response category = categoryService.createCategory(categoryRequest("관리자 상세"));
+        ProductDto.DetailResponse product = productService.createProduct(productRequest(
+                category.getId(),
+                "숨김 상세 상품",
+                14_000,
+                8
+        ));
+        productService.updateProductStatus(product.getId(), statusRequest(ProductStatus.HIDDEN));
+
+        // 관리자는 일반 사용자에게 숨김 처리된 상품도 상세 조회할 수 있다.
+        ProductDto.DetailResponse response = productService.getAdminProduct(product.getId());
+
+        assertEquals(product.getId(), response.getId());
+        assertEquals(ProductStatus.HIDDEN, response.getStatus());
+    }
+
+    @Test
+    void getAdminProducts_returnsProductsRegardlessOfStatus() {
+        CategoryDto.Response category = categoryService.createCategory(categoryRequest("관리자 목록"));
+        productService.createProduct(productRequest(category.getId(), "판매 상품", 10_000, 10));
+
+        ProductDto.DetailResponse soldOutProduct = productService.createProduct(productRequest(
+                category.getId(),
+                "품절 상품",
+                11_000,
+                0
+        ));
+        productService.updateProductStatus(soldOutProduct.getId(), statusRequest(ProductStatus.SOLD_OUT));
+
+        ProductDto.DetailResponse hiddenProduct = productService.createProduct(productRequest(
+                category.getId(),
+                "숨김 상품",
+                12_000,
+                5
+        ));
+        productService.updateProductStatus(hiddenProduct.getId(), statusRequest(ProductStatus.HIDDEN));
+
+        // status 필터를 비우면 관리자는 ON_SALE, SOLD_OUT, HIDDEN 상품을 모두 조회한다.
+        Page<ProductDto.SummaryResponse> response = productService.getAdminProducts(
+                null,
+                null,
+                null,
+                null,
+                PageRequest.of(0, 10)
+        );
+
+        assertEquals(3, response.getTotalElements());
+    }
+
+    @Test
     void addStock_increasesProductStockQuantity() {
         CategoryDto.Response category = categoryService.createCategory(categoryRequest("블렌드"));
         ProductDto.DetailResponse product = productService.createProduct(productRequest(
@@ -142,6 +231,28 @@ class ProductServiceIntegrationTest {
         ProductDto.DetailResponse response = productService.addStock(product.getId(), stockRequest(7));
 
         assertEquals(10, response.getStockQuantity());
+    }
+
+    @Test
+    void deleteProduct_hidesProductInsteadOfPhysicalDelete() {
+        CategoryDto.Response category = categoryService.createCategory(categoryRequest("삭제 상품"));
+        ProductDto.DetailResponse product = productService.createProduct(productRequest(
+                category.getId(),
+                "삭제 요청 상품",
+                16_000,
+                10
+        ));
+
+        productService.deleteProduct(product.getId());
+
+        // 상품 삭제는 주문 이력 보호를 위해 물리 삭제가 아니라 HIDDEN 상태 변경으로 처리한다.
+        ProductDto.DetailResponse adminResponse = productService.getAdminProduct(product.getId());
+        assertEquals(ProductStatus.HIDDEN, adminResponse.getStatus());
+
+        CustomException exception = assertThrows(CustomException.class, () ->
+                productService.getProduct(product.getId())
+        );
+        assertEquals(ErrorCode.PRODUCT_NOT_FOUND, exception.getErrorCode());
     }
 
     @Test
