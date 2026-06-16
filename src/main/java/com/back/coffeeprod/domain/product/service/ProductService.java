@@ -47,6 +47,26 @@ public class ProductService {
         return new ProductDto.DetailResponse(product);
     }
 
+    // [관리자] 상품 목록 조회
+    public Page<ProductDto.SummaryResponse> getAdminProducts(
+            Long categoryId,
+            RoastLevel roastLevel,
+            ProductStatus status,
+            String keyword,
+            Pageable pageable) {
+
+        // 관리자는 ON_SALE, SOLD_OUT, HIDDEN 상품을 모두 조회 가능
+        return productRepository
+                .findAllWithFilters(categoryId, roastLevel, status, keyword, pageable)
+                .map(ProductDto.SummaryResponse::new);
+    }
+
+    // [관리자] 상품 상세 조회
+    public ProductDto.DetailResponse getAdminProduct(Long productId) {
+        Product product = findProductById(productId);
+        return new ProductDto.DetailResponse(product);
+    }
+
     // [관리자] 상품 등록
     @Transactional
     public ProductDto.DetailResponse createProduct(ProductDto.Request request) {
@@ -98,6 +118,15 @@ public class ProductService {
         Product product = findProductById(productId);
         product.addStock(request.getQuantity());
         return new ProductDto.DetailResponse(product);
+    }
+
+    // [관리자] 상품 삭제 처리
+    @Transactional
+    public void deleteProduct(Long productId) {
+        Product product = findProductById(productId);
+
+        // 주문 이력 보존을 위해 실제 삭제 대신 숨김 상태로 변경
+        product.updateStatus(ProductStatus.HIDDEN);
     }
 
 

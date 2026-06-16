@@ -14,13 +14,13 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
 
     // 상품 목록 조회: 카테고리, 로스팅 강도, 상태, 이름 검색 복합필터
     @Query("""
-        SELECT p FROM Product p
-        JOIN FETCH p.category
-        WHERE (:categoryId IS NULL OR p.category.id = :categoryId)
-        AND (:roastLevel IS NULL OR p.roastLevel = :roastLevel)
-        AND (:status IS NULL OR p.status = :status)
-        AND (:keyword IS NULL OR p.name LIKE %:keyword%)
-        """)
+            SELECT p FROM Product p
+            JOIN FETCH p.category
+            WHERE (:categoryId IS NULL OR p.category.id = :categoryId)
+            AND (:roastLevel IS NULL OR p.roastLevel = :roastLevel)
+            AND (:status IS NULL OR p.status = :status)
+            AND (:keyword IS NULL OR p.name LIKE %:keyword%)
+            """)
     Page<Product> findAllWithFilters(
             @Param("categoryId") Long categoryId,
             @Param("roastLevel") RoastLevel roastLevel,
@@ -29,14 +29,17 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
             Pageable pageable
     );
 
+    // 특정 카테고리에 연결된 상품 존재 여부 확인
+    boolean existsByCategoryId(Long categoryId);
+
     // 재고 차감 쿼리
     @Modifying(flushAutomatically = true)
     @Query("""
-        UPDATE Product p
-        SET p.stockQuantity = p.stockQuantity - :quantity
-        WHERE p.id = :productId
-        AND p.stockQuantity >= :quantity
-        """)
+            UPDATE Product p
+            SET p.stockQuantity = p.stockQuantity - :quantity
+            WHERE p.id = :productId
+            AND p.stockQuantity >= :quantity
+            """)
     int decreaseStockIfEnough(
             @Param("productId") Long productId,
             @Param("quantity") int quantity

@@ -18,9 +18,7 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.context.annotation.ApplicationScope;
 
-//TODO: 관리자 MemberController 구현
 @Tag(name = "Admin-Member", description = "관리자 회원 관리 API")
 @SecurityRequirement(name = "jwtAuth")
 @PreAuthorize("hasRole('ADMIN')") // ✅ 클래스 레벨 ADMIN 권한 체크
@@ -35,10 +33,10 @@ public class AdminMemberController {
     @Operation(
             summary = "전체 회원 목록 조회",
             description = """
-                전체 회원 목록을 페이지네이션으로 조회합니다.
-                - includeWithdrawn: true 시 탈퇴 회원 포함 조회
-                - 기본값: 탈퇴 회원 제외
-                """
+                    전체 회원 목록을 페이지네이션으로 조회합니다.
+                    - includeWithdrawn: true 시 탈퇴 회원 포함 조회
+                    - 기본값: 탈퇴 회원 제외
+                    """
     )
     @ApiResponses({
             @ApiResponse(responseCode = "200", description = "조회 성공"),
@@ -56,6 +54,26 @@ public class AdminMemberController {
         return ResponseEntity.ok(CommonResponse.success(
                 memberService.getAllMembers(includeWithdrawn, pageable)));
 
+    }
+
+    // 회원 단건 조회
+    @Operation(
+            summary = "회원 단건 조회",
+            description = "관리자가 회원 ID로 회원 상세 정보를 조회합니다."
+    )
+    @ApiResponses({
+            @ApiResponse(responseCode = "200", description = "회원 조회 성공"),
+            @ApiResponse(responseCode = "401", description = "인증 실패"),
+            @ApiResponse(responseCode = "403", description = "관리자 권한 없음"),
+            @ApiResponse(responseCode = "404", description = "회원을 찾을 수 없음")
+    })
+    @GetMapping("/{memberId}")
+    public ResponseEntity<CommonResponse<MemberDto.AdminResponse>> getMember(
+            @Parameter(description = "조회할 회원 ID", required = true)
+            @PathVariable Long memberId) {
+
+        MemberDto.AdminResponse response = memberService.getMember(memberId);
+        return ResponseEntity.ok(CommonResponse.success(response));
     }
 
 
@@ -76,7 +94,7 @@ public class AdminMemberController {
             @PathVariable Long memberId,
             @Valid @RequestBody MemberDto.GradeUpdateRequest request) {
 
-        MemberDto.AdminResponse response = memberService.updateMemberGrade(memberId,request);
+        MemberDto.AdminResponse response = memberService.updateMemberGrade(memberId, request);
 
         return ResponseEntity.ok(CommonResponse.success(response));
     }

@@ -67,4 +67,25 @@ public class AdminCategoryController {
 
         return ResponseEntity.ok(CommonResponse.success(response));
     }
+
+    // 카테고리 삭제
+    @Operation(
+            summary = "카테고리 삭제",
+            description = "관리자가 카테고리를 삭제합니다. 연결된 상품이 있으면 삭제할 수 없습니다."
+    )
+    @ApiResponses({
+            @ApiResponse(responseCode = "200", description = "카테고리 삭제 성공"),
+            @ApiResponse(responseCode = "400", description = "상품이 연결된 카테고리"),
+            @ApiResponse(responseCode = "401", description = "인증 실패"),
+            @ApiResponse(responseCode = "403", description = "관리자 권한 없음"),
+            @ApiResponse(responseCode = "404", description = "카테고리를 찾을 수 없음")
+    })
+    @DeleteMapping("/{categoryId}")
+    public ResponseEntity<CommonResponse<Void>> deleteCategory(
+            @Parameter(description = "삭제할 카테고리 ID", required = true)
+            @PathVariable Long categoryId) {
+
+        categoryService.deleteCategory(categoryId);
+        return ResponseEntity.ok(CommonResponse.success(200, "카테고리가 삭제되었습니다."));
+    }
 }
