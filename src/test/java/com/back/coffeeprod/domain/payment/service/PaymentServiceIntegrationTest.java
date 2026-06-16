@@ -221,6 +221,75 @@ class PaymentServiceIntegrationTest {
         assertEquals(1, testPaymentGateway.getCallCount());
     }
 
+    @Test
+    void confirmPayment_cancelsOrderAndRestoresOnGatewayOrderIdMismatch() {
+        Member member = saveMember("gateway-order-id@test.com", "gatewayOrderId", 1_000);
+        OrderDto.DetailResponse order = createOrder(member, 10, 2, 300);
+        testPaymentGateway.changeResponseOrderId("COFFEE-MISMATCHED-ORDER-ID");
+
+        CustomException exception = assertThrows(CustomException.class, () ->
+                paymentService.confirmPayment(member.getId(), confirmRequest(order.getTossOrderId(), order.getTotalPrice()))
+        );
+
+        flushAndClear();
+
+        Orders reloadedOrder = orderRepository.findById(order.getOrderId()).orElseThrow();
+        Member reloadedMember = memberRepository.findById(member.getId()).orElseThrow();
+        Product reloadedProduct = productRepository.findAll().get(0);
+
+        assertEquals(ErrorCode.PAYMENT_FAILED, exception.getErrorCode());
+        assertEquals(OrderStatus.CANCELED, reloadedOrder.getStatus());
+        assertEquals(1_000, reloadedMember.getMileage());
+        assertEquals(10, reloadedProduct.getStockQuantity());
+        assertEquals(1, testPaymentGateway.getCallCount());
+    }
+
+    @Test
+    void confirmPayment_cancelsOrderAndRestoresOnGatewayAmountMismatch() {
+        Member member = saveMember("gateway-amount@test.com", "gatewayAmount", 1_000);
+        OrderDto.DetailResponse order = createOrder(member, 10, 2, 300);
+        testPaymentGateway.changeResponseAmount(order.getTotalPrice() + 1);
+
+        CustomException exception = assertThrows(CustomException.class, () ->
+                paymentService.confirmPayment(member.getId(), confirmRequest(order.getTossOrderId(), order.getTotalPrice()))
+        );
+
+        flushAndClear();
+
+        Orders reloadedOrder = orderRepository.findById(order.getOrderId()).orElseThrow();
+        Member reloadedMember = memberRepository.findById(member.getId()).orElseThrow();
+        Product reloadedProduct = productRepository.findAll().get(0);
+
+        assertEquals(ErrorCode.INVALID_ORDER_AMOUNT, exception.getErrorCode());
+        assertEquals(OrderStatus.CANCELED, reloadedOrder.getStatus());
+        assertEquals(1_000, reloadedMember.getMileage());
+        assertEquals(10, reloadedProduct.getStockQuantity());
+        assertEquals(1, testPaymentGateway.getCallCount());
+    }
+
+    @Test
+    void confirmPayment_cancelsOrderAndRestoresOnGatewayStatusNotDone() {
+        Member member = saveMember("gateway-status@test.com", "gatewayStatus", 1_000);
+        OrderDto.DetailResponse order = createOrder(member, 10, 2, 300);
+        testPaymentGateway.changeResponseStatus("CANCELED");
+
+        CustomException exception = assertThrows(CustomException.class, () ->
+                paymentService.confirmPayment(member.getId(), confirmRequest(order.getTossOrderId(), order.getTotalPrice()))
+        );
+
+        flushAndClear();
+
+        Orders reloadedOrder = orderRepository.findById(order.getOrderId()).orElseThrow();
+        Member reloadedMember = memberRepository.findById(member.getId()).orElseThrow();
+        Product reloadedProduct = productRepository.findAll().get(0);
+
+        assertEquals(ErrorCode.PAYMENT_FAILED, exception.getErrorCode());
+        assertEquals(OrderStatus.CANCELED, reloadedOrder.getStatus());
+        assertEquals(1_000, reloadedMember.getMileage());
+        assertEquals(10, reloadedProduct.getStockQuantity());
+        assertEquals(1, testPaymentGateway.getCallCount());
+    }
+
     private OrderDto.DetailResponse createOrder(Member member, int stockQuantity, int quantity, int usedMileage) {
         Address address = saveAddress(member);
         Product product = saveProduct(stockQuantity, 5_000);
@@ -315,6 +384,9 @@ class PaymentServiceIntegrationTest {
 
         private int callCount;
         private ErrorCode failureCode;
+        private String responseOrderId;
+        private Integer responseAmount;
+        private String responseStatus = "DONE";
 
         @Override
         public TossPaymentResponse confirm(String paymentKey, String tossOrderId, int amount) {
@@ -326,9 +398,9 @@ class PaymentServiceIntegrationTest {
 
             TossPaymentResponse response = new TossPaymentResponse();
             ReflectionTestUtils.setField(response, "paymentKey", paymentKey);
-            ReflectionTestUtils.setField(response, "orderId", tossOrderId);
-            ReflectionTestUtils.setField(response, "status", "DONE");
-            ReflectionTestUtils.setField(response, "totalAmount", amount);
+            ReflectionTestUtils.setField(response, "orderId", responseOrderId != null ? responseOrderId : tossOrderId);
+            ReflectionTestUtils.setField(response, "status", responseStatus);
+            ReflectionTestUtils.setField(response, "totalAmount", responseAmount != null ? responseAmount : amount);
             ReflectionTestUtils.setField(response, "method", "CARD");
             ReflectionTestUtils.setField(response, "approvedAt", "2026-05-28T10:00:00");
             return response;
@@ -338,9 +410,24 @@ class PaymentServiceIntegrationTest {
             this.failureCode = failureCode;
         }
 
+        void changeResponseOrderId(String responseOrderId) {
+            this.responseOrderId = responseOrderId;
+        }
+
+        void changeResponseAmount(int responseAmount) {
+            this.responseAmount = responseAmount;
+        }
+
+        void changeResponseStatus(String responseStatus) {
+            this.responseStatus = responseStatus;
+        }
+
         void reset() {
             this.callCount = 0;
             this.failureCode = null;
+            this.responseOrderId = null;
+            this.responseAmount = null;
+            this.responseStatus = "DONE";
         }
 
         int getCallCount() {

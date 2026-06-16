@@ -48,7 +48,7 @@ public class PaymentService {
 
         // 3. 금액 위변조 검증
         if (orders.getTotalPrice() != request.getAmount()) {
-            log.warn("[PaymentService] 금액 위변조 감지 - orderId: {}, 기대금액: {}, 요청금액: {}",
+            log.warn("[PaymentService] 금액 위변조 감지 - tossOrderId: {}, 기대금액: {}, 요청금액: {}",
                     request.getTossOrderId(), orders.getTotalPrice(), request.getAmount());
 
             // 위변조 감지 시 주문 취소 + 재고 복구 처리
@@ -66,23 +66,39 @@ public class PaymentService {
             );
         } catch (CustomException e) {
             // 결제 실패 시 주문 취소 - 재고 복구
-            log.error("[PaymentService] 결제 승인 실패 - orderId: {}", request.getTossOrderId());
+            log.error("[PaymentService] 결제 승인 실패 - tossOrderId: {}", request.getTossOrderId());
             cancelOrderOnPaymentFailure(orders.getId());
             throw e;
         }
 
         // 5. 결제사 응답 상태 검증
         // 토스 응답 'DONE' 아니면 결제 실패 처리
-        if (!"DONE".equals(tossResponse.getStatus())) {
-            log.error("[PaymentService] 결제 상태 비정상 - status: {}", tossResponse.getStatus());
+        if (tossResponse == null || !"DONE".equals(tossResponse.getStatus())) {
+            log.error("[PaymentService] 결제 상태 비정상 - status: {}",
+                    tossResponse != null ? tossResponse.getStatus() : null);
             cancelOrderOnPaymentFailure(orders.getId());
             throw new CustomException(ErrorCode.PAYMENT_FAILED);
         }
 
-        // 6. 주문 상태 PAID 변경
+        // 6. 토스 승인 응답의 주문번호와 금액을 서버 주문 정보와 재검증
+        if (!request.getTossOrderId().equals(tossResponse.getOrderId())) {
+            log.warn("[PaymentService] 토스 주문번호 불일치 - request: {}, response: {}",
+                    request.getTossOrderId(), tossResponse.getOrderId());
+            cancelOrderOnPaymentFailure(orders.getId());
+            throw new CustomException(ErrorCode.PAYMENT_FAILED);
+        }
+
+        if (orders.getTotalPrice() != tossResponse.getTotalAmount()) {
+            log.warn("[PaymentService] 토스 승인 금액 불일치 - orderId: {}, expected: {}, actual: {}",
+                    orders.getId(), orders.getTotalPrice(), tossResponse.getTotalAmount());
+            cancelOrderOnPaymentFailure(orders.getId());
+            throw new CustomException(ErrorCode.INVALID_ORDER_AMOUNT);
+        }
+
+        // 7. 주문 상태 PAID 변경
         orders.markAsPaid();
 
-        // 7. Payment 레코드 저장
+        // 8. Payment 레코드 저장
         Payment payment = Payment.builder()
                 .orders(orders)
                 .pgProvider("TOSSPAYMENTS")
@@ -93,7 +109,7 @@ public class PaymentService {
 
         Payment savedPayment = paymentRepository.save(payment);
 
-        log.info("[PaymentService] 결제 완료 - orderId: {}, paymentKey: {}",
+        log.info("[PaymentService] 결제 완료 - tossOrderId: {}, paymentKey: {}",
                 request.getTossOrderId(), payment.getPaymentKey());
 
         return new PaymentDto.Response(savedPayment);
