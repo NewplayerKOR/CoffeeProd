@@ -42,6 +42,24 @@ public class AddressController {
         return ResponseEntity.ok(CommonResponse.success(addressService.getAddresses(memberId)));
     }
 
+    // 배송지 단건 조회
+    @Operation(summary = "배송지 단건 조회", description = "배송지 ID로 단건 정보를 조회합니다. 본인이 등록한 배송지만 조회 가능합니다.")
+    @ApiResponses({
+            @ApiResponse(responseCode = "200", description = "조회 성공"),
+            @ApiResponse(responseCode = "403", description = "본인 배송지 아님"),
+            @ApiResponse(responseCode = "404", description = "배송지 없음")
+    })
+    @GetMapping("/{addressId}")
+    public ResponseEntity<CommonResponse<AddressDto.Response>> getAddress(
+            @AuthenticationPrincipal CustomUserDetails userDetails,
+
+            @Parameter(description = "조회할 배송지 ID", required = true)
+            @PathVariable("addressId") Long addressId) {
+
+        Long memberId = userDetails.getMember().getId();
+        return ResponseEntity.ok(CommonResponse.success(addressService.getAddress(memberId, addressId)));
+    }
+
     // 신규 배송지 등록
     @Operation(summary = "배송지 등록", description = "배송지를 등록합니다. 최대 5개까지 가능합니다")
     @ApiResponses({

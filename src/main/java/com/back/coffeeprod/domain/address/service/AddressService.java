@@ -32,6 +32,12 @@ public class AddressService {
                 .collect(Collectors.toList());
     }
 
+    // 배송지 단건 조회
+    public AddressDto.Response getAddress(Long memberId, Long addressId) {
+        Address address = findAddressByIdAndMemberId(addressId, memberId);
+        return new AddressDto.Response(address);
+    }
+
     // 신규 배송지 등록
     @Transactional
     public AddressDto.Response addAddress(Long memberId, AddressDto.Request request) {

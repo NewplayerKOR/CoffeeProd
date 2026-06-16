@@ -3,6 +3,7 @@ package com.back.coffeeprod.domain.product.service;
 import com.back.coffeeprod.domain.product.dto.CategoryDto;
 import com.back.coffeeprod.domain.product.entity.Category;
 import com.back.coffeeprod.domain.product.repository.CategoryRepository;
+import com.back.coffeeprod.domain.product.repository.ProductRepository;
 import com.back.coffeeprod.global.exception.CustomException;
 import com.back.coffeeprod.global.exception.ErrorCode;
 import lombok.RequiredArgsConstructor;
@@ -18,6 +19,7 @@ import java.util.stream.Collectors;
 public class CategoryService {
 
     private final CategoryRepository categoryRepository;
+    private final ProductRepository productRepository;
 
     // [공개] 카테고리 전체 목록 조회
     public List<CategoryDto.Response> getAllCategories() {
@@ -25,6 +27,12 @@ public class CategoryService {
                 .stream()
                 .map(CategoryDto.Response::new)
                 .collect(Collectors.toList());
+    }
+
+    // [공개] 카테고리 단건 조회
+    public CategoryDto.Response getCategory(Long categoryId) {
+        Category category = findCategoryById(categoryId);
+        return new CategoryDto.Response(category);
     }
 
     // [관리자] 카테고리 등록
@@ -56,6 +64,18 @@ public class CategoryService {
         return new CategoryDto.Response(category);
     }
 
+    // [관리자] 카테고리 삭제
+    @Transactional
+    public void deleteCategory(Long categoryId) {
+        Category category = findCategoryById(categoryId);
+
+        // 상품이 연결된 카테고리는 FK 보호를 위해 삭제 하지 않는다.
+        if (productRepository.existsByCategoryId(categoryId)) {
+            throw new CustomException(ErrorCode.CATEGORY_IN_USE);
+        }
+
+        categoryRepository.delete(category);
+    }
 
     // [내부 공용] ID로 카테고리 조회 (없으면 예외)
     public Category findCategoryById(Long categoryId) {

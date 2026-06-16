@@ -107,7 +107,7 @@ public class MemberService {
             throw new CustomException(ErrorCode.WITHDRAW_MEMBER);
         }
 
-        if(member.getStatus() == MemberStatus.SUSPENDED) {
+        if (member.getStatus() == MemberStatus.SUSPENDED) {
             throw new CustomException(ErrorCode.SUSPENDED_MEMBER);
         }
 
@@ -198,6 +198,12 @@ public class MemberService {
 
         return memberRepository.findAllForAdmin(includedWithdrawn, pageable)
                 .map(MemberDto.AdminResponse::new);
+    }
+
+    // [관리자] 회원 단건 조회
+    public MemberDto.AdminResponse getMember(Long memberId) {
+        Member member = findMemberById(memberId);
+        return new MemberDto.AdminResponse(member);
     }
 
     // [관리자] 회원 등급 변경
