@@ -104,6 +104,7 @@ public class OrderDto {
     @Getter
     public static class DetailResponse {
         private final Long orderId;
+        private final String tossOrderId;
         private final OrderStatus status;
         private final int totalPrice;
         private final int usedMileage;
@@ -114,6 +115,7 @@ public class OrderDto {
 
         public DetailResponse(Orders orders) {
             this.orderId = orders.getId();
+            this.tossOrderId = orders.getTossOrderId();
             this.status = orders.getStatus();
             this.totalPrice = orders.getTotalPrice();
             this.usedMileage = orders.getUsedMileage();

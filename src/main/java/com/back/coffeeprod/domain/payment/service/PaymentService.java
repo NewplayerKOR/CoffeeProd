@@ -30,7 +30,7 @@ public class PaymentService {
     @Transactional
     public PaymentDto.Response confirmPayment(Long memberId, PaymentDto.ConfirmRequest request) {
         // 1. 주문 조회
-        Orders orders = orderService.findOrderById(request.getOrderId());
+        Orders orders = orderService.findOrderByTossOrderId(request.getTossOrderId());
 
         if (!orders.getMember().getId().equals(memberId)) {
             throw new CustomException(ErrorCode.ORDER_ACCESS_DENIED);
@@ -49,10 +49,10 @@ public class PaymentService {
         // 3. 금액 위변조 검증
         if (orders.getTotalPrice() != request.getAmount()) {
             log.warn("[PaymentService] 금액 위변조 감지 - orderId: {}, 기대금액: {}, 요청금액: {}",
-                    request.getOrderId(), orders.getTotalPrice(), request.getAmount());
+                    request.getTossOrderId(), orders.getTotalPrice(), request.getAmount());
 
             // 위변조 감지 시 주문 취소 + 재고 복구 처리
-            cancelOrderOnPaymentFailure(request.getOrderId());
+            cancelOrderOnPaymentFailure(orders.getId());
             throw new CustomException(ErrorCode.INVALID_ORDER_AMOUNT);
         }
 
@@ -61,13 +61,13 @@ public class PaymentService {
         try {
             tossResponse = paymentGateway.confirm(
                     request.getPaymentKey(),
-                    request.getOrderId(),
+                    request.getTossOrderId(),
                     request.getAmount()
             );
         } catch (CustomException e) {
             // 결제 실패 시 주문 취소 - 재고 복구
-            log.error("[PaymentService] 결제 승인 실패 - orderId: {}", request.getOrderId());
-            cancelOrderOnPaymentFailure(request.getOrderId());
+            log.error("[PaymentService] 결제 승인 실패 - orderId: {}", request.getTossOrderId());
+            cancelOrderOnPaymentFailure(orders.getId());
             throw e;
         }
 
@@ -75,7 +75,7 @@ public class PaymentService {
         // 토스 응답 'DONE' 아니면 결제 실패 처리
         if (!"DONE".equals(tossResponse.getStatus())) {
             log.error("[PaymentService] 결제 상태 비정상 - status: {}", tossResponse.getStatus());
-            cancelOrderOnPaymentFailure(request.getOrderId());
+            cancelOrderOnPaymentFailure(orders.getId());
             throw new CustomException(ErrorCode.PAYMENT_FAILED);
         }
 
@@ -94,7 +94,7 @@ public class PaymentService {
         Payment savedPayment = paymentRepository.save(payment);
 
         log.info("[PaymentService] 결제 완료 - orderId: {}, paymentKey: {}",
-                request.getOrderId(), payment.getPaymentKey());
+                request.getTossOrderId(), payment.getPaymentKey());
 
         return new PaymentDto.Response(savedPayment);
     }

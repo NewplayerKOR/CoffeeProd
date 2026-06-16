@@ -118,7 +118,7 @@ class PaymentServiceIntegrationTest {
         OrderDto.DetailResponse order = createOrder(owner, 10, 2, 300);
 
         CustomException exception = assertThrows(CustomException.class, () ->
-                paymentService.confirmPayment(other.getId(), confirmRequest(order.getOrderId(), order.getTotalPrice()))
+                paymentService.confirmPayment(other.getId(), confirmRequest(order.getTossOrderId(), order.getTotalPrice()))
         );
 
         assertEquals(ErrorCode.ORDER_ACCESS_DENIED, exception.getErrorCode());
@@ -132,7 +132,7 @@ class PaymentServiceIntegrationTest {
 
         PaymentDto.Response response = paymentService.confirmPayment(
                 member.getId(),
-                confirmRequest(order.getOrderId(), order.getTotalPrice())
+                confirmRequest(order.getTossOrderId(), order.getTotalPrice())
         );
 
         flushAndClear();
@@ -141,6 +141,7 @@ class PaymentServiceIntegrationTest {
 
         assertEquals(OrderStatus.PAID, reloadedOrder.getStatus());
         assertEquals(order.getOrderId(), response.getOrderId());
+        assertEquals(order.getTossOrderId(), response.getTossOrderId());
         assertEquals("test-payment-key", response.getPaymentKey());
         assertEquals(1, paymentRepository.count());
         assertEquals(1, testPaymentGateway.getCallCount());
@@ -154,7 +155,7 @@ class PaymentServiceIntegrationTest {
         memberRepository.save(member);
 
         CustomException exception = assertThrows(CustomException.class, () ->
-                paymentService.confirmPayment(member.getId(), confirmRequest(order.getOrderId(), order.getTotalPrice()))
+                paymentService.confirmPayment(member.getId(), confirmRequest(order.getTossOrderId(), order.getTotalPrice()))
         );
 
         assertEquals(ErrorCode.SUSPENDED_MEMBER, exception.getErrorCode());
@@ -168,7 +169,7 @@ class PaymentServiceIntegrationTest {
         orderService.markAsPaid(order.getOrderId());
 
         CustomException exception = assertThrows(CustomException.class, () ->
-                paymentService.confirmPayment(member.getId(), confirmRequest(order.getOrderId(), order.getTotalPrice()))
+                paymentService.confirmPayment(member.getId(), confirmRequest(order.getTossOrderId(), order.getTotalPrice()))
         );
 
         assertEquals(ErrorCode.INVALID_ORDER_STATUS, exception.getErrorCode());
@@ -181,7 +182,7 @@ class PaymentServiceIntegrationTest {
         OrderDto.DetailResponse order = createOrder(member, 10, 2, 300);
 
         CustomException exception = assertThrows(CustomException.class, () ->
-                paymentService.confirmPayment(member.getId(), confirmRequest(order.getOrderId(), order.getTotalPrice() + 1))
+                paymentService.confirmPayment(member.getId(), confirmRequest(order.getTossOrderId(), order.getTotalPrice() + 1))
         );
 
         flushAndClear();
@@ -204,7 +205,7 @@ class PaymentServiceIntegrationTest {
         testPaymentGateway.failWith(ErrorCode.PAYMENT_FAILED);
 
         CustomException exception = assertThrows(CustomException.class, () ->
-                paymentService.confirmPayment(member.getId(), confirmRequest(order.getOrderId(), order.getTotalPrice()))
+                paymentService.confirmPayment(member.getId(), confirmRequest(order.getTossOrderId(), order.getTotalPrice()))
         );
 
         flushAndClear();
@@ -288,10 +289,10 @@ class PaymentServiceIntegrationTest {
         return request;
     }
 
-    private PaymentDto.ConfirmRequest confirmRequest(Long orderId, int amount) {
+    private PaymentDto.ConfirmRequest confirmRequest(String tossOrderId, int amount) {
         PaymentDto.ConfirmRequest request = new PaymentDto.ConfirmRequest();
         ReflectionTestUtils.setField(request, "paymentKey", "test-payment-key");
-        ReflectionTestUtils.setField(request, "orderId", orderId);
+        ReflectionTestUtils.setField(request, "tossOrderId", tossOrderId);
         ReflectionTestUtils.setField(request, "amount", amount);
         return request;
     }
@@ -316,7 +317,7 @@ class PaymentServiceIntegrationTest {
         private ErrorCode failureCode;
 
         @Override
-        public TossPaymentResponse confirm(String paymentKey, Long orderId, int amount) {
+        public TossPaymentResponse confirm(String paymentKey, String tossOrderId, int amount) {
             callCount++;
 
             if (failureCode != null) {
@@ -325,7 +326,7 @@ class PaymentServiceIntegrationTest {
 
             TossPaymentResponse response = new TossPaymentResponse();
             ReflectionTestUtils.setField(response, "paymentKey", paymentKey);
-            ReflectionTestUtils.setField(response, "orderId", String.valueOf(orderId));
+            ReflectionTestUtils.setField(response, "orderId", tossOrderId);
             ReflectionTestUtils.setField(response, "status", "DONE");
             ReflectionTestUtils.setField(response, "totalAmount", amount);
             ReflectionTestUtils.setField(response, "method", "CARD");

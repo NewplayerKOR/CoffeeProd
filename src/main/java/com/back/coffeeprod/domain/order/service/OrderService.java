@@ -25,6 +25,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
@@ -108,6 +109,7 @@ public class OrderService {
         // 9. 주문 생성
         Orders orders = Orders.builder()
                 .member(member)
+                .tossOrderId(createTossOrderId())
                 .totalPrice(totalPrice)
                 .usedMileage(usedMileage)
                 .deliveryAddress(deliverySnapshot)
@@ -289,5 +291,16 @@ public class OrderService {
     public Orders findOrderById(Long orderId) {
         return orderRepository.findById(orderId)
                 .orElseThrow(() -> new CustomException(ErrorCode.ORDER_NOT_FOUND));
+    }
+
+    // [내부 공용] 토스 주문번호로 주문 단건 조회
+    public Orders findOrderByTossOrderId(String tossOrderId) {
+        return orderRepository.findByTossOrderId(tossOrderId)
+                .orElseThrow(() -> new CustomException(ErrorCode.ORDER_NOT_FOUND));
+    }
+
+    // 토스페이먼츠 결제 요청용 주문번호 생성
+    private String createTossOrderId() {
+        return "COFFEE-" + UUID.randomUUID().toString().replace("-", "");
     }
 }
