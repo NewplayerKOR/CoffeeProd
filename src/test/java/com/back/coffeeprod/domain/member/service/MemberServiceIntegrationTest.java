@@ -158,6 +158,21 @@ class MemberServiceIntegrationTest {
         assertEquals(2, response.getTotalElements());
     }
 
+    @Test
+    void getMember_returnsAdminMemberDetail() {
+        Member member = saveMember("admin-detail@test.com", "adminDetail");
+
+        // 관리자 회원 단건 조회는 회원의 식별 정보와 운영 상태를 반환한다.
+        MemberDto.AdminResponse response = memberService.getMember(member.getId());
+
+        assertEquals(member.getId(), response.getId());
+        assertEquals("admin-detail@test.com", response.getEmail());
+        assertEquals("adminDetail", response.getNickname());
+        assertEquals(Role.USER, response.getRole());
+        assertEquals(Grade.BRONZE, response.getGrade());
+        assertEquals(MemberStatus.ACTIVE, response.getStatus());
+    }
+
     private Member saveMember(String email, String nickname) {
         return memberRepository.save(Member.builder()
                 .email(email)
