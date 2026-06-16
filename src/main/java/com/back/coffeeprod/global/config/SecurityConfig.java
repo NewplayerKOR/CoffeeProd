@@ -1,7 +1,12 @@
 package com.back.coffeeprod.global.config;
 
+import com.back.coffeeprod.global.security.auth.CustomUserDetailsService;
 import com.back.coffeeprod.global.security.handler.RestAccessDeniedHandler;
 import com.back.coffeeprod.global.security.handler.RestAuthenticationEntryPoint;
+import com.back.coffeeprod.global.security.jwt.JwtAuthenticationFilter;
+import com.back.coffeeprod.global.security.jwt.JwtUtil;
+import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
@@ -16,12 +21,6 @@ import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
-import com.back.coffeeprod.global.security.auth.CustomUserDetailsService;
-import com.back.coffeeprod.global.security.jwt.JwtAuthenticationFilter;
-import com.back.coffeeprod.global.security.jwt.JwtUtil;
-
-import lombok.RequiredArgsConstructor;
-
 import java.util.List;
 
 @Configuration
@@ -34,6 +33,9 @@ public class SecurityConfig {
     private final CustomUserDetailsService customUserDetailsService;
     private final RestAuthenticationEntryPoint restAuthenticationEntryPoint;
     private final RestAccessDeniedHandler restAccessDeniedHandler;
+
+    @Value("${app.cors.allowed-origins}")
+    private List<String> allowedOrigins;
 
     // Spring Security에서 사용할 PasswordEncoder 빈을 정의
     @Bean
@@ -96,14 +98,9 @@ public class SecurityConfig {
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
 
-        // 로컬 프론트엔드 기본 개발 포트 허용
-        // 배포 시 실제 도메인만 허용하도록 별도 설정으로 분리하는 것을 권장
-        configuration.setAllowedOrigins(List.of(
-                "http://localhost:3000",
-                "http://127.0.0.1:3000",
-                "http://localhost:5173",
-                "http://127.0.0.1:5173"
-        ));
+        // 로컬/배포 환경별 허용 Origin은 환경변수 CORS_ALLOWED_ORIGINS로 관리한다.
+        configuration.setAllowedOrigins(allowedOrigins);
+
 
         configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"));
         configuration.setAllowedHeaders(List.of("Authorization", "Content-Type"));
