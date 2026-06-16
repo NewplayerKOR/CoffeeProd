@@ -17,7 +17,7 @@ import java.util.Map;
 
 @Slf4j
 @Component
-@Profile("prod")
+@Profile({"prod", "local-toss"})
 public class TossPaymentGateway implements PaymentGateway {
 
     private static final String TOSS_CONFIRM_URL =
@@ -38,37 +38,39 @@ public class TossPaymentGateway implements PaymentGateway {
     }
 
     @Override
-    public TossPaymentResponse confirm(String paymentKey, Long orderId, int amount) {
-            log.info("[TossPaymentGateway] 결제 승인 요청 - orderId: {}, amount: {}", orderId, amount);
+    public TossPaymentResponse confirm(String paymentKey, String tossOrderId, int amount) {
+        log.info("[TossPaymentGateway] 결제 승인 요청 - orderId: {}, amount: {}", tossOrderId, amount);
 
-            // 토스 API 요청 바디
-            Map<String, Object> requestBody = Map.of(
-                    "paymentKey", paymentKey,
-                    "orderId", String.valueOf(orderId),
-                    "amount", amount
-            );
+        // 토스 API 요청 바디
+        Map<String, Object> requestBody = Map.of(
+                "paymentKey", paymentKey,
+                "orderId", tossOrderId,
+                "amount", amount
+        );
 
-            try {
-                TossPaymentResponse response = restClient.post()
-                        .uri(TOSS_CONFIRM_URL)
-                        .body(requestBody)
-                        .retrieve()
-                        // 4xx, 5xx 에러 시 결제 실패로 처리
-                        .onStatus(HttpStatusCode::isError, (req, res) -> {
-                            log.error("[TossPaymentGateway] 결제 승인 실패 - status: {}",
-                                    res.getStatusCode());
-                            throw new CustomException(ErrorCode.PAYMENT_FAILED);
-                        })
-                        .body(TossPaymentResponse.class);
+        try {
+            TossPaymentResponse response = restClient.post()
+                    .uri(TOSS_CONFIRM_URL)
+                    // 같은 주문 승인 요청이 재시도될 때 중복 처리 위험 줄임
+                    .header("Idempotency-Key", tossOrderId)
+                    .body(requestBody)
+                    .retrieve()
+                    // 4xx, 5xx 에러 시 결제 실패로 처리
+                    .onStatus(HttpStatusCode::isError, (req, res) -> {
+                        log.error("[TossPaymentGateway] 결제 승인 실패 - status: {}",
+                                res.getStatusCode());
+                        throw new CustomException(ErrorCode.PAYMENT_FAILED);
+                    })
+                    .body(TossPaymentResponse.class);
 
-                log.info("[TossPaymentGateway] 결제 승인 완료 - paymentKey: {}", paymentKey);
-                return response;
+            log.info("[TossPaymentGateway] 결제 승인 완료 - paymentKey: {}", paymentKey);
+            return response;
 
-            } catch (CustomException e) {
-                throw e; // CustomException은 그대로 전파
-            } catch (Exception e) {
-                log.error("[TossPaymentGateway] 결제 승인 중 예외 발생", e);
-                throw new CustomException(ErrorCode.PAYMENT_FAILED);
-            }
+        } catch (CustomException e) {
+            throw e; // CustomException은 그대로 전파
+        } catch (Exception e) {
+            log.error("[TossPaymentGateway] 결제 승인 중 예외 발생", e);
+            throw new CustomException(ErrorCode.PAYMENT_FAILED);
+        }
     }
 }

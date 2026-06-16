@@ -4,7 +4,6 @@ import com.back.coffeeprod.domain.payment.entity.Payment;
 import com.back.coffeeprod.domain.payment.entity.PaymentStatus;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -21,8 +20,8 @@ public class PaymentDto {
         @NotBlank(message = "paymentKey는 필수입니다.")
         private String paymentKey; // 토스 발급 결제 고유 키
 
-        @NotNull(message = "주문 ID는 필수입니다.")
-        private Long orderId;      // 우리 서버의 주문 ID
+        @NotBlank(message = "토스 주문번호는 필수입니다.")
+        private String tossOrderId;      // 토스 결제 요청/승인에 사용한 주문 번호
 
         @Min(value = 0, message = "결제 금액은 0 이상이어야 합니다.")
         private int amount;        // 결제 금액 (위변조 검증 대상)
@@ -33,6 +32,7 @@ public class PaymentDto {
     public static class Response {
         private final Long paymentId;
         private final Long orderId;
+        private final String tossOrderId;
         private final String pgProvider;
         private final String paymentKey;
         private final String payMethod;
@@ -42,6 +42,7 @@ public class PaymentDto {
         public Response(Payment payment) {
             this.paymentId = payment.getId();
             this.orderId = payment.getOrders().getId();
+            this.tossOrderId = payment.getOrders().getTossOrderId();
             this.pgProvider = payment.getPgProvider();
             this.paymentKey = payment.getPaymentKey();
             this.payMethod = payment.getPayMethod();

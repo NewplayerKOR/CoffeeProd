@@ -118,7 +118,7 @@ class PaymentServiceIntegrationTest {
         OrderDto.DetailResponse order = createOrder(owner, 10, 2, 300);
 
         CustomException exception = assertThrows(CustomException.class, () ->
-                paymentService.confirmPayment(other.getId(), confirmRequest(order.getOrderId(), order.getTotalPrice()))
+                paymentService.confirmPayment(other.getId(), confirmRequest(order.getTossOrderId(), order.getTotalPrice()))
         );
 
         assertEquals(ErrorCode.ORDER_ACCESS_DENIED, exception.getErrorCode());
@@ -132,7 +132,7 @@ class PaymentServiceIntegrationTest {
 
         PaymentDto.Response response = paymentService.confirmPayment(
                 member.getId(),
-                confirmRequest(order.getOrderId(), order.getTotalPrice())
+                confirmRequest(order.getTossOrderId(), order.getTotalPrice())
         );
 
         flushAndClear();
@@ -141,6 +141,7 @@ class PaymentServiceIntegrationTest {
 
         assertEquals(OrderStatus.PAID, reloadedOrder.getStatus());
         assertEquals(order.getOrderId(), response.getOrderId());
+        assertEquals(order.getTossOrderId(), response.getTossOrderId());
         assertEquals("test-payment-key", response.getPaymentKey());
         assertEquals(1, paymentRepository.count());
         assertEquals(1, testPaymentGateway.getCallCount());
@@ -154,7 +155,7 @@ class PaymentServiceIntegrationTest {
         memberRepository.save(member);
 
         CustomException exception = assertThrows(CustomException.class, () ->
-                paymentService.confirmPayment(member.getId(), confirmRequest(order.getOrderId(), order.getTotalPrice()))
+                paymentService.confirmPayment(member.getId(), confirmRequest(order.getTossOrderId(), order.getTotalPrice()))
         );
 
         assertEquals(ErrorCode.SUSPENDED_MEMBER, exception.getErrorCode());
@@ -168,7 +169,7 @@ class PaymentServiceIntegrationTest {
         orderService.markAsPaid(order.getOrderId());
 
         CustomException exception = assertThrows(CustomException.class, () ->
-                paymentService.confirmPayment(member.getId(), confirmRequest(order.getOrderId(), order.getTotalPrice()))
+                paymentService.confirmPayment(member.getId(), confirmRequest(order.getTossOrderId(), order.getTotalPrice()))
         );
 
         assertEquals(ErrorCode.INVALID_ORDER_STATUS, exception.getErrorCode());
@@ -181,7 +182,7 @@ class PaymentServiceIntegrationTest {
         OrderDto.DetailResponse order = createOrder(member, 10, 2, 300);
 
         CustomException exception = assertThrows(CustomException.class, () ->
-                paymentService.confirmPayment(member.getId(), confirmRequest(order.getOrderId(), order.getTotalPrice() + 1))
+                paymentService.confirmPayment(member.getId(), confirmRequest(order.getTossOrderId(), order.getTotalPrice() + 1))
         );
 
         flushAndClear();
@@ -204,7 +205,76 @@ class PaymentServiceIntegrationTest {
         testPaymentGateway.failWith(ErrorCode.PAYMENT_FAILED);
 
         CustomException exception = assertThrows(CustomException.class, () ->
-                paymentService.confirmPayment(member.getId(), confirmRequest(order.getOrderId(), order.getTotalPrice()))
+                paymentService.confirmPayment(member.getId(), confirmRequest(order.getTossOrderId(), order.getTotalPrice()))
+        );
+
+        flushAndClear();
+
+        Orders reloadedOrder = orderRepository.findById(order.getOrderId()).orElseThrow();
+        Member reloadedMember = memberRepository.findById(member.getId()).orElseThrow();
+        Product reloadedProduct = productRepository.findAll().get(0);
+
+        assertEquals(ErrorCode.PAYMENT_FAILED, exception.getErrorCode());
+        assertEquals(OrderStatus.CANCELED, reloadedOrder.getStatus());
+        assertEquals(1_000, reloadedMember.getMileage());
+        assertEquals(10, reloadedProduct.getStockQuantity());
+        assertEquals(1, testPaymentGateway.getCallCount());
+    }
+
+    @Test
+    void confirmPayment_cancelsOrderAndRestoresOnGatewayOrderIdMismatch() {
+        Member member = saveMember("gateway-order-id@test.com", "gatewayOrderId", 1_000);
+        OrderDto.DetailResponse order = createOrder(member, 10, 2, 300);
+        testPaymentGateway.changeResponseOrderId("COFFEE-MISMATCHED-ORDER-ID");
+
+        CustomException exception = assertThrows(CustomException.class, () ->
+                paymentService.confirmPayment(member.getId(), confirmRequest(order.getTossOrderId(), order.getTotalPrice()))
+        );
+
+        flushAndClear();
+
+        Orders reloadedOrder = orderRepository.findById(order.getOrderId()).orElseThrow();
+        Member reloadedMember = memberRepository.findById(member.getId()).orElseThrow();
+        Product reloadedProduct = productRepository.findAll().get(0);
+
+        assertEquals(ErrorCode.PAYMENT_FAILED, exception.getErrorCode());
+        assertEquals(OrderStatus.CANCELED, reloadedOrder.getStatus());
+        assertEquals(1_000, reloadedMember.getMileage());
+        assertEquals(10, reloadedProduct.getStockQuantity());
+        assertEquals(1, testPaymentGateway.getCallCount());
+    }
+
+    @Test
+    void confirmPayment_cancelsOrderAndRestoresOnGatewayAmountMismatch() {
+        Member member = saveMember("gateway-amount@test.com", "gatewayAmount", 1_000);
+        OrderDto.DetailResponse order = createOrder(member, 10, 2, 300);
+        testPaymentGateway.changeResponseAmount(order.getTotalPrice() + 1);
+
+        CustomException exception = assertThrows(CustomException.class, () ->
+                paymentService.confirmPayment(member.getId(), confirmRequest(order.getTossOrderId(), order.getTotalPrice()))
+        );
+
+        flushAndClear();
+
+        Orders reloadedOrder = orderRepository.findById(order.getOrderId()).orElseThrow();
+        Member reloadedMember = memberRepository.findById(member.getId()).orElseThrow();
+        Product reloadedProduct = productRepository.findAll().get(0);
+
+        assertEquals(ErrorCode.INVALID_ORDER_AMOUNT, exception.getErrorCode());
+        assertEquals(OrderStatus.CANCELED, reloadedOrder.getStatus());
+        assertEquals(1_000, reloadedMember.getMileage());
+        assertEquals(10, reloadedProduct.getStockQuantity());
+        assertEquals(1, testPaymentGateway.getCallCount());
+    }
+
+    @Test
+    void confirmPayment_cancelsOrderAndRestoresOnGatewayStatusNotDone() {
+        Member member = saveMember("gateway-status@test.com", "gatewayStatus", 1_000);
+        OrderDto.DetailResponse order = createOrder(member, 10, 2, 300);
+        testPaymentGateway.changeResponseStatus("CANCELED");
+
+        CustomException exception = assertThrows(CustomException.class, () ->
+                paymentService.confirmPayment(member.getId(), confirmRequest(order.getTossOrderId(), order.getTotalPrice()))
         );
 
         flushAndClear();
@@ -288,10 +358,10 @@ class PaymentServiceIntegrationTest {
         return request;
     }
 
-    private PaymentDto.ConfirmRequest confirmRequest(Long orderId, int amount) {
+    private PaymentDto.ConfirmRequest confirmRequest(String tossOrderId, int amount) {
         PaymentDto.ConfirmRequest request = new PaymentDto.ConfirmRequest();
         ReflectionTestUtils.setField(request, "paymentKey", "test-payment-key");
-        ReflectionTestUtils.setField(request, "orderId", orderId);
+        ReflectionTestUtils.setField(request, "tossOrderId", tossOrderId);
         ReflectionTestUtils.setField(request, "amount", amount);
         return request;
     }
@@ -314,9 +384,12 @@ class PaymentServiceIntegrationTest {
 
         private int callCount;
         private ErrorCode failureCode;
+        private String responseOrderId;
+        private Integer responseAmount;
+        private String responseStatus = "DONE";
 
         @Override
-        public TossPaymentResponse confirm(String paymentKey, Long orderId, int amount) {
+        public TossPaymentResponse confirm(String paymentKey, String tossOrderId, int amount) {
             callCount++;
 
             if (failureCode != null) {
@@ -325,9 +398,9 @@ class PaymentServiceIntegrationTest {
 
             TossPaymentResponse response = new TossPaymentResponse();
             ReflectionTestUtils.setField(response, "paymentKey", paymentKey);
-            ReflectionTestUtils.setField(response, "orderId", String.valueOf(orderId));
-            ReflectionTestUtils.setField(response, "status", "DONE");
-            ReflectionTestUtils.setField(response, "totalAmount", amount);
+            ReflectionTestUtils.setField(response, "orderId", responseOrderId != null ? responseOrderId : tossOrderId);
+            ReflectionTestUtils.setField(response, "status", responseStatus);
+            ReflectionTestUtils.setField(response, "totalAmount", responseAmount != null ? responseAmount : amount);
             ReflectionTestUtils.setField(response, "method", "CARD");
             ReflectionTestUtils.setField(response, "approvedAt", "2026-05-28T10:00:00");
             return response;
@@ -337,9 +410,24 @@ class PaymentServiceIntegrationTest {
             this.failureCode = failureCode;
         }
 
+        void changeResponseOrderId(String responseOrderId) {
+            this.responseOrderId = responseOrderId;
+        }
+
+        void changeResponseAmount(int responseAmount) {
+            this.responseAmount = responseAmount;
+        }
+
+        void changeResponseStatus(String responseStatus) {
+            this.responseStatus = responseStatus;
+        }
+
         void reset() {
             this.callCount = 0;
             this.failureCode = null;
+            this.responseOrderId = null;
+            this.responseAmount = null;
+            this.responseStatus = "DONE";
         }
 
         int getCallCount() {

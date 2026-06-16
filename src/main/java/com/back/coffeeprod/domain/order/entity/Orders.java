@@ -50,9 +50,13 @@ public class Orders extends BaseTimeEntity {
     @OneToMany(mappedBy = "orders", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<OrderItem> orderItems = new ArrayList<>();
 
+    @Column(name = "toss_order_id", nullable = false, unique = true, length = 64)
+    private String tossOrderId;
+
     @Builder
-    public Orders(Member member, int totalPrice, int usedMileage, String deliveryAddress) {
+    public Orders(Member member, String tossOrderId, int totalPrice, int usedMileage, String deliveryAddress) {
         this.member = member;
+        this.tossOrderId = tossOrderId;
         this.orderDate = LocalDateTime.now();
         this.status = OrderStatus.PENDING;  // 기본 상태: 임시 생성
         this.totalPrice = totalPrice;

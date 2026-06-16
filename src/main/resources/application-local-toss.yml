@@ -1,0 +1,20 @@
+spring:
+  config:
+    activate:
+      on-profile: local-toss
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+        highlight_sql: true
+        default_batch_fetch_size: 100
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+
+logging:
+  level:
+    com.back.coffeeprod: debug
+    org.hibernate.SQL: debug

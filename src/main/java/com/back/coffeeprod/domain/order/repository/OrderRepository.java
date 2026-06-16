@@ -8,8 +8,11 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface OrderRepository extends JpaRepository<Orders, Long> {
+
+    Optional<Orders> findByTossOrderId(String tossOrderId);
 
     // 내 주문 목록 조회 (페이지네이션)
     // 컬렉션 fetch join과 Pageable 조합을 피하기 위해 주문 ID만 먼저 조회

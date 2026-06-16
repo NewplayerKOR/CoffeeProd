@@ -28,8 +28,8 @@ jwt:
 
 pg:
   toss:
-    client-key: ${TOSS_CLIENT_KEY}
-    secret-key: ${TOSS_SECRET_KEY}
+    client-key: ${TOSS_WIDGET_CLIENT_KEY:${TOSS_CLIENT_KEY}}
+    secret-key: ${TOSS_WIDGET_SECRET_KEY:${TOSS_SECRET_KEY}}
 
 app:
   cors:
