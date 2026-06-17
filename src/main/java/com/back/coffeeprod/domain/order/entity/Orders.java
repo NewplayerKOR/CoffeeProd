@@ -57,6 +57,9 @@ public class Orders extends BaseTimeEntity {
     private int deliveryFee; // 주문 당시 배송비 스냅샷
 
     @Column(nullable = false)
+    private int earnedMileage; // 결제 완료 후 적립된 마일리지
+
+    @Column(nullable = false)
     private int totalPrice; // 최종 결제 금액 = 상품금액 - 사용마일리지 + 배송비
 
     @Builder
@@ -73,6 +76,7 @@ public class Orders extends BaseTimeEntity {
         this.tossOrderId = tossOrderId;
         this.productTotalPrice = productTotalPrice;
         this.deliveryFee = deliveryFee;
+        this.earnedMileage = 0;
         this.totalPrice = totalPrice;
         this.usedMileage = usedMileage;
         this.deliveryAddress = deliveryAddress;
@@ -81,8 +85,9 @@ public class Orders extends BaseTimeEntity {
     }
 
     // 결제 완료 처리
-    public void markAsPaid() {
+    public void markAsPaid(int earnedMileage) {
         this.status = OrderStatus.PAID;
+        this.earnedMileage = earnedMileage;
     }
 
     // 주문 취소
