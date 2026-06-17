@@ -12,6 +12,7 @@ import com.back.coffeeprod.domain.order.dto.OrderDto;
 import com.back.coffeeprod.domain.order.entity.OrderItem;
 import com.back.coffeeprod.domain.order.entity.OrderStatus;
 import com.back.coffeeprod.domain.order.entity.Orders;
+import com.back.coffeeprod.domain.order.policy.DeliveryPolicyProperties;
 import com.back.coffeeprod.domain.order.repository.OrderRepository;
 import com.back.coffeeprod.domain.product.repository.ProductRepository;
 import com.back.coffeeprod.global.exception.CustomException;
@@ -37,6 +38,7 @@ public class OrderService {
     private final MemberService memberService;
     private final CartService cartService;
     private final ProductRepository productRepository;
+    private final DeliveryPolicyProperties deliveryPolicyProperties;
 
     // 주문서 임시 생성 (결제 직전)
     @Transactional
@@ -88,6 +90,9 @@ public class OrderService {
             throw new CustomException(ErrorCode.INVALID_MILEAGE);
         }
 
+        // 배송비는 서버 정책으로 계산한다.
+        int deliveryFee = deliveryPolicyProperties.calculateDeliveryFee(orderProductTotalPrice);
+
         // 6. 마일리지 차감
         member.useMileage(usedMileage);
 
@@ -104,12 +109,14 @@ public class OrderService {
         }
 
         // 8. 최종 결제 금액 계산
-        int totalPrice = orderProductTotalPrice - usedMileage;
+        int totalPrice = orderProductTotalPrice - usedMileage + deliveryFee;
 
         // 9. 주문 생성
         Orders orders = Orders.builder()
                 .member(member)
                 .tossOrderId(createTossOrderId())
+                .productTotalPrice(orderProductTotalPrice)
+                .deliveryFee(deliveryFee)
                 .totalPrice(totalPrice)
                 .usedMileage(usedMileage)
                 .deliveryAddress(deliverySnapshot)
