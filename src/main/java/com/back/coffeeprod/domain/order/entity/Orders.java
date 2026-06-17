@@ -34,9 +34,6 @@ public class Orders extends BaseTimeEntity {
     @Column(nullable = false)
     private OrderStatus status;
 
-    @Column(nullable = false)
-    private int totalPrice;     // 할인 적용 후 최종 금액
-
     @Column
     private int usedMileage;    // 사용한 마일리지
 
@@ -53,15 +50,34 @@ public class Orders extends BaseTimeEntity {
     @Column(name = "toss_order_id", nullable = false, unique = true, length = 64)
     private String tossOrderId;
 
+    @Column(nullable = false)
+    private int productTotalPrice; // 배송비와 마일리지 차감 전 상품 총액
+
+    @Column(nullable = false)
+    private int deliveryFee; // 주문 당시 배송비 스냅샷
+
+    @Column(nullable = false)
+    private int totalPrice; // 최종 결제 금액 = 상품금액 - 사용마일리지 + 배송비
+
     @Builder
-    public Orders(Member member, String tossOrderId, int totalPrice, int usedMileage, String deliveryAddress) {
+    public Orders(
+            Member member,
+            String tossOrderId,
+            int productTotalPrice,
+            int deliveryFee,
+            int totalPrice,
+            int usedMileage,
+            String deliveryAddress
+    ) {
         this.member = member;
         this.tossOrderId = tossOrderId;
-        this.orderDate = LocalDateTime.now();
-        this.status = OrderStatus.PENDING;  // 기본 상태: 임시 생성
+        this.productTotalPrice = productTotalPrice;
+        this.deliveryFee = deliveryFee;
         this.totalPrice = totalPrice;
         this.usedMileage = usedMileage;
         this.deliveryAddress = deliveryAddress;
+        this.orderDate = LocalDateTime.now();
+        this.status = OrderStatus.PENDING;
     }
 
     // 결제 완료 처리

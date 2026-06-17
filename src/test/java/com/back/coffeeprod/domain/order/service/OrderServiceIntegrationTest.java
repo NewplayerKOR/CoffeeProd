@@ -118,7 +118,9 @@ class OrderServiceIntegrationTest {
 
         assertEquals(700, reloadedMember.getMileage());
         assertEquals(8, reloadedProduct.getStockQuantity());
-        assertEquals(9_700, reloadedOrder.getTotalPrice());
+        assertEquals(10_000, reloadedOrder.getProductTotalPrice());
+        assertEquals(3_000, reloadedOrder.getDeliveryFee());
+        assertEquals(12_700, reloadedOrder.getTotalPrice());
         assertEquals(300, reloadedOrder.getUsedMileage());
         assertEquals(OrderStatus.PENDING, reloadedOrder.getStatus());
     }
