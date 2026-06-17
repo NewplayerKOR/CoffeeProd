@@ -108,6 +108,7 @@ public class OrderDto {
         private final OrderStatus status;
         private final int productTotalPrice;
         private final int deliveryFee;
+        private final int earnedMileage;
         private final int totalPrice;
         private final int usedMileage;
         private final String deliveryAddress;
@@ -121,6 +122,7 @@ public class OrderDto {
             this.status = orders.getStatus();
             this.productTotalPrice = orders.getProductTotalPrice();
             this.deliveryFee = orders.getDeliveryFee();
+            this.earnedMileage = orders.getEarnedMileage();
             this.totalPrice = orders.getTotalPrice();
             this.usedMileage = orders.getUsedMileage();
             this.deliveryAddress = orders.getDeliveryAddress();

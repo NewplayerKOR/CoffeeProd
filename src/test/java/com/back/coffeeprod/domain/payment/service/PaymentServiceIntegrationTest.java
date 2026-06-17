@@ -138,13 +138,40 @@ class PaymentServiceIntegrationTest {
         flushAndClear();
 
         Orders reloadedOrder = orderRepository.findById(order.getOrderId()).orElseThrow();
+        Member reloadedMember = memberRepository.findById(member.getId()).orElseThrow();
 
         assertEquals(OrderStatus.PAID, reloadedOrder.getStatus());
         assertEquals(order.getOrderId(), response.getOrderId());
         assertEquals(order.getTossOrderId(), response.getTossOrderId());
         assertEquals("test-payment-key", response.getPaymentKey());
+        assertEquals(97, reloadedOrder.getEarnedMileage());
+        assertEquals(797, reloadedMember.getMileage());
         assertEquals(1, paymentRepository.count());
         assertEquals(1, testPaymentGateway.getCallCount());
+    }
+
+    @Test
+    void cancelPaidOrder_restoresUsedMileageAndReclaimsEarnedMileage() {
+        Member member = saveMember("cancel-paid@test.com", "cancelPaid", 1_000);
+        OrderDto.DetailResponse order = createOrder(member, 10, 2, 300);
+
+        paymentService.confirmPayment(
+                member.getId(),
+                confirmRequest(order.getTossOrderId(), order.getTotalPrice())
+        );
+
+        orderService.cancelOrder(member.getId(), order.getOrderId());
+
+        flushAndClear();
+
+        Orders reloadedOrder = orderRepository.findById(order.getOrderId()).orElseThrow();
+        Member reloadedMember = memberRepository.findById(member.getId()).orElseThrow();
+        Product reloadedProduct = productRepository.findAll().get(0);
+
+        assertEquals(OrderStatus.CANCELED, reloadedOrder.getStatus());
+        assertEquals(97, reloadedOrder.getEarnedMileage());
+        assertEquals(1_000, reloadedMember.getMileage());
+        assertEquals(10, reloadedProduct.getStockQuantity());
     }
 
     @Test

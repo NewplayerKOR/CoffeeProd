@@ -9,6 +9,7 @@ import com.back.coffeeprod.domain.payment.dto.TossPaymentResponse;
 import com.back.coffeeprod.domain.payment.entity.Payment;
 import com.back.coffeeprod.domain.payment.entity.PaymentStatus;
 import com.back.coffeeprod.domain.payment.gateway.PaymentGateway;
+import com.back.coffeeprod.domain.payment.policy.MileagePolicyProperties;
 import com.back.coffeeprod.domain.payment.repository.PaymentRepository;
 import com.back.coffeeprod.global.exception.CustomException;
 import com.back.coffeeprod.global.exception.ErrorCode;
@@ -25,6 +26,8 @@ public class PaymentService {
     private final PaymentRepository paymentRepository;
     private final OrderService orderService;
     private final PaymentGateway paymentGateway;    // 환경에 따라 Fake or Toss 사용
+    private final MileagePolicyProperties mileagePolicyProperties;
+
 
     // 결제 승인 검증
     @Transactional
@@ -95,10 +98,19 @@ public class PaymentService {
             throw new CustomException(ErrorCode.INVALID_ORDER_AMOUNT);
         }
 
-        // 7. 주문 상태 PAID 변경
-        orders.markAsPaid();
+        // 7. 적립 마일리지 계산
+        int earnedMileage = mileagePolicyProperties.calculateRewardMileage(
+                orders.getProductTotalPrice(),
+                orders.getUsedMileage()
+        );
 
-        // 8. Payment 레코드 저장
+        // 8. 주문 상태 PAID 변경 + 적립 마일리지 스냅샷 저장
+        orders.markAsPaid(earnedMileage);
+
+        // 9. 회원 마일리지 적립
+        orders.getMember().addMileage(earnedMileage);
+
+        // 10. Payment 레코드 저장
         Payment payment = Payment.builder()
                 .orders(orders)
                 .pgProvider("TOSSPAYMENTS")

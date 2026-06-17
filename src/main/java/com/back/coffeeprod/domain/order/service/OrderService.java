@@ -279,13 +279,18 @@ public class OrderService {
         if (orders.getUsedMileage() > 0) {
             orders.getMember().addMileage(orders.getUsedMileage());
         }
+
+        // 결제 완료 후 적립된 마일리지는 주문 취소 시 회수
+        if (orders.getEarnedMileage() > 0) {
+            orders.getMember().useMileage(orders.getEarnedMileage());
+        }
     }
 
     // [내부 공용] 주문 결제 완료 처리
     @Transactional
     public void markAsPaid(Long orderId) {
         Orders orders = findOrderById(orderId);
-        orders.markAsPaid();
+        orders.markAsPaid(0);
     }
 
     // [내부 공용] 주문 단건 조회 (OrderItem 포함)
