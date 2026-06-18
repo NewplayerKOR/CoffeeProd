@@ -28,5 +28,6 @@ public class SalesStatisticsDto {
             this.usedMileageAmount = usedMileageAmount;
             this.paymentAmount = paymentAmount;
         }
+        //TODO: 06/17 Service 작성하기, 기능 구현 후 devMaster수정 및 넘어가기 전 검토 요청
     }
 }
