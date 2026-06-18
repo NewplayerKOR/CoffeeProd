@@ -1,87 +1,77 @@
-# CoffeeProd
+# ☕ CoffeeProd 백엔드 서버
 
-커피 원두 커머스 서비스를 위한 Spring Boot 기반 REST API 서버입니다. 회원 인증, 상품/카테고리 관리, 장바구니, 주문, 결제 승인, 배송지 관리, 관리자 운영 기능을 제공합니다.
+![Java](https://img.shields.io/badge/Java-21-orange.svg)
+![Spring Boot](https://img.shields.io/badge/Spring%20Boot-4.1.0--SNAPSHOT-green.svg)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-16-blue.svg)
+![Redis](https://img.shields.io/badge/Redis-7-red.svg)
 
-## 프로젝트 개요
+커피 원두 커머스 서비스를 위한 Spring Boot 기반 REST API 서버입니다. 
+회원가입/인증부터 상품 관리, 장바구니, 주문, 결제 승인, 리뷰, QnA, 통계까지 온라인 커머스의 핵심 흐름을 제공합니다.
 
-CoffeeProd는 온라인 커피 원두 판매 서비스를 가정한 백엔드 프로젝트입니다. 일반 사용자는 회원가입과 로그인 후 상품을 조회하고 장바구니에 담아 주문을 생성할 수 있으며, Toss Payments 결제 승인 흐름을 통해 주문 결제를 처리합니다. 관리자는 상품, 카테고리, 회원, 주문 상태를 운영할 수 있습니다.
+---
 
-## 주요 기능
+## 📖 프로젝트 개요
 
-- 회원: 회원가입, 로그인, 토큰 재발급, 로그아웃, 내 정보 조회/수정, 비밀번호 변경, 회원 탈퇴
-- 인증/인가: JWT 기반 인증, Refresh Token Redis 저장, 관리자 권한 분리
-- 상품: 상품 목록 조회, 상품 상세 조회, 카테고리/로스팅/키워드 필터링, 페이지네이션
-- 카테고리: 카테고리 목록 조회, 관리자 카테고리 등록/수정
-- 장바구니: 장바구니 조회, 상품 추가, 수량/분쇄 옵션 변경, 상품 삭제, 전체 비우기
-- 배송지: 배송지 목록 조회, 등록, 수정, 삭제, 기본 배송지 설정
-- 주문: 장바구니 기반 주문 생성, 주문 목록/상세 조회, 주문 취소
-- 결제: Toss Payments 결제 승인 및 결제 결과 저장
-- 관리자: 상품 등록/수정/상태 변경/재고 추가, 회원 등급/상태 변경, 전체 주문 조회, 주문 상태 변경
-- 문서화: Swagger UI 및 OpenAPI 문서 제공
+CoffeeProd는 원두 커피 판매를 가정한 B2C 커머스 플랫폼 백엔드입니다. 
+Toss Payments 결제 연동, 쿠폰/마일리지, 동시성 재고 차감, JWT 기반의 인증 시스템 등 실제 서비스 운영에 필요한 핵심 로직을 구현하는 데 중점을 두었습니다.
 
-## 기술 스택
+---
 
-| 구분 | 기술 |
+## ✨ 핵심 기능 (Features)
+
+### 🧑‍💻 사용자 (User)
+* **인증 & 회원**: JWT 기반 회원가입/로그인, 이메일 중복 확인, RefreshToken Rotation, 마이페이지, 회원 탈퇴 (Soft Delete)
+* **상품 & 카테고리**: 카테고리별 상품 조회, 로스팅 정도/키워드 필터링, 상품 상세 조회
+* **장바구니**: 수량 및 분쇄 옵션 변경, 조건부 상품 담기
+* **주문 & 결제**: 
+  * 장바구니 기반 주문서 생성 및 스냅샷 저장
+  * **Toss Payments** 연동 결제 승인
+  * 마일리지 선차감 및 동시성 제어가 적용된 조건부 재고 차감 (초과 판매 방지)
+  * 주문 취소 시 재고 및 마일리지 자동 복구
+* **리뷰 & QnA**: 구매 이력 기반 상품 리뷰 작성 (1인 1리뷰 제한), 상품 QnA 등록/수정/삭제
+
+### 🛠️ 관리자 (Admin)
+* **회원 관리**: 전체 회원 조회, 등급(`BRONZE`, `SILVER`, `GOLD`) 및 상태(`ACTIVE`, `SUSPENDED`) 변경
+* **상품/카테고리 관리**: 신규 상품 등록, 재고 입고, 상품 숨김(`HIDDEN`) 처리
+* **주문 관리**: 전체 주문 현황 조회, 주문 상태 전이 (`PENDING` -> `PAID` -> `SHIPPED` -> `DELIVERED`), 운송장 등록
+* **매출 통계**: 매일 자정 스케줄러 기반 전일 매출 자동 집계, 일/월/년 단위 통계 조회, 수동 재집계 기능
+* **고객 지원 (QnA)**: 대기 중인 문의 확인 및 관리자 답변 등록
+
+---
+
+## ⚙️ 기술 스택 (Tech Stack)
+
+| 분류 | 기술 |
 | --- | --- |
-| Language | Java 21 |
-| Framework | Spring Boot 4.1.0-SNAPSHOT |
-| Build | Gradle Kotlin DSL |
-| Web | Spring WebMVC |
-| ORM | Spring Data JPA, Hibernate |
-| Database | PostgreSQL 16, H2(Test) |
-| Cache/Token Store | Redis |
-| Security | Spring Security, JWT, BCrypt |
-| API Docs | Springdoc OpenAPI, Swagger UI |
-| Validation | Jakarta Validation |
-| Payment | Toss Payments API 연동 구조 |
-| Test | JUnit Platform, Spring Boot Test |
-| Infra | Docker Compose(PostgreSQL, Redis) |
+| **Language** | Java 21 |
+| **Framework** | Spring Boot `4.1.0-SNAPSHOT` |
+| **Web** | Spring WebMVC |
+| **Database** | PostgreSQL 16, H2 (Test) |
+| **ORM** | Spring Data JPA, Hibernate |
+| **Cache & Token** | Redis 7 |
+| **Security** | Spring Security, JWT, BCrypt |
+| **API Docs** | Springdoc OpenAPI, Swagger UI |
+| **Payment** | Toss Payments 연동 (`FakePaymentGateway` 지원) |
+| **Infra** | Docker Compose |
 
-## 도메인 구조
+---
 
-```text
-src/main/java/com/back/coffeeprod
-├── domain
-│   ├── address   # 배송지
-│   ├── cart      # 장바구니
-│   ├── member    # 회원/인증
-│   ├── order     # 주문
-│   ├── payment   # 결제
-│   └── product   # 상품/카테고리
-└── global
-    ├── common    # 공통 응답
-    ├── config    # Security, Redis, Swagger 설정
-    ├── exception # 전역 예외 처리
-    └── security  # JWT, UserDetails, 인증 필터
+## 🚀 시작하기 (Getting Started)
+
+### 1. 필수 요구사항
+* Java 21
+* Docker & Docker Compose
+* Gradle (Wrapper 포함)
+
+### 2. 인프라 실행 (DB & Redis)
+프로젝트 루트에서 Docker Compose를 사용하여 PostgreSQL과 Redis를 백그라운드에서 실행합니다.
+```bash
+docker compose up -d
 ```
 
-## 실행 환경
-
-### 필수 요구사항
-
-- Java 21
-- Docker, Docker Compose
-- Gradle Wrapper 사용 가능 환경
-
-### 환경 변수
-
-`application.yml`과 `docker-compose.yml`은 아래 환경 변수를 사용합니다.
-
-| 변수명 | 설명 |
-| --- | --- |
-| `DB_URL` | PostgreSQL JDBC URL |
-| `DB_USERNAME` | DB 사용자명 |
-| `DB_PASSWORD` | DB 비밀번호 |
-| `REDIS_HOST` | Redis 호스트 |
-| `REDIS_PORT` | Redis 포트 |
-| `REDIS_PASSWORD` | Redis 비밀번호 |
-| `JWT_SECRET_KEY` | JWT 서명 키 |
-| `JWT_ACCESS_EXPIRATION` | Access Token 만료 시간 |
-| `JWT_REFRESH_EXPIRATION` | Refresh Token 만료 시간 |
-| `TOSS_CLIENT_KEY` | Toss Payments 클라이언트 키 |
-| `TOSS_SECRET_KEY` | Toss Payments 시크릿 키 |
-
-예시:
+### 3. 환경 변수 설정
+`application.yml` 또는 `.env`에 다음 환경 변수 설정이 필요합니다. 
+(개발 환경인 `dev` 프로필에서는 로컬 기본값이 적용되어 있어 별도 설정 없이 실행 가능합니다.)
 
 ```env
 DB_URL=jdbc:postgresql://localhost:5432/coffee_db
@@ -90,248 +80,86 @@ DB_PASSWORD=coffee_password
 REDIS_HOST=localhost
 REDIS_PORT=6379
 REDIS_PASSWORD=redis_password
-JWT_SECRET_KEY=replace-with-long-secret-key
-JWT_ACCESS_EXPIRATION=3600000
-JWT_REFRESH_EXPIRATION=1209600000
-TOSS_CLIENT_KEY=replace-with-toss-client-key
-TOSS_SECRET_KEY=replace-with-toss-secret-key
+JWT_SECRET_KEY=your-256-bit-secret-key
+TOSS_CLIENT_KEY=your-toss-client-key
+TOSS_SECRET_KEY=your-toss-secret-key
 ```
 
-### 인프라 실행
+### 4. 애플리케이션 실행
+기본 프로필은 `dev` (H2 또는 Local DB + Fake 결제 모듈) 로 설정되어 있습니다.
 
 ```bash
-docker compose up -d
-```
-
-`docker-compose.yml`은 다음 컨테이너를 실행합니다.
-
-- PostgreSQL 16: `localhost:5432`, DB명 `coffee_db`
-- Redis 7: `localhost:6379`, password 인증 사용
-
-### 애플리케이션 실행
-
-```bash
+# Mac/Linux
 ./gradlew bootRun
-```
 
-Windows 환경:
-
-```bash
+# Windows
 ./gradlew.bat bootRun
 ```
 
-기본 활성 프로필은 `dev`입니다.
+> **프로필 안내 (`spring.profiles.active`)**
+> * `dev`: 로컬 개발용 (Fake Payment)
+> * `test`: 테스트용 (H2, Fake Payment)
+> * `local-toss`: 실제 Toss 승인 테스트용
+> * `prod`: 운영 배포용
 
-## 프로필별 설정
+---
 
-| Profile | DB | JPA DDL | 용도 |
-| --- | --- | --- | --- |
-| `dev` | PostgreSQL | `update` | 로컬 개발 |
-| `test` | H2 in-memory(PostgreSQL mode) | `create-drop` | 테스트 |
-| `prod` | PostgreSQL | `validate` | 운영 배포 |
+## 📚 API 문서 (Swagger)
 
-## API 문서
+서버가 실행된 후 아래 URL에서 전체 API 명세를 확인하고 테스트할 수 있습니다.
+- **Swagger UI**: [http://localhost:8080/swagger-ui/index.html](http://localhost:8080/swagger-ui/index.html)
+- **OpenAPI JSON**: [http://localhost:8080/v3/api-docs](http://localhost:8080/v3/api-docs)
 
-서버 실행 후 Swagger UI에서 API를 확인할 수 있습니다.
-
-- Swagger UI: `http://localhost:8080/swagger-ui/index.html`
-- OpenAPI Docs: `http://localhost:8080/v3/api-docs`
-
-공통 응답 포맷:
-
+### API 공통 응답 포맷
 ```json
 {
   "status": 200,
   "message": "성공",
-  "data": {},
+  "data": { ... },
   "errors": null
 }
 ```
 
-인증이 필요한 API는 `Authorization: Bearer {accessToken}` 헤더를 사용합니다.
+---
 
-## API 명세 요약
+## 🔒 보안 및 인증 규칙
 
-### 인증
+1. **접근 권한**
+   * **공개 API**: 로그인/회원가입, 상품/카테고리 조회(GET)
+   * **사용자 API**: `Authorization: Bearer {accessToken}` 필수
+   * **관리자 API**: `/api/v1/admin/**` 경로는 `ROLE_ADMIN` 권한 필수
+2. **토큰 관리**
+   * Access Token은 클라이언트 메모리/스토리지에 보관합니다.
+   * Refresh Token은 서버의 Redis에 보관되며 재발급 시 1회성(Rotation)으로 갱신됩니다.
 
-| Method | Endpoint | 인증 | 설명 |
-| --- | --- | --- | --- |
-| `POST` | `/api/v1/auth/signup` | 불필요 | 회원가입 |
-| `POST` | `/api/v1/auth/login` | 불필요 | 로그인 및 Access/Refresh Token 발급 |
-| `POST` | `/api/v1/auth/reissue` | 불필요 | Refresh Token으로 토큰 재발급 |
-| `POST` | `/api/v1/auth/logout` | 필요 | 로그아웃 및 Refresh Token 삭제 |
-| `GET` | `/api/v1/auth/check-email?email={email}` | 불필요 | 이메일 중복 확인 |
+---
 
-주요 요청 필드:
+## 🗄️ 도메인 및 DB 설계 핵심
 
-- 회원가입: `email`, `password`, `name`, `nickname`
-- 로그인: `email`, `password`
-- 토큰 재발급: `refreshToken`
+* **동시성 제어**: `주문 생성 시` 상품의 재고는 DB의 `조건부 UPDATE` 쿼리(`stockQuantity >= requestQuantity`)를 사용하여 동시 주문에 의한 초과 판매를 방지합니다.
+* **트랜잭션 정합성**: 주문 실패 또는 결제 위변조 발생 시 즉시 주문을 `CANCELED` 처리하고 차감된 마일리지와 재고를 복구합니다.
+* **스냅샷 패턴**: 주문 발생 시점의 상품 가격, 배송지 주소는 주문 엔티티(`OrderItem`, `Orders`)에 스냅샷 형태로 복사되어, 이후 상품 정보가 변경되더라도 과거 주문 내역이 영향받지 않습니다.
+* **통계 집계 로직**: 스케줄러가 매일 `00:10` 전일 결제 데이터를 1개의 `SalesStatistics` 레코드로 요약(Upsert)하여 조회 성능을 높였습니다.
 
-### 회원
+---
 
-| Method | Endpoint | 인증 | 설명 |
-| --- | --- | --- | --- |
-| `GET` | `/api/v1/members/me` | 필요 | 내 정보 조회 |
-| `PATCH` | `/api/v1/members/me` | 필요 | 닉네임 수정 |
-| `PATCH` | `/api/v1/members/me/password` | 필요 | 비밀번호 변경 |
-| `DELETE` | `/api/v1/members/me` | 필요 | 회원 탈퇴(Soft Delete) |
+## 🧪 테스트 (Testing)
 
-주요 요청 필드:
-
-- 내 정보 수정: `nickname`
-- 비밀번호 변경: `currentPassword`, `newPassword`
-- 회원 탈퇴: `currentPassword`
-
-### 상품/카테고리
-
-| Method | Endpoint | 인증 | 설명 |
-| --- | --- | --- | --- |
-| `GET` | `/api/v1/products` | 불필요 | 상품 목록 조회 |
-| `GET` | `/api/v1/products/{productId}` | 불필요 | 상품 상세 조회 |
-| `GET` | `/api/v1/categories` | 불필요 | 카테고리 목록 조회 |
-
-상품 목록 쿼리 파라미터:
-
-- `categoryId`: 카테고리 ID
-- `roastLevel`: `LIGHT`, `MEDIUM`, `DARK`
-- `keyword`: 상품명 검색어
-- `page`, `size`, `sort`: Spring Pageable 파라미터
-
-### 장바구니
-
-| Method | Endpoint | 인증 | 설명 |
-| --- | --- | --- | --- |
-| `GET` | `/api/v1/carts` | 필요 | 장바구니 조회 |
-| `POST` | `/api/v1/carts/items` | 필요 | 장바구니 상품 추가 |
-| `PATCH` | `/api/v1/carts/items/{cartItemId}` | 필요 | 장바구니 상품 수량/옵션 변경 |
-| `DELETE` | `/api/v1/carts/items/{cartItemId}` | 필요 | 장바구니 상품 삭제 |
-| `DELETE` | `/api/v1/carts` | 필요 | 장바구니 전체 비우기 |
-
-주요 요청 필드:
-
-- 상품 추가: `productId`, `quantity`, `grindType`
-- 상품 변경: `quantity`, `grindType`
-- `grindType`: `WHOLE_BEAN`, `ESPRESSO`, `DRIP`, `FRENCH_PRESS`
-
-### 배송지
-
-| Method | Endpoint | 인증 | 설명 |
-| --- | --- | --- | --- |
-| `GET` | `/api/v1/members/me/addresses` | 필요 | 배송지 목록 조회 |
-| `POST` | `/api/v1/members/me/addresses` | 필요 | 배송지 등록 |
-| `PUT` | `/api/v1/members/me/addresses/{addressId}` | 필요 | 배송지 수정 |
-| `DELETE` | `/api/v1/members/me/addresses/{addressId}` | 필요 | 배송지 삭제 |
-| `PATCH` | `/api/v1/members/me/addresses/{addressId}/default` | 필요 | 기본 배송지 설정 |
-
-주요 요청 필드:
-
-- `recipient`, `phone`, `zipcode`, `addressLine1`, `addressLine2`
-
-### 주문
-
-| Method | Endpoint | 인증 | 설명 |
-| --- | --- | --- | --- |
-| `POST` | `/api/v1/orders` | 필요 | 장바구니 기반 주문 생성 |
-| `GET` | `/api/v1/orders` | 필요 | 내 주문 목록 조회 |
-| `GET` | `/api/v1/orders/{orderId}` | 필요 | 주문 상세 조회 |
-| `POST` | `/api/v1/orders/{orderId}/cancel` | 필요 | 주문 취소 |
-
-주요 요청 필드:
-
-- 주문 생성: `addressId`, `usedMileage`
-- 주문 상태: `PENDING`, `PAID`, `SHIPPED`, `DELIVERED`, `CANCELED`
-
-### 결제
-
-| Method | Endpoint | 인증 | 설명 |
-| --- | --- | --- | --- |
-| `POST` | `/api/v1/payments/confirm` | 필요 | Toss Payments 결제 승인 및 검증 |
-
-주요 요청 필드:
-
-- `paymentKey`, `orderId`, `amount`
-
-결제 흐름:
-
-1. `POST /api/v1/orders`로 주문을 생성합니다.
-2. 클라이언트에서 Toss Payments SDK 결제 UI를 실행합니다.
-3. Toss Payments에서 받은 `paymentKey`와 주문 금액을 서버로 전달합니다.
-4. `POST /api/v1/payments/confirm`에서 주문 상태, 결제 금액, PG 승인 결과를 검증합니다.
-
-### 관리자 API
-
-관리자 API는 JWT 인증과 `ADMIN` 권한이 필요합니다.
-
-| Method | Endpoint | 설명 |
-| --- | --- | --- |
-| `GET` | `/api/v1/admin/members` | 전체 회원 목록 조회 |
-| `PATCH` | `/api/v1/admin/members/{memberId}/grade` | 회원 등급 변경 |
-| `PATCH` | `/api/v1/admin/members/{memberId}/status` | 회원 상태 변경 |
-| `POST` | `/api/v1/admin/categories` | 카테고리 등록 |
-| `PUT` | `/api/v1/admin/categories/{categoryId}` | 카테고리 수정 |
-| `POST` | `/api/v1/admin/products` | 상품 등록 |
-| `PUT` | `/api/v1/admin/products/{productId}` | 상품 전체 수정 |
-| `PATCH` | `/api/v1/admin/products/{productId}/status` | 상품 상태 변경 |
-| `PATCH` | `/api/v1/admin/products/{productId}/stock` | 상품 재고 추가 |
-| `GET` | `/api/v1/admin/orders` | 전체 주문 목록 조회 |
-| `PATCH` | `/api/v1/admin/orders/{orderId}/status` | 주문 상태 변경 및 운송장 등록 |
-
-관리자 요청 값:
-
-- 회원 등급: `BRONZE`, `SILVER`, `GOLD`
-- 회원 상태: `ACTIVE`, `SUSPENDED`
-- 상품 상태: `ON_SALE`, `SOLD_OUT`, `HIDDEN`
-- 상품 로스팅: `LIGHT`, `MEDIUM`, `DARK`
-- 주문 상태 변경: `status`, `trackingNo`
-
-## 보안 정책
-
-- JWT 기반 Stateless 인증을 사용합니다.
-- 비밀번호는 BCrypt로 암호화합니다.
-- Refresh Token은 Redis에 저장하고, 재발급 시 Rotation 구조를 사용합니다.
-- `/api/v1/admin/**` 경로는 `ADMIN` 권한이 필요합니다.
-- 공개 접근 허용 경로:
-  - `/api/v1/auth/signup`
-  - `/api/v1/auth/login`
-  - `/api/v1/auth/reissue`
-  - `/api/v1/auth/check-email`
-  - `/api/v1/products/**`
-  - `/api/v1/categories/**`
-  - `/swagger-ui/**`
-  - `/v3/api-docs/**`
-
-## 테스트
-
-테스트 프로필은 H2 in-memory DB를 PostgreSQL 모드로 사용합니다.
-
+현업 수준의 서비스 통합 테스트가 작성되어 있습니다.
 ```bash
 ./gradlew test
 ```
+* **주요 테스트 커버리지**:
+  * 결제 금액 위변조 및 보상 트랜잭션 (Refund/Cancel)
+  * 다중 스레드 환경에서의 `재고 차감 동시성` 테스트
+  * 관리자 상태 전이 및 배송 정책 테스트
 
-현재 테스트 패키지에는 회원, 상품, 재고 동시성, 주문, 결제 서비스 통합 테스트가 포함되어 있습니다.
+---
 
-## 배포 상황
+## 📌 향후 로드맵 (Roadmap)
 
-현재 저장소 기준으로 확인되는 배포 구성은 다음과 같습니다.
-
-- 로컬 개발 인프라: Docker Compose로 PostgreSQL, Redis 실행 가능
-- 운영 프로필: `prod` 프로필 존재, JPA `ddl-auto=validate`
-- 애플리케이션 배포 스크립트/CI/CD 파이프라인: 저장소 내 미확인
-- 운영 서버/클라우드 배포 설정: 저장소 내 미확인
-
-## 추후 개선 및 미구현 항목
-
-저장소 기준으로 추후 보완이 필요한 항목입니다.
-
-- CI/CD 파이프라인 구성
-- 운영 배포 문서 및 서버 환경 변수 관리 가이드
-- `.env.example` 또는 환경 변수 샘플 파일 제공
-- API 요청/응답 예시 보강
-- Toss Payments 실운영/테스트 키 분리 가이드
-- 관리자 계정 생성/권한 부여 절차 문서화
-- 프론트엔드 연동 가이드
-- 운영 모니터링, 로그, 장애 대응 문서
-- DB 마이그레이션 도구 도입 검토
-- 깨진 한글 주석/Swagger 설명 인코딩 정리
-
+- [ ] Spring Security & Controller 통합 테스트 강화
+- [ ] 주문 결제 실패 시 예약된 주문 데이터 정리 (Scheduler)
+- [ ] 통계 스케줄러 분산 락 적용 방안 (다중 인스턴스 대비)
+- [ ] 리뷰 / QnA 신고 시스템
+- [ ] AWS 기반 CI/CD 파이프라인 구성
