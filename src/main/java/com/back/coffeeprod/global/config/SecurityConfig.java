@@ -9,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -68,12 +69,16 @@ public class SecurityConfig {
 
                 // 요청에 대한 권한 설정
                 .authorizeHttpRequests(auth -> auth
-                        // 인증 없이 접근 허용할 엔드포인트 설정 (예: 회원가입, 로그인)
+                        // 인증 없이 접근할 인증 API를 설정함
                         .requestMatchers(
                                 "/api/v1/auth/signup",
                                 "/api/v1/auth/login",
                                 "/api/v1/auth/reissue",
-                                "/api/v1/auth/check-email",
+                                "/api/v1/auth/check-email"
+                        ).permitAll()
+                        // 상품, 카테고리, 리뷰, QnA 조회만 공개함
+                        .requestMatchers(
+                                HttpMethod.GET,
                                 "/api/v1/products/**",
                                 "/api/v1/categories/**"
                         ).permitAll()
