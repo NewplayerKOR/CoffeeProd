@@ -12,6 +12,7 @@ import com.back.coffeeprod.domain.product.entity.Product;
 import com.back.coffeeprod.domain.product.entity.RoastLevel;
 import com.back.coffeeprod.domain.product.repository.CategoryRepository;
 import com.back.coffeeprod.domain.product.repository.ProductRepository;
+import com.back.coffeeprod.domain.qna.repository.QnaRepository;
 import com.back.coffeeprod.domain.review.dto.ReviewDto;
 import com.back.coffeeprod.domain.review.repository.ReviewRepository;
 import com.back.coffeeprod.global.exception.CustomException;
@@ -46,6 +47,7 @@ class ReviewServiceIntegrationTest {
 
     private final ReviewService reviewService;
     private final ReviewRepository reviewRepository;
+    private final QnaRepository qnaRepository;
     private final OrderRepository orderRepository;
     private final ProductRepository productRepository;
     private final CategoryRepository categoryRepository;
@@ -55,6 +57,7 @@ class ReviewServiceIntegrationTest {
     ReviewServiceIntegrationTest(
             ReviewService reviewService,
             ReviewRepository reviewRepository,
+            QnaRepository qnaRepository,
             OrderRepository orderRepository,
             ProductRepository productRepository,
             CategoryRepository categoryRepository,
@@ -62,6 +65,7 @@ class ReviewServiceIntegrationTest {
     ) {
         this.reviewService = reviewService;
         this.reviewRepository = reviewRepository;
+        this.qnaRepository = qnaRepository;
         this.orderRepository = orderRepository;
         this.productRepository = productRepository;
         this.categoryRepository = categoryRepository;
@@ -71,6 +75,7 @@ class ReviewServiceIntegrationTest {
     @BeforeEach
     void setUp() {
         reviewRepository.deleteAll();
+        qnaRepository.deleteAll();
         orderRepository.deleteAll();
         productRepository.deleteAll();
         categoryRepository.deleteAll();

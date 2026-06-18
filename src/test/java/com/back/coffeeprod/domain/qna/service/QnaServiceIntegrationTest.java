@@ -3,6 +3,7 @@ package com.back.coffeeprod.domain.qna.service;
 import com.back.coffeeprod.domain.member.entity.Member;
 import com.back.coffeeprod.domain.member.entity.Role;
 import com.back.coffeeprod.domain.member.repository.MemberRepository;
+import com.back.coffeeprod.domain.order.repository.OrderRepository;
 import com.back.coffeeprod.domain.product.entity.Category;
 import com.back.coffeeprod.domain.product.entity.Product;
 import com.back.coffeeprod.domain.product.entity.RoastLevel;
@@ -11,6 +12,7 @@ import com.back.coffeeprod.domain.product.repository.ProductRepository;
 import com.back.coffeeprod.domain.qna.dto.QnaDto;
 import com.back.coffeeprod.domain.qna.entity.QnaStatus;
 import com.back.coffeeprod.domain.qna.repository.QnaRepository;
+import com.back.coffeeprod.domain.review.repository.ReviewRepository;
 import com.back.coffeeprod.global.exception.CustomException;
 import com.back.coffeeprod.global.exception.ErrorCode;
 import org.junit.jupiter.api.BeforeEach;
@@ -44,6 +46,8 @@ class QnaServiceIntegrationTest {
 
     private final QnaService qnaService;
     private final QnaRepository qnaRepository;
+    private final ReviewRepository reviewRepository;
+    private final OrderRepository orderRepository;
     private final ProductRepository productRepository;
     private final CategoryRepository categoryRepository;
     private final MemberRepository memberRepository;
@@ -52,12 +56,16 @@ class QnaServiceIntegrationTest {
     QnaServiceIntegrationTest(
             QnaService qnaService,
             QnaRepository qnaRepository,
+            ReviewRepository reviewRepository,
+            OrderRepository orderRepository,
             ProductRepository productRepository,
             CategoryRepository categoryRepository,
             MemberRepository memberRepository
     ) {
         this.qnaService = qnaService;
         this.qnaRepository = qnaRepository;
+        this.reviewRepository = reviewRepository;
+        this.orderRepository = orderRepository;
         this.productRepository = productRepository;
         this.categoryRepository = categoryRepository;
         this.memberRepository = memberRepository;
@@ -65,7 +73,9 @@ class QnaServiceIntegrationTest {
 
     @BeforeEach
     void setUp() {
+        reviewRepository.deleteAll();
         qnaRepository.deleteAll();
+        orderRepository.deleteAll();
         productRepository.deleteAll();
         categoryRepository.deleteAll();
         memberRepository.deleteAll();
