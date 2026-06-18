@@ -50,6 +50,17 @@ public enum ErrorCode {
     ADDRESS_ACCESS_DENIED(403, "본인의 배송지만 접근할 수 있습니다."),
     ADDRESS_LIMIT_EXCEEDED(400, "배송지는 최대 5개까지 등록할 수 있습니다."),
 
+    // [리뷰 관련]
+    REVIEW_NOT_FOUND(404, "리뷰를 찾을 수 없습니다."),
+    REVIEW_ACCESS_DENIED(403, "본인의 리뷰만 접근할 수 있습니다."),
+    REVIEW_ALREADY_EXISTS(409, "이미 리뷰를 작성한 상품입니다."),
+    REVIEW_PURCHASE_REQUIRED(403, "구매한 상품만 리뷰를 작성할 수 있습니다."),
+
+    // [QnA 관련]
+    QNA_NOT_FOUND(404, "QnA를 찾을 수 없습니다."),
+    QNA_ACCESS_DENIED(403, "본인의 QnA만 접근할 수 있습니다."),
+    QNA_ALREADY_ANSWERED(409, "답변이 완료된 QnA입니다."),
+
 
     // [공통 에러]
     INVALID_INPUT_VALUE(400, "잘못된 입력 값입니다."),

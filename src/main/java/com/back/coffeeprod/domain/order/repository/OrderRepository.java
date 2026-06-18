@@ -52,6 +52,23 @@ public interface OrderRepository extends JpaRepository<Orders, Long> {
             """)
     java.util.Optional<Orders> findByIdWithItems(@Param("orderId") Long orderId);
 
+    @Query("""
+            SELECT CASE WHEN COUNT(oi) > 0 THEN true ELSE false END
+            FROM OrderItem oi
+            JOIN oi.orders o
+            WHERE o.member.id = :memberId
+              AND oi.product.id = :productId
+              AND o.status IN (
+                  com.back.coffeeprod.domain.order.entity.OrderStatus.PAID,
+                  com.back.coffeeprod.domain.order.entity.OrderStatus.SHIPPED,
+                  com.back.coffeeprod.domain.order.entity.OrderStatus.DELIVERED
+              )
+            """)
+    boolean existsPurchasedProduct(
+            @Param("memberId") Long memberId,
+            @Param("productId") Long productId
+    );
+
     // 관리자 전체 주문 목록 ID 조회 (페이지네이션)
     @Query(
             value = """
