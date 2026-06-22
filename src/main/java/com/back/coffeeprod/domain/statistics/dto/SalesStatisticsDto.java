@@ -36,7 +36,7 @@ public class SalesStatisticsDto {
     public static class AggregateRangeResponse {
         private final LocalDate from;
         private final LocalDate to;
-        private final int aggregateDays;
+        private final int aggregatedDays;
 
         public AggregateRangeResponse(
                 LocalDate from,
@@ -45,7 +45,7 @@ public class SalesStatisticsDto {
         ) {
             this.from = from;
             this.to = to;
-            this.aggregateDays = aggregateDays;
+            this.aggregatedDays = aggregateDays;
         }
     }
 }
