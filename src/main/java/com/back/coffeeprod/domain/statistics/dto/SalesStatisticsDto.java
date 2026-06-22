@@ -2,6 +2,8 @@ package com.back.coffeeprod.domain.statistics.dto;
 
 import lombok.Getter;
 
+import java.time.LocalDate;
+
 public class SalesStatisticsDto {
 
     @Getter
@@ -27,6 +29,23 @@ public class SalesStatisticsDto {
             this.deliveryFeeAmount = deliveryFeeAmount;
             this.usedMileageAmount = usedMileageAmount;
             this.paymentAmount = paymentAmount;
+        }
+    }
+
+    @Getter
+    public static class AggregateRangeResponse {
+        private final LocalDate from;
+        private final LocalDate to;
+        private final int aggregateDays;
+
+        public AggregateRangeResponse(
+                LocalDate from,
+                LocalDate to,
+                int aggregateDays
+        ) {
+            this.from = from;
+            this.to = to;
+            this.aggregateDays = aggregateDays;
         }
     }
 }
