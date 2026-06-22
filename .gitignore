@@ -44,3 +44,9 @@ out/
 ### postgreSQL ###
 postgres-data/
 redis-data/
+
+### k6 ###
+/k6/.env
+/k6/data/users.json
+/k6/results/*
+!/k6/results/.gitkeep
