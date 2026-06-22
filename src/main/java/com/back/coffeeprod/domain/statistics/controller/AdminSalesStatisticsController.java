@@ -37,6 +37,24 @@ public class AdminSalesStatisticsController {
         return ResponseEntity.ok(CommonResponse.success(response));
     }
 
+    @PostMapping("/sales/aggregate/range")
+    public ResponseEntity<
+            CommonResponse<SalesStatisticsDto.AggregateRangeResponse>
+            > aggregateSalesRange(
+            @RequestParam
+            @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+            LocalDate from,
+
+            @RequestParam
+            @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+            LocalDate to
+    ) {
+        SalesStatisticsDto.AggregateRangeResponse response =
+                salesStatisticsService.aggregateSalesRange(from, to);
+
+        return ResponseEntity.ok(CommonResponse.success(response));
+    }
+
     @PostMapping("/sales/aggregate")
     public ResponseEntity<CommonResponse<Void>> aggregateSalesManually(
             @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate statDate
