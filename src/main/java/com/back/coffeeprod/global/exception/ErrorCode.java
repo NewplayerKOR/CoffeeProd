@@ -63,7 +63,7 @@ public enum ErrorCode {
 
     // [매출 통계 관련]
     INVALID_STATISTICS_DATE_RANGE(400, "매출 통계 시작일은 종료일보다 늦을 수 없습니다."),
-    STATISTICS_DATE_RANGE_TOO_LARGE(400, "매출 통계 재집계 기간은 최대 365일까지 가능합니다."),
+    STATISTICS_DATE_RANGE_TOO_LARGE(400, "매출 통계 재집계 기간은 최대 366일까지 가능합니다."),
 
     // [공통 에러]
     INVALID_INPUT_VALUE(400, "잘못된 입력 값입니다."),
