@@ -7,12 +7,15 @@ import com.back.coffeeprod.domain.statistics.entity.SalesStatisticsUnit;
 import com.back.coffeeprod.domain.statistics.repository.PaymentSalesQueryRepository;
 import com.back.coffeeprod.domain.statistics.repository.SalesAggregateRow;
 import com.back.coffeeprod.domain.statistics.repository.SalesStatisticsRepository;
+import com.back.coffeeprod.global.exception.CustomException;
+import com.back.coffeeprod.global.exception.ErrorCode;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
 import java.time.YearMonth;
+import java.time.temporal.ChronoUnit;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -24,17 +27,50 @@ public class SalesStatisticsService {
 
     private final PaymentSalesQueryRepository paymentSalesQueryRepository;
     private final SalesStatisticsRepository salesStatisticsRepository;
+    private static final int MAX_AGGREGATE_RANGE_DAYS = 366;
 
     @Transactional
     public void aggregateDailySales(LocalDate statDate) {
+        aggregateDailySalesInternal(statDate);
+    }
+
+    @Transactional
+    public SalesStatisticsDto.AggregateRangeResponse aggregateSalesRange(
+            LocalDate from,
+            LocalDate to
+    ) {
+        validateAggregateRange(from, to);
+
+        int aggregateDays = Math.toIntExact(
+                ChronoUnit.DAYS.between(from, to) + 1
+        );
+
+        LocalDate currentDate = from;
+
+        while (!currentDate.isAfter(to)) {
+            aggregateDailySalesInternal(currentDate);
+            currentDate = currentDate.plusDays(1);
+        }
+
+        return new SalesStatisticsDto.AggregateRangeResponse(
+                from,
+                to,
+                aggregateDays
+        );
+    }
+
+    private void aggregateDailySalesInternal(LocalDate statDate) {
         SalesAggregateRow row = paymentSalesQueryRepository.aggregatePaidSales(
                 PaymentStatus.SUCCESS,
                 statDate.atStartOfDay(),
                 statDate.plusDays(1).atStartOfDay()
         );
 
-        SalesStatistics statistics = salesStatisticsRepository.findByStatDate(statDate)
-                .orElseGet(() -> new SalesStatistics(statDate, 0, 0, 0, 0, 0));
+        SalesStatistics statistics = salesStatisticsRepository
+                .findByStatDate(statDate)
+                .orElseGet(() ->
+                        new SalesStatistics(statDate, 0, 0, 0, 0, 0)
+                );
 
         statistics.update(
                 row.getOrderCount(),
@@ -45,6 +81,23 @@ public class SalesStatisticsService {
         );
 
         salesStatisticsRepository.save(statistics);
+    }
+
+    // 기간 입력값을 검증함
+    private void validateAggregateRange(LocalDate from, LocalDate to) {
+        if (from == null || to == null || from.isAfter(to)) {
+            throw new CustomException(
+                    ErrorCode.INVALID_STATISTICS_DATE_RANGE
+            );
+        }
+
+        long aggregateDays = ChronoUnit.DAYS.between(from, to) + 1;
+
+        if (aggregateDays > MAX_AGGREGATE_RANGE_DAYS) {
+            throw new CustomException(
+                    ErrorCode.STATISTICS_DATE_RANGE_TOO_LARGE
+            );
+        }
     }
 
     public List<SalesStatisticsDto.Response> getSalesStatistics(
