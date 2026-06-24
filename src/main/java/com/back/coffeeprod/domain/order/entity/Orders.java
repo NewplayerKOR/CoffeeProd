@@ -8,7 +8,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalDateTime;
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,8 +27,8 @@ public class Orders extends BaseTimeEntity {
     @JoinColumn(name = "member_id", nullable = false)
     private Member member;
 
-    @Column(name = "order_date", nullable = false)
-    private LocalDateTime orderDate;
+    @Column(name = "order_date", nullable = false, columnDefinition = "TIMESTAMPTZ")
+    private Instant orderDate;
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
@@ -80,7 +80,7 @@ public class Orders extends BaseTimeEntity {
         this.totalPrice = totalPrice;
         this.usedMileage = usedMileage;
         this.deliveryAddress = deliveryAddress;
-        this.orderDate = LocalDateTime.now();
+        this.orderDate = Instant.now();
         this.status = OrderStatus.PENDING;
     }
 

@@ -7,12 +7,14 @@ import com.back.coffeeprod.domain.statistics.entity.SalesStatisticsUnit;
 import com.back.coffeeprod.domain.statistics.repository.PaymentSalesQueryRepository;
 import com.back.coffeeprod.domain.statistics.repository.SalesAggregateRow;
 import com.back.coffeeprod.domain.statistics.repository.SalesStatisticsRepository;
+import com.back.coffeeprod.global.common.time.BusinessTime;
 import com.back.coffeeprod.global.exception.CustomException;
 import com.back.coffeeprod.global.exception.ErrorCode;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.Instant;
 import java.time.LocalDate;
 import java.time.YearMonth;
 import java.time.temporal.ChronoUnit;
@@ -60,10 +62,13 @@ public class SalesStatisticsService {
     }
 
     private void aggregateDailySalesInternal(LocalDate statDate) {
+        Instant startAt = BusinessTime.startOfDay(statDate);
+        Instant endAt = BusinessTime.startOfDay(statDate.plusDays(1));
+
         SalesAggregateRow row = paymentSalesQueryRepository.aggregatePaidSales(
                 PaymentStatus.SUCCESS,
-                statDate.atStartOfDay(),
-                statDate.plusDays(1).atStartOfDay()
+                startAt,
+                endAt
         );
 
         SalesStatistics statistics = salesStatisticsRepository

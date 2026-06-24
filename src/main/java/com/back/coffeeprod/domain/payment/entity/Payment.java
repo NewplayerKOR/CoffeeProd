@@ -7,7 +7,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalDateTime;
+import java.time.Instant;
 
 @Entity
 @Getter
@@ -38,8 +38,8 @@ public class Payment {
     @Column(nullable = false)
     private PaymentStatus status;
 
-    @Column
-    private LocalDateTime paidAt;   // 결제 완료 시각
+    @Column(name = "paid_at", columnDefinition = "TIMESTAMPTZ")
+    private Instant paidAt;   // 결제 완료 시각
 
     @Builder
     public Payment(Orders orders, String pgProvider, String paymentKey, String payMethod, PaymentStatus status) {
@@ -48,7 +48,7 @@ public class Payment {
         this.paymentKey = paymentKey;
         this.payMethod = payMethod;
         this.status = status;
-        this.paidAt = LocalDateTime.now();
+        this.paidAt = Instant.now();
     }
 
     // 환불 처리

@@ -3,22 +3,12 @@ package com.back.coffeeprod.domain.qna.entity;
 import com.back.coffeeprod.domain.member.entity.Member;
 import com.back.coffeeprod.domain.product.entity.Product;
 import com.back.coffeeprod.global.common.entity.BaseTimeEntity;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalDateTime;
+import java.time.Instant;
 
 @Entity
 @Getter
@@ -56,8 +46,8 @@ public class Qna extends BaseTimeEntity {
     @Column(nullable = false, length = 20)
     private QnaStatus status;
 
-    @Column(name = "answered_at")
-    private LocalDateTime answeredAt;
+    @Column(name = "answered_at", columnDefinition = "TIMESTAMPTZ")
+    private Instant answeredAt;
 
     public Qna(
             Member member,
@@ -83,7 +73,7 @@ public class Qna extends BaseTimeEntity {
         this.answerer = answerer;
         this.answer = answer;
         this.status = QnaStatus.ANSWERED;
-        this.answeredAt = LocalDateTime.now();
+        this.answeredAt = Instant.now();
     }
 
     // 답변 완료 여부를 반환함
