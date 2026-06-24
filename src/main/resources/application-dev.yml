@@ -5,7 +5,7 @@ spring:
 
   jpa:
     hibernate:
-      ddl-auto: update  # Entity 필드 변경시 DB 테이블 자동 변경
+      ddl-auto: validate
     show-sql: true      # SQL 쿼리 로그 출력
     properties:
       hibernate:

@@ -22,13 +22,13 @@ public class Payment {
 
     // 주문 - 결제 (1:1)
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "order_id")
+    @JoinColumn(name = "order_id", nullable = false, unique = true)
     private Orders orders;
 
     @Column(nullable = false, length = 50)
     private String pgProvider;  // 결제 대행사 (TOSSPAYMENTS 등)
 
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     private String paymentKey;  // 고유 결제 키
 
     @Column(nullable = false, length = 20)

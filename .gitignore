@@ -38,8 +38,14 @@ out/
 
 ### Security ###
 .env
+.env.local
+.env.*.local
 .md/
 
+### Secrets / Keys
+*.pem
+*.key
+secret.json
 
 ### postgreSQL ###
 postgres-data/

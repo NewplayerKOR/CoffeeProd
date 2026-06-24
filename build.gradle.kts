@@ -29,6 +29,8 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
     implementation("org.springframework.boot:spring-boot-starter-webmvc")
     implementation("org.springframework.boot:spring-boot-starter-validation")
+    implementation("org.springframework.boot:spring-boot-starter-flyway")   // Flyway 자동 설정 추가
+    runtimeOnly("org.flywaydb:flyway-database-postgresql")  // PostgreSQL 전용 Flyway 지원을 추가함
     implementation("org.postgresql:postgresql:42.7.10") // PostgreSQL JDBC 드라이버
     implementation("org.springframework.boot:spring-boot-starter-security:4.1.0-M2")
     implementation("io.jsonwebtoken:jjwt-api:0.13.0") // JWT 라이브러리
