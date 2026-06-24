@@ -27,7 +27,7 @@ public class Orders extends BaseTimeEntity {
     @JoinColumn(name = "member_id", nullable = false)
     private Member member;
 
-    @Column(name = "order_data", nullable = false)
+    @Column(name = "order_date", nullable = false)
     private LocalDateTime orderDate;
 
     @Enumerated(EnumType.STRING)
