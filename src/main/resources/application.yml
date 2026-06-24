@@ -12,6 +12,12 @@ spring:
     password: ${DB_PASSWORD}
     driver-class-name: org.postgresql.Driver
 
+  jpa:
+    properties:
+      hibernate:
+        jdbc:
+          time_zone: UTC
+
   flyway:
     enabled: true
     locations: classpath:db/migration

@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
-import java.time.LocalDateTime;
+import java.time.Instant;
 
 public interface PaymentSalesQueryRepository extends JpaRepository<Payment, Long> {
 
@@ -25,7 +25,7 @@ public interface PaymentSalesQueryRepository extends JpaRepository<Payment, Long
             """)
     SalesAggregateRow aggregatePaidSales(
             @Param("status") PaymentStatus status,
-            @Param("startAt") LocalDateTime startAt,
-            @Param("endAt") LocalDateTime endAt
+            @Param("startAt") Instant startAt,
+            @Param("endAt") Instant endAt
     );
 }
