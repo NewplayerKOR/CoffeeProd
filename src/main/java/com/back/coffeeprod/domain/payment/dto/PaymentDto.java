@@ -2,12 +2,13 @@ package com.back.coffeeprod.domain.payment.dto;
 
 import com.back.coffeeprod.domain.payment.entity.Payment;
 import com.back.coffeeprod.domain.payment.entity.PaymentStatus;
+import com.back.coffeeprod.global.common.time.BusinessTime;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalDateTime;
+import java.time.OffsetDateTime;
 
 public class PaymentDto {
 
@@ -37,7 +38,7 @@ public class PaymentDto {
         private final String paymentKey;
         private final String payMethod;
         private final PaymentStatus status;
-        private final LocalDateTime paidAt;
+        private final OffsetDateTime paidAt;
 
         public Response(Payment payment) {
             this.paymentId = payment.getId();
@@ -47,7 +48,7 @@ public class PaymentDto {
             this.paymentKey = payment.getPaymentKey();
             this.payMethod = payment.getPayMethod();
             this.status = payment.getStatus();
-            this.paidAt = payment.getPaidAt();
+            this.paidAt = BusinessTime.toSeoul(payment.getPaidAt());
         }
     }
 }

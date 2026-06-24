@@ -1,6 +1,7 @@
 package com.back.coffeeprod.domain.review.dto;
 
 import com.back.coffeeprod.domain.review.entity.Review;
+import com.back.coffeeprod.global.common.time.BusinessTime;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
@@ -8,7 +9,7 @@ import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalDateTime;
+import java.time.OffsetDateTime;
 
 public class ReviewDto {
 
@@ -30,14 +31,14 @@ public class ReviewDto {
         private final String nickname;
         private final int rating;
         private final String content;
-        private final LocalDateTime createdAt;
+        private final OffsetDateTime createdAt;
 
         public Response(Review review) {
             this.id = review.getId();
             this.nickname = review.getMember().getNickname();
             this.rating = review.getRating();
             this.content = review.getContent();
-            this.createdAt = review.getCreatedAt();
+            this.createdAt = BusinessTime.toSeoul(review.getCreatedAt());
         }
     }
 }

@@ -4,12 +4,13 @@ import com.back.coffeeprod.domain.cart.entity.GrindType;
 import com.back.coffeeprod.domain.order.entity.OrderItem;
 import com.back.coffeeprod.domain.order.entity.OrderStatus;
 import com.back.coffeeprod.domain.order.entity.Orders;
+import com.back.coffeeprod.global.common.time.BusinessTime;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalDateTime;
+import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -55,7 +56,7 @@ public class OrderDto {
         private final Long orderId;
         private final OrderStatus status;
         private final int totalPrice;
-        private final LocalDateTime orderDate;
+        private final OffsetDateTime orderDate;
         private final int itemCount;            // 주문 상품 종류 수
         private final String firstProductName;  // 대표 상품명 (첫 번째)
 
@@ -63,7 +64,7 @@ public class OrderDto {
             this.orderId = orders.getId();
             this.status = orders.getStatus();
             this.totalPrice = orders.getTotalPrice();
-            this.orderDate = orders.getOrderDate();
+            this.orderDate = BusinessTime.toSeoul(orders.getOrderDate());
             this.itemCount = orders.getOrderItems().size();
             this.firstProductName = orders.getOrderItems().isEmpty()
                     ? ""
@@ -79,7 +80,7 @@ public class OrderDto {
         private final OrderStatus status;
         private final int totalPrice;
         private final int usedMileage;
-        private final LocalDateTime orderDate;
+        private final OffsetDateTime orderDate;
         private final String trackingNo;
         private final int itemCount;
         private final String firstProductName;
@@ -91,7 +92,7 @@ public class OrderDto {
             this.status = orders.getStatus();
             this.totalPrice = orders.getTotalPrice();
             this.usedMileage = orders.getUsedMileage();
-            this.orderDate = orders.getOrderDate();
+            this.orderDate = BusinessTime.toSeoul(orders.getOrderDate());
             this.trackingNo = orders.getTrackingNo();
             this.itemCount = orders.getOrderItems().size();
             this.firstProductName = orders.getOrderItems().isEmpty()
@@ -113,7 +114,7 @@ public class OrderDto {
         private final int usedMileage;
         private final String deliveryAddress;
         private final String trackingNo;
-        private final LocalDateTime orderDate;
+        private final OffsetDateTime orderDate;
         private final List<OrderItemResponse> orderItems;
 
         public DetailResponse(Orders orders) {
@@ -127,7 +128,7 @@ public class OrderDto {
             this.usedMileage = orders.getUsedMileage();
             this.deliveryAddress = orders.getDeliveryAddress();
             this.trackingNo = orders.getTrackingNo();
-            this.orderDate = orders.getOrderDate();
+            this.orderDate = BusinessTime.toSeoul(orders.getOrderDate());
             this.orderItems = orders.getOrderItems()
                     .stream()
                     .map(OrderItemResponse::new)

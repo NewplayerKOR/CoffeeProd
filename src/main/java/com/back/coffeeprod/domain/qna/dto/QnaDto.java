@@ -2,12 +2,13 @@ package com.back.coffeeprod.domain.qna.dto;
 
 import com.back.coffeeprod.domain.qna.entity.Qna;
 import com.back.coffeeprod.domain.qna.entity.QnaStatus;
+import com.back.coffeeprod.global.common.time.BusinessTime;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalDateTime;
+import java.time.OffsetDateTime;
 
 public class QnaDto {
 
@@ -44,9 +45,9 @@ public class QnaDto {
         private final String answer;
         private final String answererNickname;
         private final QnaStatus status;
-        private final LocalDateTime createdAt;
-        private final LocalDateTime updatedAt;
-        private final LocalDateTime answeredAt;
+        private final OffsetDateTime createdAt;
+        private final OffsetDateTime updatedAt;
+        private final OffsetDateTime answeredAt;
 
         public Response(Qna qna) {
             this.id = qna.getId();
@@ -59,9 +60,9 @@ public class QnaDto {
                     ? null
                     : qna.getAnswerer().getNickname();
             this.status = qna.getStatus();
-            this.createdAt = qna.getCreatedAt();
-            this.updatedAt = qna.getUpdatedAt();
-            this.answeredAt = qna.getAnsweredAt();
+            this.createdAt = BusinessTime.toSeoul(qna.getCreatedAt());
+            this.updatedAt = BusinessTime.toSeoul(qna.getUpdatedAt());
+            this.answeredAt = BusinessTime.toSeoul(qna.getAnsweredAt());
         }
     }
 }
