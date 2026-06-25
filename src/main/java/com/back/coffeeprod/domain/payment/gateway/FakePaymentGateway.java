@@ -1,9 +1,12 @@
 package com.back.coffeeprod.domain.payment.gateway;
 
 import com.back.coffeeprod.domain.payment.dto.TossPaymentResponse;
+import com.back.coffeeprod.global.common.time.BusinessTime;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
+
+import java.time.OffsetDateTime;
 
 @Slf4j
 @Component
@@ -33,7 +36,8 @@ public class FakePaymentGateway implements PaymentGateway {
             setField(response, "totalAmount", amount);
             setField(response, "method", "카드");
             setField(response, "approvedAt",
-                    java.time.LocalDateTime.now().toString());
+                    OffsetDateTime.now(BusinessTime.SEOUL_ZONE).toString()
+            );
         } catch (Exception e) {
             log.error("[FakePaymentGateway] 필드 세팅 실패", e);
         }
