@@ -31,6 +31,12 @@ public enum ErrorCode {
     INVALID_ORDER_STATUS(400, "변경할 수 없는 주문 상태입니다."),
 
     // [주문/결제 관련]
+    COFFEE_PROFILE_NOT_FOUND(404, "커피 프로필을 찾을 수 없습니다."),
+    PROCESSING_METHOD_NOT_FOUND(404, "가공방식을 찾을 수 없습니다."),
+    DUPLICATE_PROCESSING_METHOD_CODE(409, "이미 존재하는 가공 방식 코드입니다."),
+    INVALID_COFFEE_PROFILE(400, "커피 프로필 입력값이 올바르지 않습니다."),
+
+    // [주문/결제 관련]
     ORDER_NOT_FOUND(404, "주문을 찾을 수 없습니다."),
     ORDER_ACCESS_DENIED(403, "본인의 주문만 접근할 수 있습니다."),
     INVALID_ORDER_AMOUNT(400, "결제 금액이 주문과 일치하지 않습니다."),
