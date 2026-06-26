@@ -28,6 +28,7 @@ public class ProcessingMethodService {
     }
 
     // 가공 방식을 등록함
+    @Transactional
     public ProcessingMethodDto.Response createProcessingMethod(ProcessingMethodDto.CreateRequest request) {
         if (processingMethodRepository.existsByCode(request.getCode())) {
             throw new CustomException(ErrorCode.DUPLICATE_PROCESSING_METHOD_CODE);
@@ -43,6 +44,7 @@ public class ProcessingMethodService {
     }
 
     // 가공 방식을 수정함
+    @Transactional
     public ProcessingMethodDto.Response updateProcessingMethod(
             Long processingMethodId,
             ProcessingMethodDto.UpdateRequest request
