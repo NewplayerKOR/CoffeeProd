@@ -16,7 +16,7 @@ public class CoffeeProfileDto {
     @NoArgsConstructor
     public static class Request {
 
-        private Long processingMethod;
+        private Long processingMethodId;
 
         @NotBlank(message = "프로필명은 필수입니다.")
         @Size(max = 150, message = "프로필명은 150자 이하여야 합니다.")
@@ -26,8 +26,8 @@ public class CoffeeProfileDto {
         private BeanType beanType;
 
         @Pattern(
-                regexp = "^[A-Za-z]{2}$",
-                message = "원산지 국가 코드는 영문 2자리여야 합니다."
+                regexp = "^[A-Z]{2}$",
+                message = "원산지 국가 코드는 영문 대문자 2자리여야 합니다."
         )
         private String originCountryCode;
 

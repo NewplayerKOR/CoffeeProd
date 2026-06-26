@@ -33,12 +33,6 @@ public class ProcessingMethod {
         this.description = description;
     }
 
-    {
-        this.code = code;
-        this.name = name;
-        this.description = description;
-    }
-
     // 가공 방식 표시 정보를 수정함
     public void update(String name, String description) {
         this.name = name;
