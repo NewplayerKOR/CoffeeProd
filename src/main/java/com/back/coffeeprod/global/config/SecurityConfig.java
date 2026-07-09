@@ -80,7 +80,9 @@ public class SecurityConfig {
                         .requestMatchers(
                                 HttpMethod.GET,
                                 "/api/v1/products/**",
-                                "/api/v1/categories/**"
+                                "/api/v1/categories/**",
+                                "/api/v1/coffee-profiles/**",
+                                "/api/v1/processing-methods/**"
                         ).permitAll()
                         // 에러 페이지 접근 허용
                         .requestMatchers("/error").permitAll()
