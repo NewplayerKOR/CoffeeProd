@@ -1,5 +1,7 @@
 package com.back.coffeeprod.domain.product.service;
 
+import com.back.coffeeprod.domain.coffeeprofile.entity.CoffeeProfile;
+import com.back.coffeeprod.domain.coffeeprofile.service.CoffeeProfileService;
 import com.back.coffeeprod.domain.product.dto.ProductDto;
 import com.back.coffeeprod.domain.product.entity.Category;
 import com.back.coffeeprod.domain.product.entity.Product;
@@ -21,6 +23,7 @@ public class ProductService {
 
     private final ProductRepository productRepository;
     private final CategoryService categoryService;  // Repository대신 Service 사용(동일한 예외처리 로직 중복 작성 방지)
+    private final CoffeeProfileService coffeeProfileService;
 
     // [공개] 상품 목록 조회 (검색 / 필터 / 정렬 통합)
     public Page<ProductDto.SummaryResponse> getProducts(
@@ -71,9 +74,11 @@ public class ProductService {
     @Transactional
     public ProductDto.DetailResponse createProduct(ProductDto.Request request) {
         Category category = categoryService.findCategoryById(request.getCategoryId());
+        CoffeeProfile coffeeProfile = resolveCoffeeProfile(request.getCoffeeProfileId());
 
         Product product = Product.builder()
                 .category(category)
+                .coffeeProfile(coffeeProfile)
                 .name(request.getName())
                 .price(request.getPrice())
                 .stockQuantity(request.getStockQuantity())
@@ -90,9 +95,11 @@ public class ProductService {
     public ProductDto.DetailResponse updateProduct(Long productId, ProductDto.Request request) {
         Product product = findProductById(productId);
         Category category = categoryService.findCategoryById(request.getCategoryId());
+        CoffeeProfile coffeeProfile = resolveCoffeeProfile(request.getCoffeeProfileId());
 
         product.update(
                 category,
+                coffeeProfile,
                 request.getName(),
                 request.getPrice(),
                 request.getStockQuantity(),
@@ -134,5 +141,13 @@ public class ProductService {
     public Product findProductById(Long productId) {
         return productRepository.findById(productId)
                 .orElseThrow(() -> new CustomException(ErrorCode.PRODUCT_NOT_FOUND));
+    }
+
+    private CoffeeProfile resolveCoffeeProfile(Long coffeeProfileId) {
+        if (coffeeProfileId == null) {
+            return null;
+        }
+
+        return coffeeProfileService.findCoffeeProfileById(coffeeProfileId);
     }
 }
