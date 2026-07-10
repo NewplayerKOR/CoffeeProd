@@ -31,6 +31,9 @@ public enum ErrorCode {
     OUT_OF_STOCK(400, "재고가 부족합니다."),
     INVALID_ORDER_STATUS(400, "변경할 수 없는 주문 상태입니다."),
 
+    // [커피 추천 관련]
+    RECOMMENDATION_PREFERENCE_REQUIRED(400, "추천 조건ㅇ르 하나 이상 입력해야 합니다."),
+
     // [주문/결제 관련]
     COFFEE_PROFILE_NOT_FOUND(404, "커피 프로필을 찾을 수 없습니다."),
     PROCESSING_METHOD_NOT_FOUND(404, "가공방식을 찾을 수 없습니다."),
