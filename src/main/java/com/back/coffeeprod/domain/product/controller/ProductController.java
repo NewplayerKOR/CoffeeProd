@@ -1,5 +1,6 @@
 package com.back.coffeeprod.domain.product.controller;
 
+import com.back.coffeeprod.domain.coffeeprofile.entity.BeanType;
 import com.back.coffeeprod.domain.product.dto.ProductDto;
 import com.back.coffeeprod.domain.product.entity.RoastLevel;
 import com.back.coffeeprod.domain.product.service.ProductService;
@@ -29,7 +30,7 @@ public class ProductController {
             summary = "상품 목록 조회",
             description = """
                     판매 중인 상품 목록을 조회합니다.
-                    - 카테고리, 커피 프로필, 로스팅강도, 키워드로 필터링 가능
+                    - 카테고리, 가공 방식, 원두 유형, 디카페인, 로스팅강도, 키워드로 필터링 가능
                     - 정렬: price, asc / price, desc / createdAt, desc (기본값)
                     - 페이지네이션: page(0부터 시작), size(기본 10)
                     """
@@ -46,6 +47,15 @@ public class ProductController {
             @Parameter(description = "커피 프로필 ID (선택)")
             @RequestParam(required = false) Long coffeeProfileId,
 
+            @Parameter(description = "가공 방식 ID (선택)")
+            @RequestParam(required = false) Long processingMethodId,
+
+            @Parameter(description = "원두 유형 (SINGLE_ORIGIN | BLEND, 선택)")
+            @RequestParam(required = false) BeanType beanType,
+
+            @Parameter(description = "디카페인 여부 (true | false, 선택)")
+            @RequestParam(required = false) Boolean decaf,
+
             @Parameter(description = "로스팅 강도 (LIGHT | MEDIUM | DARK, 선택)")
             @RequestParam(required = false) RoastLevel roastLevel,
 
@@ -59,6 +69,9 @@ public class ProductController {
         Page<ProductDto.SummaryResponse> response = productService.getProducts(
                 categoryId,
                 coffeeProfileId,
+                processingMethodId,
+                beanType,
+                decaf,
                 roastLevel,
                 keyword,
                 pageable

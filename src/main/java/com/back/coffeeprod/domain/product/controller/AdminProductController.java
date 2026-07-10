@@ -1,5 +1,6 @@
 package com.back.coffeeprod.domain.product.controller;
 
+import com.back.coffeeprod.domain.coffeeprofile.entity.BeanType;
 import com.back.coffeeprod.domain.product.dto.ProductDto;
 import com.back.coffeeprod.domain.product.entity.ProductStatus;
 import com.back.coffeeprod.domain.product.entity.RoastLevel;
@@ -50,6 +51,9 @@ public class AdminProductController {
     public ResponseEntity<CommonResponse<Page<ProductDto.SummaryResponse>>> getAdminProducts(
             @RequestParam(required = false) Long categoryId,
             @RequestParam(required = false) Long coffeeProfileId,
+            @RequestParam(required = false) Long processingMethodId,
+            @RequestParam(required = false) BeanType beanType,
+            @RequestParam(required = false) Boolean decaf,
             @RequestParam(required = false) RoastLevel roastLevel,
             @RequestParam(required = false) ProductStatus status,
             @RequestParam(required = false) String keyword,
@@ -58,7 +62,7 @@ public class AdminProductController {
             Pageable pageable) {
 
         Page<ProductDto.SummaryResponse> response =
-                productService.getAdminProducts(categoryId, coffeeProfileId, roastLevel, status, keyword, pageable);
+                productService.getAdminProducts(categoryId, coffeeProfileId, processingMethodId, beanType, decaf, roastLevel, status, keyword, pageable);
 
         return ResponseEntity.ok(CommonResponse.success(response));
     }
