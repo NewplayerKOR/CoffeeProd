@@ -12,6 +12,7 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+import java.util.List;
 import java.util.Optional;
 
 public interface ProductRepository extends JpaRepository<Product, Long> {
@@ -56,6 +57,25 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
             WHERE p.id = :productId
             """)
     Optional<Product> findDetailById(@Param("productId") Long productId);
+
+    // 추천 가능한 판매 상품과 프로필 정보를 함께 조회함
+    @EntityGraph(attributePaths = {
+            "category",
+            "coffeeProfile",
+            "coffeeProfile.processingMethod"
+    })
+    @Query("""
+            SELECT p
+            FROM Product p
+            JOIN p.coffeeProfile coffeeProfile
+            WHERE p.status = :status
+            AND p.stockQuantity > 0
+            AND (:decaf IS NULL OR coffeeProfile.decaf = :decaf)
+            """)
+    List<Product> findAvailableProductsForRecommendation(
+            @Param("status") ProductStatus status,
+            @Param("decaf") Boolean decaf
+    );
 
     // 특정 카테고리에 연결된 상품 존재 여부를 확인함
     boolean existsByCategoryId(Long categoryId);
