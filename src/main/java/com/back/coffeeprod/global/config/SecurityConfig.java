@@ -76,6 +76,10 @@ public class SecurityConfig {
                                 "/api/v1/auth/reissue",
                                 "/api/v1/auth/check-email"
                         ).permitAll()
+                        .requestMatchers(
+                                HttpMethod.POST,
+                                "/api/v1/coffee-recommendations"
+                        ).permitAll()
                         // 상품, 카테고리, 리뷰, QnA 조회만 공개함
                         .requestMatchers(
                                 HttpMethod.GET,
