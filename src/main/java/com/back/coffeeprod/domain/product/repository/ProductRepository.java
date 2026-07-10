@@ -1,5 +1,6 @@
 package com.back.coffeeprod.domain.product.repository;
 
+import com.back.coffeeprod.domain.coffeeprofile.entity.BeanType;
 import com.back.coffeeprod.domain.product.entity.Product;
 import com.back.coffeeprod.domain.product.entity.ProductStatus;
 import com.back.coffeeprod.domain.product.entity.RoastLevel;
@@ -21,8 +22,12 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
             SELECT p
             FROM Product p
             LEFT JOIN p.coffeeProfile coffeeProfile
+            LEFT JOIN coffeeProfile.processingMethod processingMethod
             WHERE (:categoryId IS NULL OR p.category.id = :categoryId)
             AND (:coffeeProfileId IS NULL OR coffeeProfile.id = :coffeeProfileId)
+            AND (:processingMethodId IS NULL OR processingMethod.id = :processingMethodId)
+            AND (:beanType IS NULL OR coffeeProfile.beanType = :beanType)
+            AND (:decaf IS NULL OR coffeeProfile.decaf = :decaf)
             AND (:roastLevel IS NULL OR p.roastLevel = :roastLevel)
             AND (:status IS NULL OR p.status = :status)
             AND (:keyword IS NULL OR p.name LIKE %:keyword%)
@@ -30,6 +35,9 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
     Page<Product> findAllWithFilters(
             @Param("categoryId") Long categoryId,
             @Param("coffeeProfileId") Long coffeeProfileId,
+            @Param("processingMethodId") Long processingMethodId,
+            @Param("beanType") BeanType beanType,
+            @Param("decaf") Boolean decaf,
             @Param("roastLevel") RoastLevel roastLevel,
             @Param("status") ProductStatus status,
             @Param("keyword") String keyword,

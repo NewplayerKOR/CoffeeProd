@@ -1,5 +1,6 @@
 package com.back.coffeeprod.domain.product.service;
 
+import com.back.coffeeprod.domain.coffeeprofile.entity.BeanType;
 import com.back.coffeeprod.domain.coffeeprofile.entity.CoffeeProfile;
 import com.back.coffeeprod.domain.coffeeprofile.service.CoffeeProfileService;
 import com.back.coffeeprod.domain.product.dto.ProductDto;
@@ -29,6 +30,9 @@ public class ProductService {
     public Page<ProductDto.SummaryResponse> getProducts(
             Long categoryId,
             Long coffeeProfileId,
+            Long processingMethodId,
+            BeanType beanType,
+            Boolean decaf,
             RoastLevel roastLevel,
             String keyword,
             Pageable pageable) {
@@ -38,6 +42,9 @@ public class ProductService {
                 .findAllWithFilters(
                         categoryId,
                         coffeeProfileId,
+                        processingMethodId,
+                        beanType,
+                        decaf,
                         roastLevel,
                         ProductStatus.ON_SALE,
                         keyword,
@@ -61,6 +68,9 @@ public class ProductService {
     public Page<ProductDto.SummaryResponse> getAdminProducts(
             Long categoryId,
             Long coffeeProfileId,
+            Long processingMethodId,
+            BeanType beanType,
+            Boolean decaf,
             RoastLevel roastLevel,
             ProductStatus status,
             String keyword,
@@ -68,7 +78,7 @@ public class ProductService {
 
         // 관리자는 ON_SALE, SOLD_OUT, HIDDEN 상품을 모두 조회 가능
         return productRepository
-                .findAllWithFilters(categoryId, coffeeProfileId, roastLevel, status, keyword, pageable)
+                .findAllWithFilters(categoryId, coffeeProfileId, coffeeProfileId, beanType, decaf, roastLevel, status, keyword, pageable)
                 .map(ProductDto.SummaryResponse::new);
     }
 
