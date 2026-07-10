@@ -29,6 +29,12 @@ public class Product extends BaseTimeEntity {
     @JoinColumn(name = "coffee_profile_id")
     private CoffeeProfile coffeeProfile;
 
+    @Column(name = "sku", nullable = false, unique = true, length = 64)
+    private String sku;
+
+    @Column(name = "weight_grams", nullable = false)
+    private int weightGrams;
+
     @Column(nullable = false, length = 100)
     private String name;
 
@@ -54,10 +60,12 @@ public class Product extends BaseTimeEntity {
 
 
     @Builder
-    public Product(Category category, CoffeeProfile coffeeProfile, String name, int price, int stockQuantity,
+    public Product(Category category, CoffeeProfile coffeeProfile, String sku, int weightGrams, String name, int price, int stockQuantity,
                    RoastLevel roastLevel, String description, String imageUrl) {
         this.category = category;
         this.coffeeProfile = coffeeProfile;
+        this.sku = sku;
+        this.weightGrams = weightGrams;
         this.name = name;
         this.price = price;
         this.stockQuantity = stockQuantity;
@@ -68,10 +76,12 @@ public class Product extends BaseTimeEntity {
     }
 
     // 상품 전체 정보 수정
-    public void update(Category category, CoffeeProfile coffeeProfile, String name, int price, int stockQuantity,
+    public void update(Category category, CoffeeProfile coffeeProfile, String sku, int weightGrams, String name, int price, int stockQuantity,
                        RoastLevel roastLevel, String description, String imageUrl) {
         this.category = category;
         this.coffeeProfile = coffeeProfile;
+        this.sku = sku;
+        this.weightGrams = weightGrams;
         this.name = name;
         this.price = price;
         this.stockQuantity = stockQuantity;
