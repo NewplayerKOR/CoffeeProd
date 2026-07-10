@@ -150,4 +150,6 @@ public class ProductService {
 
         return coffeeProfileService.findCoffeeProfileById(coffeeProfileId);
     }
+
+    // TODO: 커피 카탈로그 기준 초기 데이터 추가
 }
