@@ -3,6 +3,11 @@ package com.back.coffeeprod.domain.product.service;
 import com.back.coffeeprod.domain.address.repository.AddressRepository;
 import com.back.coffeeprod.domain.cart.repository.CartItemRepository;
 import com.back.coffeeprod.domain.cart.repository.CartRepository;
+import com.back.coffeeprod.domain.coffeeprofile.entity.BeanType;
+import com.back.coffeeprod.domain.coffeeprofile.entity.CoffeeProfile;
+import com.back.coffeeprod.domain.coffeeprofile.entity.ProcessingMethod;
+import com.back.coffeeprod.domain.coffeeprofile.repository.CoffeeProfileRepository;
+import com.back.coffeeprod.domain.coffeeprofile.repository.ProcessingMethodRepository;
 import com.back.coffeeprod.domain.member.repository.MemberRepository;
 import com.back.coffeeprod.domain.order.repository.OrderRepository;
 import com.back.coffeeprod.domain.payment.repository.PaymentRepository;
@@ -31,6 +36,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 @SpringBootTest
 @ActiveProfiles("test")
 @TestPropertySource(properties = {
+        "spring.datasource.url=jdbc:h2:mem:testdb;MODE=PostgreSQL;INIT=CREATE DOMAIN IF NOT EXISTS TIMESTAMPTZ AS TIMESTAMP WITH TIME ZONE",
         "spring.data.redis.host=localhost",
         "spring.data.redis.port=6379",
         "spring.data.redis.password=test",
@@ -52,6 +58,9 @@ class ProductServiceIntegrationTest {
     private final MemberRepository memberRepository;
     private final ProductRepository productRepository;
     private final CategoryRepository categoryRepository;
+    private final CoffeeProfileRepository coffeeProfileRepository;
+    private final ProcessingMethodRepository processingMethodRepository;
+    private int skuSequence;
 
     @Autowired
     ProductServiceIntegrationTest(
@@ -64,7 +73,9 @@ class ProductServiceIntegrationTest {
             AddressRepository addressRepository,
             MemberRepository memberRepository,
             ProductRepository productRepository,
-            CategoryRepository categoryRepository
+            CategoryRepository categoryRepository,
+            CoffeeProfileRepository coffeeProfileRepository,
+            ProcessingMethodRepository processingMethodRepository
     ) {
         this.productService = productService;
         this.categoryService = categoryService;
@@ -76,16 +87,21 @@ class ProductServiceIntegrationTest {
         this.memberRepository = memberRepository;
         this.productRepository = productRepository;
         this.categoryRepository = categoryRepository;
+        this.coffeeProfileRepository = coffeeProfileRepository;
+        this.processingMethodRepository = processingMethodRepository;
     }
 
     @BeforeEach
     void setUp() {
+        skuSequence = 0;
         paymentRepository.deleteAll();
         orderRepository.deleteAll();
         cartItemRepository.deleteAll();
         cartRepository.deleteAll();
         addressRepository.deleteAll();
         productRepository.deleteAll();
+        coffeeProfileRepository.deleteAll();
+        processingMethodRepository.deleteAll();
         categoryRepository.deleteAll();
         memberRepository.deleteAll();
     }
@@ -163,6 +179,8 @@ class ProductServiceIntegrationTest {
 
         assertEquals("콜롬비아 디카페인", response.getName());
         assertEquals("디카페인", response.getCategoryName());
+        assertEquals("TEST-SKU-001", response.getSku());
+        assertEquals(200, response.getWeightGrams());
         assertEquals(ProductStatus.ON_SALE, response.getStatus());
         assertEquals(1, productRepository.count());
     }
@@ -208,6 +226,7 @@ class ProductServiceIntegrationTest {
 
         // status 필터를 비우면 관리자는 ON_SALE, SOLD_OUT, HIDDEN 상품을 모두 조회한다.
         Page<ProductDto.SummaryResponse> response = productService.getAdminProducts(
+                null,
                 null,
                 null,
                 null,
@@ -290,11 +309,108 @@ class ProductServiceIntegrationTest {
                 null,
                 null,
                 null,
+                null,
                 PageRequest.of(0, 10)
         );
 
         assertEquals(1, response.getTotalElements());
         assertEquals("판매 원두", response.getContent().get(0).getName());
+    }
+
+    @Test
+    void createProduct_rejectsDuplicateSku() {
+        CategoryDto.Response category = categoryService.createCategory(categoryRequest("SKU 검증"));
+        productService.createProduct(productRequest(
+                category.getId(),
+                null,
+                "COLOMBIA-200G",
+                200,
+                "콜롬비아 200g",
+                15_000,
+                10
+        ));
+
+        CustomException exception = assertThrows(CustomException.class, () ->
+                productService.createProduct(productRequest(
+                        category.getId(),
+                        null,
+                        "COLOMBIA-200G",
+                        500,
+                        "콜롬비아 500g",
+                        30_000,
+                        10
+                ))
+        );
+
+        assertEquals(ErrorCode.DUPLICATE_PRODUCT_SKU, exception.getErrorCode());
+    }
+
+    @Test
+    void updateProduct_keepsOwnSkuAndUpdatesWeight() {
+        CategoryDto.Response category = categoryService.createCategory(categoryRequest("SKU 수정"));
+        ProductDto.DetailResponse created = productService.createProduct(productRequest(
+                category.getId(),
+                null,
+                "ETHIOPIA-200G",
+                200,
+                "에티오피아 200g",
+                18_000,
+                10
+        ));
+
+        ProductDto.DetailResponse response = productService.updateProduct(
+                created.getId(),
+                productRequest(
+                        category.getId(),
+                        null,
+                        "ETHIOPIA-200G",
+                        500,
+                        "에티오피아 500g",
+                        38_000,
+                        10
+                )
+        );
+
+        assertEquals("ETHIOPIA-200G", response.getSku());
+        assertEquals(500, response.getWeightGrams());
+        assertEquals("에티오피아 500g", response.getName());
+    }
+
+    @Test
+    void getProducts_filtersByCoffeeProfileId() {
+        CategoryDto.Response category = categoryService.createCategory(categoryRequest("프로필 필터"));
+        CoffeeProfile coffeeProfile = saveCoffeeProfile("예가체프 프로필");
+
+        ProductDto.DetailResponse linkedProduct = productService.createProduct(productRequest(
+                category.getId(),
+                coffeeProfile.getId(),
+                "YIRGACHEFFE-200G",
+                200,
+                "예가체프 200g",
+                19_000,
+                10
+        ));
+        productService.createProduct(productRequest(
+                category.getId(),
+                null,
+                "HOUSE-BLEND-200G",
+                200,
+                "하우스 블렌드 200g",
+                15_000,
+                10
+        ));
+
+        Page<ProductDto.SummaryResponse> response = productService.getProducts(
+                null,
+                coffeeProfile.getId(),
+                null,
+                null,
+                PageRequest.of(0, 10)
+        );
+
+        assertEquals(1, response.getTotalElements());
+        assertEquals(linkedProduct.getId(), response.getContent().get(0).getId());
+        assertEquals("예가체프 프로필", response.getContent().get(0).getCoffeeProfileName());
     }
 
     private CategoryDto.Request categoryRequest(String name) {
@@ -304,8 +420,31 @@ class ProductServiceIntegrationTest {
     }
 
     private ProductDto.Request productRequest(Long categoryId, String name, int price, int stockQuantity) {
+        return productRequest(
+                categoryId,
+                null,
+                String.format("TEST-SKU-%03d", ++skuSequence),
+                200,
+                name,
+                price,
+                stockQuantity
+        );
+    }
+
+    private ProductDto.Request productRequest(
+            Long categoryId,
+            Long coffeeProfileId,
+            String sku,
+            int weightGrams,
+            String name,
+            int price,
+            int stockQuantity
+    ) {
         ProductDto.Request request = new ProductDto.Request();
         ReflectionTestUtils.setField(request, "categoryId", categoryId);
+        ReflectionTestUtils.setField(request, "coffeeProfileId", coffeeProfileId);
+        ReflectionTestUtils.setField(request, "sku", sku);
+        ReflectionTestUtils.setField(request, "weightGrams", weightGrams);
         ReflectionTestUtils.setField(request, "name", name);
         ReflectionTestUtils.setField(request, "price", price);
         ReflectionTestUtils.setField(request, "stockQuantity", stockQuantity);
@@ -313,6 +452,31 @@ class ProductServiceIntegrationTest {
         ReflectionTestUtils.setField(request, "description", "테스트 상품 설명");
         ReflectionTestUtils.setField(request, "image_url", "https://example.com/coffee.jpg");
         return request;
+    }
+
+    private CoffeeProfile saveCoffeeProfile(String profileName) {
+        ProcessingMethod processingMethod = processingMethodRepository.save(ProcessingMethod.builder()
+                .code("WASHED")
+                .name("Washed")
+                .description("수세식")
+                .build());
+
+        return coffeeProfileRepository.save(CoffeeProfile.builder()
+                .processingMethod(processingMethod)
+                .profileName(profileName)
+                .beanType(BeanType.SINGLE_ORIGIN)
+                .originCountryCode("ET")
+                .originRegion("Yirgacheffe")
+                .altitudeMin(1_800)
+                .altitudeMax(2_100)
+                .roastLevel(RoastLevel.LIGHT)
+                .decaf(false)
+                .acidity((short) 5)
+                .body((short) 3)
+                .sweetness((short) 4)
+                .aroma((short) 5)
+                .summary("테스트 커피 프로필")
+                .build());
     }
 
     private ProductDto.StatusRequest statusRequest(ProductStatus status) {

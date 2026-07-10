@@ -38,6 +38,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 @SpringBootTest
 @ActiveProfiles("test")
 @TestPropertySource(properties = {
+        "spring.datasource.url=jdbc:h2:mem:testdb;MODE=PostgreSQL;INIT=CREATE DOMAIN IF NOT EXISTS TIMESTAMPTZ AS TIMESTAMP WITH TIME ZONE",
         "spring.data.redis.host=localhost",
         "spring.data.redis.port=6379",
         "spring.data.redis.password=test",
@@ -182,6 +183,8 @@ class ProductStockConcurrencyTest {
 
         return productRepository.save(Product.builder()
                 .category(category)
+                .sku("STOCK-TEST-" + category.getId())
+                .weightGrams(200)
                 .name("테스트 원두")
                 .price(price)
                 .stockQuantity(stockQuantity)
