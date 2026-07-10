@@ -38,7 +38,7 @@ public class AdminProductController {
             description = """
                     관리자가 전체 상품 목록을 조회합니다.
                     - ON_SALE, SOLD_OUT, HIDDEN 상품 모두 조회 가능
-                    - 카테고리, 로스팅강도, 상품상태, 키워드로 필터링 가능
+                    - 카테고리, 커피 프로필, 로스팅강도, 상품상태, 키워드로 필터링 가능
                     """
     )
     @ApiResponses({
@@ -49,6 +49,7 @@ public class AdminProductController {
     @GetMapping
     public ResponseEntity<CommonResponse<Page<ProductDto.SummaryResponse>>> getAdminProducts(
             @RequestParam(required = false) Long categoryId,
+            @RequestParam(required = false) Long coffeeProfileId,
             @RequestParam(required = false) RoastLevel roastLevel,
             @RequestParam(required = false) ProductStatus status,
             @RequestParam(required = false) String keyword,
@@ -57,7 +58,7 @@ public class AdminProductController {
             Pageable pageable) {
 
         Page<ProductDto.SummaryResponse> response =
-                productService.getAdminProducts(categoryId, roastLevel, status, keyword, pageable);
+                productService.getAdminProducts(categoryId, coffeeProfileId, roastLevel, status, keyword, pageable);
 
         return ResponseEntity.ok(CommonResponse.success(response));
     }
