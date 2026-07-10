@@ -29,7 +29,7 @@ public class ProductController {
             summary = "상품 목록 조회",
             description = """
                     판매 중인 상품 목록을 조회합니다.
-                    - 카테고리, 로스팅강도, 키워드로 필터링 가능
+                    - 카테고리, 커피 프로필, 로스팅강도, 키워드로 필터링 가능
                     - 정렬: price, asc / price, desc / createdAt, desc (기본값)
                     - 페이지네이션: page(0부터 시작), size(기본 10)
                     """
@@ -43,6 +43,9 @@ public class ProductController {
             @Parameter(description = "카테고리 ID (선택)")
             @RequestParam(required = false) Long categoryId,
 
+            @Parameter(description = "커피 프로필 ID (선택)")
+            @RequestParam(required = false) Long coffeeProfileId,
+
             @Parameter(description = "로스팅 강도 (LIGHT | MEDIUM | DARK, 선택)")
             @RequestParam(required = false) RoastLevel roastLevel,
 
@@ -51,10 +54,15 @@ public class ProductController {
 
             @Parameter(description = "페이지네이션 및 정렬 정보")
             @PageableDefault(size = 10, sort = "createdAt", direction = Sort.Direction.DESC)
-            Pageable pageable) {
-
-        Page<ProductDto.SummaryResponse> response =
-                productService.getProducts(categoryId, roastLevel, keyword, pageable);
+            Pageable pageable
+    ) {
+        Page<ProductDto.SummaryResponse> response = productService.getProducts(
+                categoryId,
+                coffeeProfileId,
+                roastLevel,
+                keyword,
+                pageable
+        );
 
         return ResponseEntity.ok(CommonResponse.success(response));
     }

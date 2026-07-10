@@ -28,19 +28,26 @@ public class ProductService {
     // [공개] 상품 목록 조회 (검색 / 필터 / 정렬 통합)
     public Page<ProductDto.SummaryResponse> getProducts(
             Long categoryId,
+            Long coffeeProfileId,
             RoastLevel roastLevel,
             String keyword,
             Pageable pageable) {
 
         // 일반 사용자는 ON_SALE 상품만 조회 가능
         return productRepository
-                .findAllWithFilters(categoryId, roastLevel, ProductStatus.ON_SALE, keyword, pageable)
+                .findAllWithFilters(
+                        categoryId,
+                        coffeeProfileId,
+                        roastLevel,
+                        ProductStatus.ON_SALE,
+                        keyword,
+                        pageable)
                 .map(ProductDto.SummaryResponse::new);
     }
 
     // [공개] 상품 상세 조회
     public ProductDto.DetailResponse getProduct(Long productId) {
-        Product product = findProductById(productId);
+        Product product = findProductDetailById(productId);
 
         // HIDDEN 상태 상품은 일반 사용자에게 404 반환
         if (product.getStatus() == ProductStatus.HIDDEN) {
@@ -53,6 +60,7 @@ public class ProductService {
     // [관리자] 상품 목록 조회
     public Page<ProductDto.SummaryResponse> getAdminProducts(
             Long categoryId,
+            Long coffeeProfileId,
             RoastLevel roastLevel,
             ProductStatus status,
             String keyword,
@@ -60,14 +68,13 @@ public class ProductService {
 
         // 관리자는 ON_SALE, SOLD_OUT, HIDDEN 상품을 모두 조회 가능
         return productRepository
-                .findAllWithFilters(categoryId, roastLevel, status, keyword, pageable)
+                .findAllWithFilters(categoryId, coffeeProfileId, roastLevel, status, keyword, pageable)
                 .map(ProductDto.SummaryResponse::new);
     }
 
     // [관리자] 상품 상세 조회
     public ProductDto.DetailResponse getAdminProduct(Long productId) {
-        Product product = findProductById(productId);
-        return new ProductDto.DetailResponse(product);
+        return new ProductDto.DetailResponse(findProductDetailById(productId));
     }
 
     // [관리자] 상품 등록
@@ -144,6 +151,11 @@ public class ProductService {
         product.updateStatus(ProductStatus.HIDDEN);
     }
 
+    // [내부 공용]
+    private Product findProductDetailById(Long productId) {
+        return productRepository.findDetailById(productId)
+                .orElseThrow(() -> new CustomException(ErrorCode.PRODUCT_NOT_FOUND));
+    }
 
     // [내부 공용] ID로 상품 조회 (없으면 예외)
     public Product findProductById(Long productId) {
