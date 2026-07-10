@@ -78,7 +78,7 @@ public class ProductService {
 
         // 관리자는 ON_SALE, SOLD_OUT, HIDDEN 상품을 모두 조회 가능
         return productRepository
-                .findAllWithFilters(categoryId, coffeeProfileId, coffeeProfileId, beanType, decaf, roastLevel, status, keyword, pageable)
+                .findAllWithFilters(categoryId, coffeeProfileId, processingMethodId, beanType, decaf, roastLevel, status, keyword, pageable)
                 .map(ProductDto.SummaryResponse::new);
     }
 
