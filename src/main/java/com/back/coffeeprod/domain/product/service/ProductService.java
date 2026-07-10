@@ -73,12 +73,16 @@ public class ProductService {
     // [관리자] 상품 등록
     @Transactional
     public ProductDto.DetailResponse createProduct(ProductDto.Request request) {
+        validateSkuForCreate(request.getSku());
+
         Category category = categoryService.findCategoryById(request.getCategoryId());
         CoffeeProfile coffeeProfile = resolveCoffeeProfile(request.getCoffeeProfileId());
 
         Product product = Product.builder()
                 .category(category)
                 .coffeeProfile(coffeeProfile)
+                .sku(request.getSku())
+                .weightGrams(request.getWeightGrams())
                 .name(request.getName())
                 .price(request.getPrice())
                 .stockQuantity(request.getStockQuantity())
@@ -94,12 +98,16 @@ public class ProductService {
     @Transactional
     public ProductDto.DetailResponse updateProduct(Long productId, ProductDto.Request request) {
         Product product = findProductById(productId);
+        validateSkuForUpdate(productId, request.getSku());
+
         Category category = categoryService.findCategoryById(request.getCategoryId());
         CoffeeProfile coffeeProfile = resolveCoffeeProfile(request.getCoffeeProfileId());
 
         product.update(
                 category,
                 coffeeProfile,
+                request.getSku(),
+                request.getWeightGrams(),
                 request.getName(),
                 request.getPrice(),
                 request.getStockQuantity(),
@@ -141,6 +149,18 @@ public class ProductService {
     public Product findProductById(Long productId) {
         return productRepository.findById(productId)
                 .orElseThrow(() -> new CustomException(ErrorCode.PRODUCT_NOT_FOUND));
+    }
+
+    private void validateSkuForCreate(String sku) {
+        if (productRepository.existsBySku(sku)) {
+            throw new CustomException(ErrorCode.DUPLICATE_PRODUCT_SKU);
+        }
+    }
+
+    private void validateSkuForUpdate(Long productId, String sku) {
+        if (productRepository.existsBySkuAndIdNot(sku, productId)) {
+            throw new CustomException(ErrorCode.DUPLICATE_PRODUCT_SKU);
+        }
     }
 
     private CoffeeProfile resolveCoffeeProfile(Long coffeeProfileId) {

@@ -32,6 +32,12 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
     // 특정 카테고리에 연결된 상품 존재 여부 확인
     boolean existsByCategoryId(Long categoryId);
 
+    // SKU 중복 여부를 확인
+    boolean existsBySku(String sku);
+
+    // 수정 대상 외 SKU 중복 여부를 확인
+    boolean existsBySkuAndIdNot(String sku, Long productId);
+
     // 재고 차감 쿼리
     @Modifying(flushAutomatically = true)
     @Query("""

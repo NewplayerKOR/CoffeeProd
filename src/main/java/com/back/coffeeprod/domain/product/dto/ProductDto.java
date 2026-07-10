@@ -21,6 +21,17 @@ public class ProductDto {
 
         private Long coffeeProfileId;
 
+        @NotBlank(message = "SKU는 필수입니다.")
+        @Size(max = 64, message = "SKU는 64자 이하로 입력해야 합니다.")
+        @Pattern(
+                regexp = "^[A-Z0-9][A-Z0-9_-]{0,63}$",
+                message = "SKU는 영문 대문자, 숫자, 하이픈, 밑줄만 사용할 수 있습니다."
+        )
+        private String sku;
+
+        @Positive(message = "상품 중량은 1g이상이어야 합니다.")
+        private int weightGrams;
+
         @NotBlank(message = "상품명은 필수입니다.")
         @Size(max = 100, message = "상품명은 100자 이하로 입력해야 합니다.")
         private String name;
@@ -47,6 +58,8 @@ public class ProductDto {
         private final String categoryName;
         private final Long coffeeProfileId;
         private final String coffeeProfileName;
+        private final String sku;
+        private final int weightGrams;
         private final String name;
         private final int price;
         private final RoastLevel roastLevel;
@@ -62,6 +75,8 @@ public class ProductDto {
             this.coffeeProfileName = product.getCoffeeProfile() == null
                     ? null
                     : product.getCoffeeProfile().getProfileName();
+            this.sku = product.getSku();
+            this.weightGrams = product.getWeightGrams();
             this.name = product.getName();
             this.price = product.getPrice();
             this.roastLevel = product.getRoastLevel();
@@ -77,6 +92,8 @@ public class ProductDto {
         private final Long categoryId;
         private final String categoryName;
         private final CoffeeProfileSummary coffeeProfile;
+        private final String sku;
+        private final int weightGrams;
         private final String name;
         private final int price;
         private final int stockQuantity;
@@ -92,6 +109,8 @@ public class ProductDto {
             this.coffeeProfile = product.getCoffeeProfile() == null
                     ? null
                     : new CoffeeProfileSummary(product.getCoffeeProfile());
+            this.sku = product.getSku();
+            this.weightGrams = product.getWeightGrams();
             this.name = product.getName();
             this.price = product.getPrice();
             this.stockQuantity = product.getStockQuantity();

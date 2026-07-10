@@ -85,7 +85,7 @@ public class AdminProductController {
     // 상품 등록
     @Operation(
             summary = "상품 등록",
-            description = "관리자가 신규 상품을 등록합니다. 등록된 상품의 기본 상태는 ON_SALE입니다."
+            description = "관리자가 SKU, 중량, 커피 프로필을 포함한 신규 상품을 등록합니다. 등록된 상품의 기본 상태는 ON_SALE입니다."
     )
     @ApiResponses({
             @ApiResponse(responseCode = "201", description = "상품 등록 성공"),
@@ -106,7 +106,7 @@ public class AdminProductController {
     // 상품 전체 수정
     @Operation(
             summary = "상품 전체 수정",
-            description = "관리자가 상품의 카테고리, 상품명, 가격, 재고, 로스팅 단계, 설명, 이미지를 수정합니다."
+            description = "관리자가 SKU, 중량, 카테고리, 상품명, 가격, 재고, 로스팅 단계, 설명, 이미지를 수정합니다."
     )
 
     @ApiResponses({
