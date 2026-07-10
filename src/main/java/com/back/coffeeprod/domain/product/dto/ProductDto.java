@@ -1,5 +1,7 @@
 package com.back.coffeeprod.domain.product.dto;
 
+import com.back.coffeeprod.domain.coffeeprofile.entity.BeanType;
+import com.back.coffeeprod.domain.coffeeprofile.entity.CoffeeProfile;
 import com.back.coffeeprod.domain.product.entity.Product;
 import com.back.coffeeprod.domain.product.entity.ProductStatus;
 import com.back.coffeeprod.domain.product.entity.RoastLevel;
@@ -16,6 +18,8 @@ public class ProductDto {
 
         @NotNull(message = "카테고리 ID는 필수입니다.")
         private Long categoryId;
+
+        private Long coffeeProfileId;
 
         @NotBlank(message = "상품명은 필수입니다.")
         @Size(max = 100, message = "상품명은 100자 이하로 입력해야 합니다.")
@@ -41,6 +45,8 @@ public class ProductDto {
     public static class SummaryResponse {
         private final Long id;
         private final String categoryName;
+        private final Long coffeeProfileId;
+        private final String coffeeProfileName;
         private final String name;
         private final int price;
         private final RoastLevel roastLevel;
@@ -50,6 +56,12 @@ public class ProductDto {
         public SummaryResponse(Product product) {
             this.id = product.getId();
             this.categoryName = product.getCategory().getName();
+            this.coffeeProfileId = product.getCoffeeProfile() == null
+                    ? null
+                    : product.getCoffeeProfile().getId();
+            this.coffeeProfileName = product.getCoffeeProfile() == null
+                    ? null
+                    : product.getCoffeeProfile().getProfileName();
             this.name = product.getName();
             this.price = product.getPrice();
             this.roastLevel = product.getRoastLevel();
@@ -64,6 +76,7 @@ public class ProductDto {
         private final Long id;
         private final Long categoryId;
         private final String categoryName;
+        private final CoffeeProfileSummary coffeeProfile;
         private final String name;
         private final int price;
         private final int stockQuantity;
@@ -76,6 +89,9 @@ public class ProductDto {
             this.id = product.getId();
             this.categoryId = product.getCategory().getId();
             this.categoryName = product.getCategory().getName();
+            this.coffeeProfile = product.getCoffeeProfile() == null
+                    ? null
+                    : new CoffeeProfileSummary(product.getCoffeeProfile());
             this.name = product.getName();
             this.price = product.getPrice();
             this.stockQuantity = product.getStockQuantity();
@@ -83,6 +99,42 @@ public class ProductDto {
             this.description = product.getDescription();
             this.imageUrl = product.getImageUrl();
             this.status = product.getStatus();
+        }
+    }
+
+    // 상품 상세에서 사용할 커피 프로필 요약 DTO
+    @Getter
+    public static class CoffeeProfileSummary {
+        private final Long id;
+        private final String profileName;
+        private final BeanType beanType;
+        private final String processingMethodName;
+        private final String originCountryCode;
+        private final String originRegion;
+        private final RoastLevel roastLevel;
+        private final boolean decaf;
+        private final short acidity;
+        private final short body;
+        private final short sweetness;
+        private final short aroma;
+        private final String summary;
+
+        public CoffeeProfileSummary(CoffeeProfile coffeeProfile) {
+            this.id = coffeeProfile.getId();
+            this.profileName = coffeeProfile.getProfileName();
+            this.beanType = coffeeProfile.getBeanType();
+            this.processingMethodName = coffeeProfile.getProcessingMethod() == null
+                    ? null
+                    : coffeeProfile.getProcessingMethod().getName();
+            this.originCountryCode = coffeeProfile.getOriginCountryCode();
+            this.originRegion = coffeeProfile.getOriginRegion();
+            this.roastLevel = coffeeProfile.getRoastLevel();
+            this.decaf = coffeeProfile.isDecaf();
+            this.acidity = coffeeProfile.getAcidity();
+            this.body = coffeeProfile.getBody();
+            this.sweetness = coffeeProfile.getSweetness();
+            this.aroma = coffeeProfile.getAroma();
+            this.summary = coffeeProfile.getSummary();
         }
     }
 

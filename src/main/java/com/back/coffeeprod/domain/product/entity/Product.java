@@ -1,5 +1,6 @@
 package com.back.coffeeprod.domain.product.entity;
 
+import com.back.coffeeprod.domain.coffeeprofile.entity.CoffeeProfile;
 import com.back.coffeeprod.global.common.entity.BaseTimeEntity;
 import com.back.coffeeprod.global.exception.CustomException;
 import com.back.coffeeprod.global.exception.ErrorCode;
@@ -23,6 +24,10 @@ public class Product extends BaseTimeEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "category_id", nullable = false)
     private Category category;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "coffee_profile_id")
+    private CoffeeProfile coffeeProfile;
 
     @Column(nullable = false, length = 100)
     private String name;
@@ -49,9 +54,10 @@ public class Product extends BaseTimeEntity {
 
 
     @Builder
-    public Product(Category category, String name, int price, int stockQuantity,
+    public Product(Category category, CoffeeProfile coffeeProfile, String name, int price, int stockQuantity,
                    RoastLevel roastLevel, String description, String imageUrl) {
         this.category = category;
+        this.coffeeProfile = coffeeProfile;
         this.name = name;
         this.price = price;
         this.stockQuantity = stockQuantity;
@@ -62,9 +68,10 @@ public class Product extends BaseTimeEntity {
     }
 
     // 상품 전체 정보 수정
-    public void update(Category category, String name, int price, int stockQuantity,
+    public void update(Category category, CoffeeProfile coffeeProfile, String name, int price, int stockQuantity,
                        RoastLevel roastLevel, String description, String imageUrl) {
         this.category = category;
+        this.coffeeProfile = coffeeProfile;
         this.name = name;
         this.price = price;
         this.stockQuantity = stockQuantity;
@@ -78,8 +85,7 @@ public class Product extends BaseTimeEntity {
         this.status = status;
     }
 
-    // 단일 엔티티 내부 검증용 메서드
-    // 주문 생성의 재고 차감은 동시성 제어를 위해 ProductRepository.decreaseStockIfEnough를 사용
+    // 단일 엔티티 내부에서 재고를 검증함
     public void decreaseStock(int quantity) {
         if (this.stockQuantity < quantity) {
             throw new CustomException(ErrorCode.OUT_OF_STOCK);
