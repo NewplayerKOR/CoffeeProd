@@ -4,6 +4,7 @@ import com.back.coffeeprod.domain.coffeeprofile.entity.BeanType;
 import com.back.coffeeprod.domain.coffeeprofile.entity.CoffeeProfile;
 import com.back.coffeeprod.domain.product.entity.Product;
 import com.back.coffeeprod.domain.product.entity.RoastLevel;
+import com.back.coffeeprod.domain.recommendation.entity.MemberCoffeePreference;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.Positive;
@@ -47,6 +48,41 @@ public class CoffeeRecommendationDto {
         @Min(value = 1, message = "추천 개수는 1개 이상이어야 합니다.")
         @Max(value = 10, message = "추천 개수는 최대 10개입니다.")
         private Integer limit;
+
+        // 저장된 회원 취향을 추천 조건으로 변환함
+        public static Request from(
+                MemberCoffeePreference preference,
+                Integer limit
+        ) {
+            Request request = new Request();
+
+            request.roastLevel = preference.getRoastLevel();
+            request.beanType = preference.getBeanType();
+            request.processingMethodId = preference.getProcessingMethod() == null
+                    ? null
+                    : preference.getProcessingMethod().getId();
+            request.decaf = preference.getDecaf();
+            request.preferredAcidity = toInteger(
+                    preference.getPreferredAcidity()
+            );
+            request.preferredBody = toInteger(
+                    preference.getPreferredBody()
+            );
+            request.preferredSweetness = toInteger(
+                    preference.getPreferredSweetness()
+            );
+            request.preferredAroma = toInteger(
+                    preference.getPreferredAroma()
+            );
+            request.limit = limit;
+
+            return request;
+        }
+
+        // Short 점수를 Integer 점수로 변환함
+        private static Integer toInteger(Short value) {
+            return value == null ? null : value.intValue();
+        }
     }
 
     // 추천 결과를 반환함

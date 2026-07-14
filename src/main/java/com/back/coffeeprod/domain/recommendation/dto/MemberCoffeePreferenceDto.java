@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 
 public class MemberCoffeePreferenceDto {
 
-    // 회원 커피 취향을 입력 받음
+    // 회원 커피 취향을 입력받음
     @Getter
     @NoArgsConstructor
     public static class Request {
@@ -24,7 +24,7 @@ public class MemberCoffeePreferenceDto {
         @Positive(message = "가공 방식 ID는 양수여야 합니다.")
         private Long processingMethodId;
 
-        private boolean decaf;
+        private Boolean decaf;
 
         @Min(value = 1, message = "선호 산미 점수는 1 이상이어야 합니다.")
         @Max(value = 5, message = "선호 산미 점수는 5 이하여야 합니다.")
@@ -43,7 +43,7 @@ public class MemberCoffeePreferenceDto {
         private Short preferredAroma;
     }
 
-    // 회원 커피 취향을 반영함
+    // 회원 커피 취향을 반환함
     @Getter
     public static class Response {
 
