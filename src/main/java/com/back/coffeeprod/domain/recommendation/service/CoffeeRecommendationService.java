@@ -7,6 +7,7 @@ import com.back.coffeeprod.domain.product.entity.Product;
 import com.back.coffeeprod.domain.product.entity.ProductStatus;
 import com.back.coffeeprod.domain.product.repository.ProductRepository;
 import com.back.coffeeprod.domain.recommendation.dto.CoffeeRecommendationDto;
+import com.back.coffeeprod.domain.recommendation.entity.MemberCoffeePreference;
 import com.back.coffeeprod.global.exception.CustomException;
 import com.back.coffeeprod.global.exception.ErrorCode;
 import lombok.RequiredArgsConstructor;
@@ -19,11 +20,12 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-@Transactional
+@Transactional(readOnly = true)
 public class CoffeeRecommendationService {
 
     private final ProductRepository productRepository;
     private final ProcessingMethodService processingMethodService;
+    private final MemberCoffeePreferenceService memberCoffeePreferenceService;
 
     // 취향 조건으로 판매 가능한 커피를 추천함
     public List<CoffeeRecommendationDto.Response> recommend(
@@ -51,6 +53,20 @@ public class CoffeeRecommendationService {
                         candidate.reasons()
                 ))
                 .toList();
+    }
+
+    // 저장된 회원 취향으로 커피를 추천함
+    public List<CoffeeRecommendationDto.Response> recommendForMember(
+            Long memberId,
+            Integer limit
+    ) {
+        MemberCoffeePreference preference =
+                memberCoffeePreferenceService.getPreferenceEntity(memberId);
+
+        return recommend(CoffeeRecommendationDto.Request.from(
+                preference,
+                limit
+        ));
     }
 
     // 추천 조건을 검증함
@@ -228,9 +244,19 @@ public class CoffeeRecommendationService {
         return 0;
     }
 
-    // 기본 추천 개수를 반환함
+    // 추천 개수를 검증하고 반환함
     private int resolveLimit(Integer limit) {
-        return limit == null ? 5 : limit;
+        if (limit == null) {
+            return 5;
+        }
+
+        if (limit < 1 || limit > 10) {
+            throw new CustomException(
+                    ErrorCode.INVALID_RECOMMENDATION_LIMIT
+            );
+        }
+
+        return limit;
     }
 
     private record RecommendationCandidate(
