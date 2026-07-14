@@ -32,7 +32,10 @@ public enum ErrorCode {
     INVALID_ORDER_STATUS(400, "변경할 수 없는 주문 상태입니다."),
 
     // [커피 추천 관련]
-    RECOMMENDATION_PREFERENCE_REQUIRED(400, "추천 조건ㅇ르 하나 이상 입력해야 합니다."),
+    RECOMMENDATION_PREFERENCE_REQUIRED(400, "추천 조건을 하나 이상 입력해야 합니다."),
+    COFFEE_PREFERENCE_NOT_FOUND(404, "저장된 커피 취향을 찾을 수 없습니다."),
+    COFFEE_PREFERENCE_REQUIRED(400, "커피 취향을 하나 이상 입력해야 합니다."),
+    INVALID_RECOMMENDATION_LIMIT(400, "추천 개수는 1개 이상 10개 이하여야 합니다."),
 
     // [주문/결제 관련]
     COFFEE_PROFILE_NOT_FOUND(404, "커피 프로필을 찾을 수 없습니다."),
