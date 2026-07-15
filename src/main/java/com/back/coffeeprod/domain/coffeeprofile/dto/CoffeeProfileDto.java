@@ -2,13 +2,18 @@ package com.back.coffeeprod.domain.coffeeprofile.dto;
 
 import com.back.coffeeprod.domain.coffeeprofile.entity.BeanType;
 import com.back.coffeeprod.domain.coffeeprofile.entity.CoffeeProfile;
+import com.back.coffeeprod.domain.coffeeprofile.entity.CoffeeProfileBrewMethod;
+import com.back.coffeeprod.domain.coffeeprofile.entity.CoffeeProfileFlavorNote;
 import com.back.coffeeprod.domain.product.entity.RoastLevel;
 import com.back.coffeeprod.global.common.time.BusinessTime;
+import jakarta.validation.Valid;
 import jakarta.validation.constraints.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import java.time.OffsetDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 public class CoffeeProfileDto {
 
@@ -76,6 +81,44 @@ public class CoffeeProfileDto {
         private Short aroma;
 
         private String summary;
+
+        // 배열 순서로 향미 노트 우선순위를 지정함
+        @NotNull(message = "향미 노트 목록은 null일 수 없습니다.")
+        @Size(max = 5, message = "향미 노트는 최대 5개까지 등록할 수 있습니다.")
+        @Valid
+        private List<FlavorNoteRequest> flavorNotes = new ArrayList<>();
+
+        // 배열 순서로 추천 추출법 우선순위를 지정함
+        @NotNull(message = "추천 추출법 목록은 null일 수 없습니다.")
+        @Size(max = 3, message = "추천 추출법은 최대 3개까지 등록할 수 있습니다.")
+        @Valid
+        private List<BrewMethodRequest> brewMethods = new ArrayList<>();
+    }
+
+    @Getter
+    @NoArgsConstructor
+    public static class FlavorNoteRequest {
+
+        @NotNull(message = "향미 노트 ID는 필수입니다.")
+        @Positive(message = "향미 노트 ID는 양수여야 합니다.")
+        private Long flavorNoteId;
+
+        @NotNull(message = "향미 강도는 필수입니다.")
+        @Min(value = 1, message = "향미 강도는 1 이상이어야 합니다.")
+        @Max(value = 5, message = "향미 강도는 5 이하여야 합니다.")
+        private Short intensity;
+    }
+
+    @Getter
+    @NoArgsConstructor
+    public static class BrewMethodRequest {
+
+        @NotNull(message = "추천 추출법 ID는 필수입니다.")
+        @Positive(message = "추천 추출법 ID는 양수여야 합니다.")
+        private Long brewMethodId;
+
+        @Size(max = 500, message = "추출 안내는 500자 이하여야 합니다.")
+        private String recommendationNote;
     }
 
     @Getter
@@ -98,6 +141,8 @@ public class CoffeeProfileDto {
         private final short sweetness;
         private final short aroma;
         private final String summary;
+        private final List<FlavorNoteResponse> flavorNotes;
+        private final List<BrewMethodResponse> brewMethods;
         private final OffsetDateTime createdAt;
         private final OffsetDateTime updatedAt;
 
@@ -124,8 +169,55 @@ public class CoffeeProfileDto {
             this.sweetness = profile.getSweetness();
             this.aroma = profile.getAroma();
             this.summary = profile.getSummary();
+            this.flavorNotes = profile.getFlavorNotes().stream()
+                    .map(FlavorNoteResponse::new)
+                    .toList();
+            this.brewMethods = profile.getBrewMethods().stream()
+                    .map(BrewMethodResponse::new)
+                    .toList();
             this.createdAt = BusinessTime.toSeoul(profile.getCreatedAt());
             this.updatedAt = BusinessTime.toSeoul(profile.getUpdatedAt());
+        }
+    }
+
+    @Getter
+    public static class FlavorNoteResponse {
+        private final Long flavorNoteId;
+        private final String code;
+        private final String name;
+        private final String description;
+        private final short intensity;
+
+        public FlavorNoteResponse(
+                CoffeeProfileFlavorNote profileFlavorNote
+        ) {
+            this.flavorNoteId = profileFlavorNote.getFlavorNote().getId();
+            this.code = profileFlavorNote.getFlavorNote().getCode();
+            this.name = profileFlavorNote.getFlavorNote().getName();
+            this.description = profileFlavorNote.getFlavorNote()
+                    .getDescription();
+            this.intensity = profileFlavorNote.getIntensity();
+        }
+    }
+
+    @Getter
+    public static class BrewMethodResponse {
+        private final Long brewMethodId;
+        private final String code;
+        private final String name;
+        private final String description;
+        private final String recommendationNote;
+
+        public BrewMethodResponse(
+                CoffeeProfileBrewMethod profileBrewMethod
+        ) {
+            this.brewMethodId = profileBrewMethod.getBrewMethod().getId();
+            this.code = profileBrewMethod.getBrewMethod().getCode();
+            this.name = profileBrewMethod.getBrewMethod().getName();
+            this.description = profileBrewMethod.getBrewMethod()
+                    .getDescription();
+            this.recommendationNote = profileBrewMethod
+                    .getRecommendationNote();
         }
     }
 }

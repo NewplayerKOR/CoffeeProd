@@ -86,7 +86,9 @@ public class SecurityConfig {
                                 "/api/v1/products/**",
                                 "/api/v1/categories/**",
                                 "/api/v1/coffee-profiles/**",
-                                "/api/v1/processing-methods/**"
+                                "/api/v1/processing-methods/**",
+                                "/api/v1/flavor-notes/**",
+                                "/api/v1/brew-methods/**"
                         ).permitAll()
                         // 에러 페이지 접근 허용
                         .requestMatchers("/error").permitAll()

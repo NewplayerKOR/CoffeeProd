@@ -231,6 +231,9 @@ class ProductServiceIntegrationTest {
                 null,
                 null,
                 null,
+                null,
+                null,
+                null,
                 PageRequest.of(0, 10)
         );
 
@@ -306,6 +309,9 @@ class ProductServiceIntegrationTest {
 
         // 공개 상품 목록 조회는 ON_SALE 상품만 반환한다.
         Page<ProductDto.SummaryResponse> response = productService.getProducts(
+                null,
+                null,
+                null,
                 null,
                 null,
                 null,
@@ -403,6 +409,9 @@ class ProductServiceIntegrationTest {
         Page<ProductDto.SummaryResponse> response = productService.getProducts(
                 null,
                 coffeeProfile.getId(),
+                null,
+                null,
+                null,
                 null,
                 null,
                 PageRequest.of(0, 10)
