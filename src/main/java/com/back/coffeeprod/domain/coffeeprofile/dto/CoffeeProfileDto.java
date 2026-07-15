@@ -4,6 +4,7 @@ import com.back.coffeeprod.domain.coffeeprofile.entity.BeanType;
 import com.back.coffeeprod.domain.coffeeprofile.entity.CoffeeProfile;
 import com.back.coffeeprod.domain.coffeeprofile.entity.CoffeeProfileBrewMethod;
 import com.back.coffeeprod.domain.coffeeprofile.entity.CoffeeProfileFlavorNote;
+import com.back.coffeeprod.domain.coffeeprofile.entity.CoffeeProfileVariety;
 import com.back.coffeeprod.domain.product.entity.RoastLevel;
 import com.back.coffeeprod.global.common.time.BusinessTime;
 import jakarta.validation.Valid;
@@ -93,6 +94,12 @@ public class CoffeeProfileDto {
         @Size(max = 3, message = "추천 추출법은 최대 3개까지 등록할 수 있습니다.")
         @Valid
         private List<BrewMethodRequest> brewMethods = new ArrayList<>();
+
+        // 배열 순서로 품종 노출 순서를 지정함
+        @NotNull(message = "커피 품종 목록은 null일 수 없습니다.")
+        @Size(max = 3, message = "커피 품종은 최대 3개까지 등록할 수 있습니다.")
+        @Valid
+        private List<VarietyRequest> varieties = new ArrayList<>();
     }
 
     @Getter
@@ -122,6 +129,15 @@ public class CoffeeProfileDto {
     }
 
     @Getter
+    @NoArgsConstructor
+    public static class VarietyRequest {
+
+        @NotNull(message = "커피 품종 ID는 필수입니다.")
+        @Positive(message = "커피 품종 ID는 양수여야 합니다.")
+        private Long coffeeVarietyId;
+    }
+
+    @Getter
     public static class Response {
         private final Long id;
         private final String profileName;
@@ -143,6 +159,7 @@ public class CoffeeProfileDto {
         private final String summary;
         private final List<FlavorNoteResponse> flavorNotes;
         private final List<BrewMethodResponse> brewMethods;
+        private final List<VarietyResponse> varieties;
         private final OffsetDateTime createdAt;
         private final OffsetDateTime updatedAt;
 
@@ -175,8 +192,29 @@ public class CoffeeProfileDto {
             this.brewMethods = profile.getBrewMethods().stream()
                     .map(BrewMethodResponse::new)
                     .toList();
+            this.varieties = profile.getVarieties().stream()
+                    .map(VarietyResponse::new)
+                    .toList();
             this.createdAt = BusinessTime.toSeoul(profile.getCreatedAt());
             this.updatedAt = BusinessTime.toSeoul(profile.getUpdatedAt());
+        }
+    }
+
+    @Getter
+    public static class VarietyResponse {
+        private final Long coffeeVarietyId;
+        private final String code;
+        private final String name;
+        private final String description;
+
+        public VarietyResponse(
+                CoffeeProfileVariety profileVariety
+        ) {
+            this.coffeeVarietyId = profileVariety.getCoffeeVariety().getId();
+            this.code = profileVariety.getCoffeeVariety().getCode();
+            this.name = profileVariety.getCoffeeVariety().getName();
+            this.description = profileVariety.getCoffeeVariety()
+                    .getDescription();
         }
     }
 

@@ -50,6 +50,9 @@ public enum ErrorCode {
     DUPLICATE_BREW_METHOD_CODE(409, "이미 존재하는 추천 추출법 코드입니다."),
     DUPLICATE_COFFEE_PROFILE_FLAVOR_NOTE(400, "동일한 향미 노트를 중복 연결할 수 없습니다."),
     DUPLICATE_COFFEE_PROFILE_BREW_METHOD(400, "동일한 추천 추출법을 중복 연결할 수 없습니다."),
+    COFFEE_VARIETY_NOT_FOUND(404, "커피 품종을 찾을 수 없습니다."),
+    DUPLICATE_COFFEE_VARIETY_CODE(409, "이미 존재하는 커피 품종 코드입니다."),
+    DUPLICATE_COFFEE_PROFILE_VARIETY(400, "동일한 커피 품종을 중복 연결할 수 없습니다."),
 
     // [주문/결제 관련]
     ORDER_NOT_FOUND(404, "주문을 찾을 수 없습니다."),
