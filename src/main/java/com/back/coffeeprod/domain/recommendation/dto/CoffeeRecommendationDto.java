@@ -110,6 +110,7 @@ public class CoffeeRecommendationDto {
         private final List<CoffeeProfileDto.FlavorNoteResponse> flavorNotes;
         private final List<CoffeeProfileDto.BrewMethodResponse> brewMethods;
         private final List<CoffeeProfileDto.VarietyResponse> varieties;
+        private final List<CoffeeProfileDto.ComponentResponse> components;
 
         private final int recommendationScore;
         private final List<String> reasons;
@@ -145,6 +146,9 @@ public class CoffeeRecommendationDto {
                     .toList();
             this.varieties = coffeeProfile.getVarieties().stream()
                     .map(CoffeeProfileDto.VarietyResponse::new)
+                    .toList();
+            this.components = coffeeProfile.getComponents().stream()
+                    .map(CoffeeProfileDto.ComponentResponse::new)
                     .toList();
 
             this.recommendationScore = recommendationScore;
