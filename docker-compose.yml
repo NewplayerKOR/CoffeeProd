@@ -11,6 +11,8 @@ services:
       POSTGRES_PASSWORD: ${DB_PASSWORD}
     volumes:
       - ./postgres-data:/var/lib/postgresql/data
+      # PostgreSQL COPY가 CSV를 읽도록 읽기 전용으로 연결함
+      - ./scripts/seed/catalog/csv:/seed/catalog:ro
 
   redis:
     image: redis:7-alpine

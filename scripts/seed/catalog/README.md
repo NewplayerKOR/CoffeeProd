@@ -46,3 +46,27 @@ node scripts/seed/catalog/generate_catalog.mjs --check
 CSV의 `profile_key`, `category_code`, 각 기준정보 `code`는 적재 단계에서 DB의 PK로 변환할 소스 키다. 운영 테이블에는 `profile_key`와 `category_code` 컬럼이 없으므로 직접 `COPY`하지 않는다. 다음 작업에서 staging table과 트랜잭션 기반 upsert/import SQL을 작성한 뒤 적재한다.
 
 `image_url`은 `/images/catalog/{profile-key}.webp` 형식의 계획 경로다. 이미지 에셋이 추가되기 전에는 프론트에서 대체 이미지를 표시해야 한다.
+
+## PostgreSQL 적재
+
+Flyway V16 적용 후 Docker PostgreSQL이 실행 중인 상태에서 Git Bash로 실행한다.
+
+```bash
+docker compose up -d --force-recreate db
+bash scripts/seed/catalog/load_catalog.sh
+```
+
+실행기는 다음 작업을 순서대로 처리한다.
+
+1. 생성된 CSV의 중복·참조·블렌드 비율 정적 검증
+2. PostgreSQL 임시 staging 테이블에 CSV 11개 적재
+3. 기준정보·프로필·연결정보·상품의 트랜잭션 upsert
+4. 프로필 96개, SKU 192개와 관계 건수 검증
+
+`load_catalog.sql`은 중간 검증이 실패하면 전체 트랜잭션을 롤백한다. `verify_catalog.sql`은 적재가 끝난 DB를 독립적으로 재검증한다.
+
+```bash
+docker compose exec -T db sh -lc \
+  'psql -U "$POSTGRES_USER" -d "$POSTGRES_DB" -v ON_ERROR_STOP=1' \
+  < scripts/seed/catalog/sql/verify_catalog.sql
+```
