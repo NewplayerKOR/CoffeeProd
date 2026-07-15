@@ -3,6 +3,7 @@ package com.back.coffeeprod.domain.coffeeprofile.dto;
 import com.back.coffeeprod.domain.coffeeprofile.entity.BeanType;
 import com.back.coffeeprod.domain.coffeeprofile.entity.CoffeeProfile;
 import com.back.coffeeprod.domain.coffeeprofile.entity.CoffeeProfileBrewMethod;
+import com.back.coffeeprod.domain.coffeeprofile.entity.CoffeeProfileComponent;
 import com.back.coffeeprod.domain.coffeeprofile.entity.CoffeeProfileFlavorNote;
 import com.back.coffeeprod.domain.coffeeprofile.entity.CoffeeProfileVariety;
 import com.back.coffeeprod.domain.product.entity.RoastLevel;
@@ -12,6 +13,7 @@ import jakarta.validation.constraints.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.math.BigDecimal;
 import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -100,6 +102,12 @@ public class CoffeeProfileDto {
         @Size(max = 3, message = "커피 품종은 최대 3개까지 등록할 수 있습니다.")
         @Valid
         private List<VarietyRequest> varieties = new ArrayList<>();
+
+        // 배열 순서로 블렌드 구성요소 노출 순서를 지정함
+        @NotNull(message = "블렌드 구성요소 목록은 null일 수 없습니다.")
+        @Size(max = 5, message = "블렌드 구성요소는 최대 5개까지 등록할 수 있습니다.")
+        @Valid
+        private List<ComponentRequest> components = new ArrayList<>();
     }
 
     @Getter
@@ -138,6 +146,33 @@ public class CoffeeProfileDto {
     }
 
     @Getter
+    @NoArgsConstructor
+    public static class ComponentRequest {
+
+        @NotBlank(message = "구성요소 원산지 국가 코드는 필수입니다.")
+        @Pattern(
+                regexp = "^[A-Z]{2}$",
+                message = "구성요소 원산지 국가 코드는 영문 대문자 2자리여야 합니다."
+        )
+        private String originCountryCode;
+
+        @Size(max = 100, message = "구성요소 원산지 지역은 100자 이하여야 합니다.")
+        private String originRegion;
+
+        @Positive(message = "구성요소 가공 방식 ID는 양수여야 합니다.")
+        private Long processingMethodId;
+
+        @DecimalMin(value = "0.01", message = "구성 비율은 0보다 커야 합니다.")
+        @DecimalMax(value = "100.00", message = "구성 비율은 100 이하여야 합니다.")
+        @Digits(
+                integer = 3,
+                fraction = 2,
+                message = "구성 비율은 소수점 둘째 자리까지 입력해야 합니다."
+        )
+        private BigDecimal componentRatio;
+    }
+
+    @Getter
     public static class Response {
         private final Long id;
         private final String profileName;
@@ -160,6 +195,7 @@ public class CoffeeProfileDto {
         private final List<FlavorNoteResponse> flavorNotes;
         private final List<BrewMethodResponse> brewMethods;
         private final List<VarietyResponse> varieties;
+        private final List<ComponentResponse> components;
         private final OffsetDateTime createdAt;
         private final OffsetDateTime updatedAt;
 
@@ -195,8 +231,30 @@ public class CoffeeProfileDto {
             this.varieties = profile.getVarieties().stream()
                     .map(VarietyResponse::new)
                     .toList();
+            this.components = profile.getComponents().stream()
+                    .map(ComponentResponse::new)
+                    .toList();
             this.createdAt = BusinessTime.toSeoul(profile.getCreatedAt());
             this.updatedAt = BusinessTime.toSeoul(profile.getUpdatedAt());
+        }
+    }
+
+    @Getter
+    public static class ComponentResponse {
+        private final String originCountryCode;
+        private final String originRegion;
+        private final ProcessingMethodDto.Response processingMethod;
+        private final BigDecimal componentRatio;
+
+        public ComponentResponse(CoffeeProfileComponent component) {
+            this.originCountryCode = component.getOriginCountryCode();
+            this.originRegion = component.getOriginRegion();
+            this.processingMethod = component.getProcessingMethod() == null
+                    ? null
+                    : new ProcessingMethodDto.Response(
+                    component.getProcessingMethod()
+            );
+            this.componentRatio = component.getComponentRatio();
         }
     }
 
