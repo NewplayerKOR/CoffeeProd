@@ -5,9 +5,11 @@ import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.BatchSize;
 
 @Entity
 @Getter
+@BatchSize(size = 50)
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Table(name = "brew_method")
 public class BrewMethod {

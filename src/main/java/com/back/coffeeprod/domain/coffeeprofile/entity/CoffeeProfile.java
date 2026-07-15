@@ -6,6 +6,10 @@ import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.BatchSize;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter
@@ -71,6 +75,26 @@ public class CoffeeProfile extends BaseTimeEntity {
 
     @Column(columnDefinition = "TEXT")
     private String summary;
+
+    // 프로필별 향미 노트를 우선순위로 관리함
+    @OneToMany(
+            mappedBy = "coffeeProfile",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
+    @OrderBy("displayOrder ASC")
+    @BatchSize(size = 50)
+    private List<CoffeeProfileFlavorNote> flavorNotes = new ArrayList<>();
+
+    // 프로필별 추천 추출법을 우선순위로 관리함
+    @OneToMany(
+            mappedBy = "coffeeProfile",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
+    @OrderBy("displayOrder ASC")
+    @BatchSize(size = 50)
+    private List<CoffeeProfileBrewMethod> brewMethods = new ArrayList<>();
 
     @Builder
     public CoffeeProfile(
@@ -148,5 +172,21 @@ public class CoffeeProfile extends BaseTimeEntity {
         this.sweetness = sweetness;
         this.aroma = aroma;
         this.summary = summary;
+    }
+
+    // 향미 노트 연결 정보를 전체 교체함
+    public void replaceFlavorNotes(
+            List<CoffeeProfileFlavorNote> flavorNotes
+    ) {
+        this.flavorNotes.clear();
+        this.flavorNotes.addAll(flavorNotes);
+    }
+
+    // 추천 추출법 연결 정보를 전체 교체함
+    public void replaceBrewMethods(
+            List<CoffeeProfileBrewMethod> brewMethods
+    ) {
+        this.brewMethods.clear();
+        this.brewMethods.addAll(brewMethods);
     }
 }
