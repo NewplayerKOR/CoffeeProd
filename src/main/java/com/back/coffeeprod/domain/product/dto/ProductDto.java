@@ -142,6 +142,7 @@ public class ProductDto {
         private final String summary;
         private final List<CoffeeProfileDto.FlavorNoteResponse> flavorNotes;
         private final List<CoffeeProfileDto.BrewMethodResponse> brewMethods;
+        private final List<CoffeeProfileDto.VarietyResponse> varieties;
 
         public CoffeeProfileSummary(CoffeeProfile coffeeProfile) {
             this.id = coffeeProfile.getId();
@@ -164,6 +165,9 @@ public class ProductDto {
                     .toList();
             this.brewMethods = coffeeProfile.getBrewMethods().stream()
                     .map(CoffeeProfileDto.BrewMethodResponse::new)
+                    .toList();
+            this.varieties = coffeeProfile.getVarieties().stream()
+                    .map(CoffeeProfileDto.VarietyResponse::new)
                     .toList();
         }
     }
