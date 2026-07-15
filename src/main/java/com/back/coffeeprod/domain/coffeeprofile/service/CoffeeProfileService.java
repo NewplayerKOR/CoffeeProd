@@ -2,7 +2,11 @@ package com.back.coffeeprod.domain.coffeeprofile.service;
 
 import com.back.coffeeprod.domain.coffeeprofile.dto.CoffeeProfileDto;
 import com.back.coffeeprod.domain.coffeeprofile.entity.BeanType;
+import com.back.coffeeprod.domain.coffeeprofile.entity.BrewMethod;
 import com.back.coffeeprod.domain.coffeeprofile.entity.CoffeeProfile;
+import com.back.coffeeprod.domain.coffeeprofile.entity.CoffeeProfileBrewMethod;
+import com.back.coffeeprod.domain.coffeeprofile.entity.CoffeeProfileFlavorNote;
+import com.back.coffeeprod.domain.coffeeprofile.entity.FlavorNote;
 import com.back.coffeeprod.domain.coffeeprofile.entity.ProcessingMethod;
 import com.back.coffeeprod.domain.coffeeprofile.repository.CoffeeProfileRepository;
 import com.back.coffeeprod.global.exception.CustomException;
@@ -13,13 +17,23 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
 @Service
 @RequiredArgsConstructor
 @Transactional(readOnly = true)
 public class CoffeeProfileService {
 
+    private static final int MAX_FLAVOR_NOTE_COUNT = 5;
+    private static final int MAX_BREW_METHOD_COUNT = 3;
+
     private final CoffeeProfileRepository coffeeProfileRepository;
     private final ProcessingMethodService processingMethodService;
+    private final FlavorNoteService flavorNoteService;
+    private final BrewMethodService brewMethodService;
 
     // 커피 프로필 목록을 조회함
     public Page<CoffeeProfileDto.Response> getCoffeeProfiles(Pageable pageable) {
@@ -59,6 +73,8 @@ public class CoffeeProfileService {
                 .summary(request.getSummary())
                 .build();
 
+        replaceCoffeeProfileContents(coffeeProfile, request);
+
         return new CoffeeProfileDto.Response(coffeeProfileRepository.save(coffeeProfile));
     }
 
@@ -93,6 +109,8 @@ public class CoffeeProfileService {
                 request.getSummary()
         );
 
+        replaceCoffeeProfileContents(coffeeProfile, request);
+
         return new CoffeeProfileDto.Response(coffeeProfile);
     }
 
@@ -111,6 +129,11 @@ public class CoffeeProfileService {
     }
 
     private void validateCoffeeProfileRequest(CoffeeProfileDto.Request request) {
+        if (request.getFlavorNotes() == null
+                || request.getBrewMethods() == null) {
+            throw new CustomException(ErrorCode.INVALID_COFFEE_PROFILE);
+        }
+
         if (request.getBeanType() == BeanType.SINGLE_ORIGIN
                 && request.getOriginCountryCode() == null) {
             throw new CustomException(ErrorCode.INVALID_COFFEE_PROFILE);
@@ -135,6 +158,105 @@ public class CoffeeProfileService {
                 && request.getAltitudeMax() != null
                 && request.getAltitudeMin() > request.getAltitudeMax()) {
             throw new CustomException(ErrorCode.INVALID_COFFEE_PROFILE);
+        }
+
+        validateFlavorNoteRequests(request.getFlavorNotes());
+        validateBrewMethodRequests(request.getBrewMethods());
+    }
+
+    // 프로필의 향미와 추출법 연결 정보를 전체 교체함
+    private void replaceCoffeeProfileContents(
+            CoffeeProfile coffeeProfile,
+            CoffeeProfileDto.Request request
+    ) {
+        List<CoffeeProfileFlavorNote> flavorNotes = new ArrayList<>();
+
+        for (int index = 0; index < request.getFlavorNotes().size(); index++) {
+            CoffeeProfileDto.FlavorNoteRequest flavorNoteRequest =
+                    request.getFlavorNotes().get(index);
+            FlavorNote flavorNote = flavorNoteService.findFlavorNoteById(
+                    flavorNoteRequest.getFlavorNoteId()
+            );
+
+            flavorNotes.add(CoffeeProfileFlavorNote.of(
+                    coffeeProfile,
+                    flavorNote,
+                    (short) (index + 1),
+                    flavorNoteRequest.getIntensity()
+            ));
+        }
+
+        List<CoffeeProfileBrewMethod> brewMethods = new ArrayList<>();
+
+        for (int index = 0; index < request.getBrewMethods().size(); index++) {
+            CoffeeProfileDto.BrewMethodRequest brewMethodRequest =
+                    request.getBrewMethods().get(index);
+            BrewMethod brewMethod = brewMethodService.findBrewMethodById(
+                    brewMethodRequest.getBrewMethodId()
+            );
+
+            brewMethods.add(CoffeeProfileBrewMethod.of(
+                    coffeeProfile,
+                    brewMethod,
+                    (short) (index + 1),
+                    brewMethodRequest.getRecommendationNote()
+            ));
+        }
+
+        coffeeProfile.replaceFlavorNotes(flavorNotes);
+        coffeeProfile.replaceBrewMethods(brewMethods);
+    }
+
+    // 향미 노트 입력값과 중복을 검증함
+    private void validateFlavorNoteRequests(
+            List<CoffeeProfileDto.FlavorNoteRequest> flavorNotes
+    ) {
+        if (flavorNotes.size() > MAX_FLAVOR_NOTE_COUNT) {
+            throw new CustomException(ErrorCode.INVALID_COFFEE_PROFILE);
+        }
+
+        Set<Long> flavorNoteIds = new HashSet<>();
+
+        for (CoffeeProfileDto.FlavorNoteRequest flavorNote : flavorNotes) {
+            Short intensity = flavorNote.getIntensity();
+
+            if (flavorNote.getFlavorNoteId() == null
+                    || intensity == null
+                    || intensity < 1
+                    || intensity > 5) {
+                throw new CustomException(ErrorCode.INVALID_COFFEE_PROFILE);
+            }
+
+            if (!flavorNoteIds.add(flavorNote.getFlavorNoteId())) {
+                throw new CustomException(
+                        ErrorCode.DUPLICATE_COFFEE_PROFILE_FLAVOR_NOTE
+                );
+            }
+        }
+    }
+
+    // 추천 추출법 입력값과 중복을 검증함
+    private void validateBrewMethodRequests(
+            List<CoffeeProfileDto.BrewMethodRequest> brewMethods
+    ) {
+        if (brewMethods.size() > MAX_BREW_METHOD_COUNT) {
+            throw new CustomException(ErrorCode.INVALID_COFFEE_PROFILE);
+        }
+
+        Set<Long> brewMethodIds = new HashSet<>();
+
+        for (CoffeeProfileDto.BrewMethodRequest brewMethod : brewMethods) {
+            if (brewMethod.getBrewMethodId() == null
+                    || (brewMethod.getRecommendationNote() != null
+                    && brewMethod.getRecommendationNote().length() > 500)) {
+                throw new CustomException(ErrorCode.INVALID_COFFEE_PROFILE);
+            }
+
+            if (!brewMethodIds.add(brewMethod.getBrewMethodId())) {
+                throw new CustomException(
+                        ErrorCode.DUPLICATE_COFFEE_PROFILE_BREW_METHOD
+                );
+            }
         }
     }
 }
