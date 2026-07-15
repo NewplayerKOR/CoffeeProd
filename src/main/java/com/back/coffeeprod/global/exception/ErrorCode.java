@@ -53,6 +53,8 @@ public enum ErrorCode {
     COFFEE_VARIETY_NOT_FOUND(404, "커피 품종을 찾을 수 없습니다."),
     DUPLICATE_COFFEE_VARIETY_CODE(409, "이미 존재하는 커피 품종 코드입니다."),
     DUPLICATE_COFFEE_PROFILE_VARIETY(400, "동일한 커피 품종을 중복 연결할 수 없습니다."),
+    INVALID_BLEND_COMPONENT(400, "블렌드 구성요소 입력값이 올바르지 않습니다."),
+    INVALID_BLEND_COMPONENT_RATIO(400, "블렌드 구성 비율은 모두 입력하고 합계가 100이어야 합니다."),
 
     // [주문/결제 관련]
     ORDER_NOT_FOUND(404, "주문을 찾을 수 없습니다."),
