@@ -43,6 +43,14 @@ public enum ErrorCode {
     DUPLICATE_PROCESSING_METHOD_CODE(409, "이미 존재하는 가공 방식 코드입니다."),
     INVALID_COFFEE_PROFILE(400, "커피 프로필 입력값이 올바르지 않습니다."),
 
+    // [커피 카탈로그 관련]
+    FLAVOR_NOTE_NOT_FOUND(404, "향미 노트를 찾을 수 없습니다."),
+    BREW_METHOD_NOT_FOUND(404, "추천 추출법을 찾을 수 없습니다."),
+    DUPLICATE_FLAVOR_NOTE_CODE(409, "이미 존재하는 향미 노트 코드입니다."),
+    DUPLICATE_BREW_METHOD_CODE(409, "이미 존재하는 추천 추출법 코드입니다."),
+    DUPLICATE_COFFEE_PROFILE_FLAVOR_NOTE(400, "동일한 향미 노트를 중복 연결할 수 없습니다."),
+    DUPLICATE_COFFEE_PROFILE_BREW_METHOD(400, "동일한 추천 추출법을 중복 연결할 수 없습니다."),
+
     // [주문/결제 관련]
     ORDER_NOT_FOUND(404, "주문을 찾을 수 없습니다."),
     ORDER_ACCESS_DENIED(403, "본인의 주문만 접근할 수 있습니다."),
