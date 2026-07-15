@@ -22,6 +22,15 @@ public class CoffeeProfile extends BaseTimeEntity {
     @Column(name = "coffee_profile_id")
     private Long id;
 
+    // CSV importer가 관리하는 식별키를 읽기 전용으로 매핑함
+    @Column(
+            name = "catalog_key",
+            length = 32,
+            insertable = false,
+            updatable = false
+    )
+    private String catalogKey;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "processing_method_id")
     private ProcessingMethod processingMethod;
