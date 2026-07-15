@@ -36,6 +36,9 @@ out/
 ### VS Code ###
 .vscode/
 
+### Local AI tooling ###
+/.ai/
+
 ### Security ###
 .env
 .env.local
@@ -50,6 +53,10 @@ secret.json
 ### postgreSQL ###
 postgres-data/
 redis-data/
+/coffee_backup*.sql
+/*.dump
+/*.backup
+/backups/
 
 ### k6 ###
 /k6/.env
