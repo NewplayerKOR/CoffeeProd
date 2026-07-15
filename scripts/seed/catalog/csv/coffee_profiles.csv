@@ -1,0 +1,97 @@
+profile_key,profile_name,bean_type,processing_method_code,origin_country_code,origin_region,farm_or_cooperative,producer,altitude_min,altitude_max,roast_level,decaf,decaf_method,acidity,body,sweetness,aroma,summary
+SO001_L,ET Yirgacheffe WASHED 라이트,SINGLE_ORIGIN,WASHED,ET,Yirgacheffe,Sample Yirgacheffe Coffee Group,CoffeeProd Origin Partner 01,1800,2200,LIGHT,false,,5,1,4,5,Yirgacheffe 산지의 WASHED 커피를 라이트 로스트로 구성한 합성 싱글 오리진 프로필
+SO001_M,ET Yirgacheffe WASHED 미디엄,SINGLE_ORIGIN,WASHED,ET,Yirgacheffe,Sample Yirgacheffe Coffee Group,CoffeeProd Origin Partner 01,1800,2200,MEDIUM,false,,5,2,4,5,Yirgacheffe 산지의 WASHED 커피를 미디엄 로스트로 구성한 합성 싱글 오리진 프로필
+SO002_L,ET Guji NATURAL 라이트,SINGLE_ORIGIN,NATURAL,ET,Guji,Sample Guji Coffee Group,CoffeeProd Origin Partner 02,1900,2300,LIGHT,false,,5,2,5,5,Guji 산지의 NATURAL 커피를 라이트 로스트로 구성한 합성 싱글 오리진 프로필
+SO002_M,ET Guji NATURAL 미디엄,SINGLE_ORIGIN,NATURAL,ET,Guji,Sample Guji Coffee Group,CoffeeProd Origin Partner 02,1900,2300,MEDIUM,false,,4,3,5,5,Guji 산지의 NATURAL 커피를 미디엄 로스트로 구성한 합성 싱글 오리진 프로필
+SO003_L,ET Sidama HONEY 라이트,SINGLE_ORIGIN,HONEY,ET,Sidama,Sample Sidama Coffee Group,CoffeeProd Origin Partner 03,1750,2150,LIGHT,false,,5,2,5,5,Sidama 산지의 HONEY 커피를 라이트 로스트로 구성한 합성 싱글 오리진 프로필
+SO003_M,ET Sidama HONEY 미디엄,SINGLE_ORIGIN,HONEY,ET,Sidama,Sample Sidama Coffee Group,CoffeeProd Origin Partner 03,1750,2150,MEDIUM,false,,4,3,5,4,Sidama 산지의 HONEY 커피를 미디엄 로스트로 구성한 합성 싱글 오리진 프로필
+SO004_L,ET Limu WASHED 라이트,SINGLE_ORIGIN,WASHED,ET,Limu,Sample Limu Coffee Group,CoffeeProd Origin Partner 04,1650,2000,LIGHT,false,,5,1,4,5,Limu 산지의 WASHED 커피를 라이트 로스트로 구성한 합성 싱글 오리진 프로필
+SO004_M,ET Limu WASHED 미디엄,SINGLE_ORIGIN,WASHED,ET,Limu,Sample Limu Coffee Group,CoffeeProd Origin Partner 04,1650,2000,MEDIUM,false,,4,2,4,4,Limu 산지의 WASHED 커피를 미디엄 로스트로 구성한 합성 싱글 오리진 프로필
+SO005_L,KE Nyeri WASHED 라이트,SINGLE_ORIGIN,WASHED,KE,Nyeri,Sample Nyeri Coffee Group,CoffeeProd Origin Partner 05,1700,2100,LIGHT,false,,5,2,4,5,Nyeri 산지의 WASHED 커피를 라이트 로스트로 구성한 합성 싱글 오리진 프로필
+SO005_M,KE Nyeri WASHED 미디엄,SINGLE_ORIGIN,WASHED,KE,Nyeri,Sample Nyeri Coffee Group,CoffeeProd Origin Partner 05,1700,2100,MEDIUM,false,,5,3,4,5,Nyeri 산지의 WASHED 커피를 미디엄 로스트로 구성한 합성 싱글 오리진 프로필
+SO006_L,KE Kirinyaga WASHED 라이트,SINGLE_ORIGIN,WASHED,KE,Kirinyaga,Sample Kirinyaga Coffee Group,CoffeeProd Origin Partner 06,1600,1950,LIGHT,false,,5,2,4,5,Kirinyaga 산지의 WASHED 커피를 라이트 로스트로 구성한 합성 싱글 오리진 프로필
+SO006_M,KE Kirinyaga WASHED 미디엄,SINGLE_ORIGIN,WASHED,KE,Kirinyaga,Sample Kirinyaga Coffee Group,CoffeeProd Origin Partner 06,1600,1950,MEDIUM,false,,5,3,4,4,Kirinyaga 산지의 WASHED 커피를 미디엄 로스트로 구성한 합성 싱글 오리진 프로필
+SO007_L,KE Embu WASHED 라이트,SINGLE_ORIGIN,WASHED,KE,Embu,Sample Embu Coffee Group,CoffeeProd Origin Partner 07,1500,1900,LIGHT,false,,5,2,4,5,Embu 산지의 WASHED 커피를 라이트 로스트로 구성한 합성 싱글 오리진 프로필
+SO007_M,KE Embu WASHED 미디엄,SINGLE_ORIGIN,WASHED,KE,Embu,Sample Embu Coffee Group,CoffeeProd Origin Partner 07,1500,1900,MEDIUM,false,,4,3,4,4,Embu 산지의 WASHED 커피를 미디엄 로스트로 구성한 합성 싱글 오리진 프로필
+SO008_L,RW Nyamasheke WASHED 라이트,SINGLE_ORIGIN,WASHED,RW,Nyamasheke,Sample Nyamasheke Coffee Group,CoffeeProd Origin Partner 08,1700,2100,LIGHT,false,,5,2,4,5,Nyamasheke 산지의 WASHED 커피를 라이트 로스트로 구성한 합성 싱글 오리진 프로필
+SO008_M,RW Nyamasheke WASHED 미디엄,SINGLE_ORIGIN,WASHED,RW,Nyamasheke,Sample Nyamasheke Coffee Group,CoffeeProd Origin Partner 08,1700,2100,MEDIUM,false,,4,3,4,4,Nyamasheke 산지의 WASHED 커피를 미디엄 로스트로 구성한 합성 싱글 오리진 프로필
+SO009_L,RW Huye NATURAL 라이트,SINGLE_ORIGIN,NATURAL,RW,Huye,Sample Huye Coffee Group,CoffeeProd Origin Partner 09,1650,2000,LIGHT,false,,5,2,5,5,Huye 산지의 NATURAL 커피를 라이트 로스트로 구성한 합성 싱글 오리진 프로필
+SO009_M,RW Huye NATURAL 미디엄,SINGLE_ORIGIN,NATURAL,RW,Huye,Sample Huye Coffee Group,CoffeeProd Origin Partner 09,1650,2000,MEDIUM,false,,4,3,5,4,Huye 산지의 NATURAL 커피를 미디엄 로스트로 구성한 합성 싱글 오리진 프로필
+SO010_L,BI Kayanza WASHED 라이트,SINGLE_ORIGIN,WASHED,BI,Kayanza,Sample Kayanza Coffee Group,CoffeeProd Origin Partner 10,1750,2050,LIGHT,false,,5,2,4,5,Kayanza 산지의 WASHED 커피를 라이트 로스트로 구성한 합성 싱글 오리진 프로필
+SO010_M,BI Kayanza WASHED 미디엄,SINGLE_ORIGIN,WASHED,BI,Kayanza,Sample Kayanza Coffee Group,CoffeeProd Origin Partner 10,1750,2050,MEDIUM,false,,4,3,4,4,Kayanza 산지의 WASHED 커피를 미디엄 로스트로 구성한 합성 싱글 오리진 프로필
+SO011_M,UG Bugisu WASHED 미디엄,SINGLE_ORIGIN,WASHED,UG,Bugisu,Sample Bugisu Coffee Group,CoffeeProd Origin Partner 11,1500,1900,MEDIUM,false,,3,4,4,4,Bugisu 산지의 WASHED 커피를 미디엄 로스트로 구성한 합성 싱글 오리진 프로필
+SO011_D,UG Bugisu WASHED 다크,SINGLE_ORIGIN,WASHED,UG,Bugisu,Sample Bugisu Coffee Group,CoffeeProd Origin Partner 11,1500,1900,DARK,false,,2,5,3,4,Bugisu 산지의 WASHED 커피를 다크 로스트로 구성한 합성 싱글 오리진 프로필
+SO012_M,UG Rwenzori NATURAL 미디엄,SINGLE_ORIGIN,NATURAL,UG,Rwenzori,Sample Rwenzori Coffee Group,CoffeeProd Origin Partner 12,1450,1900,MEDIUM,false,,3,4,5,4,Rwenzori 산지의 NATURAL 커피를 미디엄 로스트로 구성한 합성 싱글 오리진 프로필
+SO012_D,UG Rwenzori NATURAL 다크,SINGLE_ORIGIN,NATURAL,UG,Rwenzori,Sample Rwenzori Coffee Group,CoffeeProd Origin Partner 12,1450,1900,DARK,false,,2,5,4,4,Rwenzori 산지의 NATURAL 커피를 다크 로스트로 구성한 합성 싱글 오리진 프로필
+SO013_L,CO Huila HONEY 라이트,SINGLE_ORIGIN,HONEY,CO,Huila,Sample Huila Coffee Group,CoffeeProd Origin Partner 13,1500,1900,LIGHT,false,,5,2,4,5,Huila 산지의 HONEY 커피를 라이트 로스트로 구성한 합성 싱글 오리진 프로필
+SO013_M,CO Huila HONEY 미디엄,SINGLE_ORIGIN,HONEY,CO,Huila,Sample Huila Coffee Group,CoffeeProd Origin Partner 13,1500,1900,MEDIUM,false,,4,3,4,4,Huila 산지의 HONEY 커피를 미디엄 로스트로 구성한 합성 싱글 오리진 프로필
+SO014_L,CO Narino WASHED 라이트,SINGLE_ORIGIN,WASHED,CO,Narino,Sample Narino Coffee Group,CoffeeProd Origin Partner 14,1800,2200,LIGHT,false,,5,2,4,5,Narino 산지의 WASHED 커피를 라이트 로스트로 구성한 합성 싱글 오리진 프로필
+SO014_M,CO Narino WASHED 미디엄,SINGLE_ORIGIN,WASHED,CO,Narino,Sample Narino Coffee Group,CoffeeProd Origin Partner 14,1800,2200,MEDIUM,false,,5,3,4,4,Narino 산지의 WASHED 커피를 미디엄 로스트로 구성한 합성 싱글 오리진 프로필
+SO015_L,CO Cauca WASHED 라이트,SINGLE_ORIGIN,WASHED,CO,Cauca,Sample Cauca Coffee Group,CoffeeProd Origin Partner 15,1600,2050,LIGHT,false,,5,2,4,5,Cauca 산지의 WASHED 커피를 라이트 로스트로 구성한 합성 싱글 오리진 프로필
+SO015_M,CO Cauca WASHED 미디엄,SINGLE_ORIGIN,WASHED,CO,Cauca,Sample Cauca Coffee Group,CoffeeProd Origin Partner 15,1600,2050,MEDIUM,false,,4,3,4,4,Cauca 산지의 WASHED 커피를 미디엄 로스트로 구성한 합성 싱글 오리진 프로필
+SO016_L,CO Sierra Nevada NATURAL 라이트,SINGLE_ORIGIN,NATURAL,CO,Sierra Nevada,Sample Sierra Nevada Coffee Group,CoffeeProd Origin Partner 16,1200,1750,LIGHT,false,,4,3,5,4,Sierra Nevada 산지의 NATURAL 커피를 라이트 로스트로 구성한 합성 싱글 오리진 프로필
+SO016_M,CO Sierra Nevada NATURAL 미디엄,SINGLE_ORIGIN,NATURAL,CO,Sierra Nevada,Sample Sierra Nevada Coffee Group,CoffeeProd Origin Partner 16,1200,1750,MEDIUM,false,,3,4,5,3,Sierra Nevada 산지의 NATURAL 커피를 미디엄 로스트로 구성한 합성 싱글 오리진 프로필
+SO017_M,BR Cerrado NATURAL 미디엄,SINGLE_ORIGIN,NATURAL,BR,Cerrado,Sample Cerrado Coffee Group,CoffeeProd Origin Partner 17,900,1200,MEDIUM,false,,2,4,5,3,Cerrado 산지의 NATURAL 커피를 미디엄 로스트로 구성한 합성 싱글 오리진 프로필
+SO017_D,BR Cerrado NATURAL 다크,SINGLE_ORIGIN,NATURAL,BR,Cerrado,Sample Cerrado Coffee Group,CoffeeProd Origin Partner 17,900,1200,DARK,false,,1,5,4,3,Cerrado 산지의 NATURAL 커피를 다크 로스트로 구성한 합성 싱글 오리진 프로필
+SO018_M,BR Sul de Minas PULPED_NATURAL 미디엄,SINGLE_ORIGIN,PULPED_NATURAL,BR,Sul de Minas,Sample Sul de Minas Coffee Group,CoffeeProd Origin Partner 18,950,1300,MEDIUM,false,,2,4,5,4,Sul de Minas 산지의 PULPED_NATURAL 커피를 미디엄 로스트로 구성한 합성 싱글 오리진 프로필
+SO018_D,BR Sul de Minas PULPED_NATURAL 다크,SINGLE_ORIGIN,PULPED_NATURAL,BR,Sul de Minas,Sample Sul de Minas Coffee Group,CoffeeProd Origin Partner 18,950,1300,DARK,false,,1,5,4,4,Sul de Minas 산지의 PULPED_NATURAL 커피를 다크 로스트로 구성한 합성 싱글 오리진 프로필
+SO019_M,BR Mantiqueira NATURAL 미디엄,SINGLE_ORIGIN,NATURAL,BR,Mantiqueira,Sample Mantiqueira Coffee Group,CoffeeProd Origin Partner 19,1100,1450,MEDIUM,false,,3,4,5,4,Mantiqueira 산지의 NATURAL 커피를 미디엄 로스트로 구성한 합성 싱글 오리진 프로필
+SO019_D,BR Mantiqueira NATURAL 다크,SINGLE_ORIGIN,NATURAL,BR,Mantiqueira,Sample Mantiqueira Coffee Group,CoffeeProd Origin Partner 19,1100,1450,DARK,false,,2,5,4,4,Mantiqueira 산지의 NATURAL 커피를 다크 로스트로 구성한 합성 싱글 오리진 프로필
+SO020_M,BR Mogiana HONEY 미디엄,SINGLE_ORIGIN,HONEY,BR,Mogiana,Sample Mogiana Coffee Group,CoffeeProd Origin Partner 20,900,1250,MEDIUM,false,,2,4,5,3,Mogiana 산지의 HONEY 커피를 미디엄 로스트로 구성한 합성 싱글 오리진 프로필
+SO020_D,BR Mogiana HONEY 다크,SINGLE_ORIGIN,HONEY,BR,Mogiana,Sample Mogiana Coffee Group,CoffeeProd Origin Partner 20,900,1250,DARK,false,,1,5,4,3,Mogiana 산지의 HONEY 커피를 다크 로스트로 구성한 합성 싱글 오리진 프로필
+SO021_L,CR Tarrazu HONEY 라이트,SINGLE_ORIGIN,HONEY,CR,Tarrazu,Sample Tarrazu Coffee Group,CoffeeProd Origin Partner 21,1400,1900,LIGHT,false,,5,2,5,5,Tarrazu 산지의 HONEY 커피를 라이트 로스트로 구성한 합성 싱글 오리진 프로필
+SO021_M,CR Tarrazu HONEY 미디엄,SINGLE_ORIGIN,HONEY,CR,Tarrazu,Sample Tarrazu Coffee Group,CoffeeProd Origin Partner 21,1400,1900,MEDIUM,false,,4,3,5,4,Tarrazu 산지의 HONEY 커피를 미디엄 로스트로 구성한 합성 싱글 오리진 프로필
+SO022_L,CR West Valley NATURAL 라이트,SINGLE_ORIGIN,NATURAL,CR,West Valley,Sample West Valley Coffee Group,CoffeeProd Origin Partner 22,1200,1700,LIGHT,false,,5,2,5,5,West Valley 산지의 NATURAL 커피를 라이트 로스트로 구성한 합성 싱글 오리진 프로필
+SO022_M,CR West Valley NATURAL 미디엄,SINGLE_ORIGIN,NATURAL,CR,West Valley,Sample West Valley Coffee Group,CoffeeProd Origin Partner 22,1200,1700,MEDIUM,false,,4,3,5,4,West Valley 산지의 NATURAL 커피를 미디엄 로스트로 구성한 합성 싱글 오리진 프로필
+SO023_L,CR Tres Rios WASHED 라이트,SINGLE_ORIGIN,WASHED,CR,Tres Rios,Sample Tres Rios Coffee Group,CoffeeProd Origin Partner 23,1200,1650,LIGHT,false,,5,2,4,5,Tres Rios 산지의 WASHED 커피를 라이트 로스트로 구성한 합성 싱글 오리진 프로필
+SO023_M,CR Tres Rios WASHED 미디엄,SINGLE_ORIGIN,WASHED,CR,Tres Rios,Sample Tres Rios Coffee Group,CoffeeProd Origin Partner 23,1200,1650,MEDIUM,false,,4,3,4,4,Tres Rios 산지의 WASHED 커피를 미디엄 로스트로 구성한 합성 싱글 오리진 프로필
+SO024_L,GT Huehuetenango WASHED 라이트,SINGLE_ORIGIN,WASHED,GT,Huehuetenango,Sample Huehuetenango Coffee Group,CoffeeProd Origin Partner 24,1500,2000,LIGHT,false,,5,3,4,5,Huehuetenango 산지의 WASHED 커피를 라이트 로스트로 구성한 합성 싱글 오리진 프로필
+SO024_M,GT Huehuetenango WASHED 미디엄,SINGLE_ORIGIN,WASHED,GT,Huehuetenango,Sample Huehuetenango Coffee Group,CoffeeProd Origin Partner 24,1500,2000,MEDIUM,false,,4,4,4,4,Huehuetenango 산지의 WASHED 커피를 미디엄 로스트로 구성한 합성 싱글 오리진 프로필
+SO025_L,GT Antigua WASHED 라이트,SINGLE_ORIGIN,WASHED,GT,Antigua,Sample Antigua Coffee Group,CoffeeProd Origin Partner 25,1400,1800,LIGHT,false,,4,3,5,5,Antigua 산지의 WASHED 커피를 라이트 로스트로 구성한 합성 싱글 오리진 프로필
+SO025_M,GT Antigua WASHED 미디엄,SINGLE_ORIGIN,WASHED,GT,Antigua,Sample Antigua Coffee Group,CoffeeProd Origin Partner 25,1400,1800,MEDIUM,false,,3,4,5,4,Antigua 산지의 WASHED 커피를 미디엄 로스트로 구성한 합성 싱글 오리진 프로필
+SO026_L,GT Atitlan NATURAL 라이트,SINGLE_ORIGIN,NATURAL,GT,Atitlan,Sample Atitlan Coffee Group,CoffeeProd Origin Partner 26,1500,1900,LIGHT,false,,4,3,5,5,Atitlan 산지의 NATURAL 커피를 라이트 로스트로 구성한 합성 싱글 오리진 프로필
+SO026_M,GT Atitlan NATURAL 미디엄,SINGLE_ORIGIN,NATURAL,GT,Atitlan,Sample Atitlan Coffee Group,CoffeeProd Origin Partner 26,1500,1900,MEDIUM,false,,3,4,5,4,Atitlan 산지의 NATURAL 커피를 미디엄 로스트로 구성한 합성 싱글 오리진 프로필
+SO027_L,SV Apaneca-Ilamatepec HONEY 라이트,SINGLE_ORIGIN,HONEY,SV,Apaneca-Ilamatepec,Sample Apaneca-Ilamatepec Coffee Group,CoffeeProd Origin Partner 27,1300,1800,LIGHT,false,,5,2,5,5,Apaneca-Ilamatepec 산지의 HONEY 커피를 라이트 로스트로 구성한 합성 싱글 오리진 프로필
+SO027_M,SV Apaneca-Ilamatepec HONEY 미디엄,SINGLE_ORIGIN,HONEY,SV,Apaneca-Ilamatepec,Sample Apaneca-Ilamatepec Coffee Group,CoffeeProd Origin Partner 27,1300,1800,MEDIUM,false,,4,3,5,4,Apaneca-Ilamatepec 산지의 HONEY 커피를 미디엄 로스트로 구성한 합성 싱글 오리진 프로필
+SO028_L,SV Chalatenango WASHED 라이트,SINGLE_ORIGIN,WASHED,SV,Chalatenango,Sample Chalatenango Coffee Group,CoffeeProd Origin Partner 28,1450,1950,LIGHT,false,,5,2,4,5,Chalatenango 산지의 WASHED 커피를 라이트 로스트로 구성한 합성 싱글 오리진 프로필
+SO028_M,SV Chalatenango WASHED 미디엄,SINGLE_ORIGIN,WASHED,SV,Chalatenango,Sample Chalatenango Coffee Group,CoffeeProd Origin Partner 28,1450,1950,MEDIUM,false,,5,3,4,5,Chalatenango 산지의 WASHED 커피를 미디엄 로스트로 구성한 합성 싱글 오리진 프로필
+SO029_L,HN Marcala WASHED 라이트,SINGLE_ORIGIN,WASHED,HN,Marcala,Sample Marcala Coffee Group,CoffeeProd Origin Partner 29,1300,1750,LIGHT,false,,5,2,4,5,Marcala 산지의 WASHED 커피를 라이트 로스트로 구성한 합성 싱글 오리진 프로필
+SO029_M,HN Marcala WASHED 미디엄,SINGLE_ORIGIN,WASHED,HN,Marcala,Sample Marcala Coffee Group,CoffeeProd Origin Partner 29,1300,1750,MEDIUM,false,,4,3,4,4,Marcala 산지의 WASHED 커피를 미디엄 로스트로 구성한 합성 싱글 오리진 프로필
+SO030_L,HN Copan NATURAL 라이트,SINGLE_ORIGIN,NATURAL,HN,Copan,Sample Copan Coffee Group,CoffeeProd Origin Partner 30,1100,1550,LIGHT,false,,4,3,5,4,Copan 산지의 NATURAL 커피를 라이트 로스트로 구성한 합성 싱글 오리진 프로필
+SO030_M,HN Copan NATURAL 미디엄,SINGLE_ORIGIN,NATURAL,HN,Copan,Sample Copan Coffee Group,CoffeeProd Origin Partner 30,1100,1550,MEDIUM,false,,3,4,5,3,Copan 산지의 NATURAL 커피를 미디엄 로스트로 구성한 합성 싱글 오리진 프로필
+SO031_L,PA Boquete WASHED 라이트,SINGLE_ORIGIN,WASHED,PA,Boquete,Sample Boquete Coffee Group,CoffeeProd Origin Partner 31,1600,2000,LIGHT,false,,5,1,4,5,Boquete 산지의 WASHED 커피를 라이트 로스트로 구성한 합성 싱글 오리진 프로필
+SO031_M,PA Boquete WASHED 미디엄,SINGLE_ORIGIN,WASHED,PA,Boquete,Sample Boquete Coffee Group,CoffeeProd Origin Partner 31,1600,2000,MEDIUM,false,,5,2,4,5,Boquete 산지의 WASHED 커피를 미디엄 로스트로 구성한 합성 싱글 오리진 프로필
+SO032_L,PA Volcan NATURAL 라이트,SINGLE_ORIGIN,NATURAL,PA,Volcan,Sample Volcan Coffee Group,CoffeeProd Origin Partner 32,1500,1900,LIGHT,false,,5,2,5,5,Volcan 산지의 NATURAL 커피를 라이트 로스트로 구성한 합성 싱글 오리진 프로필
+SO032_M,PA Volcan NATURAL 미디엄,SINGLE_ORIGIN,NATURAL,PA,Volcan,Sample Volcan Coffee Group,CoffeeProd Origin Partner 32,1500,1900,MEDIUM,false,,4,3,5,5,Volcan 산지의 NATURAL 커피를 미디엄 로스트로 구성한 합성 싱글 오리진 프로필
+SO033_M,ID Gayo WET_HULLED 미디엄,SINGLE_ORIGIN,WET_HULLED,ID,Gayo,Sample Gayo Coffee Group,CoffeeProd Origin Partner 33,1200,1600,MEDIUM,false,,2,5,3,4,Gayo 산지의 WET_HULLED 커피를 미디엄 로스트로 구성한 합성 싱글 오리진 프로필
+SO033_D,ID Gayo WET_HULLED 다크,SINGLE_ORIGIN,WET_HULLED,ID,Gayo,Sample Gayo Coffee Group,CoffeeProd Origin Partner 33,1200,1600,DARK,false,,1,5,2,4,Gayo 산지의 WET_HULLED 커피를 다크 로스트로 구성한 합성 싱글 오리진 프로필
+SO034_M,ID Java WASHED 미디엄,SINGLE_ORIGIN,WASHED,ID,Java,Sample Java Coffee Group,CoffeeProd Origin Partner 34,1100,1550,MEDIUM,false,,3,4,4,3,Java 산지의 WASHED 커피를 미디엄 로스트로 구성한 합성 싱글 오리진 프로필
+SO034_D,ID Java WASHED 다크,SINGLE_ORIGIN,WASHED,ID,Java,Sample Java Coffee Group,CoffeeProd Origin Partner 34,1100,1550,DARK,false,,2,5,3,3,Java 산지의 WASHED 커피를 다크 로스트로 구성한 합성 싱글 오리진 프로필
+SO035_L,PG Eastern Highlands WASHED 라이트,SINGLE_ORIGIN,WASHED,PG,Eastern Highlands,Sample Eastern Highlands Coffee Group,CoffeeProd Origin Partner 35,1400,1900,LIGHT,false,,5,2,4,5,Eastern Highlands 산지의 WASHED 커피를 라이트 로스트로 구성한 합성 싱글 오리진 프로필
+SO035_M,PG Eastern Highlands WASHED 미디엄,SINGLE_ORIGIN,WASHED,PG,Eastern Highlands,Sample Eastern Highlands Coffee Group,CoffeeProd Origin Partner 35,1400,1900,MEDIUM,false,,4,3,4,4,Eastern Highlands 산지의 WASHED 커피를 미디엄 로스트로 구성한 합성 싱글 오리진 프로필
+SO036_M,IN Chikmagalur NATURAL 미디엄,SINGLE_ORIGIN,NATURAL,IN,Chikmagalur,Sample Chikmagalur Coffee Group,CoffeeProd Origin Partner 36,1000,1450,MEDIUM,false,,2,5,4,4,Chikmagalur 산지의 NATURAL 커피를 미디엄 로스트로 구성한 합성 싱글 오리진 프로필
+SO036_D,IN Chikmagalur NATURAL 다크,SINGLE_ORIGIN,NATURAL,IN,Chikmagalur,Sample Chikmagalur Coffee Group,CoffeeProd Origin Partner 36,1000,1450,DARK,false,,1,5,3,4,Chikmagalur 산지의 NATURAL 커피를 다크 로스트로 구성한 합성 싱글 오리진 프로필
+BL001_M,Morning Balance 미디엄,BLEND,,,,,,,,MEDIUM,false,,3,4,5,4,3개 산지의 균형을 미디엄 로스트로 설계한 합성 블렌드 프로필
+BL001_D,Morning Balance 다크,BLEND,,,,,,,,DARK,false,,2,5,4,4,3개 산지의 균형을 다크 로스트로 설계한 합성 블렌드 프로필
+BL002_M,Espresso House 미디엄,BLEND,,,,,,,,MEDIUM,false,,2,5,4,4,3개 산지의 균형을 미디엄 로스트로 설계한 합성 블렌드 프로필
+BL002_D,Espresso House 다크,BLEND,,,,,,,,DARK,false,,1,5,3,4,3개 산지의 균형을 다크 로스트로 설계한 합성 블렌드 프로필
+BL003_L,East Africa Floral 라이트,BLEND,,,,,,,,LIGHT,false,,5,1,4,5,3개 산지의 균형을 라이트 로스트로 설계한 합성 블렌드 프로필
+BL003_M,East Africa Floral 미디엄,BLEND,,,,,,,,MEDIUM,false,,5,2,4,5,3개 산지의 균형을 미디엄 로스트로 설계한 합성 블렌드 프로필
+BL004_M,Chocolate Nut 미디엄,BLEND,,,,,,,,MEDIUM,false,,2,5,5,3,3개 산지의 균형을 미디엄 로스트로 설계한 합성 블렌드 프로필
+BL004_D,Chocolate Nut 다크,BLEND,,,,,,,,DARK,false,,1,5,4,3,3개 산지의 균형을 다크 로스트로 설계한 합성 블렌드 프로필
+BL005_L,Latin Citrus 라이트,BLEND,,,,,,,,LIGHT,false,,5,2,4,5,3개 산지의 균형을 라이트 로스트로 설계한 합성 블렌드 프로필
+BL005_M,Latin Citrus 미디엄,BLEND,,,,,,,,MEDIUM,false,,5,3,4,4,3개 산지의 균형을 미디엄 로스트로 설계한 합성 블렌드 프로필
+BL006_L,Tropical Natural 라이트,BLEND,,,,,,,,LIGHT,false,,5,2,5,5,3개 산지의 균형을 라이트 로스트로 설계한 합성 블렌드 프로필
+BL006_M,Tropical Natural 미디엄,BLEND,,,,,,,,MEDIUM,false,,4,3,5,5,3개 산지의 균형을 미디엄 로스트로 설계한 합성 블렌드 프로필
+BL007_M,Cold Brew Cocoa 미디엄,BLEND,,,,,,,,MEDIUM,false,,2,5,5,3,3개 산지의 균형을 미디엄 로스트로 설계한 합성 블렌드 프로필
+BL007_D,Cold Brew Cocoa 다크,BLEND,,,,,,,,DARK,false,,1,5,4,3,3개 산지의 균형을 다크 로스트로 설계한 합성 블렌드 프로필
+BL008_M,Highland Sweet 미디엄,BLEND,,,,,,,,MEDIUM,false,,4,4,5,4,3개 산지의 균형을 미디엄 로스트로 설계한 합성 블렌드 프로필
+BL008_D,Highland Sweet 다크,BLEND,,,,,,,,DARK,false,,3,5,4,4,3개 산지의 균형을 다크 로스트로 설계한 합성 블렌드 프로필
+BL009_M,Deep Roast Foundation 미디엄,BLEND,,,,,,,,MEDIUM,false,,1,5,4,4,3개 산지의 균형을 미디엄 로스트로 설계한 합성 블렌드 프로필
+BL009_D,Deep Roast Foundation 다크,BLEND,,,,,,,,DARK,false,,1,5,3,4,3개 산지의 균형을 다크 로스트로 설계한 합성 블렌드 프로필
+BL010_M,Seasonal Red Fruit 미디엄,BLEND,,,,,,,,MEDIUM,false,,4,3,5,5,3개 산지의 균형을 미디엄 로스트로 설계한 합성 블렌드 프로필
+BL010_D,Seasonal Red Fruit 다크,BLEND,,,,,,,,DARK,false,,3,4,4,5,3개 산지의 균형을 다크 로스트로 설계한 합성 블렌드 프로필
+BL011_M,Decaf Caramel 미디엄,BLEND,SUGARCANE,,,,,,,MEDIUM,true,SUGARCANE,2,4,5,3,2개 산지의 균형을 미디엄 로스트로 설계한 합성 블렌드 프로필
+BL011_D,Decaf Caramel 다크,BLEND,SUGARCANE,,,,,,,DARK,true,SUGARCANE,1,5,4,3,2개 산지의 균형을 다크 로스트로 설계한 합성 블렌드 프로필
+BL012_L,Decaf Floral 라이트,BLEND,SWISS_WATER,,,,,,,LIGHT,true,SWISS_WATER,5,1,4,5,2개 산지의 균형을 라이트 로스트로 설계한 합성 블렌드 프로필
+BL012_M,Decaf Floral 미디엄,BLEND,SWISS_WATER,,,,,,,MEDIUM,true,SWISS_WATER,4,2,4,4,2개 산지의 균형을 미디엄 로스트로 설계한 합성 블렌드 프로필

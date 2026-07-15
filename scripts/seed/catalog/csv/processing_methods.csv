@@ -1,0 +1,10 @@
+code,name,description
+WASHED,Washed,점액질을 물로 제거해 향미의 명료도와 산뜻한 인상을 표현함
+NATURAL,Natural,커피 체리를 과육째 건조해 과일 향과 단맛을 표현함
+HONEY,Honey,점액질 일부를 남겨 단맛과 질감의 균형을 표현함
+PULPED_NATURAL,Pulped Natural,과육을 제거하고 점액질을 남겨 건조하는 방식을 표현함
+WET_HULLED,Wet Hulled,높은 수분 상태에서 파치먼트를 제거하는 인도네시아식 방식을 표현함
+ANAEROBIC,Anaerobic,밀폐 환경에서 발효해 선명한 발효 향과 과일 인상을 표현함
+CARBONIC_MACERATION,Carbonic Maceration,이산화탄소 환경의 발효로 복합적인 과일 인상을 표현함
+SWISS_WATER,Swiss Water,물 기반 공정으로 카페인을 제거하는 방식을 표현함
+SUGARCANE,Sugarcane Decaf,사탕수수 유래 성분을 활용한 디카페인 방식을 표현함

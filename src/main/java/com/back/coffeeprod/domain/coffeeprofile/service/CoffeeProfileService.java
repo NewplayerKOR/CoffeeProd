@@ -5,6 +5,7 @@ import com.back.coffeeprod.domain.coffeeprofile.entity.BeanType;
 import com.back.coffeeprod.domain.coffeeprofile.entity.BrewMethod;
 import com.back.coffeeprod.domain.coffeeprofile.entity.CoffeeProfile;
 import com.back.coffeeprod.domain.coffeeprofile.entity.CoffeeProfileBrewMethod;
+import com.back.coffeeprod.domain.coffeeprofile.entity.CoffeeProfileComponent;
 import com.back.coffeeprod.domain.coffeeprofile.entity.CoffeeProfileFlavorNote;
 import com.back.coffeeprod.domain.coffeeprofile.entity.CoffeeProfileVariety;
 import com.back.coffeeprod.domain.coffeeprofile.entity.CoffeeVariety;
@@ -19,6 +20,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -32,6 +34,9 @@ public class CoffeeProfileService {
     private static final int MAX_FLAVOR_NOTE_COUNT = 5;
     private static final int MAX_BREW_METHOD_COUNT = 3;
     private static final int MAX_VARIETY_COUNT = 3;
+    private static final int MIN_BLEND_COMPONENT_COUNT = 2;
+    private static final int MAX_BLEND_COMPONENT_COUNT = 5;
+    private static final BigDecimal BLEND_RATIO_TOTAL = new BigDecimal("100.00");
 
     private final CoffeeProfileRepository coffeeProfileRepository;
     private final ProcessingMethodService processingMethodService;
@@ -135,7 +140,8 @@ public class CoffeeProfileService {
     private void validateCoffeeProfileRequest(CoffeeProfileDto.Request request) {
         if (request.getFlavorNotes() == null
                 || request.getBrewMethods() == null
-                || request.getVarieties() == null) {
+                || request.getVarieties() == null
+                || request.getComponents() == null) {
             throw new CustomException(ErrorCode.INVALID_COFFEE_PROFILE);
         }
 
@@ -144,10 +150,12 @@ public class CoffeeProfileService {
             throw new CustomException(ErrorCode.INVALID_COFFEE_PROFILE);
         }
 
-        if (request.getBeanType() == BeanType.BLEND
-                && request.getOriginCountryCode() != null) {
+        if (request.getBeanType() == BeanType.SINGLE_ORIGIN
+                && !request.getComponents().isEmpty()) {
             throw new CustomException(ErrorCode.INVALID_COFFEE_PROFILE);
         }
+
+        validateBlendFields(request);
 
         if (!Boolean.TRUE.equals(request.getDecaf())
                 && request.getDecafMethod() != null) {
@@ -168,6 +176,7 @@ public class CoffeeProfileService {
         validateFlavorNoteRequests(request.getFlavorNotes());
         validateBrewMethodRequests(request.getBrewMethods());
         validateVarietyRequests(request.getVarieties());
+        validateComponentRequests(request.getBeanType(), request.getComponents());
     }
 
     // 프로필의 향미와 추출법 연결 정보를 전체 교체함
@@ -226,9 +235,29 @@ public class CoffeeProfileService {
             ));
         }
 
+        List<CoffeeProfileComponent> components = new ArrayList<>();
+
+        for (int index = 0; index < request.getComponents().size(); index++) {
+            CoffeeProfileDto.ComponentRequest componentRequest =
+                    request.getComponents().get(index);
+            ProcessingMethod componentProcessingMethod = resolveProcessingMethod(
+                    componentRequest.getProcessingMethodId()
+            );
+
+            components.add(CoffeeProfileComponent.of(
+                    coffeeProfile,
+                    componentRequest.getOriginCountryCode(),
+                    componentRequest.getOriginRegion(),
+                    componentProcessingMethod,
+                    componentRequest.getComponentRatio(),
+                    (short) (index + 1)
+            ));
+        }
+
         coffeeProfile.replaceFlavorNotes(flavorNotes);
         coffeeProfile.replaceBrewMethods(brewMethods);
         coffeeProfile.replaceVarieties(varieties);
+        coffeeProfile.replaceComponents(components);
     }
 
     // 향미 노트 입력값과 중복을 검증함
@@ -309,6 +338,77 @@ public class CoffeeProfileService {
                         ErrorCode.DUPLICATE_COFFEE_PROFILE_VARIETY
                 );
             }
+        }
+    }
+
+    // 블렌드 프로필에 허용되지 않는 단일 원산지 필드를 검증함
+    private void validateBlendFields(CoffeeProfileDto.Request request) {
+        if (request.getBeanType() != BeanType.BLEND) {
+            return;
+        }
+
+        if (request.getOriginCountryCode() != null
+                || request.getOriginRegion() != null
+                || request.getFarmOrCooperative() != null
+                || request.getProducer() != null
+                || request.getAltitudeMin() != null
+                || request.getAltitudeMax() != null) {
+            throw new CustomException(ErrorCode.INVALID_COFFEE_PROFILE);
+        }
+    }
+
+    // 블렌드 구성요소와 비율 합계를 검증함
+    private void validateComponentRequests(
+            BeanType beanType,
+            List<CoffeeProfileDto.ComponentRequest> components
+    ) {
+        if (beanType != BeanType.BLEND) {
+            return;
+        }
+
+        if (components.size() < MIN_BLEND_COMPONENT_COUNT
+                || components.size() > MAX_BLEND_COMPONENT_COUNT) {
+            throw new CustomException(ErrorCode.INVALID_BLEND_COMPONENT);
+        }
+
+        boolean anyRatioPresent = false;
+        boolean allRatiosPresent = true;
+        BigDecimal ratioTotal = BigDecimal.ZERO;
+
+        for (CoffeeProfileDto.ComponentRequest component : components) {
+            if (component == null
+                    || component.getOriginCountryCode() == null
+                    || !component.getOriginCountryCode().matches("^[A-Z]{2}$")
+                    || component.getOriginRegion() != null
+                    && component.getOriginRegion().length() > 100
+                    || component.getProcessingMethodId() != null
+                    && component.getProcessingMethodId() <= 0) {
+                throw new CustomException(ErrorCode.INVALID_BLEND_COMPONENT);
+            }
+
+            BigDecimal ratio = component.getComponentRatio();
+            anyRatioPresent |= ratio != null;
+            allRatiosPresent &= ratio != null;
+
+            if (ratio == null) {
+                continue;
+            }
+
+            if (ratio.compareTo(BigDecimal.ZERO) <= 0
+                    || ratio.compareTo(BLEND_RATIO_TOTAL) > 0
+                    || ratio.scale() > 2) {
+                throw new CustomException(
+                        ErrorCode.INVALID_BLEND_COMPONENT_RATIO
+                );
+            }
+
+            ratioTotal = ratioTotal.add(ratio);
+        }
+
+        if (anyRatioPresent
+                && (!allRatiosPresent
+                || ratioTotal.compareTo(BLEND_RATIO_TOTAL) != 0)) {
+            throw new CustomException(ErrorCode.INVALID_BLEND_COMPONENT_RATIO);
         }
     }
 }
