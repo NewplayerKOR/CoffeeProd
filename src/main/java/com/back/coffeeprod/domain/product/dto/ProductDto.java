@@ -1,5 +1,6 @@
 package com.back.coffeeprod.domain.product.dto;
 
+import com.back.coffeeprod.domain.coffeeprofile.dto.CoffeeProfileDto;
 import com.back.coffeeprod.domain.coffeeprofile.entity.BeanType;
 import com.back.coffeeprod.domain.coffeeprofile.entity.CoffeeProfile;
 import com.back.coffeeprod.domain.product.entity.Product;
@@ -8,6 +9,8 @@ import com.back.coffeeprod.domain.product.entity.RoastLevel;
 import jakarta.validation.constraints.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+
+import java.util.List;
 
 public class ProductDto {
 
@@ -137,6 +140,8 @@ public class ProductDto {
         private final short sweetness;
         private final short aroma;
         private final String summary;
+        private final List<CoffeeProfileDto.FlavorNoteResponse> flavorNotes;
+        private final List<CoffeeProfileDto.BrewMethodResponse> brewMethods;
 
         public CoffeeProfileSummary(CoffeeProfile coffeeProfile) {
             this.id = coffeeProfile.getId();
@@ -154,6 +159,12 @@ public class ProductDto {
             this.sweetness = coffeeProfile.getSweetness();
             this.aroma = coffeeProfile.getAroma();
             this.summary = coffeeProfile.getSummary();
+            this.flavorNotes = coffeeProfile.getFlavorNotes().stream()
+                    .map(CoffeeProfileDto.FlavorNoteResponse::new)
+                    .toList();
+            this.brewMethods = coffeeProfile.getBrewMethods().stream()
+                    .map(CoffeeProfileDto.BrewMethodResponse::new)
+                    .toList();
         }
     }
 
