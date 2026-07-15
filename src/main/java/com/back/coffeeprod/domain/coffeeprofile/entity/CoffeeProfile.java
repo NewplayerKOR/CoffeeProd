@@ -106,6 +106,16 @@ public class CoffeeProfile extends BaseTimeEntity {
     @BatchSize(size = 50)
     private List<CoffeeProfileVariety> varieties = new ArrayList<>();
 
+    // 블렌드 원산지 구성을 노출 순서로 관리함
+    @OneToMany(
+            mappedBy = "coffeeProfile",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
+    @OrderBy("displayOrder ASC")
+    @BatchSize(size = 50)
+    private List<CoffeeProfileComponent> components = new ArrayList<>();
+
     @Builder
     public CoffeeProfile(
             ProcessingMethod processingMethod,
@@ -206,5 +216,13 @@ public class CoffeeProfile extends BaseTimeEntity {
     ) {
         this.varieties.clear();
         this.varieties.addAll(varieties);
+    }
+
+    // 블렌드 구성요소를 전체 교체함
+    public void replaceComponents(
+            List<CoffeeProfileComponent> components
+    ) {
+        this.components.clear();
+        this.components.addAll(components);
     }
 }
