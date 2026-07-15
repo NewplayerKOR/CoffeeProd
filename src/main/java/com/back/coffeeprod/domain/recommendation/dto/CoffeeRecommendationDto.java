@@ -1,5 +1,6 @@
 package com.back.coffeeprod.domain.recommendation.dto;
 
+import com.back.coffeeprod.domain.coffeeprofile.dto.CoffeeProfileDto;
 import com.back.coffeeprod.domain.coffeeprofile.entity.BeanType;
 import com.back.coffeeprod.domain.coffeeprofile.entity.CoffeeProfile;
 import com.back.coffeeprod.domain.product.entity.Product;
@@ -106,6 +107,8 @@ public class CoffeeRecommendationDto {
         private final short body;
         private final short sweetness;
         private final short aroma;
+        private final List<CoffeeProfileDto.FlavorNoteResponse> flavorNotes;
+        private final List<CoffeeProfileDto.BrewMethodResponse> brewMethods;
 
         private final int recommendationScore;
         private final List<String> reasons;
@@ -133,6 +136,12 @@ public class CoffeeRecommendationDto {
             this.body = coffeeProfile.getBody();
             this.sweetness = coffeeProfile.getSweetness();
             this.aroma = coffeeProfile.getAroma();
+            this.flavorNotes = coffeeProfile.getFlavorNotes().stream()
+                    .map(CoffeeProfileDto.FlavorNoteResponse::new)
+                    .toList();
+            this.brewMethods = coffeeProfile.getBrewMethods().stream()
+                    .map(CoffeeProfileDto.BrewMethodResponse::new)
+                    .toList();
 
             this.recommendationScore = recommendationScore;
             this.reasons = List.copyOf(reasons);
