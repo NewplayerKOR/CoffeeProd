@@ -20,12 +20,12 @@ Git Bash에서 프로젝트 루트 기준으로 실행한다.
 
 ```bash
 cp k6/.env.example k6/.env
-cp k6/data/users.example.json k6/data/users.json
+bash scripts/seed/commerce/load_commerce.sh
 ```
 
 `k6/.env`에서 `BASE_URL`, `PRODUCT_ID`와 부하 값을 수정한다.
-로그인·주문 테스트를 수행하려면 `k6/data/users.json`을 실제 테스트 계정과 배송지 ID로 교체한다.
-두 파일은 Git에 포함되지 않는다.
+거래 시드는 실제 DB의 테스트 계정과 기본 배송지 ID를 `k6/data/users.json`에 내보낸다.
+직접 만든 계정을 사용한다면 `users.example.json` 형식으로 파일을 작성한다. `.env`와 `users.json`은 Git에 포함되지 않는다.
 
 ## 3. 실행
 
