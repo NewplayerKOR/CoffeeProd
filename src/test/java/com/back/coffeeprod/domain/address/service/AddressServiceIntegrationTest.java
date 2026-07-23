@@ -12,6 +12,7 @@ import com.back.coffeeprod.domain.payment.repository.PaymentRepository;
 import com.back.coffeeprod.global.exception.CustomException;
 import com.back.coffeeprod.global.exception.ErrorCode;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -36,6 +37,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
         "pg.toss.client-key=test-client-key",
         "pg.toss.secret-key=test-secret-key"
 })
+@DisplayName("배송지 서비스 통합 테스트")
 class AddressServiceIntegrationTest {
 
     private final AddressService addressService;
@@ -76,6 +78,7 @@ class AddressServiceIntegrationTest {
     }
 
     @Test
+    @DisplayName("요청한 배송지 한 건만 조회한다")
     void getAddress_returnsOnlyRequestedAddress() {
         Member member = saveMember("address-detail@test.com", "addressDetail");
         AddressDto.Response firstAddress = addressService.addAddress(member.getId(), addressRequest(
@@ -106,6 +109,7 @@ class AddressServiceIntegrationTest {
     }
 
     @Test
+    @DisplayName("다른 회원의 배송지는 조회할 수 없다")
     void getAddress_rejectsOtherMembersAddress() {
         Member owner = saveMember("address-owner@test.com", "addressOwner");
         Member otherMember = saveMember("address-other@test.com", "addressOther");

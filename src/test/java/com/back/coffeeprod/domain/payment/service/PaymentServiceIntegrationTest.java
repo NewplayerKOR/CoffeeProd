@@ -29,6 +29,7 @@ import com.back.coffeeprod.global.exception.CustomException;
 import com.back.coffeeprod.global.exception.ErrorCode;
 import jakarta.persistence.EntityManager;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -55,6 +56,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
         "pg.toss.client-key=test-client-key",
         "pg.toss.secret-key=test-secret-key"
 })
+@DisplayName("결제 서비스 통합 테스트")
 class PaymentServiceIntegrationTest {
 
     private final PaymentService paymentService;
@@ -113,6 +115,7 @@ class PaymentServiceIntegrationTest {
     }
 
     @Test
+    @DisplayName("다른 회원의 주문은 결제 게이트웨이 호출 전에 승인 요청을 거부한다")
     void confirmPayment_deniesOtherMembersOrderBeforeGatewayCall() {
         Member owner = saveMember("owner@test.com", "owner", 1_000);
         Member other = saveMember("other@test.com", "other", 1_000);
@@ -127,6 +130,7 @@ class PaymentServiceIntegrationTest {
     }
 
     @Test
+    @DisplayName("결제 승인 성공 시 결제 정보를 저장하고 주문을 결제 완료로 변경한다")
     void confirmPayment_savesPaymentAndMarksOrderPaid() {
         Member member = saveMember("success@test.com", "success", 1_000);
         OrderDto.DetailResponse order = createOrder(member, 10, 2, 300);
@@ -152,6 +156,7 @@ class PaymentServiceIntegrationTest {
     }
 
     @Test
+    @DisplayName("결제된 주문 취소 시 사용 마일리지를 복구하고 적립 마일리지를 회수한다")
     void cancelPaidOrder_restoresUsedMileageAndReclaimsEarnedMileage() {
         Member member = saveMember("cancel-paid@test.com", "cancelPaid", 1_000);
         OrderDto.DetailResponse order = createOrder(member, 10, 2, 300);
@@ -176,6 +181,7 @@ class PaymentServiceIntegrationTest {
     }
 
     @Test
+    @DisplayName("정지 회원의 결제 승인은 게이트웨이 호출 전에 거부한다")
     void confirmPayment_deniesSuspendedMemberBeforeGatewayCall() {
         Member member = saveMember("suspended-pay@test.com", "suspendedPay", 1_000);
         OrderDto.DetailResponse order = createOrder(member, 10, 2, 300);
@@ -191,6 +197,7 @@ class PaymentServiceIntegrationTest {
     }
 
     @Test
+    @DisplayName("이미 결제된 주문의 재승인은 게이트웨이 호출 전에 거부한다")
     void confirmPayment_deniesAlreadyPaidOrderBeforeGatewayCall() {
         Member member = saveMember("already-paid@test.com", "alreadyPaid", 1_000);
         OrderDto.DetailResponse order = createOrder(member, 10, 2, 300);
@@ -205,6 +212,7 @@ class PaymentServiceIntegrationTest {
     }
 
     @Test
+    @DisplayName("요청 결제 금액이 주문 금액과 다르면 주문을 취소하고 자원을 복구한다")
     void confirmPayment_cancelsOrderAndRestoresOnAmountMismatch() {
         Member member = saveMember("amount@test.com", "amount", 1_000);
         OrderDto.DetailResponse order = createOrder(member, 10, 2, 300);
@@ -227,6 +235,7 @@ class PaymentServiceIntegrationTest {
     }
 
     @Test
+    @DisplayName("결제 게이트웨이 호출이 실패하면 주문을 취소하고 자원을 복구한다")
     void confirmPayment_cancelsOrderAndRestoresOnGatewayFailure() {
         Member member = saveMember("gateway@test.com", "gateway", 1_000);
         OrderDto.DetailResponse order = createOrder(member, 10, 2, 300);
@@ -250,6 +259,7 @@ class PaymentServiceIntegrationTest {
     }
 
     @Test
+    @DisplayName("게이트웨이 주문 번호가 다르면 주문을 취소하고 자원을 복구한다")
     void confirmPayment_cancelsOrderAndRestoresOnGatewayOrderIdMismatch() {
         Member member = saveMember("gateway-order-id@test.com", "gatewayOrderId", 1_000);
         OrderDto.DetailResponse order = createOrder(member, 10, 2, 300);
@@ -273,6 +283,7 @@ class PaymentServiceIntegrationTest {
     }
 
     @Test
+    @DisplayName("게이트웨이 결제 금액이 다르면 주문을 취소하고 자원을 복구한다")
     void confirmPayment_cancelsOrderAndRestoresOnGatewayAmountMismatch() {
         Member member = saveMember("gateway-amount@test.com", "gatewayAmount", 1_000);
         OrderDto.DetailResponse order = createOrder(member, 10, 2, 300);
@@ -296,6 +307,7 @@ class PaymentServiceIntegrationTest {
     }
 
     @Test
+    @DisplayName("게이트웨이 결제 상태가 완료가 아니면 주문을 취소하고 자원을 복구한다")
     void confirmPayment_cancelsOrderAndRestoresOnGatewayStatusNotDone() {
         Member member = saveMember("gateway-status@test.com", "gatewayStatus", 1_000);
         OrderDto.DetailResponse order = createOrder(member, 10, 2, 300);

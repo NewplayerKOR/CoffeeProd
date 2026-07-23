@@ -14,6 +14,7 @@ import com.back.coffeeprod.domain.payment.repository.PaymentRepository;
 import com.back.coffeeprod.global.exception.CustomException;
 import com.back.coffeeprod.global.exception.ErrorCode;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -39,6 +40,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
         "pg.toss.client-key=test-client-key",
         "pg.toss.secret-key=test-secret-key"
 })
+@DisplayName("회원 서비스 통합 테스트")
 class MemberServiceIntegrationTest {
 
     private final MemberService memberService;
@@ -79,6 +81,7 @@ class MemberServiceIntegrationTest {
     }
 
     @Test
+    @DisplayName("회원 등급을 변경한다")
     void updateMemberGrade_changesGrade() {
         Member member = saveMember("grade@test.com", "gradeUser");
 
@@ -91,6 +94,7 @@ class MemberServiceIntegrationTest {
     }
 
     @Test
+    @DisplayName("활성 회원의 상태를 정지 상태로 변경한다")
     void updateMemberStatus_suspendsActiveMember() {
         Member member = saveMember("status@test.com", "statusUser");
 
@@ -103,6 +107,7 @@ class MemberServiceIntegrationTest {
     }
 
     @Test
+    @DisplayName("관리자가 회원 상태를 탈퇴로 변경할 수 없다")
     void updateMemberStatus_rejectsWithdrawnAsNextStatus() {
         Member member = saveMember("withdraw-next@test.com", "withdrawNext");
 
@@ -117,6 +122,7 @@ class MemberServiceIntegrationTest {
     }
 
     @Test
+    @DisplayName("이미 탈퇴한 회원의 상태는 변경할 수 없다")
     void updateMemberStatus_rejectsChangingWithdrawnMember() {
         Member member = saveMember("withdraw-current@test.com", "withdrawCurrent");
         member.updateStatus(MemberStatus.WITHDRAWN);
@@ -133,6 +139,7 @@ class MemberServiceIntegrationTest {
     }
 
     @Test
+    @DisplayName("기본 회원 목록 조회에서 탈퇴 회원을 제외한다")
     void getAllMembers_excludesWithdrawnMembersByDefault() {
         saveMember("active-list@test.com", "activeList");
         Member withdrawnMember = saveMember("withdraw-list@test.com", "withdrawList");
@@ -147,6 +154,7 @@ class MemberServiceIntegrationTest {
     }
 
     @Test
+    @DisplayName("탈퇴 회원 포함 옵션을 사용하면 탈퇴 회원도 조회한다")
     void getAllMembers_includesWithdrawnMembersWhenRequested() {
         saveMember("active-all@test.com", "activeAll");
         Member withdrawnMember = saveMember("withdraw-all@test.com", "withdrawAll");
@@ -160,6 +168,7 @@ class MemberServiceIntegrationTest {
     }
 
     @Test
+    @DisplayName("관리자용 회원 상세 정보를 조회한다")
     void getMember_returnsAdminMemberDetail() {
         Member member = saveMember("admin-detail@test.com", "adminDetail");
 

@@ -22,6 +22,7 @@ import com.back.coffeeprod.global.exception.CustomException;
 import com.back.coffeeprod.global.exception.ErrorCode;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -49,6 +50,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
         "pg.toss.client-key=test-client-key",
         "pg.toss.secret-key=test-secret-key"
 })
+@DisplayName("상품 문의 서비스 통합 테스트")
 class QnaServiceIntegrationTest {
 
     private final QnaService qnaService;
@@ -118,6 +120,7 @@ class QnaServiceIntegrationTest {
     }
 
     @Test
+    @DisplayName("새 상품 문의를 답변 대기 상태로 저장한다")
     void create_savesWaitingQna() {
         Member member = saveMember("qna-writer@test.com", "qnaWriter", Role.USER);
         Product product = saveProduct("문의 대상 원두");
@@ -135,6 +138,7 @@ class QnaServiceIntegrationTest {
     }
 
     @Test
+    @DisplayName("요청한 상품에 등록된 문의만 조회한다")
     void getProductQnas_returnsOnlyRequestedProductsQnas() {
         Member member = saveMember("qna-list@test.com", "qnaList", Role.USER);
         Product firstProduct = saveProduct("첫 번째 원두");
@@ -152,6 +156,7 @@ class QnaServiceIntegrationTest {
     }
 
     @Test
+    @DisplayName("작성자는 답변 대기 중인 문의를 수정할 수 있다")
     void update_changesOwnedWaitingQna() {
         Member member = saveMember("qna-update@test.com", "qnaUpdate", Role.USER);
         Product product = saveProduct("수정 문의 원두");
@@ -172,6 +177,7 @@ class QnaServiceIntegrationTest {
     }
 
     @Test
+    @DisplayName("다른 회원이 작성한 문의는 수정할 수 없다")
     void update_rejectsOtherMembersQna() {
         Member owner = saveMember("qna-owner@test.com", "qnaOwner", Role.USER);
         Member other = saveMember("qna-other@test.com", "qnaOther", Role.USER);
@@ -194,6 +200,7 @@ class QnaServiceIntegrationTest {
     }
 
     @Test
+    @DisplayName("작성자는 답변 대기 중인 문의를 삭제할 수 있다")
     void delete_removesOwnedWaitingQna() {
         Member member = saveMember("qna-delete@test.com", "qnaDelete", Role.USER);
         Product product = saveProduct("삭제 문의 원두");
@@ -209,6 +216,7 @@ class QnaServiceIntegrationTest {
     }
 
     @Test
+    @DisplayName("관리자 답변 등록 시 문의를 답변 완료 상태로 변경하고 관리자 정보를 저장한다")
     void answer_marksQnaAnsweredWithAdminInfo() {
         Member member = saveMember("qna-answer@test.com", "qnaAnswer", Role.USER);
         Member admin = saveMember("qna-admin@test.com", "qnaAdmin", Role.ADMIN);
@@ -232,6 +240,7 @@ class QnaServiceIntegrationTest {
     }
 
     @Test
+    @DisplayName("답변 완료 문의는 수정과 삭제 및 중복 답변을 허용하지 않는다")
     void answeredQna_rejectsUpdateDeleteAndSecondAnswer() {
         Member member = saveMember("qna-locked@test.com", "qnaLocked", Role.USER);
         Member admin = saveMember("qna-lock-admin@test.com", "qnaLockAdmin", Role.ADMIN);

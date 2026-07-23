@@ -21,6 +21,7 @@ import com.back.coffeeprod.global.exception.CustomException;
 import com.back.coffeeprod.global.exception.ErrorCode;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -49,6 +50,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
         "pg.toss.client-key=test-client-key",
         "pg.toss.secret-key=test-secret-key"
 })
+@DisplayName("커피 프로필 서비스 통합 테스트")
 class CoffeeProfileServiceIntegrationTest {
 
     private final CoffeeProfileService coffeeProfileService;
@@ -113,6 +115,7 @@ class CoffeeProfileServiceIntegrationTest {
     }
 
     @Test
+    @DisplayName("가공 방식이 지정된 싱글 오리진 커피 프로필을 저장한다")
     void createCoffeeProfile_savesSingleOriginWithProcessingMethod() {
         ProcessingMethodDto.Response method = processingMethodService.createProcessingMethod(
                 processingMethodRequest("WASHED", "Washed", "수세식")
@@ -140,6 +143,7 @@ class CoffeeProfileServiceIntegrationTest {
     }
 
     @Test
+    @DisplayName("원산지 국가 코드가 없는 싱글 오리진 프로필은 생성할 수 없다")
     void createCoffeeProfile_rejectsSingleOriginWithoutCountryCode() {
         CustomException exception = assertThrows(CustomException.class, () ->
                 coffeeProfileService.createCoffeeProfile(
@@ -151,6 +155,7 @@ class CoffeeProfileServiceIntegrationTest {
     }
 
     @Test
+    @DisplayName("원산지 국가 코드가 포함된 블렌드 프로필은 생성할 수 없다")
     void createCoffeeProfile_rejectsBlendWithCountryCode() {
         CustomException exception = assertThrows(CustomException.class, () ->
                 coffeeProfileService.createCoffeeProfile(
@@ -162,6 +167,7 @@ class CoffeeProfileServiceIntegrationTest {
     }
 
     @Test
+    @DisplayName("일반 커피에 디카페인 가공 방식을 지정할 수 없다")
     void createCoffeeProfile_rejectsDecafMethodForRegularCoffee() {
         CustomException exception = assertThrows(CustomException.class, () ->
                 coffeeProfileService.createCoffeeProfile(
@@ -173,6 +179,7 @@ class CoffeeProfileServiceIntegrationTest {
     }
 
     @Test
+    @DisplayName("최저 고도가 최고 고도보다 높으면 프로필을 생성할 수 없다")
     void createCoffeeProfile_rejectsInvalidAltitudeRange() {
         CustomException exception = assertThrows(CustomException.class, () ->
                 coffeeProfileService.createCoffeeProfile(
@@ -184,6 +191,7 @@ class CoffeeProfileServiceIntegrationTest {
     }
 
     @Test
+    @DisplayName("커피 프로필의 가공 방식과 상세 정보를 수정한다")
     void updateCoffeeProfile_changesProcessingMethodAndProfileData() {
         ProcessingMethodDto.Response washed = processingMethodService.createProcessingMethod(
                 processingMethodRequest("WASHED", "Washed", "수세식")
@@ -207,6 +215,7 @@ class CoffeeProfileServiceIntegrationTest {
     }
 
     @Test
+    @DisplayName("중복된 코드의 가공 방식을 등록할 수 없다")
     void createProcessingMethod_rejectsDuplicateCode() {
         processingMethodService.createProcessingMethod(processingMethodRequest("WASHED", "Washed", "수세식"));
 
@@ -218,6 +227,7 @@ class CoffeeProfileServiceIntegrationTest {
     }
 
     @Test
+    @DisplayName("가공 방식 목록을 이름순으로 조회한다")
     void getProcessingMethods_returnsMethodsOrderedByName() {
         processingMethodService.createProcessingMethod(processingMethodRequest("WASHED", "Washed", "수세식"));
         processingMethodService.createProcessingMethod(processingMethodRequest("NATURAL", "Natural", "건식"));
@@ -230,6 +240,7 @@ class CoffeeProfileServiceIntegrationTest {
     }
 
     @Test
+    @DisplayName("커피 프로필 목록을 페이지 단위로 조회한다")
     void getCoffeeProfiles_returnsPagedProfiles() {
         coffeeProfileService.createCoffeeProfile(
                 coffeeProfileRequest(null, "첫 번째 프로필", BeanType.SINGLE_ORIGIN, "ET", false, null, null, null)

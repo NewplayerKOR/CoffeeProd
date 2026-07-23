@@ -22,6 +22,7 @@ import com.back.coffeeprod.domain.statistics.repository.SalesStatisticsRepositor
 import com.back.coffeeprod.global.exception.CustomException;
 import com.back.coffeeprod.global.exception.ErrorCode;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -46,6 +47,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
         "pg.toss.client-key=test-client-key",
         "pg.toss.secret-key=test-secret-key"
 })
+@DisplayName("장바구니 서비스 통합 테스트")
 class CartServiceIntegrationTest {
 
     private final CartService cartService;
@@ -108,6 +110,7 @@ class CartServiceIntegrationTest {
     }
 
     @Test
+    @DisplayName("장바구니가 없는 회원을 조회하면 빈 장바구니를 생성한다")
     void getCart_createsAnEmptyCartForMember() {
         Member member = saveMember();
 
@@ -119,6 +122,7 @@ class CartServiceIntegrationTest {
     }
 
     @Test
+    @DisplayName("같은 상품과 분쇄 옵션을 다시 담으면 수량을 합산한다")
     void addItem_mergesQuantityForSameProductAndGrindType() {
         Member member = saveMember();
         Product product = saveProduct(15_000);
@@ -136,6 +140,7 @@ class CartServiceIntegrationTest {
     }
 
     @Test
+    @DisplayName("상품을 처음 담으면 응답에 생성된 장바구니 항목이 포함된다")
     void addItem_returnsCreatedCartItemInResponse() {
         Member member = saveMember();
         Product product = saveProduct(15_000);
@@ -151,6 +156,7 @@ class CartServiceIntegrationTest {
     }
 
     @Test
+    @DisplayName("같은 상품이라도 분쇄 옵션이 다르면 별도 항목으로 생성한다")
     void addItem_createsSeparateItemsForDifferentGrindTypes() {
         Member member = saveMember();
         Product product = saveProduct(12_000);
@@ -167,6 +173,7 @@ class CartServiceIntegrationTest {
     }
 
     @Test
+    @DisplayName("장바구니 상품 수량을 0으로 변경하면 해당 항목을 삭제한다")
     void updateItem_withZeroQuantityDeletesCartItem() {
         Member member = saveMember();
         Product product = saveProduct(10_000);
@@ -184,6 +191,7 @@ class CartServiceIntegrationTest {
     }
 
     @Test
+    @DisplayName("다른 회원이 소유한 장바구니 항목은 수정할 수 없다")
     void updateItem_rejectsCartItemOwnedByAnotherMember() {
         Member owner = saveMember();
         Member otherMember = saveMember();
@@ -203,6 +211,7 @@ class CartServiceIntegrationTest {
     }
 
     @Test
+    @DisplayName("판매 중이 아닌 상품은 장바구니에 담을 수 없다")
     void addItem_rejectsProductThatIsNotOnSale() {
         Member member = saveMember();
         Product product = saveProduct(10_000);

@@ -13,6 +13,7 @@ import com.back.coffeeprod.global.exception.CustomException;
 import com.back.coffeeprod.global.exception.ErrorCode;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -37,6 +38,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
         "pg.toss.client-key=test-client-key",
         "pg.toss.secret-key=test-secret-key"
 })
+@DisplayName("회원 커피 선호도 서비스 통합 테스트")
 class MemberCoffeePreferenceServiceIntegrationTest {
 
     private final MemberCoffeePreferenceService preferenceService;
@@ -68,6 +70,7 @@ class MemberCoffeePreferenceServiceIntegrationTest {
     }
 
     @Test
+    @DisplayName("회원의 가공 방식 선호도를 포함한 커피 선호 정보를 생성한다")
     void upsertMyPreference_createsPreferenceWithProcessingMethod() {
         Member member = saveMember();
         ProcessingMethod processingMethod = saveProcessingMethod("WASHED", "Washed");
@@ -94,6 +97,7 @@ class MemberCoffeePreferenceServiceIntegrationTest {
     }
 
     @Test
+    @DisplayName("기존 커피 선호 정보를 수정하고 생략된 선택값을 초기화한다")
     void upsertMyPreference_updatesExistingRowAndClearsOmittedValues() {
         Member member = saveMember();
         ProcessingMethod processingMethod = saveProcessingMethod("NATURAL", "Natural");
@@ -135,6 +139,7 @@ class MemberCoffeePreferenceServiceIntegrationTest {
     }
 
     @Test
+    @DisplayName("선호 조건이 하나도 없는 요청은 저장할 수 없다")
     void upsertMyPreference_rejectsRequestWithoutAnyPreference() {
         Member member = saveMember();
 
@@ -147,6 +152,7 @@ class MemberCoffeePreferenceServiceIntegrationTest {
     }
 
     @Test
+    @DisplayName("존재하지 않는 가공 방식은 선호 정보로 저장할 수 없다")
     void upsertMyPreference_rejectsUnknownProcessingMethod() {
         Member member = saveMember();
         MemberCoffeePreferenceDto.Request request = preferenceRequest(
@@ -168,6 +174,7 @@ class MemberCoffeePreferenceServiceIntegrationTest {
     }
 
     @Test
+    @DisplayName("저장된 선호 정보가 없는 회원은 선호도를 조회할 수 없다")
     void getMyPreference_rejectsMemberWithoutSavedPreference() {
         Member member = saveMember();
 

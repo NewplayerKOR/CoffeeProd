@@ -24,6 +24,7 @@ import com.back.coffeeprod.global.exception.CustomException;
 import com.back.coffeeprod.global.exception.ErrorCode;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -50,6 +51,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
         "pg.toss.client-key=test-client-key",
         "pg.toss.secret-key=test-secret-key"
 })
+@DisplayName("상품 리뷰 서비스 통합 테스트")
 class ReviewServiceIntegrationTest {
 
     private final ReviewService reviewService;
@@ -119,6 +121,7 @@ class ReviewServiceIntegrationTest {
     }
 
     @Test
+    @DisplayName("구매한 상품에 리뷰를 등록한다")
     void create_savesReviewForPurchasedProduct() {
         Member member = saveMember("reviewer@test.com", "reviewer");
         Product product = saveProduct("구매한 원두");
@@ -137,6 +140,7 @@ class ReviewServiceIntegrationTest {
     }
 
     @Test
+    @DisplayName("구매 이력이 없는 회원은 상품 리뷰를 등록할 수 없다")
     void create_rejectsMemberWithoutPurchaseHistory() {
         Member member = saveMember("non-buyer@test.com", "nonBuyer");
         Product product = saveProduct("미구매 원두");
@@ -154,6 +158,7 @@ class ReviewServiceIntegrationTest {
     }
 
     @Test
+    @DisplayName("같은 상품에 리뷰를 중복으로 등록할 수 없다")
     void create_rejectsDuplicateReviewForSameProduct() {
         Member member = saveMember("duplicate-review@test.com", "duplicateReview");
         Product product = saveProduct("중복 리뷰 원두");
@@ -169,6 +174,7 @@ class ReviewServiceIntegrationTest {
     }
 
     @Test
+    @DisplayName("상품에 등록된 리뷰 목록을 조회한다")
     void getReviews_returnsReviewsForProduct() {
         Member firstMember = saveMember("first-review@test.com", "firstReviewer");
         Member secondMember = saveMember("second-review@test.com", "secondReviewer");
@@ -188,6 +194,7 @@ class ReviewServiceIntegrationTest {
     }
 
     @Test
+    @DisplayName("작성자는 자신의 리뷰를 수정할 수 있다")
     void update_changesOwnedReview() {
         Member member = saveMember("update-review@test.com", "updateReviewer");
         Product product = saveProduct("수정 대상 원두");
@@ -209,6 +216,7 @@ class ReviewServiceIntegrationTest {
     }
 
     @Test
+    @DisplayName("다른 회원이 작성한 리뷰는 수정할 수 없다")
     void update_rejectsOtherMembersReview() {
         Member owner = saveMember("review-owner@test.com", "reviewOwner");
         Member other = saveMember("review-other@test.com", "reviewOther");
@@ -228,6 +236,7 @@ class ReviewServiceIntegrationTest {
     }
 
     @Test
+    @DisplayName("작성자는 자신의 리뷰를 삭제할 수 있다")
     void delete_removesOwnedReview() {
         Member member = saveMember("delete-review@test.com", "deleteReviewer");
         Product product = saveProduct("삭제 대상 원두");

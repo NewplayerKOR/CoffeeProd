@@ -11,6 +11,7 @@ import com.back.coffeeprod.global.exception.CustomException;
 import com.back.coffeeprod.global.exception.ErrorCode;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -36,6 +37,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
         "pg.toss.client-key=test-client-key",
         "pg.toss.secret-key=test-secret-key"
 })
+@DisplayName("커피 카탈로그 메타데이터 서비스 통합 테스트")
 class CoffeeCatalogMetadataServiceIntegrationTest {
 
     private final BrewMethodService brewMethodService;
@@ -76,6 +78,7 @@ class CoffeeCatalogMetadataServiceIntegrationTest {
     }
 
     @Test
+    @DisplayName("중복된 코드의 추출 방식을 등록할 수 없다")
     void createBrewMethod_rejectsDuplicateCode() {
         brewMethodService.createBrewMethod(brewCreateRequest("V60", "V60", "Pour over"));
 
@@ -89,6 +92,7 @@ class CoffeeCatalogMetadataServiceIntegrationTest {
     }
 
     @Test
+    @DisplayName("추출 방식 수정 시 코드는 유지하고 표시 정보를 변경한다")
     void updateBrewMethod_keepsCodeAndChangesDisplayInformation() {
         BrewMethodDto.Response created = brewMethodService.createBrewMethod(
                 brewCreateRequest("AEROPRESS", "Aeropress", "Original")
@@ -105,6 +109,7 @@ class CoffeeCatalogMetadataServiceIntegrationTest {
     }
 
     @Test
+    @DisplayName("추출 방식 목록을 이름순으로 조회한다")
     void getBrewMethods_returnsMethodsOrderedByName() {
         brewMethodService.createBrewMethod(brewCreateRequest("V60", "V60", null));
         brewMethodService.createBrewMethod(brewCreateRequest("AEROPRESS", "AeroPress", null));
@@ -115,6 +120,7 @@ class CoffeeCatalogMetadataServiceIntegrationTest {
     }
 
     @Test
+    @DisplayName("중복된 코드의 향미 노트를 등록할 수 없다")
     void createFlavorNote_rejectsDuplicateCode() {
         flavorNoteService.createFlavorNote(flavorCreateRequest("CITRUS", "Citrus", "Bright citrus"));
 
@@ -128,6 +134,7 @@ class CoffeeCatalogMetadataServiceIntegrationTest {
     }
 
     @Test
+    @DisplayName("향미 노트 수정 시 코드는 유지하고 표시 정보를 변경한다")
     void updateFlavorNote_keepsCodeAndChangesDisplayInformation() {
         FlavorNoteDto.Response created = flavorNoteService.createFlavorNote(
                 flavorCreateRequest("CHOCOLATE", "Chocolate", "Original")
@@ -144,6 +151,7 @@ class CoffeeCatalogMetadataServiceIntegrationTest {
     }
 
     @Test
+    @DisplayName("향미 노트 목록을 이름순으로 조회한다")
     void getFlavorNotes_returnsNotesOrderedByName() {
         flavorNoteService.createFlavorNote(flavorCreateRequest("NUTTY", "Nutty", null));
         flavorNoteService.createFlavorNote(flavorCreateRequest("BERRY", "Berry", null));
@@ -154,6 +162,7 @@ class CoffeeCatalogMetadataServiceIntegrationTest {
     }
 
     @Test
+    @DisplayName("중복된 코드의 커피 품종을 등록할 수 없다")
     void createCoffeeVariety_rejectsDuplicateCode() {
         coffeeVarietyService.createCoffeeVariety(
                 varietyCreateRequest("BOURBON", "Bourbon", "Sweet variety")
@@ -169,6 +178,7 @@ class CoffeeCatalogMetadataServiceIntegrationTest {
     }
 
     @Test
+    @DisplayName("커피 품종 수정 시 코드는 유지하고 표시 정보를 변경한다")
     void updateCoffeeVariety_keepsCodeAndChangesDisplayInformation() {
         CoffeeVarietyDto.Response created = coffeeVarietyService.createCoffeeVariety(
                 varietyCreateRequest("GEISHA", "Geisha", "Original")
@@ -185,6 +195,7 @@ class CoffeeCatalogMetadataServiceIntegrationTest {
     }
 
     @Test
+    @DisplayName("커피 품종 목록을 이름순으로 조회한다")
     void getCoffeeVarieties_returnsVarietiesOrderedByName() {
         coffeeVarietyService.createCoffeeVariety(varietyCreateRequest("CATURRA", "Caturra", null));
         coffeeVarietyService.createCoffeeVariety(varietyCreateRequest("BOURBON", "Bourbon", null));

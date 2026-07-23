@@ -24,6 +24,7 @@ import com.back.coffeeprod.global.exception.CustomException;
 import com.back.coffeeprod.global.exception.ErrorCode;
 import jakarta.persistence.EntityManager;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -49,6 +50,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
         "pg.toss.client-key=test-client-key",
         "pg.toss.secret-key=test-secret-key"
 })
+@DisplayName("주문 서비스 통합 테스트")
 class OrderServiceIntegrationTest {
 
     private final OrderService orderService;
@@ -100,6 +102,7 @@ class OrderServiceIntegrationTest {
     }
 
     @Test
+    @DisplayName("주문 생성 시 사용 마일리지와 상품 재고를 차감한다")
     void createOrder_deductsMileageAndStock() {
         Member member = saveMember("order-user@test.com", "orderUser", 1_000);
         Address address = saveAddress(member);
@@ -127,6 +130,7 @@ class OrderServiceIntegrationTest {
     }
 
     @Test
+    @DisplayName("재고가 부족하면 주문 생성과 마일리지 차감을 롤백한다")
     void createOrder_rollsBackMileageWhenStockIsNotEnough() {
         Member member = saveMember("rollback-user@test.com", "rollbackUser", 1_000);
         Address address = saveAddress(member);
@@ -149,6 +153,7 @@ class OrderServiceIntegrationTest {
     }
 
     @Test
+    @DisplayName("주문 취소 시 재고와 사용 마일리지를 한 번만 복구한다")
     void cancelOrder_restoresStockAndMileageOnce() {
         Member member = saveMember("cancel-user@test.com", "cancelUser", 1_000);
         Address address = saveAddress(member);
@@ -175,6 +180,7 @@ class OrderServiceIntegrationTest {
     }
 
     @Test
+    @DisplayName("내 주문 목록에는 로그인 회원의 주문과 주문 상품만 조회한다")
     void getMyOrders_returnsOnlyMembersOrdersWithItems() {
         Member member = saveMember("list-user@test.com", "listUser", 1_000);
         Member otherMember = saveMember("other-list-user@test.com", "otherListUser", 1_000);
@@ -191,6 +197,7 @@ class OrderServiceIntegrationTest {
     }
 
     @Test
+    @DisplayName("관리자 주문 목록에서 회원 정보가 포함된 주문 요약을 조회한다")
     void getAllOrders_returnsAdminOrderSummariesWithMemberInfo() {
         Member firstMember = saveMember("admin-list1@test.com", "adminList1", 1_000);
         Member secondMember = saveMember("admin-list2@test.com", "adminList2", 1_000);
@@ -206,6 +213,7 @@ class OrderServiceIntegrationTest {
     }
 
     @Test
+    @DisplayName("결제 완료 주문을 운송장 번호와 함께 배송 중 상태로 변경한다")
     void updateOrderStatus_changesPaidOrderToShippedWithTrackingNo() {
         Member member = saveMember("ship-user@test.com", "shipUser", 1_000);
         OrderDto.DetailResponse created = createOrder(member, 10, 2, 300);
@@ -221,6 +229,7 @@ class OrderServiceIntegrationTest {
     }
 
     @Test
+    @DisplayName("배송 중 상태로 변경하려면 운송장 번호가 필요하다")
     void updateOrderStatus_requiresTrackingNoWhenShipping() {
         Member member = saveMember("ship-invalid-user@test.com", "shipInvalidUser", 1_000);
         OrderDto.DetailResponse created = createOrder(member, 10, 2, 300);

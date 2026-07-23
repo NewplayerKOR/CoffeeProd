@@ -20,6 +20,7 @@ import com.back.coffeeprod.domain.product.entity.RoastLevel;
 import com.back.coffeeprod.domain.product.repository.CategoryRepository;
 import com.back.coffeeprod.domain.product.repository.ProductRepository;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -48,6 +49,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
         "pg.toss.client-key=test-client-key",
         "pg.toss.secret-key=test-secret-key"
 })
+@DisplayName("상품 재고 동시성 통합 테스트")
 class ProductStockConcurrencyTest {
 
     private final OrderService orderService;
@@ -96,6 +98,7 @@ class ProductStockConcurrencyTest {
     }
 
     @Test
+    @DisplayName("재고가 하나일 때 동시 주문 중 하나만 성공한다")
     void createOrder_allowsOnlyOneOrderWhenStockIsOne() throws InterruptedException {
         Product product = saveProduct(1, 5_000);
         Member firstMember = saveMember("stock1@test.com", "stock1");

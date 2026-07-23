@@ -23,6 +23,7 @@ import com.back.coffeeprod.global.common.time.BusinessTime;
 import com.back.coffeeprod.global.exception.CustomException;
 import com.back.coffeeprod.global.exception.ErrorCode;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -51,6 +52,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
         "pg.toss.client-key=test-client-key",
         "pg.toss.secret-key=test-secret-key"
 })
+@DisplayName("매출 통계 서비스 통합 테스트")
 class SalesStatisticsServiceIntegrationTest {
 
     private final SalesStatisticsService salesStatisticsService;
@@ -113,6 +115,7 @@ class SalesStatisticsServiceIntegrationTest {
     }
 
     @Test
+    @DisplayName("영업일 범위 안에서 결제 성공 건만 일별 매출 집계에 포함한다")
     void aggregateDailySales_includesOnlySuccessfulPaymentsWithinBusinessDay() {
         LocalDate statDate = LocalDate.of(2026, 7, 8);
         Member member = saveMember();
@@ -134,6 +137,7 @@ class SalesStatisticsServiceIntegrationTest {
     }
 
     @Test
+    @DisplayName("매출 집계 시작일이 종료일보다 늦으면 요청을 거부한다")
     void aggregateSalesRange_rejectsInvalidDateRange() {
         CustomException reversedRange = assertThrows(CustomException.class, () ->
                 salesStatisticsService.aggregateSalesRange(
@@ -151,6 +155,7 @@ class SalesStatisticsServiceIntegrationTest {
     }
 
     @Test
+    @DisplayName("일별 매출 통계를 월별로 그룹화하여 조회한다")
     void getSalesStatistics_groupsDailyRowsByMonth() {
         salesStatisticsRepository.save(new SalesStatistics(
                 LocalDate.of(2026, 7, 1), 2, 30_000, 3_000, 1_000, 32_000

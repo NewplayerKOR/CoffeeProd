@@ -16,6 +16,7 @@ import com.back.coffeeprod.global.exception.CustomException;
 import com.back.coffeeprod.global.exception.ErrorCode;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -42,6 +43,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
         "pg.toss.client-key=test-client-key",
         "pg.toss.secret-key=test-secret-key"
 })
+@DisplayName("커피 프로필 카탈로그 연관관계 통합 테스트")
 class CoffeeProfileCatalogIntegrationTest {
 
     private final CoffeeProfileService coffeeProfileService;
@@ -79,6 +81,7 @@ class CoffeeProfileCatalogIntegrationTest {
     }
 
     @Test
+    @DisplayName("커피 프로필 생성 시 카탈로그 연관관계를 요청 순서대로 저장한다")
     void createCoffeeProfile_savesCatalogRelationsInRequestOrder() {
         FlavorNote citrus = saveFlavorNote("CITRUS", "Citrus");
         FlavorNote floral = saveFlavorNote("FLORAL", "Floral");
@@ -104,6 +107,7 @@ class CoffeeProfileCatalogIntegrationTest {
     }
 
     @Test
+    @DisplayName("커피 프로필 수정 시 기존 카탈로그 연관관계를 교체한다")
     void updateCoffeeProfile_replacesExistingCatalogRelations() {
         FlavorNote citrus = saveFlavorNote("CITRUS", "Citrus");
         FlavorNote chocolate = saveFlavorNote("CHOCOLATE", "Chocolate");
@@ -136,6 +140,7 @@ class CoffeeProfileCatalogIntegrationTest {
     }
 
     @Test
+    @DisplayName("중복된 향미 노트가 포함된 커피 프로필은 생성할 수 없다")
     void createCoffeeProfile_rejectsDuplicateFlavorNote() {
         FlavorNote citrus = saveFlavorNote("CITRUS", "Citrus");
         CoffeeProfileDto.Request request = singleOriginRequest("Duplicate Flavor");
@@ -153,6 +158,7 @@ class CoffeeProfileCatalogIntegrationTest {
     }
 
     @Test
+    @DisplayName("중복된 추출 방식이 포함된 커피 프로필은 생성할 수 없다")
     void createCoffeeProfile_rejectsDuplicateBrewMethod() {
         BrewMethod v60 = saveBrewMethod("V60", "V60");
         CoffeeProfileDto.Request request = singleOriginRequest("Duplicate Brew");
@@ -170,6 +176,7 @@ class CoffeeProfileCatalogIntegrationTest {
     }
 
     @Test
+    @DisplayName("중복된 품종이 포함된 커피 프로필은 생성할 수 없다")
     void createCoffeeProfile_rejectsDuplicateVariety() {
         CoffeeVariety bourbon = saveVariety("BOURBON", "Bourbon");
         CoffeeProfileDto.Request request = singleOriginRequest("Duplicate Variety");
@@ -187,6 +194,7 @@ class CoffeeProfileCatalogIntegrationTest {
     }
 
     @Test
+    @DisplayName("블렌드 구성 비율의 합이 100이면 구성 원두를 저장한다")
     void createCoffeeProfile_savesBlendComponentsWhenRatiosTotalOneHundred() {
         ProcessingMethod washed = saveProcessingMethod("WASHED", "Washed");
         ProcessingMethod natural = saveProcessingMethod("NATURAL", "Natural");
@@ -210,6 +218,7 @@ class CoffeeProfileCatalogIntegrationTest {
     }
 
     @Test
+    @DisplayName("블렌드 구성 비율의 합이 100이 아니면 생성할 수 없다")
     void createCoffeeProfile_rejectsBlendWhenComponentRatiosDoNotTotalOneHundred() {
         CoffeeProfileDto.Request request = blendRequest("Invalid Blend");
         ReflectionTestUtils.setField(
@@ -229,6 +238,7 @@ class CoffeeProfileCatalogIntegrationTest {
     }
 
     @Test
+    @DisplayName("싱글 오리진 프로필에는 블렌드 구성 원두를 등록할 수 없다")
     void createCoffeeProfile_rejectsComponentsForSingleOrigin() {
         CoffeeProfileDto.Request request = singleOriginRequest("Invalid Single Origin");
         ReflectionTestUtils.setField(

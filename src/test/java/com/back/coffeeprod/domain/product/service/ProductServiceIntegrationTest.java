@@ -20,6 +20,7 @@ import com.back.coffeeprod.domain.product.repository.ProductRepository;
 import com.back.coffeeprod.global.exception.CustomException;
 import com.back.coffeeprod.global.exception.ErrorCode;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -46,6 +47,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
         "pg.toss.client-key=test-client-key",
         "pg.toss.secret-key=test-secret-key"
 })
+@DisplayName("상품 서비스 통합 테스트")
 class ProductServiceIntegrationTest {
 
     private final ProductService productService;
@@ -107,6 +109,7 @@ class ProductServiceIntegrationTest {
     }
 
     @Test
+    @DisplayName("중복된 이름의 카테고리를 생성할 수 없다")
     void createCategory_rejectsDuplicateName() {
         categoryService.createCategory(categoryRequest("싱글 오리진"));
 
@@ -118,6 +121,7 @@ class ProductServiceIntegrationTest {
     }
 
     @Test
+    @DisplayName("다른 카테고리가 사용 중인 이름으로 수정할 수 없다")
     void updateCategory_rejectsNameUsedByAnotherCategory() {
         CategoryDto.Response firstCategory = categoryService.createCategory(categoryRequest("싱글 오리진"));
         categoryService.createCategory(categoryRequest("블렌드"));
@@ -130,6 +134,7 @@ class ProductServiceIntegrationTest {
     }
 
     @Test
+    @DisplayName("카테고리 상세 정보를 조회한다")
     void getCategory_returnsCategoryDetail() {
         CategoryDto.Response category = categoryService.createCategory(categoryRequest("싱글 오리진"));
 
@@ -141,6 +146,7 @@ class ProductServiceIntegrationTest {
     }
 
     @Test
+    @DisplayName("상품이 없는 카테고리를 삭제한다")
     void deleteCategory_removesCategoryWithoutProducts() {
         CategoryDto.Response category = categoryService.createCategory(categoryRequest("삭제 가능 카테고리"));
 
@@ -154,6 +160,7 @@ class ProductServiceIntegrationTest {
     }
 
     @Test
+    @DisplayName("상품이 사용 중인 카테고리는 삭제할 수 없다")
     void deleteCategory_rejectsCategoryInUse() {
         CategoryDto.Response category = categoryService.createCategory(categoryRequest("상품 연결 카테고리"));
         productService.createProduct(productRequest(category.getId(), "연결 상품", 10_000, 5));
@@ -167,6 +174,7 @@ class ProductServiceIntegrationTest {
     }
 
     @Test
+    @DisplayName("카테고리가 지정된 상품을 저장한다")
     void createProduct_savesProductWithCategory() {
         CategoryDto.Response category = categoryService.createCategory(categoryRequest("디카페인"));
 
@@ -186,6 +194,7 @@ class ProductServiceIntegrationTest {
     }
 
     @Test
+    @DisplayName("관리자는 숨김 상품의 상세 정보를 조회할 수 있다")
     void getAdminProduct_returnsHiddenProductDetail() {
         CategoryDto.Response category = categoryService.createCategory(categoryRequest("관리자 상세"));
         ProductDto.DetailResponse product = productService.createProduct(productRequest(
@@ -204,6 +213,7 @@ class ProductServiceIntegrationTest {
     }
 
     @Test
+    @DisplayName("관리자는 판매 상태와 관계없이 전체 상품을 조회할 수 있다")
     void getAdminProducts_returnsProductsRegardlessOfStatus() {
         CategoryDto.Response category = categoryService.createCategory(categoryRequest("관리자 목록"));
         productService.createProduct(productRequest(category.getId(), "판매 상품", 10_000, 10));
@@ -241,6 +251,7 @@ class ProductServiceIntegrationTest {
     }
 
     @Test
+    @DisplayName("상품 재고를 추가하면 재고 수량이 증가한다")
     void addStock_increasesProductStockQuantity() {
         CategoryDto.Response category = categoryService.createCategory(categoryRequest("블렌드"));
         ProductDto.DetailResponse product = productService.createProduct(productRequest(
@@ -256,6 +267,7 @@ class ProductServiceIntegrationTest {
     }
 
     @Test
+    @DisplayName("상품 삭제 시 물리 삭제하지 않고 숨김 상태로 변경한다")
     void deleteProduct_hidesProductInsteadOfPhysicalDelete() {
         CategoryDto.Response category = categoryService.createCategory(categoryRequest("삭제 상품"));
         ProductDto.DetailResponse product = productService.createProduct(productRequest(
@@ -278,6 +290,7 @@ class ProductServiceIntegrationTest {
     }
 
     @Test
+    @DisplayName("공개 상품 상세 조회에서 숨김 상품을 노출하지 않는다")
     void getProduct_hidesHiddenProductFromPublicDetail() {
         CategoryDto.Response category = categoryService.createCategory(categoryRequest("시즌 한정"));
         ProductDto.DetailResponse product = productService.createProduct(productRequest(
@@ -296,6 +309,7 @@ class ProductServiceIntegrationTest {
     }
 
     @Test
+    @DisplayName("공개 상품 목록에는 판매 중인 상품만 조회한다")
     void getProducts_returnsOnlyOnSaleProducts() {
         CategoryDto.Response category = categoryService.createCategory(categoryRequest("원두"));
         productService.createProduct(productRequest(category.getId(), "판매 원두", 10_000, 10));
@@ -324,6 +338,7 @@ class ProductServiceIntegrationTest {
     }
 
     @Test
+    @DisplayName("중복된 SKU의 상품을 생성할 수 없다")
     void createProduct_rejectsDuplicateSku() {
         CategoryDto.Response category = categoryService.createCategory(categoryRequest("SKU 검증"));
         productService.createProduct(productRequest(
@@ -352,6 +367,7 @@ class ProductServiceIntegrationTest {
     }
 
     @Test
+    @DisplayName("상품 수정 시 기존 SKU를 유지하고 중량을 변경한다")
     void updateProduct_keepsOwnSkuAndUpdatesWeight() {
         CategoryDto.Response category = categoryService.createCategory(categoryRequest("SKU 수정"));
         ProductDto.DetailResponse created = productService.createProduct(productRequest(
@@ -383,6 +399,7 @@ class ProductServiceIntegrationTest {
     }
 
     @Test
+    @DisplayName("커피 프로필 식별자로 상품 목록을 필터링한다")
     void getProducts_filtersByCoffeeProfileId() {
         CategoryDto.Response category = categoryService.createCategory(categoryRequest("프로필 필터"));
         CoffeeProfile coffeeProfile = saveCoffeeProfile("예가체프 프로필");
@@ -423,6 +440,7 @@ class ProductServiceIntegrationTest {
     }
 
     @Test
+    @DisplayName("가공 방식과 원두 유형 및 디카페인 여부로 상품을 필터링한다")
     void getProducts_filtersByProcessingMethodBeanTypeAndDecaf() {
         CategoryDto.Response category = categoryService.createCategory(categoryRequest("복합 필터"));
         ProcessingMethod washed = processingMethodRepository.save(ProcessingMethod.builder()

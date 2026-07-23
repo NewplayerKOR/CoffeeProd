@@ -21,6 +21,7 @@ import com.back.coffeeprod.global.exception.CustomException;
 import com.back.coffeeprod.global.exception.ErrorCode;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -47,6 +48,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
         "pg.toss.client-key=test-client-key",
         "pg.toss.secret-key=test-secret-key"
 })
+@DisplayName("커피 추천 서비스 통합 테스트")
 class CoffeeRecommendationServiceIntegrationTest {
 
     private final CoffeeRecommendationService recommendationService;
@@ -92,6 +94,7 @@ class CoffeeRecommendationServiceIntegrationTest {
     }
 
     @Test
+    @DisplayName("선호 조건과 정확히 일치하는 상품을 우선 추천하고 판매 불가 상품은 제외한다")
     void recommend_ranksExactMatchFirstAndExcludesUnavailableProducts() {
         Category category = saveCategory();
         ProcessingMethod washed = saveProcessingMethod("WASHED", "Washed");
@@ -139,6 +142,7 @@ class CoffeeRecommendationServiceIntegrationTest {
     }
 
     @Test
+    @DisplayName("디카페인 선호 여부에 따라 추천 상품을 필터링한다")
     void recommend_filtersByDecafPreference() {
         Category category = saveCategory();
         CoffeeProfile regular = saveProfile(
@@ -160,6 +164,7 @@ class CoffeeRecommendationServiceIntegrationTest {
     }
 
     @Test
+    @DisplayName("추천 점수가 같으면 가격이 낮은 상품을 우선하고 요청 개수만 반환한다")
     void recommend_usesLowerPriceAsTieBreakerAndAppliesLimit() {
         Category category = saveCategory();
         CoffeeProfile profile = saveProfile(
@@ -177,6 +182,7 @@ class CoffeeRecommendationServiceIntegrationTest {
     }
 
     @Test
+    @DisplayName("선호 조건이 하나도 없으면 추천 요청을 거부한다")
     void recommend_rejectsRequestWithoutAnyPreference() {
         CustomException exception = assertThrows(CustomException.class, () ->
                 recommendationService.recommend(new CoffeeRecommendationDto.Request())
@@ -186,6 +192,7 @@ class CoffeeRecommendationServiceIntegrationTest {
     }
 
     @Test
+    @DisplayName("추천 개수 범위가 유효하지 않으면 요청을 거부한다")
     void recommend_rejectsInvalidLimit() {
         CoffeeRecommendationDto.Request request = recommendationRequest(
                 null, null, RoastLevel.MEDIUM, null, null, null, null, null, 11
@@ -199,6 +206,7 @@ class CoffeeRecommendationServiceIntegrationTest {
     }
 
     @Test
+    @DisplayName("존재하지 않는 가공 방식으로 추천을 요청할 수 없다")
     void recommend_rejectsUnknownProcessingMethod() {
         CoffeeRecommendationDto.Request request = recommendationRequest(
                 999_999L, null, null, null, null, null, null, null, 5
@@ -212,6 +220,7 @@ class CoffeeRecommendationServiceIntegrationTest {
     }
 
     @Test
+    @DisplayName("회원에게 저장된 커피 선호도를 사용하여 상품을 추천한다")
     void recommendForMember_usesSavedPreference() {
         Member member = saveMember();
         Category category = saveCategory();
@@ -235,6 +244,7 @@ class CoffeeRecommendationServiceIntegrationTest {
     }
 
     @Test
+    @DisplayName("저장된 선호도가 없는 회원은 맞춤 추천을 받을 수 없다")
     void recommendForMember_rejectsMemberWithoutSavedPreference() {
         Member member = saveMember();
 
