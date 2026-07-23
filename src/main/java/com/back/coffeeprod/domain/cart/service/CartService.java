@@ -58,6 +58,7 @@ public class CartService {
                                     .quantity(request.getQuantity())
                                     .grindType(request.getGrindType())
                                     .build();
+                            cart.addItem(newItem);
                             cartItemRepository.save(newItem);
                         }
                 );
@@ -77,6 +78,7 @@ public class CartService {
 
         // 수량 0 이하면 해당 아이템 삭제 처리
         if (request.getQuantity() <= 0) {
+            cart.removeItem(cartItem);
             cartItemRepository.delete(cartItem);
         } else {
             cartItem.update(request.getQuantity(), request.getGrindType());
@@ -93,6 +95,7 @@ public class CartService {
         Cart cart = getOrCreateCart(memberId);
         CartItem cartItem = findCartItemByIdAndCartId(cartItemId, cart.getId());
 
+        cart.removeItem(cartItem);
         cartItemRepository.delete(cartItem);
 
         Cart updatedCart = cartRepository.findByMemberIdWithItems(memberId)
