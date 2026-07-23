@@ -235,7 +235,7 @@ class CoffeeProfileServiceIntegrationTest {
                 coffeeProfileRequest(null, "첫 번째 프로필", BeanType.SINGLE_ORIGIN, "ET", false, null, null, null)
         );
         coffeeProfileService.createCoffeeProfile(
-                coffeeProfileRequest(null, "두 번째 프로필", BeanType.BLEND, null, false, null, null, null)
+                coffeeProfileRequest(null, "두 번째 프로필", BeanType.SINGLE_ORIGIN, "CO", false, null, null, null)
         );
 
         Page<CoffeeProfileDto.Response> response = coffeeProfileService.getCoffeeProfiles(PageRequest.of(0, 10));

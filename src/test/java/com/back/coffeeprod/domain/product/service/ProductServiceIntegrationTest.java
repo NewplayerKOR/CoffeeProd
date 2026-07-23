@@ -422,6 +422,60 @@ class ProductServiceIntegrationTest {
         assertEquals("예가체프 프로필", response.getContent().get(0).getCoffeeProfileName());
     }
 
+    @Test
+    void getProducts_filtersByProcessingMethodBeanTypeAndDecaf() {
+        CategoryDto.Response category = categoryService.createCategory(categoryRequest("복합 필터"));
+        ProcessingMethod washed = processingMethodRepository.save(ProcessingMethod.builder()
+                .code("WASHED")
+                .name("Washed")
+                .description("수세식")
+                .build());
+        ProcessingMethod natural = processingMethodRepository.save(ProcessingMethod.builder()
+                .code("NATURAL")
+                .name("Natural")
+                .description("건식")
+                .build());
+        CoffeeProfile matchingProfile = saveCoffeeProfile(
+                "필터 일치 프로필", washed, BeanType.SINGLE_ORIGIN, false
+        );
+        CoffeeProfile differentMethod = saveCoffeeProfile(
+                "가공 방식 불일치", natural, BeanType.SINGLE_ORIGIN, false
+        );
+        CoffeeProfile differentBeanType = saveCoffeeProfile(
+                "원두 유형 불일치", washed, BeanType.BLEND, false
+        );
+        CoffeeProfile differentDecaf = saveCoffeeProfile(
+                "디카페인 불일치", washed, BeanType.SINGLE_ORIGIN, true
+        );
+        ProductDto.DetailResponse matchingProduct = productService.createProduct(productRequest(
+                category.getId(), matchingProfile.getId(), "FILTER-MATCH", 200, "필터 일치 상품", 18_000, 10
+        ));
+        productService.createProduct(productRequest(
+                category.getId(), differentMethod.getId(), "FILTER-METHOD", 200, "가공 방식 불일치 상품", 18_000, 10
+        ));
+        productService.createProduct(productRequest(
+                category.getId(), differentBeanType.getId(), "FILTER-BEAN", 200, "원두 유형 불일치 상품", 18_000, 10
+        ));
+        productService.createProduct(productRequest(
+                category.getId(), differentDecaf.getId(), "FILTER-DECAF", 200, "디카페인 불일치 상품", 18_000, 10
+        ));
+
+        Page<ProductDto.SummaryResponse> response = productService.getProducts(
+                null,
+                null,
+                washed.getId(),
+                BeanType.SINGLE_ORIGIN,
+                false,
+                null,
+                null,
+                PageRequest.of(0, 10)
+        );
+
+        assertEquals(1, response.getTotalElements());
+        assertEquals(matchingProduct.getId(), response.getContent().get(0).getId());
+        assertEquals("필터 일치 프로필", response.getContent().get(0).getCoffeeProfileName());
+    }
+
     private CategoryDto.Request categoryRequest(String name) {
         CategoryDto.Request request = new CategoryDto.Request();
         ReflectionTestUtils.setField(request, "name", name);
@@ -470,16 +524,32 @@ class ProductServiceIntegrationTest {
                 .description("수세식")
                 .build());
 
+        return saveCoffeeProfile(
+                profileName,
+                processingMethod,
+                BeanType.SINGLE_ORIGIN,
+                false
+        );
+    }
+
+    private CoffeeProfile saveCoffeeProfile(
+            String profileName,
+            ProcessingMethod processingMethod,
+            BeanType beanType,
+            boolean decaf
+    ) {
+
         return coffeeProfileRepository.save(CoffeeProfile.builder()
                 .processingMethod(processingMethod)
                 .profileName(profileName)
-                .beanType(BeanType.SINGLE_ORIGIN)
-                .originCountryCode("ET")
-                .originRegion("Yirgacheffe")
+                .beanType(beanType)
+                .originCountryCode(beanType == BeanType.SINGLE_ORIGIN ? "ET" : null)
+                .originRegion(beanType == BeanType.SINGLE_ORIGIN ? "Yirgacheffe" : null)
                 .altitudeMin(1_800)
                 .altitudeMax(2_100)
                 .roastLevel(RoastLevel.LIGHT)
-                .decaf(false)
+                .decaf(decaf)
+                .decafMethod(decaf ? "SWISS_WATER" : null)
                 .acidity((short) 5)
                 .body((short) 3)
                 .sweetness((short) 4)
