@@ -35,6 +35,14 @@ public class Cart {
         this.member = member;
     }
 
+    public void addItem(CartItem cartItem) {
+        this.cartItems.add(cartItem);
+    }
+
+    public void removeItem(CartItem cartItem) {
+        this.cartItems.remove(cartItem);
+    }
+
     // 장바구니 전체 비우기
     public void clear() {
         this.cartItems.clear();
