@@ -136,6 +136,10 @@ CREATE TEMP TABLE stg_product
 \copy stg_profile_variety FROM '/seed/catalog/profile_varieties.csv' WITH (FORMAT CSV, HEADER TRUE, ENCODING 'UTF8');
 \copy stg_product FROM '/seed/catalog/products.csv' WITH (FORMAT CSV, HEADER TRUE, ENCODING 'UTF8');
 
+-- 공백 이미지 값을 null로 정규화함
+UPDATE stg_product
+SET image_url = NULLIF(BTRIM(image_url), '');
+
 -- 손상되거나 다른 버전의 CSV 적재를 차단함
 DO $$
 BEGIN
@@ -145,6 +149,30 @@ BEGIN
 
     IF (SELECT COUNT(*) FROM stg_product) <> 192 THEN
         RAISE EXCEPTION '상품 CSV는 192행이어야 합니다.';
+    END IF;
+
+    IF EXISTS (
+        SELECT 1
+        FROM stg_product product
+        WHERE product.image_url IS NULL
+           OR product.image_url !~ '^https://assets-coffeeprod[.]ttagyulab[.]com/products/catalog/[a-z0-9]+(-[a-z0-9]+)*-v[1-9][0-9]*[.]webp$'
+    ) THEN
+        RAISE EXCEPTION '상품 이미지 URL은 승인된 R2 HTTPS WebP 경로여야 합니다.';
+    END IF;
+
+    IF EXISTS (
+        SELECT 1
+        FROM stg_product product
+        WHERE product.image_url <>
+              'https://assets-coffeeprod.ttagyulab.com/products/catalog/'
+              || LOWER(REPLACE(product.profile_key, '_', '-'))
+              || '-v1.webp'
+    ) THEN
+        RAISE EXCEPTION '상품 프로필과 이미지 URL 매핑이 일치하지 않습니다.';
+    END IF;
+
+    IF (SELECT COUNT(DISTINCT image_url) FROM stg_product) <> 96 THEN
+        RAISE EXCEPTION '상품 이미지 URL은 96개여야 합니다.';
     END IF;
 
     IF EXISTS (

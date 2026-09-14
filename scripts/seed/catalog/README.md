@@ -28,6 +28,8 @@ node scripts/seed/catalog/generate_catalog.mjs --check
 - 단일 원산지와 블렌드 필드 규칙
 - 블렌드 구성요소 2~5개와 비율 합계 100
 - 가격, 중량, 재고, 판매 상태, 로스트 단계 범위
+- 상품 이미지 URL 192개와 프로필별 R2 이미지 매핑
+- 서로 다른 이미지 URL 96개와 승인된 HTTPS WebP 경로
 
 ## 파일과 적재 순서
 
@@ -43,9 +45,21 @@ node scripts/seed/catalog/generate_catalog.mjs --check
 10. `csv/profile_varieties.csv`
 11. `csv/products.csv`
 
-CSV의 `profile_key`, `category_code`, 각 기준정보 `code`는 적재 단계에서 DB의 PK로 변환할 소스 키다. 운영 테이블에는 `profile_key`와 `category_code` 컬럼이 없으므로 직접 `COPY`하지 않는다. 다음 작업에서 staging table과 트랜잭션 기반 upsert/import SQL을 작성한 뒤 적재한다.
+CSV의 `profile_key`, `category_code`, 각 기준정보 `code`는 적재 단계에서 DB의 PK로 변환할 소스 키다. 운영 테이블에는 `profile_key`와 `category_code` 컬럼이 없으므로 직접 `COPY`하지 않는다. `load_catalog.sql`의 staging table과 트랜잭션 기반 upsert를 통해 적재한다.
 
-`image_url`은 `/images/catalog/{profile-key}.webp` 형식의 계획 경로다. 이미지 에셋이 추가되기 전에는 프론트에서 대체 이미지를 표시해야 한다.
+`image_url`은 아래의 승인된 Cloudflare R2 Custom Domain 경로를 사용한다. 동일 프로필의 200g·500g 상품은 같은 이미지를 공유한다.
+
+```text
+https://assets-coffeeprod.ttagyulab.com/products/catalog/{profile-key}-v1.webp
+```
+
+예시:
+
+```text
+https://assets-coffeeprod.ttagyulab.com/products/catalog/so036-d-v1.webp
+```
+
+정상 카탈로그는 상품 192개, null 0개, 서로 다른 이미지 URL 96개를 유지한다. null과 404 방어 동작은 정상 CSV에 넣지 않고 Backend·Frontend 자동화 mock 테스트에서 검증한다.
 
 ## PostgreSQL 적재
 
@@ -61,9 +75,17 @@ bash scripts/seed/catalog/load_catalog.sh
 1. 생성된 CSV의 중복·참조·블렌드 비율 정적 검증
 2. PostgreSQL 임시 staging 테이블에 CSV 11개 적재
 3. 기준정보·프로필·연결정보·상품의 트랜잭션 upsert
-4. 프로필 96개, SKU 192개와 관계 건수 검증
+4. 프로필 96개, SKU 192개, 이미지 URL 96개와 관계 건수 검증
 
 `load_catalog.sql`은 중간 검증이 실패하면 전체 트랜잭션을 롤백한다. `verify_catalog.sql`은 적재가 끝난 DB를 독립적으로 재검증한다.
+
+기존 DB의 `/images/catalog/*` 값은 수정된 CSV만으로 자동 변경되지 않는다. 아래 적재 명령을 다시 실행하면 SKU 기준 upsert가 카탈로그 상품 192개의 `image_url`을 승인된 R2 URL로 교체한다.
+
+```bash
+bash scripts/seed/catalog/load_catalog.sh
+```
+
+이 검증은 URL 문자열 정책과 매핑을 확인하며 외부 R2에 `HEAD` 또는 `GET` 요청을 보내지 않는다. 실제 HTTP 200, WebP `Content-Type`, 캐시 헤더는 DevOps·QA 검증에서 별도로 확인한다.
 
 ```bash
 docker compose exec -T db sh -lc \

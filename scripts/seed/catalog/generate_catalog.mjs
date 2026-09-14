@@ -4,6 +4,14 @@ import { fileURLToPath } from "node:url";
 
 const scriptDir = dirname(fileURLToPath(import.meta.url));
 const csvDir = join(scriptDir, "csv");
+const productImageBaseUrl = "https://assets-coffeeprod.ttagyulab.com/products/catalog";
+const productImageVersion = "v1";
+const productImageUrlPattern = /^https:\/\/assets-coffeeprod[.]ttagyulab[.]com\/products\/catalog\/[a-z0-9]+(?:-[a-z0-9]+)*-v[1-9][0-9]*[.]webp$/;
+
+function productImageUrlFor(profileKey) {
+    const assetKey = profileKey.toLowerCase().replaceAll("_", "-");
+    return `${productImageBaseUrl}/${assetKey}-${productImageVersion}.webp`;
+}
 
 const categories = [
     { category_code: "SINGLE_ORIGIN", name: "싱글 오리진" },
@@ -221,7 +229,7 @@ function addProducts(profile, basePrice) {
             stock_quantity: stock,
             roast_level: profile.roast_level,
             description: `${profile.summary} ${weight}g 포장으로 로스팅 단계와 원산지 메타데이터를 확인할 수 있음`,
-            image_url: `/images/catalog/${profile.profile_key.toLowerCase()}.webp`,
+            image_url: productImageUrlFor(profile.profile_key),
             status,
             display_order: index + 1
         });
@@ -471,14 +479,19 @@ function validateCatalog(data) {
 
     const productGroups = groupBy(data.products, "profile_key");
     profileKeys.forEach((profileKey) => assertCondition((productGroups.get(profileKey) ?? []).length === 2, `프로필별 SKU 개수 오류: ${profileKey}`));
+    const productImageUrls = new Set();
     data.products.forEach((product) => {
         assertCondition(profileKeys.has(product.profile_key), `상품 프로필 참조 오류: ${product.sku}`);
         assertCondition(categoryCodes.has(product.category_code), `상품 카테고리 참조 오류: ${product.sku}`);
         assertCondition([200, 500].includes(Number(product.weight_grams)), `상품 중량 오류: ${product.sku}`);
         assertCondition(Number(product.price) > 0 && Number(product.stock_quantity) >= 0, `상품 가격/재고 오류: ${product.sku}`);
         assertCondition(["ON_SALE", "SOLD_OUT", "HIDDEN"].includes(product.status), `상품 상태 오류: ${product.sku}`);
+        assertCondition(productImageUrlPattern.test(product.image_url), `상품 이미지 URL 형식 오류: ${product.sku}`);
+        assertCondition(product.image_url === productImageUrlFor(product.profile_key), `상품 이미지 매핑 오류: ${product.sku}`);
+        productImageUrls.add(product.image_url);
         if (product.status === "SOLD_OUT") assertCondition(Number(product.stock_quantity) === 0, `품절 재고 오류: ${product.sku}`);
     });
+    assertCondition(productImageUrls.size === 96, `상품 이미지 URL은 96개여야 함: ${productImageUrls.size}`);
 }
 
 function currentData() {

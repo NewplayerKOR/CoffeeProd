@@ -21,6 +21,34 @@ BEGIN
         RAISE EXCEPTION '카탈로그 상품은 192개여야 합니다.';
     END IF;
 
+    IF EXISTS (
+        SELECT 1
+        FROM product product
+        JOIN coffee_profile profile
+          ON profile.coffee_profile_id = product.coffee_profile_id
+        WHERE profile.catalog_key IS NOT NULL
+          AND (
+              product.image_url IS NULL
+              OR product.image_url !~ '^https://assets-coffeeprod[.]ttagyulab[.]com/products/catalog/[a-z0-9]+(-[a-z0-9]+)*-v[1-9][0-9]*[.]webp$'
+              OR product.image_url <>
+                 'https://assets-coffeeprod.ttagyulab.com/products/catalog/'
+                 || LOWER(REPLACE(profile.catalog_key, '_', '-'))
+                 || '-v1.webp'
+          )
+    ) THEN
+        RAISE EXCEPTION '카탈로그 상품 이미지 URL 정책 또는 프로필 매핑이 올바르지 않습니다.';
+    END IF;
+
+    IF (
+        SELECT COUNT(DISTINCT product.image_url)
+        FROM product product
+        JOIN coffee_profile profile
+          ON profile.coffee_profile_id = product.coffee_profile_id
+        WHERE profile.catalog_key IS NOT NULL
+    ) <> 96 THEN
+        RAISE EXCEPTION '카탈로그 상품 이미지 URL은 96개여야 합니다.';
+    END IF;
+
     IF (
         SELECT COUNT(*)
         FROM coffee_profile_component component
@@ -144,5 +172,11 @@ SELECT 'variety_relation', COUNT(*)
 FROM coffee_profile_variety relation
 JOIN coffee_profile profile
   ON profile.coffee_profile_id = relation.coffee_profile_id
+WHERE profile.catalog_key IS NOT NULL
+UNION ALL
+SELECT 'product_image_url', COUNT(DISTINCT product.image_url)
+FROM product product
+JOIN coffee_profile profile
+  ON profile.coffee_profile_id = product.coffee_profile_id
 WHERE profile.catalog_key IS NOT NULL
 ORDER BY metric;
