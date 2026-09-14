@@ -5,14 +5,14 @@
 ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-16-blue.svg)
 ![Redis](https://img.shields.io/badge/Redis-7-red.svg)
 
-커피 원두 커머스 서비스를 위한 Spring Boot 기반 REST API 서버입니다. 
+커피 원두 커머스 서비스를 위한 Spring Boot 기반 REST API 서버입니다.
 회원가입/인증부터 상품 관리, 장바구니, 주문, 결제 승인, 리뷰, QnA, 통계까지 온라인 커머스의 핵심 흐름을 제공합니다.
 
 ---
 
 ## 📖 프로젝트 개요
 
-CoffeeProd는 원두 커피 판매를 가정한 B2C 커머스 플랫폼 백엔드입니다. 
+CoffeeProd는 원두 커피 판매를 가정한 B2C 커머스 플랫폼 백엔드입니다.
 Toss Payments 결제 연동, 쿠폰/마일리지, 동시성 재고 차감, JWT 기반의 인증 시스템 등 실제 서비스 운영에 필요한 핵심 로직을 구현하는 데 중점을 두었습니다.
 
 ---
@@ -23,7 +23,7 @@ Toss Payments 결제 연동, 쿠폰/마일리지, 동시성 재고 차감, JWT �
 * **인증 & 회원**: JWT 기반 회원가입/로그인, 이메일 중복 확인, RefreshToken Rotation, 마이페이지, 회원 탈퇴 (Soft Delete)
 * **상품 & 카테고리**: 카테고리별 상품 조회, 로스팅 정도/키워드 필터링, 상품 상세 조회
 * **장바구니**: 수량 및 분쇄 옵션 변경, 조건부 상품 담기
-* **주문 & 결제**: 
+* **주문 & 결제**:
   * 장바구니 기반 주문서 생성 및 스냅샷 저장
   * **Toss Payments** 연동 결제 승인
   * 마일리지 선차감 및 동시성 제어가 적용된 조건부 재고 차감 (초과 판매 방지)
@@ -52,7 +52,7 @@ Toss Payments 결제 연동, 쿠폰/마일리지, 동시성 재고 차감, JWT �
 | **Security** | Spring Security, JWT, BCrypt |
 | **API Docs** | Springdoc OpenAPI, Swagger UI |
 | **Payment** | Toss Payments 연동 (`FakePaymentGateway` 지원) |
-| **Infra** | Docker Compose |
+| **Infra** | Docker Compose, GitHub Actions, GHCR |
 
 ---
 
@@ -70,7 +70,7 @@ docker compose up -d
 ```
 
 ### 3. 환경 변수 설정
-`application.yml` 또는 `.env`에 다음 환경 변수 설정이 필요합니다. 
+`application.yml` 또는 `.env`에 다음 환경 변수 설정이 필요합니다.
 (개발 환경인 `dev` 프로필에서는 로컬 기본값이 적용되어 있어 별도 설정 없이 실행 가능합니다.)
 
 ```env
@@ -101,6 +101,27 @@ TOSS_SECRET_KEY=your-toss-secret-key
 > * `test`: 테스트용 (H2, Fake Payment)
 > * `local-toss`: 실제 Toss 승인 테스트용
 > * `prod`: 운영 배포용
+
+### 5. 운영 서버 배포
+
+운영 배포는 Spring Boot, PostgreSQL, Redis를 `docker-compose.prod.yml`로 관리한다. `develop` 또는 `main` 브랜치에 배포 관련 변경이 push되면 GitHub Actions가 Docker 이미지를 빌드해 GHCR에 게시한다.
+
+서버는 전체 소스를 다시 빌드하지 않고 다음 명령으로 새 이미지를 내려받아 컨테이너를 갱신한다.
+
+```bash
+bash scripts/deploy/deploy.sh
+```
+
+운영 구성의 주요 원칙:
+
+* Backend는 `127.0.0.1:8080`에만 바인딩하고 Cloudflare Tunnel을 통해 공개합니다.
+* PostgreSQL과 Redis 포트는 서버 외부에 공개하지 않습니다.
+* `.env`, `postgres-data`, `redis-data`는 이미지와 Git에 포함하지 않습니다.
+* Flyway는 Backend 시작 시 자동 실행합니다.
+* 카탈로그 시드는 일반 배포와 분리하고 승인된 데이터 갱신 시에만 실행합니다.
+* GHCR의 `sha-*` 태그를 사용해 특정 애플리케이션 버전으로 롤백할 수 있습니다.
+
+최초 전환, GHCR 로그인, 환경변수, 카탈로그 적재 및 롤백 절차는 [`scripts/deploy/README.md`](scripts/deploy/README.md)를 따릅니다.
 
 ---
 
@@ -162,4 +183,5 @@ TOSS_SECRET_KEY=your-toss-secret-key
 - [ ] 주문 결제 실패 시 예약된 주문 데이터 정리 (Scheduler)
 - [ ] 통계 스케줄러 분산 락 적용 방안 (다중 인스턴스 대비)
 - [ ] 리뷰 / QnA 신고 시스템
-- [ ] AWS 기반 CI/CD 파이프라인 구성
+- [x] GitHub Actions 및 GHCR 기반 Backend 이미지 빌드·게시
+- [ ] 운영 서버 원격 배포 트리거 자동화
