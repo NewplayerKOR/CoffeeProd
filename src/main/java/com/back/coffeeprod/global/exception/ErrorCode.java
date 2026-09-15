@@ -27,6 +27,7 @@ public enum ErrorCode {
     CATEGORY_NOT_FOUND(404, "카테고리를 찾을 수 없습니다."),
     DUPLICATE_CATEGORY_NAME(409, "이미 존재하는 카테고리명입니다."),
     DUPLICATE_PRODUCT_SKU(409, "이미 존재하는 상품 SKU입니다."),
+    INVALID_PRODUCT_IMAGE_URL(400, "상품 이미지 URL이 허용된 형식이 아닙니다."),
     CATEGORY_IN_USE(400, "상품이 등록된 카테고리는 삭제할 수 없습니다."),
     OUT_OF_STOCK(400, "재고가 부족합니다."),
     INVALID_ORDER_STATUS(400, "변경할 수 없는 주문 상태입니다."),

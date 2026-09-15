@@ -8,6 +8,7 @@ import com.back.coffeeprod.domain.product.entity.Category;
 import com.back.coffeeprod.domain.product.entity.Product;
 import com.back.coffeeprod.domain.product.entity.ProductStatus;
 import com.back.coffeeprod.domain.product.entity.RoastLevel;
+import com.back.coffeeprod.domain.product.policy.ProductImageUrlPolicy;
 import com.back.coffeeprod.domain.product.repository.ProductRepository;
 import com.back.coffeeprod.global.exception.CustomException;
 import com.back.coffeeprod.global.exception.ErrorCode;
@@ -90,6 +91,7 @@ public class ProductService {
     // [관리자] 상품 등록
     @Transactional
     public ProductDto.DetailResponse createProduct(ProductDto.Request request) {
+        String imageUrl = ProductImageUrlPolicy.normalize(request.getImage_url());
         validateSkuForCreate(request.getSku());
 
         Category category = categoryService.findCategoryById(request.getCategoryId());
@@ -105,7 +107,7 @@ public class ProductService {
                 .stockQuantity(request.getStockQuantity())
                 .roastLevel(request.getRoastLevel())
                 .description(request.getDescription())
-                .imageUrl(request.getImage_url())
+                .imageUrl(imageUrl)
                 .build();
 
         return new ProductDto.DetailResponse(productRepository.save(product));
@@ -114,6 +116,7 @@ public class ProductService {
     // [관리자] 상품 전체 수정
     @Transactional
     public ProductDto.DetailResponse updateProduct(Long productId, ProductDto.Request request) {
+        String imageUrl = ProductImageUrlPolicy.normalize(request.getImage_url());
         Product product = findProductById(productId);
         validateSkuForUpdate(productId, request.getSku());
 
@@ -130,7 +133,7 @@ public class ProductService {
                 request.getStockQuantity(),
                 request.getRoastLevel(),
                 request.getDescription(),
-                request.getImage_url()
+                imageUrl
         );
 
         return new ProductDto.DetailResponse(product); // Dirty Checking으로 자동 UPDATE
