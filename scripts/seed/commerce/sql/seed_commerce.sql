@@ -153,7 +153,7 @@ DELETE FROM member member
 USING previous_seed_member seed_member
 WHERE member.member_id = seed_member.member_id;
 
--- k6 로그인에 사용하는 공통 BCrypt 해시를 저장함
+-- 평문 password와 일치하는 공통 BCrypt 해시를 저장함
 WITH generated_member AS (
     SELECT member_no,
            config.*,
@@ -182,7 +182,7 @@ INSERT INTO member (
     updated_at
 )
 SELECT format('loadtest-user-%s@coffeeprod.local', LPAD(member_no::TEXT, 6, '0')),
-       '$2a$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy',
+       '$2a$10$YLhRtvFv9.dABUkjF4PAtOFnwKFSQ0cr3DrnA3XuEPf6dnWYWoEuq',
        format('부하회원 %s', LPAD(member_no::TEXT, 6, '0')),
        format('loadtest_user_%s', LPAD(member_no::TEXT, 6, '0')),
        'USER',
@@ -215,7 +215,7 @@ INSERT INTO member (
     updated_at
 )
 SELECT 'loadtest-admin@coffeeprod.local',
-       '$2a$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy',
+       '$2a$10$YLhRtvFv9.dABUkjF4PAtOFnwKFSQ0cr3DrnA3XuEPf6dnWYWoEuq',
        '부하테스트 관리자',
        'loadtest_admin',
        'ADMIN',
