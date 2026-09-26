@@ -1,11 +1,21 @@
 import http from 'k6/http';
 import { check } from 'k6';
-import { baseUrl, defaultThresholds, jsonParams, numberEnv } from '../lib/common.js';
+import {
+  arrivalRateThresholds,
+  baseUrl,
+  isCommonSuccess,
+  jsonParams,
+  numberEnv,
+  summaryTrendStats,
+  testTags,
+} from '../lib/common.js';
 
 const BASE_URL = baseUrl();
 const PRODUCT_ID = __ENV.PRODUCT_ID;
 
 export const options = {
+  summaryTrendStats,
+  tags: testTags('read-load'),
   scenarios: {
     publicReads: {
       executor: 'constant-arrival-rate',
@@ -16,7 +26,7 @@ export const options = {
       maxVUs: numberEnv('READ_MAX_VUS', 100),
     },
   },
-  thresholds: defaultThresholds,
+  thresholds: arrivalRateThresholds,
 };
 
 export default function () {
@@ -53,6 +63,6 @@ export default function () {
 
   check(response, {
     'read status is 200': (res) => res.status === 200,
-    'read response is successful': (res) => res.json('status') === 200,
+    'read response is successful': (res) => isCommonSuccess(res),
   });
 }

@@ -39,6 +39,9 @@ out/
 ### Local AI tooling ###
 /.ai/
 
+### Cloudflare Wrangler ###
+/.wrangler/
+
 ### Security ###
 .env
 .env.local
@@ -62,4 +65,3 @@ redis-data/
 /k6/.env
 /k6/data/users.json
 /k6/results/*
-!/k6/results/.gitkeep

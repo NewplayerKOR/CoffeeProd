@@ -1,6 +1,13 @@
 import http from 'k6/http';
 import { check, group } from 'k6';
-import { baseUrl, defaultThresholds, jsonParams } from '../lib/common.js';
+import {
+  baseUrl,
+  defaultThresholds,
+  isCommonSuccess,
+  jsonParams,
+  summaryTrendStats,
+  testTags,
+} from '../lib/common.js';
 
 const BASE_URL = baseUrl();
 const PRODUCT_ID = __ENV.PRODUCT_ID;
@@ -8,13 +15,15 @@ const PRODUCT_ID = __ENV.PRODUCT_ID;
 export const options = {
   vus: 1,
   iterations: 1,
+  summaryTrendStats,
+  tags: testTags('smoke'),
   thresholds: defaultThresholds,
 };
 
 function verify(response, expectedStatus = 200) {
   check(response, {
     [`HTTP ${expectedStatus}`]: (res) => res.status === expectedStatus,
-    'CommonResponse status is 200': (res) => res.json('status') === 200,
+    'CommonResponse status is 200': (res) => isCommonSuccess(res, expectedStatus),
   });
 }
 
