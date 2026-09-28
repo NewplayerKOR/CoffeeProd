@@ -38,6 +38,7 @@ out/
 
 ### Local AI tooling ###
 /.ai/
+/.codex/
 
 ### Cloudflare Wrangler ###
 /.wrangler/
