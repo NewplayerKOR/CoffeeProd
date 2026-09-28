@@ -35,6 +35,16 @@ public class Cart {
         this.member = member;
     }
 
+    // 장바구니 상품 추가 시 양방향 연관관계를 동기화함
+    public void addItem(CartItem cartItem) {
+        this.cartItems.add(cartItem);
+    }
+
+    // 장바구니 상품 삭제 시 양방향 연관관계를 동기화함
+    public void removeItem(CartItem cartItem) {
+        this.cartItems.remove(cartItem);
+    }
+
     // 장바구니 전체 비우기
     public void clear() {
         this.cartItems.clear();
