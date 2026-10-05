@@ -13,6 +13,22 @@ spring:
         default_batch_fetch_size: 100 # N+1 문제 방지 위해 배치 사이즈 설정
         dialect: org.hibernate.dialect.PostgreSQLDialect
     
+management:
+  server:
+    port: 9091
+    address: 0.0.0.0
+  endpoints:
+    web:
+      exposure:
+        include: health,prometheus
+  endpoint:
+    health:
+      show-details: never
+  metrics:
+    distribution:
+      percentiles-histogram:
+        http.server.requests: true
+
 logging:
   level:
     root: WARN

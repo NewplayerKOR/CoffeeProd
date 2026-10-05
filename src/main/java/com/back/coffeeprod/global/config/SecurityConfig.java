@@ -69,6 +69,12 @@ public class SecurityConfig {
 
                 // 요청에 대한 권한 설정
                 .authorizeHttpRequests(auth -> auth
+                        // 관리 포트의 상태 및 지표 조회만 허용함
+                        .requestMatchers(
+                                HttpMethod.GET,
+                                "/actuator/health",
+                                "/actuator/prometheus"
+                        ).permitAll()
                         // 인증 없이 접근할 인증 API를 설정함
                         .requestMatchers(
                                 "/api/v1/auth/signup",
