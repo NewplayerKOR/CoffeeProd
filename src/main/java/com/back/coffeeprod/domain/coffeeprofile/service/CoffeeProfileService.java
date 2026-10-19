@@ -120,6 +120,7 @@ public class CoffeeProfileService {
 
         replaceCoffeeProfileContents(coffeeProfile, request);
 
+        coffeeProfileRepository.flush();
         return new CoffeeProfileDto.Response(coffeeProfile);
     }
 
