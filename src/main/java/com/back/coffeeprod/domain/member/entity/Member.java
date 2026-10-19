@@ -46,6 +46,9 @@ public class Member extends BaseTimeEntity {
 
     private int mileage = 0;
 
+    @Column(nullable = false)
+    private int mileageRecoveryDue = 0;
+
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private MemberStatus status;
@@ -99,7 +102,19 @@ public class Member extends BaseTimeEntity {
 
     // 마일리지 적립 / 복구
     public void addMileage(int amount) {
-        this.mileage += amount;
+        if (amount < 0) throw new CustomException(ErrorCode.INVALID_MILEAGE);
+        settleMileage(amount, 0);
+    }
+
+    public void settleMileage(int restored, int reclaimed) {
+        if (restored < 0 || reclaimed < 0) throw new CustomException(ErrorCode.INVALID_MILEAGE);
+        long net = (long) mileage + restored - mileageRecoveryDue - reclaimed;
+        long balance = Math.max(net, 0);
+        long due = Math.max(-net, 0);
+        if (balance > Integer.MAX_VALUE || due > Integer.MAX_VALUE)
+            throw new CustomException(ErrorCode.INVALID_MILEAGE);
+        mileage = (int) balance;
+        mileageRecoveryDue = (int) due;
     }
 
     // 마일리지 차감

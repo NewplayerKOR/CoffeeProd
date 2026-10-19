@@ -34,6 +34,11 @@ import java.util.UUID;
 public class OrderService {
 
     private final OrderRepository orderRepository;
+    private final com.back.coffeeprod.domain.payment.service.PaymentWorkflow paymentWorkflow;
+    private final com.back.coffeeprod.domain.payment.service.PaymentTransactions paymentTransactions;
+    private final com.back.coffeeprod.domain.member.repository.MemberRepository memberRepository;
+    private final com.back.coffeeprod.domain.cart.repository.CartRepository cartRepository;
+    private final jakarta.persistence.EntityManager entityManager;
     private final AddressRepository addressRepository;
     private final MemberService memberService;
     private final CartService cartService;
@@ -43,7 +48,10 @@ public class OrderService {
     // 주문서 임시 생성 (결제 직전)
     @Transactional
     public OrderDto.DetailResponse createOrder(Long memberId, OrderDto.CreateRequest request) {
-        Member member = memberService.findMemberById(memberId);
+        Member member = memberRepository.findLockedById(memberId)
+                .orElseThrow(() -> new CustomException(ErrorCode.MEMBER_NOT_FOUND));
+        entityManager.refresh(member);
+        if (member.getStatus() == MemberStatus.WITHDRAWN) throw new CustomException(ErrorCode.WITHDRAW_MEMBER);
 
         // 정지회원 주문 차단
         if (member.getStatus() == MemberStatus.SUSPENDED) {
@@ -51,7 +59,9 @@ public class OrderService {
         }
 
         // 1. 장바구니 조회 및 빈 장바구니 검증
-        Cart cart = cartService.getOrCreateCart(memberId);
+        Cart initialCart = cartService.getOrCreateCart(memberId);
+        Cart cart = cartRepository.findLockedById(initialCart.getId()).orElseThrow();
+        entityManager.refresh(cart);
         List<CartItem> cartItems = cart.getCartItems();
 
         if (cartItems.isEmpty()) {
@@ -80,6 +90,12 @@ public class OrderService {
             throw new CustomException(ErrorCode.INVALID_MILEAGE);
         }
 
+        // Lock products in ascending order before reading mutable price/stock snapshots.
+        cartItems.stream().map(i -> i.getProduct().getId()).distinct().sorted().forEach(id -> {
+            var product = productRepository.findLockedById(id).orElseThrow(() -> new CustomException(ErrorCode.PRODUCT_NOT_FOUND));
+            entityManager.refresh(product);
+        });
+
         // 5. 주문 상품 금액 계산
         int orderProductTotalPrice = 0;
         for (CartItem cartItem : cartItems) {
@@ -96,17 +112,13 @@ public class OrderService {
         // 6. 마일리지 차감
         member.useMileage(usedMileage);
 
-        // 7. 재고 차감
-        for (CartItem cartItem : cartItems) {
-            int updatedRows = productRepository.decreaseStockIfEnough(
-                    cartItem.getProduct().getId(),
-                    cartItem.getQuantity()
-            );
-
-            if (updatedRows == 0) {
-                throw new CustomException(ErrorCode.OUT_OF_STOCK);
-            }
-        }
+        // Aggregate duplicate product lines, then mutate stock in the same lock order.
+        var quantities = new java.util.TreeMap<Long,Integer>();
+        cartItems.forEach(i -> quantities.merge(i.getProduct().getId(),i.getQuantity(),Math::addExact));
+        quantities.forEach((id,quantity) -> {
+            if (productRepository.decreaseStockIfEnough(id,quantity) != 1) throw new CustomException(ErrorCode.OUT_OF_STOCK);
+            entityManager.refresh(productRepository.findById(id).orElseThrow());
+        });
 
         // 8. 최종 결제 금액 계산
         int totalPrice = orderProductTotalPrice - usedMileage + deliveryFee;
@@ -189,108 +201,15 @@ public class OrderService {
         return new OrderDto.DetailResponse(orders);
     }
 
-    // 주문 취소
-    @Transactional
+    @Transactional(propagation = Propagation.NOT_SUPPORTED)
     public OrderDto.DetailResponse cancelOrder(Long memberId, Long orderId) {
-        Orders orders = findOrderByIdWithItems(orderId);
-
-        // 본인 주문만 취소 가능
-        if (!orders.getMember().getId().equals(memberId)) {
-            throw new CustomException(ErrorCode.ORDER_ACCESS_DENIED);
-        }
-
-        cancelAndRestore(orders);
-
-        return new OrderDto.DetailResponse(orders);
+        return paymentWorkflow.cancel(memberId,orderId,false).order();
     }
 
-    // 결제 실패 보상 메서드
-    @Transactional(propagation = Propagation.REQUIRES_NEW)
-    public void cancelOrderForPaymentFailure(Long orderId) {
-        Orders orders = findOrderByIdWithItems(orderId);
-        cancelAndRestore(orders);
-    }
-
-    // [관리자] 관리자 주문 상태 변경
-    @Transactional
-    public OrderDto.DetailResponse updateOrderStatus(
-            Long orderId,
-            OrderDto.StatusUpdateRequest request
-    ) {
-        Orders orders = findOrderByIdWithItems(orderId);
-        OrderStatus nextStatus = request.getStatus();
-
-        validateOrderStatusTransition(orders, nextStatus, request.getTrackingNo());
-
-        orders.updateStatus(nextStatus, request.getTrackingNo());
-
-        return new OrderDto.DetailResponse(orders);
-    }
-
-    // 주문 상태 전이 검증
-    private void validateOrderStatusTransition(
-            Orders orders,
-            OrderStatus nextStatus,
-            String trackingNo
-    ) {
-        if (nextStatus == null) {
-            throw new CustomException(ErrorCode.INVALID_ORDER_STATUS);
-        }
-
-        OrderStatus currentStatus = orders.getStatus();
-
-        if (currentStatus == OrderStatus.DELIVERED || currentStatus == OrderStatus.CANCELED) {
-            throw new CustomException(ErrorCode.INVALID_ORDER_STATUS);
-        }
-
-        if (nextStatus == OrderStatus.SHIPPED && (trackingNo == null || trackingNo.isBlank())) {
-            throw new CustomException(ErrorCode.INVALID_INPUT_VALUE);
-        }
-
-        boolean allowed = switch (currentStatus) {
-            case PENDING -> nextStatus == OrderStatus.PAID
-                    || nextStatus == OrderStatus.CANCELED;
-            case PAID -> nextStatus == OrderStatus.SHIPPED
-                    || nextStatus == OrderStatus.CANCELED;
-            case SHIPPED -> nextStatus == OrderStatus.DELIVERED;
-            case DELIVERED, CANCELED -> false;
-        };
-
-        if (!allowed) {
-            throw new CustomException(ErrorCode.INVALID_ORDER_STATUS);
-        }
-    }
-
-    // 보상 로직
-    private void cancelAndRestore(Orders orders) {
-        if (orders.getStatus() == OrderStatus.CANCELED) {
-            return;
-        }
-
-        try {
-            orders.cancel();
-        } catch (IllegalStateException e) {
-            throw new CustomException(ErrorCode.INVALID_ORDER_STATUS);
-        }
-
-        orders.getOrderItems()
-                .forEach(item -> item.getProduct().addStock(item.getQuantity()));
-
-        if (orders.getUsedMileage() > 0) {
-            orders.getMember().addMileage(orders.getUsedMileage());
-        }
-
-        // 결제 완료 후 적립된 마일리지는 주문 취소 시 회수
-        if (orders.getEarnedMileage() > 0) {
-            orders.getMember().useMileage(orders.getEarnedMileage());
-        }
-    }
-
-    // [내부 공용] 주문 결제 완료 처리
-    @Transactional
-    public void markAsPaid(Long orderId) {
-        Orders orders = findOrderById(orderId);
-        orders.markAsPaid(0);
+    @Transactional(propagation = Propagation.NOT_SUPPORTED)
+    public OrderDto.DetailResponse updateOrderStatus(Long orderId, OrderDto.StatusUpdateRequest request) {
+        if (request.getStatus() == OrderStatus.CANCELED) return paymentWorkflow.cancel(null,orderId,true).order();
+        return paymentTransactions.ship(orderId,request);
     }
 
     // [내부 공용] 주문 단건 조회 (OrderItem 포함)

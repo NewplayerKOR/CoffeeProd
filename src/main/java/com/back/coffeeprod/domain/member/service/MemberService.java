@@ -145,7 +145,7 @@ public class MemberService {
     // 내 정보 수정 (닉네임)
     @Transactional
     public MemberDto.Response updateMyInfo(Long memberId, MemberDto.UpdateRequest request) {
-        Member member = findMemberById(memberId);
+        Member member = memberRepository.findLockedById(memberId).orElseThrow(() -> new CustomException(ErrorCode.MEMBER_NOT_FOUND));
 
         // 새로운 닉네임을 다른 회원이 사용중인지 검증
         if (memberRepository.existsByNickname(request.getNickname())) {
@@ -158,7 +158,7 @@ public class MemberService {
 
     @Transactional
     public void changePassword(Long memberId, MemberDto.PasswordChangeRequest request) {
-        Member member = findMemberById(memberId);
+        Member member = memberRepository.findLockedById(memberId).orElseThrow(() -> new CustomException(ErrorCode.MEMBER_NOT_FOUND));
 
         // 현재 비밀번호 일치 여부 검증
         if (!passwordEncoder.matches(request.getCurrentPassword(), member.getPassword())) {
@@ -173,7 +173,7 @@ public class MemberService {
     // 회원 탈퇴 Soft Delete
     @Transactional
     public void withdraw(Long memberId, String currentPassword) {
-        Member member = findMemberById(memberId);
+        Member member = memberRepository.findLockedById(memberId).orElseThrow(() -> new CustomException(ErrorCode.MEMBER_NOT_FOUND));
 
         // 탈퇴 전 현재 비밀번호로 본인 확인
         if (!passwordEncoder.matches(currentPassword, member.getPassword())) {
@@ -211,7 +211,7 @@ public class MemberService {
     public MemberDto.AdminResponse updateMemberGrade(
             Long memberId, MemberDto.GradeUpdateRequest request) {
 
-        Member member = findMemberById(memberId);
+        Member member = memberRepository.findLockedById(memberId).orElseThrow(() -> new CustomException(ErrorCode.MEMBER_NOT_FOUND));
         member.updateGrade(request.getGrade());
         return new MemberDto.AdminResponse(member);
     }
@@ -221,7 +221,7 @@ public class MemberService {
     public MemberDto.AdminResponse updateMemberStatus(
             Long memberId, MemberDto.StatusUpdateRequest request) {
 
-        Member member = findMemberById(memberId);
+        Member member = memberRepository.findLockedById(memberId).orElseThrow(() -> new CustomException(ErrorCode.MEMBER_NOT_FOUND));
         MemberStatus nextStatus = request.getStatus();
 
         // 탈퇴한 회원은 관리자가 임의로 복구하거나 상태를 변경하지 않는다.

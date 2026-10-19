@@ -41,6 +41,16 @@ public class Payment {
     @Column(name = "paid_at", columnDefinition = "TIMESTAMPTZ")
     private Instant paidAt;   // 결제 완료 시각
 
+    @Column(columnDefinition = "TIMESTAMPTZ")
+    private Instant refundedAt;
+
+    public void recordApprovedAt(Instant approvedAt) { this.paidAt = approvedAt; }
+
+    public void refund(Instant canceledAt) {
+        this.status = PaymentStatus.REFUNDED;
+        this.refundedAt = canceledAt;
+    }
+
     @Builder
     public Payment(Orders orders, String pgProvider, String paymentKey, String payMethod, PaymentStatus status) {
         this.orders = orders;
@@ -52,7 +62,5 @@ public class Payment {
     }
 
     // 환불 처리
-    public void refund() {
-        this.status = PaymentStatus.REFUNDED;
-    }
+
 }

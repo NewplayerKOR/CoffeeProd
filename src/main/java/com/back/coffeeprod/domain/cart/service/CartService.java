@@ -22,6 +22,7 @@ import org.springframework.transaction.annotation.Transactional;
 public class CartService {
 
     private final CartRepository cartRepository;
+    private final com.back.coffeeprod.domain.member.repository.MemberRepository memberRepository;
     private final CartItemRepository cartItemRepository;
     private final MemberService memberService;
     private final ProductService productService;
@@ -114,6 +115,7 @@ public class CartService {
     // [내부 공용] 장바구니 조회 or 신규 생성
     @Transactional
     public Cart getOrCreateCart(Long memberId) {
+        memberRepository.findLockedById(memberId).orElseThrow(() -> new CustomException(ErrorCode.MEMBER_NOT_FOUND));
         return cartRepository.findByMemberId(memberId)
                 .orElseGet(() -> {
                     // 장바구니 없으면 자동 생성

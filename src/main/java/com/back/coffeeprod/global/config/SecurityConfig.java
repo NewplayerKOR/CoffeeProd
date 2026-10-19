@@ -107,7 +107,7 @@ public class SecurityConfig {
                         .anyRequest().authenticated())
 
                 // 기본 로그인 필터대신 작성한 JWT 인증 필터 사용
-                .addFilterBefore(new JwtAuthenticationFilter(jwtUtil, customUserDetailsService),
+                .addFilterBefore(new JwtAuthenticationFilter(jwtUtil, customUserDetailsService, restAuthenticationEntryPoint),
                         UsernamePasswordAuthenticationFilter.class);
 
         return http.build();

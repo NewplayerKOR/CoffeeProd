@@ -76,7 +76,7 @@ public class Product extends BaseTimeEntity {
     }
 
     // 상품 전체 정보 수정
-    public void update(Category category, CoffeeProfile coffeeProfile, String sku, int weightGrams, String name, int price, int stockQuantity,
+    public void update(Category category, CoffeeProfile coffeeProfile, String sku, int weightGrams, String name, int price,
                        RoastLevel roastLevel, String description, String imageUrl) {
         this.category = category;
         this.coffeeProfile = coffeeProfile;
@@ -84,7 +84,6 @@ public class Product extends BaseTimeEntity {
         this.weightGrams = weightGrams;
         this.name = name;
         this.price = price;
-        this.stockQuantity = stockQuantity;
         this.roastLevel = roastLevel;
         this.description = description;
         this.imageUrl = imageUrl;

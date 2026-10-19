@@ -24,6 +24,10 @@ public class CommonResponse<T> {
         return new CommonResponse<>(200, "성공", data, null);
     }
 
+    public static <T> CommonResponse<T> success(int status, T data) {
+        return new CommonResponse<>(status, status == 202 ? "처리 중" : "성공", data, null);
+    }
+
     // 2. 성공 응답 (데이터 없음)
     public static <T> CommonResponse<T> success(int status, String message) {
         return new CommonResponse<>(status, message, null, null);

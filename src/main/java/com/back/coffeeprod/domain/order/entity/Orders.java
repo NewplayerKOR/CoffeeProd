@@ -34,6 +34,24 @@ public class Orders extends BaseTimeEntity {
     @Column(nullable = false)
     private OrderStatus status;
 
+    @Column(nullable = false)
+    private boolean cancelRequested;
+
+    @OneToMany(mappedBy = "orders", cascade = CascadeType.ALL, orphanRemoval = true)
+    @org.hibernate.annotations.BatchSize(size = 50)
+    private List<com.back.coffeeprod.domain.payment.entity.PaymentOperation> paymentOperations = new ArrayList<>();
+
+    public void requestCancel() { cancelRequested = true; }
+    public void rejectCancel() { cancelRequested = false; }
+
+    public String getPaymentOperationStatus() {
+        var type = cancelRequested ? com.back.coffeeprod.domain.payment.entity.PaymentOperation.Type.CANCEL_FULL
+                : com.back.coffeeprod.domain.payment.entity.PaymentOperation.Type.CONFIRM;
+        return paymentOperations.stream().filter(op -> op.getType() == type).findFirst()
+                .or(() -> paymentOperations.stream().filter(op -> op.getType() == com.back.coffeeprod.domain.payment.entity.PaymentOperation.Type.CONFIRM).findFirst())
+                .map(op -> op.getStatus().name()).orElse(null);
+    }
+
     @Column
     private int usedMileage;    // 사용한 마일리지
 

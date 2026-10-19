@@ -5,10 +5,12 @@ import java.io.IOException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.AuthenticationException;
 import org.springframework.util.StringUtils;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import com.back.coffeeprod.global.security.auth.CustomUserDetailsService;
+import com.back.coffeeprod.global.security.handler.RestAuthenticationEntryPoint;
 
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -21,6 +23,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
     private final JwtUtil jwtUtil;
     private final CustomUserDetailsService customUserDetailsService;
+    private final RestAuthenticationEntryPoint authenticationEntryPoint;
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
@@ -36,7 +39,14 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             Long memberId = jwtUtil.getMemberIdFromToken(token);
 
             // 4. DB에서 해당 회원 정보로 UserDetails로 변환
-            UserDetails userdetails = customUserDetailsService.loadUserByUsername(memberId.toString());
+            UserDetails userdetails;
+            try {
+                userdetails = customUserDetailsService.loadUserByUsername(memberId.toString());
+            } catch (AuthenticationException exception) {
+                SecurityContextHolder.clearContext();
+                authenticationEntryPoint.commence(request, response, exception);
+                return;
+            }
 
             // 5. '인증 완료'인 Authentication 객체 생성
             UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(userdetails,

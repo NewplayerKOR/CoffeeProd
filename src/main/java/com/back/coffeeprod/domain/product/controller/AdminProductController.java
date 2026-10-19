@@ -111,7 +111,7 @@ public class AdminProductController {
     // 상품 전체 수정
     @Operation(
             summary = "상품 전체 수정",
-            description = "관리자가 SKU, 중량, 카테고리, 상품명, 가격, 재고, 로스팅 단계, 설명, 이미지를 수정합니다."
+            description = "관리자가 SKU, 중량, 카테고리, 상품명, 가격, 로스팅 단계, 설명, 이미지를 수정합니다. 재고는 현재 값을 보존하며 요청의 stockQuantity는 적용하지 않습니다. 입고는 재고 추가 API를 사용합니다."
     )
 
     @ApiResponses({
