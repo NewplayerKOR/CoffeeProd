@@ -1,0 +1,919 @@
+{
+  "suite_id": "ssh-client-probe-20261012T122604Z",
+  "start_utc": "2026-10-12T12:26:04.5291520+00:00",
+  "end_utc": "2026-10-12T12:28:19.1349725+00:00",
+  "http_requests": 120,
+  "business_checks": 120,
+  "http_failures": 0,
+  "segments": 8,
+  "same_category_digest": true,
+  "input_hashes_match_baseline": true,
+  "script_sha256": "1e11ceee2766fe751137dda654baae00ea7bbc552491fad4b9035015d9492dbb",
+  "target_module_sha256": "0197ea62b17d91b028dcc8ae3ecbba5b4bfac90913a6efe2963ebfd68c4e9ed1",
+  "sources": {
+    "conditions_sha256": "a40720e949328fa9b0edfc536b82bb7c6f35e7d74c89fd41f4dda659c0adf23b",
+    "completion_sha256": "32262869c1be7597de15a8366c66c14d4eacc06c94eb910dc02c72337c57e286",
+    "server_metrics_sha256": "218ca4edc11dfba0b383919e572a14530a2e5c7d839a81ab7a7f9200a0d1b7e7",
+    "observations_sha256": "f20a6adc26ba1ae6b12d21cdec477ccb8ed38021e0c698df3b2c123dfe622898"
+  },
+  "clients": [
+    {
+      "label": "windows",
+      "version": "OpenSSH_for_Windows_9.5p2, LibreSSL 3.8.2",
+      "sha256": "786ff14be7cd652b2b9770a57e9b1aa5e03a052ce3a3d641fb4760c0ff3fde05"
+    },
+    {
+      "label": "git",
+      "version": "OpenSSH_10.3p1, OpenSSL 3.5.6 7 Apr 2026",
+      "sha256": "ff3de79218b536e7460e14f470cefca2c2516f2320ee8a54114c015254f37cef"
+    }
+  ],
+  "topology": {
+    "distinct_clients": true,
+    "separate_processes": true,
+    "api_only_forwarding": true,
+    "monitoring_on_separate_shared_process": true
+  },
+  "routes": {
+    "windows": {
+      "count": 60,
+      "timings": {
+        "http_req_duration": {
+          "count": 60,
+          "average_ms": 43.09097,
+          "median_ms": 44.192099999999996,
+          "p95_ms": 62.930065,
+          "p99_ms": 64.39994099999998,
+          "max_ms": 66.288
+        },
+        "http_req_waiting": {
+          "count": 60,
+          "average_ms": 41.28638000000001,
+          "median_ms": 44.01385,
+          "p95_ms": 62.930065,
+          "p99_ms": 64.39994099999998,
+          "max_ms": 66.288
+        },
+        "http_req_receiving": {
+          "count": 60,
+          "average_ms": 1.8045900000000001,
+          "median_ms": 0,
+          "p95_ms": 17.562814999999972,
+          "p99_ms": 28.485821999999995,
+          "max_ms": 29.2966
+        },
+        "http_req_sending": {
+          "count": 60,
+          "average_ms": 0,
+          "median_ms": 0,
+          "p95_ms": 0,
+          "p99_ms": 0,
+          "max_ms": 0
+        },
+        "http_req_blocked": {
+          "count": 60,
+          "average_ms": 0.06902333333333334,
+          "median_ms": 0,
+          "p95_ms": 0.5388699999999985,
+          "p99_ms": 1.2562319999999982,
+          "max_ms": 1.5543
+        },
+        "http_req_connecting": {
+          "count": 60,
+          "average_ms": 0.05187833333333334,
+          "median_ms": 0,
+          "p95_ms": 0.51216,
+          "p99_ms": 1.0426689999999998,
+          "max_ms": 1.0491
+        },
+        "http_req_tls_handshaking": {
+          "count": 60,
+          "average_ms": 0,
+          "median_ms": 0,
+          "p95_ms": 0,
+          "p99_ms": 0,
+          "max_ms": 0
+        }
+      },
+      "new_tcp_requests": 4,
+      "new_tls_requests": 0,
+      "slow_count": 0,
+      "slow_new_tcp": 0,
+      "slow_new_tls": 0,
+      "slow_duration_sum_ms": 0,
+      "slow_component_share": {
+        "sending": null,
+        "waiting": null,
+        "receiving": null
+      },
+      "slow_by_endpoint": {}
+    },
+    "git": {
+      "count": 60,
+      "timings": {
+        "http_req_duration": {
+          "count": 60,
+          "average_ms": 49.03039666666666,
+          "median_ms": 54.2429,
+          "p95_ms": 62.980019999999996,
+          "p99_ms": 66.00786599999999,
+          "max_ms": 67.0596
+        },
+        "http_req_waiting": {
+          "count": 60,
+          "average_ms": 7.453663333333334,
+          "median_ms": 7.4658999999999995,
+          "p95_ms": 9.397375,
+          "p99_ms": 10.84263399999999,
+          "max_ms": 12.7114
+        },
+        "http_req_receiving": {
+          "count": 60,
+          "average_ms": 41.57673333333332,
+          "median_ms": 46.599149999999995,
+          "p95_ms": 55.229705,
+          "p99_ms": 57.09209199999999,
+          "max_ms": 59.1814
+        },
+        "http_req_sending": {
+          "count": 60,
+          "average_ms": 0,
+          "median_ms": 0,
+          "p95_ms": 0,
+          "p99_ms": 0,
+          "max_ms": 0
+        },
+        "http_req_blocked": {
+          "count": 60,
+          "average_ms": 0.06857333333333333,
+          "median_ms": 0,
+          "p95_ms": 1.024075,
+          "p99_ms": 1.032423,
+          "max_ms": 1.0326
+        },
+        "http_req_connecting": {
+          "count": 60,
+          "average_ms": 0.06857333333333333,
+          "median_ms": 0,
+          "p95_ms": 1.024075,
+          "p99_ms": 1.032423,
+          "max_ms": 1.0326
+        },
+        "http_req_tls_handshaking": {
+          "count": 60,
+          "average_ms": 0,
+          "median_ms": 0,
+          "p95_ms": 0,
+          "p99_ms": 0,
+          "max_ms": 0
+        }
+      },
+      "new_tcp_requests": 4,
+      "new_tls_requests": 0,
+      "slow_count": 0,
+      "slow_new_tcp": 0,
+      "slow_new_tls": 0,
+      "slow_duration_sum_ms": 0,
+      "slow_component_share": {
+        "sending": null,
+        "waiting": null,
+        "receiving": null
+      },
+      "slow_by_endpoint": {}
+    }
+  },
+  "records": [
+    {
+      "id": "block-0-slot-0-windows",
+      "route": "windows",
+      "block": 0,
+      "slot": 0,
+      "start_utc": "2026-10-12T12:26:08.3771566+00:00",
+      "end_utc": "2026-10-12T12:26:24.6586637+00:00",
+      "raw_sha256": "1cb849cfa128f2597840fa632e188033b28bc2777bec9e3d4f4ada32abece703",
+      "summary_sha256": "55a0da022dc35a9deae9a10a0d9f52db380e9c1c8a4b9958d93eda99aef2944b",
+      "safe_sha256": "b6575ad16eee69d189ff773c50ccb28a4629a8a4986dab3095575c24cc162709",
+      "statistics": {
+        "count": 15,
+        "timings": {
+          "http_req_duration": {
+            "count": 15,
+            "average_ms": 47.01656,
+            "median_ms": 48.2259,
+            "p95_ms": 62.97604,
+            "p99_ms": 63.065528,
+            "max_ms": 63.0879
+          },
+          "http_req_waiting": {
+            "count": 15,
+            "average_ms": 45.87672666666666,
+            "median_ms": 48.2259,
+            "p95_ms": 62.97604,
+            "p99_ms": 63.065528,
+            "max_ms": 63.0879
+          },
+          "http_req_receiving": {
+            "count": 15,
+            "average_ms": 1.1398333333333333,
+            "median_ms": 0,
+            "p95_ms": 5.129249999999982,
+            "p99_ms": 14.70384999999999,
+            "max_ms": 17.0975
+          },
+          "http_req_sending": {
+            "count": 15,
+            "average_ms": 0,
+            "median_ms": 0,
+            "p95_ms": 0,
+            "p99_ms": 0,
+            "max_ms": 0
+          },
+          "http_req_blocked": {
+            "count": 15,
+            "average_ms": 0.10362,
+            "median_ms": 0,
+            "p95_ms": 0.4662899999999984,
+            "p99_ms": 1.336697999999999,
+            "max_ms": 1.5543
+          },
+          "http_req_connecting": {
+            "count": 15,
+            "average_ms": 0.06921333333333334,
+            "median_ms": 0,
+            "p95_ms": 0.3114599999999989,
+            "p99_ms": 0.8928519999999994,
+            "max_ms": 1.0382
+          },
+          "http_req_tls_handshaking": {
+            "count": 15,
+            "average_ms": 0,
+            "median_ms": 0,
+            "p95_ms": 0,
+            "p99_ms": 0,
+            "max_ms": 0
+          }
+        },
+        "new_tcp_requests": 1,
+        "new_tls_requests": 0,
+        "slow_count": 0,
+        "slow_new_tcp": 0,
+        "slow_new_tls": 0,
+        "slow_duration_sum_ms": 0,
+        "slow_component_share": {
+          "sending": null,
+          "waiting": null,
+          "receiving": null
+        },
+        "slow_by_endpoint": {}
+      }
+    },
+    {
+      "id": "block-0-slot-1-git",
+      "route": "git",
+      "block": 0,
+      "slot": 1,
+      "start_utc": "2026-10-12T12:26:24.6611307+00:00",
+      "end_utc": "2026-10-12T12:26:40.8182401+00:00",
+      "raw_sha256": "13694ebfa2c4c377ffaf1d2a645ad4326033c1e0596430ddbafa6fd3a259cf29",
+      "summary_sha256": "be3f1374afc0769c48a4f54ba71abeea2794869791bc4a14191b6c3e5f0a3f85",
+      "safe_sha256": "e67291b55efbe7caa365f1201d76ac280e5ab6a1e7acf416daaae29027b7149e",
+      "statistics": {
+        "count": 15,
+        "timings": {
+          "http_req_duration": {
+            "count": 15,
+            "average_ms": 41.297059999999995,
+            "median_ms": 52.406,
+            "p95_ms": 64.17846999999999,
+            "p99_ms": 66.483374,
+            "max_ms": 67.0596
+          },
+          "http_req_waiting": {
+            "count": 15,
+            "average_ms": 8.061433333333335,
+            "median_ms": 7.8782,
+            "p95_ms": 9.42575,
+            "p99_ms": 9.48931,
+            "max_ms": 9.5052
+          },
+          "http_req_receiving": {
+            "count": 15,
+            "average_ms": 33.23562666666667,
+            "median_ms": 44.2264,
+            "p95_ms": 55.24081999999999,
+            "p99_ms": 58.393283999999994,
+            "max_ms": 59.1814
+          },
+          "http_req_sending": {
+            "count": 15,
+            "average_ms": 0,
+            "median_ms": 0,
+            "p95_ms": 0,
+            "p99_ms": 0,
+            "max_ms": 0
+          },
+          "http_req_blocked": {
+            "count": 15,
+            "average_ms": 0.06884,
+            "median_ms": 0,
+            "p95_ms": 0.3097799999999989,
+            "p99_ms": 0.8880359999999994,
+            "max_ms": 1.0326
+          },
+          "http_req_connecting": {
+            "count": 15,
+            "average_ms": 0.06884,
+            "median_ms": 0,
+            "p95_ms": 0.3097799999999989,
+            "p99_ms": 0.8880359999999994,
+            "max_ms": 1.0326
+          },
+          "http_req_tls_handshaking": {
+            "count": 15,
+            "average_ms": 0,
+            "median_ms": 0,
+            "p95_ms": 0,
+            "p99_ms": 0,
+            "max_ms": 0
+          }
+        },
+        "new_tcp_requests": 1,
+        "new_tls_requests": 0,
+        "slow_count": 0,
+        "slow_new_tcp": 0,
+        "slow_new_tls": 0,
+        "slow_duration_sum_ms": 0,
+        "slow_component_share": {
+          "sending": null,
+          "waiting": null,
+          "receiving": null
+        },
+        "slow_by_endpoint": {}
+      }
+    },
+    {
+      "id": "block-1-slot-0-git",
+      "route": "git",
+      "block": 1,
+      "slot": 0,
+      "start_utc": "2026-10-12T12:26:40.8195540+00:00",
+      "end_utc": "2026-10-12T12:26:56.9892435+00:00",
+      "raw_sha256": "20bd6cd199508524ff53509cac37e669cff05c44631684d855f602b1d8f85d48",
+      "summary_sha256": "693af77be5aa9faf9830e3e2ca28568d91f436b67d2218683a1fea7462d68fc6",
+      "safe_sha256": "57121d04193763e985583fa11c95d814afd23b85c6b4e7d3becc78ee502bd325",
+      "statistics": {
+        "count": 15,
+        "timings": {
+          "http_req_duration": {
+            "count": 15,
+            "average_ms": 50.31143333333333,
+            "median_ms": 54.7529,
+            "p95_ms": 62.82534,
+            "p99_ms": 63.501148,
+            "max_ms": 63.6701
+          },
+          "http_req_waiting": {
+            "count": 15,
+            "average_ms": 7.7949133333333345,
+            "median_ms": 7.5315,
+            "p95_ms": 9.14598,
+            "p99_ms": 9.464396,
+            "max_ms": 9.544
+          },
+          "http_req_receiving": {
+            "count": 15,
+            "average_ms": 42.51652,
+            "median_ms": 46.0971,
+            "p95_ms": 54.76583,
+            "p99_ms": 54.898606,
+            "max_ms": 54.9318
+          },
+          "http_req_sending": {
+            "count": 15,
+            "average_ms": 0,
+            "median_ms": 0,
+            "p95_ms": 0,
+            "p99_ms": 0,
+            "max_ms": 0
+          },
+          "http_req_blocked": {
+            "count": 15,
+            "average_ms": 0.06882,
+            "median_ms": 0,
+            "p95_ms": 0.3096899999999989,
+            "p99_ms": 0.8877779999999994,
+            "max_ms": 1.0323
+          },
+          "http_req_connecting": {
+            "count": 15,
+            "average_ms": 0.06882,
+            "median_ms": 0,
+            "p95_ms": 0.3096899999999989,
+            "p99_ms": 0.8877779999999994,
+            "max_ms": 1.0323
+          },
+          "http_req_tls_handshaking": {
+            "count": 15,
+            "average_ms": 0,
+            "median_ms": 0,
+            "p95_ms": 0,
+            "p99_ms": 0,
+            "max_ms": 0
+          }
+        },
+        "new_tcp_requests": 1,
+        "new_tls_requests": 0,
+        "slow_count": 0,
+        "slow_new_tcp": 0,
+        "slow_new_tls": 0,
+        "slow_duration_sum_ms": 0,
+        "slow_component_share": {
+          "sending": null,
+          "waiting": null,
+          "receiving": null
+        },
+        "slow_by_endpoint": {}
+      }
+    },
+    {
+      "id": "block-1-slot-1-windows",
+      "route": "windows",
+      "block": 1,
+      "slot": 1,
+      "start_utc": "2026-10-12T12:26:56.9907326+00:00",
+      "end_utc": "2026-10-12T12:27:13.1528997+00:00",
+      "raw_sha256": "58797fb26f4431b71d7991f918c1d82e5f4ff56bb12f2574d996c740a6e5724f",
+      "summary_sha256": "86e241de152d05f2c7b8d3f8f5a75746179807afc2c593d383d5e4cfa922e2fc",
+      "safe_sha256": "470b6d69671201c237ac123c389d0716b030454d8683bf1136c84878a4ab14cb",
+      "statistics": {
+        "count": 15,
+        "timings": {
+          "http_req_duration": {
+            "count": 15,
+            "average_ms": 39.25378666666666,
+            "median_ms": 35.8674,
+            "p95_ms": 62.32599,
+            "p99_ms": 62.839118,
+            "max_ms": 62.9674
+          },
+          "http_req_waiting": {
+            "count": 15,
+            "average_ms": 37.35824666666667,
+            "median_ms": 35.8674,
+            "p95_ms": 61.974869999999996,
+            "p99_ms": 62.768893999999996,
+            "max_ms": 62.9674
+          },
+          "http_req_receiving": {
+            "count": 15,
+            "average_ms": 1.89554,
+            "median_ms": 0,
+            "p95_ms": 8.283249999999972,
+            "p99_ms": 22.779689999999984,
+            "max_ms": 26.4038
+          },
+          "http_req_sending": {
+            "count": 15,
+            "average_ms": 0,
+            "median_ms": 0,
+            "p95_ms": 0,
+            "p99_ms": 0,
+            "max_ms": 0
+          },
+          "http_req_blocked": {
+            "count": 15,
+            "average_ms": 0.06993999999999999,
+            "median_ms": 0,
+            "p95_ms": 0.31472999999999884,
+            "p99_ms": 0.9022259999999993,
+            "max_ms": 1.0491
+          },
+          "http_req_connecting": {
+            "count": 15,
+            "average_ms": 0.06993999999999999,
+            "median_ms": 0,
+            "p95_ms": 0.31472999999999884,
+            "p99_ms": 0.9022259999999993,
+            "max_ms": 1.0491
+          },
+          "http_req_tls_handshaking": {
+            "count": 15,
+            "average_ms": 0,
+            "median_ms": 0,
+            "p95_ms": 0,
+            "p99_ms": 0,
+            "max_ms": 0
+          }
+        },
+        "new_tcp_requests": 1,
+        "new_tls_requests": 0,
+        "slow_count": 0,
+        "slow_new_tcp": 0,
+        "slow_new_tls": 0,
+        "slow_duration_sum_ms": 0,
+        "slow_component_share": {
+          "sending": null,
+          "waiting": null,
+          "receiving": null
+        },
+        "slow_by_endpoint": {}
+      }
+    },
+    {
+      "id": "block-2-slot-0-windows",
+      "route": "windows",
+      "block": 2,
+      "slot": 0,
+      "start_utc": "2026-10-12T12:27:13.1542513+00:00",
+      "end_utc": "2026-10-12T12:27:29.3734654+00:00",
+      "raw_sha256": "a0e3784014f95addf33e74ab35d75e8ea1cc0412a27fa23cb2e27cbad47dfcf4",
+      "summary_sha256": "6e5e6565bb03dfbd8df28bb832296bc37df75f99f655d9921f5e70a26bbfe9a6",
+      "safe_sha256": "150fc0a3d965c9432177c8631741b5321cdf8b54399164a08a57895b6981eba2",
+      "statistics": {
+        "count": 15,
+        "timings": {
+          "http_req_duration": {
+            "count": 15,
+            "average_ms": 40.49941333333333,
+            "median_ms": 38.6044,
+            "p95_ms": 59.12254,
+            "p99_ms": 60.244668,
+            "max_ms": 60.5252
+          },
+          "http_req_waiting": {
+            "count": 15,
+            "average_ms": 38.31531333333333,
+            "median_ms": 38.1867,
+            "p95_ms": 59.12254,
+            "p99_ms": 60.244668,
+            "max_ms": 60.5252
+          },
+          "http_req_receiving": {
+            "count": 15,
+            "average_ms": 2.1841,
+            "median_ms": 0.3628,
+            "p95_ms": 9.100129999999968,
+            "p99_ms": 25.257305999999986,
+            "max_ms": 29.2966
+          },
+          "http_req_sending": {
+            "count": 15,
+            "average_ms": 0,
+            "median_ms": 0,
+            "p95_ms": 0,
+            "p99_ms": 0,
+            "max_ms": 0
+          },
+          "http_req_blocked": {
+            "count": 15,
+            "average_ms": 0.03422,
+            "median_ms": 0,
+            "p95_ms": 0.15398999999999943,
+            "p99_ms": 0.44143799999999966,
+            "max_ms": 0.5133
+          },
+          "http_req_connecting": {
+            "count": 15,
+            "average_ms": 0.03422,
+            "median_ms": 0,
+            "p95_ms": 0.15398999999999943,
+            "p99_ms": 0.44143799999999966,
+            "max_ms": 0.5133
+          },
+          "http_req_tls_handshaking": {
+            "count": 15,
+            "average_ms": 0,
+            "median_ms": 0,
+            "p95_ms": 0,
+            "p99_ms": 0,
+            "max_ms": 0
+          }
+        },
+        "new_tcp_requests": 1,
+        "new_tls_requests": 0,
+        "slow_count": 0,
+        "slow_new_tcp": 0,
+        "slow_new_tls": 0,
+        "slow_duration_sum_ms": 0,
+        "slow_component_share": {
+          "sending": null,
+          "waiting": null,
+          "receiving": null
+        },
+        "slow_by_endpoint": {}
+      }
+    },
+    {
+      "id": "block-2-slot-1-git",
+      "route": "git",
+      "block": 2,
+      "slot": 1,
+      "start_utc": "2026-10-12T12:27:29.3749125+00:00",
+      "end_utc": "2026-10-12T12:27:45.5073211+00:00",
+      "raw_sha256": "a189785006b8a19edec487b8a0bd11733a756193d6da1b951d293c82fbc7495a",
+      "summary_sha256": "75de8334863509b187c6efb9e65b8bdfe255ae7553d54b589e97c09217a23c19",
+      "safe_sha256": "069ed59470d112e9f1e5e854072f6f4de080ab7075f7ec5f24525980dd235d0a",
+      "statistics": {
+        "count": 15,
+        "timings": {
+          "http_req_duration": {
+            "count": 15,
+            "average_ms": 48.70233333333333,
+            "median_ms": 53.0724,
+            "p95_ms": 62.47147,
+            "p99_ms": 64.71589399999999,
+            "max_ms": 65.277
+          },
+          "http_req_waiting": {
+            "count": 15,
+            "average_ms": 7.445719999999999,
+            "median_ms": 7.5059,
+            "p95_ms": 9.410899999999994,
+            "p99_ms": 12.051299999999998,
+            "max_ms": 12.7114
+          },
+          "http_req_receiving": {
+            "count": 15,
+            "average_ms": 41.256613333333334,
+            "median_ms": 46.5402,
+            "p95_ms": 54.31576,
+            "p99_ms": 54.654672000000005,
+            "max_ms": 54.7394
+          },
+          "http_req_sending": {
+            "count": 15,
+            "average_ms": 0,
+            "median_ms": 0,
+            "p95_ms": 0,
+            "p99_ms": 0,
+            "max_ms": 0
+          },
+          "http_req_blocked": {
+            "count": 15,
+            "average_ms": 0.06826666666666667,
+            "median_ms": 0,
+            "p95_ms": 0.3071999999999989,
+            "p99_ms": 0.8806399999999994,
+            "max_ms": 1.024
+          },
+          "http_req_connecting": {
+            "count": 15,
+            "average_ms": 0.06826666666666667,
+            "median_ms": 0,
+            "p95_ms": 0.3071999999999989,
+            "p99_ms": 0.8806399999999994,
+            "max_ms": 1.024
+          },
+          "http_req_tls_handshaking": {
+            "count": 15,
+            "average_ms": 0,
+            "median_ms": 0,
+            "p95_ms": 0,
+            "p99_ms": 0,
+            "max_ms": 0
+          }
+        },
+        "new_tcp_requests": 1,
+        "new_tls_requests": 0,
+        "slow_count": 0,
+        "slow_new_tcp": 0,
+        "slow_new_tls": 0,
+        "slow_duration_sum_ms": 0,
+        "slow_component_share": {
+          "sending": null,
+          "waiting": null,
+          "receiving": null
+        },
+        "slow_by_endpoint": {}
+      }
+    },
+    {
+      "id": "block-3-slot-0-git",
+      "route": "git",
+      "block": 3,
+      "slot": 0,
+      "start_utc": "2026-10-12T12:27:45.5087182+00:00",
+      "end_utc": "2026-10-12T12:28:01.7367307+00:00",
+      "raw_sha256": "daa47d72b7cd18cbf8af620834187ff0b53a3452f1469f11d9c035ba2f48e78e",
+      "summary_sha256": "b052c435c40ae8fd8c1bf5b723f75e76d7ae08add13c3ed5faa3e666852ff259",
+      "safe_sha256": "e72ee9691c794f1a96107daaa39cf944ae5998379c3c50c301c5a75941fbddf2",
+      "statistics": {
+        "count": 15,
+        "timings": {
+          "http_req_duration": {
+            "count": 15,
+            "average_ms": 55.810759999999995,
+            "median_ms": 58.401,
+            "p95_ms": 62.07584,
+            "p99_ms": 62.202848,
+            "max_ms": 62.2346
+          },
+          "http_req_waiting": {
+            "count": 15,
+            "average_ms": 6.512586666666666,
+            "median_ms": 6.5307,
+            "p95_ms": 7.1611899999999995,
+            "p99_ms": 7.443038,
+            "max_ms": 7.5135
+          },
+          "http_req_receiving": {
+            "count": 15,
+            "average_ms": 49.29817333333333,
+            "median_ms": 51.7495,
+            "p95_ms": 55.41809,
+            "p99_ms": 55.595778,
+            "max_ms": 55.6402
+          },
+          "http_req_sending": {
+            "count": 15,
+            "average_ms": 0,
+            "median_ms": 0,
+            "p95_ms": 0,
+            "p99_ms": 0,
+            "max_ms": 0
+          },
+          "http_req_blocked": {
+            "count": 15,
+            "average_ms": 0.06836666666666667,
+            "median_ms": 0,
+            "p95_ms": 0.3076499999999989,
+            "p99_ms": 0.8819299999999994,
+            "max_ms": 1.0255
+          },
+          "http_req_connecting": {
+            "count": 15,
+            "average_ms": 0.06836666666666667,
+            "median_ms": 0,
+            "p95_ms": 0.3076499999999989,
+            "p99_ms": 0.8819299999999994,
+            "max_ms": 1.0255
+          },
+          "http_req_tls_handshaking": {
+            "count": 15,
+            "average_ms": 0,
+            "median_ms": 0,
+            "p95_ms": 0,
+            "p99_ms": 0,
+            "max_ms": 0
+          }
+        },
+        "new_tcp_requests": 1,
+        "new_tls_requests": 0,
+        "slow_count": 0,
+        "slow_new_tcp": 0,
+        "slow_new_tls": 0,
+        "slow_duration_sum_ms": 0,
+        "slow_component_share": {
+          "sending": null,
+          "waiting": null,
+          "receiving": null
+        },
+        "slow_by_endpoint": {}
+      }
+    },
+    {
+      "id": "block-3-slot-1-windows",
+      "route": "windows",
+      "block": 3,
+      "slot": 1,
+      "start_utc": "2026-10-12T12:28:01.7403383+00:00",
+      "end_utc": "2026-10-12T12:28:18.0959616+00:00",
+      "raw_sha256": "b0142c2faafadb4969281db89a60fdb7b1f797cc5e42c085ecc1be897b553915",
+      "summary_sha256": "5c1e5dcf720748db8b817c9db6364e0e286b60293cc6e79afba4d2aa257e103a",
+      "safe_sha256": "3862688ccbb70aafb0eaba97c7059fb791f1781ca0f3374ae769ddd9c934ac1a",
+      "statistics": {
+        "count": 15,
+        "timings": {
+          "http_req_duration": {
+            "count": 15,
+            "average_ms": 45.59412,
+            "median_ms": 47.9213,
+            "p95_ms": 58.217489999999984,
+            "p99_ms": 64.673898,
+            "max_ms": 66.288
+          },
+          "http_req_waiting": {
+            "count": 15,
+            "average_ms": 43.59523333333333,
+            "median_ms": 47.9213,
+            "p95_ms": 57.84193999999999,
+            "p99_ms": 64.59878799999998,
+            "max_ms": 66.288
+          },
+          "http_req_receiving": {
+            "count": 15,
+            "average_ms": 1.9988866666666665,
+            "median_ms": 0,
+            "p95_ms": 8.76353999999997,
+            "p99_ms": 24.09062799999998,
+            "max_ms": 27.9224
+          },
+          "http_req_sending": {
+            "count": 15,
+            "average_ms": 0,
+            "median_ms": 0,
+            "p95_ms": 0,
+            "p99_ms": 0,
+            "max_ms": 0
+          },
+          "http_req_blocked": {
+            "count": 15,
+            "average_ms": 0.06831333333333332,
+            "median_ms": 0,
+            "p95_ms": 0.3074099999999989,
+            "p99_ms": 0.8812419999999994,
+            "max_ms": 1.0247
+          },
+          "http_req_connecting": {
+            "count": 15,
+            "average_ms": 0.03414,
+            "median_ms": 0,
+            "p95_ms": 0.15362999999999946,
+            "p99_ms": 0.4404059999999997,
+            "max_ms": 0.5121
+          },
+          "http_req_tls_handshaking": {
+            "count": 15,
+            "average_ms": 0,
+            "median_ms": 0,
+            "p95_ms": 0,
+            "p99_ms": 0,
+            "max_ms": 0
+          }
+        },
+        "new_tcp_requests": 1,
+        "new_tls_requests": 0,
+        "slow_count": 0,
+        "slow_new_tcp": 0,
+        "slow_new_tls": 0,
+        "slow_duration_sum_ms": 0,
+        "slow_component_share": {
+          "sending": null,
+          "waiting": null,
+          "receiving": null
+        },
+        "slow_by_endpoint": {}
+      }
+    }
+  ],
+  "blocks": [
+    {
+      "block": 0,
+      "windows_median_ms": 48.2259,
+      "git_median_ms": 52.406,
+      "git_minus_windows_median_ms": 4.180099999999996
+    },
+    {
+      "block": 1,
+      "windows_median_ms": 35.8674,
+      "git_median_ms": 54.7529,
+      "git_minus_windows_median_ms": 18.885499999999993
+    },
+    {
+      "block": 2,
+      "windows_median_ms": 38.6044,
+      "git_median_ms": 53.0724,
+      "git_minus_windows_median_ms": 14.468000000000004
+    },
+    {
+      "block": 3,
+      "windows_median_ms": 47.9213,
+      "git_median_ms": 58.401,
+      "git_minus_windows_median_ms": 10.479700000000001
+    }
+  ],
+  "server": {
+    "cpu": {
+      "count": 10,
+      "unavailable_count": 0,
+      "min": 0.0022286605749944283,
+      "max": 0.01806020066889632
+    },
+    "pending": {
+      "count": 10,
+      "unavailable_count": 0,
+      "min": 0,
+      "max": 0
+    },
+    "categories_rolling_p99_seconds": {
+      "count": 10,
+      "unavailable_count": 0,
+      "min": 0.00834666397,
+      "max": 0.011953764550000004
+    }
+  },
+  "freshness": {
+    "observations": 17,
+    "conservative_age_max_seconds": 15.000324106539917,
+    "limit_seconds": 45
+  },
+  "validation": "PASS: 120 fixed GETs/checks, eight balanced segments, native seven timings and per-segment quantiles, exact URLs, versions/binary hashes, digests and freshness",
+  "limits": [
+    "Each client has 60 requests; pooled p99 is not a stable SLO/capacity result.",
+    "Both clients are OpenSSH, with different builds, versions and crypto runtimes; this does not isolate version or OS causality.",
+    "SSH session age, negotiated cipher, host scheduling and network conditions are not controlled.",
+    "Server histogram is a 15-second sampled rolling one-minute estimate, not a per-request span.",
+    "No retries, server changes, business writes, historical result replacement or backend improvement claim.",
+    "conditions.target is the runner legacy shared reference; actual request targets are validated against every segment/native point."
+  ]
+}

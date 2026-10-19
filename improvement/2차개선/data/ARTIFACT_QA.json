@@ -1,0 +1,62 @@
+{
+  "checked_at_utc": "2026-10-08T15:09:28.734Z",
+  "result": "PASS",
+  "checks": [
+    "four stages; one measured repeat per route",
+    "original A3 preserved",
+    "public data fingerprint",
+    "graph source fingerprint",
+    "original comparison fingerprint",
+    "mixed-path-20261008T091853Z-warmup-origin: safety counts",
+    "mixed-path-20261008T091853Z-warmup-origin: failures not hidden",
+    "mixed-path-20261008T091853Z-warmup-origin: endpoint counts",
+    "mixed-path-20261008T091853Z-warmup-origin: window counts",
+    "mixed-path-20261008T091853Z-warmup-origin: raw fingerprint",
+    "mixed-path-20261008T091853Z-measured-origin: safety counts",
+    "mixed-path-20261008T091853Z-measured-origin: failures not hidden",
+    "mixed-path-20261008T091853Z-measured-origin: endpoint counts",
+    "mixed-path-20261008T091853Z-measured-origin: window counts",
+    "mixed-path-20261008T091853Z-measured-origin: raw fingerprint",
+    "mixed-path-20261008T091853Z-warmup-public: safety counts",
+    "mixed-path-20261008T091853Z-warmup-public: failures not hidden",
+    "mixed-path-20261008T091853Z-warmup-public: endpoint counts",
+    "mixed-path-20261008T091853Z-warmup-public: window counts",
+    "mixed-path-20261008T091853Z-warmup-public: raw fingerprint",
+    "mixed-path-20261008T091853Z-measured-public: safety counts",
+    "mixed-path-20261008T091853Z-measured-public: failures not hidden",
+    "mixed-path-20261008T091853Z-measured-public: endpoint counts",
+    "mixed-path-20261008T091853Z-measured-public: window counts",
+    "mixed-path-20261008T091853Z-measured-public: raw fingerprint",
+    "PNG fingerprint and dimensions",
+    "nonblank and text bounds",
+    "README.md: ../1차개선/README.md link",
+    "README.md: figures/mixed-path-latency.png link",
+    "README.md: RESULT_20261008.md link",
+    "README.md: data/mixed-path.json link",
+    "README.md: CLOUDFLARED_METRICS_SETUP.md link",
+    "README.md: RESULT_CLOUDFLARED_20261008.md link",
+    "README.md: RESULT_PATH_TIMINGS_20261008.md link",
+    "README.md: RESULT_ORIGIN_LOCAL_20261008.md link",
+    "README.md: RESULT_SSH_TOOLS_20261008.md link",
+    "README.md: RESULT_PACKETS_20261008.md link",
+    "README.md: PACKET_CAPTURE_SETUP.md link",
+    "README.md: RESULT_DEDICATED_SSH_20261009.md link",
+    "README.md: DEDICATED_SSH_COMPARISON.md link",
+    "RESULT_20261008.md: ../../k6/scripts/baseline.js link",
+    "RESULT_20261008.md: figures/mixed-path-latency.png link",
+    "RESULT_20261008.md: ../1차개선/A3_RECHECK_20261008.md link",
+    "RESULT_20261008.md: data/mixed-path.json link"
+  ],
+  "chart_visual_review": "PASS: model inspected the rendered PNG with view_image; Korean labels, axes, values and legend are readable without overlap",
+  "live_load_executed_by_this_validation": false,
+  "documents": [
+    {
+      "file": "README.md",
+      "sha256": "e94a87d719ed7b69db0a4f67303f2f7dcc345b957495aa7d927f5b8f51f68519"
+    },
+    {
+      "file": "RESULT_20261008.md",
+      "sha256": "24630189c7a5da34e04078257d3aa517e31e10740127d7bcd47a17f560eeba9a"
+    }
+  ]
+}

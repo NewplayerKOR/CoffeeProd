@@ -1,0 +1,30 @@
+{
+  "generated_at_utc": "2026-10-12T14:00:59.277Z",
+  "measurement_cutoff_utc": "2026-10-12T12:28:19Z",
+  "sources": [
+    {
+      "path": "improvement/1차개선/data/metrics.json",
+      "sha256": "98f5df4ac0c5dbc00d14440e52011fed7a64bac3666a05b9694800f5e23b8b6b"
+    },
+    {
+      "path": "improvement/2차개선/data/mixed-path-with-cloudflared.json",
+      "sha256": "50d248a398f803495bc5cd72200225ed26c6de38c66944a559b06a851a500413"
+    },
+    {
+      "path": "improvement/2차개선/data/ssh-client-comparison.json",
+      "sha256": "ea2b3d431090bc767423798e0a8c94ed7f74d7101b7130bcd5fc583c223d6cc9"
+    }
+  ],
+  "first_cycle_original_hashes_verified": 8,
+  "second_cycle_original_hashes_verified": 9,
+  "reads_only_existing_files": true,
+  "new_load_test": false,
+  "values": {
+    "order_p95_reduction_percent": 26.996362369899213,
+    "before_http": 18055,
+    "after_http": 18057,
+    "before_order_samples": 1475,
+    "after_order_samples": 1461,
+    "after_a3_order_p99_ms": 303.78775599999994
+  }
+}

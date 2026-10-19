@@ -1,0 +1,4141 @@
+{
+  "schema_version": 1,
+  "suite_id": "mixed-path-20261008T091853Z",
+  "source": {
+    "repository_relative_path": "k6/results/mixed-path-20261008T091853Z/mixed-comparison.json",
+    "sha256": "ddbb4703038482fd8689608b9ed296519ef8278fcf7657d30f671be395e96515"
+  },
+  "measurement_complete": true,
+  "records": [
+    {
+      "run_id": "mixed-path-20261008T091853Z-warmup-origin",
+      "route": "origin",
+      "phase": "warmup",
+      "start_utc": "2026-10-08T09:18:53.4759119+00:00",
+      "end_utc": "2026-10-08T09:20:59.8306914+00:00",
+      "raw_sha256": "3b46b4c4e5bd3abb93ce4788a78279636cc94045f2abbfc76e45a1f8ee2be85d",
+      "validation": "PASS: complete timings, native stats, business-write scope and server histogram",
+      "k6_exit_code": 0,
+      "failed_thresholds": [],
+      "acceptance": "PASS",
+      "http_requests": 2420,
+      "check_passes": 5112,
+      "check_failures": 0,
+      "http_failure_rate": 0,
+      "dropped_iterations": 0,
+      "overall": {
+        "count": 2420,
+        "average_ms": 26.258705041322276,
+        "p95_ms": 118.28160499999998,
+        "p99_ms": 134.502187,
+        "max_ms": 528.6929,
+        "slow_at_least_250ms": 6,
+        "slow_fraction": 0.0024793388429752068,
+        "slow_waiting_share_of_duration_sum": 0.9408482178919437,
+        "slow_with_new_tcp": 0,
+        "slow_with_new_tls": 0
+      },
+      "member": {
+        "count": 496,
+        "average_ms": 27.55309677419357,
+        "p95_ms": 61.29645,
+        "p99_ms": 184.3827900000001,
+        "max_ms": 284.1296,
+        "slow_at_least_250ms": 2,
+        "slow_fraction": 0.004032258064516129,
+        "slow_waiting_share_of_duration_sum": 0.9263048686530857,
+        "slow_with_new_tcp": 0,
+        "slow_with_new_tls": 0
+      },
+      "endpoints": {
+        "preflight-product": {
+          "count": 1,
+          "average_ms": 181.4147,
+          "p95_ms": 181.4147,
+          "p99_ms": 181.4147,
+          "max_ms": 181.4147,
+          "slow_at_least_250ms": 0,
+          "slow_fraction": 0,
+          "slow_waiting_share_of_duration_sum": null,
+          "slow_with_new_tcp": 0,
+          "slow_with_new_tls": 0
+        },
+        "preflight-login": {
+          "count": 1,
+          "average_ms": 400.5516,
+          "p95_ms": 400.5516,
+          "p99_ms": 400.5516,
+          "max_ms": 400.5516,
+          "slow_at_least_250ms": 1,
+          "slow_fraction": 1,
+          "slow_waiting_share_of_duration_sum": 0.8753603780386846,
+          "slow_with_new_tcp": 0,
+          "slow_with_new_tls": 0
+        },
+        "login": {
+          "count": 121,
+          "average_ms": 126.51972809917363,
+          "p95_ms": 134.6318,
+          "p99_ms": 143.56795999999997,
+          "max_ms": 175.0378,
+          "slow_at_least_250ms": 0,
+          "slow_fraction": 0,
+          "slow_waiting_share_of_duration_sum": null,
+          "slow_with_new_tcp": 0,
+          "slow_with_new_tls": 0
+        },
+        "session-login": {
+          "count": 15,
+          "average_ms": 151.01695333333333,
+          "p95_ms": 223.0681799999999,
+          "p99_ms": 271.9173159999999,
+          "max_ms": 284.1296,
+          "slow_at_least_250ms": 1,
+          "slow_fraction": 0.06666666666666667,
+          "slow_waiting_share_of_duration_sum": 0.9839048800265796,
+          "slow_with_new_tcp": 0,
+          "slow_with_new_tls": 0
+        },
+        "product-detail": {
+          "count": 273,
+          "average_ms": 18.250652380952367,
+          "p95_ms": 62.41484,
+          "p99_ms": 66.51182,
+          "max_ms": 67.2501,
+          "slow_at_least_250ms": 0,
+          "slow_fraction": 0,
+          "slow_waiting_share_of_duration_sum": null,
+          "slow_with_new_tcp": 0,
+          "slow_with_new_tls": 0
+        },
+        "products": {
+          "count": 793,
+          "average_ms": 13.36251651954602,
+          "p95_ms": 53.90449999999999,
+          "p99_ms": 63.886980000000044,
+          "max_ms": 138.1754,
+          "slow_at_least_250ms": 0,
+          "slow_fraction": 0,
+          "slow_waiting_share_of_duration_sum": null,
+          "slow_with_new_tcp": 0,
+          "slow_with_new_tls": 0
+        },
+        "product-filter": {
+          "count": 297,
+          "average_ms": 15.88397811447811,
+          "p95_ms": 58.897279999999995,
+          "p99_ms": 66.98702000000002,
+          "max_ms": 127.4437,
+          "slow_at_least_250ms": 0,
+          "slow_fraction": 0,
+          "slow_waiting_share_of_duration_sum": null,
+          "slow_with_new_tcp": 0,
+          "slow_with_new_tls": 0
+        },
+        "my-addresses": {
+          "count": 100,
+          "average_ms": 30.840093000000007,
+          "p95_ms": 51.739094999999985,
+          "p99_ms": 67.90637500000093,
+          "max_ms": 251.0143,
+          "slow_at_least_250ms": 1,
+          "slow_fraction": 0.01,
+          "slow_waiting_share_of_duration_sum": 0.8611059210570873,
+          "slow_with_new_tcp": 0,
+          "slow_with_new_tls": 0
+        },
+        "recommendation": {
+          "count": 98,
+          "average_ms": 46.04281224489794,
+          "p95_ms": 67.89176499999999,
+          "p99_ms": 436.5235970000001,
+          "max_ms": 528.6929,
+          "slow_at_least_250ms": 3,
+          "slow_fraction": 0.030612244897959183,
+          "slow_waiting_share_of_duration_sum": 0.967808331230256,
+          "slow_with_new_tcp": 0,
+          "slow_with_new_tls": 0
+        },
+        "member-me": {
+          "count": 182,
+          "average_ms": 26.517356043956035,
+          "p95_ms": 50.864979999999996,
+          "p99_ms": 51.92215999999999,
+          "max_ms": 60.7588,
+          "slow_at_least_250ms": 0,
+          "slow_fraction": 0,
+          "slow_waiting_share_of_duration_sum": null,
+          "slow_with_new_tcp": 0,
+          "slow_with_new_tls": 0
+        },
+        "my-orders": {
+          "count": 199,
+          "average_ms": 17.542279396984917,
+          "p95_ms": 58.00583999999998,
+          "p99_ms": 67.81020200000007,
+          "max_ms": 200.0182,
+          "slow_at_least_250ms": 0,
+          "slow_fraction": 0,
+          "slow_waiting_share_of_duration_sum": null,
+          "slow_with_new_tcp": 0,
+          "slow_with_new_tls": 0
+        },
+        "reviews": {
+          "count": 120,
+          "average_ms": 20.134770833333338,
+          "p95_ms": 63.35964499999999,
+          "p99_ms": 65.479929,
+          "max_ms": 67.3783,
+          "slow_at_least_250ms": 0,
+          "slow_fraction": 0,
+          "slow_waiting_share_of_duration_sum": null,
+          "slow_with_new_tcp": 0,
+          "slow_with_new_tls": 0
+        },
+        "categories": {
+          "count": 148,
+          "average_ms": 38.45410810810811,
+          "p95_ms": 57.782605000000004,
+          "p99_ms": 59.663853,
+          "max_ms": 67.855,
+          "slow_at_least_250ms": 0,
+          "slow_fraction": 0,
+          "slow_waiting_share_of_duration_sum": null,
+          "slow_with_new_tcp": 0,
+          "slow_with_new_tls": 0
+        },
+        "qnas": {
+          "count": 72,
+          "average_ms": 14.900770833333326,
+          "p95_ms": 19.406985,
+          "p99_ms": 64.01347000000017,
+          "max_ms": 83.5761,
+          "slow_at_least_250ms": 0,
+          "slow_fraction": 0,
+          "slow_waiting_share_of_duration_sum": null,
+          "slow_with_new_tcp": 0,
+          "slow_with_new_tls": 0
+        }
+      },
+      "server": {
+        "up": {
+          "count": 4,
+          "min": 1,
+          "max": 1
+        },
+        "cpu": {
+          "count": 4,
+          "min": 0.104273886775565,
+          "max": 0.14852809991079394
+        },
+        "pending": {
+          "count": 4,
+          "min": 0,
+          "max": 0
+        },
+        "heap_mib": {
+          "count": 4,
+          "min": 73.19137573242188,
+          "max": 152.1891326904297
+        },
+        "gc_pause_rate": {
+          "count": 4,
+          "min": 0.0007333496299917777,
+          "max": 0.0013556158051468955
+        },
+        "uris": {
+          "/api/v1/auth/login": {
+            "p95_ms": {
+              "count": 4,
+              "min": 110.72962494999999,
+              "max": 124.15139754999998
+            },
+            "p99_ms": {
+              "count": 4,
+              "min": 111.62440979,
+              "max": 132.20446111
+            },
+            "request_rate_per_second": {
+              "count": 4,
+              "min": 1.0000222227160604,
+              "max": 1.0000444464198408
+            }
+          },
+          "/api/v1/categories": {
+            "p95_ms": {
+              "count": 4,
+              "min": 2.9884397499999995,
+              "max": 3.6044775625
+            },
+            "p99_ms": {
+              "count": 4,
+              "min": 3.7967163124999996,
+              "max": 6.123683379999998
+            },
+            "request_rate_per_second": {
+              "count": 4,
+              "min": 1.1556069158629272,
+              "max": 1.3778390150673363
+            }
+          },
+          "/api/v1/coffee-recommendations": {
+            "p95_ms": {
+              "count": 4,
+              "min": 26.2843045,
+              "max": 36.81673363468277
+            },
+            "p99_ms": {
+              "count": 4,
+              "min": 31.261544949999998,
+              "max": 38.680815526936556
+            },
+            "request_rate_per_second": {
+              "count": 4,
+              "min": 0.73336592737455,
+              "max": 0.9111313584746328
+            }
+          },
+          "/api/v1/members/me": {
+            "p95_ms": {
+              "count": 4,
+              "min": 5.47880929375,
+              "max": 7.67557549
+            },
+            "p99_ms": {
+              "count": 4,
+              "min": 6.650301423333333,
+              "max": 10.192157290000008
+            },
+            "request_rate_per_second": {
+              "count": 4,
+              "min": 1.5333674081646258,
+              "max": 1.7778567936352727
+            }
+          },
+          "/api/v1/members/me/addresses": {
+            "p95_ms": {
+              "count": 4,
+              "min": 7.549746399999998,
+              "max": 10.415853449999997
+            },
+            "p99_ms": {
+              "count": 4,
+              "min": 10.737416680000003,
+              "max": 12.149498689999998
+            },
+            "request_rate_per_second": {
+              "count": 4,
+              "min": 0.6889195075336682,
+              "max": 0.866685926353919
+            }
+          },
+          "/api/v1/orders": {
+            "p95_ms": {
+              "count": 4,
+              "min": 13.235357133333332,
+              "max": 20.831709625000006
+            },
+            "p99_ms": {
+              "count": 4,
+              "min": 18.34308939999999,
+              "max": 29.583823450000036
+            },
+            "request_rate_per_second": {
+              "count": 4,
+              "min": 1.5334014845104227,
+              "max": 1.6667407440330682
+            }
+          },
+          "/api/v1/products": {
+            "p95_ms": {
+              "count": 4,
+              "min": 8.283749424999998,
+              "max": 10.775663139138919
+            },
+            "p99_ms": {
+              "count": 4,
+              "min": 12.565433737500005,
+              "max": 18.53882357500005
+            },
+            "request_rate_per_second": {
+              "count": 4,
+              "min": 8.933531856263473,
+              "max": 9.200204448987757
+            }
+          },
+          "/api/v1/products/{productId}": {
+            "p95_ms": {
+              "count": 4,
+              "min": 10.252741666666667,
+              "max": 14.957818132909793
+            },
+            "p99_ms": {
+              "count": 4,
+              "min": 11.184809,
+              "max": 22.145924799999964
+            },
+            "request_rate_per_second": {
+              "count": 4,
+              "min": 2.2223209920440907,
+              "max": 2.377883461487177
+            }
+          },
+          "/api/v1/products/{productId}/qnas": {
+            "p95_ms": {
+              "count": 4,
+              "min": 12.51300495,
+              "max": 15.868448399999998
+            },
+            "p99_ms": {
+              "count": 4,
+              "min": 13.645466759999996,
+              "max": 16.59546248
+            },
+            "request_rate_per_second": {
+              "count": 4,
+              "min": 0.5333570380905818,
+              "max": 0.6666962976132272
+            }
+          },
+          "/api/v1/products/{productId}/reviews": {
+            "p95_ms": {
+              "count": 4,
+              "min": 11.953764549999999,
+              "max": 12.205422729999999
+            },
+            "p99_ms": {
+              "count": 4,
+              "min": 13.407789589999997,
+              "max": 25.333595650000028
+            },
+            "request_rate_per_second": {
+              "count": 4,
+              "min": 0.9111313584746329,
+              "max": 1.1333837059424863
+            }
+          }
+        },
+        "order_histogram_p99_reproduction": "PASS"
+      },
+      "client": {
+        "cpu_percent": {
+          "count": 4,
+          "min": 0,
+          "max": 20
+        },
+        "free_memory_mib": {
+          "count": 4,
+          "min": 16661.5,
+          "max": 16857.14453125
+        },
+        "unavailable_samples": 0
+      },
+      "protocol_counts": {
+        "HTTP/1.1": 2420
+      },
+      "windows_15s": [
+        {
+          "completion_window_start_utc": "2026-10-08T09:18:45.000Z",
+          "overall": {
+            "count": 14,
+            "average_ms": 210.46292857142862,
+            "p95_ms": 466.929965,
+            "p99_ms": 516.3403129999999,
+            "max_ms": 528.6929,
+            "slow_at_least_250ms": 5,
+            "slow_fraction": 0.35714285714285715,
+            "slow_waiting_share_of_duration_sum": 0.9318426685248434,
+            "slow_with_new_tcp": 0,
+            "slow_with_new_tls": 0
+          },
+          "orders": {
+            "count": 0,
+            "slow_at_least_250ms": 0,
+            "slow_fraction": null,
+            "slow_waiting_share_of_duration_sum": null,
+            "slow_with_new_tcp": 0,
+            "slow_with_new_tls": 0
+          },
+          "slow_by_endpoint": {
+            "preflight-product": 0,
+            "preflight-login": 1,
+            "login": 0,
+            "session-login": 1,
+            "product-detail": 0,
+            "products": 0,
+            "product-filter": 0,
+            "my-addresses": 1,
+            "recommendation": 2
+          }
+        },
+        {
+          "completion_window_start_utc": "2026-10-08T09:19:00.000Z",
+          "overall": {
+            "count": 317,
+            "average_ms": 36.49637760252367,
+            "p95_ms": 127.06447999999999,
+            "p99_ms": 178.63830399999918,
+            "max_ms": 299.2773,
+            "slow_at_least_250ms": 1,
+            "slow_fraction": 0.0031545741324921135,
+            "slow_waiting_share_of_duration_sum": 0.9979627589529843,
+            "slow_with_new_tcp": 0,
+            "slow_with_new_tls": 0
+          },
+          "orders": {
+            "count": 27,
+            "average_ms": 41.03601481481482,
+            "p95_ms": 72.59067,
+            "p99_ms": 167.4353899999998,
+            "max_ms": 200.0182,
+            "slow_at_least_250ms": 0,
+            "slow_fraction": 0,
+            "slow_waiting_share_of_duration_sum": null,
+            "slow_with_new_tcp": 0,
+            "slow_with_new_tls": 0
+          },
+          "slow_by_endpoint": {
+            "recommendation": 1,
+            "session-login": 0,
+            "products": 0,
+            "member-me": 0,
+            "product-filter": 0,
+            "my-orders": 0,
+            "product-detail": 0,
+            "reviews": 0,
+            "login": 0,
+            "categories": 0,
+            "my-addresses": 0,
+            "qnas": 0
+          }
+        },
+        {
+          "completion_window_start_utc": "2026-10-08T09:19:15.000Z",
+          "overall": {
+            "count": 300,
+            "average_ms": 25.941365666666666,
+            "p95_ms": 70.55804500000062,
+            "p99_ms": 133.920121,
+            "max_ms": 134.2894,
+            "slow_at_least_250ms": 0,
+            "slow_fraction": 0,
+            "slow_waiting_share_of_duration_sum": null,
+            "slow_with_new_tcp": 0,
+            "slow_with_new_tls": 0
+          },
+          "orders": {
+            "count": 26,
+            "average_ms": 19.617569230769227,
+            "p95_ms": 54.092150000000004,
+            "p99_ms": 63.077325,
+            "max_ms": 63.817,
+            "slow_at_least_250ms": 0,
+            "slow_fraction": 0,
+            "slow_waiting_share_of_duration_sum": null,
+            "slow_with_new_tcp": 0,
+            "slow_with_new_tls": 0
+          },
+          "slow_by_endpoint": {
+            "recommendation": 0,
+            "member-me": 0,
+            "products": 0,
+            "my-orders": 0,
+            "product-detail": 0,
+            "categories": 0,
+            "login": 0,
+            "product-filter": 0,
+            "my-addresses": 0,
+            "reviews": 0,
+            "qnas": 0
+          }
+        },
+        {
+          "completion_window_start_utc": "2026-10-08T09:19:30.000Z",
+          "overall": {
+            "count": 300,
+            "average_ms": 23.55795166666668,
+            "p95_ms": 68.7759450000004,
+            "p99_ms": 134.404743,
+            "max_ms": 134.8605,
+            "slow_at_least_250ms": 0,
+            "slow_fraction": 0,
+            "slow_waiting_share_of_duration_sum": null,
+            "slow_with_new_tcp": 0,
+            "slow_with_new_tls": 0
+          },
+          "orders": {
+            "count": 24,
+            "average_ms": 14.960433333333333,
+            "p95_ms": 32.60236999999997,
+            "p99_ms": 55.03975099999999,
+            "max_ms": 61.2029,
+            "slow_at_least_250ms": 0,
+            "slow_fraction": 0,
+            "slow_waiting_share_of_duration_sum": null,
+            "slow_with_new_tcp": 0,
+            "slow_with_new_tls": 0
+          },
+          "slow_by_endpoint": {
+            "qnas": 0,
+            "product-detail": 0,
+            "member-me": 0,
+            "recommendation": 0,
+            "products": 0,
+            "categories": 0,
+            "my-orders": 0,
+            "login": 0,
+            "product-filter": 0,
+            "reviews": 0,
+            "my-addresses": 0
+          }
+        },
+        {
+          "completion_window_start_utc": "2026-10-08T09:19:45.000Z",
+          "overall": {
+            "count": 300,
+            "average_ms": 24.61801266666667,
+            "p95_ms": 69.9280550000004,
+            "p99_ms": 133.948319,
+            "max_ms": 134.1807,
+            "slow_at_least_250ms": 0,
+            "slow_fraction": 0,
+            "slow_waiting_share_of_duration_sum": null,
+            "slow_with_new_tcp": 0,
+            "slow_with_new_tls": 0
+          },
+          "orders": {
+            "count": 25,
+            "average_ms": 14.211099999999998,
+            "p95_ms": 52.085939999999866,
+            "p99_ms": 62.73799999999999,
+            "max_ms": 63.1046,
+            "slow_at_least_250ms": 0,
+            "slow_fraction": 0,
+            "slow_waiting_share_of_duration_sum": null,
+            "slow_with_new_tcp": 0,
+            "slow_with_new_tls": 0
+          },
+          "slow_by_endpoint": {
+            "products": 0,
+            "product-detail": 0,
+            "my-addresses": 0,
+            "qnas": 0,
+            "member-me": 0,
+            "product-filter": 0,
+            "login": 0,
+            "recommendation": 0,
+            "reviews": 0,
+            "my-orders": 0,
+            "categories": 0
+          }
+        },
+        {
+          "completion_window_start_utc": "2026-10-08T09:20:00.000Z",
+          "overall": {
+            "count": 300,
+            "average_ms": 22.786022999999997,
+            "p95_ms": 68.61127000000045,
+            "p99_ms": 134.037001,
+            "max_ms": 134.8758,
+            "slow_at_least_250ms": 0,
+            "slow_fraction": 0,
+            "slow_waiting_share_of_duration_sum": null,
+            "slow_with_new_tcp": 0,
+            "slow_with_new_tls": 0
+          },
+          "orders": {
+            "count": 22,
+            "average_ms": 13.458431818181817,
+            "p95_ms": 20.821744999999996,
+            "p99_ms": 57.10065099999996,
+            "max_ms": 66.6928,
+            "slow_at_least_250ms": 0,
+            "slow_fraction": 0,
+            "slow_waiting_share_of_duration_sum": null,
+            "slow_with_new_tcp": 0,
+            "slow_with_new_tls": 0
+          },
+          "slow_by_endpoint": {
+            "products": 0,
+            "product-filter": 0,
+            "my-orders": 0,
+            "reviews": 0,
+            "categories": 0,
+            "my-addresses": 0,
+            "login": 0,
+            "recommendation": 0,
+            "member-me": 0,
+            "product-detail": 0,
+            "qnas": 0
+          }
+        },
+        {
+          "completion_window_start_utc": "2026-10-08T09:20:15.000Z",
+          "overall": {
+            "count": 299,
+            "average_ms": 23.7937575250836,
+            "p95_ms": 69.59701999999858,
+            "p99_ms": 134.176952,
+            "max_ms": 134.7837,
+            "slow_at_least_250ms": 0,
+            "slow_fraction": 0,
+            "slow_waiting_share_of_duration_sum": null,
+            "slow_with_new_tcp": 0,
+            "slow_with_new_tls": 0
+          },
+          "orders": {
+            "count": 23,
+            "average_ms": 10.374817391304347,
+            "p95_ms": 16.160329999999995,
+            "p99_ms": 30.27756800000002,
+            "max_ms": 34.1233,
+            "slow_at_least_250ms": 0,
+            "slow_fraction": 0,
+            "slow_waiting_share_of_duration_sum": null,
+            "slow_with_new_tcp": 0,
+            "slow_with_new_tls": 0
+          },
+          "slow_by_endpoint": {
+            "categories": 0,
+            "products": 0,
+            "my-orders": 0,
+            "product-filter": 0,
+            "my-addresses": 0,
+            "login": 0,
+            "product-detail": 0,
+            "reviews": 0,
+            "recommendation": 0,
+            "member-me": 0,
+            "qnas": 0
+          }
+        },
+        {
+          "completion_window_start_utc": "2026-10-08T09:20:30.000Z",
+          "overall": {
+            "count": 301,
+            "average_ms": 22.575921262458486,
+            "p95_ms": 66.9519,
+            "p99_ms": 133.9527,
+            "max_ms": 134.2129,
+            "slow_at_least_250ms": 0,
+            "slow_fraction": 0,
+            "slow_waiting_share_of_duration_sum": null,
+            "slow_with_new_tcp": 0,
+            "slow_with_new_tls": 0
+          },
+          "orders": {
+            "count": 30,
+            "average_ms": 12.165156666666665,
+            "p95_ms": 30.47942999999998,
+            "p99_ms": 50.81404400000002,
+            "max_ms": 57.6889,
+            "slow_at_least_250ms": 0,
+            "slow_fraction": 0,
+            "slow_waiting_share_of_duration_sum": null,
+            "slow_with_new_tcp": 0,
+            "slow_with_new_tls": 0
+          },
+          "slow_by_endpoint": {
+            "categories": 0,
+            "products": 0,
+            "my-addresses": 0,
+            "reviews": 0,
+            "product-detail": 0,
+            "my-orders": 0,
+            "product-filter": 0,
+            "login": 0,
+            "qnas": 0,
+            "member-me": 0,
+            "recommendation": 0
+          }
+        },
+        {
+          "completion_window_start_utc": "2026-10-08T09:20:45.000Z",
+          "overall": {
+            "count": 289,
+            "average_ms": 20.93267058823529,
+            "p95_ms": 96.04223999999834,
+            "p99_ms": 126.717436,
+            "max_ms": 145.741,
+            "slow_at_least_250ms": 0,
+            "slow_fraction": 0,
+            "slow_waiting_share_of_duration_sum": null,
+            "slow_with_new_tcp": 0,
+            "slow_with_new_tls": 0
+          },
+          "orders": {
+            "count": 22,
+            "average_ms": 11.767977272727274,
+            "p95_ms": 15.137214999999998,
+            "p99_ms": 48.74452999999997,
+            "max_ms": 57.6542,
+            "slow_at_least_250ms": 0,
+            "slow_fraction": 0,
+            "slow_waiting_share_of_duration_sum": null,
+            "slow_with_new_tcp": 0,
+            "slow_with_new_tls": 0
+          },
+          "slow_by_endpoint": {
+            "reviews": 0,
+            "product-filter": 0,
+            "member-me": 0,
+            "my-orders": 0,
+            "recommendation": 0,
+            "products": 0,
+            "login": 0,
+            "product-detail": 0,
+            "qnas": 0,
+            "categories": 0,
+            "my-addresses": 0
+          }
+        }
+      ]
+    },
+    {
+      "run_id": "mixed-path-20261008T091853Z-measured-origin",
+      "route": "origin",
+      "phase": "measured",
+      "start_utc": "2026-10-08T09:22:30.4910535+00:00",
+      "end_utc": "2026-10-08T09:27:31.8219173+00:00",
+      "raw_sha256": "d4f40496f1a038cbda73d9470c0eb671791e9311497362b627eb2ff1091817e2",
+      "validation": "PASS: complete timings, native stats, business-write scope and server histogram",
+      "k6_exit_code": 0,
+      "failed_thresholds": [],
+      "acceptance": "PASS",
+      "http_requests": 6019,
+      "check_passes": 12670,
+      "check_failures": 0,
+      "http_failure_rate": 0,
+      "dropped_iterations": 0,
+      "overall": {
+        "count": 6019,
+        "average_ms": 20.86514191726204,
+        "p95_ms": 110.61229999999973,
+        "p99_ms": 133.825138,
+        "max_ms": 150.8178,
+        "slow_at_least_250ms": 0,
+        "slow_fraction": 0,
+        "slow_waiting_share_of_duration_sum": null,
+        "slow_with_new_tcp": 0,
+        "slow_with_new_tls": 0
+      },
+      "member": {
+        "count": 1216,
+        "average_ms": 20.882389802631593,
+        "p95_ms": 50.942,
+        "p99_ms": 100.60225499999999,
+        "max_ms": 150.8178,
+        "slow_at_least_250ms": 0,
+        "slow_fraction": 0,
+        "slow_waiting_share_of_duration_sum": null,
+        "slow_with_new_tcp": 0,
+        "slow_with_new_tls": 0
+      },
+      "endpoints": {
+        "preflight-product": {
+          "count": 1,
+          "average_ms": 11.2335,
+          "p95_ms": 11.2335,
+          "p99_ms": 11.2335,
+          "max_ms": 11.2335,
+          "slow_at_least_250ms": 0,
+          "slow_fraction": 0,
+          "slow_waiting_share_of_duration_sum": null,
+          "slow_with_new_tcp": 0,
+          "slow_with_new_tls": 0
+        },
+        "preflight-login": {
+          "count": 1,
+          "average_ms": 147.3637,
+          "p95_ms": 147.3637,
+          "p99_ms": 147.3637,
+          "max_ms": 147.3637,
+          "slow_at_least_250ms": 0,
+          "slow_fraction": 0,
+          "slow_waiting_share_of_duration_sum": null,
+          "slow_with_new_tcp": 0,
+          "slow_with_new_tls": 0
+        },
+        "product-detail": {
+          "count": 664,
+          "average_ms": 10.648823644578307,
+          "p95_ms": 45.386035000000504,
+          "p99_ms": 61.537527,
+          "max_ms": 67.045,
+          "slow_at_least_250ms": 0,
+          "slow_fraction": 0,
+          "slow_waiting_share_of_duration_sum": null,
+          "slow_with_new_tcp": 0,
+          "slow_with_new_tls": 0
+        },
+        "products": {
+          "count": 2005,
+          "average_ms": 9.839306633416443,
+          "p95_ms": 12.813939999999992,
+          "p99_ms": 60.31239200000001,
+          "max_ms": 64.3049,
+          "slow_at_least_250ms": 0,
+          "slow_fraction": 0,
+          "slow_waiting_share_of_duration_sum": null,
+          "slow_with_new_tcp": 0,
+          "slow_with_new_tls": 0
+        },
+        "session-login": {
+          "count": 15,
+          "average_ms": 119.89418666666666,
+          "p95_ms": 147.91609,
+          "p99_ms": 150.237458,
+          "max_ms": 150.8178,
+          "slow_at_least_250ms": 0,
+          "slow_fraction": 0,
+          "slow_waiting_share_of_duration_sum": null,
+          "slow_with_new_tcp": 0,
+          "slow_with_new_tls": 0
+        },
+        "login": {
+          "count": 301,
+          "average_ms": 123.52118338870432,
+          "p95_ms": 134.3149,
+          "p99_ms": 134.5346,
+          "max_ms": 134.7873,
+          "slow_at_least_250ms": 0,
+          "slow_fraction": 0,
+          "slow_waiting_share_of_duration_sum": null,
+          "slow_with_new_tcp": 0,
+          "slow_with_new_tls": 0
+        },
+        "my-addresses": {
+          "count": 231,
+          "average_ms": 26.078475324675313,
+          "p95_ms": 50.95765,
+          "p99_ms": 59.46648999999998,
+          "max_ms": 61.4303,
+          "slow_at_least_250ms": 0,
+          "slow_fraction": 0,
+          "slow_waiting_share_of_duration_sum": null,
+          "slow_with_new_tcp": 0,
+          "slow_with_new_tls": 0
+        },
+        "qnas": {
+          "count": 230,
+          "average_ms": 12.024201739130435,
+          "p95_ms": 13.880984999999974,
+          "p99_ms": 61.45423500000001,
+          "max_ms": 64.6856,
+          "slow_at_least_250ms": 0,
+          "slow_fraction": 0,
+          "slow_waiting_share_of_duration_sum": null,
+          "slow_with_new_tcp": 0,
+          "slow_with_new_tls": 0
+        },
+        "categories": {
+          "count": 352,
+          "average_ms": 40.529530681818194,
+          "p95_ms": 57.433479999999996,
+          "p99_ms": 59.39886,
+          "max_ms": 67.7104,
+          "slow_at_least_250ms": 0,
+          "slow_fraction": 0,
+          "slow_waiting_share_of_duration_sum": null,
+          "slow_with_new_tcp": 0,
+          "slow_with_new_tls": 0
+        },
+        "member-me": {
+          "count": 496,
+          "average_ms": 25.839569354838734,
+          "p95_ms": 50.927575,
+          "p99_ms": 51.79790500000003,
+          "max_ms": 59.2384,
+          "slow_at_least_250ms": 0,
+          "slow_fraction": 0,
+          "slow_waiting_share_of_duration_sum": null,
+          "slow_with_new_tcp": 0,
+          "slow_with_new_tls": 0
+        },
+        "product-filter": {
+          "count": 724,
+          "average_ms": 12.942639779005543,
+          "p95_ms": 53.793575000000004,
+          "p99_ms": 61.189606,
+          "max_ms": 63.2742,
+          "slow_at_least_250ms": 0,
+          "slow_fraction": 0,
+          "slow_waiting_share_of_duration_sum": null,
+          "slow_with_new_tcp": 0,
+          "slow_with_new_tls": 0
+        },
+        "recommendation": {
+          "count": 187,
+          "average_ms": 30.003616042780763,
+          "p95_ms": 67.58424,
+          "p99_ms": 67.90678,
+          "max_ms": 79.0583,
+          "slow_at_least_250ms": 0,
+          "slow_fraction": 0,
+          "slow_waiting_share_of_duration_sum": null,
+          "slow_with_new_tcp": 0,
+          "slow_with_new_tls": 0
+        },
+        "my-orders": {
+          "count": 474,
+          "average_ms": 10.029575949367093,
+          "p95_ms": 16.560335,
+          "p99_ms": 57.02464599999996,
+          "max_ms": 66.6942,
+          "slow_at_least_250ms": 0,
+          "slow_fraction": 0,
+          "slow_waiting_share_of_duration_sum": null,
+          "slow_with_new_tcp": 0,
+          "slow_with_new_tls": 0
+        },
+        "reviews": {
+          "count": 338,
+          "average_ms": 11.96477071005918,
+          "p95_ms": 12.444659999999972,
+          "p99_ms": 61.88113799999998,
+          "max_ms": 65.2775,
+          "slow_at_least_250ms": 0,
+          "slow_fraction": 0,
+          "slow_waiting_share_of_duration_sum": null,
+          "slow_with_new_tcp": 0,
+          "slow_with_new_tls": 0
+        }
+      },
+      "server": {
+        "up": {
+          "count": 16,
+          "min": 1,
+          "max": 1
+        },
+        "cpu": {
+          "count": 16,
+          "min": 0.06494086141486276,
+          "max": 0.11078912171199289
+        },
+        "pending": {
+          "count": 16,
+          "min": 0,
+          "max": 0
+        },
+        "heap_mib": {
+          "count": 16,
+          "min": 66.24992370605469,
+          "max": 172.78732299804688
+        },
+        "gc_pause_rate": {
+          "count": 16,
+          "min": 0.00028890814943218466,
+          "max": 0.0005778162988643687
+        },
+        "uris": {
+          "/api/v1/auth/login": {
+            "p95_ms": {
+              "count": 16,
+              "min": 110.72962494999999,
+              "max": 117.44051124999997
+            },
+            "p99_ms": {
+              "count": 16,
+              "min": 111.62440979,
+              "max": 130.86228384999998
+            },
+            "request_rate_per_second": {
+              "count": 16,
+              "min": 1.0000222227160604,
+              "max": 1.0000666711114075
+            }
+          },
+          "/api/v1/categories": {
+            "p95_ms": {
+              "count": 16,
+              "min": 1.7467521875,
+              "max": 2.335993083333333
+            },
+            "p99_ms": {
+              "count": 16,
+              "min": 2.2299705000000003,
+              "max": 5.124041164999999
+            },
+            "request_rate_per_second": {
+              "count": 16,
+              "min": 1.0444676548367742,
+              "max": 1.5112118585683492
+            }
+          },
+          "/api/v1/coffee-recommendations": {
+            "p95_ms": {
+              "count": 16,
+              "min": 21.34434675,
+              "max": 25.305633625
+            },
+            "p99_ms": {
+              "count": 16,
+              "min": 22.164566150000002,
+              "max": 27.430747524999997
+            },
+            "request_rate_per_second": {
+              "count": 16,
+              "min": 0.35557926083961156,
+              "max": 0.8445007444940774
+            }
+          },
+          "/api/v1/members/me": {
+            "p95_ms": {
+              "count": 16,
+              "min": 3.020479541666666,
+              "max": 4.185565800000001
+            },
+            "p99_ms": {
+              "count": 16,
+              "min": 4.529848239999998,
+              "max": 8.76609426999999
+            },
+            "request_rate_per_second": {
+              "count": 16,
+              "min": 1.3778696357534947,
+              "max": 1.8444854330096223
+            }
+          },
+          "/api/v1/members/me/addresses": {
+            "p95_ms": {
+              "count": 16,
+              "min": 4.1375057,
+              "max": 7.409936299999998
+            },
+            "p99_ms": {
+              "count": 16,
+              "min": 5.131031670000001,
+              "max": 10.70945466
+            },
+            "request_rate_per_second": {
+              "count": 16,
+              "min": 0.7111585216792231,
+              "max": 0.8667244482965532
+            }
+          },
+          "/api/v1/orders": {
+            "p95_ms": {
+              "count": 16,
+              "min": 8.348661257142856,
+              "max": 10.555663549999998
+            },
+            "p99_ms": {
+              "count": 16,
+              "min": 10.737416679999997,
+              "max": 15.010945403333334
+            },
+            "request_rate_per_second": {
+              "count": 16,
+              "min": 1.4000933395559705,
+              "max": 1.8445264233965954
+            }
+          },
+          "/api/v1/products": {
+            "p95_ms": {
+              "count": 16,
+              "min": 6.889366778723404,
+              "max": 7.608466641999999
+            },
+            "p99_ms": {
+              "count": 16,
+              "min": 7.859076246250003,
+              "max": 10.644209946666646
+            },
+            "request_rate_per_second": {
+              "count": 16,
+              "min": 8.822810409582862,
+              "max": 9.244855326903417
+            }
+          },
+          "/api/v1/products/{productId}": {
+            "p95_ms": {
+              "count": 16,
+              "min": 7.3225549874999984,
+              "max": 9.465144769999998
+            },
+            "p99_ms": {
+              "count": 16,
+              "min": 8.388606999999999,
+              "max": 22.64924125000005
+            },
+            "request_rate_per_second": {
+              "count": 16,
+              "min": 2.0667125936131914,
+              "max": 2.5111669148203295
+            }
+          },
+          "/api/v1/products/{productId}/qnas": {
+            "p95_ms": {
+              "count": 16,
+              "min": 10.509060183333332,
+              "max": 13.351865549999994
+            },
+            "p99_ms": {
+              "count": 16,
+              "min": 11.049659236666665,
+              "max": 16.37176584
+            },
+            "request_rate_per_second": {
+              "count": 16,
+              "min": 0.5111451874569416,
+              "max": 1.0000222227160604
+            }
+          },
+          "/api/v1/products/{productId}/reviews": {
+            "p95_ms": {
+              "count": 16,
+              "min": 9.684180593333332,
+              "max": 10.940141324999997
+            },
+            "p99_ms": {
+              "count": 16,
+              "min": 9.766202518666667,
+              "max": 16.19001232
+            },
+            "request_rate_per_second": {
+              "count": 16,
+              "min": 0.8889283968176364,
+              "max": 1.2889748205435918
+            }
+          }
+        },
+        "order_histogram_p99_reproduction": "PASS"
+      },
+      "client": {
+        "cpu_percent": {
+          "count": 10,
+          "min": 0,
+          "max": 12
+        },
+        "free_memory_mib": {
+          "count": 10,
+          "min": 16525.1328125,
+          "max": 16717.9140625
+        },
+        "unavailable_samples": 0
+      },
+      "protocol_counts": {
+        "HTTP/1.1": 6019
+      },
+      "windows_15s": [
+        {
+          "completion_window_start_utc": "2026-10-08T09:22:30.000Z",
+          "overall": {
+            "count": 289,
+            "average_ms": 26.825529757785464,
+            "p95_ms": 118.67851999999995,
+            "p99_ms": 144.74054800000002,
+            "max_ms": 150.8178,
+            "slow_at_least_250ms": 0,
+            "slow_fraction": 0,
+            "slow_waiting_share_of_duration_sum": null,
+            "slow_with_new_tcp": 0,
+            "slow_with_new_tls": 0
+          },
+          "orders": {
+            "count": 25,
+            "average_ms": 17.099159999999998,
+            "p95_ms": 35.781019999999984,
+            "p99_ms": 59.535623999999935,
+            "max_ms": 66.6942,
+            "slow_at_least_250ms": 0,
+            "slow_fraction": 0,
+            "slow_waiting_share_of_duration_sum": null,
+            "slow_with_new_tcp": 0,
+            "slow_with_new_tls": 0
+          },
+          "slow_by_endpoint": {
+            "preflight-product": 0,
+            "preflight-login": 0,
+            "product-detail": 0,
+            "products": 0,
+            "session-login": 0,
+            "login": 0,
+            "my-addresses": 0,
+            "qnas": 0,
+            "categories": 0,
+            "member-me": 0,
+            "product-filter": 0,
+            "recommendation": 0,
+            "my-orders": 0,
+            "reviews": 0
+          }
+        },
+        {
+          "completion_window_start_utc": "2026-10-08T09:22:45.000Z",
+          "overall": {
+            "count": 301,
+            "average_ms": 20.60018704318937,
+            "p95_ms": 67.7622,
+            "p99_ms": 125.2767,
+            "max_ms": 134.0284,
+            "slow_at_least_250ms": 0,
+            "slow_fraction": 0,
+            "slow_waiting_share_of_duration_sum": null,
+            "slow_with_new_tcp": 0,
+            "slow_with_new_tls": 0
+          },
+          "orders": {
+            "count": 21,
+            "average_ms": 8.713500000000002,
+            "p95_ms": 10.4005,
+            "p99_ms": 11.0545,
+            "max_ms": 11.218,
+            "slow_at_least_250ms": 0,
+            "slow_fraction": 0,
+            "slow_waiting_share_of_duration_sum": null,
+            "slow_with_new_tcp": 0,
+            "slow_with_new_tls": 0
+          },
+          "slow_by_endpoint": {
+            "product-detail": 0,
+            "products": 0,
+            "member-me": 0,
+            "recommendation": 0,
+            "my-addresses": 0,
+            "product-filter": 0,
+            "login": 0,
+            "categories": 0,
+            "qnas": 0,
+            "reviews": 0,
+            "my-orders": 0
+          }
+        },
+        {
+          "completion_window_start_utc": "2026-10-08T09:23:00.000Z",
+          "overall": {
+            "count": 300,
+            "average_ms": 20.22273499999999,
+            "p95_ms": 68.97744500000051,
+            "p99_ms": 125.50485099999993,
+            "max_ms": 134.2624,
+            "slow_at_least_250ms": 0,
+            "slow_fraction": 0,
+            "slow_waiting_share_of_duration_sum": null,
+            "slow_with_new_tcp": 0,
+            "slow_with_new_tls": 0
+          },
+          "orders": {
+            "count": 21,
+            "average_ms": 11.462157142857146,
+            "p95_ms": 13.6277,
+            "p99_ms": 52.18674000000004,
+            "max_ms": 61.8265,
+            "slow_at_least_250ms": 0,
+            "slow_fraction": 0,
+            "slow_waiting_share_of_duration_sum": null,
+            "slow_with_new_tcp": 0,
+            "slow_with_new_tls": 0
+          },
+          "slow_by_endpoint": {
+            "products": 0,
+            "product-filter": 0,
+            "member-me": 0,
+            "my-addresses": 0,
+            "product-detail": 0,
+            "login": 0,
+            "my-orders": 0,
+            "categories": 0,
+            "reviews": 0,
+            "qnas": 0,
+            "recommendation": 0
+          }
+        },
+        {
+          "completion_window_start_utc": "2026-10-08T09:23:15.000Z",
+          "overall": {
+            "count": 300,
+            "average_ms": 20.652663999999987,
+            "p95_ms": 67.30689000000056,
+            "p99_ms": 133.680482,
+            "max_ms": 134.1448,
+            "slow_at_least_250ms": 0,
+            "slow_fraction": 0,
+            "slow_waiting_share_of_duration_sum": null,
+            "slow_with_new_tcp": 0,
+            "slow_with_new_tls": 0
+          },
+          "orders": {
+            "count": 29,
+            "average_ms": 10.453406896551728,
+            "p95_ms": 13.612359999999994,
+            "p99_ms": 46.385783999999944,
+            "max_ms": 58.6889,
+            "slow_at_least_250ms": 0,
+            "slow_fraction": 0,
+            "slow_waiting_share_of_duration_sum": null,
+            "slow_with_new_tcp": 0,
+            "slow_with_new_tls": 0
+          },
+          "slow_by_endpoint": {
+            "products": 0,
+            "member-me": 0,
+            "recommendation": 0,
+            "qnas": 0,
+            "categories": 0,
+            "login": 0,
+            "product-filter": 0,
+            "my-orders": 0,
+            "reviews": 0,
+            "product-detail": 0,
+            "my-addresses": 0
+          }
+        },
+        {
+          "completion_window_start_utc": "2026-10-08T09:23:30.000Z",
+          "overall": {
+            "count": 300,
+            "average_ms": 21.520203666666685,
+            "p95_ms": 70.07164500000052,
+            "p99_ms": 133.710238,
+            "max_ms": 134.3749,
+            "slow_at_least_250ms": 0,
+            "slow_fraction": 0,
+            "slow_waiting_share_of_duration_sum": null,
+            "slow_with_new_tcp": 0,
+            "slow_with_new_tls": 0
+          },
+          "orders": {
+            "count": 20,
+            "average_ms": 10.80487,
+            "p95_ms": 13.46750500000003,
+            "p99_ms": 45.61558099999994,
+            "max_ms": 53.6526,
+            "slow_at_least_250ms": 0,
+            "slow_fraction": 0,
+            "slow_waiting_share_of_duration_sum": null,
+            "slow_with_new_tcp": 0,
+            "slow_with_new_tls": 0
+          },
+          "slow_by_endpoint": {
+            "product-detail": 0,
+            "categories": 0,
+            "product-filter": 0,
+            "member-me": 0,
+            "products": 0,
+            "my-addresses": 0,
+            "login": 0,
+            "my-orders": 0,
+            "qnas": 0,
+            "reviews": 0,
+            "recommendation": 0
+          }
+        },
+        {
+          "completion_window_start_utc": "2026-10-08T09:23:45.000Z",
+          "overall": {
+            "count": 300,
+            "average_ms": 21.95017666666668,
+            "p95_ms": 70.44354500000055,
+            "p99_ms": 133.91305,
+            "max_ms": 134.3447,
+            "slow_at_least_250ms": 0,
+            "slow_fraction": 0,
+            "slow_waiting_share_of_duration_sum": null,
+            "slow_with_new_tcp": 0,
+            "slow_with_new_tls": 0
+          },
+          "orders": {
+            "count": 22,
+            "average_ms": 11.195554545454547,
+            "p95_ms": 12.208614999999998,
+            "p99_ms": 54.25544799999996,
+            "max_ms": 65.4046,
+            "slow_at_least_250ms": 0,
+            "slow_fraction": 0,
+            "slow_waiting_share_of_duration_sum": null,
+            "slow_with_new_tcp": 0,
+            "slow_with_new_tls": 0
+          },
+          "slow_by_endpoint": {
+            "product-filter": 0,
+            "products": 0,
+            "member-me": 0,
+            "product-detail": 0,
+            "my-orders": 0,
+            "login": 0,
+            "recommendation": 0,
+            "qnas": 0,
+            "categories": 0,
+            "reviews": 0,
+            "my-addresses": 0
+          }
+        },
+        {
+          "completion_window_start_utc": "2026-10-08T09:24:00.000Z",
+          "overall": {
+            "count": 300,
+            "average_ms": 21.013446333333338,
+            "p95_ms": 66.31354000000056,
+            "p99_ms": 133.826596,
+            "max_ms": 134.4229,
+            "slow_at_least_250ms": 0,
+            "slow_fraction": 0,
+            "slow_waiting_share_of_duration_sum": null,
+            "slow_with_new_tcp": 0,
+            "slow_with_new_tls": 0
+          },
+          "orders": {
+            "count": 21,
+            "average_ms": 8.682866666666666,
+            "p95_ms": 11.3019,
+            "p99_ms": 12.694780000000002,
+            "max_ms": 13.043,
+            "slow_at_least_250ms": 0,
+            "slow_fraction": 0,
+            "slow_waiting_share_of_duration_sum": null,
+            "slow_with_new_tcp": 0,
+            "slow_with_new_tls": 0
+          },
+          "slow_by_endpoint": {
+            "products": 0,
+            "qnas": 0,
+            "my-orders": 0,
+            "product-filter": 0,
+            "my-addresses": 0,
+            "login": 0,
+            "product-detail": 0,
+            "member-me": 0,
+            "categories": 0,
+            "reviews": 0,
+            "recommendation": 0
+          }
+        },
+        {
+          "completion_window_start_utc": "2026-10-08T09:24:15.000Z",
+          "overall": {
+            "count": 300,
+            "average_ms": 20.678783666666668,
+            "p95_ms": 69.53204000000044,
+            "p99_ms": 127.572014,
+            "max_ms": 134.5734,
+            "slow_at_least_250ms": 0,
+            "slow_fraction": 0,
+            "slow_waiting_share_of_duration_sum": null,
+            "slow_with_new_tcp": 0,
+            "slow_with_new_tls": 0
+          },
+          "orders": {
+            "count": 23,
+            "average_ms": 8.162065217391303,
+            "p95_ms": 9.49606,
+            "p99_ms": 10.589378000000002,
+            "max_ms": 10.8919,
+            "slow_at_least_250ms": 0,
+            "slow_fraction": 0,
+            "slow_waiting_share_of_duration_sum": null,
+            "slow_with_new_tcp": 0,
+            "slow_with_new_tls": 0
+          },
+          "slow_by_endpoint": {
+            "products": 0,
+            "qnas": 0,
+            "member-me": 0,
+            "product-filter": 0,
+            "product-detail": 0,
+            "reviews": 0,
+            "login": 0,
+            "recommendation": 0,
+            "categories": 0,
+            "my-addresses": 0,
+            "my-orders": 0
+          }
+        },
+        {
+          "completion_window_start_utc": "2026-10-08T09:24:30.000Z",
+          "overall": {
+            "count": 300,
+            "average_ms": 22.38360966666666,
+            "p95_ms": 69.51038000000055,
+            "p99_ms": 134.04905399999998,
+            "max_ms": 134.4424,
+            "slow_at_least_250ms": 0,
+            "slow_fraction": 0,
+            "slow_waiting_share_of_duration_sum": null,
+            "slow_with_new_tcp": 0,
+            "slow_with_new_tls": 0
+          },
+          "orders": {
+            "count": 18,
+            "average_ms": 8.631777777777778,
+            "p95_ms": 12.112209999999992,
+            "p99_ms": 15.495481999999992,
+            "max_ms": 16.3413,
+            "slow_at_least_250ms": 0,
+            "slow_fraction": 0,
+            "slow_waiting_share_of_duration_sum": null,
+            "slow_with_new_tcp": 0,
+            "slow_with_new_tls": 0
+          },
+          "slow_by_endpoint": {
+            "product-detail": 0,
+            "products": 0,
+            "my-addresses": 0,
+            "product-filter": 0,
+            "categories": 0,
+            "member-me": 0,
+            "reviews": 0,
+            "login": 0,
+            "qnas": 0,
+            "my-orders": 0,
+            "recommendation": 0
+          }
+        },
+        {
+          "completion_window_start_utc": "2026-10-08T09:24:45.000Z",
+          "overall": {
+            "count": 299,
+            "average_ms": 19.536876588628765,
+            "p95_ms": 70.93907999999868,
+            "p99_ms": 133.78127800000001,
+            "max_ms": 134.5346,
+            "slow_at_least_250ms": 0,
+            "slow_fraction": 0,
+            "slow_waiting_share_of_duration_sum": null,
+            "slow_with_new_tcp": 0,
+            "slow_with_new_tls": 0
+          },
+          "orders": {
+            "count": 30,
+            "average_ms": 9.195096666666666,
+            "p95_ms": 13.834414999999991,
+            "p99_ms": 28.455950000000016,
+            "max_ms": 33.8717,
+            "slow_at_least_250ms": 0,
+            "slow_fraction": 0,
+            "slow_waiting_share_of_duration_sum": null,
+            "slow_with_new_tcp": 0,
+            "slow_with_new_tls": 0
+          },
+          "slow_by_endpoint": {
+            "products": 0,
+            "product-detail": 0,
+            "my-addresses": 0,
+            "product-filter": 0,
+            "my-orders": 0,
+            "login": 0,
+            "member-me": 0,
+            "reviews": 0,
+            "categories": 0,
+            "recommendation": 0,
+            "qnas": 0
+          }
+        },
+        {
+          "completion_window_start_utc": "2026-10-08T09:25:00.000Z",
+          "overall": {
+            "count": 301,
+            "average_ms": 20.72240332225914,
+            "p95_ms": 67.6098,
+            "p99_ms": 126.9708,
+            "max_ms": 134.1249,
+            "slow_at_least_250ms": 0,
+            "slow_fraction": 0,
+            "slow_waiting_share_of_duration_sum": null,
+            "slow_with_new_tcp": 0,
+            "slow_with_new_tls": 0
+          },
+          "orders": {
+            "count": 30,
+            "average_ms": 10.80133666666666,
+            "p95_ms": 34.02430999999988,
+            "p99_ms": 55.28917800000001,
+            "max_ms": 56.4091,
+            "slow_at_least_250ms": 0,
+            "slow_fraction": 0,
+            "slow_waiting_share_of_duration_sum": null,
+            "slow_with_new_tcp": 0,
+            "slow_with_new_tls": 0
+          },
+          "slow_by_endpoint": {
+            "categories": 0,
+            "products": 0,
+            "my-orders": 0,
+            "product-filter": 0,
+            "member-me": 0,
+            "recommendation": 0,
+            "login": 0,
+            "product-detail": 0,
+            "qnas": 0,
+            "reviews": 0,
+            "my-addresses": 0
+          }
+        },
+        {
+          "completion_window_start_utc": "2026-10-08T09:25:15.000Z",
+          "overall": {
+            "count": 300,
+            "average_ms": 19.49827700000001,
+            "p95_ms": 67.21951500000038,
+            "p99_ms": 128.56808799999996,
+            "max_ms": 134.1737,
+            "slow_at_least_250ms": 0,
+            "slow_fraction": 0,
+            "slow_waiting_share_of_duration_sum": null,
+            "slow_with_new_tcp": 0,
+            "slow_with_new_tls": 0
+          },
+          "orders": {
+            "count": 23,
+            "average_ms": 7.733630434782609,
+            "p95_ms": 9.61925,
+            "p99_ms": 10.703052000000001,
+            "max_ms": 11.0052,
+            "slow_at_least_250ms": 0,
+            "slow_fraction": 0,
+            "slow_waiting_share_of_duration_sum": null,
+            "slow_with_new_tcp": 0,
+            "slow_with_new_tls": 0
+          },
+          "slow_by_endpoint": {
+            "products": 0,
+            "qnas": 0,
+            "my-orders": 0,
+            "product-detail": 0,
+            "reviews": 0,
+            "my-addresses": 0,
+            "login": 0,
+            "recommendation": 0,
+            "member-me": 0,
+            "product-filter": 0,
+            "categories": 0
+          }
+        },
+        {
+          "completion_window_start_utc": "2026-10-08T09:25:30.000Z",
+          "overall": {
+            "count": 299,
+            "average_ms": 19.638391638795987,
+            "p95_ms": 71.85644999999833,
+            "p99_ms": 128.59502199999994,
+            "max_ms": 134.1999,
+            "slow_at_least_250ms": 0,
+            "slow_fraction": 0,
+            "slow_waiting_share_of_duration_sum": null,
+            "slow_with_new_tcp": 0,
+            "slow_with_new_tls": 0
+          },
+          "orders": {
+            "count": 24,
+            "average_ms": 10.788841666666668,
+            "p95_ms": 14.994584999999997,
+            "p99_ms": 45.90400099999998,
+            "max_ms": 55.0744,
+            "slow_at_least_250ms": 0,
+            "slow_fraction": 0,
+            "slow_waiting_share_of_duration_sum": null,
+            "slow_with_new_tcp": 0,
+            "slow_with_new_tls": 0
+          },
+          "slow_by_endpoint": {
+            "product-detail": 0,
+            "products": 0,
+            "product-filter": 0,
+            "member-me": 0,
+            "recommendation": 0,
+            "my-orders": 0,
+            "login": 0,
+            "qnas": 0,
+            "reviews": 0,
+            "my-addresses": 0,
+            "categories": 0
+          }
+        },
+        {
+          "completion_window_start_utc": "2026-10-08T09:25:45.000Z",
+          "overall": {
+            "count": 300,
+            "average_ms": 21.180764333333336,
+            "p95_ms": 80.8320300000004,
+            "p99_ms": 127.88462299999995,
+            "max_ms": 134.3149,
+            "slow_at_least_250ms": 0,
+            "slow_fraction": 0,
+            "slow_waiting_share_of_duration_sum": null,
+            "slow_with_new_tcp": 0,
+            "slow_with_new_tls": 0
+          },
+          "orders": {
+            "count": 20,
+            "average_ms": 9.272545,
+            "p95_ms": 12.168075000000016,
+            "p99_ms": 29.91065499999997,
+            "max_ms": 34.3463,
+            "slow_at_least_250ms": 0,
+            "slow_fraction": 0,
+            "slow_waiting_share_of_duration_sum": null,
+            "slow_with_new_tcp": 0,
+            "slow_with_new_tls": 0
+          },
+          "slow_by_endpoint": {
+            "categories": 0,
+            "reviews": 0,
+            "product-detail": 0,
+            "my-orders": 0,
+            "product-filter": 0,
+            "member-me": 0,
+            "login": 0,
+            "products": 0,
+            "qnas": 0,
+            "my-addresses": 0,
+            "recommendation": 0
+          }
+        },
+        {
+          "completion_window_start_utc": "2026-10-08T09:26:00.000Z",
+          "overall": {
+            "count": 301,
+            "average_ms": 21.50724053156146,
+            "p95_ms": 67.3821,
+            "p99_ms": 133.4666,
+            "max_ms": 134.5292,
+            "slow_at_least_250ms": 0,
+            "slow_fraction": 0,
+            "slow_waiting_share_of_duration_sum": null,
+            "slow_with_new_tcp": 0,
+            "slow_with_new_tls": 0
+          },
+          "orders": {
+            "count": 21,
+            "average_ms": 9.958547619047618,
+            "p95_ms": 12.5475,
+            "p99_ms": 43.20102000000003,
+            "max_ms": 50.8644,
+            "slow_at_least_250ms": 0,
+            "slow_fraction": 0,
+            "slow_waiting_share_of_duration_sum": null,
+            "slow_with_new_tcp": 0,
+            "slow_with_new_tls": 0
+          },
+          "slow_by_endpoint": {
+            "products": 0,
+            "member-me": 0,
+            "recommendation": 0,
+            "product-detail": 0,
+            "my-orders": 0,
+            "login": 0,
+            "product-filter": 0,
+            "my-addresses": 0,
+            "qnas": 0,
+            "categories": 0,
+            "reviews": 0
+          }
+        },
+        {
+          "completion_window_start_utc": "2026-10-08T09:26:15.000Z",
+          "overall": {
+            "count": 300,
+            "average_ms": 20.436657333333333,
+            "p95_ms": 63.25252000000046,
+            "p99_ms": 127.49980999999998,
+            "max_ms": 134.0643,
+            "slow_at_least_250ms": 0,
+            "slow_fraction": 0,
+            "slow_waiting_share_of_duration_sum": null,
+            "slow_with_new_tcp": 0,
+            "slow_with_new_tls": 0
+          },
+          "orders": {
+            "count": 22,
+            "average_ms": 10.301777272727271,
+            "p95_ms": 13.870559999999998,
+            "p99_ms": 50.947245999999964,
+            "max_ms": 60.7306,
+            "slow_at_least_250ms": 0,
+            "slow_fraction": 0,
+            "slow_waiting_share_of_duration_sum": null,
+            "slow_with_new_tcp": 0,
+            "slow_with_new_tls": 0
+          },
+          "slow_by_endpoint": {
+            "recommendation": 0,
+            "products": 0,
+            "product-filter": 0,
+            "member-me": 0,
+            "reviews": 0,
+            "my-orders": 0,
+            "login": 0,
+            "categories": 0,
+            "product-detail": 0,
+            "my-addresses": 0,
+            "qnas": 0
+          }
+        },
+        {
+          "completion_window_start_utc": "2026-10-08T09:26:30.000Z",
+          "overall": {
+            "count": 300,
+            "average_ms": 20.428805000000004,
+            "p95_ms": 66.10903500000057,
+            "p99_ms": 128.700546,
+            "max_ms": 134.7873,
+            "slow_at_least_250ms": 0,
+            "slow_fraction": 0,
+            "slow_waiting_share_of_duration_sum": null,
+            "slow_with_new_tcp": 0,
+            "slow_with_new_tls": 0
+          },
+          "orders": {
+            "count": 28,
+            "average_ms": 8.540228571428571,
+            "p95_ms": 11.902569999999997,
+            "p99_ms": 15.033583000000002,
+            "max_ms": 15.9589,
+            "slow_at_least_250ms": 0,
+            "slow_fraction": 0,
+            "slow_waiting_share_of_duration_sum": null,
+            "slow_with_new_tcp": 0,
+            "slow_with_new_tls": 0
+          },
+          "slow_by_endpoint": {
+            "product-filter": 0,
+            "products": 0,
+            "my-orders": 0,
+            "product-detail": 0,
+            "my-addresses": 0,
+            "login": 0,
+            "categories": 0,
+            "reviews": 0,
+            "member-me": 0,
+            "recommendation": 0,
+            "qnas": 0
+          }
+        },
+        {
+          "completion_window_start_utc": "2026-10-08T09:26:45.000Z",
+          "overall": {
+            "count": 299,
+            "average_ms": 19.488342140468223,
+            "p95_ms": 68.26817999999832,
+            "p99_ms": 134.141264,
+            "max_ms": 134.6379,
+            "slow_at_least_250ms": 0,
+            "slow_fraction": 0,
+            "slow_waiting_share_of_duration_sum": null,
+            "slow_with_new_tcp": 0,
+            "slow_with_new_tls": 0
+          },
+          "orders": {
+            "count": 26,
+            "average_ms": 8.18951153846154,
+            "p95_ms": 11.025275,
+            "p99_ms": 12.80765,
+            "max_ms": 13.3529,
+            "slow_at_least_250ms": 0,
+            "slow_fraction": 0,
+            "slow_waiting_share_of_duration_sum": null,
+            "slow_with_new_tcp": 0,
+            "slow_with_new_tls": 0
+          },
+          "slow_by_endpoint": {
+            "categories": 0,
+            "products": 0,
+            "recommendation": 0,
+            "my-orders": 0,
+            "product-detail": 0,
+            "reviews": 0,
+            "member-me": 0,
+            "product-filter": 0,
+            "login": 0,
+            "my-addresses": 0,
+            "qnas": 0
+          }
+        },
+        {
+          "completion_window_start_utc": "2026-10-08T09:27:00.000Z",
+          "overall": {
+            "count": 301,
+            "average_ms": 20.50907441860464,
+            "p95_ms": 67.6792,
+            "p99_ms": 127.2909,
+            "max_ms": 134.3397,
+            "slow_at_least_250ms": 0,
+            "slow_fraction": 0,
+            "slow_waiting_share_of_duration_sum": null,
+            "slow_with_new_tcp": 0,
+            "slow_with_new_tls": 0
+          },
+          "orders": {
+            "count": 26,
+            "average_ms": 11.220765384615383,
+            "p95_ms": 29.827250000000003,
+            "p99_ms": 46.37835,
+            "max_ms": 50.4236,
+            "slow_at_least_250ms": 0,
+            "slow_fraction": 0,
+            "slow_waiting_share_of_duration_sum": null,
+            "slow_with_new_tcp": 0,
+            "slow_with_new_tls": 0
+          },
+          "slow_by_endpoint": {
+            "product-filter": 0,
+            "reviews": 0,
+            "products": 0,
+            "my-orders": 0,
+            "product-detail": 0,
+            "login": 0,
+            "qnas": 0,
+            "categories": 0,
+            "my-addresses": 0,
+            "member-me": 0,
+            "recommendation": 0
+          }
+        },
+        {
+          "completion_window_start_utc": "2026-10-08T09:27:15.000Z",
+          "overall": {
+            "count": 300,
+            "average_ms": 18.699258000000015,
+            "p95_ms": 69.62896000000049,
+            "p99_ms": 125.76001699999992,
+            "max_ms": 134.3282,
+            "slow_at_least_250ms": 0,
+            "slow_fraction": 0,
+            "slow_waiting_share_of_duration_sum": null,
+            "slow_with_new_tcp": 0,
+            "slow_with_new_tls": 0
+          },
+          "orders": {
+            "count": 21,
+            "average_ms": 8.760676190476188,
+            "p95_ms": 11.6203,
+            "p99_ms": 12.79062,
+            "max_ms": 13.0832,
+            "slow_at_least_250ms": 0,
+            "slow_fraction": 0,
+            "slow_waiting_share_of_duration_sum": null,
+            "slow_with_new_tcp": 0,
+            "slow_with_new_tls": 0
+          },
+          "slow_by_endpoint": {
+            "products": 0,
+            "categories": 0,
+            "member-me": 0,
+            "my-orders": 0,
+            "product-detail": 0,
+            "login": 0,
+            "reviews": 0,
+            "product-filter": 0,
+            "qnas": 0,
+            "my-addresses": 0,
+            "recommendation": 0
+          }
+        },
+        {
+          "completion_window_start_utc": "2026-10-08T09:27:30.000Z",
+          "overall": {
+            "count": 29,
+            "average_ms": 21.022996551724145,
+            "p95_ms": 86.00055999999992,
+            "p99_ms": 125.09729599999996,
+            "max_ms": 134.2174,
+            "slow_at_least_250ms": 0,
+            "slow_fraction": 0,
+            "slow_waiting_share_of_duration_sum": null,
+            "slow_with_new_tcp": 0,
+            "slow_with_new_tls": 0
+          },
+          "orders": {
+            "count": 3,
+            "average_ms": 8.7257,
+            "p95_ms": 9.892199999999999,
+            "p99_ms": 10.010359999999999,
+            "max_ms": 10.0399,
+            "slow_at_least_250ms": 0,
+            "slow_fraction": 0,
+            "slow_waiting_share_of_duration_sum": null,
+            "slow_with_new_tcp": 0,
+            "slow_with_new_tls": 0
+          },
+          "slow_by_endpoint": {
+            "product-filter": 0,
+            "products": 0,
+            "recommendation": 0,
+            "my-orders": 0,
+            "reviews": 0,
+            "product-detail": 0,
+            "login": 0,
+            "member-me": 0,
+            "categories": 0
+          }
+        }
+      ]
+    },
+    {
+      "run_id": "mixed-path-20261008T091853Z-warmup-public",
+      "route": "public",
+      "phase": "warmup",
+      "start_utc": "2026-10-08T09:29:02.5321902+00:00",
+      "end_utc": "2026-10-08T09:31:04.2972993+00:00",
+      "raw_sha256": "6225664aca5bb4b5252b13d474a71587828225b975c0fdb6b65c21a0d9243c0f",
+      "validation": "PASS: complete timings, native stats, business-write scope and server histogram",
+      "k6_exit_code": 0,
+      "failed_thresholds": [],
+      "acceptance": "PASS",
+      "http_requests": 2419,
+      "check_passes": 5108,
+      "check_failures": 0,
+      "http_failure_rate": 0,
+      "dropped_iterations": 0,
+      "overall": {
+        "count": 2419,
+        "average_ms": 127.96778491112057,
+        "p95_ms": 249.39947999999995,
+        "p99_ms": 328.5087640000008,
+        "max_ms": 762.5866,
+        "slow_at_least_250ms": 120,
+        "slow_fraction": 0.049607275733774284,
+        "slow_waiting_share_of_duration_sum": 0.98488600800596,
+        "slow_with_new_tcp": 19,
+        "slow_with_new_tls": 19
+      },
+      "member": {
+        "count": 496,
+        "average_ms": 129.35411532258075,
+        "p95_ms": 254.04152499999998,
+        "p99_ms": 426.2073450000004,
+        "max_ms": 750.2662,
+        "slow_at_least_250ms": 26,
+        "slow_fraction": 0.05241935483870968,
+        "slow_waiting_share_of_duration_sum": 0.9813524910996986,
+        "slow_with_new_tcp": 12,
+        "slow_with_new_tls": 12
+      },
+      "endpoints": {
+        "preflight-product": {
+          "count": 1,
+          "average_ms": 182.7632,
+          "p95_ms": 182.7632,
+          "p99_ms": 182.7632,
+          "max_ms": 182.7632,
+          "slow_at_least_250ms": 0,
+          "slow_fraction": 0,
+          "slow_waiting_share_of_duration_sum": null,
+          "slow_with_new_tcp": 0,
+          "slow_with_new_tls": 0
+        },
+        "preflight-login": {
+          "count": 1,
+          "average_ms": 226.0458,
+          "p95_ms": 226.0458,
+          "p99_ms": 226.0458,
+          "max_ms": 226.0458,
+          "slow_at_least_250ms": 0,
+          "slow_fraction": 0,
+          "slow_waiting_share_of_duration_sum": null,
+          "slow_with_new_tcp": 0,
+          "slow_with_new_tls": 0
+        },
+        "product-filter": {
+          "count": 270,
+          "average_ms": 119.04608888888896,
+          "p95_ms": 184.04888,
+          "p99_ms": 255.77410700000004,
+          "max_ms": 290.7432,
+          "slow_at_least_250ms": 3,
+          "slow_fraction": 0.011111111111111112,
+          "slow_waiting_share_of_duration_sum": 0.901104950787463,
+          "slow_with_new_tcp": 1,
+          "slow_with_new_tls": 1
+        },
+        "session-login": {
+          "count": 15,
+          "average_ms": 301.65744,
+          "p95_ms": 382.09675999999996,
+          "p99_ms": 395.041272,
+          "max_ms": 398.2774,
+          "slow_at_least_250ms": 12,
+          "slow_fraction": 0.8,
+          "slow_waiting_share_of_duration_sum": 0.9998589779936345,
+          "slow_with_new_tcp": 12,
+          "slow_with_new_tls": 12
+        },
+        "login": {
+          "count": 120,
+          "average_ms": 275.69817750000004,
+          "p95_ms": 377.328795,
+          "p99_ms": 482.54496500000005,
+          "max_ms": 550.1326,
+          "slow_at_least_250ms": 80,
+          "slow_fraction": 0.6666666666666666,
+          "slow_waiting_share_of_duration_sum": 0.9990058382280979,
+          "slow_with_new_tcp": 4,
+          "slow_with_new_tls": 4
+        },
+        "product-detail": {
+          "count": 269,
+          "average_ms": 118.50426171003714,
+          "p95_ms": 180.85945999999998,
+          "p99_ms": 198.07137199999983,
+          "max_ms": 324.4373,
+          "slow_at_least_250ms": 2,
+          "slow_fraction": 0.007434944237918215,
+          "slow_waiting_share_of_duration_sum": 0.999135807769801,
+          "slow_with_new_tcp": 0,
+          "slow_with_new_tls": 0
+        },
+        "products": {
+          "count": 829,
+          "average_ms": 117.40571592279845,
+          "p95_ms": 164.03691999999995,
+          "p99_ms": 248.63942000000006,
+          "max_ms": 762.5866,
+          "slow_at_least_250ms": 8,
+          "slow_fraction": 0.009650180940892641,
+          "slow_waiting_share_of_duration_sum": 0.951151370335067,
+          "slow_with_new_tcp": 2,
+          "slow_with_new_tls": 2
+        },
+        "member-me": {
+          "count": 211,
+          "average_ms": 121.55420094786724,
+          "p95_ms": 167.79505,
+          "p99_ms": 324.4395100000003,
+          "max_ms": 471.7434,
+          "slow_at_least_250ms": 7,
+          "slow_fraction": 0.03317535545023697,
+          "slow_waiting_share_of_duration_sum": 0.9990819874576017,
+          "slow_with_new_tcp": 0,
+          "slow_with_new_tls": 0
+        },
+        "reviews": {
+          "count": 116,
+          "average_ms": 116.62302844827587,
+          "p95_ms": 156.97979999999998,
+          "p99_ms": 187.21267999999998,
+          "max_ms": 202.7681,
+          "slow_at_least_250ms": 0,
+          "slow_fraction": 0,
+          "slow_waiting_share_of_duration_sum": null,
+          "slow_with_new_tcp": 0,
+          "slow_with_new_tls": 0
+        },
+        "my-orders": {
+          "count": 178,
+          "average_ms": 125.19366629213488,
+          "p95_ms": 166.77249500000002,
+          "p99_ms": 326.6789239999983,
+          "max_ms": 463.9687,
+          "slow_at_least_250ms": 5,
+          "slow_fraction": 0.028089887640449437,
+          "slow_waiting_share_of_duration_sum": 0.9819572625958781,
+          "slow_with_new_tcp": 0,
+          "slow_with_new_tls": 0
+        },
+        "recommendation": {
+          "count": 76,
+          "average_ms": 129.15414736842106,
+          "p95_ms": 195.80355,
+          "p99_ms": 207.96357500000002,
+          "max_ms": 232.3616,
+          "slow_at_least_250ms": 0,
+          "slow_fraction": 0,
+          "slow_waiting_share_of_duration_sum": null,
+          "slow_with_new_tcp": 0,
+          "slow_with_new_tls": 0
+        },
+        "categories": {
+          "count": 152,
+          "average_ms": 108.81044736842111,
+          "p95_ms": 152.21527499999996,
+          "p99_ms": 185.492078,
+          "max_ms": 633.6912,
+          "slow_at_least_250ms": 1,
+          "slow_fraction": 0.006578947368421052,
+          "slow_waiting_share_of_duration_sum": 0.7862777643117026,
+          "slow_with_new_tcp": 0,
+          "slow_with_new_tls": 0
+        },
+        "qnas": {
+          "count": 89,
+          "average_ms": 119.87906516853936,
+          "p95_ms": 167.8366,
+          "p99_ms": 190.62911600000004,
+          "max_ms": 193.3565,
+          "slow_at_least_250ms": 0,
+          "slow_fraction": 0,
+          "slow_waiting_share_of_duration_sum": null,
+          "slow_with_new_tcp": 0,
+          "slow_with_new_tls": 0
+        },
+        "my-addresses": {
+          "count": 92,
+          "average_ms": 127.1996804347826,
+          "p95_ms": 161.49999499999998,
+          "p99_ms": 591.7790530000007,
+          "max_ms": 750.2662,
+          "slow_at_least_250ms": 2,
+          "slow_fraction": 0.021739130434782608,
+          "slow_waiting_share_of_duration_sum": 0.8964380772283345,
+          "slow_with_new_tcp": 0,
+          "slow_with_new_tls": 0
+        }
+      },
+      "server": {
+        "up": {
+          "count": 4,
+          "min": 1,
+          "max": 1
+        },
+        "cpu": {
+          "count": 4,
+          "min": 0.05971818385148736,
+          "max": 0.06544561090015635
+        },
+        "pending": {
+          "count": 4,
+          "min": 0,
+          "max": 0
+        },
+        "heap_mib": {
+          "count": 4,
+          "min": 72.00457000732422,
+          "max": 161.6788787841797
+        },
+        "gc_pause_rate": {
+          "count": 4,
+          "min": 0.0003333481488066139,
+          "max": 0.0004444543212071371
+        },
+        "uris": {
+          "/api/v1/auth/login": {
+            "p95_ms": {
+              "count": 4,
+              "min": 110.72962494999999,
+              "max": 111.21260540340909
+            },
+            "p99_ms": {
+              "count": 4,
+              "min": 111.62440979,
+              "max": 124.15139755000007
+            },
+            "request_rate_per_second": {
+              "count": 4,
+              "min": 1.0000222227160604,
+              "max": 1.0000666711114075
+            }
+          },
+          "/api/v1/categories": {
+            "p95_ms": {
+              "count": 4,
+              "min": 1.73993645,
+              "max": 2.0796747499999997
+            },
+            "p99_ms": {
+              "count": 4,
+              "min": 2.3208470000000005,
+              "max": 2.617943250000001
+            },
+            "request_rate_per_second": {
+              "count": 4,
+              "min": 1.1334088939262619,
+              "max": 1.6000711142717454
+            }
+          },
+          "/api/v1/coffee-recommendations": {
+            "p95_ms": {
+              "count": 4,
+              "min": 21.355997593749997,
+              "max": 23.907532374999988
+            },
+            "p99_ms": {
+              "count": 4,
+              "min": 22.16689631875,
+              "max": 27.151127274999997
+            },
+            "request_rate_per_second": {
+              "count": 4,
+              "min": 0.6000133336296362,
+              "max": 0.6444874102717959
+            }
+          },
+          "/api/v1/members/me": {
+            "p95_ms": {
+              "count": 4,
+              "min": 2.7128527307692307,
+              "max": 2.785563282608696
+            },
+            "p99_ms": {
+              "count": 4,
+              "min": 2.8800869999999996,
+              "max": 5.955911260000003
+            },
+            "request_rate_per_second": {
+              "count": 4,
+              "min": 1.6445540813832034,
+              "max": 1.8223032134761545
+            }
+          },
+          "/api/v1/members/me/addresses": {
+            "p95_ms": {
+              "count": 4,
+              "min": 3.9146815999999998,
+              "max": 4.264209050000002
+            },
+            "p99_ms": {
+              "count": 4,
+              "min": 5.047145610000001,
+              "max": 5.326765810000001
+            },
+            "request_rate_per_second": {
+              "count": 4,
+              "min": 0.800053336889126,
+              "max": 0.866685926353919
+            }
+          },
+          "/api/v1/orders": {
+            "p95_ms": {
+              "count": 4,
+              "min": 6.922265355952381,
+              "max": 6.955553474999999
+            },
+            "p99_ms": {
+              "count": 4,
+              "min": 7.535765390000002,
+              "max": 7.969176700000002
+            },
+            "request_rate_per_second": {
+              "count": 4,
+              "min": 1.3333925952264545,
+              "max": 1.5556592661733006
+            }
+          },
+          "/api/v1/products": {
+            "p95_ms": {
+              "count": 4,
+              "min": 6.864327384749999,
+              "max": 6.8871047802083325
+            },
+            "p99_ms": {
+              "count": 4,
+              "min": 6.976327145518867,
+              "max": 8.36064498000002
+            },
+            "request_rate_per_second": {
+              "count": 4,
+              "min": 8.911309140203116,
+              "max": 9.222837078027425
+            }
+          },
+          "/api/v1/products/{productId}": {
+            "p95_ms": {
+              "count": 4,
+              "min": 6.892121114814814,
+              "max": 6.936135405555555
+            },
+            "p99_ms": {
+              "count": 4,
+              "min": 7.046430039999986,
+              "max": 8.325692455000004
+            },
+            "request_rate_per_second": {
+              "count": 4,
+              "min": 2.133428152362327,
+              "max": 2.555612346941043
+            }
+          },
+          "/api/v1/products/{productId}/qnas": {
+            "p95_ms": {
+              "count": 4,
+              "min": 10.439155133333333,
+              "max": 10.66751163
+            },
+            "p99_ms": {
+              "count": 4,
+              "min": 11.035678226666668,
+              "max": 11.081349526000002
+            },
+            "request_rate_per_second": {
+              "count": 4,
+              "min": 0.7111427174541091,
+              "max": 0.8222770406916017
+            }
+          },
+          "/api/v1/products/{productId}/reviews": {
+            "p95_ms": {
+              "count": 4,
+              "min": 9.71680295,
+              "max": 9.7745506
+            },
+            "p99_ms": {
+              "count": 4,
+              "min": 10.541682540000002,
+              "max": 10.87722678
+            },
+            "request_rate_per_second": {
+              "count": 4,
+              "min": 0.8889086424142758,
+              "max": 1.0222676563402817
+            }
+          }
+        },
+        "order_histogram_p99_reproduction": "PASS"
+      },
+      "client": {
+        "cpu_percent": {
+          "count": 4,
+          "min": 0,
+          "max": 9
+        },
+        "free_memory_mib": {
+          "count": 4,
+          "min": 16617.75,
+          "max": 16690.05859375
+        },
+        "unavailable_samples": 0
+      },
+      "protocol_counts": {
+        "HTTP/2.0": 2419
+      },
+      "windows_15s": [
+        {
+          "completion_window_start_utc": "2026-10-08T09:29:00.000Z",
+          "overall": {
+            "count": 239,
+            "average_ms": 146.7157589958158,
+            "p95_ms": 302.07959,
+            "p99_ms": 367.42707200000007,
+            "max_ms": 398.2774,
+            "slow_at_least_250ms": 29,
+            "slow_fraction": 0.12133891213389121,
+            "slow_waiting_share_of_duration_sum": 0.999227279325546,
+            "slow_with_new_tcp": 19,
+            "slow_with_new_tls": 19
+          },
+          "orders": {
+            "count": 17,
+            "average_ms": 133.85734117647056,
+            "p95_ms": 259.95511999999997,
+            "p99_ms": 273.159664,
+            "max_ms": 276.4608,
+            "slow_at_least_250ms": 2,
+            "slow_fraction": 0.11764705882352941,
+            "slow_waiting_share_of_duration_sum": 1,
+            "slow_with_new_tcp": 0,
+            "slow_with_new_tls": 0
+          },
+          "slow_by_endpoint": {
+            "preflight-product": 0,
+            "preflight-login": 0,
+            "product-filter": 2,
+            "session-login": 12,
+            "login": 8,
+            "product-detail": 0,
+            "products": 4,
+            "member-me": 1,
+            "reviews": 0,
+            "my-orders": 2,
+            "recommendation": 0,
+            "categories": 0,
+            "qnas": 0,
+            "my-addresses": 0
+          }
+        },
+        {
+          "completion_window_start_utc": "2026-10-08T09:29:15.000Z",
+          "overall": {
+            "count": 301,
+            "average_ms": 127.7439126245846,
+            "p95_ms": 251.6696,
+            "p99_ms": 303.4221,
+            "max_ms": 377.38,
+            "slow_at_least_250ms": 16,
+            "slow_fraction": 0.053156146179401995,
+            "slow_waiting_share_of_duration_sum": 0.9621322227493492,
+            "slow_with_new_tcp": 0,
+            "slow_with_new_tls": 0
+          },
+          "orders": {
+            "count": 23,
+            "average_ms": 136.94871304347825,
+            "p95_ms": 174.15261,
+            "p99_ms": 263.4480360000001,
+            "max_ms": 288.3842,
+            "slow_at_least_250ms": 1,
+            "slow_fraction": 0.043478260869565216,
+            "slow_waiting_share_of_duration_sum": 0.9764820680189829,
+            "slow_with_new_tcp": 0,
+            "slow_with_new_tls": 0
+          },
+          "slow_by_endpoint": {
+            "product-filter": 1,
+            "product-detail": 1,
+            "login": 9,
+            "products": 2,
+            "member-me": 2,
+            "my-orders": 1,
+            "reviews": 0,
+            "recommendation": 0,
+            "categories": 0,
+            "qnas": 0,
+            "my-addresses": 0
+          }
+        },
+        {
+          "completion_window_start_utc": "2026-10-08T09:29:30.000Z",
+          "overall": {
+            "count": 299,
+            "average_ms": 123.4777692307692,
+            "p95_ms": 202.80548999999874,
+            "p99_ms": 288.455292,
+            "max_ms": 485.2879,
+            "slow_at_least_250ms": 6,
+            "slow_fraction": 0.020066889632107024,
+            "slow_waiting_share_of_duration_sum": 1,
+            "slow_with_new_tcp": 0,
+            "slow_with_new_tls": 0
+          },
+          "orders": {
+            "count": 23,
+            "average_ms": 114.74638260869563,
+            "p95_ms": 167.12297,
+            "p99_ms": 171.67849,
+            "max_ms": 172.9502,
+            "slow_at_least_250ms": 0,
+            "slow_fraction": 0,
+            "slow_waiting_share_of_duration_sum": null,
+            "slow_with_new_tcp": 0,
+            "slow_with_new_tls": 0
+          },
+          "slow_by_endpoint": {
+            "login": 6,
+            "products": 0,
+            "my-addresses": 0,
+            "product-detail": 0,
+            "categories": 0,
+            "recommendation": 0,
+            "product-filter": 0,
+            "reviews": 0,
+            "member-me": 0,
+            "my-orders": 0,
+            "qnas": 0
+          }
+        },
+        {
+          "completion_window_start_utc": "2026-10-08T09:29:45.000Z",
+          "overall": {
+            "count": 300,
+            "average_ms": 125.76492966666667,
+            "p95_ms": 242.63074000000006,
+            "p99_ms": 309.7968379999999,
+            "max_ms": 454.883,
+            "slow_at_least_250ms": 14,
+            "slow_fraction": 0.04666666666666667,
+            "slow_waiting_share_of_duration_sum": 0.9942616971882445,
+            "slow_with_new_tcp": 0,
+            "slow_with_new_tls": 0
+          },
+          "orders": {
+            "count": 18,
+            "average_ms": 133.20489444444445,
+            "p95_ms": 206.8089699999996,
+            "p99_ms": 405.2681939999995,
+            "max_ms": 454.883,
+            "slow_at_least_250ms": 1,
+            "slow_fraction": 0.05555555555555555,
+            "slow_waiting_share_of_duration_sum": 0.9470158260475772,
+            "slow_with_new_tcp": 0,
+            "slow_with_new_tls": 0
+          },
+          "slow_by_endpoint": {
+            "product-filter": 0,
+            "products": 0,
+            "login": 11,
+            "reviews": 0,
+            "member-me": 1,
+            "product-detail": 1,
+            "qnas": 0,
+            "my-addresses": 0,
+            "categories": 0,
+            "recommendation": 0,
+            "my-orders": 1
+          }
+        },
+        {
+          "completion_window_start_utc": "2026-10-08T09:30:00.000Z",
+          "overall": {
+            "count": 300,
+            "average_ms": 132.39426466666677,
+            "p95_ms": 253.01694,
+            "p99_ms": 576.6803669999995,
+            "max_ms": 750.2662,
+            "slow_at_least_250ms": 17,
+            "slow_fraction": 0.056666666666666664,
+            "slow_waiting_share_of_duration_sum": 0.9489785521249605,
+            "slow_with_new_tcp": 0,
+            "slow_with_new_tls": 0
+          },
+          "orders": {
+            "count": 26,
+            "average_ms": 132.26523846153844,
+            "p95_ms": 179.43285,
+            "p99_ms": 394.06485,
+            "max_ms": 463.9687,
+            "slow_at_least_250ms": 1,
+            "slow_fraction": 0.038461538461538464,
+            "slow_waiting_share_of_duration_sum": 0.9989180304619687,
+            "slow_with_new_tcp": 0,
+            "slow_with_new_tls": 0
+          },
+          "slow_by_endpoint": {
+            "products": 1,
+            "login": 11,
+            "recommendation": 0,
+            "reviews": 0,
+            "my-orders": 1,
+            "product-detail": 0,
+            "categories": 1,
+            "qnas": 0,
+            "member-me": 1,
+            "product-filter": 0,
+            "my-addresses": 2
+          }
+        },
+        {
+          "completion_window_start_utc": "2026-10-08T09:30:15.000Z",
+          "overall": {
+            "count": 300,
+            "average_ms": 128.923454,
+            "p95_ms": 243.99830500000002,
+            "p99_ms": 425.1596329999996,
+            "max_ms": 762.5866,
+            "slow_at_least_250ms": 13,
+            "slow_fraction": 0.043333333333333335,
+            "slow_waiting_share_of_duration_sum": 0.9984520677984099,
+            "slow_with_new_tcp": 0,
+            "slow_with_new_tls": 0
+          },
+          "orders": {
+            "count": 20,
+            "average_ms": 114.902035,
+            "p95_ms": 152.68923,
+            "p99_ms": 160.763926,
+            "max_ms": 162.7826,
+            "slow_at_least_250ms": 0,
+            "slow_fraction": 0,
+            "slow_waiting_share_of_duration_sum": null,
+            "slow_with_new_tcp": 0,
+            "slow_with_new_tls": 0
+          },
+          "slow_by_endpoint": {
+            "product-filter": 0,
+            "product-detail": 0,
+            "login": 10,
+            "my-orders": 0,
+            "products": 1,
+            "categories": 0,
+            "member-me": 2,
+            "reviews": 0,
+            "recommendation": 0,
+            "qnas": 0,
+            "my-addresses": 0
+          }
+        },
+        {
+          "completion_window_start_utc": "2026-10-08T09:30:30.000Z",
+          "overall": {
+            "count": 300,
+            "average_ms": 121.9693656666666,
+            "p95_ms": 202.06237500000051,
+            "p99_ms": 282.1395339999999,
+            "max_ms": 296.2534,
+            "slow_at_least_250ms": 12,
+            "slow_fraction": 0.04,
+            "slow_waiting_share_of_duration_sum": 0.9953560126475489,
+            "slow_with_new_tcp": 0,
+            "slow_with_new_tls": 0
+          },
+          "orders": {
+            "count": 18,
+            "average_ms": 126.48930555555557,
+            "p95_ms": 163.89592499999998,
+            "p99_ms": 164.850305,
+            "max_ms": 165.0889,
+            "slow_at_least_250ms": 0,
+            "slow_fraction": 0,
+            "slow_waiting_share_of_duration_sum": null,
+            "slow_with_new_tcp": 0,
+            "slow_with_new_tls": 0
+          },
+          "slow_by_endpoint": {
+            "recommendation": 0,
+            "product-filter": 0,
+            "login": 12,
+            "products": 0,
+            "my-addresses": 0,
+            "reviews": 0,
+            "member-me": 0,
+            "qnas": 0,
+            "categories": 0,
+            "my-orders": 0,
+            "product-detail": 0
+          }
+        },
+        {
+          "completion_window_start_utc": "2026-10-08T09:30:45.000Z",
+          "overall": {
+            "count": 300,
+            "average_ms": 122.33375199999995,
+            "p95_ms": 195.74801500000046,
+            "p99_ms": 276.6994079999999,
+            "max_ms": 311.9528,
+            "slow_at_least_250ms": 9,
+            "slow_fraction": 0.03,
+            "slow_waiting_share_of_duration_sum": 1,
+            "slow_with_new_tcp": 0,
+            "slow_with_new_tls": 0
+          },
+          "orders": {
+            "count": 26,
+            "average_ms": 116.02429230769229,
+            "p95_ms": 159.505775,
+            "p99_ms": 163.94527499999998,
+            "max_ms": 164.2191,
+            "slow_at_least_250ms": 0,
+            "slow_fraction": 0,
+            "slow_waiting_share_of_duration_sum": null,
+            "slow_with_new_tcp": 0,
+            "slow_with_new_tls": 0
+          },
+          "slow_by_endpoint": {
+            "product-detail": 0,
+            "products": 0,
+            "login": 9,
+            "reviews": 0,
+            "member-me": 0,
+            "qnas": 0,
+            "my-orders": 0,
+            "product-filter": 0,
+            "recommendation": 0,
+            "categories": 0,
+            "my-addresses": 0
+          }
+        },
+        {
+          "completion_window_start_utc": "2026-10-08T09:31:00.000Z",
+          "overall": {
+            "count": 80,
+            "average_ms": 121.28130999999999,
+            "p95_ms": 189.40240999999978,
+            "p99_ms": 290.81519199999985,
+            "max_ms": 305.3632,
+            "slow_at_least_250ms": 4,
+            "slow_fraction": 0.05,
+            "slow_waiting_share_of_duration_sum": 1,
+            "slow_with_new_tcp": 0,
+            "slow_with_new_tls": 0
+          },
+          "orders": {
+            "count": 7,
+            "average_ms": 113.12092857142856,
+            "p95_ms": 143.75382,
+            "p99_ms": 146.19500399999998,
+            "max_ms": 146.8053,
+            "slow_at_least_250ms": 0,
+            "slow_fraction": 0,
+            "slow_waiting_share_of_duration_sum": null,
+            "slow_with_new_tcp": 0,
+            "slow_with_new_tls": 0
+          },
+          "slow_by_endpoint": {
+            "product-detail": 0,
+            "products": 0,
+            "categories": 0,
+            "login": 4,
+            "member-me": 0,
+            "my-orders": 0,
+            "recommendation": 0,
+            "product-filter": 0,
+            "my-addresses": 0,
+            "reviews": 0
+          }
+        }
+      ]
+    },
+    {
+      "run_id": "mixed-path-20261008T091853Z-measured-public",
+      "route": "public",
+      "phase": "measured",
+      "start_utc": "2026-10-08T09:32:34.8857671+00:00",
+      "end_utc": "2026-10-08T09:37:36.6312096+00:00",
+      "raw_sha256": "7c1c64cc6cc15a3ea0855912358026bf77d553fa9afe5434b2015e256ef51620",
+      "validation": "PASS: complete timings, native stats, business-write scope and server histogram",
+      "k6_exit_code": 0,
+      "failed_thresholds": [],
+      "acceptance": "PASS",
+      "http_requests": 6019,
+      "check_passes": 12670,
+      "check_failures": 0,
+      "http_failure_rate": 0,
+      "dropped_iterations": 0,
+      "overall": {
+        "count": 6019,
+        "average_ms": 131.03035273301248,
+        "p95_ms": 229.08790999999988,
+        "p99_ms": 310.4388059999998,
+        "max_ms": 606.4436,
+        "slow_at_least_250ms": 257,
+        "slow_fraction": 0.042698122611729526,
+        "slow_waiting_share_of_duration_sum": 0.9912855423342477,
+        "slow_with_new_tcp": 19,
+        "slow_with_new_tls": 19
+      },
+      "member": {
+        "count": 1216,
+        "average_ms": 122.77492524671047,
+        "p95_ms": 153.64055,
+        "p99_ms": 287.7911349999988,
+        "max_ms": 458.1042,
+        "slow_at_least_250ms": 16,
+        "slow_fraction": 0.013157894736842105,
+        "slow_waiting_share_of_duration_sum": 0.9643562350204486,
+        "slow_with_new_tcp": 11,
+        "slow_with_new_tls": 11
+      },
+      "endpoints": {
+        "preflight-product": {
+          "count": 1,
+          "average_ms": 249.153,
+          "p95_ms": 249.153,
+          "p99_ms": 249.153,
+          "max_ms": 249.153,
+          "slow_at_least_250ms": 0,
+          "slow_fraction": 0,
+          "slow_waiting_share_of_duration_sum": null,
+          "slow_with_new_tcp": 0,
+          "slow_with_new_tls": 0
+        },
+        "preflight-login": {
+          "count": 1,
+          "average_ms": 255.5566,
+          "p95_ms": 255.5566,
+          "p99_ms": 255.5566,
+          "max_ms": 255.5566,
+          "slow_at_least_250ms": 1,
+          "slow_fraction": 1,
+          "slow_waiting_share_of_duration_sum": 1,
+          "slow_with_new_tcp": 0,
+          "slow_with_new_tls": 0
+        },
+        "categories": {
+          "count": 372,
+          "average_ms": 118.08213655913976,
+          "p95_ms": 157.12602,
+          "p99_ms": 175.62512400000057,
+          "max_ms": 268.2992,
+          "slow_at_least_250ms": 1,
+          "slow_fraction": 0.002688172043010753,
+          "slow_waiting_share_of_duration_sum": 1,
+          "slow_with_new_tcp": 0,
+          "slow_with_new_tls": 0
+        },
+        "login": {
+          "count": 301,
+          "average_ms": 281.45322823920253,
+          "p95_ms": 369.7331,
+          "p99_ms": 489.8107,
+          "max_ms": 606.4436,
+          "slow_at_least_250ms": 228,
+          "slow_fraction": 0.7574750830564784,
+          "slow_waiting_share_of_duration_sum": 0.9976037976590257,
+          "slow_with_new_tcp": 5,
+          "slow_with_new_tls": 5
+        },
+        "recommendation": {
+          "count": 198,
+          "average_ms": 135.7270939393939,
+          "p95_ms": 176.62195999999992,
+          "p99_ms": 210.95294900000007,
+          "max_ms": 307.4863,
+          "slow_at_least_250ms": 2,
+          "slow_fraction": 0.010101010101010102,
+          "slow_waiting_share_of_duration_sum": 0.9383131063364515,
+          "slow_with_new_tcp": 1,
+          "slow_with_new_tls": 1
+        },
+        "product-detail": {
+          "count": 723,
+          "average_ms": 122.7791174273858,
+          "p95_ms": 161.26169,
+          "p99_ms": 169.86095999999998,
+          "max_ms": 242.9967,
+          "slow_at_least_250ms": 0,
+          "slow_fraction": 0,
+          "slow_waiting_share_of_duration_sum": null,
+          "slow_with_new_tcp": 0,
+          "slow_with_new_tls": 0
+        },
+        "products": {
+          "count": 2013,
+          "average_ms": 122.72229150521602,
+          "p95_ms": 163.5047,
+          "p99_ms": 201.8271599999999,
+          "max_ms": 310.6672,
+          "slow_at_least_250ms": 6,
+          "slow_fraction": 0.0029806259314456036,
+          "slow_waiting_share_of_duration_sum": 0.9292619508374692,
+          "slow_with_new_tcp": 2,
+          "slow_with_new_tls": 2
+        },
+        "product-filter": {
+          "count": 668,
+          "average_ms": 122.7266303892216,
+          "p95_ms": 163.429145,
+          "p99_ms": 204.00817900000013,
+          "max_ms": 445.6227,
+          "slow_at_least_250ms": 1,
+          "slow_fraction": 0.0014970059880239522,
+          "slow_waiting_share_of_duration_sum": 1,
+          "slow_with_new_tcp": 0,
+          "slow_with_new_tls": 0
+        },
+        "session-login": {
+          "count": 15,
+          "average_ms": 288.6330866666667,
+          "p95_ms": 373.23899999999986,
+          "p99_ms": 441.1311599999999,
+          "max_ms": 458.1042,
+          "slow_at_least_250ms": 11,
+          "slow_fraction": 0.7333333333333333,
+          "slow_waiting_share_of_duration_sum": 0.9996960064267014,
+          "slow_with_new_tcp": 11,
+          "slow_with_new_tls": 11
+        },
+        "my-addresses": {
+          "count": 231,
+          "average_ms": 119.90984545454543,
+          "p95_ms": 151.91685,
+          "p99_ms": 204.71185999999955,
+          "max_ms": 322.0413,
+          "slow_at_least_250ms": 1,
+          "slow_fraction": 0.004329004329004329,
+          "slow_waiting_share_of_duration_sum": 0.899091824557906,
+          "slow_with_new_tcp": 0,
+          "slow_with_new_tls": 0
+        },
+        "member-me": {
+          "count": 510,
+          "average_ms": 119.08244078431368,
+          "p95_ms": 150.096595,
+          "p99_ms": 179.7976929999998,
+          "max_ms": 433.7631,
+          "slow_at_least_250ms": 2,
+          "slow_fraction": 0.00392156862745098,
+          "slow_waiting_share_of_duration_sum": 0.8459346616481583,
+          "slow_with_new_tcp": 0,
+          "slow_with_new_tls": 0
+        },
+        "reviews": {
+          "count": 331,
+          "average_ms": 123.30693141993966,
+          "p95_ms": 165.83175,
+          "p99_ms": 181.01569999999984,
+          "max_ms": 276.3386,
+          "slow_at_least_250ms": 2,
+          "slow_fraction": 0.006042296072507553,
+          "slow_waiting_share_of_duration_sum": 0.6935308700787445,
+          "slow_with_new_tcp": 0,
+          "slow_with_new_tls": 0
+        },
+        "my-orders": {
+          "count": 460,
+          "average_ms": 122.8991167391305,
+          "p95_ms": 153.80404000000001,
+          "p99_ms": 162.20001799999994,
+          "max_ms": 391.7684,
+          "slow_at_least_250ms": 2,
+          "slow_fraction": 0.004347826086956522,
+          "slow_waiting_share_of_duration_sum": 0.9618557571355125,
+          "slow_with_new_tcp": 0,
+          "slow_with_new_tls": 0
+        },
+        "qnas": {
+          "count": 195,
+          "average_ms": 126.9203856410257,
+          "p95_ms": 168.87348999999998,
+          "p99_ms": 177.50898800000002,
+          "max_ms": 180.007,
+          "slow_at_least_250ms": 0,
+          "slow_fraction": 0,
+          "slow_waiting_share_of_duration_sum": null,
+          "slow_with_new_tcp": 0,
+          "slow_with_new_tls": 0
+        }
+      },
+      "server": {
+        "up": {
+          "count": 16,
+          "min": 1,
+          "max": 1
+        },
+        "cpu": {
+          "count": 16,
+          "min": 0.05260801432728901,
+          "max": 0.07055146237999553
+        },
+        "pending": {
+          "count": 16,
+          "min": 0,
+          "max": 0
+        },
+        "heap_mib": {
+          "count": 16,
+          "min": 61.579856872558594,
+          "max": 173.5494384765625
+        },
+        "gc_pause_rate": {
+          "count": 16,
+          "min": 0.0002888953087846399,
+          "max": 0.0004889106182497004
+        },
+        "uris": {
+          "/api/v1/auth/login": {
+            "p95_ms": {
+              "count": 16,
+              "min": 110.72962494999999,
+              "max": 111.7180500639535
+            },
+            "p99_ms": {
+              "count": 16,
+              "min": 111.62440979,
+              "max": 129.18456227500002
+            },
+            "request_rate_per_second": {
+              "count": 16,
+              "min": 0.9999999999999999,
+              "max": 1.000088896790826
+            }
+          },
+          "/api/v1/categories": {
+            "p95_ms": {
+              "count": 16,
+              "min": 1.6864591249999998,
+              "max": 1.948602874999998
+            },
+            "p99_ms": {
+              "count": 16,
+              "min": 1.735392625,
+              "max": 3.2960217499999978
+            },
+            "request_rate_per_second": {
+              "count": 16,
+              "min": 1.2444720993799863,
+              "max": 1.5556938394523956
+            }
+          },
+          "/api/v1/coffee-recommendations": {
+            "p95_ms": {
+              "count": 16,
+              "min": 18.59474762499999,
+              "max": 21.9701635
+            },
+            "p99_ms": {
+              "count": 16,
+              "min": 21.614646325,
+              "max": 26.284304500000005
+            },
+            "request_rate_per_second": {
+              "count": 16,
+              "min": 0.4000266684445631,
+              "max": 0.9778429673089317
+            }
+          },
+          "/api/v1/members/me": {
+            "p95_ms": {
+              "count": 16,
+              "min": 2.438908777777778,
+              "max": 2.6414113571428572
+            },
+            "p99_ms": {
+              "count": 16,
+              "min": 2.7280436249999998,
+              "max": 8.668227200000002
+            },
+            "request_rate_per_second": {
+              "count": 16,
+              "min": 1.4667970486265445,
+              "max": 1.9777777777777776
+            }
+          },
+          "/api/v1/members/me/addresses": {
+            "p95_ms": {
+              "count": 16,
+              "min": 3.5564178749999997,
+              "max": 4.508876724999998
+            },
+            "p99_ms": {
+              "count": 16,
+              "min": 3.7871043749999993,
+              "max": 5.375699344999999
+            },
+            "request_rate_per_second": {
+              "count": 16,
+              "min": 0.5555925950618931,
+              "max": 0.9555767905953465
+            }
+          },
+          "/api/v1/orders": {
+            "p95_ms": {
+              "count": 16,
+              "min": 6.867642578787879,
+              "max": 6.975874710465115
+            },
+            "p99_ms": {
+              "count": 16,
+              "min": 6.967786858749999,
+              "max": 18.790481799999988
+            },
+            "request_rate_per_second": {
+              "count": 16,
+              "min": 1.3333333333333333,
+              "max": 1.733487421104098
+            }
+          },
+          "/api/v1/products": {
+            "p95_ms": {
+              "count": 16,
+              "min": 6.787845488073394,
+              "max": 6.853574343235294
+            },
+            "p99_ms": {
+              "count": 16,
+              "min": 6.963175380451612,
+              "max": 10.97509385000002
+            },
+            "request_rate_per_second": {
+              "count": 16,
+              "min": 8.356112629730871,
+              "max": 9.555980265789591
+            }
+          },
+          "/api/v1/products/{productId}": {
+            "p95_ms": {
+              "count": 16,
+              "min": 6.7021476687499995,
+              "max": 6.905255939024389
+            },
+            "p99_ms": {
+              "count": 16,
+              "min": 6.93283433375,
+              "max": 13.212055450000003
+            },
+            "request_rate_per_second": {
+              "count": 16,
+              "min": 2.0667585226010043,
+              "max": 2.6890681600995623
+            }
+          },
+          "/api/v1/products/{productId}/qnas": {
+            "p95_ms": {
+              "count": 16,
+              "min": 9.627832886363636,
+              "max": 9.761741910714287
+            },
+            "p99_ms": {
+              "count": 16,
+              "min": 9.754932977272727,
+              "max": 13.603523730000003
+            },
+            "request_rate_per_second": {
+              "count": 16,
+              "min": 0.5555679015089224,
+              "max": 0.7555891372949909
+            }
+          },
+          "/api/v1/products/{productId}/reviews": {
+            "p95_ms": {
+              "count": 16,
+              "min": 9.490955865384615,
+              "max": 9.75935385
+            },
+            "p99_ms": {
+              "count": 16,
+              "min": 9.727557573076922,
+              "max": 10.842274255
+            },
+            "request_rate_per_second": {
+              "count": 16,
+              "min": 0.9778212364994,
+              "max": 1.3111985243460675
+            }
+          }
+        },
+        "order_histogram_p99_reproduction": "PASS"
+      },
+      "client": {
+        "cpu_percent": {
+          "count": 10,
+          "min": 0,
+          "max": 8
+        },
+        "free_memory_mib": {
+          "count": 10,
+          "min": 16635.2109375,
+          "max": 16707.015625
+        },
+        "unavailable_samples": 0
+      },
+      "protocol_counts": {
+        "HTTP/2.0": 6019
+      },
+      "windows_15s": [
+        {
+          "completion_window_start_utc": "2026-10-08T09:32:30.000Z",
+          "overall": {
+            "count": 195,
+            "average_ms": 152.39394461538464,
+            "p95_ms": 294.9406399999999,
+            "p99_ms": 340.64041200000014,
+            "max_ms": 458.1042,
+            "slow_at_least_250ms": 24,
+            "slow_fraction": 0.12307692307692308,
+            "slow_waiting_share_of_duration_sum": 0.9944131082903849,
+            "slow_with_new_tcp": 19,
+            "slow_with_new_tls": 19
+          },
+          "orders": {
+            "count": 9,
+            "average_ms": 125.72525555555555,
+            "p95_ms": 153.2287,
+            "p99_ms": 153.80918,
+            "max_ms": 153.9543,
+            "slow_at_least_250ms": 0,
+            "slow_fraction": 0,
+            "slow_waiting_share_of_duration_sum": null,
+            "slow_with_new_tcp": 0,
+            "slow_with_new_tls": 0
+          },
+          "slow_by_endpoint": {
+            "preflight-product": 0,
+            "preflight-login": 1,
+            "categories": 0,
+            "login": 8,
+            "recommendation": 2,
+            "product-detail": 0,
+            "products": 2,
+            "product-filter": 0,
+            "session-login": 11,
+            "my-addresses": 0,
+            "member-me": 0,
+            "reviews": 0,
+            "my-orders": 0,
+            "qnas": 0
+          }
+        },
+        {
+          "completion_window_start_utc": "2026-10-08T09:32:45.000Z",
+          "overall": {
+            "count": 300,
+            "average_ms": 128.74856033333333,
+            "p95_ms": 217.45664000000005,
+            "p99_ms": 293.754729,
+            "max_ms": 358.6279,
+            "slow_at_least_250ms": 12,
+            "slow_fraction": 0.04,
+            "slow_waiting_share_of_duration_sum": 0.9997313839070943,
+            "slow_with_new_tcp": 0,
+            "slow_with_new_tls": 0
+          },
+          "orders": {
+            "count": 27,
+            "average_ms": 120.88400000000001,
+            "p95_ms": 143.2851,
+            "p99_ms": 148.62869999999998,
+            "max_ms": 150.2784,
+            "slow_at_least_250ms": 0,
+            "slow_fraction": 0,
+            "slow_waiting_share_of_duration_sum": null,
+            "slow_with_new_tcp": 0,
+            "slow_with_new_tls": 0
+          },
+          "slow_by_endpoint": {
+            "products": 1,
+            "my-orders": 0,
+            "login": 11,
+            "member-me": 0,
+            "product-filter": 0,
+            "qnas": 0,
+            "product-detail": 0,
+            "reviews": 0,
+            "categories": 0,
+            "recommendation": 0,
+            "my-addresses": 0
+          }
+        },
+        {
+          "completion_window_start_utc": "2026-10-08T09:33:00.000Z",
+          "overall": {
+            "count": 299,
+            "average_ms": 128.8617983277591,
+            "p95_ms": 218.15377999999959,
+            "p99_ms": 300.72144999999995,
+            "max_ms": 316.4129,
+            "slow_at_least_250ms": 10,
+            "slow_fraction": 0.033444816053511704,
+            "slow_waiting_share_of_duration_sum": 0.9841479344272908,
+            "slow_with_new_tcp": 0,
+            "slow_with_new_tls": 0
+          },
+          "orders": {
+            "count": 26,
+            "average_ms": 121.01258076923074,
+            "p95_ms": 143.220225,
+            "p99_ms": 155.004275,
+            "max_ms": 158.9211,
+            "slow_at_least_250ms": 0,
+            "slow_fraction": 0,
+            "slow_waiting_share_of_duration_sum": null,
+            "slow_with_new_tcp": 0,
+            "slow_with_new_tls": 0
+          },
+          "slow_by_endpoint": {
+            "product-filter": 0,
+            "qnas": 0,
+            "products": 0,
+            "my-orders": 0,
+            "categories": 0,
+            "login": 9,
+            "product-detail": 0,
+            "my-addresses": 0,
+            "member-me": 0,
+            "reviews": 1,
+            "recommendation": 0
+          }
+        },
+        {
+          "completion_window_start_utc": "2026-10-08T09:33:15.000Z",
+          "overall": {
+            "count": 301,
+            "average_ms": 127.45238637873746,
+            "p95_ms": 202.2365,
+            "p99_ms": 298.2605,
+            "max_ms": 312.3907,
+            "slow_at_least_250ms": 11,
+            "slow_fraction": 0.036544850498338874,
+            "slow_waiting_share_of_duration_sum": 1,
+            "slow_with_new_tcp": 0,
+            "slow_with_new_tls": 0
+          },
+          "orders": {
+            "count": 23,
+            "average_ms": 121.6400695652174,
+            "p95_ms": 147.041,
+            "p99_ms": 153.134778,
+            "max_ms": 154.8255,
+            "slow_at_least_250ms": 0,
+            "slow_fraction": 0,
+            "slow_waiting_share_of_duration_sum": null,
+            "slow_with_new_tcp": 0,
+            "slow_with_new_tls": 0
+          },
+          "slow_by_endpoint": {
+            "products": 0,
+            "product-filter": 0,
+            "my-orders": 0,
+            "product-detail": 0,
+            "login": 11,
+            "my-addresses": 0,
+            "member-me": 0,
+            "recommendation": 0,
+            "categories": 0,
+            "reviews": 0,
+            "qnas": 0
+          }
+        },
+        {
+          "completion_window_start_utc": "2026-10-08T09:33:30.000Z",
+          "overall": {
+            "count": 299,
+            "average_ms": 128.99316655518396,
+            "p95_ms": 184.34160999999867,
+            "p99_ms": 300.28831999999977,
+            "max_ms": 606.4436,
+            "slow_at_least_250ms": 12,
+            "slow_fraction": 0.04013377926421405,
+            "slow_waiting_share_of_duration_sum": 1,
+            "slow_with_new_tcp": 0,
+            "slow_with_new_tls": 0
+          },
+          "orders": {
+            "count": 21,
+            "average_ms": 118.87838095238097,
+            "p95_ms": 141.8674,
+            "p99_ms": 144.97708,
+            "max_ms": 145.7545,
+            "slow_at_least_250ms": 0,
+            "slow_fraction": 0,
+            "slow_waiting_share_of_duration_sum": null,
+            "slow_with_new_tcp": 0,
+            "slow_with_new_tls": 0
+          },
+          "slow_by_endpoint": {
+            "product-filter": 0,
+            "product-detail": 0,
+            "member-me": 0,
+            "categories": 0,
+            "reviews": 0,
+            "login": 12,
+            "products": 0,
+            "my-addresses": 0,
+            "my-orders": 0,
+            "qnas": 0,
+            "recommendation": 0
+          }
+        },
+        {
+          "completion_window_start_utc": "2026-10-08T09:33:45.000Z",
+          "overall": {
+            "count": 301,
+            "average_ms": 127.77632524916946,
+            "p95_ms": 208.4137,
+            "p99_ms": 288.7626,
+            "max_ms": 305.3092,
+            "slow_at_least_250ms": 12,
+            "slow_fraction": 0.03986710963455149,
+            "slow_waiting_share_of_duration_sum": 0.9998397227315721,
+            "slow_with_new_tcp": 0,
+            "slow_with_new_tls": 0
+          },
+          "orders": {
+            "count": 24,
+            "average_ms": 122.23503333333333,
+            "p95_ms": 142.558055,
+            "p99_ms": 149.158404,
+            "max_ms": 151.087,
+            "slow_at_least_250ms": 0,
+            "slow_fraction": 0,
+            "slow_waiting_share_of_duration_sum": null,
+            "slow_with_new_tcp": 0,
+            "slow_with_new_tls": 0
+          },
+          "slow_by_endpoint": {
+            "products": 0,
+            "product-filter": 0,
+            "product-detail": 0,
+            "my-addresses": 0,
+            "login": 12,
+            "my-orders": 0,
+            "reviews": 0,
+            "member-me": 0,
+            "recommendation": 0,
+            "categories": 0,
+            "qnas": 0
+          }
+        },
+        {
+          "completion_window_start_utc": "2026-10-08T09:34:00.000Z",
+          "overall": {
+            "count": 299,
+            "average_ms": 129.39473143812694,
+            "p95_ms": 228.58743999999993,
+            "p99_ms": 290.426342,
+            "max_ms": 433.7631,
+            "slow_at_least_250ms": 12,
+            "slow_fraction": 0.04013377926421405,
+            "slow_waiting_share_of_duration_sum": 0.9632056890009734,
+            "slow_with_new_tcp": 0,
+            "slow_with_new_tls": 0
+          },
+          "orders": {
+            "count": 26,
+            "average_ms": 126.891,
+            "p95_ms": 153.159375,
+            "p99_ms": 156.18615,
+            "max_ms": 156.7156,
+            "slow_at_least_250ms": 0,
+            "slow_fraction": 0,
+            "slow_waiting_share_of_duration_sum": null,
+            "slow_with_new_tcp": 0,
+            "slow_with_new_tls": 0
+          },
+          "slow_by_endpoint": {
+            "product-filter": 0,
+            "categories": 0,
+            "member-me": 1,
+            "products": 0,
+            "reviews": 0,
+            "login": 11,
+            "my-orders": 0,
+            "product-detail": 0,
+            "my-addresses": 0,
+            "qnas": 0,
+            "recommendation": 0
+          }
+        },
+        {
+          "completion_window_start_utc": "2026-10-08T09:34:15.000Z",
+          "overall": {
+            "count": 301,
+            "average_ms": 128.43352192691017,
+            "p95_ms": 219.7288,
+            "p99_ms": 313.5797,
+            "max_ms": 537.394,
+            "slow_at_least_250ms": 12,
+            "slow_fraction": 0.03986710963455149,
+            "slow_waiting_share_of_duration_sum": 0.9826210294452822,
+            "slow_with_new_tcp": 0,
+            "slow_with_new_tls": 0
+          },
+          "orders": {
+            "count": 27,
+            "average_ms": 119.46917037037038,
+            "p95_ms": 151.11821999999998,
+            "p99_ms": 152.716214,
+            "max_ms": 152.7529,
+            "slow_at_least_250ms": 0,
+            "slow_fraction": 0,
+            "slow_waiting_share_of_duration_sum": null,
+            "slow_with_new_tcp": 0,
+            "slow_with_new_tls": 0
+          },
+          "slow_by_endpoint": {
+            "products": 1,
+            "recommendation": 0,
+            "my-orders": 0,
+            "product-filter": 0,
+            "member-me": 0,
+            "login": 11,
+            "reviews": 0,
+            "categories": 0,
+            "my-addresses": 0,
+            "product-detail": 0,
+            "qnas": 0
+          }
+        },
+        {
+          "completion_window_start_utc": "2026-10-08T09:34:30.000Z",
+          "overall": {
+            "count": 300,
+            "average_ms": 127.98815266666662,
+            "p95_ms": 172.33240500000062,
+            "p99_ms": 309.8202529999999,
+            "max_ms": 367.4203,
+            "slow_at_least_250ms": 12,
+            "slow_fraction": 0.04,
+            "slow_waiting_share_of_duration_sum": 0.9936330410050003,
+            "slow_with_new_tcp": 0,
+            "slow_with_new_tls": 0
+          },
+          "orders": {
+            "count": 22,
+            "average_ms": 123.87547727272728,
+            "p95_ms": 151.238515,
+            "p99_ms": 152.91002,
+            "max_ms": 153.2834,
+            "slow_at_least_250ms": 0,
+            "slow_fraction": 0,
+            "slow_waiting_share_of_duration_sum": null,
+            "slow_with_new_tcp": 0,
+            "slow_with_new_tls": 0
+          },
+          "slow_by_endpoint": {
+            "product-filter": 0,
+            "products": 0,
+            "member-me": 0,
+            "categories": 0,
+            "recommendation": 0,
+            "login": 12,
+            "my-orders": 0,
+            "reviews": 0,
+            "product-detail": 0,
+            "qnas": 0,
+            "my-addresses": 0
+          }
+        },
+        {
+          "completion_window_start_utc": "2026-10-08T09:34:45.000Z",
+          "overall": {
+            "count": 300,
+            "average_ms": 127.89996700000003,
+            "p95_ms": 184.90438500000045,
+            "p99_ms": 350.565018,
+            "max_ms": 465.6568,
+            "slow_at_least_250ms": 11,
+            "slow_fraction": 0.03666666666666667,
+            "slow_waiting_share_of_duration_sum": 0.9997144498648206,
+            "slow_with_new_tcp": 0,
+            "slow_with_new_tls": 0
+          },
+          "orders": {
+            "count": 22,
+            "average_ms": 118.41741818181818,
+            "p95_ms": 142.89168999999998,
+            "p99_ms": 147.970804,
+            "max_ms": 149.3038,
+            "slow_at_least_250ms": 0,
+            "slow_fraction": 0,
+            "slow_waiting_share_of_duration_sum": null,
+            "slow_with_new_tcp": 0,
+            "slow_with_new_tls": 0
+          },
+          "slow_by_endpoint": {
+            "recommendation": 0,
+            "categories": 0,
+            "member-me": 0,
+            "product-detail": 0,
+            "product-filter": 0,
+            "products": 0,
+            "login": 11,
+            "my-orders": 0,
+            "my-addresses": 0,
+            "reviews": 0,
+            "qnas": 0
+          }
+        },
+        {
+          "completion_window_start_utc": "2026-10-08T09:35:00.000Z",
+          "overall": {
+            "count": 300,
+            "average_ms": 130.04038299999996,
+            "p95_ms": 216.9453250000001,
+            "p99_ms": 335.73164099999997,
+            "max_ms": 418.9495,
+            "slow_at_least_250ms": 12,
+            "slow_fraction": 0.04,
+            "slow_waiting_share_of_duration_sum": 1,
+            "slow_with_new_tcp": 0,
+            "slow_with_new_tls": 0
+          },
+          "orders": {
+            "count": 24,
+            "average_ms": 125.59797083333335,
+            "p95_ms": 152.12400499999998,
+            "p99_ms": 159.511238,
+            "max_ms": 161.7122,
+            "slow_at_least_250ms": 0,
+            "slow_fraction": 0,
+            "slow_waiting_share_of_duration_sum": null,
+            "slow_with_new_tcp": 0,
+            "slow_with_new_tls": 0
+          },
+          "slow_by_endpoint": {
+            "recommendation": 0,
+            "reviews": 0,
+            "my-orders": 0,
+            "products": 0,
+            "product-detail": 0,
+            "login": 12,
+            "product-filter": 0,
+            "member-me": 0,
+            "categories": 0,
+            "my-addresses": 0,
+            "qnas": 0
+          }
+        },
+        {
+          "completion_window_start_utc": "2026-10-08T09:35:15.000Z",
+          "overall": {
+            "count": 300,
+            "average_ms": 130.56649233333343,
+            "p95_ms": 221.38324,
+            "p99_ms": 292.31873899999977,
+            "max_ms": 353.9478,
+            "slow_at_least_250ms": 12,
+            "slow_fraction": 0.04,
+            "slow_waiting_share_of_duration_sum": 0.9646796898448116,
+            "slow_with_new_tcp": 0,
+            "slow_with_new_tls": 0
+          },
+          "orders": {
+            "count": 19,
+            "average_ms": 118.87848947368423,
+            "p95_ms": 145.67247999999998,
+            "p99_ms": 147.970576,
+            "max_ms": 148.5451,
+            "slow_at_least_250ms": 0,
+            "slow_fraction": 0,
+            "slow_waiting_share_of_duration_sum": null,
+            "slow_with_new_tcp": 0,
+            "slow_with_new_tls": 0
+          },
+          "slow_by_endpoint": {
+            "products": 0,
+            "product-detail": 0,
+            "my-addresses": 0,
+            "categories": 0,
+            "login": 11,
+            "my-orders": 0,
+            "product-filter": 0,
+            "reviews": 1,
+            "member-me": 0,
+            "qnas": 0,
+            "recommendation": 0
+          }
+        },
+        {
+          "completion_window_start_utc": "2026-10-08T09:35:30.000Z",
+          "overall": {
+            "count": 300,
+            "average_ms": 133.0567833333334,
+            "p95_ms": 228.52515000000002,
+            "p99_ms": 306.09495699999997,
+            "max_ms": 455.9709,
+            "slow_at_least_250ms": 12,
+            "slow_fraction": 0.04,
+            "slow_waiting_share_of_duration_sum": 1,
+            "slow_with_new_tcp": 0,
+            "slow_with_new_tls": 0
+          },
+          "orders": {
+            "count": 21,
+            "average_ms": 123.41555238095238,
+            "p95_ms": 146.9494,
+            "p99_ms": 154.63956,
+            "max_ms": 156.5621,
+            "slow_at_least_250ms": 0,
+            "slow_fraction": 0,
+            "slow_waiting_share_of_duration_sum": null,
+            "slow_with_new_tcp": 0,
+            "slow_with_new_tls": 0
+          },
+          "slow_by_endpoint": {
+            "product-detail": 0,
+            "products": 0,
+            "my-addresses": 0,
+            "login": 11,
+            "product-filter": 0,
+            "recommendation": 0,
+            "member-me": 1,
+            "my-orders": 0,
+            "qnas": 0,
+            "reviews": 0,
+            "categories": 0
+          }
+        },
+        {
+          "completion_window_start_utc": "2026-10-08T09:35:45.000Z",
+          "overall": {
+            "count": 300,
+            "average_ms": 134.72049700000017,
+            "p95_ms": 248.6002900000001,
+            "p99_ms": 354.3800599999997,
+            "max_ms": 445.6227,
+            "slow_at_least_250ms": 15,
+            "slow_fraction": 0.05,
+            "slow_waiting_share_of_duration_sum": 0.9931120197931665,
+            "slow_with_new_tcp": 0,
+            "slow_with_new_tls": 0
+          },
+          "orders": {
+            "count": 21,
+            "average_ms": 133.44254761904762,
+            "p95_ms": 157.7501,
+            "p99_ms": 344.9647400000001,
+            "max_ms": 391.7684,
+            "slow_at_least_250ms": 1,
+            "slow_fraction": 0.047619047619047616,
+            "slow_waiting_share_of_duration_sum": 1,
+            "slow_with_new_tcp": 0,
+            "slow_with_new_tls": 0
+          },
+          "slow_by_endpoint": {
+            "products": 0,
+            "product-detail": 0,
+            "my-orders": 1,
+            "recommendation": 0,
+            "login": 12,
+            "my-addresses": 1,
+            "reviews": 0,
+            "product-filter": 1,
+            "qnas": 0,
+            "member-me": 0,
+            "categories": 0
+          }
+        },
+        {
+          "completion_window_start_utc": "2026-10-08T09:36:00.000Z",
+          "overall": {
+            "count": 300,
+            "average_ms": 132.72714166666663,
+            "p95_ms": 222.22933500000005,
+            "p99_ms": 295.0839159999996,
+            "max_ms": 491.8976,
+            "slow_at_least_250ms": 12,
+            "slow_fraction": 0.04,
+            "slow_waiting_share_of_duration_sum": 0.9920117248826168,
+            "slow_with_new_tcp": 0,
+            "slow_with_new_tls": 0
+          },
+          "orders": {
+            "count": 30,
+            "average_ms": 130.30509666666666,
+            "p95_ms": 160.99988999999997,
+            "p99_ms": 293.0463320000001,
+            "max_ms": 345.0112,
+            "slow_at_least_250ms": 1,
+            "slow_fraction": 0.03333333333333333,
+            "slow_waiting_share_of_duration_sum": 0.9185420647213773,
+            "slow_with_new_tcp": 0,
+            "slow_with_new_tls": 0
+          },
+          "slow_by_endpoint": {
+            "recommendation": 0,
+            "products": 0,
+            "member-me": 0,
+            "qnas": 0,
+            "login": 11,
+            "categories": 0,
+            "product-detail": 0,
+            "my-addresses": 0,
+            "product-filter": 0,
+            "reviews": 0,
+            "my-orders": 1
+          }
+        },
+        {
+          "completion_window_start_utc": "2026-10-08T09:36:15.000Z",
+          "overall": {
+            "count": 300,
+            "average_ms": 133.05694600000007,
+            "p95_ms": 214.06162500000013,
+            "p99_ms": 350.1799739999999,
+            "max_ms": 371.8083,
+            "slow_at_least_250ms": 13,
+            "slow_fraction": 0.043333333333333335,
+            "slow_waiting_share_of_duration_sum": 0.9792442705966978,
+            "slow_with_new_tcp": 0,
+            "slow_with_new_tls": 0
+          },
+          "orders": {
+            "count": 19,
+            "average_ms": 127.72952631578947,
+            "p95_ms": 158.34805,
+            "p99_ms": 160.78633000000002,
+            "max_ms": 161.3959,
+            "slow_at_least_250ms": 0,
+            "slow_fraction": 0,
+            "slow_waiting_share_of_duration_sum": null,
+            "slow_with_new_tcp": 0,
+            "slow_with_new_tls": 0
+          },
+          "slow_by_endpoint": {
+            "products": 1,
+            "product-detail": 0,
+            "my-orders": 0,
+            "login": 12,
+            "product-filter": 0,
+            "member-me": 0,
+            "qnas": 0,
+            "recommendation": 0,
+            "reviews": 0,
+            "categories": 0,
+            "my-addresses": 0
+          }
+        },
+        {
+          "completion_window_start_utc": "2026-10-08T09:36:30.000Z",
+          "overall": {
+            "count": 300,
+            "average_ms": 131.75386833333337,
+            "p95_ms": 214.93147500000015,
+            "p99_ms": 292.8766819999999,
+            "max_ms": 463.4859,
+            "slow_at_least_250ms": 12,
+            "slow_fraction": 0.04,
+            "slow_waiting_share_of_duration_sum": 0.981427503497222,
+            "slow_with_new_tcp": 0,
+            "slow_with_new_tls": 0
+          },
+          "orders": {
+            "count": 16,
+            "average_ms": 117.97366875,
+            "p95_ms": 154.52485000000001,
+            "p99_ms": 155.72401,
+            "max_ms": 156.0238,
+            "slow_at_least_250ms": 0,
+            "slow_fraction": 0,
+            "slow_waiting_share_of_duration_sum": null,
+            "slow_with_new_tcp": 0,
+            "slow_with_new_tls": 0
+          },
+          "slow_by_endpoint": {
+            "product-filter": 0,
+            "recommendation": 0,
+            "my-orders": 0,
+            "qnas": 0,
+            "products": 0,
+            "login": 11,
+            "my-addresses": 0,
+            "member-me": 0,
+            "categories": 1,
+            "reviews": 0,
+            "product-detail": 0
+          }
+        },
+        {
+          "completion_window_start_utc": "2026-10-08T09:36:45.000Z",
+          "overall": {
+            "count": 300,
+            "average_ms": 131.2715886666667,
+            "p95_ms": 207.4065750000002,
+            "p99_ms": 298.49586,
+            "max_ms": 489.8107,
+            "slow_at_least_250ms": 13,
+            "slow_fraction": 0.043333333333333335,
+            "slow_waiting_share_of_duration_sum": 0.9992158922213888,
+            "slow_with_new_tcp": 0,
+            "slow_with_new_tls": 0
+          },
+          "orders": {
+            "count": 22,
+            "average_ms": 115.31619545454546,
+            "p95_ms": 141.67116000000001,
+            "p99_ms": 149.13654599999998,
+            "max_ms": 151.0827,
+            "slow_at_least_250ms": 0,
+            "slow_fraction": 0,
+            "slow_waiting_share_of_duration_sum": null,
+            "slow_with_new_tcp": 0,
+            "slow_with_new_tls": 0
+          },
+          "slow_by_endpoint": {
+            "products": 0,
+            "product-filter": 0,
+            "my-orders": 0,
+            "qnas": 0,
+            "login": 13,
+            "product-detail": 0,
+            "categories": 0,
+            "reviews": 0,
+            "my-addresses": 0,
+            "member-me": 0,
+            "recommendation": 0
+          }
+        },
+        {
+          "completion_window_start_utc": "2026-10-08T09:37:00.000Z",
+          "overall": {
+            "count": 300,
+            "average_ms": 129.98967533333325,
+            "p95_ms": 205.8703450000001,
+            "p99_ms": 292.56748899999997,
+            "max_ms": 320.4056,
+            "slow_at_least_250ms": 9,
+            "slow_fraction": 0.03,
+            "slow_waiting_share_of_duration_sum": 1,
+            "slow_with_new_tcp": 0,
+            "slow_with_new_tls": 0
+          },
+          "orders": {
+            "count": 30,
+            "average_ms": 125.37388666666668,
+            "p95_ms": 155.58872,
+            "p99_ms": 169.646525,
+            "max_ms": 174.9296,
+            "slow_at_least_250ms": 0,
+            "slow_fraction": 0,
+            "slow_waiting_share_of_duration_sum": null,
+            "slow_with_new_tcp": 0,
+            "slow_with_new_tls": 0
+          },
+          "slow_by_endpoint": {
+            "reviews": 0,
+            "product-detail": 0,
+            "my-orders": 0,
+            "qnas": 0,
+            "products": 0,
+            "login": 9,
+            "product-filter": 0,
+            "member-me": 0,
+            "my-addresses": 0,
+            "categories": 0,
+            "recommendation": 0
+          }
+        },
+        {
+          "completion_window_start_utc": "2026-10-08T09:37:15.000Z",
+          "overall": {
+            "count": 299,
+            "average_ms": 131.54032274247484,
+            "p95_ms": 210.12103999999985,
+            "p99_ms": 309.89698599999974,
+            "max_ms": 342.3521,
+            "slow_at_least_250ms": 12,
+            "slow_fraction": 0.04013377926421405,
+            "slow_waiting_share_of_duration_sum": 1,
+            "slow_with_new_tcp": 0,
+            "slow_with_new_tls": 0
+          },
+          "orders": {
+            "count": 21,
+            "average_ms": 120.83363333333334,
+            "p95_ms": 154.3869,
+            "p99_ms": 161.19898,
+            "max_ms": 162.902,
+            "slow_at_least_250ms": 0,
+            "slow_fraction": 0,
+            "slow_waiting_share_of_duration_sum": null,
+            "slow_with_new_tcp": 0,
+            "slow_with_new_tls": 0
+          },
+          "slow_by_endpoint": {
+            "reviews": 0,
+            "qnas": 0,
+            "product-detail": 0,
+            "my-orders": 0,
+            "products": 0,
+            "login": 12,
+            "member-me": 0,
+            "categories": 0,
+            "product-filter": 0,
+            "recommendation": 0,
+            "my-addresses": 0
+          }
+        },
+        {
+          "completion_window_start_utc": "2026-10-08T09:37:30.000Z",
+          "overall": {
+            "count": 125,
+            "average_ms": 134.4664736,
+            "p95_ms": 247.17081999999994,
+            "p99_ms": 298.24736800000005,
+            "max_ms": 429.0627,
+            "slow_at_least_250ms": 7,
+            "slow_fraction": 0.056,
+            "slow_waiting_share_of_duration_sum": 0.9865836885870242,
+            "slow_with_new_tcp": 0,
+            "slow_with_new_tls": 0
+          },
+          "orders": {
+            "count": 10,
+            "average_ms": 118.24510999999998,
+            "p95_ms": 137.999975,
+            "p99_ms": 138.925355,
+            "max_ms": 139.1567,
+            "slow_at_least_250ms": 0,
+            "slow_fraction": 0,
+            "slow_waiting_share_of_duration_sum": null,
+            "slow_with_new_tcp": 0,
+            "slow_with_new_tls": 0
+          },
+          "slow_by_endpoint": {
+            "products": 1,
+            "categories": 0,
+            "product-filter": 0,
+            "my-orders": 0,
+            "reviews": 0,
+            "product-detail": 0,
+            "my-addresses": 0,
+            "login": 6,
+            "qnas": 0,
+            "recommendation": 0,
+            "member-me": 0
+          }
+        }
+      ]
+    }
+  ],
+  "planned_order": "origin then public",
+  "repeats_per_route": 1,
+  "maintenance_and_vm_state": "UNKNOWN: automated SSH authentication unavailable; no manual status requested",
+  "original_a3_replaced": false,
+  "validated_checks": 56,
+  "limits": [
+    "One pair, no counterbalanced order or repeated-run stable percentile claim.",
+    "Random request mix, TLS/protocol/SSH, time window and unknown maintenance limit causal interpretation.",
+    "Latency failure is preserved as FAIL, not converted to PASS by continued diagnostic collection.",
+    "Server histograms are rolling estimates, not per-request traces or subtractable network latency.",
+    "Windows samples cover the client, not the Ubuntu VM host.",
+    "No deployment or business-data writes; login authentication state changes are included."
+  ]
+}

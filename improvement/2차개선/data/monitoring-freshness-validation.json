@@ -1,0 +1,823 @@
+{
+  "source_sha256": "39e9d36f8e4f8c88d3912cb991e1a0cfda77f6a6c62e94b3f996d1315143cb1d",
+  "observation_count": 37,
+  "conservative_sample_age_max_seconds": 15.008860869482422,
+  "metadata_native_disagreement_count": 0,
+  "observations": [
+    {
+      "checked_at_utc": "2026-10-08T11:54:35.6715900+00:00",
+      "observer_seconds": 0.0022782,
+      "jobs": [
+        {
+          "job": "coffeeprod",
+          "native_up": 1,
+          "native_sample_age_seconds": 7.705999851226807,
+          "conservative_age_seconds": 7.708278051226807,
+          "target_metadata_age_seconds": 7.708,
+          "metadata_old_native_fresh": false
+        },
+        {
+          "job": "cloudflared",
+          "native_up": 1,
+          "native_sample_age_seconds": 0.18699979782104492,
+          "conservative_age_seconds": 0.18927799782104493,
+          "target_metadata_age_seconds": 0.189,
+          "metadata_old_native_fresh": false
+        }
+      ]
+    },
+    {
+      "checked_at_utc": "2026-10-08T11:55:10.9113095+00:00",
+      "observer_seconds": 0.0028546,
+      "jobs": [
+        {
+          "job": "coffeeprod",
+          "native_up": 1,
+          "native_sample_age_seconds": 12.94700002670288,
+          "conservative_age_seconds": 12.94985462670288,
+          "target_metadata_age_seconds": 12.949,
+          "metadata_old_native_fresh": false
+        },
+        {
+          "job": "cloudflared",
+          "native_up": 1,
+          "native_sample_age_seconds": 5.427999973297119,
+          "conservative_age_seconds": 5.430854573297119,
+          "target_metadata_age_seconds": 5.43,
+          "metadata_old_native_fresh": false
+        }
+      ]
+    },
+    {
+      "checked_at_utc": "2026-10-08T11:55:41.4634759+00:00",
+      "observer_seconds": 0.0018643,
+      "jobs": [
+        {
+          "job": "coffeeprod",
+          "native_up": 1,
+          "native_sample_age_seconds": 13.500999927520752,
+          "conservative_age_seconds": 13.502864227520751,
+          "target_metadata_age_seconds": 13.503,
+          "metadata_old_native_fresh": false
+        },
+        {
+          "job": "cloudflared",
+          "native_up": 1,
+          "native_sample_age_seconds": 5.98199987411499,
+          "conservative_age_seconds": 5.9838641741149905,
+          "target_metadata_age_seconds": 5.984,
+          "metadata_old_native_fresh": false
+        }
+      ]
+    },
+    {
+      "checked_at_utc": "2026-10-08T11:56:11.9655941+00:00",
+      "observer_seconds": 0.0020096,
+      "jobs": [
+        {
+          "job": "coffeeprod",
+          "native_up": 1,
+          "native_sample_age_seconds": 14.004999876022339,
+          "conservative_age_seconds": 14.007009476022338,
+          "target_metadata_age_seconds": 14.006,
+          "metadata_old_native_fresh": false
+        },
+        {
+          "job": "cloudflared",
+          "native_up": 1,
+          "native_sample_age_seconds": 6.486999988555908,
+          "conservative_age_seconds": 6.489009588555908,
+          "target_metadata_age_seconds": 6.488,
+          "metadata_old_native_fresh": false
+        }
+      ]
+    },
+    {
+      "checked_at_utc": "2026-10-08T11:57:12.5768524+00:00",
+      "observer_seconds": 0.001605,
+      "jobs": [
+        {
+          "job": "coffeeprod",
+          "native_up": 1,
+          "native_sample_age_seconds": 14.61899995803833,
+          "conservative_age_seconds": 14.62060495803833,
+          "target_metadata_age_seconds": 14.62,
+          "metadata_old_native_fresh": false
+        },
+        {
+          "job": "cloudflared",
+          "native_up": 1,
+          "native_sample_age_seconds": 7.1000001430511475,
+          "conservative_age_seconds": 7.101605143051147,
+          "target_metadata_age_seconds": 7.101,
+          "metadata_old_native_fresh": false
+        }
+      ]
+    },
+    {
+      "checked_at_utc": "2026-10-08T11:57:42.7787661+00:00",
+      "observer_seconds": 0.0015952,
+      "jobs": [
+        {
+          "job": "coffeeprod",
+          "native_up": 1,
+          "native_sample_age_seconds": 14.82200002670288,
+          "conservative_age_seconds": 14.823595226702881,
+          "target_metadata_age_seconds": 14.823,
+          "metadata_old_native_fresh": false
+        },
+        {
+          "job": "cloudflared",
+          "native_up": 1,
+          "native_sample_age_seconds": 7.302999973297119,
+          "conservative_age_seconds": 7.304595173297119,
+          "target_metadata_age_seconds": 7.304,
+          "metadata_old_native_fresh": false
+        }
+      ]
+    },
+    {
+      "checked_at_utc": "2026-10-08T11:58:12.9631010+00:00",
+      "observer_seconds": 0.0018609,
+      "jobs": [
+        {
+          "job": "coffeeprod",
+          "native_up": 1,
+          "native_sample_age_seconds": 15.006999969482422,
+          "conservative_age_seconds": 15.008860869482422,
+          "target_metadata_age_seconds": 15.009,
+          "metadata_old_native_fresh": false
+        },
+        {
+          "job": "cloudflared",
+          "native_up": 1,
+          "native_sample_age_seconds": 7.489000082015991,
+          "conservative_age_seconds": 7.490860982015991,
+          "target_metadata_age_seconds": 7.491,
+          "metadata_old_native_fresh": false
+        }
+      ]
+    },
+    {
+      "checked_at_utc": "2026-10-08T11:58:13.1995006+00:00",
+      "observer_seconds": 0.001982,
+      "jobs": [
+        {
+          "job": "coffeeprod",
+          "native_up": 1,
+          "native_sample_age_seconds": 0.24600005149841309,
+          "conservative_age_seconds": 0.2479820514984131,
+          "target_metadata_age_seconds": 0.247,
+          "metadata_old_native_fresh": false
+        },
+        {
+          "job": "cloudflared",
+          "native_up": 1,
+          "native_sample_age_seconds": 7.726000070571899,
+          "conservative_age_seconds": 7.727982070571899,
+          "target_metadata_age_seconds": 7.727,
+          "metadata_old_native_fresh": false
+        }
+      ]
+    },
+    {
+      "checked_at_utc": "2026-10-08T11:58:43.9312168+00:00",
+      "observer_seconds": 0.0017626,
+      "jobs": [
+        {
+          "job": "coffeeprod",
+          "native_up": 1,
+          "native_sample_age_seconds": 0.9790000915527344,
+          "conservative_age_seconds": 0.9807626915527343,
+          "target_metadata_age_seconds": 0.98,
+          "metadata_old_native_fresh": false
+        },
+        {
+          "job": "cloudflared",
+          "native_up": 1,
+          "native_sample_age_seconds": 8.45900011062622,
+          "conservative_age_seconds": 8.46076271062622,
+          "target_metadata_age_seconds": 8.46,
+          "metadata_old_native_fresh": false
+        }
+      ]
+    },
+    {
+      "checked_at_utc": "2026-10-08T11:59:14.4626016+00:00",
+      "observer_seconds": 0.001851,
+      "jobs": [
+        {
+          "job": "coffeeprod",
+          "native_up": 1,
+          "native_sample_age_seconds": 1.5109999179840088,
+          "conservative_age_seconds": 1.5128509179840088,
+          "target_metadata_age_seconds": 1.512,
+          "metadata_old_native_fresh": false
+        },
+        {
+          "job": "cloudflared",
+          "native_up": 1,
+          "native_sample_age_seconds": 8.991999864578247,
+          "conservative_age_seconds": 8.993850864578247,
+          "target_metadata_age_seconds": 8.993,
+          "metadata_old_native_fresh": false
+        }
+      ]
+    },
+    {
+      "checked_at_utc": "2026-10-08T11:59:44.9547081+00:00",
+      "observer_seconds": 0.0023894,
+      "jobs": [
+        {
+          "job": "coffeeprod",
+          "native_up": 1,
+          "native_sample_age_seconds": 2.005000114440918,
+          "conservative_age_seconds": 2.007389514440918,
+          "target_metadata_age_seconds": 2.006,
+          "metadata_old_native_fresh": false
+        },
+        {
+          "job": "cloudflared",
+          "native_up": 1,
+          "native_sample_age_seconds": 9.485000133514404,
+          "conservative_age_seconds": 9.487389533514405,
+          "target_metadata_age_seconds": 9.486,
+          "metadata_old_native_fresh": false
+        }
+      ]
+    },
+    {
+      "checked_at_utc": "2026-10-08T12:00:15.4362501+00:00",
+      "observer_seconds": 0.0015701,
+      "jobs": [
+        {
+          "job": "coffeeprod",
+          "native_up": 1,
+          "native_sample_age_seconds": 2.48799991607666,
+          "conservative_age_seconds": 2.48957001607666,
+          "target_metadata_age_seconds": 2.489,
+          "metadata_old_native_fresh": false
+        },
+        {
+          "job": "cloudflared",
+          "native_up": 1,
+          "native_sample_age_seconds": 9.967999935150146,
+          "conservative_age_seconds": 9.969570035150147,
+          "target_metadata_age_seconds": 9.969,
+          "metadata_old_native_fresh": false
+        }
+      ]
+    },
+    {
+      "checked_at_utc": "2026-10-08T12:00:45.9861789+00:00",
+      "observer_seconds": 0.0016793,
+      "jobs": [
+        {
+          "job": "coffeeprod",
+          "native_up": 1,
+          "native_sample_age_seconds": 3.0399999618530273,
+          "conservative_age_seconds": 3.0416792618530275,
+          "target_metadata_age_seconds": 3.041,
+          "metadata_old_native_fresh": false
+        },
+        {
+          "job": "cloudflared",
+          "native_up": 1,
+          "native_sample_age_seconds": 10.519999980926514,
+          "conservative_age_seconds": 10.521679280926513,
+          "target_metadata_age_seconds": 10.521,
+          "metadata_old_native_fresh": false
+        }
+      ]
+    },
+    {
+      "checked_at_utc": "2026-10-08T12:01:16.4761145+00:00",
+      "observer_seconds": 0.0020374,
+      "jobs": [
+        {
+          "job": "coffeeprod",
+          "native_up": 1,
+          "native_sample_age_seconds": 3.5309998989105225,
+          "conservative_age_seconds": 3.5330372989105223,
+          "target_metadata_age_seconds": 3.533,
+          "metadata_old_native_fresh": false
+        },
+        {
+          "job": "cloudflared",
+          "native_up": 1,
+          "native_sample_age_seconds": 11.009999990463257,
+          "conservative_age_seconds": 11.012037390463258,
+          "target_metadata_age_seconds": 11.012,
+          "metadata_old_native_fresh": false
+        }
+      ]
+    },
+    {
+      "checked_at_utc": "2026-10-08T12:01:46.9766302+00:00",
+      "observer_seconds": 0.0017235,
+      "jobs": [
+        {
+          "job": "coffeeprod",
+          "native_up": 1,
+          "native_sample_age_seconds": 4.031999826431274,
+          "conservative_age_seconds": 4.033723326431274,
+          "target_metadata_age_seconds": 4.033,
+          "metadata_old_native_fresh": false
+        },
+        {
+          "job": "cloudflared",
+          "native_up": 1,
+          "native_sample_age_seconds": 11.513000011444092,
+          "conservative_age_seconds": 11.514723511444092,
+          "target_metadata_age_seconds": 11.514,
+          "metadata_old_native_fresh": false
+        }
+      ]
+    },
+    {
+      "checked_at_utc": "2026-10-08T12:02:17.5264494+00:00",
+      "observer_seconds": 0.0016661,
+      "jobs": [
+        {
+          "job": "coffeeprod",
+          "native_up": 1,
+          "native_sample_age_seconds": 4.584000110626221,
+          "conservative_age_seconds": 4.58566621062622,
+          "target_metadata_age_seconds": 4.585,
+          "metadata_old_native_fresh": false
+        },
+        {
+          "job": "cloudflared",
+          "native_up": 1,
+          "native_sample_age_seconds": 12.064000129699707,
+          "conservative_age_seconds": 12.065666229699707,
+          "target_metadata_age_seconds": 12.065,
+          "metadata_old_native_fresh": false
+        }
+      ]
+    },
+    {
+      "checked_at_utc": "2026-10-08T12:02:48.0835016+00:00",
+      "observer_seconds": 0.0018401,
+      "jobs": [
+        {
+          "job": "coffeeprod",
+          "native_up": 1,
+          "native_sample_age_seconds": 5.14300012588501,
+          "conservative_age_seconds": 5.14484022588501,
+          "target_metadata_age_seconds": 5.144,
+          "metadata_old_native_fresh": false
+        },
+        {
+          "job": "cloudflared",
+          "native_up": 1,
+          "native_sample_age_seconds": 12.622999906539917,
+          "conservative_age_seconds": 12.624840006539918,
+          "target_metadata_age_seconds": 12.624,
+          "metadata_old_native_fresh": false
+        }
+      ]
+    },
+    {
+      "checked_at_utc": "2026-10-08T12:03:45.5332030+00:00",
+      "observer_seconds": 0.001823,
+      "jobs": [
+        {
+          "job": "coffeeprod",
+          "native_up": 1,
+          "native_sample_age_seconds": 2.5950000286102295,
+          "conservative_age_seconds": 2.5968230286102294,
+          "target_metadata_age_seconds": 2.596,
+          "metadata_old_native_fresh": false
+        },
+        {
+          "job": "cloudflared",
+          "native_up": 1,
+          "native_sample_age_seconds": 10.075000047683716,
+          "conservative_age_seconds": 10.076823047683716,
+          "target_metadata_age_seconds": 10.076,
+          "metadata_old_native_fresh": false
+        }
+      ]
+    },
+    {
+      "checked_at_utc": "2026-10-08T12:04:15.7366960+00:00",
+      "observer_seconds": 0.0016637,
+      "jobs": [
+        {
+          "job": "coffeeprod",
+          "native_up": 1,
+          "native_sample_age_seconds": 2.799999952316284,
+          "conservative_age_seconds": 2.801663652316284,
+          "target_metadata_age_seconds": 2.801,
+          "metadata_old_native_fresh": false
+        },
+        {
+          "job": "cloudflared",
+          "native_up": 1,
+          "native_sample_age_seconds": 10.27999997138977,
+          "conservative_age_seconds": 10.28166367138977,
+          "target_metadata_age_seconds": 10.281,
+          "metadata_old_native_fresh": false
+        }
+      ]
+    },
+    {
+      "checked_at_utc": "2026-10-08T12:04:45.9483596+00:00",
+      "observer_seconds": 0.0016852,
+      "jobs": [
+        {
+          "job": "coffeeprod",
+          "native_up": 1,
+          "native_sample_age_seconds": 3.013000011444092,
+          "conservative_age_seconds": 3.0146852114440916,
+          "target_metadata_age_seconds": 3.014,
+          "metadata_old_native_fresh": false
+        },
+        {
+          "job": "cloudflared",
+          "native_up": 1,
+          "native_sample_age_seconds": 10.493000030517578,
+          "conservative_age_seconds": 10.494685230517579,
+          "target_metadata_age_seconds": 10.494,
+          "metadata_old_native_fresh": false
+        }
+      ]
+    },
+    {
+      "checked_at_utc": "2026-10-08T12:04:46.1504701+00:00",
+      "observer_seconds": 0.0016101,
+      "jobs": [
+        {
+          "job": "coffeeprod",
+          "native_up": 1,
+          "native_sample_age_seconds": 3.2149999141693115,
+          "conservative_age_seconds": 3.2166100141693117,
+          "target_metadata_age_seconds": 3.216,
+          "metadata_old_native_fresh": false
+        },
+        {
+          "job": "cloudflared",
+          "native_up": 1,
+          "native_sample_age_seconds": 10.694999933242798,
+          "conservative_age_seconds": 10.696610033242798,
+          "target_metadata_age_seconds": 10.696,
+          "metadata_old_native_fresh": false
+        }
+      ]
+    },
+    {
+      "checked_at_utc": "2026-10-08T12:05:16.8360796+00:00",
+      "observer_seconds": 0.0015917,
+      "jobs": [
+        {
+          "job": "coffeeprod",
+          "native_up": 1,
+          "native_sample_age_seconds": 3.9030001163482666,
+          "conservative_age_seconds": 3.9045918163482667,
+          "target_metadata_age_seconds": 3.904,
+          "metadata_old_native_fresh": false
+        },
+        {
+          "job": "cloudflared",
+          "native_up": 1,
+          "native_sample_age_seconds": 11.383000135421753,
+          "conservative_age_seconds": 11.384591835421753,
+          "target_metadata_age_seconds": 11.384,
+          "metadata_old_native_fresh": false
+        }
+      ]
+    },
+    {
+      "checked_at_utc": "2026-10-08T12:05:47.3246451+00:00",
+      "observer_seconds": 0.0018465,
+      "jobs": [
+        {
+          "job": "coffeeprod",
+          "native_up": 1,
+          "native_sample_age_seconds": 4.391999959945679,
+          "conservative_age_seconds": 4.393846459945679,
+          "target_metadata_age_seconds": 4.393,
+          "metadata_old_native_fresh": false
+        },
+        {
+          "job": "cloudflared",
+          "native_up": 1,
+          "native_sample_age_seconds": 11.871999979019165,
+          "conservative_age_seconds": 11.873846479019164,
+          "target_metadata_age_seconds": 11.873,
+          "metadata_old_native_fresh": false
+        }
+      ]
+    },
+    {
+      "checked_at_utc": "2026-10-08T12:06:17.7898278+00:00",
+      "observer_seconds": 0.0020705,
+      "jobs": [
+        {
+          "job": "coffeeprod",
+          "native_up": 1,
+          "native_sample_age_seconds": 4.858000040054321,
+          "conservative_age_seconds": 4.860070540054322,
+          "target_metadata_age_seconds": 4.859,
+          "metadata_old_native_fresh": false
+        },
+        {
+          "job": "cloudflared",
+          "native_up": 1,
+          "native_sample_age_seconds": 12.339000225067139,
+          "conservative_age_seconds": 12.341070725067139,
+          "target_metadata_age_seconds": 12.34,
+          "metadata_old_native_fresh": false
+        }
+      ]
+    },
+    {
+      "checked_at_utc": "2026-10-08T12:07:17.8223787+00:00",
+      "observer_seconds": 0.0015822,
+      "jobs": [
+        {
+          "job": "coffeeprod",
+          "native_up": 1,
+          "native_sample_age_seconds": 4.894999980926514,
+          "conservative_age_seconds": 4.896582180926513,
+          "target_metadata_age_seconds": 4.896,
+          "metadata_old_native_fresh": false
+        },
+        {
+          "job": "cloudflared",
+          "native_up": 1,
+          "native_sample_age_seconds": 12.375,
+          "conservative_age_seconds": 12.3765822,
+          "target_metadata_age_seconds": 12.376,
+          "metadata_old_native_fresh": false
+        }
+      ]
+    },
+    {
+      "checked_at_utc": "2026-10-08T12:07:48.0251863+00:00",
+      "observer_seconds": 0.0014803,
+      "jobs": [
+        {
+          "job": "coffeeprod",
+          "native_up": 1,
+          "native_sample_age_seconds": 5.097999811172485,
+          "conservative_age_seconds": 5.099480111172485,
+          "target_metadata_age_seconds": 5.099,
+          "metadata_old_native_fresh": false
+        },
+        {
+          "job": "cloudflared",
+          "native_up": 1,
+          "native_sample_age_seconds": 12.578999996185303,
+          "conservative_age_seconds": 12.580480296185304,
+          "target_metadata_age_seconds": 12.58,
+          "metadata_old_native_fresh": false
+        }
+      ]
+    },
+    {
+      "checked_at_utc": "2026-10-08T12:08:18.2251431+00:00",
+      "observer_seconds": 0.0019222,
+      "jobs": [
+        {
+          "job": "coffeeprod",
+          "native_up": 1,
+          "native_sample_age_seconds": 5.299000024795532,
+          "conservative_age_seconds": 5.300922224795532,
+          "target_metadata_age_seconds": 5.3,
+          "metadata_old_native_fresh": false
+        },
+        {
+          "job": "cloudflared",
+          "native_up": 1,
+          "native_sample_age_seconds": 12.779000043869019,
+          "conservative_age_seconds": 12.780922243869018,
+          "target_metadata_age_seconds": 12.78,
+          "metadata_old_native_fresh": false
+        }
+      ]
+    },
+    {
+      "checked_at_utc": "2026-10-08T12:08:18.4299559+00:00",
+      "observer_seconds": 0.0017189,
+      "jobs": [
+        {
+          "job": "coffeeprod",
+          "native_up": 1,
+          "native_sample_age_seconds": 5.503999948501587,
+          "conservative_age_seconds": 5.505718848501587,
+          "target_metadata_age_seconds": 5.504,
+          "metadata_old_native_fresh": false
+        },
+        {
+          "job": "cloudflared",
+          "native_up": 1,
+          "native_sample_age_seconds": 12.983999967575073,
+          "conservative_age_seconds": 12.985718867575073,
+          "target_metadata_age_seconds": 12.984,
+          "metadata_old_native_fresh": false
+        }
+      ]
+    },
+    {
+      "checked_at_utc": "2026-10-08T12:08:48.8609431+00:00",
+      "observer_seconds": 0.0015606,
+      "jobs": [
+        {
+          "job": "coffeeprod",
+          "native_up": 1,
+          "native_sample_age_seconds": 5.937000036239624,
+          "conservative_age_seconds": 5.938560636239624,
+          "target_metadata_age_seconds": 5.938,
+          "metadata_old_native_fresh": false
+        },
+        {
+          "job": "cloudflared",
+          "native_up": 1,
+          "native_sample_age_seconds": 13.41700005531311,
+          "conservative_age_seconds": 13.41856065531311,
+          "target_metadata_age_seconds": 13.418,
+          "metadata_old_native_fresh": false
+        }
+      ]
+    },
+    {
+      "checked_at_utc": "2026-10-08T12:09:19.3628894+00:00",
+      "observer_seconds": 0.0016097,
+      "jobs": [
+        {
+          "job": "coffeeprod",
+          "native_up": 1,
+          "native_sample_age_seconds": 6.440999984741211,
+          "conservative_age_seconds": 6.442609684741211,
+          "target_metadata_age_seconds": 6.441,
+          "metadata_old_native_fresh": false
+        },
+        {
+          "job": "cloudflared",
+          "native_up": 1,
+          "native_sample_age_seconds": 13.921000003814697,
+          "conservative_age_seconds": 13.922609703814697,
+          "target_metadata_age_seconds": 13.921,
+          "metadata_old_native_fresh": false
+        }
+      ]
+    },
+    {
+      "checked_at_utc": "2026-10-08T12:09:49.8239153+00:00",
+      "observer_seconds": 0.0022095,
+      "jobs": [
+        {
+          "job": "coffeeprod",
+          "native_up": 1,
+          "native_sample_age_seconds": 6.9019999504089355,
+          "conservative_age_seconds": 6.904209450408936,
+          "target_metadata_age_seconds": 6.903,
+          "metadata_old_native_fresh": false
+        },
+        {
+          "job": "cloudflared",
+          "native_up": 1,
+          "native_sample_age_seconds": 14.383000135421753,
+          "conservative_age_seconds": 14.385209635421752,
+          "target_metadata_age_seconds": 14.384,
+          "metadata_old_native_fresh": false
+        }
+      ]
+    },
+    {
+      "checked_at_utc": "2026-10-08T12:10:20.2650516+00:00",
+      "observer_seconds": 0.0015267,
+      "jobs": [
+        {
+          "job": "coffeeprod",
+          "native_up": 1,
+          "native_sample_age_seconds": 7.3459999561309814,
+          "conservative_age_seconds": 7.347526656130982,
+          "target_metadata_age_seconds": 7.347,
+          "metadata_old_native_fresh": false
+        },
+        {
+          "job": "cloudflared",
+          "native_up": 1,
+          "native_sample_age_seconds": 14.825999975204468,
+          "conservative_age_seconds": 14.827526675204467,
+          "target_metadata_age_seconds": 14.827,
+          "metadata_old_native_fresh": false
+        }
+      ]
+    },
+    {
+      "checked_at_utc": "2026-10-08T12:10:50.7161545+00:00",
+      "observer_seconds": 0.0018624,
+      "jobs": [
+        {
+          "job": "coffeeprod",
+          "native_up": 1,
+          "native_sample_age_seconds": 7.797999858856201,
+          "conservative_age_seconds": 7.799862258856201,
+          "target_metadata_age_seconds": 7.799,
+          "metadata_old_native_fresh": false
+        },
+        {
+          "job": "cloudflared",
+          "native_up": 1,
+          "native_sample_age_seconds": 0.2779998779296875,
+          "conservative_age_seconds": 0.2798622779296875,
+          "target_metadata_age_seconds": 0.279,
+          "metadata_old_native_fresh": false
+        }
+      ]
+    },
+    {
+      "checked_at_utc": "2026-10-08T12:11:25.7990064+00:00",
+      "observer_seconds": 0.0016045,
+      "jobs": [
+        {
+          "job": "coffeeprod",
+          "native_up": 1,
+          "native_sample_age_seconds": 12.882000207901001,
+          "conservative_age_seconds": 12.883604707901,
+          "target_metadata_age_seconds": 12.883,
+          "metadata_old_native_fresh": false
+        },
+        {
+          "job": "cloudflared",
+          "native_up": 1,
+          "native_sample_age_seconds": 5.363000154495239,
+          "conservative_age_seconds": 5.364604654495239,
+          "target_metadata_age_seconds": 5.364,
+          "metadata_old_native_fresh": false
+        }
+      ]
+    },
+    {
+      "checked_at_utc": "2026-10-08T12:11:56.2760885+00:00",
+      "observer_seconds": 0.0017449,
+      "jobs": [
+        {
+          "job": "coffeeprod",
+          "native_up": 1,
+          "native_sample_age_seconds": 13.361000061035156,
+          "conservative_age_seconds": 13.362744961035157,
+          "target_metadata_age_seconds": 13.362,
+          "metadata_old_native_fresh": false
+        },
+        {
+          "job": "cloudflared",
+          "native_up": 1,
+          "native_sample_age_seconds": 5.841000080108643,
+          "conservative_age_seconds": 5.842744980108643,
+          "target_metadata_age_seconds": 5.842,
+          "metadata_old_native_fresh": false
+        }
+      ]
+    },
+    {
+      "checked_at_utc": "2026-10-08T12:12:26.7886229+00:00",
+      "observer_seconds": 0.001659,
+      "jobs": [
+        {
+          "job": "coffeeprod",
+          "native_up": 1,
+          "native_sample_age_seconds": 13.875,
+          "conservative_age_seconds": 13.876659,
+          "target_metadata_age_seconds": 13.875,
+          "metadata_old_native_fresh": false
+        },
+        {
+          "job": "cloudflared",
+          "native_up": 1,
+          "native_sample_age_seconds": 6.355000019073486,
+          "conservative_age_seconds": 6.356659019073486,
+          "target_metadata_age_seconds": 6.355,
+          "metadata_old_native_fresh": false
+        }
+      ]
+    },
+    {
+      "checked_at_utc": "2026-10-08T12:12:57.2917926+00:00",
+      "observer_seconds": 0.0016758,
+      "jobs": [
+        {
+          "job": "coffeeprod",
+          "native_up": 1,
+          "native_sample_age_seconds": 14.379999876022339,
+          "conservative_age_seconds": 14.381675676022338,
+          "target_metadata_age_seconds": 14.38,
+          "metadata_old_native_fresh": false
+        },
+        {
+          "job": "cloudflared",
+          "native_up": 1,
+          "native_sample_age_seconds": 6.859999895095825,
+          "conservative_age_seconds": 6.861675695095825,
+          "target_metadata_age_seconds": 6.86,
+          "metadata_old_native_fresh": false
+        }
+      ]
+    }
+  ],
+  "note": "Metadata age is computed on observer wall time; native sample age on Prometheus time. This does not reconstruct the missing earlier failure payload."
+}

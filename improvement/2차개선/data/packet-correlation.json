@@ -1,0 +1,116 @@
+{
+  "capture_id": "packet-capture-20261008T142306Z",
+  "probe_id": "ssh-packet-window-20261008T142306Z",
+  "http_requests": 30,
+  "http_failures": 0,
+  "business_checks": 30,
+  "segments": [
+    {
+      "mode": "k6-reuse",
+      "request_count": 15,
+      "business_checks": 15,
+      "raw_sha256": "5a125c9fa7bdb071d14a1262482375b6c6bb9bc14a8e8930711b79bb6fccf0f3",
+      "duration": {
+        "count": 15,
+        "average_ms": 53.77388666666666,
+        "median_ms": 47.0292,
+        "p95_ms": 89.13161999999996,
+        "p99_ms": 109.90224399999997,
+        "max_ms": 115.0949
+      }
+    },
+    {
+      "mode": "k6-fresh",
+      "request_count": 15,
+      "business_checks": 15,
+      "raw_sha256": "3b4b7521376d9979c302cac511bb9b8263174b7ef3fcb9637949ef6f9ce5428b",
+      "duration": {
+        "count": 15,
+        "average_ms": 102.22031333333332,
+        "median_ms": 107.6371,
+        "p95_ms": 123.85632,
+        "p99_ms": 126.628544,
+        "max_ms": 127.3216
+      }
+    }
+  ],
+  "ubuntu": {
+    "packet_count": 4492,
+    "first_packet_utc": "2026-10-08T14:21:43.448Z",
+    "last_packet_utc": "2026-10-08T14:26:13.486Z",
+    "received_by_filter": 4852,
+    "dropped_by_kernel": 0,
+    "captured_payload_bytes": 0,
+    "raw_sha256": "bd5719048e2bfe3c346229f1d658636e90b1b8a200cddf3d2462d7e557e3b7a0",
+    "stderr_sha256": "d47bca98d50828f4747b784a10aeba961a0187f28e0125bc0ef6b16304ef824f"
+  },
+  "windows": {
+    "packet_count": 331,
+    "first_packet_utc": "2026-10-08T14:23:07.116Z",
+    "last_packet_utc": "2026-10-08T14:23:37.832Z",
+    "collapsed_records": 316,
+    "captured_payload_bytes": 0,
+    "raw_sha256": "3288fe0d9bd4e63d73cec107dc7b9d4bb485776caf691cc01bb892623f06aacf"
+  },
+  "original_http_packet_observations": {
+    "request_count": 30,
+    "connection_flow_count": 16,
+    "first_response": {
+      "count": 30,
+      "average_ms": 2.167018254597982,
+      "median_ms": 2.0689964294433594,
+      "p95_ms": 2.725231647491455,
+      "p99_ms": 3.595905303955079,
+      "max_ms": 3.941059112548828
+    },
+    "last_response": {
+      "count": 30,
+      "average_ms": 2.4497350056966147,
+      "median_ms": 2.222418785095215,
+      "p95_ms": 3.576254844665524,
+      "p99_ms": 5.364360809326174,
+      "max_ms": 5.866050720214844
+    },
+    "pairing_basis": "same Ubuntu loopback TCP flow, ordered request data and two server data segments; no HTTP payload decoded"
+  },
+  "following_ssh_data_candidates": {
+    "statistics": {
+      "count": 30,
+      "average_ms": 31.52913252512614,
+      "median_ms": 29.25693988800049,
+      "p95_ms": 42.68920421600341,
+      "p99_ms": 43.625948429107666,
+      "max_ms": 43.6549186706543
+    },
+    "attributed_to_same_http_response": false
+  },
+  "matched_packet_timestamp_differences": {
+    "client-to-server": {
+      "count": 301,
+      "min": 902.3721218109131,
+      "max": 903.3162593841553,
+      "average": 902.6043082392493
+    },
+    "server-to-client": {
+      "count": 10,
+      "min": 902.2531509399414,
+      "max": 902.5461673736572,
+      "average": 902.3967981338501
+    }
+  },
+  "simplistic_constant_clock_offset_bounds_ms": {
+    "lower_ms": 902.5461673736572,
+    "upper_ms": 902.3721218109131
+  },
+  "clock_alignment_verified": false,
+  "validity": "PASS: both header-only files, overlapping nominal timestamps, 30 HTTP/check successes, 30 original HTTP request/response groups; not a calibrated end-to-end trace",
+  "limits": [
+    "Capture/kernel drop count is not end-to-end network packet loss.",
+    "Windows duplicates collapsed only as exploratory 10us same-signature heuristic, not proof of wire retransmission.",
+    "Signed inter-host packet differences mix clock/capture-domain offset and transport; not network latency.",
+    "Constant-offset bound lower exceeds upper by about 0.174ms: do not publish calibrated one-way latency.",
+    "Subsequent encrypted SSH data may belong to monitoring channels: not an HTTP response span.",
+    "ACK samples are insufficient to establish delayed ACK or Nagle as the cause.",
+    "Category low-rate probe is not mixed-load/order/login optimization or maximum-capacity proof."
+  ]
+}

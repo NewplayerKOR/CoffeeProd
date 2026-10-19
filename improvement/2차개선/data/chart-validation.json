@@ -1,0 +1,11 @@
+{
+  "data_sha256": "ddbb4703038482fd8689608b9ed296519ef8278fcf7657d30f671be395e96515",
+  "png_sha256": "b23d845bf9f4aafb4442da13ddc93d60de60f399ff0b4f7fcd854c0f1fe5c578",
+  "width": 1440,
+  "height": 700,
+  "non_white_samples": 2649,
+  "text_bounds_check": "PASS",
+  "visual_inspection": "PASS: model inspected the rendered PNG with view_image; Korean labels, axes, values and legend are readable without overlap",
+  "source_repository_relative_path": "k6/results/mixed-path-20261008T091853Z/mixed-comparison.json",
+  "public_snapshot_sha256": "aba0ac4433c5e751d008f6dda654086c8edc1cb0e9a155e89acd5cb4b73a18a3"
+}

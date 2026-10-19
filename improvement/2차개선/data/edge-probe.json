@@ -1,0 +1,536 @@
+{
+  "suite_id": "edge-probe-20261008T123718Z",
+  "start_utc": "2026-10-08T12:37:18.7870745+00:00",
+  "end_utc": "2026-10-08T12:38:30.8664769+00:00",
+  "plan": {
+    "rounds": 60,
+    "requests_per_round": 3,
+    "vus": 1,
+    "writes": false,
+    "trace_body_exported": false
+  },
+  "http_requests": 180,
+  "checks": 180,
+  "failures": 0,
+  "raw_sha256": "fca406ac618bc899db2f9845b986ce585033daa460b8d776e7eacd70957f3e32",
+  "validation": "PASS: native count/7 timing quantiles, component sums, 60 complete rounds, identical category digests and exact safe logging keys",
+  "endpoints": {
+    "public-categories": {
+      "all_60": {
+        "count": 60,
+        "timings": {
+          "http_req_duration": {
+            "count": 60,
+            "average_ms": 92.828445,
+            "median_ms": 87.46305000000001,
+            "p95_ms": 99.40574,
+            "p99_ms": 199.13946599999923,
+            "max_ms": 330.1682
+          },
+          "http_req_waiting": {
+            "count": 60,
+            "average_ms": 92.77805999999997,
+            "median_ms": 87.46305000000001,
+            "p95_ms": 99.40574,
+            "p99_ms": 199.13946599999923,
+            "max_ms": 330.1682
+          },
+          "http_req_receiving": {
+            "count": 60,
+            "average_ms": 0.04197833333333333,
+            "median_ms": 0,
+            "p95_ms": 0.025104999999998573,
+            "p99_ms": 0.9186779999999966,
+            "max_ms": 1.5062
+          },
+          "http_req_sending": {
+            "count": 60,
+            "average_ms": 0.008406666666666666,
+            "median_ms": 0,
+            "p95_ms": 0,
+            "p99_ms": 0.20680399999999827,
+            "max_ms": 0.5044
+          },
+          "http_req_blocked": {
+            "count": 60,
+            "average_ms": 2.2989266666666666,
+            "median_ms": 0,
+            "p95_ms": 0,
+            "p99_ms": 56.55359599999953,
+            "max_ms": 137.9356
+          },
+          "http_req_connecting": {
+            "count": 60,
+            "average_ms": 0.5837683333333333,
+            "median_ms": 0,
+            "p95_ms": 0,
+            "p99_ms": 14.36070099999988,
+            "max_ms": 35.0261
+          },
+          "http_req_tls_handshaking": {
+            "count": 60,
+            "average_ms": 1.2429016666666668,
+            "median_ms": 0,
+            "p95_ms": 0,
+            "p99_ms": 30.575380999999748,
+            "max_ms": 74.5741
+          }
+        },
+        "new_tcp_requests": 1,
+        "new_tls_requests": 1,
+        "slow_count": 1,
+        "slow_new_tcp": 1,
+        "slow_new_tls": 1,
+        "slow_duration_sum_ms": 330.1682,
+        "slow_component_share": {
+          "sending": 0,
+          "waiting": 1,
+          "receiving": 0
+        },
+        "slow_by_endpoint": {
+          "public-categories": 1
+        }
+      },
+      "after_round_zero_59": {
+        "count": 59,
+        "timings": {
+          "http_req_duration": {
+            "count": 59,
+            "average_ms": 88.80573728813557,
+            "median_ms": 87.4272,
+            "p95_ms": 98.69015,
+            "p99_ms": 103.47378800000001,
+            "max_ms": 108.0856
+          },
+          "http_req_waiting": {
+            "count": 59,
+            "average_ms": 88.75449830508472,
+            "median_ms": 87.4272,
+            "p95_ms": 98.69015,
+            "p99_ms": 103.47378800000001,
+            "max_ms": 108.0856
+          },
+          "http_req_receiving": {
+            "count": 59,
+            "average_ms": 0.04268983050847457,
+            "median_ms": 0,
+            "p95_ms": 0.050209999999997146,
+            "p99_ms": 0.9286360000000017,
+            "max_ms": 1.5062
+          },
+          "http_req_sending": {
+            "count": 59,
+            "average_ms": 0.00854915254237288,
+            "median_ms": 0,
+            "p95_ms": 0,
+            "p99_ms": 0.21184800000000084,
+            "max_ms": 0.5044
+          },
+          "http_req_blocked": {
+            "count": 59,
+            "average_ms": 0,
+            "median_ms": 0,
+            "p95_ms": 0,
+            "p99_ms": 0,
+            "max_ms": 0
+          },
+          "http_req_connecting": {
+            "count": 59,
+            "average_ms": 0,
+            "median_ms": 0,
+            "p95_ms": 0,
+            "p99_ms": 0,
+            "max_ms": 0
+          },
+          "http_req_tls_handshaking": {
+            "count": 59,
+            "average_ms": 0,
+            "median_ms": 0,
+            "p95_ms": 0,
+            "p99_ms": 0,
+            "max_ms": 0
+          }
+        },
+        "new_tcp_requests": 0,
+        "new_tls_requests": 0,
+        "slow_count": 0,
+        "slow_new_tcp": 0,
+        "slow_new_tls": 0,
+        "slow_duration_sum_ms": 0,
+        "slow_component_share": {
+          "sending": null,
+          "waiting": null,
+          "receiving": null
+        },
+        "slow_by_endpoint": {}
+      },
+      "protocols": [
+        "HTTP/2.0"
+      ],
+      "colos": [
+        "NRT"
+      ],
+      "cache_statuses": [
+        "DYNAMIC"
+      ]
+    },
+    "origin-categories": {
+      "all_60": {
+        "count": 60,
+        "timings": {
+          "http_req_duration": {
+            "count": 60,
+            "average_ms": 46.203511666666664,
+            "median_ms": 45.2333,
+            "p95_ms": 90.21578,
+            "p99_ms": 100.33262699999993,
+            "max_ms": 111.451
+          },
+          "http_req_waiting": {
+            "count": 60,
+            "average_ms": 43.102354999999996,
+            "median_ms": 43.29865,
+            "p95_ms": 90.21578,
+            "p99_ms": 100.19691699999994,
+            "max_ms": 111.12
+          },
+          "http_req_receiving": {
+            "count": 60,
+            "average_ms": 3.0927683333333333,
+            "median_ms": 0,
+            "p95_ms": 32.55994,
+            "p99_ms": 40.97903799999998,
+            "max_ms": 44.054
+          },
+          "http_req_sending": {
+            "count": 60,
+            "average_ms": 0.008388333333333333,
+            "median_ms": 0,
+            "p95_ms": 0,
+            "p99_ms": 0.20635299999999826,
+            "max_ms": 0.5033
+          },
+          "http_req_blocked": {
+            "count": 60,
+            "average_ms": 0.02175,
+            "median_ms": 0,
+            "p95_ms": 0,
+            "p99_ms": 0.627443999999999,
+            "max_ms": 0.7917
+          },
+          "http_req_connecting": {
+            "count": 60,
+            "average_ms": 0.008555,
+            "median_ms": 0,
+            "p95_ms": 0,
+            "p99_ms": 0.21045299999999825,
+            "max_ms": 0.5133
+          },
+          "http_req_tls_handshaking": {
+            "count": 60,
+            "average_ms": 0,
+            "median_ms": 0,
+            "p95_ms": 0,
+            "p99_ms": 0,
+            "max_ms": 0
+          }
+        },
+        "new_tcp_requests": 1,
+        "new_tls_requests": 0,
+        "slow_count": 0,
+        "slow_new_tcp": 0,
+        "slow_new_tls": 0,
+        "slow_duration_sum_ms": 0,
+        "slow_component_share": {
+          "sending": null,
+          "waiting": null,
+          "receiving": null
+        },
+        "slow_by_endpoint": {}
+      },
+      "after_round_zero_59": {
+        "count": 59,
+        "timings": {
+          "http_req_duration": {
+            "count": 59,
+            "average_ms": 45.0976220338983,
+            "median_ms": 44.9071,
+            "p95_ms": 66.12909999999985,
+            "p99_ms": 91.80474000000001,
+            "max_ms": 92.6063
+          },
+          "http_req_waiting": {
+            "count": 59,
+            "average_ms": 41.949513559322035,
+            "median_ms": 42.0253,
+            "p95_ms": 65.78421999999985,
+            "p99_ms": 91.80474000000001,
+            "max_ms": 92.6063
+          },
+          "http_req_receiving": {
+            "count": 59,
+            "average_ms": 3.139577966101695,
+            "median_ms": 0,
+            "p95_ms": 32.64237999999999,
+            "p99_ms": 41.03115600000001,
+            "max_ms": 44.054
+          },
+          "http_req_sending": {
+            "count": 59,
+            "average_ms": 0.008530508474576272,
+            "median_ms": 0,
+            "p95_ms": 0,
+            "p99_ms": 0.21138600000000085,
+            "max_ms": 0.5033
+          },
+          "http_req_blocked": {
+            "count": 59,
+            "average_ms": 0.013418644067796609,
+            "median_ms": 0,
+            "p95_ms": 0,
+            "p99_ms": 0.3325140000000013,
+            "max_ms": 0.7917
+          },
+          "http_req_connecting": {
+            "count": 59,
+            "average_ms": 0,
+            "median_ms": 0,
+            "p95_ms": 0,
+            "p99_ms": 0,
+            "max_ms": 0
+          },
+          "http_req_tls_handshaking": {
+            "count": 59,
+            "average_ms": 0,
+            "median_ms": 0,
+            "p95_ms": 0,
+            "p99_ms": 0,
+            "max_ms": 0
+          }
+        },
+        "new_tcp_requests": 0,
+        "new_tls_requests": 0,
+        "slow_count": 0,
+        "slow_new_tcp": 0,
+        "slow_new_tls": 0,
+        "slow_duration_sum_ms": 0,
+        "slow_component_share": {
+          "sending": null,
+          "waiting": null,
+          "receiving": null
+        },
+        "slow_by_endpoint": {}
+      },
+      "protocols": [
+        "HTTP/1.1"
+      ],
+      "colos": [
+        null
+      ],
+      "cache_statuses": [
+        null
+      ]
+    },
+    "edge-trace": {
+      "all_60": {
+        "count": 60,
+        "timings": {
+          "http_req_duration": {
+            "count": 60,
+            "average_ms": 39.92213333333333,
+            "median_ms": 39.610299999999995,
+            "p95_ms": 44.032394999999994,
+            "p99_ms": 46.41105499999999,
+            "max_ms": 48.0958
+          },
+          "http_req_waiting": {
+            "count": 60,
+            "average_ms": 39.88848833333332,
+            "median_ms": 39.610299999999995,
+            "p95_ms": 44.032394999999994,
+            "p99_ms": 46.41105499999999,
+            "max_ms": 48.0958
+          },
+          "http_req_receiving": {
+            "count": 60,
+            "average_ms": 0.033645,
+            "median_ms": 0,
+            "p95_ms": 0,
+            "p99_ms": 0.9206549999999967,
+            "max_ms": 1.5021
+          },
+          "http_req_sending": {
+            "count": 60,
+            "average_ms": 0,
+            "median_ms": 0,
+            "p95_ms": 0,
+            "p99_ms": 0,
+            "max_ms": 0
+          },
+          "http_req_blocked": {
+            "count": 60,
+            "average_ms": 0,
+            "median_ms": 0,
+            "p95_ms": 0,
+            "p99_ms": 0,
+            "max_ms": 0
+          },
+          "http_req_connecting": {
+            "count": 60,
+            "average_ms": 0,
+            "median_ms": 0,
+            "p95_ms": 0,
+            "p99_ms": 0,
+            "max_ms": 0
+          },
+          "http_req_tls_handshaking": {
+            "count": 60,
+            "average_ms": 0,
+            "median_ms": 0,
+            "p95_ms": 0,
+            "p99_ms": 0,
+            "max_ms": 0
+          }
+        },
+        "new_tcp_requests": 0,
+        "new_tls_requests": 0,
+        "slow_count": 0,
+        "slow_new_tcp": 0,
+        "slow_new_tls": 0,
+        "slow_duration_sum_ms": 0,
+        "slow_component_share": {
+          "sending": null,
+          "waiting": null,
+          "receiving": null
+        },
+        "slow_by_endpoint": {}
+      },
+      "after_round_zero_59": {
+        "count": 59,
+        "timings": {
+          "http_req_duration": {
+            "count": 59,
+            "average_ms": 39.935513559322025,
+            "median_ms": 39.6372,
+            "p95_ms": 44.05329,
+            "p99_ms": 46.43961,
+            "max_ms": 48.0958
+          },
+          "http_req_waiting": {
+            "count": 59,
+            "average_ms": 39.90129830508473,
+            "median_ms": 39.6372,
+            "p95_ms": 44.05329,
+            "p99_ms": 46.43961,
+            "max_ms": 48.0958
+          },
+          "http_req_receiving": {
+            "count": 59,
+            "average_ms": 0.034215254237288134,
+            "median_ms": 0,
+            "p95_ms": 0,
+            "p99_ms": 0.9305100000000017,
+            "max_ms": 1.5021
+          },
+          "http_req_sending": {
+            "count": 59,
+            "average_ms": 0,
+            "median_ms": 0,
+            "p95_ms": 0,
+            "p99_ms": 0,
+            "max_ms": 0
+          },
+          "http_req_blocked": {
+            "count": 59,
+            "average_ms": 0,
+            "median_ms": 0,
+            "p95_ms": 0,
+            "p99_ms": 0,
+            "max_ms": 0
+          },
+          "http_req_connecting": {
+            "count": 59,
+            "average_ms": 0,
+            "median_ms": 0,
+            "p95_ms": 0,
+            "p99_ms": 0,
+            "max_ms": 0
+          },
+          "http_req_tls_handshaking": {
+            "count": 59,
+            "average_ms": 0,
+            "median_ms": 0,
+            "p95_ms": 0,
+            "p99_ms": 0,
+            "max_ms": 0
+          }
+        },
+        "new_tcp_requests": 0,
+        "new_tls_requests": 0,
+        "slow_count": 0,
+        "slow_new_tcp": 0,
+        "slow_new_tls": 0,
+        "slow_duration_sum_ms": 0,
+        "slow_component_share": {
+          "sending": null,
+          "waiting": null,
+          "receiving": null
+        },
+        "slow_by_endpoint": {}
+      },
+      "protocols": [
+        "HTTP/2.0"
+      ],
+      "colos": [
+        "NRT"
+      ],
+      "cache_statuses": [
+        null
+      ]
+    }
+  },
+  "server": {
+    "locations": [
+      "icn06",
+      "icn05",
+      "icn07"
+    ],
+    "rtt_ms": {
+      "count": 20,
+      "min": 4,
+      "max": 5
+    },
+    "ha": {
+      "count": 5,
+      "min": 4,
+      "max": 4
+    },
+    "proxy_errors": {
+      "count": 5,
+      "min": 0,
+      "max": 0
+    },
+    "cpu": {
+      "count": 5,
+      "min": 0.0011143302874972142,
+      "max": 0.0022341376228775696
+    },
+    "pending": {
+      "count": 5,
+      "min": 0,
+      "max": 0
+    },
+    "categories_rolling_p99_seconds": {
+      "count": 5,
+      "min": 0.00174413075,
+      "max": 0.00360360375
+    }
+  },
+  "limits": [
+    "One low-rate round-robin diagnostic, not mixed-load improvement or stable capacity/p99 proof.",
+    "Edge trace does not execute the application; it is not a paired per-request span.",
+    "NRT versus connector ICN is a location difference, not proof of the exact routing or causal latency contribution.",
+    "Connection/TLS excluded from request duration; blocked may overlap connection work, do not add these blindly.",
+    "Server p99 is a rolling one-minute histogram estimate; do not subtract its percentile from client percentiles."
+  ]
+}

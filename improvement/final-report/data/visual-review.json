@@ -1,0 +1,73 @@
+{
+  "result": "PASS",
+  "desktopViewport": {
+    "width": 1365,
+    "height": 900
+  },
+  "mobileChecks": [
+    {
+      "width": 390,
+      "height": 844,
+      "chartImagesInspected": [
+        "order-runs",
+        "route-comparison",
+        "ssh-components"
+      ],
+      "pageOverflow": false
+    },
+    {
+      "width": 320,
+      "height": 900,
+      "pageOverflow": false,
+      "headingOverflow": [],
+      "emptyCharts": 0
+    }
+  ],
+  "desktop": {
+    "charts": [
+      {
+        "id": "order-summary",
+        "marks": 2,
+        "width": 1000
+      },
+      {
+        "id": "order-runs",
+        "marks": 12,
+        "width": 1000
+      },
+      {
+        "id": "overall-summary",
+        "marks": 4,
+        "width": 1000
+      },
+      {
+        "id": "route-comparison",
+        "marks": 6,
+        "width": 1000
+      },
+      {
+        "id": "ssh-components",
+        "marks": 8,
+        "width": 1000
+      }
+    ],
+    "creatingVisible": false,
+    "imagesLoaded": true,
+    "pageOverflow": false,
+    "tables": 6
+  },
+  "consoleWarningsOrErrors": [],
+  "interactions": {
+    "legendHideAndRestore": "PASS",
+    "sourceDefinitionAnd194_44_141_95Preview": "PASS"
+  },
+  "figuresInspected": [
+    "01-order-p95.png",
+    "02-order-repeats.png",
+    "03-overall-limits.png",
+    "04-route-comparison.png",
+    "05-ssh-timing-components.png",
+    "SQL access paths original"
+  ],
+  "newLoadTest": false
+}

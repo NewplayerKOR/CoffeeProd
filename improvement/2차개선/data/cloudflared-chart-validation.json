@@ -1,0 +1,11 @@
+{
+  "data_sha256": "e92366e76d32cbd36ab09b327c6050807bfcef1b7c503046e0df081d89641987",
+  "png_sha256": "40dc2f22a87656d1dad201d17abdb515a685f484ec86776ba887751202182446",
+  "width": 1440,
+  "height": 700,
+  "non_white_samples": 2755,
+  "text_bounds_check": "PASS",
+  "visual_inspection": "PASS: model inspected the rendered PNG with view_image; Korean text, measured values, axes and route order are readable without overlap",
+  "source_repository_relative_path": "k6/results/mixed-path-20261008T115435Z/mixed-comparison.json",
+  "public_snapshot_sha256": "50d248a398f803495bc5cd72200225ed26c6de38c66944a559b06a851a500413"
+}

@@ -1,0 +1,868 @@
+{
+  "suite_id": "dedicated-ssh-probe-20261008T145903Z",
+  "start_utc": "2026-10-08T14:59:03.7231352+00:00",
+  "end_utc": "2026-10-08T15:01:15.9543819+00:00",
+  "http_requests": 120,
+  "http_failures": 0,
+  "business_checks": 120,
+  "same_category_digest": true,
+  "input_hashes_match_baseline": true,
+  "script_sha256": "1e11ceee2766fe751137dda654baae00ea7bbc552491fad4b9035015d9492dbb",
+  "target_module_sha256": "5c2889fb0f3ea41f898886e85ad63e55d1e974a4118b63091d0ec7456819b1b4",
+  "topology": {
+    "separate_ssh_processes": true,
+    "same_ssh_executable": true,
+    "shared_listener": 18080,
+    "dedicated_listener": 18081,
+    "monitoring_kept_on_shared_tunnel": true,
+    "server_endpoint_same": true
+  },
+  "routes": {
+    "shared": {
+      "count": 60,
+      "timings": {
+        "http_req_duration": {
+          "count": 60,
+          "average_ms": 49.07457,
+          "median_ms": 51.696,
+          "p95_ms": 97.18781999999997,
+          "p99_ms": 113.09789,
+          "max_ms": 113.6342
+        },
+        "http_req_waiting": {
+          "count": 60,
+          "average_ms": 47.005636666666675,
+          "median_ms": 51.696,
+          "p95_ms": 96.76235999999996,
+          "p99_ms": 112.64832299999999,
+          "max_ms": 112.7252
+        },
+        "http_req_receiving": {
+          "count": 60,
+          "average_ms": 2.0604733333333334,
+          "median_ms": 0,
+          "p95_ms": 21.63417999999998,
+          "p99_ms": 32.946643999999985,
+          "max_ms": 35.7246
+        },
+        "http_req_sending": {
+          "count": 60,
+          "average_ms": 0.00846,
+          "median_ms": 0,
+          "p95_ms": 0,
+          "p99_ms": 0.2081159999999983,
+          "max_ms": 0.5076
+        },
+        "http_req_blocked": {
+          "count": 60,
+          "average_ms": 0.06893833333333334,
+          "median_ms": 0,
+          "p95_ms": 1.01983,
+          "p99_ms": 1.0428929999999998,
+          "max_ms": 1.0531
+        },
+        "http_req_connecting": {
+          "count": 60,
+          "average_ms": 0.05160666666666667,
+          "median_ms": 0,
+          "p95_ms": 0.51225,
+          "p99_ms": 1.031198,
+          "max_ms": 1.0358
+        },
+        "http_req_tls_handshaking": {
+          "count": 60,
+          "average_ms": 0,
+          "median_ms": 0,
+          "p95_ms": 0,
+          "p99_ms": 0,
+          "max_ms": 0
+        }
+      },
+      "new_tcp_requests": 4,
+      "new_tls_requests": 0,
+      "slow_count": 0,
+      "slow_new_tcp": 0,
+      "slow_new_tls": 0,
+      "slow_duration_sum_ms": 0,
+      "slow_component_share": {
+        "sending": null,
+        "waiting": null,
+        "receiving": null
+      },
+      "slow_by_endpoint": {}
+    },
+    "dedicated": {
+      "count": 60,
+      "timings": {
+        "http_req_duration": {
+          "count": 60,
+          "average_ms": 46.50765499999999,
+          "median_ms": 43.00165,
+          "p95_ms": 77.17024999999995,
+          "p99_ms": 92.231442,
+          "max_ms": 93.0493
+        },
+        "http_req_waiting": {
+          "count": 60,
+          "average_ms": 43.682895,
+          "median_ms": 42.8022,
+          "p95_ms": 77.17024999999995,
+          "p99_ms": 92.231442,
+          "max_ms": 93.0493
+        },
+        "http_req_receiving": {
+          "count": 60,
+          "average_ms": 2.8247599999999995,
+          "median_ms": 0,
+          "p95_ms": 31.048534999999994,
+          "p99_ms": 36.14476499999999,
+          "max_ms": 37.5292
+        },
+        "http_req_sending": {
+          "count": 60,
+          "average_ms": 0,
+          "median_ms": 0,
+          "p95_ms": 0,
+          "p99_ms": 0,
+          "max_ms": 0
+        },
+        "http_req_blocked": {
+          "count": 60,
+          "average_ms": 0.07664166666666666,
+          "median_ms": 0,
+          "p95_ms": 1.0253549999999998,
+          "p99_ms": 1.2285439999999983,
+          "max_ms": 1.5108
+        },
+        "http_req_connecting": {
+          "count": 60,
+          "average_ms": 0.06802166666666666,
+          "median_ms": 0,
+          "p95_ms": 0.5386049999999986,
+          "p99_ms": 1.2285439999999983,
+          "max_ms": 1.5108
+        },
+        "http_req_tls_handshaking": {
+          "count": 60,
+          "average_ms": 0,
+          "median_ms": 0,
+          "p95_ms": 0,
+          "p99_ms": 0,
+          "max_ms": 0
+        }
+      },
+      "new_tcp_requests": 4,
+      "new_tls_requests": 0,
+      "slow_count": 0,
+      "slow_new_tcp": 0,
+      "slow_new_tls": 0,
+      "slow_duration_sum_ms": 0,
+      "slow_component_share": {
+        "sending": null,
+        "waiting": null,
+        "receiving": null
+      },
+      "slow_by_endpoint": {}
+    }
+  },
+  "records": [
+    {
+      "id": "block-0-slot-0-shared",
+      "route": "shared",
+      "block": 0,
+      "slot": 0,
+      "start_utc": "2026-10-08T14:59:06.2420258+00:00",
+      "end_utc": "2026-10-08T14:59:22.3510418+00:00",
+      "raw_sha256": "f3797f8061541f39126f2f560527e72efee66307c9014e9d4178b2a14906d612",
+      "statistics": {
+        "count": 15,
+        "timings": {
+          "http_req_duration": {
+            "count": 15,
+            "average_ms": 45.45024,
+            "median_ms": 43.9927,
+            "p95_ms": 76.96852999999996,
+            "p99_ms": 102.67314599999997,
+            "max_ms": 109.0993
+          },
+          "http_req_waiting": {
+            "count": 15,
+            "average_ms": 43.88164666666667,
+            "median_ms": 43.9927,
+            "p95_ms": 76.81261999999995,
+            "p99_ms": 102.22620399999997,
+            "max_ms": 108.5796
+          },
+          "http_req_receiving": {
+            "count": 15,
+            "average_ms": 1.5685933333333333,
+            "median_ms": 0,
+            "p95_ms": 6.754259999999978,
+            "p99_ms": 18.36205199999999,
+            "max_ms": 21.264
+          },
+          "http_req_sending": {
+            "count": 15,
+            "average_ms": 0,
+            "median_ms": 0,
+            "p95_ms": 0,
+            "p99_ms": 0,
+            "max_ms": 0
+          },
+          "http_req_blocked": {
+            "count": 15,
+            "average_ms": 0.07020666666666667,
+            "median_ms": 0,
+            "p95_ms": 0.3159299999999989,
+            "p99_ms": 0.9056659999999993,
+            "max_ms": 1.0531
+          },
+          "http_req_connecting": {
+            "count": 15,
+            "average_ms": 0.03472,
+            "median_ms": 0,
+            "p95_ms": 0.15623999999999946,
+            "p99_ms": 0.44788799999999973,
+            "max_ms": 0.5208
+          },
+          "http_req_tls_handshaking": {
+            "count": 15,
+            "average_ms": 0,
+            "median_ms": 0,
+            "p95_ms": 0,
+            "p99_ms": 0,
+            "max_ms": 0
+          }
+        },
+        "new_tcp_requests": 1,
+        "new_tls_requests": 0,
+        "slow_count": 0,
+        "slow_new_tcp": 0,
+        "slow_new_tls": 0,
+        "slow_duration_sum_ms": 0,
+        "slow_component_share": {
+          "sending": null,
+          "waiting": null,
+          "receiving": null
+        },
+        "slow_by_endpoint": {}
+      }
+    },
+    {
+      "id": "block-0-slot-1-dedicated",
+      "route": "dedicated",
+      "block": 0,
+      "slot": 1,
+      "start_utc": "2026-10-08T14:59:22.3534465+00:00",
+      "end_utc": "2026-10-08T14:59:38.4653252+00:00",
+      "raw_sha256": "ac44700f8ba1b983acaf834437edbebeb38a1fc91863d235301b9390d406734f",
+      "statistics": {
+        "count": 15,
+        "timings": {
+          "http_req_duration": {
+            "count": 15,
+            "average_ms": 49.26268666666666,
+            "median_ms": 44.5932,
+            "p95_ms": 81.00580999999998,
+            "p99_ms": 89.53164199999999,
+            "max_ms": 91.6631
+          },
+          "http_req_waiting": {
+            "count": 15,
+            "average_ms": 44.889379999999996,
+            "median_ms": 44.1943,
+            "p95_ms": 81.00580999999998,
+            "p99_ms": 89.53164199999999,
+            "max_ms": 91.6631
+          },
+          "http_req_receiving": {
+            "count": 15,
+            "average_ms": 4.373306666666666,
+            "median_ms": 0,
+            "p95_ms": 31.585709999999995,
+            "p99_ms": 32.788982,
+            "max_ms": 33.0898
+          },
+          "http_req_sending": {
+            "count": 15,
+            "average_ms": 0,
+            "median_ms": 0,
+            "p95_ms": 0,
+            "p99_ms": 0,
+            "max_ms": 0
+          },
+          "http_req_blocked": {
+            "count": 15,
+            "average_ms": 0.10071999999999999,
+            "median_ms": 0,
+            "p95_ms": 0.45323999999999837,
+            "p99_ms": 1.299287999999999,
+            "max_ms": 1.5108
+          },
+          "http_req_connecting": {
+            "count": 15,
+            "average_ms": 0.10071999999999999,
+            "median_ms": 0,
+            "p95_ms": 0.45323999999999837,
+            "p99_ms": 1.299287999999999,
+            "max_ms": 1.5108
+          },
+          "http_req_tls_handshaking": {
+            "count": 15,
+            "average_ms": 0,
+            "median_ms": 0,
+            "p95_ms": 0,
+            "p99_ms": 0,
+            "max_ms": 0
+          }
+        },
+        "new_tcp_requests": 1,
+        "new_tls_requests": 0,
+        "slow_count": 0,
+        "slow_new_tcp": 0,
+        "slow_new_tls": 0,
+        "slow_duration_sum_ms": 0,
+        "slow_component_share": {
+          "sending": null,
+          "waiting": null,
+          "receiving": null
+        },
+        "slow_by_endpoint": {}
+      }
+    },
+    {
+      "id": "block-1-slot-0-dedicated",
+      "route": "dedicated",
+      "block": 1,
+      "slot": 0,
+      "start_utc": "2026-10-08T14:59:38.4668220+00:00",
+      "end_utc": "2026-10-08T14:59:54.5248954+00:00",
+      "raw_sha256": "32fa5b539669c49c2bd49fa3dfcdd8aa674160c9d4e9eefa346b45c4a0dd62c0",
+      "statistics": {
+        "count": 15,
+        "timings": {
+          "http_req_duration": {
+            "count": 15,
+            "average_ms": 51.083173333333335,
+            "median_ms": 54.0538,
+            "p95_ms": 91.66757,
+            "p99_ms": 92.772954,
+            "max_ms": 93.0493
+          },
+          "http_req_waiting": {
+            "count": 15,
+            "average_ms": 48.481019999999994,
+            "median_ms": 54.0538,
+            "p95_ms": 91.66757,
+            "p99_ms": 92.772954,
+            "max_ms": 93.0493
+          },
+          "http_req_receiving": {
+            "count": 15,
+            "average_ms": 2.6021533333333333,
+            "median_ms": 0,
+            "p95_ms": 11.584049999999962,
+            "p99_ms": 32.34016999999998,
+            "max_ms": 37.5292
+          },
+          "http_req_sending": {
+            "count": 15,
+            "average_ms": 0,
+            "median_ms": 0,
+            "p95_ms": 0,
+            "p99_ms": 0,
+            "max_ms": 0
+          },
+          "http_req_blocked": {
+            "count": 15,
+            "average_ms": 0.06834,
+            "median_ms": 0,
+            "p95_ms": 0.30752999999999886,
+            "p99_ms": 0.8815859999999993,
+            "max_ms": 1.0251
+          },
+          "http_req_connecting": {
+            "count": 15,
+            "average_ms": 0.06834,
+            "median_ms": 0,
+            "p95_ms": 0.30752999999999886,
+            "p99_ms": 0.8815859999999993,
+            "max_ms": 1.0251
+          },
+          "http_req_tls_handshaking": {
+            "count": 15,
+            "average_ms": 0,
+            "median_ms": 0,
+            "p95_ms": 0,
+            "p99_ms": 0,
+            "max_ms": 0
+          }
+        },
+        "new_tcp_requests": 1,
+        "new_tls_requests": 0,
+        "slow_count": 0,
+        "slow_new_tcp": 0,
+        "slow_new_tls": 0,
+        "slow_duration_sum_ms": 0,
+        "slow_component_share": {
+          "sending": null,
+          "waiting": null,
+          "receiving": null
+        },
+        "slow_by_endpoint": {}
+      }
+    },
+    {
+      "id": "block-1-slot-1-shared",
+      "route": "shared",
+      "block": 1,
+      "slot": 1,
+      "start_utc": "2026-10-08T14:59:54.5262311+00:00",
+      "end_utc": "2026-10-08T15:00:10.6280105+00:00",
+      "raw_sha256": "8a3c84e256964f60b6b30ba5e68b238784fe1eba0b907def3de0e4c445878275",
+      "statistics": {
+        "count": 15,
+        "timings": {
+          "http_req_duration": {
+            "count": 15,
+            "average_ms": 49.356106666666655,
+            "median_ms": 55.0179,
+            "p95_ms": 81.50816999999998,
+            "p99_ms": 93.550354,
+            "max_ms": 96.5609
+          },
+          "http_req_waiting": {
+            "count": 15,
+            "average_ms": 47.14563333333333,
+            "median_ms": 55.0179,
+            "p95_ms": 81.38201999999998,
+            "p99_ms": 93.18872399999998,
+            "max_ms": 96.1404
+          },
+          "http_req_receiving": {
+            "count": 15,
+            "average_ms": 2.2104733333333333,
+            "median_ms": 0,
+            "p95_ms": 9.68397999999997,
+            "p99_ms": 26.749755999999984,
+            "max_ms": 31.0162
+          },
+          "http_req_sending": {
+            "count": 15,
+            "average_ms": 0,
+            "median_ms": 0,
+            "p95_ms": 0,
+            "p99_ms": 0,
+            "max_ms": 0
+          },
+          "http_req_blocked": {
+            "count": 15,
+            "average_ms": 0.06853333333333333,
+            "median_ms": 0,
+            "p95_ms": 0.3083999999999989,
+            "p99_ms": 0.8840799999999994,
+            "max_ms": 1.028
+          },
+          "http_req_connecting": {
+            "count": 15,
+            "average_ms": 0.06853333333333333,
+            "median_ms": 0,
+            "p95_ms": 0.3083999999999989,
+            "p99_ms": 0.8840799999999994,
+            "max_ms": 1.028
+          },
+          "http_req_tls_handshaking": {
+            "count": 15,
+            "average_ms": 0,
+            "median_ms": 0,
+            "p95_ms": 0,
+            "p99_ms": 0,
+            "max_ms": 0
+          }
+        },
+        "new_tcp_requests": 1,
+        "new_tls_requests": 0,
+        "slow_count": 0,
+        "slow_new_tcp": 0,
+        "slow_new_tls": 0,
+        "slow_duration_sum_ms": 0,
+        "slow_component_share": {
+          "sending": null,
+          "waiting": null,
+          "receiving": null
+        },
+        "slow_by_endpoint": {}
+      }
+    },
+    {
+      "id": "block-2-slot-0-shared",
+      "route": "shared",
+      "block": 2,
+      "slot": 0,
+      "start_utc": "2026-10-08T15:00:10.6295040+00:00",
+      "end_utc": "2026-10-08T15:00:26.8210773+00:00",
+      "raw_sha256": "69b7d154a9885706663af1d821e6d7868382d06802959376927a7bef8cbf908c",
+      "statistics": {
+        "count": 15,
+        "timings": {
+          "http_req_duration": {
+            "count": 15,
+            "average_ms": 49.98289333333334,
+            "median_ms": 55.6863,
+            "p95_ms": 78.15875999999994,
+            "p99_ms": 106.53911199999997,
+            "max_ms": 113.6342
+          },
+          "http_req_waiting": {
+            "count": 15,
+            "average_ms": 47.44628,
+            "median_ms": 55.6863,
+            "p95_ms": 77.84696999999994,
+            "p99_ms": 105.64531399999997,
+            "max_ms": 112.5949
+          },
+          "http_req_receiving": {
+            "count": 15,
+            "average_ms": 2.502773333333334,
+            "median_ms": 0,
+            "p95_ms": 11.089569999999963,
+            "p99_ms": 30.797593999999982,
+            "max_ms": 35.7246
+          },
+          "http_req_sending": {
+            "count": 15,
+            "average_ms": 0.03384,
+            "median_ms": 0,
+            "p95_ms": 0.15227999999999947,
+            "p99_ms": 0.43653599999999976,
+            "max_ms": 0.5076
+          },
+          "http_req_blocked": {
+            "count": 15,
+            "average_ms": 0.06796,
+            "median_ms": 0,
+            "p95_ms": 0.3058199999999989,
+            "p99_ms": 0.8766839999999995,
+            "max_ms": 1.0194
+          },
+          "http_req_connecting": {
+            "count": 15,
+            "average_ms": 0.034120000000000004,
+            "median_ms": 0,
+            "p95_ms": 0.15353999999999945,
+            "p99_ms": 0.44014799999999976,
+            "max_ms": 0.5118
+          },
+          "http_req_tls_handshaking": {
+            "count": 15,
+            "average_ms": 0,
+            "median_ms": 0,
+            "p95_ms": 0,
+            "p99_ms": 0,
+            "max_ms": 0
+          }
+        },
+        "new_tcp_requests": 1,
+        "new_tls_requests": 0,
+        "slow_count": 0,
+        "slow_new_tcp": 0,
+        "slow_new_tls": 0,
+        "slow_duration_sum_ms": 0,
+        "slow_component_share": {
+          "sending": null,
+          "waiting": null,
+          "receiving": null
+        },
+        "slow_by_endpoint": {}
+      }
+    },
+    {
+      "id": "block-2-slot-1-dedicated",
+      "route": "dedicated",
+      "block": 2,
+      "slot": 1,
+      "start_utc": "2026-10-08T15:00:26.8223902+00:00",
+      "end_utc": "2026-10-08T15:00:42.8448798+00:00",
+      "raw_sha256": "d86fb9e5a7cf87f6b3d8c95a53026390ae935198c24c96aac8a94f0f7d3ddfca",
+      "statistics": {
+        "count": 15,
+        "timings": {
+          "http_req_duration": {
+            "count": 15,
+            "average_ms": 40.76764666666667,
+            "median_ms": 38.4309,
+            "p95_ms": 62.14071,
+            "p99_ms": 62.895421999999996,
+            "max_ms": 63.0841
+          },
+          "http_req_waiting": {
+            "count": 15,
+            "average_ms": 38.29500666666666,
+            "median_ms": 38.0354,
+            "p95_ms": 62.14071,
+            "p99_ms": 62.895421999999996,
+            "max_ms": 63.0841
+          },
+          "http_req_receiving": {
+            "count": 15,
+            "average_ms": 2.4726399999999997,
+            "median_ms": 0,
+            "p95_ms": 10.832289999999961,
+            "p99_ms": 30.31261799999998,
+            "max_ms": 35.1827
+          },
+          "http_req_sending": {
+            "count": 15,
+            "average_ms": 0,
+            "median_ms": 0,
+            "p95_ms": 0,
+            "p99_ms": 0,
+            "max_ms": 0
+          },
+          "http_req_blocked": {
+            "count": 15,
+            "average_ms": 0.06868,
+            "median_ms": 0,
+            "p95_ms": 0.3090599999999989,
+            "p99_ms": 0.8859719999999994,
+            "max_ms": 1.0302
+          },
+          "http_req_connecting": {
+            "count": 15,
+            "average_ms": 0.0342,
+            "median_ms": 0,
+            "p95_ms": 0.15389999999999945,
+            "p99_ms": 0.44117999999999974,
+            "max_ms": 0.513
+          },
+          "http_req_tls_handshaking": {
+            "count": 15,
+            "average_ms": 0,
+            "median_ms": 0,
+            "p95_ms": 0,
+            "p99_ms": 0,
+            "max_ms": 0
+          }
+        },
+        "new_tcp_requests": 1,
+        "new_tls_requests": 0,
+        "slow_count": 0,
+        "slow_new_tcp": 0,
+        "slow_new_tls": 0,
+        "slow_duration_sum_ms": 0,
+        "slow_component_share": {
+          "sending": null,
+          "waiting": null,
+          "receiving": null
+        },
+        "slow_by_endpoint": {}
+      }
+    },
+    {
+      "id": "block-3-slot-0-dedicated",
+      "route": "dedicated",
+      "block": 3,
+      "slot": 0,
+      "start_utc": "2026-10-08T15:00:42.8464579+00:00",
+      "end_utc": "2026-10-08T15:00:58.8733482+00:00",
+      "raw_sha256": "e42e7247bb1ef8122fc3377e9bcfc2d03c8fe0f0df9b5112e1924ba5b85e4dc0",
+      "statistics": {
+        "count": 15,
+        "timings": {
+          "http_req_duration": {
+            "count": 15,
+            "average_ms": 44.91711333333333,
+            "median_ms": 44.6279,
+            "p95_ms": 61.249539999999996,
+            "p99_ms": 62.621988,
+            "max_ms": 62.9651
+          },
+          "http_req_waiting": {
+            "count": 15,
+            "average_ms": 43.06617333333333,
+            "median_ms": 44.6279,
+            "p95_ms": 61.13464,
+            "p99_ms": 62.292607999999994,
+            "max_ms": 62.5821
+          },
+          "http_req_receiving": {
+            "count": 15,
+            "average_ms": 1.85094,
+            "median_ms": 0,
+            "p95_ms": 8.138229999999972,
+            "p99_ms": 22.56556599999999,
+            "max_ms": 26.1724
+          },
+          "http_req_sending": {
+            "count": 15,
+            "average_ms": 0,
+            "median_ms": 0,
+            "p95_ms": 0,
+            "p99_ms": 0,
+            "max_ms": 0
+          },
+          "http_req_blocked": {
+            "count": 15,
+            "average_ms": 0.06882666666666666,
+            "median_ms": 0,
+            "p95_ms": 0.3097199999999989,
+            "p99_ms": 0.8878639999999994,
+            "max_ms": 1.0324
+          },
+          "http_req_connecting": {
+            "count": 15,
+            "average_ms": 0.06882666666666666,
+            "median_ms": 0,
+            "p95_ms": 0.3097199999999989,
+            "p99_ms": 0.8878639999999994,
+            "max_ms": 1.0324
+          },
+          "http_req_tls_handshaking": {
+            "count": 15,
+            "average_ms": 0,
+            "median_ms": 0,
+            "p95_ms": 0,
+            "p99_ms": 0,
+            "max_ms": 0
+          }
+        },
+        "new_tcp_requests": 1,
+        "new_tls_requests": 0,
+        "slow_count": 0,
+        "slow_new_tcp": 0,
+        "slow_new_tls": 0,
+        "slow_duration_sum_ms": 0,
+        "slow_component_share": {
+          "sending": null,
+          "waiting": null,
+          "receiving": null
+        },
+        "slow_by_endpoint": {}
+      }
+    },
+    {
+      "id": "block-3-slot-1-shared",
+      "route": "shared",
+      "block": 3,
+      "slot": 1,
+      "start_utc": "2026-10-08T15:00:58.8745959+00:00",
+      "end_utc": "2026-10-08T15:01:15.0374696+00:00",
+      "raw_sha256": "a27628ec7ecc26fcbd0e84a7c958f16190d334afef110369d61599ef2a880109",
+      "statistics": {
+        "count": 15,
+        "timings": {
+          "http_req_duration": {
+            "count": 15,
+            "average_ms": 51.509040000000006,
+            "median_ms": 54.7086,
+            "p95_ms": 97.30118999999998,
+            "p99_ms": 109.64039799999999,
+            "max_ms": 112.7252
+          },
+          "http_req_waiting": {
+            "count": 15,
+            "average_ms": 49.548986666666664,
+            "median_ms": 54.7086,
+            "p95_ms": 97.30118999999998,
+            "p99_ms": 109.64039799999999,
+            "max_ms": 112.7252
+          },
+          "http_req_receiving": {
+            "count": 15,
+            "average_ms": 1.9600533333333334,
+            "median_ms": 0,
+            "p95_ms": 8.866629999999969,
+            "p99_ms": 24.707405999999985,
+            "max_ms": 28.6676
+          },
+          "http_req_sending": {
+            "count": 15,
+            "average_ms": 0,
+            "median_ms": 0,
+            "p95_ms": 0,
+            "p99_ms": 0,
+            "max_ms": 0
+          },
+          "http_req_blocked": {
+            "count": 15,
+            "average_ms": 0.06905333333333334,
+            "median_ms": 0,
+            "p95_ms": 0.3107399999999989,
+            "p99_ms": 0.8907879999999995,
+            "max_ms": 1.0358
+          },
+          "http_req_connecting": {
+            "count": 15,
+            "average_ms": 0.06905333333333334,
+            "median_ms": 0,
+            "p95_ms": 0.3107399999999989,
+            "p99_ms": 0.8907879999999995,
+            "max_ms": 1.0358
+          },
+          "http_req_tls_handshaking": {
+            "count": 15,
+            "average_ms": 0,
+            "median_ms": 0,
+            "p95_ms": 0,
+            "p99_ms": 0,
+            "max_ms": 0
+          }
+        },
+        "new_tcp_requests": 1,
+        "new_tls_requests": 0,
+        "slow_count": 0,
+        "slow_new_tcp": 0,
+        "slow_new_tls": 0,
+        "slow_duration_sum_ms": 0,
+        "slow_component_share": {
+          "sending": null,
+          "waiting": null,
+          "receiving": null
+        },
+        "slow_by_endpoint": {}
+      }
+    }
+  ],
+  "server": {
+    "cpu": {
+      "count": 9,
+      "min": 0.0008914642299977714,
+      "max": 0.006699419383653416
+    },
+    "pending": {
+      "count": 9,
+      "min": 0,
+      "max": 0
+    },
+    "categories_rolling_p99_seconds": {
+      "count": 9,
+      "min": 0.002088218694444444,
+      "max": 0.009269410629999999
+    }
+  },
+  "validation": "PASS: eight fixed alternating segments, 120 HTTP/check successes, exact GET targets/protocol, native seven timing quantiles, digests, topology and balanced positions",
+  "limits": [
+    "Four 15-request segments per route; pooled 60-request quantiles are not stable capacity or SLO proof.",
+    "Dedicated TCP/SSH connection is newer; connection/session age is not controlled.",
+    "No per-request encrypted-channel trace; a difference supports isolation, not a proven ACK/Nagle/VM cause.",
+    "SSH test-path change is not deployed backend or Cloudflare performance improvement.",
+    "No business writes, deployment, server configuration changes or replacement of historical results."
+  ],
+  "lan_icmp_reference": {
+    "started_at_utc": "2026-10-08T15:05:05.8962123+00:00",
+    "ended_at_utc": "2026-10-08T15:05:12.9935990+00:00",
+    "count": 8,
+    "successes": 8,
+    "reported_latency_ms": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "limitation": "Integer-ms ICMP RTT after HTTP comparison; displayed zero does not mean physical zero or prove TCP/SSH latency."
+  }
+}

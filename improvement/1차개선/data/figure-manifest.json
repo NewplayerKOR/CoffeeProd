@@ -1,0 +1,47 @@
+{
+  "generated_at_utc": "2026-10-08T05:02:05.996Z",
+  "source_sha256": "98f5df4ac0c5dbc00d14440e52011fed7a64bac3666a05b9694800f5e23b8b6b",
+  "images": [
+    {
+      "file": "figures/01_order_latency.png",
+      "width": 1440,
+      "height": 690,
+      "bytes": 92906,
+      "sha256": "685d2635281a2d9119bc4714264f24a3d753b867e29782605598294c07281c55",
+      "non_white_samples": 3689,
+      "description": "Six independent order endpoint repeats, with supplemental repeat and median definitions visible",
+      "renderer_bounds_check": "PASS"
+    },
+    {
+      "file": "figures/02_sql_access_paths.png",
+      "width": 1440,
+      "height": 550,
+      "bytes": 82018,
+      "sha256": "83e6db6e4a599a1b058b028e5c6271f0fcf250de6c396f742beb32896e1e98dc",
+      "non_white_samples": 896,
+      "description": "SQL execution time on an explicitly logarithmic dot axis, not zero-based bars or API percentiles",
+      "renderer_bounds_check": "PASS"
+    },
+    {
+      "file": "figures/03_overall_tradeoffs.png",
+      "width": 1440,
+      "height": 580,
+      "bytes": 81009,
+      "sha256": "6fe281283fecc4e7d2878ea66d20c4fb9351d05c3a9bfa8ce510737de2566f2d",
+      "non_white_samples": 2997,
+      "description": "Zero-based before/after mixed workload bars show that overall latency did not improve",
+      "renderer_bounds_check": "PASS"
+    },
+    {
+      "file": "figures/04_public_origin_paths.png",
+      "width": 1440,
+      "height": 730,
+      "bytes": 97438,
+      "sha256": "38862580b63d58c89d0e4880ed1b6e08af9acbab8d9a39c057b626179801567b",
+      "non_white_samples": 3014,
+      "description": "Zero-based paired path comparison with route order, actual counts and protocol limitations visible",
+      "renderer_bounds_check": "PASS"
+    }
+  ],
+  "visual_inspection": "Pending human/model image inspection; geometry/pixel checks passed"
+}

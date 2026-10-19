@@ -1,0 +1,657 @@
+{
+  "source_filename": "coffeeprod-origin-local-PJ7xsubQ.csv",
+  "source_sha256": "8b8328a8b9c90317c574bddb125e1c94c7f8bb0abd87a45e4b65bd89ee22189b",
+  "completion_window_start_utc": "2026-10-08T12:52:45Z",
+  "completion_window_end_utc": "2026-10-08T12:53:45Z",
+  "target": "http://127.0.0.1:8080/api/v1/categories",
+  "reported_environment": "Ubuntu localhost, user-executed",
+  "http_requests": 60,
+  "http_successes": 60,
+  "http_failures": 0,
+  "http_version": "1.1",
+  "validation": "PASS: schema, 60 ordered unique rounds, HTTP 200, UTC completion timestamps, finite nonnegative cumulative timing order and immutable source",
+  "percentile_method": "linear interpolation at p*(n-1), milliseconds",
+  "timings": {
+    "dns": {
+      "p95_ms": 0.04204999999999999,
+      "max_ms": 0.075,
+      "p99_ms": 0.060249999999999915,
+      "count": 60,
+      "average_ms": 0.02848333333333333,
+      "median_ms": 0.026
+    },
+    "tcp": {
+      "p95_ms": 0.21189999999999995,
+      "max_ms": 0.398,
+      "p99_ms": 0.2988799999999994,
+      "count": 60,
+      "average_ms": 0.17876666666666674,
+      "median_ms": 0.175
+    },
+    "ttfb": {
+      "p95_ms": 3.1212999999999997,
+      "max_ms": 3.381,
+      "p99_ms": 3.2978099999999992,
+      "count": 60,
+      "average_ms": 2.6133666666666664,
+      "median_ms": 2.528
+    },
+    "total": {
+      "p95_ms": 3.29755,
+      "max_ms": 3.506,
+      "p99_ms": 3.4552599999999996,
+      "count": 60,
+      "average_ms": 2.7660499999999995,
+      "median_ms": 2.7139999999999995
+    }
+  },
+  "samples": [
+    {
+      "ended_at_utc": "2026-10-08T12:52:45Z",
+      "round": 0,
+      "status": 200,
+      "http_version": "1.1",
+      "dns_ms": 0.028,
+      "tcp_ms": 0.193,
+      "ttfb_ms": 3.095,
+      "total_ms": 3.233
+    },
+    {
+      "ended_at_utc": "2026-10-08T12:52:46Z",
+      "round": 1,
+      "status": 200,
+      "http_version": "1.1",
+      "dns_ms": 0.026,
+      "tcp_ms": 0.17300000000000001,
+      "ttfb_ms": 2.9659999999999997,
+      "total_ms": 3.042
+    },
+    {
+      "ended_at_utc": "2026-10-08T12:52:47Z",
+      "round": 2,
+      "status": 200,
+      "http_version": "1.1",
+      "dns_ms": 0.028,
+      "tcp_ms": 0.18100000000000002,
+      "ttfb_ms": 3.022,
+      "total_ms": 3.2239999999999998
+    },
+    {
+      "ended_at_utc": "2026-10-08T12:52:48Z",
+      "round": 3,
+      "status": 200,
+      "http_version": "1.1",
+      "dns_ms": 0.028,
+      "tcp_ms": 0.175,
+      "ttfb_ms": 2.489,
+      "total_ms": 2.618
+    },
+    {
+      "ended_at_utc": "2026-10-08T12:52:49Z",
+      "round": 4,
+      "status": 200,
+      "http_version": "1.1",
+      "dns_ms": 0.023,
+      "tcp_ms": 0.153,
+      "ttfb_ms": 2.455,
+      "total_ms": 2.516
+    },
+    {
+      "ended_at_utc": "2026-10-08T12:52:50Z",
+      "round": 5,
+      "status": 200,
+      "http_version": "1.1",
+      "dns_ms": 0.075,
+      "tcp_ms": 0.207,
+      "ttfb_ms": 2.432,
+      "total_ms": 2.68
+    },
+    {
+      "ended_at_utc": "2026-10-08T12:52:51Z",
+      "round": 6,
+      "status": 200,
+      "http_version": "1.1",
+      "dns_ms": 0.024,
+      "tcp_ms": 0.148,
+      "ttfb_ms": 2.499,
+      "total_ms": 2.711
+    },
+    {
+      "ended_at_utc": "2026-10-08T12:52:52Z",
+      "round": 7,
+      "status": 200,
+      "http_version": "1.1",
+      "dns_ms": 0.023,
+      "tcp_ms": 0.14100000000000001,
+      "ttfb_ms": 2.033,
+      "total_ms": 2.149
+    },
+    {
+      "ended_at_utc": "2026-10-08T12:52:53Z",
+      "round": 8,
+      "status": 200,
+      "http_version": "1.1",
+      "dns_ms": 0.026,
+      "tcp_ms": 0.177,
+      "ttfb_ms": 2.417,
+      "total_ms": 2.5100000000000002
+    },
+    {
+      "ended_at_utc": "2026-10-08T12:52:54Z",
+      "round": 9,
+      "status": 200,
+      "http_version": "1.1",
+      "dns_ms": 0.023,
+      "tcp_ms": 0.18100000000000002,
+      "ttfb_ms": 2.4459999999999997,
+      "total_ms": 2.6359999999999997
+    },
+    {
+      "ended_at_utc": "2026-10-08T12:52:55Z",
+      "round": 10,
+      "status": 200,
+      "http_version": "1.1",
+      "dns_ms": 0.023,
+      "tcp_ms": 0.163,
+      "ttfb_ms": 2.395,
+      "total_ms": 2.548
+    },
+    {
+      "ended_at_utc": "2026-10-08T12:52:56Z",
+      "round": 11,
+      "status": 200,
+      "http_version": "1.1",
+      "dns_ms": 0.028,
+      "tcp_ms": 0.183,
+      "ttfb_ms": 3.039,
+      "total_ms": 3.243
+    },
+    {
+      "ended_at_utc": "2026-10-08T12:52:57Z",
+      "round": 12,
+      "status": 200,
+      "http_version": "1.1",
+      "dns_ms": 0.030000000000000002,
+      "tcp_ms": 0.183,
+      "ttfb_ms": 2.935,
+      "total_ms": 3.018
+    },
+    {
+      "ended_at_utc": "2026-10-08T12:52:58Z",
+      "round": 13,
+      "status": 200,
+      "http_version": "1.1",
+      "dns_ms": 0.025,
+      "tcp_ms": 0.175,
+      "ttfb_ms": 2.706,
+      "total_ms": 2.781
+    },
+    {
+      "ended_at_utc": "2026-10-08T12:52:59Z",
+      "round": 14,
+      "status": 200,
+      "http_version": "1.1",
+      "dns_ms": 0.026,
+      "tcp_ms": 0.158,
+      "ttfb_ms": 2.548,
+      "total_ms": 2.706
+    },
+    {
+      "ended_at_utc": "2026-10-08T12:53:00Z",
+      "round": 15,
+      "status": 200,
+      "http_version": "1.1",
+      "dns_ms": 0.024,
+      "tcp_ms": 0.161,
+      "ttfb_ms": 2.298,
+      "total_ms": 2.432
+    },
+    {
+      "ended_at_utc": "2026-10-08T12:53:01Z",
+      "round": 16,
+      "status": 200,
+      "http_version": "1.1",
+      "dns_ms": 0.028,
+      "tcp_ms": 0.176,
+      "ttfb_ms": 2.61,
+      "total_ms": 2.698
+    },
+    {
+      "ended_at_utc": "2026-10-08T12:53:02Z",
+      "round": 17,
+      "status": 200,
+      "http_version": "1.1",
+      "dns_ms": 0.024,
+      "tcp_ms": 0.188,
+      "ttfb_ms": 2.811,
+      "total_ms": 3.012
+    },
+    {
+      "ended_at_utc": "2026-10-08T12:53:03Z",
+      "round": 18,
+      "status": 200,
+      "http_version": "1.1",
+      "dns_ms": 0.026,
+      "tcp_ms": 0.164,
+      "ttfb_ms": 2.385,
+      "total_ms": 2.554
+    },
+    {
+      "ended_at_utc": "2026-10-08T12:53:04Z",
+      "round": 19,
+      "status": 200,
+      "http_version": "1.1",
+      "dns_ms": 0.025,
+      "tcp_ms": 0.157,
+      "ttfb_ms": 2.375,
+      "total_ms": 2.458
+    },
+    {
+      "ended_at_utc": "2026-10-08T12:53:05Z",
+      "round": 20,
+      "status": 200,
+      "http_version": "1.1",
+      "dns_ms": 0.027,
+      "tcp_ms": 0.165,
+      "ttfb_ms": 2.37,
+      "total_ms": 2.457
+    },
+    {
+      "ended_at_utc": "2026-10-08T12:53:06Z",
+      "round": 21,
+      "status": 200,
+      "http_version": "1.1",
+      "dns_ms": 0.030000000000000002,
+      "tcp_ms": 0.19799999999999998,
+      "ttfb_ms": 3.117,
+      "total_ms": 3.297
+    },
+    {
+      "ended_at_utc": "2026-10-08T12:53:07Z",
+      "round": 22,
+      "status": 200,
+      "http_version": "1.1",
+      "dns_ms": 0.027,
+      "tcp_ms": 0.21000000000000002,
+      "ttfb_ms": 2.7950000000000004,
+      "total_ms": 2.883
+    },
+    {
+      "ended_at_utc": "2026-10-08T12:53:08Z",
+      "round": 23,
+      "status": 200,
+      "http_version": "1.1",
+      "dns_ms": 0.024,
+      "tcp_ms": 0.161,
+      "ttfb_ms": 2.494,
+      "total_ms": 2.5669999999999997
+    },
+    {
+      "ended_at_utc": "2026-10-08T12:53:09Z",
+      "round": 24,
+      "status": 200,
+      "http_version": "1.1",
+      "dns_ms": 0.025,
+      "tcp_ms": 0.171,
+      "ttfb_ms": 2.464,
+      "total_ms": 2.611
+    },
+    {
+      "ended_at_utc": "2026-10-08T12:53:10Z",
+      "round": 25,
+      "status": 200,
+      "http_version": "1.1",
+      "dns_ms": 0.041999999999999996,
+      "tcp_ms": 0.175,
+      "ttfb_ms": 2.415,
+      "total_ms": 2.512
+    },
+    {
+      "ended_at_utc": "2026-10-08T12:53:11Z",
+      "round": 26,
+      "status": 200,
+      "http_version": "1.1",
+      "dns_ms": 0.026,
+      "tcp_ms": 0.183,
+      "ttfb_ms": 2.578,
+      "total_ms": 2.7889999999999997
+    },
+    {
+      "ended_at_utc": "2026-10-08T12:53:12Z",
+      "round": 27,
+      "status": 200,
+      "http_version": "1.1",
+      "dns_ms": 0.028,
+      "tcp_ms": 0.176,
+      "ttfb_ms": 2.801,
+      "total_ms": 3.025
+    },
+    {
+      "ended_at_utc": "2026-10-08T12:53:13Z",
+      "round": 28,
+      "status": 200,
+      "http_version": "1.1",
+      "dns_ms": 0.027,
+      "tcp_ms": 0.158,
+      "ttfb_ms": 2.49,
+      "total_ms": 2.677
+    },
+    {
+      "ended_at_utc": "2026-10-08T12:53:14Z",
+      "round": 29,
+      "status": 200,
+      "http_version": "1.1",
+      "dns_ms": 0.026,
+      "tcp_ms": 0.179,
+      "ttfb_ms": 2.731,
+      "total_ms": 2.9160000000000004
+    },
+    {
+      "ended_at_utc": "2026-10-08T12:53:15Z",
+      "round": 30,
+      "status": 200,
+      "http_version": "1.1",
+      "dns_ms": 0.05,
+      "tcp_ms": 0.19,
+      "ttfb_ms": 2.48,
+      "total_ms": 2.65
+    },
+    {
+      "ended_at_utc": "2026-10-08T12:53:16Z",
+      "round": 31,
+      "status": 200,
+      "http_version": "1.1",
+      "dns_ms": 0.030000000000000002,
+      "tcp_ms": 0.183,
+      "ttfb_ms": 3.381,
+      "total_ms": 3.506
+    },
+    {
+      "ended_at_utc": "2026-10-08T12:53:17Z",
+      "round": 32,
+      "status": 200,
+      "http_version": "1.1",
+      "dns_ms": 0.028,
+      "tcp_ms": 0.155,
+      "ttfb_ms": 2.0709999999999997,
+      "total_ms": 2.2520000000000002
+    },
+    {
+      "ended_at_utc": "2026-10-08T12:53:18Z",
+      "round": 33,
+      "status": 200,
+      "http_version": "1.1",
+      "dns_ms": 0.028,
+      "tcp_ms": 0.171,
+      "ttfb_ms": 2.532,
+      "total_ms": 2.7169999999999996
+    },
+    {
+      "ended_at_utc": "2026-10-08T12:53:19Z",
+      "round": 34,
+      "status": 200,
+      "http_version": "1.1",
+      "dns_ms": 0.025,
+      "tcp_ms": 0.152,
+      "ttfb_ms": 2.347,
+      "total_ms": 2.44
+    },
+    {
+      "ended_at_utc": "2026-10-08T12:53:21Z",
+      "round": 35,
+      "status": 200,
+      "http_version": "1.1",
+      "dns_ms": 0.025,
+      "tcp_ms": 0.156,
+      "ttfb_ms": 2.524,
+      "total_ms": 2.738
+    },
+    {
+      "ended_at_utc": "2026-10-08T12:53:22Z",
+      "round": 36,
+      "status": 200,
+      "http_version": "1.1",
+      "dns_ms": 0.024,
+      "tcp_ms": 0.152,
+      "ttfb_ms": 2.608,
+      "total_ms": 2.754
+    },
+    {
+      "ended_at_utc": "2026-10-08T12:53:23Z",
+      "round": 37,
+      "status": 200,
+      "http_version": "1.1",
+      "dns_ms": 0.026,
+      "tcp_ms": 0.206,
+      "ttfb_ms": 2.8019999999999996,
+      "total_ms": 2.9949999999999997
+    },
+    {
+      "ended_at_utc": "2026-10-08T12:53:24Z",
+      "round": 38,
+      "status": 200,
+      "http_version": "1.1",
+      "dns_ms": 0.026,
+      "tcp_ms": 0.174,
+      "ttfb_ms": 2.6310000000000002,
+      "total_ms": 2.835
+    },
+    {
+      "ended_at_utc": "2026-10-08T12:53:25Z",
+      "round": 39,
+      "status": 200,
+      "http_version": "1.1",
+      "dns_ms": 0.025,
+      "tcp_ms": 0.157,
+      "ttfb_ms": 2.5,
+      "total_ms": 2.7039999999999997
+    },
+    {
+      "ended_at_utc": "2026-10-08T12:53:26Z",
+      "round": 40,
+      "status": 200,
+      "http_version": "1.1",
+      "dns_ms": 0.023,
+      "tcp_ms": 0.398,
+      "ttfb_ms": 2.4,
+      "total_ms": 2.483
+    },
+    {
+      "ended_at_utc": "2026-10-08T12:53:27Z",
+      "round": 41,
+      "status": 200,
+      "http_version": "1.1",
+      "dns_ms": 0.029,
+      "tcp_ms": 0.211,
+      "ttfb_ms": 3.2399999999999998,
+      "total_ms": 3.42
+    },
+    {
+      "ended_at_utc": "2026-10-08T12:53:28Z",
+      "round": 42,
+      "status": 200,
+      "http_version": "1.1",
+      "dns_ms": 0.025,
+      "tcp_ms": 0.203,
+      "ttfb_ms": 2.663,
+      "total_ms": 2.77
+    },
+    {
+      "ended_at_utc": "2026-10-08T12:53:29Z",
+      "round": 43,
+      "status": 200,
+      "http_version": "1.1",
+      "dns_ms": 0.038,
+      "tcp_ms": 0.229,
+      "ttfb_ms": 2.9299999999999997,
+      "total_ms": 3.117
+    },
+    {
+      "ended_at_utc": "2026-10-08T12:53:30Z",
+      "round": 44,
+      "status": 200,
+      "http_version": "1.1",
+      "dns_ms": 0.025,
+      "tcp_ms": 0.17,
+      "ttfb_ms": 2.4130000000000003,
+      "total_ms": 2.5709999999999997
+    },
+    {
+      "ended_at_utc": "2026-10-08T12:53:31Z",
+      "round": 45,
+      "status": 200,
+      "http_version": "1.1",
+      "dns_ms": 0.024,
+      "tcp_ms": 0.152,
+      "ttfb_ms": 2.604,
+      "total_ms": 2.8080000000000003
+    },
+    {
+      "ended_at_utc": "2026-10-08T12:53:32Z",
+      "round": 46,
+      "status": 200,
+      "http_version": "1.1",
+      "dns_ms": 0.026,
+      "tcp_ms": 0.16,
+      "ttfb_ms": 2.444,
+      "total_ms": 2.64
+    },
+    {
+      "ended_at_utc": "2026-10-08T12:53:33Z",
+      "round": 47,
+      "status": 200,
+      "http_version": "1.1",
+      "dns_ms": 0.041999999999999996,
+      "tcp_ms": 0.23,
+      "ttfb_ms": 2.6719999999999997,
+      "total_ms": 2.7369999999999997
+    },
+    {
+      "ended_at_utc": "2026-10-08T12:53:34Z",
+      "round": 48,
+      "status": 200,
+      "http_version": "1.1",
+      "dns_ms": 0.026,
+      "tcp_ms": 0.163,
+      "ttfb_ms": 2.563,
+      "total_ms": 2.748
+    },
+    {
+      "ended_at_utc": "2026-10-08T12:53:35Z",
+      "round": 49,
+      "status": 200,
+      "http_version": "1.1",
+      "dns_ms": 0.028,
+      "tcp_ms": 0.175,
+      "ttfb_ms": 2.955,
+      "total_ms": 3.173
+    },
+    {
+      "ended_at_utc": "2026-10-08T12:53:36Z",
+      "round": 50,
+      "status": 200,
+      "http_version": "1.1",
+      "dns_ms": 0.043000000000000003,
+      "tcp_ms": 0.158,
+      "ttfb_ms": 2.321,
+      "total_ms": 2.487
+    },
+    {
+      "ended_at_utc": "2026-10-08T12:53:37Z",
+      "round": 51,
+      "status": 200,
+      "http_version": "1.1",
+      "dns_ms": 0.029,
+      "tcp_ms": 0.211,
+      "ttfb_ms": 3.2030000000000003,
+      "total_ms": 3.3080000000000003
+    },
+    {
+      "ended_at_utc": "2026-10-08T12:53:38Z",
+      "round": 52,
+      "status": 200,
+      "http_version": "1.1",
+      "dns_ms": 0.026,
+      "tcp_ms": 0.162,
+      "ttfb_ms": 2.4789999999999996,
+      "total_ms": 2.7279999999999998
+    },
+    {
+      "ended_at_utc": "2026-10-08T12:53:39Z",
+      "round": 53,
+      "status": 200,
+      "http_version": "1.1",
+      "dns_ms": 0.025,
+      "tcp_ms": 0.154,
+      "ttfb_ms": 2.48,
+      "total_ms": 2.617
+    },
+    {
+      "ended_at_utc": "2026-10-08T12:53:40Z",
+      "round": 54,
+      "status": 200,
+      "http_version": "1.1",
+      "dns_ms": 0.025,
+      "tcp_ms": 0.182,
+      "ttfb_ms": 2.427,
+      "total_ms": 2.524
+    },
+    {
+      "ended_at_utc": "2026-10-08T12:53:41Z",
+      "round": 55,
+      "status": 200,
+      "http_version": "1.1",
+      "dns_ms": 0.023,
+      "tcp_ms": 0.148,
+      "ttfb_ms": 2.405,
+      "total_ms": 2.534
+    },
+    {
+      "ended_at_utc": "2026-10-08T12:53:42Z",
+      "round": 56,
+      "status": 200,
+      "http_version": "1.1",
+      "dns_ms": 0.041999999999999996,
+      "tcp_ms": 0.188,
+      "ttfb_ms": 2.615,
+      "total_ms": 2.833
+    },
+    {
+      "ended_at_utc": "2026-10-08T12:53:43Z",
+      "round": 57,
+      "status": 200,
+      "http_version": "1.1",
+      "dns_ms": 0.027,
+      "tcp_ms": 0.165,
+      "ttfb_ms": 2.783,
+      "total_ms": 2.999
+    },
+    {
+      "ended_at_utc": "2026-10-08T12:53:44Z",
+      "round": 58,
+      "status": 200,
+      "http_version": "1.1",
+      "dns_ms": 0.028,
+      "tcp_ms": 0.175,
+      "ttfb_ms": 2.67,
+      "total_ms": 2.748
+    },
+    {
+      "ended_at_utc": "2026-10-08T12:53:45Z",
+      "round": 59,
+      "status": 200,
+      "http_version": "1.1",
+      "dns_ms": 0.023,
+      "tcp_ms": 0.183,
+      "ttfb_ms": 2.448,
+      "total_ms": 2.624
+    }
+  ],
+  "limits": [
+    "Low-rate category endpoint only, not mixed load/order/login or capacity validation.",
+    "Independent curl process/new localhost connection per request. Cumulative TTFB/total include connection time.",
+    "CSV lacks response bodies/digests, image revision and resource metrics; HTTP success is not business-contract proof.",
+    "Completion timestamps have second precision; comparison probes were not simultaneous.",
+    "Do not subtract percentiles as exact SSH/Cloudflare latency or claim original A3 was invalid."
+  ]
+}
