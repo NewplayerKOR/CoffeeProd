@@ -3,6 +3,7 @@ package com.back.coffeeprod.global.security.auth;
 import com.back.coffeeprod.domain.member.entity.Member;
 import com.back.coffeeprod.domain.member.entity.MemberStatus;
 import com.back.coffeeprod.domain.member.repository.MemberRepository;
+import com.back.coffeeprod.global.exception.ErrorCode;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -25,11 +26,11 @@ public class CustomUserDetailsService implements UserDetailsService {
 
         // 탈퇴, 정지 회원의 기존 토큰으로 API 접근 차단
         if (member.getStatus() == MemberStatus.WITHDRAWN) {
-            throw new UsernameNotFoundException("탈퇴한 회원입니다. ID: " + memberId);
+            throw new MemberStatusAuthenticationException(ErrorCode.WITHDRAW_MEMBER);
         }
 
         if (member.getStatus() == MemberStatus.SUSPENDED) {
-            throw new UsernameNotFoundException("정지된 회원입니다. ID: " + memberId);
+            throw new MemberStatusAuthenticationException(ErrorCode.SUSPENDED_MEMBER);
         }
 
         // 시큐리티 규격에 맞게 변환

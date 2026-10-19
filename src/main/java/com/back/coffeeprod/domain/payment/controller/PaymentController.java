@@ -47,22 +47,24 @@ public class PaymentController {
     
                     [실패 시]
                     - 금액 위변조 감지: 주문 취소 + 재고 복구 후 400 반환
-                    - 결제 승인 실패: 주문 취소 + 재고 복구 후 400 반환
+                    - 확정 거부: 내부 취소 후 400. 타임아웃·결과 불명: 자원을 보존하고 현재 주문과 202 반환
                     """
     )
     @ApiResponses({
-            @ApiResponse(responseCode = "200", description = "결제 승인 성공"),
+            @ApiResponse(responseCode = "200", description = "결제 승인 성공; 기존 결제 응답"),
+            @ApiResponse(responseCode = "202", description = "승인 진행 또는 결과 불명; 주문 상세 응답"),
+            @ApiResponse(responseCode = "409", description = "작업 상충 또는 수동 확인 필요"),
             @ApiResponse(responseCode = "400", description = "금액 불일치 / 결제 승인 실패 / 잘못된 주문 상태"),
             @ApiResponse(responseCode = "404", description = "주문을 찾을 수 없음")
     })
     @PostMapping("/confirm")
-    public ResponseEntity<CommonResponse<PaymentDto.Response>> confirmPayment(
+    public ResponseEntity<? extends CommonResponse<?>> confirmPayment(
             @AuthenticationPrincipal CustomUserDetails userDetails,
             @Valid @RequestBody PaymentDto.ConfirmRequest request) {
 
         Long memberId = userDetails.getMember().getId();
-        PaymentDto.Response response = paymentService.confirmPayment(memberId, request);
-
-        return ResponseEntity.ok(CommonResponse.success(response));
+        var result = paymentService.confirmPaymentResult(memberId,request);
+        if (result.status() == 202) return ResponseEntity.status(202).body(CommonResponse.success(202,result.order()));
+        return ResponseEntity.ok(CommonResponse.success(result.payment()));
     }
 }

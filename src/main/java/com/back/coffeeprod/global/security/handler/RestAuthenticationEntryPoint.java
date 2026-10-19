@@ -2,6 +2,7 @@ package com.back.coffeeprod.global.security.handler;
 
 import com.back.coffeeprod.global.common.CommonResponse;
 import com.back.coffeeprod.global.exception.ErrorCode;
+import com.back.coffeeprod.global.security.auth.MemberStatusAuthenticationException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
@@ -27,7 +28,8 @@ public class RestAuthenticationEntryPoint implements AuthenticationEntryPoint {
             AuthenticationException authException
     ) throws IOException {
 
-        ErrorCode errorCode = ErrorCode.AUTHENTICATION_REQUIRED;
+        ErrorCode errorCode = authException instanceof MemberStatusAuthenticationException memberState
+                ? memberState.getErrorCode() : ErrorCode.AUTHENTICATION_REQUIRED;
 
         response.setStatus(errorCode.getStatus());
         response.setCharacterEncoding("UTF-8");

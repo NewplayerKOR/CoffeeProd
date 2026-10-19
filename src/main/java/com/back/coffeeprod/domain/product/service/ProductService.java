@@ -24,6 +24,7 @@ import org.springframework.transaction.annotation.Transactional;
 public class ProductService {
 
     private final ProductRepository productRepository;
+    private final jakarta.persistence.EntityManager entityManager;
     private final CategoryService categoryService;  // Repository대신 Service 사용(동일한 예외처리 로직 중복 작성 방지)
     private final CoffeeProfileService coffeeProfileService;
 
@@ -117,7 +118,7 @@ public class ProductService {
     @Transactional
     public ProductDto.DetailResponse updateProduct(Long productId, ProductDto.Request request) {
         String imageUrl = ProductImageUrlPolicy.normalize(request.getImage_url());
-        Product product = findProductById(productId);
+        Product product = findProductForUpdate(productId);
         validateSkuForUpdate(productId, request.getSku());
 
         Category category = categoryService.findCategoryById(request.getCategoryId());
@@ -130,7 +131,6 @@ public class ProductService {
                 request.getWeightGrams(),
                 request.getName(),
                 request.getPrice(),
-                request.getStockQuantity(),
                 request.getRoastLevel(),
                 request.getDescription(),
                 imageUrl
@@ -142,7 +142,7 @@ public class ProductService {
     // [관리자] 상품 상태 변경
     @Transactional
     public ProductDto.DetailResponse updateProductStatus(Long productId, ProductDto.StatusRequest request) {
-        Product product = findProductById(productId);
+        Product product = findProductForUpdate(productId);
         product.updateStatus(request.getStatus());
         return new ProductDto.DetailResponse(product);
     }
@@ -150,18 +150,26 @@ public class ProductService {
     // [관리자] 재고 수동 추가 (입고)
     @Transactional
     public ProductDto.DetailResponse addStock(Long productId, ProductDto.StockRequest request) {
-        Product product = findProductById(productId);
-        product.addStock(request.getQuantity());
+        Product product = findProductForUpdate(productId);
+        if (request.getQuantity() <= 0 || productRepository.increaseStock(productId,request.getQuantity()) != 1)
+            throw new CustomException(ErrorCode.INVALID_INPUT_VALUE);
+        entityManager.refresh(product);
         return new ProductDto.DetailResponse(product);
     }
 
     // [관리자] 상품 삭제 처리
     @Transactional
     public void deleteProduct(Long productId) {
-        Product product = findProductById(productId);
+        Product product = findProductForUpdate(productId);
 
         // 주문 이력 보존을 위해 실제 삭제 대신 숨김 상태로 변경
         product.updateStatus(ProductStatus.HIDDEN);
+    }
+
+    private Product findProductForUpdate(Long id) {
+        var product = productRepository.findLockedById(id).orElseThrow(() -> new CustomException(ErrorCode.PRODUCT_NOT_FOUND));
+        entityManager.refresh(product);
+        return product;
     }
 
     // [내부 공용]

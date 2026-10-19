@@ -1,3 +1,7 @@
+app:
+  payment:
+    workers-enabled: false
+
 spring:
   config:
     activate:

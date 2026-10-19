@@ -2,12 +2,18 @@ package com.back.coffeeprod.domain.cart.repository;
 
 import com.back.coffeeprod.domain.cart.entity.Cart;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Lock;
+import jakarta.persistence.LockModeType;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import java.util.Optional;
 
 public interface CartRepository extends JpaRepository<Cart, Long> {
+    @Lock(LockModeType.PESSIMISTIC_WRITE)
+    @Query("select c from Cart c where c.id = :id")
+    Optional<Cart> findLockedById(@org.springframework.data.repository.query.Param("id") Long id);
+
 
     // 회원 ID로 장바구니 조회
     @Query("""

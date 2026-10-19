@@ -4,6 +4,8 @@ import com.back.coffeeprod.domain.order.entity.Orders;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Lock;
+import jakarta.persistence.LockModeType;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
@@ -11,6 +13,16 @@ import java.util.List;
 import java.util.Optional;
 
 public interface OrderRepository extends JpaRepository<Orders, Long> {
+    @Lock(LockModeType.PESSIMISTIC_WRITE)
+    @Query("select o from Orders o where o.id = :id")
+    Optional<Orders> findLockedById(@org.springframework.data.repository.query.Param("id") Long id);
+
+
+    @Query("select o.member.id from Orders o where o.id = :id")
+    Optional<Long> findMemberIdByOrderId(@Param("id") Long id);
+
+    @Query("select o.id from Orders o where o.tossOrderId = :tossId")
+    Optional<Long> findIdByTossOrderId(@Param("tossId") String tossId);
 
     Optional<Orders> findByTossOrderId(String tossOrderId);
 

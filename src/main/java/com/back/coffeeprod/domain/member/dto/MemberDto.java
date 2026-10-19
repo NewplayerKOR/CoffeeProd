@@ -89,6 +89,7 @@ public class MemberDto {
         private final String nickname;
         private final Grade grade;
         private final int mileage;
+        private final int mileageRecoveryDue;
         private final MemberStatus status;
 
         public Response(Member member) {
@@ -98,6 +99,7 @@ public class MemberDto {
             this.nickname = member.getNickname();
             this.grade = member.getGrade();
             this.mileage = member.getMileage();
+            this.mileageRecoveryDue = member.getMileageRecoveryDue();
             this.status = member.getStatus();
         }
     }
@@ -177,6 +179,7 @@ public class MemberDto {
         private final Role role;
         private final Grade grade;
         private final int mileage;
+        private final int mileageRecoveryDue;
         private final MemberStatus status;
 
         public AdminResponse(Member member) {
@@ -187,6 +190,7 @@ public class MemberDto {
             this.role = member.getRole();
             this.grade = member.getGrade();
             this.mileage = member.getMileage();
+            this.mileageRecoveryDue = member.getMileageRecoveryDue();
             this.status = member.getStatus();
         }
     }

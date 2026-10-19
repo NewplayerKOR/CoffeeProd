@@ -29,6 +29,7 @@ import org.springframework.web.bind.annotation.*;
 public class OrderController {
 
     private final OrderService orderService;
+    private final com.back.coffeeprod.domain.payment.service.PaymentWorkflow paymentWorkflow;
 
     // 주문서 임시 생성 (결제 직전)
     @Operation(
@@ -109,11 +110,13 @@ public class OrderController {
                     주문을 취소합니다.
                     - PENDING, PAID 상태만 취소 가능
                     - SHIPPED, DELIVERED 상태는 취소 불가
-                    - 취소 시 재고 및 마일리지 자동 복구
+                    - PAID는 PG 전체 취소 확정 후 자원 복구, 진행/결과 불명은 202와 현재 주문 반환
                     """
     )
     @ApiResponses({
             @ApiResponse(responseCode = "200", description = "취소 성공"),
+            @ApiResponse(responseCode = "202", description = "처리 중 또는 PG 결과 불명; 현재 주문 반환"),
+            @ApiResponse(responseCode = "409", description = "작업 상충 또는 수동 확인 필요"),
             @ApiResponse(responseCode = "400", description = "취소 불가 상태"),
             @ApiResponse(responseCode = "403", description = "본인 주문 아님"),
             @ApiResponse(responseCode = "404", description = "주문을 찾을 수 없음")
@@ -126,6 +129,7 @@ public class OrderController {
             @PathVariable("orderId") Long orderId) {
 
         Long memberId = userDetails.getMember().getId();
-        return ResponseEntity.ok(CommonResponse.success(orderService.cancelOrder(memberId, orderId)));
+        var result = paymentWorkflow.cancel(memberId,orderId,false);
+        return ResponseEntity.status(result.status()).body(CommonResponse.success(result.status(),result.order()));
     }
 }

@@ -29,6 +29,7 @@ public class SalesStatisticsService {
 
     private final PaymentSalesQueryRepository paymentSalesQueryRepository;
     private final SalesStatisticsRepository salesStatisticsRepository;
+    private final StatisticsDateLock dateLock;
     private static final int MAX_AGGREGATE_RANGE_DAYS = 366;
 
     @Transactional
@@ -62,6 +63,7 @@ public class SalesStatisticsService {
     }
 
     private void aggregateDailySalesInternal(LocalDate statDate) {
+        dateLock.acquire(statDate);
         Instant startAt = BusinessTime.startOfDay(statDate);
         Instant endAt = BusinessTime.startOfDay(statDate.plusDays(1));
 

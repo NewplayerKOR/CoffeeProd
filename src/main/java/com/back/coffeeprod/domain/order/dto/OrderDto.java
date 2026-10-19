@@ -55,6 +55,8 @@ public class OrderDto {
     public static class SummaryResponse {
         private final Long orderId;
         private final OrderStatus status;
+        private final String paymentOperationStatus;
+        private final boolean cancelRequested;
         private final int totalPrice;
         private final OffsetDateTime orderDate;
         private final int itemCount;            // 주문 상품 종류 수
@@ -63,6 +65,8 @@ public class OrderDto {
         public SummaryResponse(Orders orders) {
             this.orderId = orders.getId();
             this.status = orders.getStatus();
+            this.paymentOperationStatus = orders.getPaymentOperationStatus();
+            this.cancelRequested = orders.isCancelRequested();
             this.totalPrice = orders.getTotalPrice();
             this.orderDate = BusinessTime.toSeoul(orders.getOrderDate());
             this.itemCount = orders.getOrderItems().size();
@@ -78,6 +82,8 @@ public class OrderDto {
         private final Long memberId;
         private final String memberEmail;
         private final OrderStatus status;
+        private final String paymentOperationStatus;
+        private final boolean cancelRequested;
         private final int totalPrice;
         private final int usedMileage;
         private final OffsetDateTime orderDate;
@@ -90,6 +96,8 @@ public class OrderDto {
             this.memberId = orders.getMember().getId();
             this.memberEmail = orders.getMember().getEmail();
             this.status = orders.getStatus();
+            this.paymentOperationStatus = orders.getPaymentOperationStatus();
+            this.cancelRequested = orders.isCancelRequested();
             this.totalPrice = orders.getTotalPrice();
             this.usedMileage = orders.getUsedMileage();
             this.orderDate = BusinessTime.toSeoul(orders.getOrderDate());
@@ -107,6 +115,8 @@ public class OrderDto {
         private final Long orderId;
         private final String tossOrderId;
         private final OrderStatus status;
+        private final String paymentOperationStatus;
+        private final boolean cancelRequested;
         private final int productTotalPrice;
         private final int deliveryFee;
         private final int earnedMileage;
@@ -121,6 +131,8 @@ public class OrderDto {
             this.orderId = orders.getId();
             this.tossOrderId = orders.getTossOrderId();
             this.status = orders.getStatus();
+            this.paymentOperationStatus = orders.getPaymentOperationStatus();
+            this.cancelRequested = orders.isCancelRequested();
             this.productTotalPrice = orders.getProductTotalPrice();
             this.deliveryFee = orders.getDeliveryFee();
             this.earnedMileage = orders.getEarnedMileage();

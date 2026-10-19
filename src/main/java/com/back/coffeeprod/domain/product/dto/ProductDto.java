@@ -43,6 +43,7 @@ public class ProductDto {
         private int price;
 
         @PositiveOrZero(message = "재고 수량은 0 이상이어야 합니다.")
+        @io.swagger.v3.oas.annotations.media.Schema(description = "상품 등록의 초기 재고. 상품 정보 수정에서는 현재 재고를 보존하며 이 값은 적용하지 않습니다.")
         private int stockQuantity;
 
         @NotNull(message = "로스트 단계는 필수입니다.")

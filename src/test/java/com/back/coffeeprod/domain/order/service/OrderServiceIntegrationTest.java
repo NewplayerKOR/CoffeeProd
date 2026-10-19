@@ -52,6 +52,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 class OrderServiceIntegrationTest {
 
     private final OrderService orderService;
+    @Autowired private com.back.coffeeprod.domain.payment.service.PaymentService paymentService;
     private final MemberRepository memberRepository;
     private final AddressRepository addressRepository;
     private final CategoryRepository categoryRepository;
@@ -209,7 +210,11 @@ class OrderServiceIntegrationTest {
     void updateOrderStatus_changesPaidOrderToShippedWithTrackingNo() {
         Member member = saveMember("ship-user@test.com", "shipUser", 1_000);
         OrderDto.DetailResponse created = createOrder(member, 10, 2, 300);
-        orderService.markAsPaid(created.getOrderId());
+        var confirm = new com.back.coffeeprod.domain.payment.dto.PaymentDto.ConfirmRequest();
+        ReflectionTestUtils.setField(confirm,"paymentKey","order-test-" + created.getOrderId());
+        ReflectionTestUtils.setField(confirm,"tossOrderId",created.getTossOrderId());
+        ReflectionTestUtils.setField(confirm,"amount",created.getTotalPrice());
+        paymentService.confirmPayment(member.getId(),confirm);
 
         OrderDto.DetailResponse response = orderService.updateOrderStatus(
                 created.getOrderId(),
@@ -224,7 +229,11 @@ class OrderServiceIntegrationTest {
     void updateOrderStatus_requiresTrackingNoWhenShipping() {
         Member member = saveMember("ship-invalid-user@test.com", "shipInvalidUser", 1_000);
         OrderDto.DetailResponse created = createOrder(member, 10, 2, 300);
-        orderService.markAsPaid(created.getOrderId());
+        var confirm = new com.back.coffeeprod.domain.payment.dto.PaymentDto.ConfirmRequest();
+        ReflectionTestUtils.setField(confirm,"paymentKey","order-test-" + created.getOrderId());
+        ReflectionTestUtils.setField(confirm,"tossOrderId",created.getTossOrderId());
+        ReflectionTestUtils.setField(confirm,"amount",created.getTotalPrice());
+        paymentService.confirmPayment(member.getId(),confirm);
 
         CustomException exception = assertThrows(CustomException.class, () ->
                 orderService.updateOrderStatus(

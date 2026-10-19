@@ -19,9 +19,11 @@ public class PaymentDto {
     public static class ConfirmRequest {
 
         @NotBlank(message = "paymentKey는 필수입니다.")
+        @jakarta.validation.constraints.Size(max = 200)
         private String paymentKey; // 토스 발급 결제 고유 키
 
         @NotBlank(message = "토스 주문번호는 필수입니다.")
+        @jakarta.validation.constraints.Size(max = 64)
         private String tossOrderId;      // 토스 결제 요청/승인에 사용한 주문 번호
 
         @Min(value = 0, message = "결제 금액은 0 이상이어야 합니다.")
