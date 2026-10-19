@@ -1,0 +1,522 @@
+{
+  "title": "CoffeeProd 성능 개선 최종 보고서",
+  "surface": "report",
+  "status": "observed",
+  "buildStatus": "complete",
+  "generatedAt": "2026-10-12T13:29:59.292Z",
+  "filters": [],
+  "report": {
+    "title": "CoffeeProd 성능 개선 최종 보고서",
+    "subtitle": "주문 조회 개선 성과와 전달 경로 진단의 한계",
+    "asOf": "2026-10-12"
+  },
+  "queries": {
+    "outcomes": {
+      "rows": [
+        {
+          "cycle": "1차 · 주문 조회",
+          "result": "주문 조회 범위 성공",
+          "evidence": "p95 약 27% 감소·SQL 접근 경로 개선",
+          "portfolio": "대표 개선 사례"
+        },
+        {
+          "cycle": "2차 · 혼합 지연",
+          "result": "진단 종료 · 개선 미확인",
+          "evidence": "전달 경로 영향 관측·근본 원인 미확정",
+          "portfolio": "보조 진단 사례"
+        }
+      ],
+      "source": {
+        "label": "1·2차 판정",
+        "files": [
+          {
+            "label": "1차개선 README.md"
+          },
+          {
+            "label": "RESULT_SSH_CLIENTS_20261012.md"
+          }
+        ],
+        "metricDefinitions": [
+          {
+            "label": "판정 범위",
+            "definition": "진단 완료·요청 성공과 성능 개선 성공을 구분한 범위별 판정입니다.",
+            "componentIds": [
+              "cycle-outcomes",
+              "executive-summary"
+            ]
+          }
+        ],
+        "caveats": [
+          "전체 프로젝트 최종 인수나 2차 성능 개선 성공을 뜻하지 않습니다."
+        ],
+        "evidenceFlow": [
+          {
+            "kind": "source",
+            "title": "기록 대조",
+            "detail": "보존된 측정 JSON에서 필요한 행을 추출했습니다. 연결된 원본의 SHA-256을 대조했으며 새 부하·운영 조회를 실행하지 않았습니다."
+          }
+        ]
+      }
+    },
+    "order_summary": {
+      "rows": [
+        {
+          "metric": "주문 목록 p95",
+          "beforeMs": 194.44252999999995,
+          "afterMs": 141.95011999999997
+        }
+      ],
+      "source": {
+        "label": "주문 인덱스 전후 비교",
+        "files": [
+          {
+            "label": "1차개선 metrics.json"
+          },
+          {
+            "label": "1차개선 README.md"
+          }
+        ],
+        "metricDefinitions": [
+          {
+            "label": "응답 시간(ms)",
+            "definition": "p95/p99는 전후 각각 3회 실행별 분위수의 중앙값입니다. 요청 전체를 합친 분위수가 아닙니다.",
+            "componentIds": [
+              "order-summary",
+              "order-story",
+              "executive-summary"
+            ]
+          }
+        ],
+        "caveats": [
+          "적용 후 A3는 별도 재예열한 보충 실행이며 원본을 유지했습니다.",
+          "시간대·네트워크·캐시가 완전히 통제되지 않아 약 27%는 관측된 감소입니다.",
+          "주문·결제 생성, 쓰기 비용·최대 처리량·전체 최신 회귀는 이 비교의 범위 밖입니다."
+        ],
+        "evidenceFlow": [
+          {
+            "kind": "source",
+            "title": "기록 대조",
+            "detail": "보존된 측정 JSON에서 필요한 행을 추출했습니다. 연결된 원본의 SHA-256을 대조했으며 새 부하·운영 조회를 실행하지 않았습니다."
+          }
+        ]
+      }
+    },
+    "order_runs": {
+      "rows": [
+        {
+          "run": "B1",
+          "phase": "적용 전",
+          "p95Ms": 192.17281,
+          "p99Ms": 205.79249999999996,
+          "samples": 510
+        },
+        {
+          "run": "B2",
+          "phase": "적용 전",
+          "p95Ms": 194.44252999999995,
+          "p99Ms": 210.55049299999993,
+          "samples": 498
+        },
+        {
+          "run": "B3",
+          "phase": "적용 전",
+          "p95Ms": 198.59927,
+          "p99Ms": 206.06294799999992,
+          "samples": 467
+        },
+        {
+          "run": "A1",
+          "phase": "적용 후",
+          "p95Ms": 141.95011999999997,
+          "p99Ms": 146.7075,
+          "samples": 449
+        },
+        {
+          "run": "A2",
+          "phase": "적용 후",
+          "p95Ms": 136.32193999999998,
+          "p99Ms": 144.18941400000003,
+          "samples": 519
+        },
+        {
+          "run": "A3*",
+          "phase": "적용 후",
+          "p95Ms": 167.84095999999994,
+          "p99Ms": 303.78775599999994,
+          "samples": 493
+        }
+      ],
+      "source": {
+        "label": "주문 인덱스 전후 비교",
+        "files": [
+          {
+            "label": "1차개선 metrics.json"
+          },
+          {
+            "label": "1차개선 README.md"
+          }
+        ],
+        "metricDefinitions": [
+          {
+            "label": "응답 시간(ms)",
+            "definition": "각 B1~B3/A1~A3 실행의 주문 목록 p95/p99입니다. A3*는 별도 재예열한 보충입니다.",
+            "componentIds": [
+              "order-runs",
+              "order-run-values"
+            ]
+          }
+        ],
+        "caveats": [
+          "적용 후 A3는 별도 재예열한 보충 실행이며 원본을 유지했습니다.",
+          "시간대·네트워크·캐시가 완전히 통제되지 않아 약 27%는 관측된 감소입니다.",
+          "주문·결제 생성, 쓰기 비용·최대 처리량·전체 최신 회귀는 이 비교의 범위 밖입니다."
+        ],
+        "evidenceFlow": [
+          {
+            "kind": "source",
+            "title": "기록 대조",
+            "detail": "보존된 측정 JSON에서 필요한 행을 추출했습니다. 연결된 원본의 SHA-256을 대조했으며 새 부하·운영 조회를 실행하지 않았습니다."
+          }
+        ]
+      }
+    },
+    "sql_plans": {
+      "rows": [
+        {
+          "query": "주문 ID 페이지",
+          "beforeMs": 14.632,
+          "afterMs": 0.123,
+          "returnedRows": 10,
+          "beforeAccess": "Seq Scan",
+          "afterAccess": "Index Scan"
+        },
+        {
+          "query": "회원 주문 count",
+          "beforeMs": 14.481,
+          "afterMs": 0.152,
+          "returnedRows": 1,
+          "beforeAccess": "Seq Scan",
+          "afterAccess": "Index Only Scan"
+        },
+        {
+          "query": "주문상품 join(축약)",
+          "beforeMs": 77.541,
+          "afterMs": 0.642,
+          "returnedRows": 26,
+          "beforeAccess": "Seq Scan / Index Scan",
+          "afterAccess": "Index Scan"
+        }
+      ],
+      "source": {
+        "label": "PostgreSQL 실행계획",
+        "files": [
+          {
+            "label": "1차개선 metrics.json"
+          },
+          {
+            "label": "sql-plan-comparison.json"
+          }
+        ],
+        "metricDefinitions": [
+          {
+            "label": "진단 SQL 시간(ms)",
+            "definition": "적용 전 1회와 적용 후 3회 중앙값입니다. join은 축약 진단 SQL이며 API 시간과 다릅니다.",
+            "componentIds": [
+              "sql-plans",
+              "sql-story",
+              "sql-image"
+            ]
+          }
+        ],
+        "caveats": [
+          "반환 행 수는 동일하지만 캐시 조건이 달라 SQL 시간을 API 개선 배율로 환산하지 않습니다."
+        ],
+        "evidenceFlow": [
+          {
+            "kind": "source",
+            "title": "기록 대조",
+            "detail": "보존된 측정 JSON에서 필요한 행을 추출했습니다. 연결된 원본의 SHA-256을 대조했으며 새 부하·운영 조회를 실행하지 않았습니다."
+          }
+        ]
+      }
+    },
+    "overall_summary": {
+      "rows": [
+        {
+          "metric": "전체 혼합 p95",
+          "beforeMs": 215.579885,
+          "afterMs": 231.49973499999987
+        },
+        {
+          "metric": "전체 혼합 p99",
+          "beforeMs": 266.2599349999999,
+          "afterMs": 309.0702039999999
+        }
+      ],
+      "source": {
+        "label": "주문 인덱스 전후 비교",
+        "files": [
+          {
+            "label": "1차개선 metrics.json"
+          },
+          {
+            "label": "1차개선 README.md"
+          }
+        ],
+        "metricDefinitions": [
+          {
+            "label": "응답 시간(ms)",
+            "definition": "p95/p99는 전후 각각 3회 실행별 분위수의 중앙값입니다. 요청 전체를 합친 분위수가 아닙니다.",
+            "componentIds": [
+              "overall-summary",
+              "scope-limits"
+            ]
+          }
+        ],
+        "caveats": [
+          "적용 후 A3는 별도 재예열한 보충 실행이며 원본을 유지했습니다.",
+          "시간대·네트워크·캐시가 완전히 통제되지 않아 약 27%는 관측된 감소입니다.",
+          "주문·결제 생성, 쓰기 비용·최대 처리량·전체 최신 회귀는 이 비교의 범위 밖입니다."
+        ],
+        "evidenceFlow": [
+          {
+            "kind": "source",
+            "title": "기록 대조",
+            "detail": "보존된 측정 JSON에서 필요한 행을 추출했습니다. 연결된 원본의 SHA-256을 대조했으며 새 부하·운영 조회를 실행하지 않았습니다."
+          }
+        ]
+      }
+    },
+    "route_comparison": {
+      "rows": [
+        {
+          "endpoint": "전체 혼합",
+          "publicMs": 306.10189199999996,
+          "sshMs": 127.03066399999996
+        },
+        {
+          "endpoint": "주문 목록",
+          "publicMs": 173.62602,
+          "sshMs": 45.895366999999766
+        },
+        {
+          "endpoint": "로그인",
+          "publicMs": 465.3915,
+          "sshMs": 151.4883
+        }
+      ],
+      "source": {
+        "label": "순서 교차 혼합 경로 비교",
+        "files": [
+          {
+            "label": "mixed-path-with-cloudflared.json"
+          },
+          {
+            "label": "RESULT_CLOUDFLARED_20261008.md"
+          }
+        ],
+        "metricDefinitions": [
+          {
+            "label": "p99(ms)",
+            "definition": "2026-10-08 공개→SSH 원본 각 5분 본 측정의 엔드포인트별 p99입니다.",
+            "componentIds": [
+              "route-comparison",
+              "diagnostic-story"
+            ]
+          }
+        ],
+        "caveats": [
+          "진단 경로 비교이지 개선 전후 비교가 아닙니다.",
+          "HTTP/2·TLS와 HTTP/1.1·SSH 및 실행 시각이 달라 순수 Cloudflare 비용이 아닙니다."
+        ],
+        "evidenceFlow": [
+          {
+            "kind": "source",
+            "title": "기록 대조",
+            "detail": "보존된 측정 JSON에서 필요한 행을 추출했습니다. 연결된 원본의 SHA-256을 대조했으며 새 부하·운영 조회를 실행하지 않았습니다."
+          }
+        ]
+      }
+    },
+    "ssh_components": {
+      "rows": [
+        {
+          "client": "Windows SSH",
+          "waitingMs": 41.28638000000001,
+          "receivingMs": 1.8045900000000001,
+          "totalMs": 43.09097,
+          "medianMs": 44.192099999999996,
+          "p95Ms": 62.930065,
+          "p99Ms": 64.39994099999998,
+          "samples": 60
+        },
+        {
+          "client": "Git SSH",
+          "waitingMs": 7.453663333333334,
+          "receivingMs": 41.57673333333332,
+          "totalMs": 49.03039666666666,
+          "medianMs": 54.2429,
+          "p95Ms": 62.980019999999996,
+          "p99Ms": 66.00786599999999,
+          "samples": 60
+        }
+      ],
+      "source": {
+        "label": "Windows·Git OpenSSH 고정 비교",
+        "files": [
+          {
+            "label": "ssh-client-comparison.json"
+          },
+          {
+            "label": "RESULT_SSH_CLIENTS_20261012.md"
+          }
+        ],
+        "metricDefinitions": [
+          {
+            "label": "시간 분해(ms)",
+            "definition": "각 클라이언트 60건의 평균 waiting·receiving을 합쳐 평균 duration을 분해합니다. 이번 sending 계측값은 0입니다.",
+            "componentIds": [
+              "ssh-components",
+              "ssh-values",
+              "ssh-story"
+            ]
+          },
+          {
+            "label": "중앙값·p95·p99(ms)",
+            "definition": "각 경로 60건의 native duration 분위수입니다.",
+            "componentIds": [
+              "ssh-components",
+              "ssh-values",
+              "ssh-story"
+            ]
+          }
+        ],
+        "caveats": [
+          "평균 성분은 합산 가능하지만 중앙값·p95/p99 성분은 합산하지 않습니다.",
+          "버전·런타임·SSH session 조건을 개별 통제하지 못했습니다.",
+          "저빈도 카테고리 결과로 혼합 부하 전체 원인을 확정하지 않습니다."
+        ],
+        "evidenceFlow": [
+          {
+            "kind": "source",
+            "title": "기록 대조",
+            "detail": "보존된 측정 JSON에서 필요한 행을 추출했습니다. 연결된 원본의 SHA-256을 대조했으며 새 부하·운영 조회를 실행하지 않았습니다."
+          }
+        ]
+      }
+    },
+    "regressions": {
+      "rows": [
+        {
+          "scope": "로컬 H2 주문 서비스",
+          "passed": 7,
+          "total": 7,
+          "conclusion": "선택 범위 기능 회귀 통과"
+        },
+        {
+          "scope": "배포 주문 읽기·권한",
+          "passed": 13,
+          "total": 13,
+          "conclusion": "페이지·정렬·상세·401/403 확인"
+        },
+        {
+          "scope": "부하 스크립트 안전성",
+          "passed": 9,
+          "total": 9,
+          "conclusion": "선정 안전성 회귀 통과"
+        }
+      ],
+      "source": {
+        "label": "선택 기능·안전성 검증",
+        "files": [
+          {
+            "label": "1차개선 README.md"
+          },
+          {
+            "label": "metrics.json"
+          }
+        ],
+        "metricDefinitions": [
+          {
+            "label": "통과 수",
+            "definition": "기존 결과의 선택 테스트 개수이며 전체 최신 테스트 스위트 개수가 아닙니다.",
+            "componentIds": [
+              "regressions"
+            ]
+          }
+        ],
+        "caveats": [
+          "운영 주문 생성·결제 성공·프론트엔드 인수를 의미하지 않습니다."
+        ],
+        "evidenceFlow": [
+          {
+            "kind": "source",
+            "title": "기록 대조",
+            "detail": "보존된 측정 JSON에서 필요한 행을 추출했습니다. 연결된 원본의 SHA-256을 대조했으며 새 부하·운영 조회를 실행하지 않았습니다."
+          }
+        ]
+      }
+    },
+    "portfolio_points": {
+      "rows": [
+        {
+          "point": "문제 진단",
+          "evidence": "k6 결과와 실행계획으로 넓은 탐색 확인",
+          "message": "추측이 아닌 근거로 개선 대상을 선택"
+        },
+        {
+          "point": "DB 설계",
+          "evidence": "회원·최신순 및 주문상품 FK 인덱스 2개",
+          "message": "실제 조회 조건에 맞는 접근 경로 설계"
+        },
+        {
+          "point": "검증",
+          "evidence": "전후 3회·지표·기능/권한 회귀 대조",
+          "message": "변경 후 효과와 정합성을 함께 확인"
+        },
+        {
+          "point": "운영 관측",
+          "evidence": "Ubuntu·Docker·Actuator·Prometheus·k6",
+          "message": "응답 시간과 서버 자원을 함께 해석"
+        },
+        {
+          "point": "판단의 신뢰성",
+          "evidence": "A3·실패 보존, 전체 지연 미개선 공개",
+          "message": "측정 한계와 실패를 숨기지 않는 판단"
+        }
+      ],
+      "source": {
+        "label": "포트폴리오에 제시할 기술 근거",
+        "files": [
+          {
+            "label": "1차개선 README.md"
+          },
+          {
+            "label": "2차개선 README.md"
+          }
+        ],
+        "metricDefinitions": [
+          {
+            "label": "어필 포인트",
+            "definition": "측정·구현 기록에서 설명 가능한 기술 역량입니다. 채용 평가 효과를 보장하지 않습니다.",
+            "componentIds": [
+              "portfolio-points",
+              "portfolio-story"
+            ]
+          }
+        ],
+        "caveats": [
+          "DEV 구현·사용자 배포·QA 측정의 실제 역할과 AI 활용을 구분해서 설명합니다."
+        ],
+        "evidenceFlow": [
+          {
+            "kind": "source",
+            "title": "기록 대조",
+            "detail": "보존된 측정 JSON에서 필요한 행을 추출했습니다. 연결된 원본의 SHA-256을 대조했으며 새 부하·운영 조회를 실행하지 않았습니다."
+          }
+        ]
+      }
+    }
+  },
+  "id": "report:77aef6d4-b528-499e-9f37-e5a17f416455"
+}

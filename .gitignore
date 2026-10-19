@@ -39,28 +39,50 @@ out/
 ### Local AI tooling ###
 /.ai/
 /.codex/
+.openai/
+.data-app-offline/
+
+### Nested frontend build output ###
+node_modules/
+dist/
 
 ### Cloudflare Wrangler ###
 /.wrangler/
 
 ### Security ###
 .env
-.env.local
-.env.*.local
+.env.*
+!.env.example
+!.env.*.example
 .md/
 
 ### Secrets / Keys
 *.pem
 *.key
+*.p12
+*.pfx
+*.jks
+*.keystore
+id_rsa
+id_dsa
+id_ecdsa
+id_ed25519
 secret.json
+credentials.json
 
 ### postgreSQL ###
 postgres-data/
 redis-data/
 /coffee_backup*.sql
-/*.dump
-/*.backup
+*.dump
+*.backup
 /backups/
+
+### Local diagnostic captures and logs ###
+*.pcap
+*.pcapng
+*.etl
+*.log
 
 ### k6 ###
 /k6/.env

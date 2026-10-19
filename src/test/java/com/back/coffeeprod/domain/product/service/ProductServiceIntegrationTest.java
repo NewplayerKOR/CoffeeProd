@@ -20,7 +20,11 @@ import com.back.coffeeprod.domain.product.repository.ProductRepository;
 import com.back.coffeeprod.global.exception.CustomException;
 import com.back.coffeeprod.global.exception.ErrorCode;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.NullAndEmptySource;
+import org.junit.jupiter.params.provider.ValueSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.domain.Page;
@@ -30,6 +34,8 @@ import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.util.ReflectionTestUtils;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertAll;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -47,6 +53,11 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
         "pg.toss.secret-key=test-secret-key"
 })
 class ProductServiceIntegrationTest {
+
+    private static final String APPROVED_IMAGE_URL =
+            "https://assets-coffeeprod.ttagyulab.com/products/catalog/so001-l-v1.webp";
+    private static final String UPDATED_IMAGE_URL =
+            "https://assets-coffeeprod.ttagyulab.com/products/catalog/so002-m-v2.webp";
 
     private final ProductService productService;
     private final CategoryService categoryService;
@@ -422,6 +433,137 @@ class ProductServiceIntegrationTest {
         assertEquals("예가체프 프로필", response.getContent().get(0).getCoffeeProfileName());
     }
 
+    @Test
+    @DisplayName("상품 등록은 승인 이미지 URL을 응답하고 DB에 저장한다")
+    void createProduct_savesApprovedImageUrl() {
+        CategoryDto.Response category = categoryService.createCategory(categoryRequest("이미지 등록"));
+
+        ProductDto.DetailResponse response = productService.createProduct(
+                productRequest(category.getId(), "승인 이미지 상품", 18_000, 10)
+        );
+
+        assertEquals(APPROVED_IMAGE_URL, response.getImageUrl());
+        assertEquals(APPROVED_IMAGE_URL,
+                productRepository.findById(response.getId()).orElseThrow().getImageUrl());
+    }
+
+    @ParameterizedTest
+    @NullAndEmptySource
+    @ValueSource(strings = {" \t "})
+    @DisplayName("상품 등록은 null·빈 문자열·공백 이미지를 null로 저장한다")
+    void createProduct_normalizesBlankImageUrl(String imageUrl) {
+        CategoryDto.Response category = categoryService.createCategory(categoryRequest("빈 이미지 등록"));
+        ProductDto.Request request = productRequest(category.getId(), "이미지 없는 상품", 18_000, 10);
+        ReflectionTestUtils.setField(request, "image_url", imageUrl);
+
+        ProductDto.DetailResponse response = productService.createProduct(request);
+
+        assertNull(response.getImageUrl());
+        assertNull(productRepository.findById(response.getId()).orElseThrow().getImageUrl());
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {
+            "https://example.com/products/catalog/so001-l-v1.webp",
+            "http://assets-coffeeprod.ttagyulab.com/products/catalog/so001-l-v1.webp",
+            "/products/catalog/so001-l-v1.webp"
+    })
+    @DisplayName("상품 등록은 미승인 호스트·HTTP·상대 경로를 거부하고 상품을 저장하지 않는다")
+    void createProduct_rejectsUnapprovedImageUrlWithoutSaving(String imageUrl) {
+        CategoryDto.Response category = categoryService.createCategory(categoryRequest("이미지 등록 거부"));
+        ProductDto.Request request = productRequest(category.getId(), "거부 대상 상품", 18_000, 10);
+        ReflectionTestUtils.setField(request, "image_url", imageUrl);
+        long countBefore = productRepository.count();
+
+        CustomException exception = assertThrows(CustomException.class, () ->
+                productService.createProduct(request)
+        );
+
+        assertEquals(ErrorCode.INVALID_PRODUCT_IMAGE_URL, exception.getErrorCode());
+        assertEquals(countBefore, productRepository.count());
+        assertTrue(productRepository.findAll().stream()
+                .noneMatch(product -> request.getSku().equals(product.getSku())));
+    }
+
+    @Test
+    @DisplayName("상품 수정은 변경된 승인 이미지 URL을 응답하고 DB에 저장한다")
+    void updateProduct_savesApprovedImageUrl() {
+        CategoryDto.Response category = categoryService.createCategory(categoryRequest("이미지 수정"));
+        ProductDto.DetailResponse created = productService.createProduct(
+                productRequest(category.getId(), "수정 전 상품", 18_000, 10)
+        );
+        ProductDto.Request request = productRequest(category.getId(), "수정 후 상품", 20_000, 15);
+        ReflectionTestUtils.setField(request, "image_url", UPDATED_IMAGE_URL);
+
+        ProductDto.DetailResponse response = productService.updateProduct(created.getId(), request);
+
+        assertEquals(UPDATED_IMAGE_URL, response.getImageUrl());
+        assertEquals(UPDATED_IMAGE_URL,
+                productRepository.findById(created.getId()).orElseThrow().getImageUrl());
+    }
+
+    @ParameterizedTest
+    @NullAndEmptySource
+    @ValueSource(strings = {" \t "})
+    @DisplayName("상품 수정은 기존 이미지를 null·빈 문자열·공백 입력으로 제거한다")
+    void updateProduct_normalizesBlankImageUrl(String imageUrl) {
+        CategoryDto.Response category = categoryService.createCategory(categoryRequest("빈 이미지 수정"));
+        ProductDto.DetailResponse created = productService.createProduct(
+                productRequest(category.getId(), "이미지 제거 전 상품", 18_000, 10)
+        );
+        assertEquals(APPROVED_IMAGE_URL,
+                productRepository.findById(created.getId()).orElseThrow().getImageUrl());
+        ProductDto.Request request = productRequest(category.getId(), "이미지 제거 후 상품", 20_000, 15);
+        ReflectionTestUtils.setField(request, "image_url", imageUrl);
+
+        ProductDto.DetailResponse response = productService.updateProduct(created.getId(), request);
+
+        assertNull(response.getImageUrl());
+        assertNull(productRepository.findById(created.getId()).orElseThrow().getImageUrl());
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {
+            "https://example.com/products/catalog/so001-l-v1.webp",
+            "http://assets-coffeeprod.ttagyulab.com/products/catalog/so001-l-v1.webp",
+            "/products/catalog/so001-l-v1.webp"
+    })
+    @DisplayName("상품 수정은 미승인 호스트·HTTP·상대 경로를 거부하고 기존 값을 보존한다")
+    void updateProduct_rejectsUnapprovedImageUrlWithoutChangingProduct(String imageUrl) {
+        CategoryDto.Response category = categoryService.createCategory(categoryRequest("이미지 수정 거부"));
+        ProductDto.DetailResponse created = productService.createProduct(
+                productRequest(category.getId(), "수정 전 상품", 18_000, 10)
+        );
+        CategoryDto.Response otherCategory = categoryService.createCategory(categoryRequest("변경 대상 카테고리"));
+        ProductDto.Request request = productRequest(otherCategory.getId(), "수정 시도 상품", 20_000, 15);
+        ReflectionTestUtils.setField(request, "weightGrams", 500);
+        ReflectionTestUtils.setField(request, "roastLevel", RoastLevel.LIGHT);
+        ReflectionTestUtils.setField(request, "description", "변경 시도 설명");
+        ReflectionTestUtils.setField(request, "image_url", imageUrl);
+        long countBefore = productRepository.count();
+
+        CustomException exception = assertThrows(CustomException.class, () ->
+                productService.updateProduct(created.getId(), request)
+        );
+
+        assertEquals(ErrorCode.INVALID_PRODUCT_IMAGE_URL, exception.getErrorCode());
+        var saved = productRepository.findById(created.getId()).orElseThrow();
+        assertAll(
+                () -> assertEquals(countBefore, productRepository.count()),
+                () -> assertEquals(APPROVED_IMAGE_URL, saved.getImageUrl()),
+                () -> assertEquals(created.getName(), saved.getName()),
+                () -> assertEquals(created.getSku(), saved.getSku()),
+                () -> assertEquals(created.getWeightGrams(), saved.getWeightGrams()),
+                () -> assertEquals(created.getPrice(), saved.getPrice()),
+                () -> assertEquals(created.getStockQuantity(), saved.getStockQuantity()),
+                () -> assertEquals(created.getRoastLevel(), saved.getRoastLevel()),
+                () -> assertEquals(created.getDescription(), saved.getDescription()),
+                () -> assertEquals(category.getId(), saved.getCategory().getId()),
+                () -> assertEquals(created.getStatus(), saved.getStatus()),
+                () -> assertNull(saved.getCoffeeProfile())
+        );
+    }
+
     private CategoryDto.Request categoryRequest(String name) {
         CategoryDto.Request request = new CategoryDto.Request();
         ReflectionTestUtils.setField(request, "name", name);
@@ -459,7 +601,7 @@ class ProductServiceIntegrationTest {
         ReflectionTestUtils.setField(request, "stockQuantity", stockQuantity);
         ReflectionTestUtils.setField(request, "roastLevel", RoastLevel.MEDIUM);
         ReflectionTestUtils.setField(request, "description", "테스트 상품 설명");
-        ReflectionTestUtils.setField(request, "image_url", "https://example.com/coffee.jpg");
+        ReflectionTestUtils.setField(request, "image_url", APPROVED_IMAGE_URL);
         return request;
     }
 

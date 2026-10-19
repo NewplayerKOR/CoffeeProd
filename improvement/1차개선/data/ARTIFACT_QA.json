@@ -1,0 +1,118 @@
+{
+  "generated_at_utc": "2026-10-19T03:26:49.955Z",
+  "result": "PASS",
+  "checks": [
+    "before: three completed repeats",
+    "before: order_p95_ms median recalculation",
+    "before: order_p99_ms median recalculation",
+    "before: overall_p95_ms median recalculation",
+    "before: overall_p99_ms median recalculation",
+    "before: http_requests sum",
+    "before: check_passes sum",
+    "before: order_samples sum",
+    "before: preserved failure and dropped counts",
+    "after: three completed repeats",
+    "after: order_p95_ms median recalculation",
+    "after: order_p99_ms median recalculation",
+    "after: overall_p95_ms median recalculation",
+    "after: overall_p99_ms median recalculation",
+    "after: http_requests sum",
+    "after: check_passes sum",
+    "after: order_samples sum",
+    "after: preserved failure and dropped counts",
+    "order_p95_ms: reduction recalculation",
+    "order_p99_ms: reduction recalculation",
+    "overall_p95_ms: reduction recalculation",
+    "overall_p99_ms: reduction recalculation",
+    "path: 1443 measured order requests",
+    "path: public p95_ms median",
+    "path: public p99_ms median",
+    "path: origin p95_ms median",
+    "path: origin p99_ms median",
+    "manifest: data fingerprint",
+    "manifest: four figures",
+    "figures/01_order_latency.png: fingerprint",
+    "figures/01_order_latency.png: PNG dimensions",
+    "figures/01_order_latency.png: renderer checks",
+    "figures/02_sql_access_paths.png: fingerprint",
+    "figures/02_sql_access_paths.png: PNG dimensions",
+    "figures/02_sql_access_paths.png: renderer checks",
+    "figures/03_overall_tradeoffs.png: fingerprint",
+    "figures/03_overall_tradeoffs.png: PNG dimensions",
+    "figures/03_overall_tradeoffs.png: renderer checks",
+    "figures/04_public_origin_paths.png: fingerprint",
+    "figures/04_public_origin_paths.png: PNG dimensions",
+    "figures/04_public_origin_paths.png: renderer checks",
+    "README.md: Korean report without stray Japanese text",
+    "README.md: link ../../src/main/resources/db/migration/V17__add_order_query_indexes.sql",
+    "README.md: link figures/02_sql_access_paths.png",
+    "README.md: link figures/01_order_latency.png",
+    "README.md: link figures/03_overall_tradeoffs.png",
+    "README.md: link figures/04_public_origin_paths.png",
+    "README.md: link EVIDENCE.md",
+    "README.md: link A3_RECHECK_20261008.md",
+    "README.md: link data/metrics.json",
+    "EVIDENCE.md: Korean report without stray Japanese text",
+    "EVIDENCE.md: link README.md",
+    "EVIDENCE.md: link data/metrics.json",
+    "EVIDENCE.md: link data/a3-recheck.json",
+    "EVIDENCE.md: link A3_RECHECK_20261008.md",
+    "EVIDENCE.md: link data/figure-manifest.json",
+    "A3_RECHECK_20261008.md: Korean report without stray Japanese text",
+    "A3_RECHECK_20261008.md: link data/a3-recheck.json",
+    "A3_RECHECK_20261008.md: link README.md",
+    "A3_RECHECK_20261008.md: link EVIDENCE.md",
+    "public folder: no environment, account, backup or private-key files",
+    "original source: http_index_comparison fingerprint",
+    "original source: sql_plan_comparison fingerprint",
+    "original source: order_path_comparison fingerprint",
+    "original source: local_order_regression fingerprint",
+    "original source: deployed_order_regression fingerprint",
+    "original source: path_validation fingerprint",
+    "original source: post_suite_check fingerprint",
+    "original source: test_serialization_repair fingerprint",
+    "A3 followup: original retained; failed warmup not counted as a measured repeat",
+    "A3 followup: source fingerprint"
+  ],
+  "source_fingerprints_verified": 8,
+  "unavailable_original_sources": 0,
+  "figures": [
+    {
+      "file": "figures/01_order_latency.png",
+      "sha256": "685d2635281a2d9119bc4714264f24a3d753b867e29782605598294c07281c55"
+    },
+    {
+      "file": "figures/02_sql_access_paths.png",
+      "sha256": "83e6db6e4a599a1b058b028e5c6271f0fcf250de6c396f742beb32896e1e98dc"
+    },
+    {
+      "file": "figures/03_overall_tradeoffs.png",
+      "sha256": "6fe281283fecc4e7d2878ea66d20c4fb9351d05c3a9bfa8ce510737de2566f2d"
+    },
+    {
+      "file": "figures/04_public_origin_paths.png",
+      "sha256": "38862580b63d58c89d0e4880ed1b6e08af9acbab8d9a39c057b626179801567b"
+    }
+  ],
+  "visual_review": {
+    "status": "PASS",
+    "method": "Model inspected all four PNGs with view_image; corrected the SQL label/axis spacing and re-inspected it.",
+    "note": "Caller confirms an actual visual review. This flag does not perform image inspection."
+  },
+  "validation_makes_no_network_or_database_calls": true,
+  "file_count": 15,
+  "documents": [
+    {
+      "file": "README.md",
+      "sha256": "8f2cf846a60148a267a5829bac7c01f764da70104ac64c1b1a9d44400fb5b72c"
+    },
+    {
+      "file": "EVIDENCE.md",
+      "sha256": "30cc99dfc77f6594a431811592672a37510787e1ac456a4934528551e746689b"
+    },
+    {
+      "file": "A3_RECHECK_20261008.md",
+      "sha256": "79db227412405b6dfc53943f3d2b4d0733d1342a1ee2c757aaf61e8e10796a3d"
+    }
+  ]
+}

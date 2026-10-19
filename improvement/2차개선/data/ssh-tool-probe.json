@@ -1,0 +1,622 @@
+{
+  "suite_id": "ssh-tool-probe-20261008T134459Z",
+  "started_at_utc": "2026-10-08T13:44:59.8880106+00:00",
+  "ended_at_utc": "2026-10-08T13:48:57.5974879+00:00",
+  "http_requests": 240,
+  "http_failures": 0,
+  "k6_business_checks": 120,
+  "curl_body_contract_checked": false,
+  "script_sha256": "380c4f363a073fa024f343c06116df1f33cb3b3a6689e870c672e6054d72d2d5",
+  "curl_version": "curl 8.21.0 (Windows) libcurl/8.21.0 Schannel zlib/1.3.2 WinIDN WinLDAP",
+  "k6_version": "k6.exe v2.0.0 (commit/8c3be52cc1, go1.26.3, windows/amd64)",
+  "headers": {
+    "Accept-Encoding": "identity",
+    "User-Agent": "CoffeeProd-QA-SSH-Tool-Probe",
+    "Accept": "application/json"
+  },
+  "category_digest": "b7cf5f1ef0c6c8b13d2dc2cbad535a08a1e80dd93bf510193328ab67b8715ed6",
+  "arm_summaries": {
+    "curl-fresh": {
+      "count": 60,
+      "total": {
+        "count": 60,
+        "average_ms": 111.63726666666666,
+        "median_ms": 125.90700000000001,
+        "p95_ms": 127.62145000000001,
+        "p99_ms": 148.19763999999998,
+        "max_ms": 155.811
+      },
+      "exchange": {
+        "count": 60,
+        "average_ms": 111.27083333333336,
+        "median_ms": 125.56900000000002,
+        "p95_ms": 127.30035000000002,
+        "p99_ms": 147.87645999999995,
+        "max_ms": 155.43200000000002
+      },
+      "waiting": {
+        "count": 60,
+        "average_ms": 108.62236666666671,
+        "median_ms": 125.44100000000003,
+        "p95_ms": 127.1492,
+        "p99_ms": 147.74338999999995,
+        "max_ms": 155.28300000000002
+      },
+      "receiving": {
+        "count": 60,
+        "average_ms": 2.648466666666667,
+        "median_ms": 0.1325000000000076,
+        "p95_ms": 28.41705,
+        "p99_ms": 30.94462999999998,
+        "max_ms": 33.97899999999999
+      },
+      "connections": 60,
+      "connections_definition": "sum of native num_connects",
+      "slow_at_least_50ms": 54,
+      "fast_below_10ms": 0
+    },
+    "curl-reuse": {
+      "count": 60,
+      "total": {
+        "count": 60,
+        "average_ms": 57.038433333333316,
+        "median_ms": 48.337,
+        "p95_ms": 90.44255,
+        "p99_ms": 117.08933999999988,
+        "max_ms": 138.373
+      },
+      "exchange": {
+        "count": 60,
+        "average_ms": 56.93396666666668,
+        "median_ms": 48.25450000000001,
+        "p95_ms": 89.97885000000001,
+        "p99_ms": 116.63027999999987,
+        "max_ms": 137.934
+      },
+      "waiting": {
+        "count": 60,
+        "average_ms": 55.41976666666666,
+        "median_ms": 48.2025,
+        "p95_ms": 89.8991,
+        "p99_ms": 116.5640499999999,
+        "max_ms": 137.866
+      },
+      "receiving": {
+        "count": 60,
+        "average_ms": 1.5141999999999982,
+        "median_ms": 0.051999999999996493,
+        "p95_ms": 1.5288499999999154,
+        "p99_ms": 29.357409999999998,
+        "max_ms": 29.712
+      },
+      "connections": 4,
+      "connections_definition": "sum of native num_connects",
+      "slow_at_least_50ms": 28,
+      "fast_below_10ms": 0
+    },
+    "k6-fresh": {
+      "count": 60,
+      "total": {
+        "count": 60,
+        "average_ms": 105.03333333333333,
+        "median_ms": 112.5,
+        "p95_ms": 124.05,
+        "p99_ms": 125.41,
+        "max_ms": 126
+      },
+      "exchange": {
+        "count": 60,
+        "average_ms": 104.87393000000002,
+        "median_ms": 111.73765,
+        "p95_ms": 124.240305,
+        "p99_ms": 125.194457,
+        "max_ms": 125.2285
+      },
+      "waiting": {
+        "count": 60,
+        "average_ms": 102.67472000000001,
+        "median_ms": 111.4707,
+        "p95_ms": 124.220005,
+        "p99_ms": 125.130798,
+        "max_ms": 125.1708
+      },
+      "receiving": {
+        "count": 60,
+        "average_ms": 2.0549383333333333,
+        "median_ms": 0,
+        "p95_ms": 23.437174999999993,
+        "p99_ms": 31.985976999999977,
+        "max_ms": 36.1866
+      },
+      "connections": 7,
+      "connections_definition": "requests with positive native connecting timing, not packet-verified socket count",
+      "slow_at_least_50ms": 56,
+      "fast_below_10ms": 0
+    },
+    "k6-reuse": {
+      "count": 60,
+      "total": {
+        "count": 60,
+        "average_ms": 51.916666666666664,
+        "median_ms": 53.5,
+        "p95_ms": 82.59999999999991,
+        "p99_ms": 117.86999999999998,
+        "max_ms": 122
+      },
+      "exchange": {
+        "count": 60,
+        "average_ms": 51.79394166666666,
+        "median_ms": 53.362049999999996,
+        "p95_ms": 82.10894499999992,
+        "p99_ms": 116.82077299999997,
+        "max_ms": 120.6589
+      },
+      "waiting": {
+        "count": 60,
+        "average_ms": 49.545809999999996,
+        "median_ms": 53.362049999999996,
+        "p95_ms": 81.2331399999999,
+        "p99_ms": 116.29719999999998,
+        "max_ms": 120.1204
+      },
+      "receiving": {
+        "count": 60,
+        "average_ms": 2.231055,
+        "median_ms": 0,
+        "p95_ms": 27.882335,
+        "p99_ms": 34.85219699999997,
+        "max_ms": 40.0924
+      },
+      "connections": 4,
+      "connections_definition": "requests with positive native connecting timing, not packet-verified socket count",
+      "slow_at_least_50ms": 34,
+      "fast_below_10ms": 0
+    }
+  },
+  "segments": [
+    {
+      "id": "block-0-slot-0-curl-fresh",
+      "arm": "curl-fresh",
+      "block": 0,
+      "slot": 0,
+      "start_utc": "2026-10-08T13:45:00.1505649+00:00",
+      "end_utc": "2026-10-08T13:45:14.6102959+00:00",
+      "connections": 15,
+      "raw_sha256": "d507242d08c31e793abf0ce493a4967f5fe5c9510a50dcd6a191270b242c2c8c",
+      "total": {
+        "count": 15,
+        "average_ms": 117.107,
+        "median_ms": 125.921,
+        "p95_ms": 127.15310000000001,
+        "p99_ms": 127.39222000000001,
+        "max_ms": 127.45200000000001
+      },
+      "exchange": {
+        "count": 15,
+        "average_ms": 116.751,
+        "median_ms": 125.59900000000002,
+        "p95_ms": 126.8107,
+        "p99_ms": 127.05094,
+        "max_ms": 127.111
+      }
+    },
+    {
+      "id": "block-0-slot-1-curl-reuse",
+      "arm": "curl-reuse",
+      "block": 0,
+      "slot": 1,
+      "start_utc": "2026-10-08T13:45:14.6134837+00:00",
+      "end_utc": "2026-10-08T13:45:29.0773110+00:00",
+      "connections": 1,
+      "raw_sha256": "42d0884547e843d9f9749f2ca2ff82396f2bafa1b75fbb5c329d950352ba874a",
+      "total": {
+        "count": 15,
+        "average_ms": 51.3358,
+        "median_ms": 47.791,
+        "p95_ms": 75.37909999999997,
+        "p99_ms": 96.91501999999998,
+        "max_ms": 102.299
+      },
+      "exchange": {
+        "count": 15,
+        "average_ms": 51.23246666666666,
+        "median_ms": 47.703,
+        "p95_ms": 75.18749999999996,
+        "p99_ms": 96.49829999999997,
+        "max_ms": 101.826
+      }
+    },
+    {
+      "id": "block-0-slot-2-k6-fresh",
+      "arm": "k6-fresh",
+      "block": 0,
+      "slot": 2,
+      "start_utc": "2026-10-08T13:45:29.0809383+00:00",
+      "end_utc": "2026-10-08T13:45:44.2849188+00:00",
+      "connections": 2,
+      "raw_sha256": "cf0e06951c68d8190b71ac65cceb90af8d7e8e182806b3a00b0bddc7b10fdeaa",
+      "total": {
+        "count": 15,
+        "average_ms": 104.6,
+        "median_ms": 111,
+        "p95_ms": 122.3,
+        "p99_ms": 122.86,
+        "max_ms": 123
+      },
+      "exchange": {
+        "count": 15,
+        "average_ms": 104.30733333333333,
+        "median_ms": 110.2774,
+        "p95_ms": 122.25559,
+        "p99_ms": 122.417038,
+        "max_ms": 122.4574
+      }
+    },
+    {
+      "id": "block-0-slot-3-k6-reuse",
+      "arm": "k6-reuse",
+      "block": 0,
+      "slot": 3,
+      "start_utc": "2026-10-08T13:45:44.2988133+00:00",
+      "end_utc": "2026-10-08T13:45:59.5529716+00:00",
+      "connections": 1,
+      "raw_sha256": "ebd1352ab033f567f7057d8b6dd3904147755a52466bfd123f4717ae1dfa6a33",
+      "total": {
+        "count": 15,
+        "average_ms": 49.4,
+        "median_ms": 41,
+        "p95_ms": 78.59999999999994,
+        "p99_ms": 107.71999999999997,
+        "max_ms": 115
+      },
+      "exchange": {
+        "count": 15,
+        "average_ms": 49.35763333333333,
+        "median_ms": 40.5567,
+        "p95_ms": 78.06985999999995,
+        "p99_ms": 106.93685199999996,
+        "max_ms": 114.1536
+      }
+    },
+    {
+      "id": "block-1-slot-0-curl-reuse",
+      "arm": "curl-reuse",
+      "block": 1,
+      "slot": 0,
+      "start_utc": "2026-10-08T13:45:59.5552514+00:00",
+      "end_utc": "2026-10-08T13:46:13.9190797+00:00",
+      "connections": 1,
+      "raw_sha256": "4549ffdb3b1165495a2080342f7f4d0a9839af66b189d582f2d093b2b9acfcb1",
+      "total": {
+        "count": 15,
+        "average_ms": 60.06846666666666,
+        "median_ms": 63.293,
+        "p95_ms": 71.78909999999998,
+        "p99_ms": 86.59382,
+        "max_ms": 90.295
+      },
+      "exchange": {
+        "count": 15,
+        "average_ms": 59.965399999999995,
+        "median_ms": 63.217,
+        "p95_ms": 71.59919999999997,
+        "p99_ms": 86.18384,
+        "max_ms": 89.83000000000001
+      }
+    },
+    {
+      "id": "block-1-slot-1-k6-fresh",
+      "arm": "k6-fresh",
+      "block": 1,
+      "slot": 1,
+      "start_utc": "2026-10-08T13:46:13.9208849+00:00",
+      "end_utc": "2026-10-08T13:46:29.1880016+00:00",
+      "connections": 2,
+      "raw_sha256": "0cb744a3170f2c9902f118acc383f90a7638b826ce355715a2c8402b36389a93",
+      "total": {
+        "count": 15,
+        "average_ms": 107.66666666666667,
+        "median_ms": 119,
+        "p95_ms": 124.6,
+        "p99_ms": 125.72,
+        "max_ms": 126
+      },
+      "exchange": {
+        "count": 15,
+        "average_ms": 107.49574000000001,
+        "median_ms": 118.2255,
+        "p95_ms": 124.48767000000001,
+        "p99_ms": 125.034174,
+        "max_ms": 125.1708
+      }
+    },
+    {
+      "id": "block-1-slot-2-k6-reuse",
+      "arm": "k6-reuse",
+      "block": 1,
+      "slot": 2,
+      "start_utc": "2026-10-08T13:46:29.1893985+00:00",
+      "end_utc": "2026-10-08T13:46:44.4870962+00:00",
+      "connections": 1,
+      "raw_sha256": "cd39b08b3dfba3406aebd8383608f11b8e863638f8a093542c3ab5e83cf7e9b2",
+      "total": {
+        "count": 15,
+        "average_ms": 49.93333333333333,
+        "median_ms": 47,
+        "p95_ms": 68.39999999999998,
+        "p99_ms": 78.47999999999999,
+        "max_ms": 81
+      },
+      "exchange": {
+        "count": 15,
+        "average_ms": 49.85208,
+        "median_ms": 47.0137,
+        "p95_ms": 68.26570999999998,
+        "p99_ms": 78.056022,
+        "max_ms": 80.5036
+      }
+    },
+    {
+      "id": "block-1-slot-3-curl-fresh",
+      "arm": "curl-fresh",
+      "block": 1,
+      "slot": 3,
+      "start_utc": "2026-10-08T13:46:44.4889243+00:00",
+      "end_utc": "2026-10-08T13:46:58.9177609+00:00",
+      "connections": 15,
+      "raw_sha256": "dd91f717860048b361716ca9e51f54e7765f388ef9b678c5943470f8ddb32b3c",
+      "total": {
+        "count": 15,
+        "average_ms": 112.95166666666665,
+        "median_ms": 126.889,
+        "p95_ms": 133.03769999999997,
+        "p99_ms": 140.93314,
+        "max_ms": 142.907
+      },
+      "exchange": {
+        "count": 15,
+        "average_ms": 112.58546666666668,
+        "median_ms": 126.50899999999999,
+        "p95_ms": 132.7406,
+        "p99_ms": 140.64892,
+        "max_ms": 142.626
+      }
+    },
+    {
+      "id": "block-2-slot-0-k6-fresh",
+      "arm": "k6-fresh",
+      "block": 2,
+      "slot": 0,
+      "start_utc": "2026-10-08T13:46:58.9193426+00:00",
+      "end_utc": "2026-10-08T13:47:14.1677174+00:00",
+      "connections": 1,
+      "raw_sha256": "9b290ebd59d5564eb568522e7e89cee6649c41e218a03daca6e943dd3ab271c6",
+      "total": {
+        "count": 15,
+        "average_ms": 103.86666666666666,
+        "median_ms": 113,
+        "p95_ms": 123,
+        "p99_ms": 123,
+        "max_ms": 123
+      },
+      "exchange": {
+        "count": 15,
+        "average_ms": 103.81771999999998,
+        "median_ms": 112.5798,
+        "p95_ms": 122.89083,
+        "p99_ms": 123.05944600000001,
+        "max_ms": 123.1016
+      }
+    },
+    {
+      "id": "block-2-slot-1-k6-reuse",
+      "arm": "k6-reuse",
+      "block": 2,
+      "slot": 1,
+      "start_utc": "2026-10-08T13:47:14.1692352+00:00",
+      "end_utc": "2026-10-08T13:47:29.3398906+00:00",
+      "connections": 1,
+      "raw_sha256": "326f69671243908a69d22f0e6109e4aad818ad0ba46a830a1e200c56174458f2",
+      "total": {
+        "count": 15,
+        "average_ms": 53.666666666666664,
+        "median_ms": 56,
+        "p95_ms": 89.79999999999995,
+        "p99_ms": 115.55999999999997,
+        "max_ms": 122
+      },
+      "exchange": {
+        "count": 15,
+        "average_ms": 53.429219999999994,
+        "median_ms": 56.518,
+        "p95_ms": 89.38702999999995,
+        "p99_ms": 114.40452599999998,
+        "max_ms": 120.6589
+      }
+    },
+    {
+      "id": "block-2-slot-2-curl-fresh",
+      "arm": "curl-fresh",
+      "block": 2,
+      "slot": 2,
+      "start_utc": "2026-10-08T13:47:29.3414874+00:00",
+      "end_utc": "2026-10-08T13:47:43.8006632+00:00",
+      "connections": 15,
+      "raw_sha256": "9cd6e1f6a8122f3278f2d22b9334f73a37b3cd4607832ae96f6a07a8734c4cdb",
+      "total": {
+        "count": 15,
+        "average_ms": 104.3054,
+        "median_ms": 110.633,
+        "p95_ms": 111.98400000000001,
+        "p99_ms": 112.0064,
+        "max_ms": 112.012
+      },
+      "exchange": {
+        "count": 15,
+        "average_ms": 103.94520000000001,
+        "median_ms": 110.30699999999999,
+        "p95_ms": 111.65220000000001,
+        "p99_ms": 111.67124,
+        "max_ms": 111.676
+      }
+    },
+    {
+      "id": "block-2-slot-3-curl-reuse",
+      "arm": "curl-reuse",
+      "block": 2,
+      "slot": 3,
+      "start_utc": "2026-10-08T13:47:43.8024245+00:00",
+      "end_utc": "2026-10-08T13:47:58.2547486+00:00",
+      "connections": 1,
+      "raw_sha256": "4a9c575c0e0c6ed508108deda200b5e2333b7da8885a046e4b7ee76a9a994f8c",
+      "total": {
+        "count": 15,
+        "average_ms": 63.269933333333334,
+        "median_ms": 63.387,
+        "p95_ms": 72.98309999999996,
+        "p99_ms": 89.19341999999997,
+        "max_ms": 93.246
+      },
+      "exchange": {
+        "count": 15,
+        "average_ms": 63.16153333333333,
+        "median_ms": 63.312999999999995,
+        "p95_ms": 72.79259999999996,
+        "p99_ms": 88.80411999999998,
+        "max_ms": 92.807
+      }
+    },
+    {
+      "id": "block-3-slot-0-k6-reuse",
+      "arm": "k6-reuse",
+      "block": 3,
+      "slot": 0,
+      "start_utc": "2026-10-08T13:47:58.2561556+00:00",
+      "end_utc": "2026-10-08T13:48:13.4987877+00:00",
+      "connections": 1,
+      "raw_sha256": "e478f4454ee3853d7dca29381a845d0cf4a581df8f4add18e62ba90bcaf6e428",
+      "total": {
+        "count": 15,
+        "average_ms": 54.666666666666664,
+        "median_ms": 57,
+        "p95_ms": 78.69999999999995,
+        "p99_ms": 106.13999999999997,
+        "max_ms": 113
+      },
+      "exchange": {
+        "count": 15,
+        "average_ms": 54.536833333333334,
+        "median_ms": 56.6686,
+        "p95_ms": 78.25036999999995,
+        "p99_ms": 105.73847399999997,
+        "max_ms": 112.6105
+      }
+    },
+    {
+      "id": "block-3-slot-1-curl-fresh",
+      "arm": "curl-fresh",
+      "block": 3,
+      "slot": 1,
+      "start_utc": "2026-10-08T13:48:13.5005816+00:00",
+      "end_utc": "2026-10-08T13:48:27.7822109+00:00",
+      "connections": 15,
+      "raw_sha256": "11ed9236067ee19f43a3539ca6e247c94e11f732568d8a867b9823076fd364a0",
+      "total": {
+        "count": 15,
+        "average_ms": 112.18500000000002,
+        "median_ms": 126.907,
+        "p95_ms": 135.9996,
+        "p99_ms": 151.84872,
+        "max_ms": 155.811
+      },
+      "exchange": {
+        "count": 15,
+        "average_ms": 111.80166666666668,
+        "median_ms": 126.51,
+        "p95_ms": 135.64929999999998,
+        "p99_ms": 151.47546,
+        "max_ms": 155.43200000000002
+      }
+    },
+    {
+      "id": "block-3-slot-2-curl-reuse",
+      "arm": "curl-reuse",
+      "block": 3,
+      "slot": 2,
+      "start_utc": "2026-10-08T13:48:27.7839223+00:00",
+      "end_utc": "2026-10-08T13:48:42.2636695+00:00",
+      "connections": 1,
+      "raw_sha256": "81a712f4bf8cbb400d2ae41d51f830bdd3fa0ed42ec50102754f5c4002ffa65a",
+      "total": {
+        "count": 15,
+        "average_ms": 53.47953333333333,
+        "median_ms": 47.375,
+        "p95_ms": 75.3596999999999,
+        "p99_ms": 125.77033999999993,
+        "max_ms": 138.373
+      },
+      "exchange": {
+        "count": 15,
+        "average_ms": 53.37646666666667,
+        "median_ms": 47.288999999999994,
+        "p95_ms": 75.17059999999991,
+        "p99_ms": 125.38131999999995,
+        "max_ms": 137.934
+      }
+    },
+    {
+      "id": "block-3-slot-3-k6-fresh",
+      "arm": "k6-fresh",
+      "block": 3,
+      "slot": 3,
+      "start_utc": "2026-10-08T13:48:42.2650457+00:00",
+      "end_utc": "2026-10-08T13:48:57.4684936+00:00",
+      "connections": 2,
+      "raw_sha256": "156d63c537aa83ffd45680305ae606954d6a7c246a042b0afd315b2cded36046",
+      "total": {
+        "count": 15,
+        "average_ms": 104,
+        "median_ms": 102,
+        "p95_ms": 125,
+        "p99_ms": 125,
+        "max_ms": 125
+      },
+      "exchange": {
+        "count": 15,
+        "average_ms": 103.87492666666665,
+        "median_ms": 101.7713,
+        "p95_ms": 125.14065,
+        "p99_ms": 125.21092999999999,
+        "max_ms": 125.2285
+      }
+    }
+  ],
+  "server": {
+    "cpu": {
+      "count": 16,
+      "min": 0.0008916629514043691,
+      "max": 0.002680366316729953
+    },
+    "pending": {
+      "count": 16,
+      "min": 0,
+      "max": 0
+    },
+    "categories_rolling_p99_seconds": {
+      "count": 16,
+      "min": 0.0020870764558823525,
+      "max": 0.0038342902499999996
+    }
+  },
+  "validation": "PASS: 16 bounded segments/240 HTTP successes, counterbalanced positions, curl cumulative timing order/connection counts, k6 contract digest and seven native timing quantiles",
+  "limits": [
+    "Four 15-request blocks per arm, pooled 60-request percentiles are not stable capacity/SLO estimates.",
+    "Curl total is native cumulative time; k6 total here is Date.now wall time with millisecond resolution, not native duration.",
+    "Curl exchange is total minus pretransfer per request; boundary differs slightly from k6 native duration.",
+    "Curl body discarded: HTTP/bytes validated, business payload contract validated only for k6.",
+    "Fresh: curl Connection: close, k6 noConnectionReuse. SSH forwarding connection itself remains open.",
+    "Same endpoint and headers, but client implementation and exact HTTP bytes differ.",
+    "Without packet capture/server per-request spans, ACK/buffering/scheduler/SSH routing causes remain unconfirmed.",
+    "No deployment, DB changes or replacement of historical A3 or aborted attempts."
+  ]
+}

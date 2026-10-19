@@ -1,0 +1,205 @@
+{
+  "schema_version": 1,
+  "extracted_at_utc": "2026-10-08T05:17:32.621Z",
+  "source": {
+    "repository_relative_path": "k6/results/order-index-a3-recheck-20261008T051209Z/a3-comparison.json",
+    "sha256": "722a178b8f9f4eaa01d821ed144c9d07c39860adb57eea599bebd7c51f5aa040"
+  },
+  "result": "BLOCKED_AT_WARMUP_THRESHOLDS",
+  "planned_measured_runs": 1,
+  "completed_measured_runs": 0,
+  "original_a3_retained": true,
+  "conditions_comparison": "PASS: identical workload input hashes, URL, revision/digest references, archive lineage, duration and arrival rates",
+  "original_phase": "5-minute measured run",
+  "followup_phase": "2-minute warmup only; 5-minute run not started",
+  "original": {
+    "run_id": "order-index-after-supplement-20261007T152042Z-run-3",
+    "raw_sha256": "ada1c9b46b75b1e53d86f0fe80b27e87959509fd0929078cf45ee823da369877",
+    "raw_native_validation": "PASS: 7 timings plus member counts/quantiles and duration component sums",
+    "started_at_utc": "20261007T152415Z",
+    "finished_at_utc": "20261007T152917Z",
+    "orders": {
+      "count": 493,
+      "average_ms": 118.4311399594321,
+      "p95_ms": 167.84095999999994,
+      "p99_ms": 303.78775599999994,
+      "max_ms": 1149.003,
+      "slow_at_least_250ms": 11,
+      "slow_fraction": 0.02231237322515213,
+      "slow_duration_component_shares": {
+        "sending": 0,
+        "waiting": 0.919049711099866,
+        "receiving": 0.08095028890013402
+      },
+      "slow_with_tcp": 0,
+      "slow_with_tls": 0,
+      "slow_with_blocked": 0
+    },
+    "overall": {
+      "count": 6018,
+      "average_ms": 115.00748742106991,
+      "p95_ms": 231.49973499999987,
+      "p99_ms": 309.0702039999999,
+      "max_ms": 1544.5486,
+      "slow_at_least_250ms": 211,
+      "slow_fraction": 0.03506148222000665,
+      "slow_duration_component_shares": {
+        "sending": 0.00007250084433765097,
+        "waiting": 0.9905019721334951,
+        "receiving": 0.00942552702216731
+      },
+      "slow_with_tcp": 14,
+      "slow_with_tls": 14,
+      "slow_with_blocked": 14
+    },
+    "http_requests": 6018,
+    "check_passes": 12666,
+    "http_failure_rate": 0,
+    "check_failures": 0,
+    "dropped_iterations": 0,
+    "k6_exit_code": 0,
+    "thresholds_passed": true,
+    "failed_thresholds": [],
+    "server": {
+      "up": {
+        "samples": 17,
+        "min": 1,
+        "max": 1
+      },
+      "cpu": {
+        "samples": 17,
+        "min": 0.05229050279329609,
+        "max": 0.07000670990829792
+      },
+      "pending": {
+        "samples": 17,
+        "min": 0,
+        "max": 0
+      },
+      "heap_mib": {
+        "samples": 17,
+        "min": 61.711570739746094,
+        "max": 189.7115707397461
+      },
+      "gc_pause_rate": {
+        "samples": 17,
+        "min": 0.00011111604960220464,
+        "max": 0.0002444553091248502
+      },
+      "order_rolling_p95_ms": {
+        "samples": 17,
+        "min": 6.8091897765625,
+        "max": 8.947847399999997
+      },
+      "order_rolling_p99_ms": null
+    }
+  },
+  "followup_warmup": {
+    "run_id": "order-index-a3-recheck-20261008T051209Z-warmup",
+    "raw_sha256": "02d206d3de1537e51c91bc95e06b67068a9c262efd2454881a9a256b3996d226",
+    "raw_native_validation": "PASS: 7 timings plus member counts/quantiles and duration component sums",
+    "started_at_utc": "20261008T051209Z",
+    "finished_at_utc": "20261008T051414Z",
+    "orders": {
+      "count": 193,
+      "average_ms": 245.37797616580298,
+      "p95_ms": 621.6871599999995,
+      "p99_ms": 1029.863391999997,
+      "max_ms": 2349.0245,
+      "slow_at_least_250ms": 85,
+      "slow_fraction": 0.44041450777202074,
+      "slow_duration_component_shares": {
+        "sending": 0.000014309288452171772,
+        "waiting": 0.994031166564571,
+        "receiving": 0.0059545241469766445
+      },
+      "slow_with_tcp": 0,
+      "slow_with_tls": 0,
+      "slow_with_blocked": 0
+    },
+    "overall": {
+      "count": 2419,
+      "average_ms": 241.03920789582506,
+      "p95_ms": 630.4758599999997,
+      "p99_ms": 1199.3556760000015,
+      "max_ms": 5009.1829,
+      "slow_at_least_250ms": 976,
+      "slow_fraction": 0.4034725093013642,
+      "slow_duration_component_shares": {
+        "sending": 0.000009740201834953942,
+        "waiting": 0.9532157874130471,
+        "receiving": 0.046774472385117866
+      },
+      "slow_with_tcp": 34,
+      "slow_with_tls": 34,
+      "slow_with_blocked": 34
+    },
+    "http_requests": 2419,
+    "check_passes": 5110,
+    "http_failure_rate": 0,
+    "check_failures": 0,
+    "dropped_iterations": 0,
+    "k6_exit_code": 99,
+    "thresholds_passed": false,
+    "failed_thresholds": [
+      {
+        "metric": "http_req_duration{endpoint:products}",
+        "threshold": "p(95)<500"
+      },
+      {
+        "metric": "http_req_duration",
+        "threshold": "p(95)<500"
+      },
+      {
+        "metric": "http_req_duration",
+        "threshold": "p(99)<1000"
+      }
+    ],
+    "server": {
+      "up": {
+        "samples": 5,
+        "min": 1,
+        "max": 1
+      },
+      "cpu": {
+        "samples": 5,
+        "min": 0.08734602463605824,
+        "max": 0.11952636282394996
+      },
+      "pending": {
+        "samples": 5,
+        "min": 0,
+        "max": 0
+      },
+      "heap_mib": {
+        "samples": 5,
+        "min": 95.3027572631836,
+        "max": 157.6479263305664
+      },
+      "gc_pause_rate": {
+        "samples": 5,
+        "min": 0.0005111338281701414,
+        "max": 0.0010444676548367745
+      },
+      "order_rolling_p95_ms": {
+        "samples": 5,
+        "min": 9.297372649999998,
+        "max": 40.68474737499997
+      },
+      "order_rolling_p99_ms": {
+        "samples": 5,
+        "min": 14.400441299999997,
+        "max": 53.99467127499999
+      }
+    }
+  },
+  "invalidation_evidence": "None established: changed latency alone is not measurement corruption or a proved VM/network incident.",
+  "interpretation": "Warmup failed the unchanged latency thresholds; no 5-minute recheck ran. Do not compare warmup directly as A3 replacement.",
+  "limits": [
+    "User-confirmed unchanged deployment/config/data, not a new remote inventory or dump.",
+    "One new repeat is not proof of stable p99 or a pure causal infrastructure effect.",
+    "Random endpoint selection changes order sample counts; public network/time window differs.",
+    "Server histogram windows are approximate and not per-request correlation.",
+    "Original has no p99 query in its run metrics; its historical p99 remains in the earlier tail diagnostic."
+  ]
+}

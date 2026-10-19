@@ -1,0 +1,52 @@
+.report-page {
+  --data-app-layout-intent: authored-report;
+  --data-app-content-width: 1000px;
+  --data-app-report-prose-width: 100%;
+  --report-chart-radius: 8px;
+  max-width: calc(var(--data-app-content-width) + 72px);
+  margin-inline: auto;
+  padding: 36px 36px 96px;
+}
+.coffeeprod-report {
+  display: grid;
+  gap: 32px;
+  line-height: 1.65;
+  letter-spacing: 0;
+}
+.coffeeprod-report > *, .coffeeprod-report .report-section { min-width: 0; }
+.coffeeprod-report .report-hero { display: grid; gap: 12px; }
+.coffeeprod-report .report-hero h1 {
+  margin: 0;
+  font-size: 36px;
+  line-height: 1.3;
+  letter-spacing: 0;
+  word-break: keep-all;
+  overflow-wrap: anywhere;
+}
+.coffeeprod-report .report-section { display: grid; gap: 24px; }
+.coffeeprod-report :is(.rich-narrative-content, .report-rich-editable) {
+  font-size: 16px;
+  line-height: 1.65;
+  letter-spacing: 0;
+}
+.coffeeprod-report :is(.rich-narrative-content, .report-rich-editable) :is(h2, h3) {
+  margin: 0 0 14px;
+  letter-spacing: 0;
+  line-height: 1.45;
+}
+.coffeeprod-report :is(.rich-narrative-content, .report-rich-editable) h2 { font-size: 22px; }
+.coffeeprod-report :is(.rich-narrative-content, .report-rich-editable) h3 { font-size: 18px; }
+.coffeeprod-report .dashboard-component[data-component-kind="chart"] {
+  padding: 20px;
+  background: var(--background);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+.coffeeprod-report .component-title { letter-spacing: 0; }
+.coffeeprod-report .report-figure { display: block; width: 100%; height: auto; }
+@media (max-width: 640px) {
+  .report-page { padding: 22px 20px 64px; }
+  .coffeeprod-report .report-hero h1 { font-size: 28px; }
+  .coffeeprod-report .dashboard-component[data-component-kind="chart"] { padding: 16px 10px; }
+  .coffeeprod-report :is(.rich-narrative-content, .report-rich-editable) h2 { font-size: 20px; }
+}

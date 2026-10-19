@@ -2,3 +2,10 @@
 *.sh text eol=lf
 *.bat text eol=crlf
 *.jar binary
+
+# Report evidence and the copied runtime use byte-level integrity hashes.
+# Preserve reviewed UTF-8 bytes across Windows and Linux checkouts.
+/improvement/** -text whitespace=cr-at-eol
+
+# Keep the generated offline archive byte-for-byte, including compiler whitespace.
+/improvement/final-report/CoffeeProd_Performance_Final_Report.html whitespace=cr-at-eol,-blank-at-eol

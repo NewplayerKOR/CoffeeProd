@@ -1,0 +1,510 @@
+{
+  "schema_version": 1,
+  "title": "CoffeeProd 1차 개선: 주문 조회 인덱스",
+  "evidence_period_kst": [
+    "2026-10-07",
+    "2026-10-08"
+  ],
+  "extracted_at_utc": "2026-10-08T04:57:11.437Z",
+  "sources": [
+    {
+      "id": "http_index_comparison",
+      "repository_relative_path": "k6/results/order-index-after-20261007T123425Z/http-comparison.json",
+      "sha256": "b0971b672d680e450caf63a28b7175f6024ec33fc8d158715486880786746c4d"
+    },
+    {
+      "id": "sql_plan_comparison",
+      "repository_relative_path": "k6/results/order-index-after-20261007T123425Z/sql-plan-comparison.json",
+      "sha256": "7b65dd27ae79112e15fc4fa99c186babf747c1f058b27d6e89f065a4c8047785"
+    },
+    {
+      "id": "order_path_comparison",
+      "repository_relative_path": "k6/results/order-path-20261008T034841Z/path-comparison.json",
+      "sha256": "cb7cd6623f845d4a7e5943924bfe3222a3fd53f222377c4633d08f1590ffb462"
+    },
+    {
+      "id": "local_order_regression",
+      "repository_relative_path": ".md/improvement/monitoring/evidence-20261008/order-service-rerun.json",
+      "sha256": "0a3cf4fb80e3ace25ee3c731363b0680ca9968e70f7f1b3cc7d1e7b703990a7d"
+    },
+    {
+      "id": "deployed_order_regression",
+      "repository_relative_path": "k6/results/order-index-after-supplement-20261007T152042Z/order-read-functional-regression.json",
+      "sha256": "359f3285060f3d3fa545c4bfa6036a73156285222b5c5e1b1ca311bdcaaaa95e"
+    },
+    {
+      "id": "path_validation",
+      "repository_relative_path": "k6/results/order-path-20261008T034841Z/analysis-validation.json",
+      "sha256": "42e4aae093a64ecb0f8c13364d802498f076312059123be99cb88c88cd85ac6f"
+    },
+    {
+      "id": "post_suite_check",
+      "repository_relative_path": "k6/results/order-path-20261008T034841Z/post-suite-check.json",
+      "sha256": "d9c19b196be914ab8273f1b06e2aee8d05111a939c543862528cce4206b27015"
+    },
+    {
+      "id": "test_serialization_repair",
+      "repository_relative_path": "k6/results/order-path-20261008T034841Z/serialization-preflight-repair.json",
+      "sha256": "dfd60157b25154e9ef04a0ec839dd6ce2bf19676cbb3977926246cba8e6f3839"
+    }
+  ],
+  "metric_definition": "p95/p99 values are medians of three per-run percentiles, not pooled percentiles.",
+  "environment": {
+    "postgres_version": "16.15",
+    "orders": 150000,
+    "order_items": 375000,
+    "representative_member_orders": 501,
+    "before_revision": "99bfed04c746ec9ab8c32ac96de7fbba0446a84b",
+    "after_revision": "bb40a8b2643f38856e0a0d2f8d8c4d951f4ceb8d",
+    "deployment_and_unchanged_data_evidence": "USER_VERIFIED; not a fresh remote inventory for this report"
+  },
+  "workload": {
+    "public_iterations_per_second": 15,
+    "member_iterations_per_second": 4,
+    "login_iterations_per_second": 1,
+    "measured_duration": "5m per run",
+    "warmup_duration": "2m",
+    "repeats_per_side": 3,
+    "cooldown_seconds": 90,
+    "after_cross_session": true,
+    "order_page": 0,
+    "order_page_size": 10,
+    "random_endpoint_selection": true
+  },
+  "mixed": {
+    "before": [
+      {
+        "run_id": "baseline-before-20261007T054621Z-run-1",
+        "display_id": "B1",
+        "supplemental": false,
+        "order_samples": 510,
+        "order_p95_ms": 192.17281,
+        "order_p99_ms": 205.79249999999996,
+        "overall_p95_ms": 211.95843999999994,
+        "overall_p99_ms": 259.006215,
+        "http_requests": 6018,
+        "check_passes": 12666,
+        "http_failure_rate": 0,
+        "check_failures": 0,
+        "dropped_iterations": 0,
+        "server_order_rolling_p95_min_ms": 83.36412192666666,
+        "server_order_rolling_p95_max_ms": 87.823133046,
+        "cpu_sample_max": 0.11948981875139852,
+        "pending_sample_max": 0,
+        "raw_sha256": "05e4719b15452cc19a5d9c9f22ef7351123bfb744f2c56b4bd29355be99f26fb"
+      },
+      {
+        "run_id": "baseline-before-20261007T054621Z-run-2",
+        "display_id": "B2",
+        "supplemental": false,
+        "order_samples": 498,
+        "order_p95_ms": 194.44252999999995,
+        "order_p99_ms": 210.55049299999993,
+        "overall_p95_ms": 215.579885,
+        "overall_p99_ms": 266.2599349999999,
+        "http_requests": 6018,
+        "check_passes": 12666,
+        "http_failure_rate": 0,
+        "check_failures": 0,
+        "dropped_iterations": 0,
+        "server_order_rolling_p95_min_ms": 77.17519345000001,
+        "server_order_rolling_p95_max_ms": 82.99129490999997,
+        "cpu_sample_max": 0.09536601746138347,
+        "pending_sample_max": 0,
+        "raw_sha256": "8880c6fffa0a8df563ead1b387d964b80d8d273f1e98daf4b4caea84460e3f92"
+      },
+      {
+        "run_id": "baseline-before-20261007T054621Z-run-3",
+        "display_id": "B3",
+        "supplemental": false,
+        "order_samples": 467,
+        "order_p95_ms": 198.59927,
+        "order_p99_ms": 206.06294799999992,
+        "overall_p95_ms": 228.96634999999992,
+        "overall_p99_ms": 269.56439399999994,
+        "http_requests": 6019,
+        "check_passes": 12668,
+        "http_failure_rate": 0,
+        "check_failures": 0,
+        "dropped_iterations": 0,
+        "server_order_rolling_p95_min_ms": 73.59605409000002,
+        "server_order_rolling_p95_max_ms": 83.21499112,
+        "cpu_sample_max": 0.09290351466308484,
+        "pending_sample_max": 0,
+        "raw_sha256": "721325567dc803a81ea322fb6a1c38a9ae222dc6bd699b1fcf54d220ae32a451"
+      }
+    ],
+    "after": [
+      {
+        "run_id": "order-index-after-20261007T123425Z-run-1",
+        "display_id": "A1",
+        "supplemental": false,
+        "order_samples": 449,
+        "order_p95_ms": 141.95011999999997,
+        "order_p99_ms": 146.7075,
+        "overall_p95_ms": 214.30079500000002,
+        "overall_p99_ms": 269.2523570000006,
+        "http_requests": 6020,
+        "check_passes": 12672,
+        "http_failure_rate": 0,
+        "check_failures": 0,
+        "dropped_iterations": 0,
+        "server_order_rolling_p95_min_ms": 6.818920877272727,
+        "server_order_rolling_p95_max_ms": 13.072245349999994,
+        "cpu_sample_max": 0.10326329906124272,
+        "pending_sample_max": 0,
+        "raw_sha256": "214edd76cd10215f4b18355f18571ff2a895a3bf9247cbbd09f14235300cedc2"
+      },
+      {
+        "run_id": "order-index-after-20261007T123425Z-run-2",
+        "display_id": "A2",
+        "supplemental": false,
+        "order_samples": 519,
+        "order_p95_ms": 136.32193999999998,
+        "order_p99_ms": 144.18941400000003,
+        "overall_p95_ms": 243.34889999999987,
+        "overall_p99_ms": 336.4149279999998,
+        "http_requests": 6019,
+        "check_passes": 12668,
+        "http_failure_rate": 0,
+        "check_failures": 0,
+        "dropped_iterations": 0,
+        "server_order_rolling_p95_min_ms": 6.750397349999999,
+        "server_order_rolling_p95_max_ms": 8.269768415,
+        "cpu_sample_max": 0.08150960250111658,
+        "pending_sample_max": 0,
+        "raw_sha256": "2f5338534a29af34ed49375ab338e6ec5c395570262df4510f7797edd2e96cd6"
+      },
+      {
+        "run_id": "order-index-after-supplement-20261007T152042Z-run-3",
+        "display_id": "A3",
+        "supplemental": true,
+        "order_samples": 493,
+        "order_p95_ms": 167.84095999999994,
+        "order_p99_ms": 303.78775599999994,
+        "overall_p95_ms": 231.49973499999987,
+        "overall_p99_ms": 309.0702039999999,
+        "http_requests": 6018,
+        "check_passes": 12666,
+        "http_failure_rate": 0,
+        "check_failures": 0,
+        "dropped_iterations": 0,
+        "server_order_rolling_p95_min_ms": 6.8091897765625,
+        "server_order_rolling_p95_max_ms": 8.947847399999997,
+        "cpu_sample_max": 0.07814244250948872,
+        "pending_sample_max": 0,
+        "raw_sha256": "ada1c9b46b75b1e53d86f0fe80b27e87959509fd0929078cf45ee823da369877"
+      }
+    ]
+  },
+  "medians": {
+    "order_p95_ms": {
+      "before": 194.44252999999995,
+      "after": 141.95011999999997,
+      "reduction_percent": 26.996362369899213
+    },
+    "order_p99_ms": {
+      "before": 206.06294799999992,
+      "after": 146.7075,
+      "reduction_percent": 28.804522392836933
+    },
+    "overall_p95_ms": {
+      "before": 215.579885,
+      "after": 231.49973499999987,
+      "reduction_percent": -7.384663926321272
+    },
+    "overall_p99_ms": {
+      "before": 266.2599349999999,
+      "after": 309.0702039999999,
+      "reduction_percent": -16.078374314934
+    }
+  },
+  "totals": {
+    "before": {
+      "http_requests": 18055,
+      "check_passes": 38000,
+      "order_samples": 1475,
+      "http_failures": 0,
+      "check_failures": 0,
+      "dropped_iterations": 0
+    },
+    "after": {
+      "http_requests": 18057,
+      "check_passes": 38006,
+      "order_samples": 1461,
+      "http_failures": 0,
+      "check_failures": 0,
+      "dropped_iterations": 0
+    }
+  },
+  "sql": {
+    "queries": [
+      {
+        "name": "주문 ID 페이지",
+        "before_execution_ms": 14.632,
+        "before_runs": 1,
+        "after_execution_ms": [
+          0.116,
+          0.123,
+          0.132
+        ],
+        "after_execution_median_ms": 0.123,
+        "returned_rows": 10,
+        "before_scans": [
+          {
+            "relation": "orders",
+            "type": "Seq Scan",
+            "parallel_aware": true,
+            "index": null,
+            "rows_per_loop": 167,
+            "loops": 3
+          }
+        ],
+        "after_scans": [
+          {
+            "type": "Index Scan",
+            "relation": "orders",
+            "index": "idx_orders_member_order_date_desc",
+            "rows_per_loop": 10,
+            "loops": 1
+          }
+        ]
+      },
+      {
+        "name": "회원 주문 count",
+        "before_execution_ms": 14.481,
+        "before_runs": 1,
+        "after_execution_ms": [
+          0.15,
+          0.152,
+          0.181
+        ],
+        "after_execution_median_ms": 0.152,
+        "returned_rows": 1,
+        "before_scans": [
+          {
+            "relation": "orders",
+            "type": "Seq Scan",
+            "parallel_aware": true,
+            "index": null,
+            "rows_per_loop": 167,
+            "loops": 3
+          }
+        ],
+        "after_scans": [
+          {
+            "type": "Index Only Scan",
+            "relation": "orders",
+            "index": "idx_orders_member_order_date_desc",
+            "rows_per_loop": 501,
+            "loops": 1
+          }
+        ]
+      },
+      {
+        "name": "주문상품 join(축약)",
+        "before_execution_ms": 77.541,
+        "before_runs": 1,
+        "after_execution_ms": [
+          0.689,
+          0.642,
+          0.577
+        ],
+        "after_execution_median_ms": 0.642,
+        "returned_rows": 26,
+        "before_scans": [
+          {
+            "relation": "order_item",
+            "type": "Seq Scan",
+            "parallel_aware": false,
+            "index": null,
+            "rows_per_loop": 375000,
+            "loops": 1
+          },
+          {
+            "relation": "orders",
+            "type": "Seq Scan",
+            "parallel_aware": true,
+            "index": null,
+            "rows_per_loop": 167,
+            "loops": 3
+          },
+          {
+            "relation": "orders",
+            "type": "Index Scan",
+            "parallel_aware": false,
+            "index": "pk_orders",
+            "rows_per_loop": 1,
+            "loops": 26
+          }
+        ],
+        "after_scans": [
+          {
+            "type": "Index Scan",
+            "relation": "orders",
+            "index": "idx_orders_member_order_date_desc",
+            "rows_per_loop": 10,
+            "loops": 1
+          },
+          {
+            "type": "Index Scan",
+            "relation": "orders",
+            "index": "pk_orders",
+            "rows_per_loop": 1,
+            "loops": 10
+          },
+          {
+            "type": "Index Scan",
+            "relation": "order_item",
+            "index": "idx_order_item_order_id",
+            "rows_per_loop": 3,
+            "loops": 10
+          }
+        ]
+      }
+    ],
+    "before_cache_context": "Single diagnostic run with more shared reads",
+    "after_cache_context": "Three runs with mostly shared hits",
+    "interpretation": "SQL execution time, not API p95; reduced diagnostic projection differs from ORM SQL"
+  },
+  "path_comparison": {
+    "rps": 2,
+    "measured_duration": "2m per route and pair",
+    "pairs": 3,
+    "account_index": 0,
+    "total_order_requests": 1443,
+    "records": [
+      {
+        "run_id": "order-path-20261008T034841Z-pair-1-public",
+        "pair": 1,
+        "route": "public",
+        "order_samples": 241,
+        "p95_ms": 136.7311,
+        "p99_ms": 191.43441999999993,
+        "slow_at_least_250ms": 1,
+        "protocols": [
+          "HTTP/2.0"
+        ],
+        "server_rolling_p99_min_ms": 12.443099899999998,
+        "server_rolling_p99_max_ms": 22.928861500000085,
+        "raw_sha256": "ae1304a135d272c97b6b014225b7dc04ba5c2d0619e320099432a39fdd739812"
+      },
+      {
+        "run_id": "order-path-20261008T034841Z-pair-1-origin",
+        "pair": 1,
+        "route": "origin",
+        "order_samples": 241,
+        "p95_ms": 12.0197,
+        "p99_ms": 12.977939999999997,
+        "slow_at_least_250ms": 0,
+        "protocols": [
+          "HTTP/1.1"
+        ],
+        "server_rolling_p99_min_ms": 12.72272009999998,
+        "server_rolling_p99_max_ms": 17.336456499999926,
+        "raw_sha256": "988a2301013753ac30ff388608daeb3046cb3821fbdb9ac54e89f81c0fcfa558"
+      },
+      {
+        "run_id": "order-path-20261008T034841Z-pair-2-origin",
+        "pair": 2,
+        "route": "origin",
+        "order_samples": 240,
+        "p95_ms": 11.52027,
+        "p99_ms": 21.5120679999998,
+        "slow_at_least_250ms": 0,
+        "protocols": [
+          "HTTP/1.1"
+        ],
+        "server_rolling_p99_min_ms": 10.870236274999998,
+        "server_rolling_p99_max_ms": 22.928861500000085,
+        "raw_sha256": "ce378d5bc8d7be7c8f07316bbaac55fc791f9cac00dc1c98e11bbbb3065399f8"
+      },
+      {
+        "run_id": "order-path-20261008T034841Z-pair-2-public",
+        "pair": 2,
+        "route": "public",
+        "order_samples": 241,
+        "p95_ms": 128.5072,
+        "p99_ms": 185.73622,
+        "slow_at_least_250ms": 0,
+        "protocols": [
+          "HTTP/2.0"
+        ],
+        "server_rolling_p99_min_ms": 9.696830078571429,
+        "server_rolling_p99_max_ms": 9.926518099999997,
+        "raw_sha256": "c5f6ee0231950d933238acb23976c3d5f11a1d3a5040393a27af03d7215f2884"
+      },
+      {
+        "run_id": "order-path-20261008T034841Z-pair-3-public",
+        "pair": 3,
+        "route": "public",
+        "order_samples": 240,
+        "p95_ms": 120.99502999999999,
+        "p99_ms": 161.04524999999933,
+        "slow_at_least_250ms": 0,
+        "protocols": [
+          "HTTP/2.0"
+        ],
+        "server_rolling_p99_min_ms": 9.646897899999999,
+        "server_rolling_p99_max_ms": 9.926518099999997,
+        "raw_sha256": "c16555e6a7e1ef309bf247cb9510c2a2ccd958d3b63430cf754be51e465dd793"
+      },
+      {
+        "run_id": "order-path-20261008T034841Z-pair-3-origin",
+        "pair": 3,
+        "route": "origin",
+        "order_samples": 240,
+        "p95_ms": 10.034054999999999,
+        "p99_ms": 10.709769,
+        "slow_at_least_250ms": 0,
+        "protocols": [
+          "HTTP/1.1"
+        ],
+        "server_rolling_p99_min_ms": 8.370102722058823,
+        "server_rolling_p99_max_ms": 9.606952157142858,
+        "raw_sha256": "9a1c935e9019538369d2c94d632bf28b331cd425b56e8aa74f55fbf15bcc8f19"
+      }
+    ],
+    "medians": {
+      "public": {
+        "avg_ms": 108.46756016597512,
+        "p95_ms": 128.5072,
+        "p99_ms": 185.73622
+      },
+      "origin": {
+        "avg_ms": 10.067995833333335,
+        "p95_ms": 11.52027,
+        "p99_ms": 12.977939999999997
+      }
+    },
+    "cache_status_after_suite": "DYNAMIC",
+    "interpretation": "Path diagnostic only; SSH, TLS, protocols and windows differ, not pure Cloudflare cost"
+  },
+  "regressions": {
+    "local_h2_order_service": {
+      "passed": 7,
+      "failed": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "deployed_order_reads": {
+      "passed": 13,
+      "failed": 0
+    },
+    "offline_script_safety": {
+      "passed": 9,
+      "failed": 0
+    }
+  },
+  "failures_preserved": {
+    "initial_snapshot_check_failures": 61,
+    "cause": "Canonical JSON object key order; preserve array order and all field values",
+    "earlier_scrape_guard_and_interrupted_run_excluded": true
+  },
+  "limits": [
+    "A3 is a separate session after re-warmup; no uninterrupted 3-run claim.",
+    "Network/cache/time windows and unverified between-run OS package changes prevent pure causal attribution.",
+    "Overall mixed latency increased; A3 order p99 increased.",
+    "No purchase writes, real payments, full current regression suite, frontend or capacity proof."
+  ]
+}

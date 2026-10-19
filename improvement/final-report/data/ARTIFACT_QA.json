@@ -1,0 +1,120 @@
+{
+  "generated_at_utc": "2026-10-19T03:26:50.014Z",
+  "result": "PASS",
+  "checks": [
+    "improvement/1차개선/data/metrics.json: SHA-256",
+    "improvement/2차개선/data/mixed-path-with-cloudflared.json: SHA-256",
+    "improvement/2차개선/data/ssh-client-comparison.json: SHA-256",
+    "Nine bounded source queries",
+    "Evidence cutoff retained",
+    "Order before: median",
+    "Order after: median",
+    "Observed reduction independently recalculated",
+    "Six repeats, A3 supplementation visible",
+    "Original A3 p99 retained",
+    "주문 ID 페이지: timings/rows",
+    "회원 주문 count: timings/rows",
+    "주문상품 join(축약): timings/rows",
+    "overall_p95_ms: before",
+    "overall_p95_ms: after",
+    "overall_p99_ms: before",
+    "overall_p99_ms: after",
+    "전체 혼합: public",
+    "전체 혼합: origin",
+    "주문 목록: public",
+    "주문 목록: origin",
+    "로그인: public",
+    "로그인: origin",
+    "windows: mean components reconcile",
+    "windows: native percentiles",
+    "git: mean components reconcile",
+    "git: native percentiles",
+    "Material caveats present",
+    "Unsupported portfolio claims explicitly excluded",
+    "Markdown link: final-report/CoffeeProd_Performance_Final_Report.html",
+    "Markdown link: ../src/main/resources/db/migration/V17__add_order_query_indexes.sql",
+    "Markdown link: final-report/figures/01-order-p95.png",
+    "Markdown link: final-report/figures/02-order-repeats.png",
+    "Markdown link: 1차개선/figures/02_sql_access_paths.png",
+    "Markdown link: final-report/figures/03-overall-limits.png",
+    "Markdown link: final-report/figures/04-route-comparison.png",
+    "Markdown link: final-report/figures/05-ssh-timing-components.png",
+    "Markdown link: 1차개선/README.md",
+    "Markdown link: 1차개선/EVIDENCE.md",
+    "Markdown link: 1차개선/A3_RECHECK_20261008.md",
+    "Markdown link: 2차개선/README.md",
+    "Markdown link: 2차개선/RESULT_SSH_CLIENTS_20261012.md",
+    "Markdown link: final-report/data/reviewed-data.json",
+    "Markdown link: final-report/data/evidence-manifest.json",
+    "Five native chart exports",
+    "01-order-p95.png: PNG dimensions",
+    "02-order-repeats.png: PNG dimensions",
+    "03-overall-limits.png: PNG dimensions",
+    "04-route-comparison.png: PNG dimensions",
+    "05-ssh-timing-components.png: PNG dimensions",
+    "No account/token fields in reviewed snapshot",
+    "No absolute local paths or private IPs in report snapshot"
+  ],
+  "figures": [
+    {
+      "file": "01-order-p95.png",
+      "cardId": "order-summary",
+      "width": 1500,
+      "height": 774,
+      "queryIds": [
+        "order_summary"
+      ],
+      "sha256": "a60a0d73838d5b66de70c9c192877dec415be3cb7ca2e8e76c6786aa5a2871d9",
+      "bytes": 62524
+    },
+    {
+      "file": "02-order-repeats.png",
+      "cardId": "order-runs",
+      "width": 1500,
+      "height": 795,
+      "queryIds": [
+        "order_runs"
+      ],
+      "sha256": "c17c912717fbad042be0901dde70c35365181b9773746d797b5b939a0c3f9f47",
+      "bytes": 65262
+    },
+    {
+      "file": "03-overall-limits.png",
+      "cardId": "overall-summary",
+      "width": 1500,
+      "height": 653,
+      "queryIds": [
+        "overall_summary"
+      ],
+      "sha256": "d013c7f0f58aad010a1013d4e02e589c8df1ea38949f9d0a166b587f7369b2af",
+      "bytes": 48028
+    },
+    {
+      "file": "04-route-comparison.png",
+      "cardId": "route-comparison",
+      "width": 1500,
+      "height": 834,
+      "queryIds": [
+        "route_comparison"
+      ],
+      "sha256": "0e52d39141959b6a5fad715143e01ba839b31d5805c30e8e9614041eead14005",
+      "bytes": 69695
+    },
+    {
+      "file": "05-ssh-timing-components.png",
+      "cardId": "ssh-components",
+      "width": 1500,
+      "height": 804,
+      "queryIds": [
+        "ssh_components"
+      ],
+      "sha256": "5649e4ae0c34756851e5bdf09b6cb897ee25835b2419fdd8427a0db4e886c35d",
+      "bytes": 68498
+    }
+  ],
+  "markdown_sha256": "fbe39e2c6e970cee7c1a5c0e7deee7b8c416e52b498e5fbe59cb60214a4974ae",
+  "snapshot_sha256": "499e67d741003c5b580367df8416a77f043f7a49e8aeba62f5726ca947eda90d",
+  "authoring_validation_only": true,
+  "new_load_test": false,
+  "visual_review": "Recorded separately in visual-review.json; this validator does not perform browser inspection."
+}

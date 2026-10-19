@@ -1,0 +1,54 @@
+{
+  "view": {
+    "surface": "report",
+    "tabId": null,
+    "filters": {}
+  },
+  "figures": [
+    {
+      "file": "01-order-p95.png",
+      "cardId": "order-summary",
+      "width": 1500,
+      "height": 774,
+      "queryIds": [
+        "order_summary"
+      ]
+    },
+    {
+      "file": "02-order-repeats.png",
+      "cardId": "order-runs",
+      "width": 1500,
+      "height": 795,
+      "queryIds": [
+        "order_runs"
+      ]
+    },
+    {
+      "file": "03-overall-limits.png",
+      "cardId": "overall-summary",
+      "width": 1500,
+      "height": 653,
+      "queryIds": [
+        "overall_summary"
+      ]
+    },
+    {
+      "file": "04-route-comparison.png",
+      "cardId": "route-comparison",
+      "width": 1500,
+      "height": 834,
+      "queryIds": [
+        "route_comparison"
+      ]
+    },
+    {
+      "file": "05-ssh-timing-components.png",
+      "cardId": "ssh-components",
+      "width": 1500,
+      "height": 804,
+      "queryIds": [
+        "ssh_components"
+      ]
+    }
+  ]
+}
