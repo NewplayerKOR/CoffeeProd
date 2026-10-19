@@ -2,6 +2,7 @@ package com.back.coffeeprod.global.security.jwt;
 
 import java.nio.charset.StandardCharsets;
 import java.util.Date;
+import java.util.UUID;
 
 import javax.crypto.SecretKey;
 
@@ -53,7 +54,7 @@ public class JwtUtil {
 
     /**
      * Refresh Token 생성(Access Token 재발급 시 사용)
-     * 권한 정보는 담지 않고, 식별자(memberId)만 담음
+     * 권한 정보 없이 회원 ID와 발급별 고유 식별자(jti)를 담음
      */
     public String generateRefreshToken(Long memberId) {
         Date now = new Date();
@@ -61,6 +62,7 @@ public class JwtUtil {
 
         return Jwts.builder()
                 .subject(memberId.toString())
+                .id(UUID.randomUUID().toString())
                 .issuedAt(now)
                 .expiration(expiryDate)
                 .signWith(secretKey)
