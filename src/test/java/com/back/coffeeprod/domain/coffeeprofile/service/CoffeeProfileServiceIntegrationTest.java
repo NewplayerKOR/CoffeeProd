@@ -30,10 +30,12 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.util.ReflectionTestUtils;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 @SpringBootTest
@@ -234,13 +236,47 @@ class CoffeeProfileServiceIntegrationTest {
         coffeeProfileService.createCoffeeProfile(
                 coffeeProfileRequest(null, "첫 번째 프로필", BeanType.SINGLE_ORIGIN, "ET", false, null, null, null)
         );
-        coffeeProfileService.createCoffeeProfile(
-                coffeeProfileRequest(null, "두 번째 프로필", BeanType.BLEND, null, false, null, null, null)
+        CoffeeProfileDto.Request blendRequest = coffeeProfileRequest(
+                null, "두 번째 프로필", BeanType.BLEND, null, false, null, null, null
         );
+        ReflectionTestUtils.setField(blendRequest, "originCountryCode", null);
+        ReflectionTestUtils.setField(blendRequest, "originRegion", null);
+        ReflectionTestUtils.setField(blendRequest, "farmOrCooperative", null);
+        ReflectionTestUtils.setField(blendRequest, "producer", null);
+        ReflectionTestUtils.setField(blendRequest, "altitudeMin", null);
+        ReflectionTestUtils.setField(blendRequest, "altitudeMax", null);
+        ReflectionTestUtils.setField(blendRequest, "components", List.of(
+                blendComponentRequest("BR", "60.00"),
+                blendComponentRequest("CO", "40.00")
+        ));
+        CoffeeProfileDto.Response createdBlend = coffeeProfileService.createCoffeeProfile(blendRequest);
 
         Page<CoffeeProfileDto.Response> response = coffeeProfileService.getCoffeeProfiles(PageRequest.of(0, 10));
 
         assertEquals(2, response.getTotalElements());
+
+        CoffeeProfileDto.Response blend = response.getContent().stream()
+                .filter(profile -> profile.getId().equals(createdBlend.getId()))
+                .findFirst().orElseThrow();
+        assertEquals(BeanType.BLEND, blend.getBeanType());
+        assertNull(blend.getOriginCountryCode());
+        assertNull(blend.getOriginRegion());
+        assertNull(blend.getFarmOrCooperative());
+        assertNull(blend.getProducer());
+        assertNull(blend.getAltitudeMin());
+        assertNull(blend.getAltitudeMax());
+        assertEquals(2, blend.getComponents().size());
+        assertEquals("BR", blend.getComponents().get(0).getOriginCountryCode());
+        assertEquals(0, new BigDecimal("60.00").compareTo(blend.getComponents().get(0).getComponentRatio()));
+        assertEquals("CO", blend.getComponents().get(1).getOriginCountryCode());
+        assertEquals(0, new BigDecimal("40.00").compareTo(blend.getComponents().get(1).getComponentRatio()));
+    }
+
+    private CoffeeProfileDto.ComponentRequest blendComponentRequest(String countryCode, String ratio) {
+        CoffeeProfileDto.ComponentRequest request = new CoffeeProfileDto.ComponentRequest();
+        ReflectionTestUtils.setField(request, "originCountryCode", countryCode);
+        ReflectionTestUtils.setField(request, "componentRatio", new BigDecimal(ratio));
+        return request;
     }
 
     private void cleanUp() {
