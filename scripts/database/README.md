@@ -79,3 +79,25 @@ V17 성공 이력과 인덱스의 정상 정의/유효 상태가 확인된 DB에
 - 성공한 V17을 되돌릴 때 V17 파일이나 Flyway 이력을 수정하지 않는다. 두 인덱스를 삭제하는 새 후속 migration을 작성해 배포한다.
 - 긴급 수동 삭제는 DBA 승인 후에만 수행하고, 동일 내용을 후속 migration으로 즉시 정합화한다.
 - 실패 이력이 남은 경우 원인과 실제 스키마 상태를 확인한 뒤에만 Flyway `repair` 여부를 판단한다.
+
+### 3.6 격리 PostgreSQL에서 DEV 자체 회귀
+
+Windows PowerShell 7, Java 21(`JAVA_HOME`), Docker, Gradle 오프라인 의존성이 준비된 프로젝트 루트에서 실행한다.
+
+```powershell
+pwsh -NoProfile -File scripts/database/test/run-order-index-verification.ps1 `
+  -OutputDirectory "build/dev-task2/postgres-$(Get-Date -Format yyyyMMdd-HHmmss)" `
+  -JavaHome $env:JAVA_HOME
+```
+
+이 실행기는 운영 `.env`를 사용하지 않는다. 소유 라벨이 있는 전용 PostgreSQL 16을 localhost 임의 포트에 생성하고 합성 자격 증명을 프로세스 환경으로만 전달한다. 실제 Flyway로 V1~V16 적용 후 기존 precheck, V17~V18 적용 후 verify를 실행한다. 새 애플리케이션의 Hibernate `validate`와 주문 조회 HTTP 10개를 실행하고, 같은 컨테이너 재시작 전후 합성 데이터·인덱스·Flyway 이력을 비교한 뒤 새 애플리케이션 프로세스에서 10개를 다시 실행한다. 기존 migration과 운영 코드를 변경하지 않는다.
+
+결과 경로는 저장소 `build/` 아래의 새 디렉터리여야 한다. Flyway/SQL 로그·데이터/카탈로그 snapshot·소스 hash·두 실행의 XML/HTML·새 프로세스 ID·컨테이너 정리 근거를 보존한다. 실패해도 생성한 컨테이너의 ID/소유 라벨을 확인한 뒤 해당 컨테이너만 제거한다. `build/`는 clean으로 삭제될 수 있다.
+
+동일 HTTP 10개를 포함한 기본 H2 전체 회귀는 다음과 같다. PostgreSQL 프로세스 환경 변수(`DEV_TASK2_PG_URL`, `DEV_TASK2_PG_PASSWORD`, `DEV_TASK2_OWNER`)가 없는 새 셸에서 실행한다.
+
+```powershell
+.\gradlew.bat --offline --no-daemon test --rerun-tasks --console=plain
+```
+
+격리 DB의 적용·재시작·기능 검증이며 운영 배포/DB의 현재 상태나 새 성능 개선율을 입증하지 않는다. 과거 운영 적용 revision/digest/USER_VERIFIED와 미확보 설치 시각·직전 건수는 TASKS.md에서 별도로 기록한다.
