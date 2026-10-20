@@ -19,7 +19,6 @@ on:
 
 permissions:
   contents: read
-  packages: write
 
 concurrency:
   group: backend-image-${{ github.ref }}
@@ -30,13 +29,137 @@ env:
   IMAGE_NAME: ${{ github.repository }}
 
 jobs:
-  publish:
-    name: Build and publish
-    runs-on: ubuntu-latest
+  test:
+    name: Java 21 full regression
+    # The existing JVM restart regression launches java.exe.
+    runs-on: windows-latest
+    timeout-minutes: 20
+    permissions:
+      contents: read
+    outputs:
+      tested-sha: ${{ steps.revision.outputs.sha }}
+    env:
+      JAVA_TOOL_OPTIONS: -Dfile.encoding=UTF-8 -Dsun.stdout.encoding=UTF-8 -Dsun.stderr.encoding=UTF-8
 
     steps:
       - name: Checkout source
         uses: actions/checkout@v6
+        with:
+          ref: ${{ github.sha }}
+          persist-credentials: false
+
+      - name: Set up Java 21
+        uses: actions/setup-java@v6
+        with:
+          distribution: temurin
+          java-version: "21"
+          cache: gradle
+
+      - name: Record tested revision
+        id: revision
+        shell: pwsh
+        env:
+          EXPECTED_SHA: ${{ github.sha }}
+        run: |
+          $ErrorActionPreference = 'Stop'
+          [Console]::OutputEncoding = [Text.UTF8Encoding]::new($false)
+          $OutputEncoding = [Console]::OutputEncoding
+          $sha = git rev-parse HEAD
+          if ($LASTEXITCODE -ne 0 -or $sha -ne $env:EXPECTED_SHA) {
+            throw 'Test checkout does not match the workflow revision'
+          }
+          New-Item -ItemType Directory -Path build/ci-results -Force | Out-Null
+          [ordered]@{
+            commitSha = $sha
+            runId = $env:GITHUB_RUN_ID
+            runAttempt = $env:GITHUB_RUN_ATTEMPT
+            ref = $env:GITHUB_REF
+            event = $env:GITHUB_EVENT_NAME
+            startedUtc = [DateTimeOffset]::UtcNow.ToString('o')
+            environment = 'Java 21; H2; Redis double; localhost PG stub'
+          } | ConvertTo-Json | Set-Content -LiteralPath build/ci-results/revision.json -Encoding utf8
+          "sha=$sha" >> $env:GITHUB_OUTPUT
+
+      - name: Run all tests
+        id: tests
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = 'Stop'
+          $PSNativeCommandUseErrorActionPreference = $false
+          [Console]::OutputEncoding = [Text.UTF8Encoding]::new($false)
+          $OutputEncoding = [Console]::OutputEncoding
+          & .\gradlew.bat --no-daemon test --rerun-tasks --console=plain 2>&1 |
+            Tee-Object -FilePath build/ci-results/gradle.log
+          $code = $LASTEXITCODE
+          if ($null -eq $code) { throw 'Gradle did not return an exit code' }
+          exit $code
+
+      - name: Summarize test results
+        if: ${{ always() }}
+        shell: pwsh
+        env:
+          TEST_OUTCOME: ${{ steps.tests.outcome }}
+        run: |
+          $ErrorActionPreference = 'Stop'
+          New-Item -ItemType Directory -Path build/ci-results -Force | Out-Null
+          $counts = [ordered]@{ tests = 0; failures = 0; errors = 0; skipped = 0 }
+          $reports = @(Get-ChildItem -Path build/test-results/test/TEST-*.xml -ErrorAction SilentlyContinue)
+          foreach ($report in $reports) {
+            [xml]$xml = Get-Content -Raw -Encoding UTF8 -LiteralPath $report.FullName
+            foreach ($key in @('tests', 'failures', 'errors', 'skipped')) {
+              $counts[$key] += [int]$xml.testsuite.GetAttribute($key)
+            }
+          }
+          [ordered]@{
+            outcome = $env:TEST_OUTCOME
+            finishedUtc = [DateTimeOffset]::UtcNow.ToString('o')
+            reportFiles = $reports.Count
+            counts = $counts
+          } | ConvertTo-Json -Depth 4 | Set-Content -LiteralPath build/ci-results/results.json -Encoding utf8
+          "Tests: $($counts.tests); failures: $($counts.failures); errors: $($counts.errors); skipped: $($counts.skipped)" >> $env:GITHUB_STEP_SUMMARY
+          if ($env:TEST_OUTCOME -eq 'success' -and
+              ($counts.tests -eq 0 -or $counts.failures -ne 0 -or $counts.errors -ne 0)) {
+            throw 'Successful Gradle execution requires nonempty, passing JUnit reports'
+          }
+
+      - name: Preserve test evidence
+        if: ${{ always() }}
+        uses: actions/upload-artifact@v7
+        with:
+          name: backend-tests-${{ github.sha }}-${{ github.run_id }}-${{ github.run_attempt }}
+          retention-days: 14
+          if-no-files-found: error
+          path: |
+            build/ci-results/
+            build/test-results/test/TEST-*.xml
+            build/reports/tests/test/
+            build/qa-task6/restart/**/*.log
+            build/qa-task6/restart/**/processes.json
+            build/qa-task6/restart/**/recovery-result.json
+
+  publish:
+    name: Build and publish
+    needs: test
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v6
+        with:
+          ref: ${{ github.sha }}
+          persist-credentials: false
+
+      - name: Verify tested revision
+        env:
+          TESTED_SHA: ${{ needs.test.outputs.tested-sha }}
+          EXPECTED_SHA: ${{ github.sha }}
+        run: |
+          test -n "$TESTED_SHA"
+          test "$(git rev-parse HEAD)" = "$EXPECTED_SHA"
+          test "$TESTED_SHA" = "$EXPECTED_SHA"
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v4
@@ -53,6 +176,8 @@ jobs:
         uses: docker/metadata-action@v6
         with:
           images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+          labels: |
+            org.opencontainers.image.revision=${{ needs.test.outputs.tested-sha }}
           tags: |
             type=ref,event=branch
             type=sha,prefix=sha-

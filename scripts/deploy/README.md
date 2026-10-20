@@ -6,7 +6,9 @@
 
 ```text
 GitHub develop/main push
--> GitHub Actions Docker 이미지 빌드
+또는 workflow_dispatch 수동 실행
+-> 동일 commit SHA의 Java 21 전체 테스트 및 결과 보관
+-> 테스트 job 성공 후 동일 SHA의 Docker 이미지 빌드
 -> GHCR 이미지 게시
 -> 서버 deploy.sh 실행
 -> app/db/redis 기동 및 헬스체크
@@ -14,6 +16,26 @@ GitHub develop/main push
 ```
 
 `develop` push는 `develop`과 `sha-*` 태그를 생성한다. `main` push는 `main`, `sha-*`, `latest` 태그를 생성한다. 현재 저장소의 기본 브랜치가 `develop`이고 `main`이 배포 브랜치로 운영되지 않으므로 운영 Compose의 초기 기본 태그는 `develop`이다. 추후 `main` 승격 절차를 도입하면 서버 `.env`의 `APP_IMAGE_TAG`를 `latest`로 변경한다.
+
+### CI 테스트 관문과 근거 확인
+
+브랜치 push와 수동 실행 모두 `test` job이 성공해야 `publish` job이 시작된다. Gradle 실패, 취소, 건너뜀 또는 결과 보관 실패 시 해당 실행의 이미지를 게시하지 않는다. 테스트 job은 패키지 쓰기 권한이 없고 GHCR 인증은 게시 job에서만 수행한다.
+
+테스트 job은 Windows runner의 Temurin Java 21에서 다음 명령을 실행한다. 기존 JVM 재시작 테스트가 `java.exe`를 호출하므로 Windows를 사용하며, Docker 게시는 Ubuntu runner를 유지한다.
+
+```powershell
+.\gradlew.bat --no-daemon test --rerun-tasks --console=plain
+```
+
+테스트 환경은 기존 H2, Redis 대역, localhost PG 대역이다. 운영 비밀정보나 실제 Toss 키를 주입하지 않는다. 관측 테스트의 별도 prod 설정 재정의는 유지된다. 이 관문은 실제 PostgreSQL·Redis·Toss 또는 운영 배포 검증을 대신하지 않는다.
+
+Actions 실행 화면의 Artifacts에서 `backend-tests-<전체 SHA>-<run ID>-<attempt>`를 내려받는다. 보존 기간은 14일이다.
+
+- `ci-results/revision.json`: 테스트 commit SHA, 실행 ID·시도 번호, ref·event·시작 시각
+- `ci-results/gradle.log`, `ci-results/results.json`: UTF-8 콘솔, 테스트 outcome과 XML 집계
+- JUnit XML, HTML 보고서와 JVM 재시작 진단 로그·결과 JSON
+
+테스트 실패에도 결과 보관을 시도한다. runner 강제 종료 등으로 artifact 업로드 자체를 완료하지 못할 수 있으므로 이때는 Actions 로그를 확인한다. 게시 job은 테스트 SHA와 자신의 checkout SHA 및 실행 SHA가 일치하는지 GHCR 로그인 전에 검사하고, 이미지의 `org.opencontainers.image.revision` label에 테스트 SHA를 기록한다. artifact에는 H2 DB 파일이나 자격 증명 파일을 포함하지 않는다.
 
 ## 2. 서버 사전 조건
 
