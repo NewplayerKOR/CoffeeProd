@@ -259,10 +259,18 @@ class DevTask9OrderSummaryIntegrationTest {
         fixture(2, 1, 4);
         var before = state();
         var detail = service.getOrder(owner.getId(), ownerIds.getFirst());
+        // Detail has no item ORDER BY contract. Compare snapshots by item identity in this test only.
+        var byItemId = Comparator.comparing(com.back.coffeeprod.domain.order.dto.OrderDto.OrderItemResponse::getOrderItemId);
+        detail.getOrderItems().sort(byItemId);
         var beforeDetail = JSON.valueToTree(detail);
         service.getMyOrders(owner.getId(), PageRequest.of(0, 10)); service.getAllOrders(PageRequest.of(0, 50));
-        assertEquals(beforeDetail, JSON.valueToTree(service.getOrder(owner.getId(), ownerIds.getFirst())));
+        var afterDetail = service.getOrder(owner.getId(), ownerIds.getFirst());
+        afterDetail.getOrderItems().sort(byItemId);
+        assertEquals(beforeDetail, JSON.valueToTree(afterDetail));
         assertEquals(4, detail.getOrderItems().size()); assertEquals(500, detail.getOrderItems().getFirst().getOrderPrice());
+        assertEquals(List.of(500, 501, 502, 503), detail.getOrderItems().stream().map(item -> item.getOrderPrice()).toList());
+        assertEquals(List.of(2, 3, 4, 5), detail.getOrderItems().stream().map(item -> item.getQuantity()).toList());
+        assertEquals(List.of(second.getId(), second.getId(), first.getId(), third.getId()), detail.getOrderItems().stream().map(item -> item.getProductId()).toList());
         assertEquals("합성 배송 스냅샷", detail.getDeliveryAddress()); assertEquals(before, state());
     }
 
