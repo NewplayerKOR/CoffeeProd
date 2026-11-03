@@ -4,6 +4,7 @@ import com.back.coffeeprod.domain.cart.entity.GrindType;
 import com.back.coffeeprod.domain.order.entity.OrderItem;
 import com.back.coffeeprod.domain.order.entity.OrderStatus;
 import com.back.coffeeprod.domain.order.entity.Orders;
+import com.back.coffeeprod.domain.order.repository.OrderSummaryRow;
 import com.back.coffeeprod.global.common.time.BusinessTime;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
@@ -74,6 +75,17 @@ public class OrderDto {
                     ? ""
                     : orders.getOrderItems().get(0).getProduct().getName();
         }
+
+        public SummaryResponse(OrderSummaryRow row) {
+            this.orderId = row.orderId();
+            this.status = row.status();
+            this.paymentOperationStatus = row.paymentOperationStatus();
+            this.cancelRequested = row.cancelRequested();
+            this.totalPrice = row.totalPrice();
+            this.orderDate = BusinessTime.toSeoul(row.orderDate());
+            this.itemCount = Math.toIntExact(row.itemCount());
+            this.firstProductName = row.firstProductName();
+        }
     }
 
     @Getter
@@ -106,6 +118,21 @@ public class OrderDto {
             this.firstProductName = orders.getOrderItems().isEmpty()
                     ? ""
                     : orders.getOrderItems().get(0).getProduct().getName();
+        }
+
+        public AdminSummaryResponse(OrderSummaryRow row) {
+            this.orderId = row.orderId();
+            this.memberId = row.memberId();
+            this.memberEmail = row.memberEmail();
+            this.status = row.status();
+            this.paymentOperationStatus = row.paymentOperationStatus();
+            this.cancelRequested = row.cancelRequested();
+            this.totalPrice = row.totalPrice();
+            this.usedMileage = row.usedMileage();
+            this.orderDate = BusinessTime.toSeoul(row.orderDate());
+            this.trackingNo = row.trackingNo();
+            this.itemCount = Math.toIntExact(row.itemCount());
+            this.firstProductName = row.firstProductName();
         }
     }
 

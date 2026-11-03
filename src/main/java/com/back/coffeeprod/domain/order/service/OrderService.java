@@ -14,6 +14,7 @@ import com.back.coffeeprod.domain.order.entity.OrderStatus;
 import com.back.coffeeprod.domain.order.entity.Orders;
 import com.back.coffeeprod.domain.order.policy.DeliveryPolicyProperties;
 import com.back.coffeeprod.domain.order.repository.OrderRepository;
+import com.back.coffeeprod.domain.order.repository.OrderSummaryRow;
 import com.back.coffeeprod.domain.product.repository.ProductRepository;
 import com.back.coffeeprod.global.exception.CustomException;
 import com.back.coffeeprod.global.exception.ErrorCode;
@@ -26,7 +27,10 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.UUID;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -162,10 +166,7 @@ public class OrderService {
             return Page.empty(pageable);
         }
 
-        // 주문 ID 페이지 조회 후 해당 주문들의 주문상품/상품 정보를 한 번에 조회 한다.
-        List<Orders> orders = orderRepository.findAllWithItemsByIdIn(orderIdPage.getContent());
-
-        List<OrderDto.AdminSummaryResponse> responses = orders.stream()
+        List<OrderDto.AdminSummaryResponse> responses = findOrderedSummaries(orderIdPage, null).stream()
                 .map(OrderDto.AdminSummaryResponse::new)
                 .toList();
 
@@ -180,13 +181,20 @@ public class OrderService {
             return Page.empty(pageable);
         }
 
-        List<Orders> orders = orderRepository.findAllWithItemsByIdIn(orderIdPage.getContent());
-
-        List<OrderDto.SummaryResponse> responses = orders.stream()
+        List<OrderDto.SummaryResponse> responses = findOrderedSummaries(orderIdPage, memberId).stream()
                 .map(OrderDto.SummaryResponse::new)
                 .toList();
 
         return new PageImpl<>(responses, pageable, orderIdPage.getTotalElements());
+    }
+
+    private List<OrderSummaryRow> findOrderedSummaries(Page<Long> orderIdPage, Long memberId) {
+        var rowsById = orderRepository.findSummaryRowsByIdIn(orderIdPage.getContent(), memberId).stream()
+                .collect(Collectors.toMap(OrderSummaryRow::orderId, Function.identity()));
+        return orderIdPage.getContent().stream()
+                .map(rowsById::get)
+                .filter(Objects::nonNull)
+                .toList();
     }
 
     // 주문 상세 조회
