@@ -15,10 +15,12 @@ import com.back.coffeeprod.domain.order.entity.Orders;
 import com.back.coffeeprod.domain.order.policy.DeliveryPolicyProperties;
 import com.back.coffeeprod.domain.order.repository.OrderRepository;
 import com.back.coffeeprod.domain.order.repository.OrderSummaryRow;
+import com.back.coffeeprod.domain.product.entity.Product;
 import com.back.coffeeprod.domain.product.repository.ProductRepository;
 import com.back.coffeeprod.global.exception.CustomException;
 import com.back.coffeeprod.global.exception.ErrorCode;
 import lombok.RequiredArgsConstructor;
+import org.hibernate.Session;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
@@ -95,9 +97,11 @@ public class OrderService {
         }
 
         // Lock products in ascending order before reading mutable price/stock snapshots.
+        var lockedProducts = new java.util.TreeMap<Long, Product>();
         cartItems.stream().map(i -> i.getProduct().getId()).distinct().sorted().forEach(id -> {
             var product = productRepository.findLockedById(id).orElseThrow(() -> new CustomException(ErrorCode.PRODUCT_NOT_FOUND));
             entityManager.refresh(product);
+            lockedProducts.put(id, product);
         });
 
         // 5. 주문 상품 금액 계산
@@ -121,7 +125,7 @@ public class OrderService {
         cartItems.forEach(i -> quantities.merge(i.getProduct().getId(),i.getQuantity(),Math::addExact));
         quantities.forEach((id,quantity) -> {
             if (productRepository.decreaseStockIfEnough(id,quantity) != 1) throw new CustomException(ErrorCode.OUT_OF_STOCK);
-            entityManager.refresh(productRepository.findById(id).orElseThrow());
+            synchronizeReservedStock(lockedProducts.get(id), quantity);
         });
 
         // 8. 최종 결제 금액 계산
@@ -156,6 +160,21 @@ public class OrderService {
         cart.clear();
 
         return new OrderDto.DetailResponse(orders);
+    }
+
+    private void synchronizeReservedStock(Product product, int quantity) {
+        // The conditional UPDATE flushes pending changes first. Under the held product lock,
+        // its exact result is known: keep the managed instance and its dirty-check snapshot
+        // in sync without another SELECT or a second stock UPDATE. Restore this entity's mode;
+        // member/cart state and the session-wide read-only setting remain untouched.
+        var session = entityManager.unwrap(Session.class);
+        boolean readOnly = session.isReadOnly(product);
+        session.setReadOnly(product, true);
+        try {
+            product.decreaseStock(quantity);
+        } finally {
+            session.setReadOnly(product, readOnly);
+        }
     }
 
     // [관리자] 전체 주문 목록 조회
