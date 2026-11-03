@@ -64,24 +64,29 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
             """)
     Optional<Product> findDetailById(@Param("productId") Long productId);
 
-    // 추천 가능한 판매 상품과 프로필 정보를 함께 조회함
-    @EntityGraph(attributePaths = {
-            "category",
-            "coffeeProfile",
-            "coffeeProfile.processingMethod"
-    })
+    // 전체 추천 후보에서는 점수 계산과 정렬에 필요한 값만 조회함
     @Query("""
-            SELECT p
+            SELECT new com.back.coffeeprod.domain.product.repository.RecommendationCandidateRow(
+                p.id, p.price, coffeeProfile.roastLevel, coffeeProfile.beanType,
+                processingMethod.id, coffeeProfile.acidity, coffeeProfile.body,
+                coffeeProfile.sweetness, coffeeProfile.aroma
+            )
             FROM Product p
             JOIN p.coffeeProfile coffeeProfile
+            LEFT JOIN coffeeProfile.processingMethod processingMethod
             WHERE p.status = :status
             AND p.stockQuantity > 0
             AND (:decaf IS NULL OR coffeeProfile.decaf = :decaf)
             """)
-    List<Product> findAvailableProductsForRecommendation(
+    List<RecommendationCandidateRow> findRecommendationCandidates(
             @Param("status") ProductStatus status,
             @Param("decaf") Boolean decaf
     );
+
+    // 선정된 상품만 응답에 필요한 단일 연관과 함께 읽음
+    @EntityGraph(attributePaths = {"category", "coffeeProfile", "coffeeProfile.processingMethod"})
+    @Query("SELECT p FROM Product p WHERE p.id IN :productIds")
+    List<Product> findRecommendationDetailsByIdIn(@Param("productIds") List<Long> productIds);
 
     // 특정 카테고리에 연결된 상품 존재 여부를 확인함
     boolean existsByCategoryId(Long categoryId);

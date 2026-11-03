@@ -9,6 +9,6 @@ import org.springframework.stereotype.Component;
 @ConditionalOnProperty(name = "app.payment.workers-enabled", havingValue = "true", matchIfMissing = true)
 public class PaymentRecoveryScheduler {
     private final PaymentWorkflow workflow;
-    @Scheduled(fixedDelayString = "${app.payment.recovery-delay:30000}")
+    @Scheduled(fixedDelayString = "${app.payment.recovery-delay:30000}", scheduler = "paymentRecoveryTaskScheduler")
     public void recover() { workflow.recoverDue(); }
 }

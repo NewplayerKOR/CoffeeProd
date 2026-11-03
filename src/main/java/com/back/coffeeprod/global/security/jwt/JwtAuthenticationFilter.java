@@ -1,6 +1,9 @@
 package com.back.coffeeprod.global.security.jwt;
 
 import java.io.IOException;
+import java.util.Optional;
+
+import io.jsonwebtoken.Claims;
 
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -32,11 +35,12 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         // 1. HTTP 헤더에서 'Bearer'로 시작하는 토큰 추출
         String token = resolveToken(request);
 
-        // 2. 토큰 존재, 유효한지 검증
-        if (token != null && jwtUtil.validateToken(token)) {
+        // 2. 서명/만료를 한 번 검증하고 해당 요청의 Claims를 재사용한다.
+        Optional<Claims> claims = token == null ? Optional.empty() : jwtUtil.validateAndGetClaims(token);
+        if (claims.isPresent()) {
 
             // 3. 토큰이 진짜면 ID 추출
-            Long memberId = jwtUtil.getMemberIdFromToken(token);
+            Long memberId = Long.parseLong(claims.get().getSubject());
 
             // 4. DB에서 해당 회원 정보로 UserDetails로 변환
             UserDetails userdetails;

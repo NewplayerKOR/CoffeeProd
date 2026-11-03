@@ -7,6 +7,7 @@ import com.back.coffeeprod.domain.statistics.entity.SalesStatisticsUnit;
 import com.back.coffeeprod.domain.statistics.repository.PaymentSalesQueryRepository;
 import com.back.coffeeprod.domain.statistics.repository.SalesAggregateRow;
 import com.back.coffeeprod.domain.statistics.repository.SalesStatisticsRepository;
+import com.back.coffeeprod.domain.statistics.repository.SalesStatisticsRangeWriter;
 import com.back.coffeeprod.global.common.time.BusinessTime;
 import com.back.coffeeprod.global.exception.CustomException;
 import com.back.coffeeprod.global.exception.ErrorCode;
@@ -21,6 +22,9 @@ import java.time.temporal.ChronoUnit;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.ArrayList;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -30,6 +34,7 @@ public class SalesStatisticsService {
     private final PaymentSalesQueryRepository paymentSalesQueryRepository;
     private final SalesStatisticsRepository salesStatisticsRepository;
     private final StatisticsDateLock dateLock;
+    private final SalesStatisticsRangeWriter rangeWriter;
     private static final int MAX_AGGREGATE_RANGE_DAYS = 366;
 
     @Transactional
@@ -48,12 +53,24 @@ public class SalesStatisticsService {
                 ChronoUnit.DAYS.between(from, to) + 1
         );
 
-        LocalDate currentDate = from;
-
-        while (!currentDate.isAfter(to)) {
-            aggregateDailySalesInternal(currentDate);
-            currentDate = currentDate.plusDays(1);
+        // 승인·환불·단일 날짜 집계와 같은 키를 오름차순으로 잠그고 끝까지 유지한다.
+        List<LocalDate> dates = from.datesUntil(to.plusDays(1)).toList();
+        dates.forEach(dateLock::acquire);
+        var aggregates = paymentSalesQueryRepository.aggregatePaidSalesByDate(
+                PaymentStatus.SUCCESS.name(), BusinessTime.startOfDay(from), BusinessTime.startOfDay(to.plusDays(1)))
+                .stream().collect(Collectors.toMap(row -> row.getStatDate(), Function.identity()));
+        var existing = salesStatisticsRepository.findByStatDateBetweenOrderByStatDateAsc(from, to)
+                .stream().collect(Collectors.toMap(SalesStatistics::getStatDate, Function.identity()));
+        List<SalesStatistics> statistics = new ArrayList<>(aggregateDays);
+        for (LocalDate date : dates) {
+            var row = aggregates.get(date);
+            var daily = existing.getOrDefault(date, new SalesStatistics(date, 0, 0, 0, 0, 0));
+            daily.update(row == null ? 0 : row.getOrderCount(),
+                    row == null ? 0 : row.getProductSalesAmount(), row == null ? 0 : row.getDeliveryFeeAmount(),
+                    row == null ? 0 : row.getUsedMileageAmount(), row == null ? 0 : row.getPaymentAmount());
+            statistics.add(daily);
         }
+        rangeWriter.write(statistics);
 
         return new SalesStatisticsDto.AggregateRangeResponse(
                 from,

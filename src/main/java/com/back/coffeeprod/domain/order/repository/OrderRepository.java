@@ -42,17 +42,29 @@ public interface OrderRepository extends JpaRepository<Orders, Long> {
             @Param("memberId") Long memberId,
             Pageable pageable);
 
-    // 주문 목록 상세 조회
-    // Pageable로 조회한 주문 ID 목록에 대해서만 주문상품과 상품을 함께 조회한다.
+    // ID 페이지에 해당하는 요약 값만 조회한다. null memberId는 관리자 전체 목록에만 사용한다.
+    // 주문상품/상품의 기존 inner join 포함 조건은 유지하며 대표 항목은 최소 주문상품 ID다.
     @Query("""
-            SELECT DISTINCT o FROM Orders o
-            JOIN FETCH o.member
-            JOIN FETCH o.orderItems oi
-            JOIN FETCH oi.product
+            SELECT new com.back.coffeeprod.domain.order.repository.OrderSummaryRow(
+                o.id, m.id, m.email, o.status, o.cancelRequested,
+                o.totalPrice, o.usedMileage, o.orderDate, o.trackingNo,
+                (SELECT COUNT(item) FROM OrderItem item WHERE item.orders = o),
+                product.name, confirmOperation.status, cancelOperation.status
+            )
+            FROM Orders o
+            JOIN o.member m
+            JOIN o.orderItems representative ON representative.id =
+                (SELECT MIN(item.id) FROM OrderItem item WHERE item.orders = o)
+            JOIN representative.product product
+            LEFT JOIN o.paymentOperations confirmOperation
+                ON confirmOperation.type = com.back.coffeeprod.domain.payment.entity.PaymentOperation.Type.CONFIRM
+            LEFT JOIN o.paymentOperations cancelOperation
+                ON cancelOperation.type = com.back.coffeeprod.domain.payment.entity.PaymentOperation.Type.CANCEL_FULL
             WHERE o.id IN :orderIds
-            ORDER BY o.orderDate DESC
+              AND (:memberId IS NULL OR m.id = :memberId)
             """)
-    List<Orders> findAllWithItemsByIdIn(@Param("orderIds") List<Long> orderIds);
+    List<OrderSummaryRow> findSummaryRowsByIdIn(@Param("orderIds") List<Long> orderIds,
+                                              @Param("memberId") Long memberId);
 
     // 주문 상세 조회 (단건)
     @Query("""

@@ -1,0 +1,40 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {matrix,validateTarget,validateRunId,expectedSamples,scenarioFor} from '../../k6/phase2/protocol.mjs';
+import {comparisonFixture,summary} from './test-fixtures.mjs';
+import {validateStage} from './evidence.mjs';
+import {identity,verify} from './manifest.mjs';
+import fs from 'node:fs';
+import path from 'node:path';
+import {spawnSync} from 'node:child_process';
+test('all eight candidates are represented and variants are fixed',()=>{assert.deepEqual([...new Set(matrix.map(x=>x.candidate))],[1,2,3,4,5,6,7,8]);assert.equal(matrix.filter(x=>x.candidate===6).length,3);});
+test('only a dedicated LAN port is accepted',()=>{for(const url of ['http://192.168.0.8:18080','http://127.0.0.1:18080'])assert.equal(validateTarget(url),url);for(const url of ['https://api.coffeeprod.ttagyulab.com','http://192.168.0.8:8080','http://8.8.8.8:18080','http://192.168.999.8:18080','http://192.168.0.8:18080/path'])assert.throws(()=>validateTarget(url));});
+test('run IDs cannot become paths or shell fragments',()=>{validateRunId('before-20261021');for(const id of ['../data','a b','a;id','', '/tmp'])assert.throws(()=>validateRunId(id));});
+test('manifest is deterministic and covers production, migration and measurement code',()=>{const a=identity(),b=identity();assert.deepEqual(a,b);assert.ok(a.records['src/main/resources/db/migration/V18__add_payment_operations_and_recovery.sql']);assert.ok(a.records['scripts/performance/phase2.sh']);assert.equal(verify(a),true);a.records['build.gradle.kts']='0'.repeat(64);assert.throws(()=>verify(a));});
+function fixture(){
+ const f=comparisonFixture();return{...f,run:()=>spawnSync(process.execPath,['scripts/performance/compare.mjs',f.root],{encoding:'utf8'})};
+}
+test('v2 comparison uses all 81 sessions and ignores JSON object key order',()=>{const f=fixture(),result=f.run();assert.equal(result.status,0,result.stderr);const r=JSON.parse(fs.readFileSync(path.join(f.root,'comparison/comparison.json')));assert.equal(r.rows.length,13);assert.equal(r.recommendationGolden.length,6);assert.equal(r.rows[0].changePercent,-30);});
+test('comparison rejects changed measurement identity',()=>{const f=fixture(),p=path.join(f.root,'after/conditions.json'),d=JSON.parse(fs.readFileSync(p));d.measurementHash='c'.repeat(64);f.write(p,d);assert.notEqual(f.run().status,0);});
+test('comparison rejects missing cases',()=>{const f=fixture(),p=path.join(f.root,'after/execution.json'),d=JSON.parse(fs.readFileSync(p));d.samples.pop();f.write(p,d);assert.notEqual(f.run().status,0);});
+test('comparison rejects dropped offered load',()=>{const f=fixture(),p=path.join(f.root,'after/http-c1-catalog-r1/measurement/summary.json'),d=JSON.parse(fs.readFileSync(p));d.metrics.dropped_iterations.values.count=1;f.write(p,d);assert.notEqual(f.run().status,0);});
+test('comparison rejects changed recommendation business output',()=>{const f=fixture(),p=path.join(f.root,'after/diag-c1-catalog-r1/diagnostics/case1-catalog/measurements.json');f.write(p,{golden:[{id:2,score:5}]});assert.notEqual(f.run().status,0);});
+test('execution modes select exactly 42 diagnostics or 39 HTTP sessions',()=>{assert.equal(expectedSamples().length,81);assert.equal(expectedSamples(undefined,'Http').length,39);assert.equal(expectedSamples(undefined,'Diagnostics').length,42);assert.equal(expectedSamples([4],'Http').length,0);});
+test('statistics warmup is serial for 30 seconds and measurement is a single request',()=>{assert.deepEqual(scenarioFor(3,'warmup'),{executor:'constant-vus',vus:1,duration:'30s',gracefulStop:'10m'});assert.equal(scenarioFor(3,'measurement').iterations,1);assert.equal(scenarioFor(1,'measurement').duration,'2m');assert.equal(scenarioFor(6,'warmup').rate,1);assert.throws(()=>scenarioFor(4,'measurement'));});
+test('warmup requires time and complete operations, including exactly 30 writes',()=>{for(const c of [1,3,6]){const s=summary(c,'catalog','warmup');assert.doesNotThrow(()=>validateStage(s,c,'warmup'));s.state.testRunDurationMs=29999;assert.throws(()=>validateStage(s,c,'warmup'));}const s=summary(6,'order1','warmup');s.metrics.phase2_business_duration.values.count=29;s.metrics.phase2_completed.values.count=29;assert.throws(()=>validateStage(s,6,'warmup'));});
+function mutateCase(name,relative,change){test(name,()=>{const f=fixture(),p=path.join(f.root,'after',relative),d=JSON.parse(fs.readFileSync(p));change(d);f.write(p,d);assert.notEqual(f.run().status,0);});}
+mutateCase('comparison detects app restart after warmup','http-c1-catalog-r1/lifecycle.json',d=>{d.checkpoints[1].instanceId='33333333-3333-4333-8333-333333333333';});
+mutateCase('comparison detects changed JVM start time','http-c1-catalog-r1/lifecycle.json',d=>{d.checkpoints[2].processStartedAt='2026-11-02T01:00:00Z';});
+mutateCase('comparison rejects missing lifecycle checkpoint','http-c1-catalog-r1/lifecycle.json',d=>{d.checkpoints.splice(1,1);});
+mutateCase('comparison rejects a warmup HTTP error','http-c1-catalog-r1/warmup/summary.json',d=>{d.metrics.http_req_failed.values.rate=0.01;});
+mutateCase('comparison rejects incomplete warmup operations','http-c1-catalog-r1/warmup/summary.json',d=>{d.metrics.phase2_business_duration.values.count=299;d.metrics.phase2_completed.values.count=299;});
+mutateCase('comparison rejects short statistics warmup','http-c3-days366-r1/warmup/summary.json',d=>{d.state.testRunDurationMs=9000;});
+mutateCase('comparison rejects extra measured statistics requests','http-c3-days366-r1/measurement/summary.json',d=>{d.metrics.phase2_business_duration.values.count=2;d.metrics.phase2_completed.values.count=2;});
+mutateCase('comparison rejects unrelated summary identity','http-c1-catalog-r1/measurement/summary.json',d=>{d.instanceId='33333333-3333-4333-8333-333333333333';});
+mutateCase('comparison rejects warmup stock mismatch','http-c6-order20-r1/write-state-after.json',d=>{d.products[0].stock++;});
+mutateCase('comparison rejects warmup mileage mutation','http-c6-order1-r1/write-state-after.json',d=>{d.mileageTotal--;});
+mutateCase('comparison rejects duplicated sessions even when count is unchanged','execution.json',d=>{d.samples[1]=d.samples[0];});
+mutateCase('legacy results cannot silently become a warmed v2 baseline','conditions.json',d=>{delete d.protocolVersion;});
+test('missing warmup artifact is rejected',()=>{const f=fixture();fs.unlinkSync(path.join(f.root,'after/http-c1-catalog-r1/warmup/summary.json'));assert.notEqual(f.run().status,0);});
+test('statistics uses request times and a three-run median without p95 labels',()=>{const f=fixture();assert.equal(f.run().status,0);const report=JSON.parse(fs.readFileSync(path.join(f.root,'comparison/comparison.json')));for(const r of report.rows.filter(x=>x.candidate===3)){assert.equal(r.metric,'singleRequestDurationMs');assert.equal(r.beforeMedian,100);assert.equal(Object.hasOwn(r,'beforeP95'),false);}});
+test('HTTP-only comparison does not require or claim reused diagnostics',()=>{const f=comparisonFixture('Http');const r=spawnSync(process.execPath,['scripts/performance/compare.mjs',f.root],{encoding:'utf8'});assert.equal(r.status,0,r.stderr);const report=JSON.parse(fs.readFileSync(path.join(f.root,'comparison/comparison.json')));assert.equal(report.rows.length,13);assert.equal(report.diagnosticsIncluded,false);assert.equal(report.recommendationGolden.length,0);});

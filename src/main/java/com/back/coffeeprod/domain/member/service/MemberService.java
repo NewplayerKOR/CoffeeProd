@@ -89,12 +89,11 @@ public class MemberService {
         String requestToken = request.getRefreshToken();
 
         // 1. RefreshToken 자체 유효성 검사 (서명, 만료 여부)
-        if (!jwtUtil.validateToken(requestToken)) {
-            throw new CustomException(ErrorCode.INVALID_TOKEN);
-        }
+        var claims = jwtUtil.validateAndGetClaims(requestToken)
+                .orElseThrow(() -> new CustomException(ErrorCode.INVALID_TOKEN));
 
         // 2. Token에서 memberId 추출
-        Long memberId = jwtUtil.getMemberIdFromToken(requestToken);
+        Long memberId = Long.parseLong(claims.getSubject());
 
         // 3. Redis에 저장된 토큰과 일치 여부 검증
         if (!refreshTokenService.isValid(memberId, requestToken)) {

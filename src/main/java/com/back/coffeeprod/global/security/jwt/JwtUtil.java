@@ -2,6 +2,7 @@ package com.back.coffeeprod.global.security.jwt;
 
 import java.nio.charset.StandardCharsets;
 import java.util.Date;
+import java.util.Optional;
 import java.util.UUID;
 
 import javax.crypto.SecretKey;
@@ -14,6 +15,7 @@ import com.back.coffeeprod.domain.member.entity.Role;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.JwtParser;
 import io.jsonwebtoken.MalformedJwtException;
 import io.jsonwebtoken.UnsupportedJwtException;
 import io.jsonwebtoken.security.Keys;
@@ -24,6 +26,7 @@ import lombok.extern.slf4j.Slf4j;
 public class JwtUtil {
 
     private final SecretKey secretKey;
+    private final JwtParser parser;
     private final long accessExpiration;
     private final long refreshExpiration;
 
@@ -34,6 +37,7 @@ public class JwtUtil {
 
         // SecretKey 객체로 변환
         this.secretKey = Keys.hmacShaKeyFor(secret.getBytes(StandardCharsets.UTF_8));
+        this.parser = Jwts.parser().verifyWith(secretKey).build();
         this.accessExpiration = accessExpiration;
         this.refreshExpiration = refreshExpiration;
     }
@@ -74,11 +78,7 @@ public class JwtUtil {
      * 검증 끝난 토큰에서 subject(회원 ID) 추출
      */
     public Long getMemberIdFromToken(String token) {
-        Claims claims = Jwts.parser()
-                .verifyWith(secretKey)
-                .build()
-                .parseSignedClaims(token)
-                .getPayload();
+        Claims claims = parser.parseSignedClaims(token).getPayload();
 
         return Long.parseLong(claims.getSubject());
     }
@@ -88,12 +88,13 @@ public class JwtUtil {
      * 토큰의 서명 검증과 만료 시간 체크
      */
     public boolean validateToken(String token) {
+        return validateAndGetClaims(token).isPresent();
+    }
+
+    /** 검증 결과는 요청 내에서만 사용하며 토큰/Claims를 캐시하지 않는다. */
+    public Optional<Claims> validateAndGetClaims(String token) {
         try {
-            Jwts.parser()
-                    .verifyWith(secretKey)
-                    .build()
-                    .parseSignedClaims(token);
-            return true;
+            return Optional.of(parser.parseSignedClaims(token).getPayload());
         } catch (io.jsonwebtoken.security.SecurityException | MalformedJwtException e) {
             log.warn("잘못된 JWT 서명입니다.");
         } catch (ExpiredJwtException e) {
@@ -103,6 +104,6 @@ public class JwtUtil {
         } catch (IllegalArgumentException e) {
             log.warn("JWT 토큰이 잘못되었습니다.");
         }
-        return false;
+        return Optional.empty();
     }
 }

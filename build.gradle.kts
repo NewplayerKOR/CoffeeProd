@@ -52,3 +52,35 @@ dependencies {
 tasks.withType<Test> {
     useJUnitPlatform()
 }
+
+// DEV8 harness is deliberately absent from test, bootJar and the publishing workflow.
+val performance by sourceSets.creating {
+    java.srcDir("src/test/performance/java")
+    resources.srcDir("src/test/performance/resources")
+    compileClasspath += sourceSets.main.get().output
+    runtimeClasspath += sourceSets.main.get().output
+}
+configurations[performance.implementationConfigurationName].extendsFrom(configurations.implementation.get(), configurations.testImplementation.get())
+configurations[performance.runtimeOnlyConfigurationName].extendsFrom(configurations.runtimeOnly.get(), configurations.testRuntimeOnly.get())
+
+tasks.register<Test>("perfTest") {
+    description = "DEV8 harness checks; -PperfServer runs explicitly owned PostgreSQL scenarios"
+    testClassesDirs = performance.output.classesDirs
+    classpath = performance.runtimeClasspath
+    useJUnitPlatform {
+        if (!providers.gradleProperty("perfServer").isPresent) excludeTags("server")
+        else includeTags("server")
+    }
+    providers.gradleProperty("perfCandidate").orNull?.let {
+        require(it.matches(Regex("[1-8]"))) { "perfCandidate must be 1..8" }
+        filter { includeTestsMatching("*.PerfServerTest.case${it}*") }
+    }
+    maxParallelForks = 1
+}
+tasks.register<org.springframework.boot.gradle.tasks.bundling.BootJar>("perfBootJar") {
+    description = "Disposable measurement application and HTTP mock PG; never a release artifact"
+    archiveClassifier.set("perf")
+    targetJavaVersion.set(JavaVersion.VERSION_21)
+    mainClass.set("com.back.coffeeprod.performance.PerfApplication")
+    classpath(performance.runtimeClasspath)
+}

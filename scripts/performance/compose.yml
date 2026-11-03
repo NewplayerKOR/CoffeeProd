@@ -1,0 +1,123 @@
+name: coffeeprod-perf-phase2
+x-env: &environment
+  PERF_OWNER: ${PERF_OWNER:?run phase2.sh init}
+  PERF_ALLOW_DISPOSABLE: 'true'
+  PERF_SOURCE_HASH: ${PERF_SOURCE_HASH:?source manifest required}
+  PERF_MEASUREMENT_HASH: ${PERF_MEASUREMENT_HASH:?measurement manifest required}
+  PERF_PG_URL: http://mock-pg:9080
+  DB_URL: jdbc:postgresql://db:5432/coffeeprod_perf_phase2
+  DB_USERNAME: perf_phase2
+  DB_PASSWORD: ${PERF_DB_PASSWORD:?synthetic password required}
+  REDIS_HOST: redis
+  REDIS_PORT: '6379'
+  REDIS_PASSWORD: ${PERF_REDIS_PASSWORD:?synthetic password required}
+  JWT_SECRET_KEY: ${PERF_JWT_SECRET:?synthetic key required}
+  JWT_ACCESS_EXPIRATION: '1800000'
+  JWT_REFRESH_EXPIRATION: '1209600000'
+  TOSS_WIDGET_CLIENT_KEY: perf-synthetic
+  TOSS_WIDGET_SECRET_KEY: perf-synthetic
+  CORS_ALLOWED_ORIGINS: http://localhost:18080
+  JAVA_TOOL_OPTIONS: -Dfile.encoding=UTF-8 -Duser.timezone=UTC -Xms512m -Xmx1024m
+x-labels: &labels
+  coffeeprod.perf.owner: ${PERF_OWNER}
+  coffeeprod.perf.disposable: 'true'
+services:
+  db:
+    image: ${PERF_POSTGRES_IMAGE:-postgres:16-alpine}
+    labels: *labels
+    environment:
+      POSTGRES_DB: coffeeprod_perf_phase2
+      POSTGRES_USER: perf_phase2
+      POSTGRES_PASSWORD: ${PERF_DB_PASSWORD}
+    command: [postgres, -c, shared_preload_libraries=pg_stat_statements, -c, compute_query_id=on]
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      - ../seed/catalog/csv:/seed/catalog:ro
+    healthcheck:
+      test: [CMD-SHELL, 'pg_isready -U perf_phase2 -d coffeeprod_perf_phase2']
+      interval: 3s
+      timeout: 3s
+      retries: 40
+    cpus: ${PERF_DB_CPUS:-2}
+    mem_limit: ${PERF_DB_MEMORY:-2g}
+  redis:
+    image: ${PERF_REDIS_IMAGE:-redis:7-alpine}
+    labels: *labels
+    environment:
+      REDIS_PASSWORD: ${PERF_REDIS_PASSWORD}
+    command: [sh, -c, 'exec redis-server --save "" --appendonly no --requirepass "$$REDIS_PASSWORD"']
+    healthcheck:
+      test: [CMD-SHELL, 'REDISCLI_AUTH="$$REDIS_PASSWORD" redis-cli ping | grep -q PONG']
+      interval: 3s
+      timeout: 3s
+      retries: 40
+    cpus: '0.5'
+    mem_limit: 256m
+  mock-pg:
+    image: coffeeprod-phase2:${PERF_SOURCE_HASH}
+    build:
+      context: ../..
+      dockerfile: scripts/performance/Dockerfile
+      args:
+        JDK_IMAGE: ${PERF_JDK_IMAGE:-eclipse-temurin:21-jdk-alpine}
+        PERF_SOURCE_HASH: ${PERF_SOURCE_HASH}
+        PERF_MEASUREMENT_HASH: ${PERF_MEASUREMENT_HASH}
+    labels: *labels
+    command: [mock-pg]
+    healthcheck:
+      test: [CMD-SHELL, 'wget -q -O /dev/null http://127.0.0.1:9080/health']
+      interval: 3s
+      timeout: 3s
+      retries: 40
+    cpus: '0.5'
+    mem_limit: 256m
+  app:
+    image: coffeeprod-phase2:${PERF_SOURCE_HASH}
+    build:
+      context: ../..
+      dockerfile: scripts/performance/Dockerfile
+      args:
+        JDK_IMAGE: ${PERF_JDK_IMAGE:-eclipse-temurin:21-jdk-alpine}
+        PERF_SOURCE_HASH: ${PERF_SOURCE_HASH}
+        PERF_MEASUREMENT_HASH: ${PERF_MEASUREMENT_HASH}
+    labels: *labels
+    environment:
+      <<: *environment
+      PERF_WORKERS: 'false'
+      PERF_DIAGNOSTIC: 'false'
+    depends_on:
+      db: {condition: service_healthy}
+      redis: {condition: service_healthy}
+      mock-pg: {condition: service_healthy}
+    ports:
+      - '${PERF_BIND_IP:-127.0.0.1}:18080:8080'
+      - '127.0.0.1:19091:9091'
+    cpus: ${PERF_APP_CPUS:-2}
+    mem_limit: ${PERF_APP_MEMORY:-2g}
+  checks:
+    profiles: [checks]
+    image: coffeeprod-phase2-checks:${PERF_SOURCE_HASH}
+    build:
+      context: ../..
+      dockerfile: scripts/performance/Dockerfile
+      target: harness
+      args:
+        JDK_IMAGE: ${PERF_JDK_IMAGE:-eclipse-temurin:21-jdk-alpine}
+        PERF_SOURCE_HASH: ${PERF_SOURCE_HASH}
+        PERF_MEASUREMENT_HASH: ${PERF_MEASUREMENT_HASH}
+    labels: *labels
+    environment:
+      <<: *environment
+      PERF_DIAGNOSTIC: 'true'
+      JAVA_TOOL_OPTIONS: -Dfile.encoding=UTF-8 -Duser.timezone=UTC -Xms128m -Xmx512m
+      PERF_WORKERS: ${PERF_WORKERS:-false}
+      PERF_RESULTS: /results
+      PERF_CANDIDATE: ${PERF_CANDIDATE:-1}
+      PERF_VARIANT: ${PERF_VARIANT:-catalog}
+    volumes:
+      - ../../build/perf-phase2:/results
+    cpus: ${PERF_APP_CPUS:-2}
+    mem_limit: ${PERF_APP_MEMORY:-2g}
+volumes:
+  pgdata:
+    labels: *labels
