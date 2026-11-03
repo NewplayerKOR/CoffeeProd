@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
 public class SalesRebuildScheduler {
     private final SalesRebuildRequestRepository repository;
     private final SalesRebuildService service;
-    @Scheduled(fixedDelayString = "${app.statistics.rebuild-delay:30000}")
+    @Scheduled(fixedDelayString = "${app.statistics.rebuild-delay:30000}", scheduler = "salesStatisticsTaskScheduler")
     public void rebuild() {
         for (var date : repository.findDates(PageRequest.of(0,20))) {
             try { service.process(date); }

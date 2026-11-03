@@ -14,7 +14,7 @@ public class SalesStatisticsScheduler {
 
     private final SalesStatisticsService salesStatisticsService;
 
-    @Scheduled(cron = "0 10 0 * * *", zone = "Asia/Seoul")
+    @Scheduled(cron = "0 10 0 * * *", zone = "Asia/Seoul", scheduler = "salesStatisticsTaskScheduler")
     public void aggregateYesterdaySales() {
         LocalDate yesterday = LocalDate.now(ZoneId.of("Asia/Seoul")).minusDays(1);
         salesStatisticsService.aggregateDailySales(yesterday);
