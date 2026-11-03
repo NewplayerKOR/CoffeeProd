@@ -1,0 +1,26 @@
+spring:
+  jpa:
+    show-sql: false
+    hibernate:
+      ddl-auto: validate
+  flyway:
+    enabled: true
+management:
+  server:
+    address: 0.0.0.0
+    port: 9091
+app:
+  payment:
+    workers-enabled: ${PERF_WORKERS:false}
+    recovery-delay: 30000
+    connect-timeout: 5s
+    response-timeout: 60s
+    lease: 120s
+  statistics:
+    rebuild-delay: 30000
+logging:
+  level:
+    root: WARN
+    com.back.coffeeprod: WARN
+    org.hibernate.stat: OFF
+    org.hibernate.engine.internal.StatisticalLoggingSessionEventListener: OFF
