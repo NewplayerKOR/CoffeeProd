@@ -14,6 +14,7 @@ import com.back.coffeeprod.global.exception.CustomException;
 import com.back.coffeeprod.global.exception.ErrorCode;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
@@ -26,13 +27,16 @@ public class CartService {
     private final CartItemRepository cartItemRepository;
     private final MemberService memberService;
     private final ProductService productService;
+    private final CartQueryTransactions cartQueryTransactions;
 
-    // 장바구니 조회
-    @Transactional
+    // 읽기 트랜잭션을 끝낸 뒤 필요한 경우에만 생성 트랜잭션을 시작한다.
+    @Transactional(propagation = Propagation.NOT_SUPPORTED)
     public CartDto.CartResponse getCart(Long memberId) {
-        // 장바구니 없으면 빈 바구니 생성
-        Cart cart = getOrCreateCart(memberId);
-        return new CartDto.CartResponse(cart);
+        return cartQueryTransactions.findCart(memberId).orElseGet(() -> {
+            cartQueryTransactions.createCartIfAbsent(memberId);
+            return cartQueryTransactions.findCart(memberId)
+                    .orElseThrow(() -> new CustomException(ErrorCode.CART_NOT_FOUND));
+        });
     }
 
     // 장바구니 담기
