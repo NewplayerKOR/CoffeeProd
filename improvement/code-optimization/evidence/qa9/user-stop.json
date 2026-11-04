@@ -1,0 +1,6 @@
+{
+  "status": "STOPPED_BY_USER",
+  "reason": "User explicitly requested existing results only and no additional tests",
+  "completedEvidencePreserved": true,
+  "stoppedKst": "2026-11-04 02:01:35 KST"
+}

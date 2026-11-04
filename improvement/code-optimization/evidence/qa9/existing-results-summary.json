@@ -1,0 +1,197 @@
+{
+  "stop": {
+    "status": "STOPPED_BY_USER",
+    "reason": "User explicitly requested existing results only and no additional tests",
+    "completedEvidencePreserved": true,
+    "stoppedKst": "2026-11-04 02:01:35 KST"
+  },
+  "abortedSample": "after/http-c2-catalog-r2 excluded from comparison",
+  "cart": {
+    "lifecycle": "PASS",
+    "beforeFirstRepeatP95Ms": 10,
+    "scope": "One completed before/after HTTP pair; common JWT and cart changes both apply",
+    "afterFirstRepeatP95Ms": 7
+  },
+  "additionalTests": "PROHIBITED_BY_USER",
+  "status": "EXISTING_EVIDENCE_ONLY",
+  "recommendation": {
+    "scope": "Existing completed evidence only; additional execution prohibited by user",
+    "rows": [
+      {
+        "candidate": 1,
+        "variant": "catalog",
+        "before": [
+          25,
+          25,
+          25
+        ],
+        "after": [
+          17,
+          17,
+          17
+        ],
+        "beforeMedian": 25,
+        "afterMedian": 17,
+        "reductionPercent": 32
+      },
+      {
+        "candidate": 1,
+        "variant": "recommendation1000",
+        "before": [
+          35,
+          35,
+          36
+        ],
+        "after": [
+          19,
+          20,
+          20
+        ],
+        "beforeMedian": 35,
+        "afterMedian": 20,
+        "reductionPercent": 42.857142857142854
+      }
+    ],
+    "golden": [
+      {
+        "variant": "catalog",
+        "repeat": 1,
+        "matches": true
+      },
+      {
+        "variant": "catalog",
+        "repeat": 2,
+        "matches": true
+      },
+      {
+        "variant": "catalog",
+        "repeat": 3,
+        "matches": true
+      },
+      {
+        "variant": "recommendation1000",
+        "repeat": 1,
+        "matches": true
+      },
+      {
+        "variant": "recommendation1000",
+        "repeat": 2,
+        "matches": true
+      },
+      {
+        "variant": "recommendation1000",
+        "repeat": 3,
+        "matches": true
+      }
+    ],
+    "loading": [
+      {
+        "variant": "catalog",
+        "name": "recommend-decaf-null-10",
+        "before": [
+          {
+            "entities": 1072,
+            "collections": 384,
+            "hibernateStatements": 13
+          },
+          {
+            "entities": 1072,
+            "collections": 384,
+            "hibernateStatements": 13
+          },
+          {
+            "entities": 1072,
+            "collections": 384,
+            "hibernateStatements": 13
+          }
+        ],
+        "after": [
+          {
+            "entities": 122,
+            "collections": 36,
+            "hibernateStatements": 10
+          },
+          {
+            "entities": 122,
+            "collections": 36,
+            "hibernateStatements": 10
+          },
+          {
+            "entities": 122,
+            "collections": 36,
+            "hibernateStatements": 10
+          }
+        ]
+      },
+      {
+        "variant": "recommendation1000",
+        "name": "recommend-decaf-null-10",
+        "before": [
+          {
+            "entities": 1897,
+            "collections": 384,
+            "hibernateStatements": 13
+          },
+          {
+            "entities": 1897,
+            "collections": 384,
+            "hibernateStatements": 13
+          },
+          {
+            "entities": 1897,
+            "collections": 384,
+            "hibernateStatements": 13
+          }
+        ],
+        "after": [
+          {
+            "entities": 63,
+            "collections": 16,
+            "hibernateStatements": 9
+          },
+          {
+            "entities": 63,
+            "collections": 16,
+            "hibernateStatements": 9
+          },
+          {
+            "entities": 63,
+            "collections": 16,
+            "hibernateStatements": 9
+          }
+        ]
+      }
+    ]
+  },
+  "notRun": [
+    "remaining after workloads",
+    "mixed load",
+    "post-regression.ps1"
+  ],
+  "regression": {
+    "scope": "QA9 independent Java21 H2 regression and non-server harness; no server performance evidence",
+    "priorDev9": {
+      "tests": 651,
+      "failures": 0,
+      "errors": 0,
+      "xmlFiles": 41,
+      "skipped": 0
+    },
+    "harness": {
+      "tests": 16,
+      "failures": 0,
+      "errors": 0,
+      "xmlFiles": 1,
+      "skipped": 0
+    },
+    "differences": [],
+    "sameIdentifiersAndMultiplicity": true,
+    "regression": {
+      "tests": 651,
+      "failures": 0,
+      "errors": 0,
+      "xmlFiles": 41,
+      "skipped": 0
+    }
+  }
+}

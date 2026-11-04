@@ -1,0 +1,522 @@
+{
+  "schemaVersion": 1,
+  "scope": "Existing evidence only; partial QA9 acceptance; no new tests",
+  "rows": [
+    {
+      "group": "recommendation-http",
+      "label": "192 catalog products",
+      "unit": "ms",
+      "before": [
+        25,
+        25,
+        25
+      ],
+      "after": [
+        17,
+        17,
+        17
+      ],
+      "beforeMedian": 25,
+      "afterMedian": 17,
+      "reductionPercent": 32.0,
+      "sources": [
+        "qa9/before/http-c1-catalog-r1/measurement-summary.json",
+        "qa9/before/diag-c1-catalog-r1/measurements.json",
+        "qa9/before/http-c1-catalog-r2/measurement-summary.json",
+        "qa9/before/diag-c1-catalog-r2/measurements.json",
+        "qa9/before/http-c1-catalog-r3/measurement-summary.json",
+        "qa9/before/diag-c1-catalog-r3/measurements.json",
+        "qa9/after/http-c1-catalog-r1/measurement-summary.json",
+        "qa9/after/diag-c1-catalog-r1/measurements.json",
+        "qa9/after/http-c1-catalog-r2/measurement-summary.json",
+        "qa9/after/diag-c1-catalog-r2/measurements.json",
+        "qa9/after/http-c1-catalog-r3/measurement-summary.json",
+        "qa9/after/diag-c1-catalog-r3/measurements.json"
+      ],
+      "note": "Median of three run-level workflow p95s; authenticated limit-10 requests; shared JWT changes included"
+    },
+    {
+      "group": "recommendation-entities",
+      "label": "192 catalog products",
+      "unit": "ORM entity loads",
+      "before": [
+        1072,
+        1072,
+        1072
+      ],
+      "after": [
+        122,
+        122,
+        122
+      ],
+      "beforeMedian": 1072,
+      "afterMedian": 122,
+      "reductionPercent": 88.61940298507463,
+      "sources": [
+        "qa9/before/http-c1-catalog-r1/measurement-summary.json",
+        "qa9/before/diag-c1-catalog-r1/measurements.json",
+        "qa9/before/http-c1-catalog-r2/measurement-summary.json",
+        "qa9/before/diag-c1-catalog-r2/measurements.json",
+        "qa9/before/http-c1-catalog-r3/measurement-summary.json",
+        "qa9/before/diag-c1-catalog-r3/measurements.json",
+        "qa9/after/http-c1-catalog-r1/measurement-summary.json",
+        "qa9/after/diag-c1-catalog-r1/measurements.json",
+        "qa9/after/http-c1-catalog-r2/measurement-summary.json",
+        "qa9/after/diag-c1-catalog-r2/measurements.json",
+        "qa9/after/http-c1-catalog-r3/measurement-summary.json",
+        "qa9/after/diag-c1-catalog-r3/measurements.json"
+      ],
+      "note": "Service-call diagnostic; all entity types; not total HTTP request loading"
+    },
+    {
+      "group": "recommendation-http",
+      "label": "1,000 eligible candidates",
+      "unit": "ms",
+      "before": [
+        35,
+        35,
+        36
+      ],
+      "after": [
+        19,
+        20,
+        20
+      ],
+      "beforeMedian": 35,
+      "afterMedian": 20,
+      "reductionPercent": 42.857142857142854,
+      "sources": [
+        "qa9/before/http-c1-recommendation1000-r1/measurement-summary.json",
+        "qa9/before/diag-c1-recommendation1000-r1/measurements.json",
+        "qa9/before/http-c1-recommendation1000-r2/measurement-summary.json",
+        "qa9/before/diag-c1-recommendation1000-r2/measurements.json",
+        "qa9/before/http-c1-recommendation1000-r3/measurement-summary.json",
+        "qa9/before/diag-c1-recommendation1000-r3/measurements.json",
+        "qa9/after/http-c1-recommendation1000-r1/measurement-summary.json",
+        "qa9/after/diag-c1-recommendation1000-r1/measurements.json",
+        "qa9/after/http-c1-recommendation1000-r2/measurement-summary.json",
+        "qa9/after/diag-c1-recommendation1000-r2/measurements.json",
+        "qa9/after/http-c1-recommendation1000-r3/measurement-summary.json",
+        "qa9/after/diag-c1-recommendation1000-r3/measurements.json"
+      ],
+      "note": "Median of three run-level workflow p95s; authenticated limit-10 requests; shared JWT changes included"
+    },
+    {
+      "group": "recommendation-entities",
+      "label": "1,000 eligible candidates",
+      "unit": "ORM entity loads",
+      "before": [
+        1897,
+        1897,
+        1897
+      ],
+      "after": [
+        63,
+        63,
+        63
+      ],
+      "beforeMedian": 1897,
+      "afterMedian": 63,
+      "reductionPercent": 96.6789667896679,
+      "sources": [
+        "qa9/before/http-c1-recommendation1000-r1/measurement-summary.json",
+        "qa9/before/diag-c1-recommendation1000-r1/measurements.json",
+        "qa9/before/http-c1-recommendation1000-r2/measurement-summary.json",
+        "qa9/before/diag-c1-recommendation1000-r2/measurements.json",
+        "qa9/before/http-c1-recommendation1000-r3/measurement-summary.json",
+        "qa9/before/diag-c1-recommendation1000-r3/measurements.json",
+        "qa9/after/http-c1-recommendation1000-r1/measurement-summary.json",
+        "qa9/after/diag-c1-recommendation1000-r1/measurements.json",
+        "qa9/after/http-c1-recommendation1000-r2/measurement-summary.json",
+        "qa9/after/diag-c1-recommendation1000-r2/measurements.json",
+        "qa9/after/http-c1-recommendation1000-r3/measurement-summary.json",
+        "qa9/after/diag-c1-recommendation1000-r3/measurements.json"
+      ],
+      "note": "Service-call diagnostic; all entity types; not total HTTP request loading"
+    },
+    {
+      "group": "cart-sql",
+      "label": "Existing cart: 20 concurrent reads",
+      "unit": "SQL statements",
+      "before": [
+        60,
+        60,
+        60
+      ],
+      "after": [
+        20,
+        20,
+        20
+      ],
+      "beforeMedian": 60,
+      "afterMedian": 20,
+      "reductionPercent": 66.66666666666666,
+      "sources": [
+        "qa9/before/diag-c2-catalog-r1/measurements.json",
+        "qa9/before/diag-c2-catalog-r2/measurements.json",
+        "qa9/before/diag-c2-catalog-r3/measurements.json",
+        "qa9/after/diag-c2-catalog-r1/measurements.json",
+        "qa9/after/diag-c2-catalog-r2/measurements.json",
+        "qa9/after/diag-c2-catalog-r3/measurements.json"
+      ],
+      "note": "Median and observed range of three diagnostics; first-create cost increased"
+    },
+    {
+      "group": "cart-sql",
+      "label": "First cart: 20 concurrent creates",
+      "unit": "SQL statements",
+      "before": [
+        60,
+        60,
+        60
+      ],
+      "after": [
+        78,
+        69,
+        75
+      ],
+      "beforeMedian": 60,
+      "afterMedian": 75,
+      "reductionPercent": -25.0,
+      "sources": [
+        "qa9/before/diag-c2-catalog-r1/measurements.json",
+        "qa9/before/diag-c2-catalog-r2/measurements.json",
+        "qa9/before/diag-c2-catalog-r3/measurements.json",
+        "qa9/after/diag-c2-catalog-r1/measurements.json",
+        "qa9/after/diag-c2-catalog-r2/measurements.json",
+        "qa9/after/diag-c2-catalog-r3/measurements.json"
+      ],
+      "note": "Median and observed range of three diagnostics; first-create cost increased"
+    },
+    {
+      "group": "statistics-jdbc",
+      "label": "366 days; existing rows",
+      "unit": "JDBC execution calls",
+      "before": [
+        1464
+      ],
+      "after": [
+        376
+      ],
+      "beforeMedian": 1464,
+      "afterMedian": 376,
+      "reductionPercent": 74.31693989071039,
+      "sources": [
+        "dev9/statistics/structural-metrics.json"
+      ],
+      "note": "Existing local PostgreSQL fixture; includes 366 date locks; not network round trips"
+    },
+    {
+      "group": "order-list-sql",
+      "label": "Member page size 10",
+      "unit": "SQL statements",
+      "before": [
+        4
+      ],
+      "after": [
+        3
+      ],
+      "beforeMedian": 4,
+      "afterMedian": 3,
+      "reductionPercent": 25.0,
+      "sources": [
+        "dev9/orders/metrics.json"
+      ],
+      "note": "Existing local PostgreSQL service-call fixture; not HTTP latency"
+    },
+    {
+      "group": "order-list-entities",
+      "label": "Member page size 10",
+      "unit": "ORM entity loads",
+      "before": [
+        224
+      ],
+      "after": [
+        0
+      ],
+      "beforeMedian": 224,
+      "afterMedian": 0,
+      "reductionPercent": 100.0,
+      "sources": [
+        "dev9/orders/metrics.json"
+      ],
+      "note": "Existing local PostgreSQL service-call fixture; not HTTP latency"
+    },
+    {
+      "group": "order-list-sql",
+      "label": "Member page size 50",
+      "unit": "SQL statements",
+      "before": [
+        4
+      ],
+      "after": [
+        3
+      ],
+      "beforeMedian": 4,
+      "afterMedian": 3,
+      "reductionPercent": 25.0,
+      "sources": [
+        "dev9/orders/metrics.json"
+      ],
+      "note": "Existing local PostgreSQL service-call fixture; not HTTP latency"
+    },
+    {
+      "group": "order-list-entities",
+      "label": "Member page size 50",
+      "unit": "ORM entity loads",
+      "before": [
+        1104
+      ],
+      "after": [
+        0
+      ],
+      "beforeMedian": 1104,
+      "afterMedian": 0,
+      "reductionPercent": 100.0,
+      "sources": [
+        "dev9/orders/metrics.json"
+      ],
+      "note": "Existing local PostgreSQL service-call fixture; not HTTP latency"
+    },
+    {
+      "group": "order-create-sql",
+      "label": "1 distinct product(s)",
+      "unit": "SQL statements",
+      "before": [
+        16
+      ],
+      "after": [
+        15
+      ],
+      "beforeMedian": 16,
+      "afterMedian": 15,
+      "reductionPercent": 6.25,
+      "sources": [
+        "dev9/order-create/metrics.json"
+      ],
+      "note": "Existing local PostgreSQL service-call fixture; conditional stock updates preserved"
+    },
+    {
+      "group": "order-create-sql",
+      "label": "5 distinct product(s)",
+      "unit": "SQL statements",
+      "before": [
+        40
+      ],
+      "after": [
+        35
+      ],
+      "beforeMedian": 40,
+      "afterMedian": 35,
+      "reductionPercent": 12.5,
+      "sources": [
+        "dev9/order-create/metrics.json"
+      ],
+      "note": "Existing local PostgreSQL service-call fixture; conditional stock updates preserved"
+    },
+    {
+      "group": "order-create-sql",
+      "label": "20 distinct product(s)",
+      "unit": "SQL statements",
+      "before": [
+        130
+      ],
+      "after": [
+        110
+      ],
+      "beforeMedian": 130,
+      "afterMedian": 110,
+      "reductionPercent": 15.384615384615385,
+      "sources": [
+        "dev9/order-create/metrics.json"
+      ],
+      "note": "Existing local PostgreSQL service-call fixture; conditional stock updates preserved"
+    },
+    {
+      "group": "jwt-verifications",
+      "label": "Filter",
+      "unit": "signature verifications",
+      "before": [
+        2
+      ],
+      "after": [
+        1
+      ],
+      "beforeMedian": 2,
+      "afterMedian": 1,
+      "reductionPercent": 50.0,
+      "sources": [
+        "dev9/jwt/metrics.json"
+      ],
+      "note": "Count per token/request; not CPU or latency improvement percentage"
+    },
+    {
+      "group": "jwt-verifications",
+      "label": "Reissue",
+      "unit": "signature verifications",
+      "before": [
+        2
+      ],
+      "after": [
+        1
+      ],
+      "beforeMedian": 2,
+      "afterMedian": 1,
+      "reductionPercent": 50.0,
+      "sources": [
+        "dev9/jwt/metrics.json"
+      ],
+      "note": "Count per token/request; not CPU or latency improvement percentage"
+    },
+    {
+      "group": "index-sql-replay",
+      "label": "review-10",
+      "unit": "ms",
+      "before": [
+        2.9912
+      ],
+      "after": [
+        1.707
+      ],
+      "beforeMedian": 2.9912,
+      "afterMedian": 1.707,
+      "reductionPercent": 42.932602300080234,
+      "sources": [
+        "dev9/indexes/metrics.json"
+      ],
+      "note": "Existing local PostgreSQL final-combination SQL replay; 20 warmups, 100 calls x 3; not HTTP"
+    },
+    {
+      "group": "index-sql-replay",
+      "label": "qna-10",
+      "unit": "ms",
+      "before": [
+        3.3822
+      ],
+      "after": [
+        2.0231
+      ],
+      "beforeMedian": 3.3822,
+      "afterMedian": 2.0231,
+      "reductionPercent": 40.18390396783159,
+      "sources": [
+        "dev9/indexes/metrics.json"
+      ],
+      "note": "Existing local PostgreSQL final-combination SQL replay; 20 warmups, 100 calls x 3; not HTTP"
+    },
+    {
+      "group": "index-sql-replay",
+      "label": "review-50",
+      "unit": "ms",
+      "before": [
+        4.00645
+      ],
+      "after": [
+        2.44645
+      ],
+      "beforeMedian": 4.00645,
+      "afterMedian": 2.44645,
+      "reductionPercent": 38.937213742839674,
+      "sources": [
+        "dev9/indexes/metrics.json"
+      ],
+      "note": "Existing local PostgreSQL final-combination SQL replay; 20 warmups, 100 calls x 3; not HTTP"
+    },
+    {
+      "group": "index-sql-replay",
+      "label": "qna-50",
+      "unit": "ms",
+      "before": [
+        4.1577
+      ],
+      "after": [
+        2.7228
+      ],
+      "beforeMedian": 4.1577,
+      "afterMedian": 2.7228,
+      "reductionPercent": 34.5118695432571,
+      "sources": [
+        "dev9/indexes/metrics.json"
+      ],
+      "note": "Existing local PostgreSQL final-combination SQL replay; 20 warmups, 100 calls x 3; not HTTP"
+    },
+    {
+      "group": "cart-http-reference",
+      "label": "One matched cart HTTP pair",
+      "unit": "ms",
+      "before": [
+        10
+      ],
+      "after": [
+        7
+      ],
+      "beforeMedian": 10,
+      "afterMedian": 7,
+      "reductionPercent": 30.0,
+      "sources": [
+        "qa9/before/http-c2-catalog-r1/measurement-summary.json",
+        "qa9/after/http-c2-catalog-r1/measurement-summary.json"
+      ],
+      "note": "One completed pair only; shared JWT/cart changes; not a repeat-stability claim; excluded from default figures"
+    }
+  ],
+  "scheduler": {
+    "status": "no comparable fixed-45-second after measurement",
+    "source": "dev9/schedulers/validation.json"
+  },
+  "coverage": {
+    "archiveVersion": 1,
+    "asOf": "2026-11-04",
+    "qa9Acceptance": "incomplete; further tests prohibited by user",
+    "completedEvidence": {
+      "qa9Before": {
+        "diagnostics": 42,
+        "httpSessions": 39
+      },
+      "qa9After": {
+        "diagnostics": 9,
+        "httpSessions": 7
+      },
+      "dev8V2Before": {
+        "diagnostics": 0,
+        "httpSessions": 39
+      },
+      "dev8OriginalDiagnostics": 42,
+      "localH2": {
+        "tests": 651,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "localHarness": {
+        "tests": 16,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "mergeCI": {
+        "tests": 651,
+        "failures": 1,
+        "errors": 0,
+        "skipped": 0
+      }
+    },
+    "excludedAbortedSamples": [
+      "qa9/after/http-c2-catalog-r2"
+    ],
+    "notExecuted": [
+      "remaining QA9 after workloads",
+      "final mixed load",
+      "prepared extra PostgreSQL/Redis reruns"
+    ],
+    "originalLocations": [
+      "dedicated home-server measurement stack",
+      "collected local build/ results"
+    ],
+    "renderNeedsServer": false,
+    "appTestsExecutedByArchive": false,
+    "ciURL": "https://github.com/NewplayerKOR/CoffeeProd/actions/runs/41743023340",
+    "ciNote": "650/651 passed; one KST/leap-day statistics assertion failed; image publication skipped",
+    "historical27Percent": "Already versioned in improvement/1차개선; separate dataset, never added to QA9 percentages"
+  }
+}

@@ -1,0 +1,282 @@
+{
+  "checkedAtKst": "2026-11-03 11:37:24 KST",
+  "branch": "codex/dev-task-9-code-optimization",
+  "baseRevision": "aa4724fbebeeff453d68a141d0506a2b4f63446d",
+  "sourceHash": "eeb896cd0c66c7df5f175534a8e88dbb73f220e08d0fa5191a814627d58826cf",
+  "measurementHash": "f67e7c5f9e4a9b2b2ea001c92e61ce58236076791274727f7532ee6b760ffbef",
+  "fixtureHash": "f9506ef0ae7f727d96eb465706d2e2ac9054f9de83afdd039299a75817c9fabd",
+  "before": {
+    "scope": "before",
+    "tests": 564,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "xmlFiles": 33
+  },
+  "targeted": {
+    "scope": "targeted-01",
+    "tests": 85,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "xmlFiles": 4
+  },
+  "postgres": {
+    "scope": "postgres-01",
+    "tests": 19,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "xmlFiles": 1
+  },
+  "final": {
+    "originalTests": 564,
+    "finalTests": 583,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "xmlFiles": 34,
+    "originalTestcaseMultisetPreserved": true,
+    "newTestcases": 19
+  },
+  "structuralMetrics": {
+    "targeted-01": [
+      {
+        "database": "H2",
+        "days": 1,
+        "state": "new",
+        "legacyExecutions": 3,
+        "optimizedExecutions": 3,
+        "aggregateQueries": 1,
+        "statisticsReads": 1,
+        "insertStatements": 1,
+        "updateBatches": 0
+      },
+      {
+        "database": "H2",
+        "days": 1,
+        "state": "existing",
+        "legacyExecutions": 3,
+        "optimizedExecutions": 3,
+        "aggregateQueries": 1,
+        "statisticsReads": 1,
+        "insertStatements": 0,
+        "updateBatches": 1
+      },
+      {
+        "database": "H2",
+        "days": 1,
+        "state": "mixed",
+        "legacyExecutions": 3,
+        "optimizedExecutions": 3,
+        "aggregateQueries": 1,
+        "statisticsReads": 1,
+        "insertStatements": 0,
+        "updateBatches": 1
+      },
+      {
+        "database": "H2",
+        "days": 30,
+        "state": "new",
+        "legacyExecutions": 90,
+        "optimizedExecutions": 3,
+        "aggregateQueries": 1,
+        "statisticsReads": 1,
+        "insertStatements": 1,
+        "updateBatches": 0
+      },
+      {
+        "database": "H2",
+        "days": 30,
+        "state": "existing",
+        "legacyExecutions": 90,
+        "optimizedExecutions": 3,
+        "aggregateQueries": 1,
+        "statisticsReads": 1,
+        "insertStatements": 0,
+        "updateBatches": 1
+      },
+      {
+        "database": "H2",
+        "days": 30,
+        "state": "mixed",
+        "legacyExecutions": 90,
+        "optimizedExecutions": 4,
+        "aggregateQueries": 1,
+        "statisticsReads": 1,
+        "insertStatements": 1,
+        "updateBatches": 1
+      },
+      {
+        "database": "H2",
+        "days": 366,
+        "state": "new",
+        "legacyExecutions": 1098,
+        "optimizedExecutions": 10,
+        "aggregateQueries": 1,
+        "statisticsReads": 1,
+        "insertStatements": 8,
+        "updateBatches": 0
+      },
+      {
+        "database": "H2",
+        "days": 366,
+        "state": "existing",
+        "legacyExecutions": 1098,
+        "optimizedExecutions": 10,
+        "aggregateQueries": 1,
+        "statisticsReads": 1,
+        "insertStatements": 0,
+        "updateBatches": 8
+      },
+      {
+        "database": "H2",
+        "days": 366,
+        "state": "mixed",
+        "legacyExecutions": 1098,
+        "optimizedExecutions": 10,
+        "aggregateQueries": 1,
+        "statisticsReads": 1,
+        "insertStatements": 4,
+        "updateBatches": 4
+      }
+    ],
+    "postgres-01": [
+      {
+        "database": "PostgreSQL",
+        "days": 1,
+        "state": "new",
+        "legacyExecutions": 4,
+        "optimizedExecutions": 4,
+        "aggregateQueries": 1,
+        "statisticsReads": 1,
+        "insertStatements": 1,
+        "updateBatches": 0
+      },
+      {
+        "database": "PostgreSQL",
+        "days": 1,
+        "state": "existing",
+        "legacyExecutions": 4,
+        "optimizedExecutions": 4,
+        "aggregateQueries": 1,
+        "statisticsReads": 1,
+        "insertStatements": 0,
+        "updateBatches": 1
+      },
+      {
+        "database": "PostgreSQL",
+        "days": 1,
+        "state": "mixed",
+        "legacyExecutions": 4,
+        "optimizedExecutions": 4,
+        "aggregateQueries": 1,
+        "statisticsReads": 1,
+        "insertStatements": 0,
+        "updateBatches": 1
+      },
+      {
+        "database": "PostgreSQL",
+        "days": 30,
+        "state": "new",
+        "legacyExecutions": 120,
+        "optimizedExecutions": 33,
+        "aggregateQueries": 1,
+        "statisticsReads": 1,
+        "insertStatements": 1,
+        "updateBatches": 0
+      },
+      {
+        "database": "PostgreSQL",
+        "days": 30,
+        "state": "existing",
+        "legacyExecutions": 120,
+        "optimizedExecutions": 33,
+        "aggregateQueries": 1,
+        "statisticsReads": 1,
+        "insertStatements": 0,
+        "updateBatches": 1
+      },
+      {
+        "database": "PostgreSQL",
+        "days": 30,
+        "state": "mixed",
+        "legacyExecutions": 120,
+        "optimizedExecutions": 34,
+        "aggregateQueries": 1,
+        "statisticsReads": 1,
+        "insertStatements": 1,
+        "updateBatches": 1
+      },
+      {
+        "database": "PostgreSQL",
+        "days": 366,
+        "state": "new",
+        "legacyExecutions": 1464,
+        "optimizedExecutions": 376,
+        "aggregateQueries": 1,
+        "statisticsReads": 1,
+        "insertStatements": 8,
+        "updateBatches": 0
+      },
+      {
+        "database": "PostgreSQL",
+        "days": 366,
+        "state": "existing",
+        "legacyExecutions": 1464,
+        "optimizedExecutions": 376,
+        "aggregateQueries": 1,
+        "statisticsReads": 1,
+        "insertStatements": 0,
+        "updateBatches": 8
+      },
+      {
+        "database": "PostgreSQL",
+        "days": 366,
+        "state": "mixed",
+        "legacyExecutions": 1464,
+        "optimizedExecutions": 376,
+        "aggregateQueries": 1,
+        "statisticsReads": 1,
+        "insertStatements": 4,
+        "updateBatches": 4
+      }
+    ]
+  },
+  "preservation": {
+    "originalSourceFiles": 609,
+    "changedOriginalFiles": [
+      "src/main/java/com/back/coffeeprod/domain/statistics/repository/PaymentSalesQueryRepository.java",
+      "src/main/java/com/back/coffeeprod/domain/statistics/service/SalesStatisticsService.java"
+    ],
+    "onlyAuthorizedFilesChanged": true,
+    "v2Files": 1460,
+    "v2Mismatches": [],
+    "original94Files": 2125,
+    "original94Mismatches": [],
+    "measurementHashUnchanged": true,
+    "fixtureHashUnchanged": true
+  },
+  "cleanup": {
+    "existingContainersPreserved": true,
+    "databaseTimeZone": "UTC",
+    "ownerVerified": true,
+    "postgresVersion": "PostgreSQL 16.15 on x86_64-pc-linux-musl, compiled by gcc (Alpine 15.2.0) 15.2.0, 64-bit",
+    "flywayVersions": 18,
+    "dedicatedContainerRemoved": true
+  },
+  "scope": "DEV9-3 local range aggregation and atomicity/JDBC/PG lock validation; no home-server HTTP after, QA9 or push",
+  "commitSha": "5037daf6fa55247ad33ff36dcd496cdb72f4ca09",
+  "commitSubject": "perf: batch sales statistics range aggregation",
+  "committedFiles": [
+    "src/main/java/com/back/coffeeprod/domain/statistics/repository/DailySalesAggregateRow.java",
+    "src/main/java/com/back/coffeeprod/domain/statistics/repository/PaymentSalesQueryRepository.java",
+    "src/main/java/com/back/coffeeprod/domain/statistics/repository/SalesStatisticsRangeWriter.java",
+    "src/main/java/com/back/coffeeprod/domain/statistics/service/SalesStatisticsService.java",
+    "src/test/java/com/back/coffeeprod/dev/statistics/DevTask9StatisticsRangeIntegrationTest.java"
+  ],
+  "pushed": false,
+  "branchPreserved": true,
+  "commitMatchesTestedSources": true,
+  "pushOwner": "user after last improvement, before QA"
+}

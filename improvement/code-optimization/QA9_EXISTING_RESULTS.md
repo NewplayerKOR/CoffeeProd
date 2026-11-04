@@ -5,6 +5,8 @@
 - 현재 소스: `codex/dev-task-9-code-optimization` / `008d443ba92932c04c609c2d60633344d69bb9cc`. 이번 QA에서 API·운영 코드·기존 테스트 코드를 변경하지 않았다.
 - 전체 after·최종 혼합 부하가 완료된 것으로 판정하지 않는다. 아래는 항목별로 **이미 확인된 성과와 증거 범위**다.
 
+공유 가능한 [계측 데이터·CSV·그래프 재생성 안내](evidence/README.md)를 추가했다. 홈서버나 로컬 build 폴더 없이 이 저장소의 파일만으로 재사용할 수 있다.
+
 ## 1. 항목별 확인 결과
 
 | 후보 | 확인된 개선과 수치 | 개선 이유·범위 | 판정 |
@@ -36,31 +38,37 @@
 
 원본/산출물:
 
-- [완료된 개선 전81개](../../build/perf-phase2/qa9-20261103-212226/before/execution.json)
-- [기존 자료 비교 JSON](../../build/perf-phase2/qa9-20261103-212226/existing-results-summary.json)
-- [추천 출력 대조·수치 추출 코드](../../build/perf-phase2/qa9-20261103-212226/partial-results.mjs)
-- [장바구니 기존 진단 원본 집계](../../build/perf-phase2/qa9-20261103-212226/cart-existing-diagnostics.json)
-- [개선 후 완료/중단 원본 보관 위치](../../build/perf-phase2/qa9-20261103-212226/source-after/build/perf-phase2/qa9-20261103-212226/after/)
+- [완료된 개선 전81개](evidence/qa9/before/execution.json)
+- [기존 자료 비교 JSON](evidence/qa9/existing-results-summary.json)
+- [추천 출력 대조·수치 추출 코드](scripts/render_results.py)
+- [장바구니 기존 진단 원본 집계](evidence/qa9/cart-existing-diagnostics.json)
+- [개선 후 완료/중단 원본 보관 위치](evidence/qa9/after/)
 
 ## 3. DEV9 기존 근거의 재사용
 
 다음은 **DEV9가 이미 실행한 로컬 근거**다. 이번에 다시 실행하거나 홈서버 HTTP 결과로 바꾸지 않았다.
 
-- [장바구니: PostgreSQL12/12·동시 생성/읽기/주문 경합](../../build/dev-task9/cart-20261103-105753/validation.json)
-- [통계: PostgreSQL JDBC 계측](../../build/dev-task9/statistics-20261103-112207/structural-metrics.json)·[전체 롤백/경합 검증](../../build/dev-task9/statistics-20261103-112207/validation.json)
-- [스케줄러: 지연/차단 중 분리·lease·중복 방지](../../build/dev-task9/schedulers-20261103-145410/validation.json)
-- [주문 목록: 전후 SQL/로딩](../../build/dev-task9/orders-20261103-152639/metrics.json)
-- [주문 생성: 전후 SQL/재고](../../build/dev-task9/order-create-20261103-155409/metrics.json)
-- [JWT: 실제 검증/생성 횟수·CPU 원본](../../build/dev-task9/jwt-20261103-164148/metrics.json)
-- [최종 인덱스 조합 SQL replay](../../build/dev-task9/indexes-20261103-171815/metrics.json)·[채택/보류](../../build/dev-task9/indexes-20261103-171815/decisions.json)
+- [장바구니: PostgreSQL12/12·동시 생성/읽기/주문 경합](evidence/dev9/cart/validation.json)
+- [통계: PostgreSQL JDBC 계측](evidence/dev9/statistics/structural-metrics.json)·[전체 롤백/경합 검증](evidence/dev9/statistics/validation.json)
+- [스케줄러: 지연/차단 중 분리·lease·중복 방지](evidence/dev9/schedulers/validation.json)
+- [주문 목록: 전후 SQL/로딩](evidence/dev9/orders/metrics.json)
+- [주문 생성: 전후 SQL/재고](evidence/dev9/order-create/metrics.json)
+- [JWT: 실제 검증/생성 횟수·CPU 원본](evidence/dev9/jwt/metrics.json)
+- [최종 인덱스 조합 SQL replay](evidence/dev9/indexes/metrics.json)·[채택/보류](evidence/dev9/indexes/decisions.json)
 
 인덱스 최종 조합의72조건에서 읽기 악화 최대2.17%·rollback 쓰기 실행 중앙값 악화 최대1.07%였고, 인덱스2개의 합계 크기는1,638,400bytes다. 이 비용 표본은 commit/fsync를 포함하지 않는다. 앞선 후보별 자료와 최종 조합 자료는 구분하며 위 표는 최종 조합의 값을 사용했다.
 
 ## 4. 중단 상태·인용 경계
 
 - 추가 실행은 사용자 지시로 중단했다. 중단 직전까지 새 before는 진단42+HTTP39, after는 완료 진단9+HTTP7이다. 실행 도중 중단한 장바구니r2는 비교에서 제외했다.
-- 이번 차수에서 이미 완료한 로컬 회귀는 H2 **651/651**, 비서버 측정기 **16/16**이다. 실패/오류/건너뜀0이며 기존651개 식별자/중복 횟수와 일치했다. [근거](../../build/perf-phase2/qa9-20261103-212226/regression-summary.json)
-- 남은 after·최종 혼합 부하·별도로 준비한 PostgreSQL/Redis 재실행은 **미실행**이며 자동 재개하지 않는다. [중단 기록](../../build/perf-phase2/qa9-20261103-212226/user-stop.json)
-- 소스628개와 과거 DEV8 원본3,585파일은 해시가 그대로다. 운영 컨테이너도 중단 전후 동일 상태다. [파일 보존 확인](../../build/perf-phase2/qa9-20261103-212226/preservation-after-stop.json)
+- 이번 차수에서 이미 완료한 로컬 회귀는 H2 **651/651**, 비서버 측정기 **16/16**이다. 실패/오류/건너뜀0이며 기존651개 식별자/중복 횟수와 일치했다. [근거](evidence/qa9/regression-summary.json)
+- 남은 after·최종 혼합 부하·별도로 준비한 PostgreSQL/Redis 재실행은 **미실행**이며 자동 재개하지 않는다. [중단 기록](evidence/qa9/user-stop.json)
+- 소스628개와 과거 DEV8 원본3,585파일은 해시가 그대로다. 운영 컨테이너도 중단 전후 동일 상태다. [파일 보존 확인](evidence/qa9/preservation-after-stop.json)
 - 일괄 개선 전후 비교이므로 HTTP 수치를 개별 변경의 단독 기여로 분리하지 않는다. 기존 약27% 주문 인덱스 성과와 합산하지 않는다. 다른 지표·환경의 결과를 합쳐 전체 API 개선율로 만들지 않는다.
-- 기존 자료 비교 정리는 완료했다. 원래 계획한 QA9 전체 부하 인수를 완료한 것으로 표시하지 않으며, 업무 상태와 실행 중단은 [단일 TASKS.md](../../.md/TASKS.md#qa-task9-comparison)에 기록한다.
+- 기존 자료 비교 정리는 완료했다. 원래 계획한 QA9 전체 부하 인수를 완료한 것으로 표시하지 않으며, 업무 상태와 실행 중단은 로컬 단일 TASKS.md와 [공유 상태](evidence/status.json)에 기록한다.
+
+## 5. 공유 자료와 CI 상태
+
+[비교 JSON](evidence/comparison.json)·[비교 CSV](evidence/comparison.csv)·[PNG/SVG 그림](figures/)·[출처 해시](evidence/manifest.json)를 함께 보관한다. 비밀번호·토큰·DB dump·전체 로그는 제외한 공유용 선별본이다.
+
+병합 커밋 f772d11의 기존 CI는 651개 중1개가 KST/윤일 통계 집계 검증에서 실패했다. [CI 결과](evidence/ci/41743023340/results.json)·[testcase 결과](evidence/ci/41743023340/junit.xml)는 로컬651개 통과와 별도로 보존한다. 이번 자료 보관 작업에서 CI나 부하를 재실행하거나 운영 코드를 수정하지 않았다.

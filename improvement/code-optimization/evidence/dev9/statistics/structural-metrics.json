@@ -1,0 +1,204 @@
+{
+  "targeted-01": [
+    {
+      "database": "H2",
+      "days": 1,
+      "state": "new",
+      "legacyExecutions": 3,
+      "optimizedExecutions": 3,
+      "aggregateQueries": 1,
+      "statisticsReads": 1,
+      "insertStatements": 1,
+      "updateBatches": 0
+    },
+    {
+      "database": "H2",
+      "days": 1,
+      "state": "existing",
+      "legacyExecutions": 3,
+      "optimizedExecutions": 3,
+      "aggregateQueries": 1,
+      "statisticsReads": 1,
+      "insertStatements": 0,
+      "updateBatches": 1
+    },
+    {
+      "database": "H2",
+      "days": 1,
+      "state": "mixed",
+      "legacyExecutions": 3,
+      "optimizedExecutions": 3,
+      "aggregateQueries": 1,
+      "statisticsReads": 1,
+      "insertStatements": 0,
+      "updateBatches": 1
+    },
+    {
+      "database": "H2",
+      "days": 30,
+      "state": "new",
+      "legacyExecutions": 90,
+      "optimizedExecutions": 3,
+      "aggregateQueries": 1,
+      "statisticsReads": 1,
+      "insertStatements": 1,
+      "updateBatches": 0
+    },
+    {
+      "database": "H2",
+      "days": 30,
+      "state": "existing",
+      "legacyExecutions": 90,
+      "optimizedExecutions": 3,
+      "aggregateQueries": 1,
+      "statisticsReads": 1,
+      "insertStatements": 0,
+      "updateBatches": 1
+    },
+    {
+      "database": "H2",
+      "days": 30,
+      "state": "mixed",
+      "legacyExecutions": 90,
+      "optimizedExecutions": 4,
+      "aggregateQueries": 1,
+      "statisticsReads": 1,
+      "insertStatements": 1,
+      "updateBatches": 1
+    },
+    {
+      "database": "H2",
+      "days": 366,
+      "state": "new",
+      "legacyExecutions": 1098,
+      "optimizedExecutions": 10,
+      "aggregateQueries": 1,
+      "statisticsReads": 1,
+      "insertStatements": 8,
+      "updateBatches": 0
+    },
+    {
+      "database": "H2",
+      "days": 366,
+      "state": "existing",
+      "legacyExecutions": 1098,
+      "optimizedExecutions": 10,
+      "aggregateQueries": 1,
+      "statisticsReads": 1,
+      "insertStatements": 0,
+      "updateBatches": 8
+    },
+    {
+      "database": "H2",
+      "days": 366,
+      "state": "mixed",
+      "legacyExecutions": 1098,
+      "optimizedExecutions": 10,
+      "aggregateQueries": 1,
+      "statisticsReads": 1,
+      "insertStatements": 4,
+      "updateBatches": 4
+    }
+  ],
+  "postgres-01": [
+    {
+      "database": "PostgreSQL",
+      "days": 1,
+      "state": "new",
+      "legacyExecutions": 4,
+      "optimizedExecutions": 4,
+      "aggregateQueries": 1,
+      "statisticsReads": 1,
+      "insertStatements": 1,
+      "updateBatches": 0
+    },
+    {
+      "database": "PostgreSQL",
+      "days": 1,
+      "state": "existing",
+      "legacyExecutions": 4,
+      "optimizedExecutions": 4,
+      "aggregateQueries": 1,
+      "statisticsReads": 1,
+      "insertStatements": 0,
+      "updateBatches": 1
+    },
+    {
+      "database": "PostgreSQL",
+      "days": 1,
+      "state": "mixed",
+      "legacyExecutions": 4,
+      "optimizedExecutions": 4,
+      "aggregateQueries": 1,
+      "statisticsReads": 1,
+      "insertStatements": 0,
+      "updateBatches": 1
+    },
+    {
+      "database": "PostgreSQL",
+      "days": 30,
+      "state": "new",
+      "legacyExecutions": 120,
+      "optimizedExecutions": 33,
+      "aggregateQueries": 1,
+      "statisticsReads": 1,
+      "insertStatements": 1,
+      "updateBatches": 0
+    },
+    {
+      "database": "PostgreSQL",
+      "days": 30,
+      "state": "existing",
+      "legacyExecutions": 120,
+      "optimizedExecutions": 33,
+      "aggregateQueries": 1,
+      "statisticsReads": 1,
+      "insertStatements": 0,
+      "updateBatches": 1
+    },
+    {
+      "database": "PostgreSQL",
+      "days": 30,
+      "state": "mixed",
+      "legacyExecutions": 120,
+      "optimizedExecutions": 34,
+      "aggregateQueries": 1,
+      "statisticsReads": 1,
+      "insertStatements": 1,
+      "updateBatches": 1
+    },
+    {
+      "database": "PostgreSQL",
+      "days": 366,
+      "state": "new",
+      "legacyExecutions": 1464,
+      "optimizedExecutions": 376,
+      "aggregateQueries": 1,
+      "statisticsReads": 1,
+      "insertStatements": 8,
+      "updateBatches": 0
+    },
+    {
+      "database": "PostgreSQL",
+      "days": 366,
+      "state": "existing",
+      "legacyExecutions": 1464,
+      "optimizedExecutions": 376,
+      "aggregateQueries": 1,
+      "statisticsReads": 1,
+      "insertStatements": 0,
+      "updateBatches": 8
+    },
+    {
+      "database": "PostgreSQL",
+      "days": 366,
+      "state": "mixed",
+      "legacyExecutions": 1464,
+      "optimizedExecutions": 376,
+      "aggregateQueries": 1,
+      "statisticsReads": 1,
+      "insertStatements": 4,
+      "updateBatches": 4
+    }
+  ]
+}

@@ -1,0 +1,108 @@
+{
+  "status": "complete",
+  "completedKst": "2026-11-03 20:41:35 KST",
+  "baseRevision": "f59723e0375ad83829e2b4543ab0641f47934c3d",
+  "branch": "codex/dev-task-9-code-optimization",
+  "summaries": {
+    "before": {
+      "scope": "before",
+      "tests": 637,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "xmlFiles": 40
+    },
+    "before-search-h2": {
+      "scope": "before-search-h2",
+      "tests": 14,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "xmlFiles": 1
+    },
+    "before-search-pg": {
+      "scope": "before-search-pg",
+      "tests": 14,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "xmlFiles": 1
+    },
+    "targeted-final": {
+      "scope": "targeted-final",
+      "tests": 219,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "xmlFiles": 11
+    },
+    "postgres-final": {
+      "scope": "postgres-final",
+      "tests": 63,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "xmlFiles": 4
+    },
+    "final": {
+      "scope": "final",
+      "tests": 651,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "xmlFiles": 41
+    },
+    "harness-final": {
+      "scope": "harness-final",
+      "tests": 16,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "xmlFiles": 1
+    },
+    "postgres-v18-control": {
+      "scope": "postgres-v18-control",
+      "tests": 16,
+      "failures": 1,
+      "errors": 0,
+      "skipped": 0,
+      "xmlFiles": 1
+    },
+    "postgres-v18-fixed": {
+      "scope": "postgres-v18-fixed",
+      "tests": 16,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "xmlFiles": 1
+    }
+  },
+  "migrationCases": 11,
+  "readConditions": 72,
+  "adopted": [
+    "reviews(product_id,created_at DESC)",
+    "product_qna(product_id,created_at DESC)"
+  ],
+  "held": [
+    "admin qna status index",
+    "admin order date index and covering alternative",
+    "payment(status,paid_at)",
+    "product search rewrite/pg_trgm",
+    "extra sales-statistics index"
+  ],
+  "testCorrection": "Existing DEV9-5 unordered detail fixture failed on V18 and V19; item identity normalization plus complete item snapshot assertions; production detail unchanged",
+  "scope": "Local own PostgreSQL16.15/H2/fake PG; no home server, QA9, real payments, R2, frontend, CI, deployment or push",
+  "sqlWhitespaceCleanup": {
+    "onlyTrailingBlankLineRemoved": true,
+    "existingFlyway19ChecksumValidated": true,
+    "migrationsExecutedAfterCleanup": 0
+  },
+  "commitSha": "008d443ba92932c04c609c2d60633344d69bb9cc",
+  "firstSevenCommitsPreserved": true,
+  "commitMatchesTestedSources": true,
+  "onlyEightFilesCommitted": true,
+  "originalWorktreeStatusPreserved": true,
+  "pushed": false,
+  "qa9SourceArchivesPreparedAndVerified": true,
+  "correctedBeforeSourceCompiled": true
+}

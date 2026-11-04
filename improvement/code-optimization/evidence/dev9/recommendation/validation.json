@@ -1,0 +1,73 @@
+{
+  "checkedAtKst": "2026-11-03 10:49:58 KST",
+  "branch": "codex/dev-task-9-code-optimization",
+  "baseRevision": "b04bf9e30d5109dc934e230c2a50c80c140099c0",
+  "sourceHash": "13f1c1ab7bb0abcdb3ec1294013ff817db08c91623924047e9d9cf68740fd532",
+  "measurementHash": "f67e7c5f9e4a9b2b2ea001c92e61ce58236076791274727f7532ee6b760ffbef",
+  "fixtureHash": "f9506ef0ae7f727d96eb465706d2e2ac9054f9de83afdd039299a75817c9fabd",
+  "before": {
+    "tests": 544,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "xmlFiles": 31
+  },
+  "targeted": {
+    "scope": "targeted",
+    "tests": 222,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "xmlFiles": 5
+  },
+  "postgres": {
+    "scope": "postgres",
+    "tests": 8,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "xmlFiles": 1
+  },
+  "final": {
+    "originalTests": 544,
+    "finalTests": 552,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "xmlFiles": 32,
+    "originalTestcaseMultisetPreserved": true,
+    "newTestcases": 8
+  },
+  "preservation": {
+    "originalSourceFiles": 605,
+    "changedOriginalFiles": [
+      "src/main/java/com/back/coffeeprod/domain/product/repository/ProductRepository.java",
+      "src/main/java/com/back/coffeeprod/domain/recommendation/service/CoffeeRecommendationService.java"
+    ],
+    "onlyAuthorizedFilesChanged": true,
+    "v2Files": 1460,
+    "v2Mismatches": [],
+    "original94Files": 2125,
+    "original94Mismatches": [],
+    "measurementHashUnchanged": true,
+    "fixtureHashUnchanged": true
+  },
+  "cleanup": {
+    "existingContainersPreserved": true,
+    "postgresVersion": "PostgreSQL 16.15 on x86_64-pc-linux-musl, compiled by gcc (Alpine 15.2.0) 15.2.0, 64-bit",
+    "ownerVerified": true,
+    "dedicatedContainerRemoved": true,
+    "flywayVersions": 18
+  },
+  "scope": "DEV9-1 local functional/loading/snapshot validation; no home-server HTTP after or push",
+  "commitSha": "315b6bd2950deece32ed3516e93ea78db944f0a7",
+  "commitSubject": "perf: reduce recommendation candidate entity loading",
+  "committedFiles": [
+    "src/main/java/com/back/coffeeprod/domain/product/repository/ProductRepository.java",
+    "src/main/java/com/back/coffeeprod/domain/product/repository/RecommendationCandidateRow.java",
+    "src/main/java/com/back/coffeeprod/domain/recommendation/service/CoffeeRecommendationService.java",
+    "src/test/java/com/back/coffeeprod/dev/recommendation/DevTask9RecommendationLoadingIntegrationTest.java"
+  ],
+  "pushed": false,
+  "commitMatchesTestedSources": true
+}

@@ -1,0 +1,74 @@
+{
+  "checkedAtKst": "2026-11-03 11:06:57 KST",
+  "branch": "codex/dev-task-9-code-optimization",
+  "baseRevision": "315b6bd2950deece32ed3516e93ea78db944f0a7",
+  "sourceHash": "4dcf8ce6a4e68bc5506230a5e0a9e89729cff1857033544cbd1de9bc17cd411e",
+  "measurementHash": "f67e7c5f9e4a9b2b2ea001c92e61ce58236076791274727f7532ee6b760ffbef",
+  "fixtureHash": "f9506ef0ae7f727d96eb465706d2e2ac9054f9de83afdd039299a75817c9fabd",
+  "before": {
+    "scope": "before",
+    "tests": 552,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "xmlFiles": 32
+  },
+  "targeted": {
+    "scope": "targeted",
+    "tests": 123,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "xmlFiles": 6
+  },
+  "postgres": {
+    "scope": "postgres",
+    "tests": 12,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "xmlFiles": 1
+  },
+  "final": {
+    "originalTests": 552,
+    "finalTests": 564,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "xmlFiles": 33,
+    "originalTestcaseMultisetPreserved": true,
+    "newTestcases": 12
+  },
+  "preservation": {
+    "originalSourceFiles": 607,
+    "changedOriginalFiles": [
+      "src/main/java/com/back/coffeeprod/domain/cart/service/CartService.java"
+    ],
+    "onlyAuthorizedFilesChanged": true,
+    "v2Files": 1460,
+    "v2Mismatches": [],
+    "original94Files": 2125,
+    "original94Mismatches": [],
+    "measurementHashUnchanged": true,
+    "fixtureHashUnchanged": true
+  },
+  "cleanup": {
+    "flywayVersions": 18,
+    "ownerVerified": true,
+    "existingContainersPreserved": true,
+    "postgresVersion": "PostgreSQL 16.15 on x86_64-pc-linux-musl, compiled by gcc (Alpine 15.2.0) 15.2.0, 64-bit",
+    "dedicatedContainerRemoved": true
+  },
+  "scope": "DEV9-2 local cart read/create lock and order concurrency validation; no home-server HTTP after, QA9 or push",
+  "commitSha": "aa4724fbebeeff453d68a141d0506a2b4f63446d",
+  "commitSubject": "perf: separate cart reads from creation locks",
+  "committedFiles": [
+    "src/main/java/com/back/coffeeprod/domain/cart/service/CartQueryTransactions.java",
+    "src/main/java/com/back/coffeeprod/domain/cart/service/CartService.java",
+    "src/test/java/com/back/coffeeprod/dev/cart/DevTask9CartReadIntegrationTest.java"
+  ],
+  "pushed": false,
+  "branchPreserved": true,
+  "commitMatchesTestedSources": true,
+  "pushOwner": "user after last improvement, before QA"
+}
