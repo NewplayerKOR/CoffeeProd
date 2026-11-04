@@ -1,0 +1,22 @@
+group,label,unit,beforeMedian,afterMedian,reductionPercent,beforeRuns,afterRuns,note
+recommendation-http,192 catalog products,ms,25,17,32.0,3,3,Median of three run-level workflow p95s; authenticated limit-10 requests; shared JWT changes included
+recommendation-entities,192 catalog products,ORM entity loads,1072,122,88.61940298507463,3,3,Service-call diagnostic; all entity types; not total HTTP request loading
+recommendation-http,"1,000 eligible candidates",ms,35,20,42.857142857142854,3,3,Median of three run-level workflow p95s; authenticated limit-10 requests; shared JWT changes included
+recommendation-entities,"1,000 eligible candidates",ORM entity loads,1897,63,96.6789667896679,3,3,Service-call diagnostic; all entity types; not total HTTP request loading
+cart-sql,Existing cart: 20 concurrent reads,SQL statements,60,20,66.66666666666666,3,3,Median and observed range of three diagnostics; first-create cost increased
+cart-sql,First cart: 20 concurrent creates,SQL statements,60,75,-25.0,3,3,Median and observed range of three diagnostics; first-create cost increased
+statistics-jdbc,366 days; existing rows,JDBC execution calls,1464,376,74.31693989071039,1,1,Existing local PostgreSQL fixture; includes 366 date locks; not network round trips
+order-list-sql,Member page size 10,SQL statements,4,3,25.0,1,1,Existing local PostgreSQL service-call fixture; not HTTP latency
+order-list-entities,Member page size 10,ORM entity loads,224,0,100.0,1,1,Existing local PostgreSQL service-call fixture; not HTTP latency
+order-list-sql,Member page size 50,SQL statements,4,3,25.0,1,1,Existing local PostgreSQL service-call fixture; not HTTP latency
+order-list-entities,Member page size 50,ORM entity loads,1104,0,100.0,1,1,Existing local PostgreSQL service-call fixture; not HTTP latency
+order-create-sql,1 distinct product(s),SQL statements,16,15,6.25,1,1,Existing local PostgreSQL service-call fixture; conditional stock updates preserved
+order-create-sql,5 distinct product(s),SQL statements,40,35,12.5,1,1,Existing local PostgreSQL service-call fixture; conditional stock updates preserved
+order-create-sql,20 distinct product(s),SQL statements,130,110,15.384615384615385,1,1,Existing local PostgreSQL service-call fixture; conditional stock updates preserved
+jwt-verifications,Filter,signature verifications,2,1,50.0,1,1,Count per token/request; not CPU or latency improvement percentage
+jwt-verifications,Reissue,signature verifications,2,1,50.0,1,1,Count per token/request; not CPU or latency improvement percentage
+index-sql-replay,review-10,ms,2.9912,1.707,42.932602300080234,1,1,"Existing local PostgreSQL final-combination SQL replay; 20 warmups, 100 calls x 3; not HTTP"
+index-sql-replay,qna-10,ms,3.3822,2.0231,40.18390396783159,1,1,"Existing local PostgreSQL final-combination SQL replay; 20 warmups, 100 calls x 3; not HTTP"
+index-sql-replay,review-50,ms,4.00645,2.44645,38.937213742839674,1,1,"Existing local PostgreSQL final-combination SQL replay; 20 warmups, 100 calls x 3; not HTTP"
+index-sql-replay,qna-50,ms,4.1577,2.7228,34.5118695432571,1,1,"Existing local PostgreSQL final-combination SQL replay; 20 warmups, 100 calls x 3; not HTTP"
+cart-http-reference,One matched cart HTTP pair,ms,10,7,30.0,1,1,One completed pair only; shared JWT/cart changes; not a repeat-stability claim; excluded from default figures

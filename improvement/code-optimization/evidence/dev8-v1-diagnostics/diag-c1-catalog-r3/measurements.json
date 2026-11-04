@@ -1,0 +1,3881 @@
+{
+  "sourceHash": "0fb09c3f7a3117b0791e579bb60b413826c17c242a5742cc964ff5177190de7c",
+  "measurementHash": "168bd4d9f2b77ebc92471d9ba066157a3b874fc2edb9d43200123956400e969c",
+  "variant": "catalog",
+  "samples": [
+    {
+      "name": "recommend-decaf-null-5",
+      "elapsedNanos": 496417408,
+      "cpuNanos": 940000000,
+      "hibernateStatements": 13,
+      "entities": 1072,
+      "collections": 384,
+      "sql": [
+        "select p1_0.product_id,p1_0.category_id,c1_0.category_id,c1_0.name,cp2_0.coffee_profile_id,cp2_0.acidity,cp2_0.altitude_max,cp2_0.altitude_min,cp2_0.aroma,cp2_0.bean_type,cp2_0.body,cp2_0.catalog_key,cp2_0.created_at,cp2_0.decaf,cp2_0.decaf_method,cp2_0.farm_or_cooperative,cp2_0.origin_country_code,cp2_0.origin_region,pm1_0.processing_method_id,pm1_0.code,pm1_0.description,pm1_0.name,cp2_0.producer,cp2_0.profile_name,cp2_0.roast_level,cp2_0.summary,cp2_0.sweetness,cp2_0.updated_at,p1_0.created_at,p1_0.description,p1_0.image_url,p1_0.name,p1_0.price,p1_0.roast_level,p1_0.sku,p1_0.status,p1_0.stock_quantity,p1_0.updated_at,p1_0.weight_grams from product p1_0 join coffee_profile cp1_0 on cp1_0.coffee_profile_id=p1_0.coffee_profile_id join category c1_0 on c1_0.category_id=p1_0.category_id left join coffee_profile cp2_0 on cp2_0.coffee_profile_id=p1_0.coffee_profile_id left join processing_method pm1_0 on pm1_0.processing_method_id=cp2_0.processing_method_id where p1_0.status=? and p1_0.stock_quantity>0 and (? is null or cp1_0.decaf=?)",
+        "select fn1_0.coffee_profile_id,fn1_0.coffee_profile_flavor_note_id,fn1_0.display_order,fn1_0.flavor_note_id,fn1_0.intensity from coffee_profile_flavor_note fn1_0 where fn1_0.coffee_profile_id = any (?) order by fn1_0.display_order",
+        "select fn1_0.flavor_note_id,fn1_0.code,fn1_0.description,fn1_0.name from flavor_note fn1_0 where fn1_0.flavor_note_id = any (?)",
+        "select bm1_0.coffee_profile_id,bm1_0.coffee_profile_brew_method_id,bm1_0.brew_method_id,bm1_0.display_order,bm1_0.recommendation_note from coffee_profile_brew_method bm1_0 where bm1_0.coffee_profile_id = any (?) order by bm1_0.display_order",
+        "select bm1_0.brew_method_id,bm1_0.code,bm1_0.description,bm1_0.name from brew_method bm1_0 where bm1_0.brew_method_id = any (?)",
+        "select v1_0.coffee_profile_id,v1_0.coffee_profile_variety_id,v1_0.coffee_variety_id,v1_0.display_order from coffee_profile_variety v1_0 where v1_0.coffee_profile_id = any (?) order by v1_0.display_order",
+        "select cv1_0.coffee_variety_id,cv1_0.code,cv1_0.description,cv1_0.name from coffee_variety cv1_0 where cv1_0.coffee_variety_id = any (?)",
+        "select c1_0.coffee_profile_id,c1_0.coffee_profile_component_id,c1_0.component_ratio,c1_0.display_order,c1_0.origin_country_code,c1_0.origin_region,c1_0.processing_method_id from coffee_profile_component c1_0 where c1_0.coffee_profile_id = any (?) order by c1_0.display_order",
+        "select fn1_0.coffee_profile_id,fn1_0.coffee_profile_flavor_note_id,fn1_0.display_order,fn1_0.flavor_note_id,fn1_0.intensity from coffee_profile_flavor_note fn1_0 where fn1_0.coffee_profile_id = any (?) order by fn1_0.display_order",
+        "select bm1_0.coffee_profile_id,bm1_0.coffee_profile_brew_method_id,bm1_0.brew_method_id,bm1_0.display_order,bm1_0.recommendation_note from coffee_profile_brew_method bm1_0 where bm1_0.coffee_profile_id = any (?) order by bm1_0.display_order",
+        "select v1_0.coffee_profile_id,v1_0.coffee_profile_variety_id,v1_0.coffee_variety_id,v1_0.display_order from coffee_profile_variety v1_0 where v1_0.coffee_profile_id = any (?) order by v1_0.display_order",
+        "select c1_0.coffee_profile_id,c1_0.coffee_profile_component_id,c1_0.component_ratio,c1_0.display_order,c1_0.origin_country_code,c1_0.origin_region,c1_0.processing_method_id from coffee_profile_component c1_0 where c1_0.coffee_profile_id = any (?) order by c1_0.display_order",
+        "select cv1_0.coffee_variety_id,cv1_0.code,cv1_0.description,cv1_0.name from coffee_variety cv1_0 where cv1_0.coffee_variety_id = any (?)"
+      ]
+    },
+    {
+      "name": "recommend-decaf-null-10",
+      "elapsedNanos": 90782969,
+      "cpuNanos": 170000000,
+      "hibernateStatements": 13,
+      "entities": 1072,
+      "collections": 384,
+      "sql": [
+        "select p1_0.product_id,p1_0.category_id,c1_0.category_id,c1_0.name,cp2_0.coffee_profile_id,cp2_0.acidity,cp2_0.altitude_max,cp2_0.altitude_min,cp2_0.aroma,cp2_0.bean_type,cp2_0.body,cp2_0.catalog_key,cp2_0.created_at,cp2_0.decaf,cp2_0.decaf_method,cp2_0.farm_or_cooperative,cp2_0.origin_country_code,cp2_0.origin_region,pm1_0.processing_method_id,pm1_0.code,pm1_0.description,pm1_0.name,cp2_0.producer,cp2_0.profile_name,cp2_0.roast_level,cp2_0.summary,cp2_0.sweetness,cp2_0.updated_at,p1_0.created_at,p1_0.description,p1_0.image_url,p1_0.name,p1_0.price,p1_0.roast_level,p1_0.sku,p1_0.status,p1_0.stock_quantity,p1_0.updated_at,p1_0.weight_grams from product p1_0 join coffee_profile cp1_0 on cp1_0.coffee_profile_id=p1_0.coffee_profile_id join category c1_0 on c1_0.category_id=p1_0.category_id left join coffee_profile cp2_0 on cp2_0.coffee_profile_id=p1_0.coffee_profile_id left join processing_method pm1_0 on pm1_0.processing_method_id=cp2_0.processing_method_id where p1_0.status=? and p1_0.stock_quantity>0 and (? is null or cp1_0.decaf=?)",
+        "select fn1_0.coffee_profile_id,fn1_0.coffee_profile_flavor_note_id,fn1_0.display_order,fn1_0.flavor_note_id,fn1_0.intensity from coffee_profile_flavor_note fn1_0 where fn1_0.coffee_profile_id = any (?) order by fn1_0.display_order",
+        "select fn1_0.flavor_note_id,fn1_0.code,fn1_0.description,fn1_0.name from flavor_note fn1_0 where fn1_0.flavor_note_id = any (?)",
+        "select bm1_0.coffee_profile_id,bm1_0.coffee_profile_brew_method_id,bm1_0.brew_method_id,bm1_0.display_order,bm1_0.recommendation_note from coffee_profile_brew_method bm1_0 where bm1_0.coffee_profile_id = any (?) order by bm1_0.display_order",
+        "select bm1_0.brew_method_id,bm1_0.code,bm1_0.description,bm1_0.name from brew_method bm1_0 where bm1_0.brew_method_id = any (?)",
+        "select v1_0.coffee_profile_id,v1_0.coffee_profile_variety_id,v1_0.coffee_variety_id,v1_0.display_order from coffee_profile_variety v1_0 where v1_0.coffee_profile_id = any (?) order by v1_0.display_order",
+        "select cv1_0.coffee_variety_id,cv1_0.code,cv1_0.description,cv1_0.name from coffee_variety cv1_0 where cv1_0.coffee_variety_id = any (?)",
+        "select c1_0.coffee_profile_id,c1_0.coffee_profile_component_id,c1_0.component_ratio,c1_0.display_order,c1_0.origin_country_code,c1_0.origin_region,c1_0.processing_method_id from coffee_profile_component c1_0 where c1_0.coffee_profile_id = any (?) order by c1_0.display_order",
+        "select fn1_0.coffee_profile_id,fn1_0.coffee_profile_flavor_note_id,fn1_0.display_order,fn1_0.flavor_note_id,fn1_0.intensity from coffee_profile_flavor_note fn1_0 where fn1_0.coffee_profile_id = any (?) order by fn1_0.display_order",
+        "select bm1_0.coffee_profile_id,bm1_0.coffee_profile_brew_method_id,bm1_0.brew_method_id,bm1_0.display_order,bm1_0.recommendation_note from coffee_profile_brew_method bm1_0 where bm1_0.coffee_profile_id = any (?) order by bm1_0.display_order",
+        "select v1_0.coffee_profile_id,v1_0.coffee_profile_variety_id,v1_0.coffee_variety_id,v1_0.display_order from coffee_profile_variety v1_0 where v1_0.coffee_profile_id = any (?) order by v1_0.display_order",
+        "select c1_0.coffee_profile_id,c1_0.coffee_profile_component_id,c1_0.component_ratio,c1_0.display_order,c1_0.origin_country_code,c1_0.origin_region,c1_0.processing_method_id from coffee_profile_component c1_0 where c1_0.coffee_profile_id = any (?) order by c1_0.display_order",
+        "select cv1_0.coffee_variety_id,cv1_0.code,cv1_0.description,cv1_0.name from coffee_variety cv1_0 where cv1_0.coffee_variety_id = any (?)"
+      ]
+    },
+    {
+      "name": "recommend-decaf-true-5",
+      "elapsedNanos": 40796303,
+      "cpuNanos": 60000000,
+      "hibernateStatements": 9,
+      "entities": 65,
+      "collections": 16,
+      "sql": [
+        "select p1_0.product_id,p1_0.category_id,c1_0.category_id,c1_0.name,cp2_0.coffee_profile_id,cp2_0.acidity,cp2_0.altitude_max,cp2_0.altitude_min,cp2_0.aroma,cp2_0.bean_type,cp2_0.body,cp2_0.catalog_key,cp2_0.created_at,cp2_0.decaf,cp2_0.decaf_method,cp2_0.farm_or_cooperative,cp2_0.origin_country_code,cp2_0.origin_region,pm1_0.processing_method_id,pm1_0.code,pm1_0.description,pm1_0.name,cp2_0.producer,cp2_0.profile_name,cp2_0.roast_level,cp2_0.summary,cp2_0.sweetness,cp2_0.updated_at,p1_0.created_at,p1_0.description,p1_0.image_url,p1_0.name,p1_0.price,p1_0.roast_level,p1_0.sku,p1_0.status,p1_0.stock_quantity,p1_0.updated_at,p1_0.weight_grams from product p1_0 join coffee_profile cp1_0 on cp1_0.coffee_profile_id=p1_0.coffee_profile_id join category c1_0 on c1_0.category_id=p1_0.category_id left join coffee_profile cp2_0 on cp2_0.coffee_profile_id=p1_0.coffee_profile_id left join processing_method pm1_0 on pm1_0.processing_method_id=cp2_0.processing_method_id where p1_0.status=? and p1_0.stock_quantity>0 and (? is null or cp1_0.decaf=?)",
+        "select fn1_0.coffee_profile_id,fn1_0.coffee_profile_flavor_note_id,fn1_0.display_order,fn1_0.flavor_note_id,fn1_0.intensity from coffee_profile_flavor_note fn1_0 where fn1_0.coffee_profile_id = any (?) order by fn1_0.display_order",
+        "select fn1_0.flavor_note_id,fn1_0.code,fn1_0.description,fn1_0.name from flavor_note fn1_0 where fn1_0.flavor_note_id = any (?)",
+        "select bm1_0.coffee_profile_id,bm1_0.coffee_profile_brew_method_id,bm1_0.brew_method_id,bm1_0.display_order,bm1_0.recommendation_note from coffee_profile_brew_method bm1_0 where bm1_0.coffee_profile_id = any (?) order by bm1_0.display_order",
+        "select bm1_0.brew_method_id,bm1_0.code,bm1_0.description,bm1_0.name from brew_method bm1_0 where bm1_0.brew_method_id = any (?)",
+        "select v1_0.coffee_profile_id,v1_0.coffee_profile_variety_id,v1_0.coffee_variety_id,v1_0.display_order from coffee_profile_variety v1_0 where v1_0.coffee_profile_id = any (?) order by v1_0.display_order",
+        "select cv1_0.coffee_variety_id,cv1_0.code,cv1_0.description,cv1_0.name from coffee_variety cv1_0 where cv1_0.coffee_variety_id = any (?)",
+        "select c1_0.coffee_profile_id,c1_0.coffee_profile_component_id,c1_0.component_ratio,c1_0.display_order,c1_0.origin_country_code,c1_0.origin_region,c1_0.processing_method_id from coffee_profile_component c1_0 where c1_0.coffee_profile_id = any (?) order by c1_0.display_order",
+        "select pm1_0.processing_method_id,pm1_0.code,pm1_0.description,pm1_0.name from processing_method pm1_0 where pm1_0.processing_method_id = any (?)"
+      ]
+    },
+    {
+      "name": "recommend-decaf-true-10",
+      "elapsedNanos": 22798029,
+      "cpuNanos": 60000000,
+      "hibernateStatements": 9,
+      "entities": 65,
+      "collections": 16,
+      "sql": [
+        "select p1_0.product_id,p1_0.category_id,c1_0.category_id,c1_0.name,cp2_0.coffee_profile_id,cp2_0.acidity,cp2_0.altitude_max,cp2_0.altitude_min,cp2_0.aroma,cp2_0.bean_type,cp2_0.body,cp2_0.catalog_key,cp2_0.created_at,cp2_0.decaf,cp2_0.decaf_method,cp2_0.farm_or_cooperative,cp2_0.origin_country_code,cp2_0.origin_region,pm1_0.processing_method_id,pm1_0.code,pm1_0.description,pm1_0.name,cp2_0.producer,cp2_0.profile_name,cp2_0.roast_level,cp2_0.summary,cp2_0.sweetness,cp2_0.updated_at,p1_0.created_at,p1_0.description,p1_0.image_url,p1_0.name,p1_0.price,p1_0.roast_level,p1_0.sku,p1_0.status,p1_0.stock_quantity,p1_0.updated_at,p1_0.weight_grams from product p1_0 join coffee_profile cp1_0 on cp1_0.coffee_profile_id=p1_0.coffee_profile_id join category c1_0 on c1_0.category_id=p1_0.category_id left join coffee_profile cp2_0 on cp2_0.coffee_profile_id=p1_0.coffee_profile_id left join processing_method pm1_0 on pm1_0.processing_method_id=cp2_0.processing_method_id where p1_0.status=? and p1_0.stock_quantity>0 and (? is null or cp1_0.decaf=?)",
+        "select fn1_0.coffee_profile_id,fn1_0.coffee_profile_flavor_note_id,fn1_0.display_order,fn1_0.flavor_note_id,fn1_0.intensity from coffee_profile_flavor_note fn1_0 where fn1_0.coffee_profile_id = any (?) order by fn1_0.display_order",
+        "select fn1_0.flavor_note_id,fn1_0.code,fn1_0.description,fn1_0.name from flavor_note fn1_0 where fn1_0.flavor_note_id = any (?)",
+        "select bm1_0.coffee_profile_id,bm1_0.coffee_profile_brew_method_id,bm1_0.brew_method_id,bm1_0.display_order,bm1_0.recommendation_note from coffee_profile_brew_method bm1_0 where bm1_0.coffee_profile_id = any (?) order by bm1_0.display_order",
+        "select bm1_0.brew_method_id,bm1_0.code,bm1_0.description,bm1_0.name from brew_method bm1_0 where bm1_0.brew_method_id = any (?)",
+        "select v1_0.coffee_profile_id,v1_0.coffee_profile_variety_id,v1_0.coffee_variety_id,v1_0.display_order from coffee_profile_variety v1_0 where v1_0.coffee_profile_id = any (?) order by v1_0.display_order",
+        "select cv1_0.coffee_variety_id,cv1_0.code,cv1_0.description,cv1_0.name from coffee_variety cv1_0 where cv1_0.coffee_variety_id = any (?)",
+        "select c1_0.coffee_profile_id,c1_0.coffee_profile_component_id,c1_0.component_ratio,c1_0.display_order,c1_0.origin_country_code,c1_0.origin_region,c1_0.processing_method_id from coffee_profile_component c1_0 where c1_0.coffee_profile_id = any (?) order by c1_0.display_order",
+        "select pm1_0.processing_method_id,pm1_0.code,pm1_0.description,pm1_0.name from processing_method pm1_0 where pm1_0.processing_method_id = any (?)"
+      ]
+    },
+    {
+      "name": "recommend-decaf-false-5",
+      "elapsedNanos": 67748462,
+      "cpuNanos": 140000000,
+      "hibernateStatements": 13,
+      "entities": 1021,
+      "collections": 368,
+      "sql": [
+        "select p1_0.product_id,p1_0.category_id,c1_0.category_id,c1_0.name,cp2_0.coffee_profile_id,cp2_0.acidity,cp2_0.altitude_max,cp2_0.altitude_min,cp2_0.aroma,cp2_0.bean_type,cp2_0.body,cp2_0.catalog_key,cp2_0.created_at,cp2_0.decaf,cp2_0.decaf_method,cp2_0.farm_or_cooperative,cp2_0.origin_country_code,cp2_0.origin_region,pm1_0.processing_method_id,pm1_0.code,pm1_0.description,pm1_0.name,cp2_0.producer,cp2_0.profile_name,cp2_0.roast_level,cp2_0.summary,cp2_0.sweetness,cp2_0.updated_at,p1_0.created_at,p1_0.description,p1_0.image_url,p1_0.name,p1_0.price,p1_0.roast_level,p1_0.sku,p1_0.status,p1_0.stock_quantity,p1_0.updated_at,p1_0.weight_grams from product p1_0 join coffee_profile cp1_0 on cp1_0.coffee_profile_id=p1_0.coffee_profile_id join category c1_0 on c1_0.category_id=p1_0.category_id left join coffee_profile cp2_0 on cp2_0.coffee_profile_id=p1_0.coffee_profile_id left join processing_method pm1_0 on pm1_0.processing_method_id=cp2_0.processing_method_id where p1_0.status=? and p1_0.stock_quantity>0 and (? is null or cp1_0.decaf=?)",
+        "select fn1_0.coffee_profile_id,fn1_0.coffee_profile_flavor_note_id,fn1_0.display_order,fn1_0.flavor_note_id,fn1_0.intensity from coffee_profile_flavor_note fn1_0 where fn1_0.coffee_profile_id = any (?) order by fn1_0.display_order",
+        "select fn1_0.flavor_note_id,fn1_0.code,fn1_0.description,fn1_0.name from flavor_note fn1_0 where fn1_0.flavor_note_id = any (?)",
+        "select bm1_0.coffee_profile_id,bm1_0.coffee_profile_brew_method_id,bm1_0.brew_method_id,bm1_0.display_order,bm1_0.recommendation_note from coffee_profile_brew_method bm1_0 where bm1_0.coffee_profile_id = any (?) order by bm1_0.display_order",
+        "select bm1_0.brew_method_id,bm1_0.code,bm1_0.description,bm1_0.name from brew_method bm1_0 where bm1_0.brew_method_id = any (?)",
+        "select v1_0.coffee_profile_id,v1_0.coffee_profile_variety_id,v1_0.coffee_variety_id,v1_0.display_order from coffee_profile_variety v1_0 where v1_0.coffee_profile_id = any (?) order by v1_0.display_order",
+        "select cv1_0.coffee_variety_id,cv1_0.code,cv1_0.description,cv1_0.name from coffee_variety cv1_0 where cv1_0.coffee_variety_id = any (?)",
+        "select c1_0.coffee_profile_id,c1_0.coffee_profile_component_id,c1_0.component_ratio,c1_0.display_order,c1_0.origin_country_code,c1_0.origin_region,c1_0.processing_method_id from coffee_profile_component c1_0 where c1_0.coffee_profile_id = any (?) order by c1_0.display_order",
+        "select fn1_0.coffee_profile_id,fn1_0.coffee_profile_flavor_note_id,fn1_0.display_order,fn1_0.flavor_note_id,fn1_0.intensity from coffee_profile_flavor_note fn1_0 where fn1_0.coffee_profile_id = any (?) order by fn1_0.display_order",
+        "select bm1_0.coffee_profile_id,bm1_0.coffee_profile_brew_method_id,bm1_0.brew_method_id,bm1_0.display_order,bm1_0.recommendation_note from coffee_profile_brew_method bm1_0 where bm1_0.coffee_profile_id = any (?) order by bm1_0.display_order",
+        "select v1_0.coffee_profile_id,v1_0.coffee_profile_variety_id,v1_0.coffee_variety_id,v1_0.display_order from coffee_profile_variety v1_0 where v1_0.coffee_profile_id = any (?) order by v1_0.display_order",
+        "select c1_0.coffee_profile_id,c1_0.coffee_profile_component_id,c1_0.component_ratio,c1_0.display_order,c1_0.origin_country_code,c1_0.origin_region,c1_0.processing_method_id from coffee_profile_component c1_0 where c1_0.coffee_profile_id = any (?) order by c1_0.display_order",
+        "select cv1_0.coffee_variety_id,cv1_0.code,cv1_0.description,cv1_0.name from coffee_variety cv1_0 where cv1_0.coffee_variety_id = any (?)"
+      ]
+    },
+    {
+      "name": "recommend-decaf-false-10",
+      "elapsedNanos": 50409130,
+      "cpuNanos": 120000000,
+      "hibernateStatements": 13,
+      "entities": 1021,
+      "collections": 368,
+      "sql": [
+        "select p1_0.product_id,p1_0.category_id,c1_0.category_id,c1_0.name,cp2_0.coffee_profile_id,cp2_0.acidity,cp2_0.altitude_max,cp2_0.altitude_min,cp2_0.aroma,cp2_0.bean_type,cp2_0.body,cp2_0.catalog_key,cp2_0.created_at,cp2_0.decaf,cp2_0.decaf_method,cp2_0.farm_or_cooperative,cp2_0.origin_country_code,cp2_0.origin_region,pm1_0.processing_method_id,pm1_0.code,pm1_0.description,pm1_0.name,cp2_0.producer,cp2_0.profile_name,cp2_0.roast_level,cp2_0.summary,cp2_0.sweetness,cp2_0.updated_at,p1_0.created_at,p1_0.description,p1_0.image_url,p1_0.name,p1_0.price,p1_0.roast_level,p1_0.sku,p1_0.status,p1_0.stock_quantity,p1_0.updated_at,p1_0.weight_grams from product p1_0 join coffee_profile cp1_0 on cp1_0.coffee_profile_id=p1_0.coffee_profile_id join category c1_0 on c1_0.category_id=p1_0.category_id left join coffee_profile cp2_0 on cp2_0.coffee_profile_id=p1_0.coffee_profile_id left join processing_method pm1_0 on pm1_0.processing_method_id=cp2_0.processing_method_id where p1_0.status=? and p1_0.stock_quantity>0 and (? is null or cp1_0.decaf=?)",
+        "select fn1_0.coffee_profile_id,fn1_0.coffee_profile_flavor_note_id,fn1_0.display_order,fn1_0.flavor_note_id,fn1_0.intensity from coffee_profile_flavor_note fn1_0 where fn1_0.coffee_profile_id = any (?) order by fn1_0.display_order",
+        "select fn1_0.flavor_note_id,fn1_0.code,fn1_0.description,fn1_0.name from flavor_note fn1_0 where fn1_0.flavor_note_id = any (?)",
+        "select bm1_0.coffee_profile_id,bm1_0.coffee_profile_brew_method_id,bm1_0.brew_method_id,bm1_0.display_order,bm1_0.recommendation_note from coffee_profile_brew_method bm1_0 where bm1_0.coffee_profile_id = any (?) order by bm1_0.display_order",
+        "select bm1_0.brew_method_id,bm1_0.code,bm1_0.description,bm1_0.name from brew_method bm1_0 where bm1_0.brew_method_id = any (?)",
+        "select v1_0.coffee_profile_id,v1_0.coffee_profile_variety_id,v1_0.coffee_variety_id,v1_0.display_order from coffee_profile_variety v1_0 where v1_0.coffee_profile_id = any (?) order by v1_0.display_order",
+        "select cv1_0.coffee_variety_id,cv1_0.code,cv1_0.description,cv1_0.name from coffee_variety cv1_0 where cv1_0.coffee_variety_id = any (?)",
+        "select c1_0.coffee_profile_id,c1_0.coffee_profile_component_id,c1_0.component_ratio,c1_0.display_order,c1_0.origin_country_code,c1_0.origin_region,c1_0.processing_method_id from coffee_profile_component c1_0 where c1_0.coffee_profile_id = any (?) order by c1_0.display_order",
+        "select fn1_0.coffee_profile_id,fn1_0.coffee_profile_flavor_note_id,fn1_0.display_order,fn1_0.flavor_note_id,fn1_0.intensity from coffee_profile_flavor_note fn1_0 where fn1_0.coffee_profile_id = any (?) order by fn1_0.display_order",
+        "select bm1_0.coffee_profile_id,bm1_0.coffee_profile_brew_method_id,bm1_0.brew_method_id,bm1_0.display_order,bm1_0.recommendation_note from coffee_profile_brew_method bm1_0 where bm1_0.coffee_profile_id = any (?) order by bm1_0.display_order",
+        "select v1_0.coffee_profile_id,v1_0.coffee_profile_variety_id,v1_0.coffee_variety_id,v1_0.display_order from coffee_profile_variety v1_0 where v1_0.coffee_profile_id = any (?) order by v1_0.display_order",
+        "select c1_0.coffee_profile_id,c1_0.coffee_profile_component_id,c1_0.component_ratio,c1_0.display_order,c1_0.origin_country_code,c1_0.origin_region,c1_0.processing_method_id from coffee_profile_component c1_0 where c1_0.coffee_profile_id = any (?) order by c1_0.display_order",
+        "select cv1_0.coffee_variety_id,cv1_0.code,cv1_0.description,cv1_0.name from coffee_variety cv1_0 where cv1_0.coffee_variety_id = any (?)"
+      ]
+    }
+  ],
+  "scope": "server JVM diagnostics; not HTTP load timing",
+  "golden": [
+    {
+      "input": {
+        "decaf": null,
+        "limit": 5,
+        "preferredAcidity": 3,
+        "preferredBody": 4
+      },
+      "result": [
+        {
+          "recommendationScore": 8,
+          "reasons": [
+            "산미 선호와 일치",
+            "바디 선호와 일치"
+          ],
+          "acidity": 3,
+          "aroma": 3,
+          "beanType": "SINGLE_ORIGIN",
+          "body": 4,
+          "brewMethods": [
+            {
+              "brewMethodId": 1,
+              "code": "POUR_OVER",
+              "description": "종이 필터로 향미의 명료도를 표현함",
+              "name": "푸어오버",
+              "recommendationNote": "중간 분쇄도와 90~94C 물로 향미를 선명하게 표현함"
+            },
+            {
+              "brewMethodId": 4,
+              "code": "AEROPRESS",
+              "description": "침지와 압력을 조합해 균형 있는 추출을 표현함",
+              "name": "에어로프레스",
+              "recommendationNote": "짧은 침지로 단맛과 산미의 균형을 맞춤"
+            }
+          ],
+          "categoryName": "싱글 오리진",
+          "coffeeProfileId": 7,
+          "coffeeProfileName": "ID Java WASHED 미디엄",
+          "components": [],
+          "decaf": false,
+          "flavorNotes": [
+            {
+              "code": "BROWN_SUGAR",
+              "description": "흑설탕을 떠올리는 깊은 단맛",
+              "flavorNoteId": 9,
+              "intensity": 4,
+              "name": "흑설탕"
+            },
+            {
+              "code": "SPICE",
+              "description": "계피와 정향을 떠올리는 향신료 인상",
+              "flavorNoteId": 11,
+              "intensity": 3,
+              "name": "스파이스"
+            },
+            {
+              "code": "COCOA",
+              "description": "코코아 가루를 떠올리는 고소하고 쌉쌀한 인상",
+              "flavorNoteId": 27,
+              "intensity": 4,
+              "name": "코코아"
+            }
+          ],
+          "imageUrl": "https://assets-coffeeprod.ttagyulab.com/products/catalog/so034-m-v1.webp",
+          "name": "ID Java WASHED 미디엄 200g",
+          "price": 17000,
+          "processingMethodName": "Washed",
+          "productId": 12,
+          "roastLevel": "MEDIUM",
+          "sku": "CP-SO034-M-200",
+          "sweetness": 4,
+          "varieties": [
+            {
+              "code": "TYPICA",
+              "coffeeVarietyId": 8,
+              "description": "여러 현대 품종의 기반이 된 전통 아라비카 품종",
+              "name": "티피카"
+            },
+            {
+              "code": "CATIMOR",
+              "coffeeVarietyId": 27,
+              "description": "카투라와 하이브리드 계열을 바탕으로 한 품종군",
+              "name": "카티모르"
+            }
+          ],
+          "weightGrams": 200
+        },
+        {
+          "recommendationScore": 8,
+          "reasons": [
+            "산미 선호와 일치",
+            "바디 선호와 일치"
+          ],
+          "acidity": 3,
+          "aroma": 4,
+          "beanType": "SINGLE_ORIGIN",
+          "body": 4,
+          "brewMethods": [
+            {
+              "brewMethodId": 1,
+              "code": "POUR_OVER",
+              "description": "종이 필터로 향미의 명료도를 표현함",
+              "name": "푸어오버",
+              "recommendationNote": "중간 분쇄도와 90~94C 물로 향미를 선명하게 표현함"
+            },
+            {
+              "brewMethodId": 4,
+              "code": "AEROPRESS",
+              "description": "침지와 압력을 조합해 균형 있는 추출을 표현함",
+              "name": "에어로프레스",
+              "recommendationNote": "짧은 침지로 단맛과 산미의 균형을 맞춤"
+            }
+          ],
+          "categoryName": "싱글 오리진",
+          "coffeeProfileId": 51,
+          "coffeeProfileName": "BR Mantiqueira NATURAL 미디엄",
+          "components": [],
+          "decaf": false,
+          "flavorNotes": [
+            {
+              "code": "RED_FRUIT",
+              "description": "딸기와 체리를 떠올리는 과일 인상",
+              "flavorNoteId": 19,
+              "intensity": 4,
+              "name": "붉은 과일"
+            },
+            {
+              "code": "HONEY",
+              "description": "꿀을 떠올리는 매끄러운 단맛",
+              "flavorNoteId": 33,
+              "intensity": 4,
+              "name": "꿀"
+            },
+            {
+              "code": "NUTTY",
+              "description": "구운 견과를 떠올리는 고소한 향미",
+              "flavorNoteId": 7,
+              "intensity": 3,
+              "name": "견과류"
+            }
+          ],
+          "imageUrl": "https://assets-coffeeprod.ttagyulab.com/products/catalog/so019-m-v1.webp",
+          "name": "BR Mantiqueira NATURAL 미디엄 200g",
+          "price": 17500,
+          "processingMethodName": "Natural",
+          "productId": 72,
+          "roastLevel": "MEDIUM",
+          "sku": "CP-SO019-M-200",
+          "sweetness": 5,
+          "varieties": [
+            {
+              "code": "YELLOW_BOURBON",
+              "coffeeVarietyId": 14,
+              "description": "노란색 열매 특성을 가진 버번 계열",
+              "name": "옐로 버번"
+            }
+          ],
+          "weightGrams": 200
+        },
+        {
+          "recommendationScore": 8,
+          "reasons": [
+            "산미 선호와 일치",
+            "바디 선호와 일치"
+          ],
+          "acidity": 3,
+          "aroma": 3,
+          "beanType": "SINGLE_ORIGIN",
+          "body": 4,
+          "brewMethods": [
+            {
+              "brewMethodId": 1,
+              "code": "POUR_OVER",
+              "description": "종이 필터로 향미의 명료도를 표현함",
+              "name": "푸어오버",
+              "recommendationNote": "중간 분쇄도와 90~94C 물로 향미를 선명하게 표현함"
+            },
+            {
+              "brewMethodId": 4,
+              "code": "AEROPRESS",
+              "description": "침지와 압력을 조합해 균형 있는 추출을 표현함",
+              "name": "에어로프레스",
+              "recommendationNote": "짧은 침지로 단맛과 산미의 균형을 맞춤"
+            }
+          ],
+          "categoryName": "싱글 오리진",
+          "coffeeProfileId": 54,
+          "coffeeProfileName": "CO Sierra Nevada NATURAL 미디엄",
+          "components": [],
+          "decaf": false,
+          "flavorNotes": [
+            {
+              "code": "CHOCOLATE",
+              "description": "초콜릿을 떠올리는 부드러운 단맛",
+              "flavorNoteId": 6,
+              "intensity": 4,
+              "name": "초콜릿"
+            },
+            {
+              "code": "RED_APPLE",
+              "description": "사과를 떠올리는 산미와 단맛",
+              "flavorNoteId": 22,
+              "intensity": 3,
+              "name": "붉은 사과"
+            },
+            {
+              "code": "CARAMEL",
+              "description": "카라멜과 토피를 떠올리는 단맛",
+              "flavorNoteId": 8,
+              "intensity": 4,
+              "name": "카라멜"
+            }
+          ],
+          "imageUrl": "https://assets-coffeeprod.ttagyulab.com/products/catalog/so016-m-v1.webp",
+          "name": "CO Sierra Nevada NATURAL 미디엄 200g",
+          "price": 17500,
+          "processingMethodName": "Natural",
+          "productId": 82,
+          "roastLevel": "MEDIUM",
+          "sku": "CP-SO016-M-200",
+          "sweetness": 5,
+          "varieties": [
+            {
+              "code": "CASTILLO",
+              "coffeeVarietyId": 3,
+              "description": "콜롬비아에서 널리 재배되는 품종",
+              "name": "카스티요"
+            },
+            {
+              "code": "TYPICA",
+              "coffeeVarietyId": 8,
+              "description": "여러 현대 품종의 기반이 된 전통 아라비카 품종",
+              "name": "티피카"
+            }
+          ],
+          "weightGrams": 200
+        },
+        {
+          "recommendationScore": 8,
+          "reasons": [
+            "산미 선호와 일치",
+            "바디 선호와 일치"
+          ],
+          "acidity": 3,
+          "aroma": 4,
+          "beanType": "SINGLE_ORIGIN",
+          "body": 4,
+          "brewMethods": [
+            {
+              "brewMethodId": 1,
+              "code": "POUR_OVER",
+              "description": "종이 필터로 향미의 명료도를 표현함",
+              "name": "푸어오버",
+              "recommendationNote": "중간 분쇄도와 90~94C 물로 향미를 선명하게 표현함"
+            },
+            {
+              "brewMethodId": 4,
+              "code": "AEROPRESS",
+              "description": "침지와 압력을 조합해 균형 있는 추출을 표현함",
+              "name": "에어로프레스",
+              "recommendationNote": "짧은 침지로 단맛과 산미의 균형을 맞춤"
+            }
+          ],
+          "categoryName": "싱글 오리진",
+          "coffeeProfileId": 25,
+          "coffeeProfileName": "UG Bugisu WASHED 미디엄",
+          "components": [],
+          "decaf": false,
+          "flavorNotes": [
+            {
+              "code": "SPICE",
+              "description": "계피와 정향을 떠올리는 향신료 인상",
+              "flavorNoteId": 11,
+              "intensity": 4,
+              "name": "스파이스"
+            },
+            {
+              "code": "DARK_CHOCOLATE",
+              "description": "카카오 함량이 높은 초콜릿 같은 쌉쌀한 단맛",
+              "flavorNoteId": 25,
+              "intensity": 4,
+              "name": "다크 초콜릿"
+            },
+            {
+              "code": "CITRUS",
+              "description": "감귤류를 떠올리는 밝은 인상",
+              "flavorNoteId": 3,
+              "intensity": 3,
+              "name": "시트러스"
+            }
+          ],
+          "imageUrl": "https://assets-coffeeprod.ttagyulab.com/products/catalog/so011-m-v1.webp",
+          "name": "UG Bugisu WASHED 미디엄 200g",
+          "price": 17500,
+          "processingMethodName": "Washed",
+          "productId": 104,
+          "roastLevel": "MEDIUM",
+          "sku": "CP-SO011-M-200",
+          "sweetness": 4,
+          "varieties": [
+            {
+              "code": "SL14",
+              "coffeeVarietyId": 19,
+              "description": "동아프리카 일부 생산지에서 재배되는 품종",
+              "name": "SL14"
+            },
+            {
+              "code": "NYASALAND",
+              "coffeeVarietyId": 20,
+              "description": "동아프리카에 전해진 전통 아라비카 계열",
+              "name": "Nyasaland"
+            }
+          ],
+          "weightGrams": 200
+        },
+        {
+          "recommendationScore": 8,
+          "reasons": [
+            "산미 선호와 일치",
+            "바디 선호와 일치"
+          ],
+          "acidity": 3,
+          "aroma": 4,
+          "beanType": "SINGLE_ORIGIN",
+          "body": 4,
+          "brewMethods": [
+            {
+              "brewMethodId": 1,
+              "code": "POUR_OVER",
+              "description": "종이 필터로 향미의 명료도를 표현함",
+              "name": "푸어오버",
+              "recommendationNote": "중간 분쇄도와 90~94C 물로 향미를 선명하게 표현함"
+            },
+            {
+              "brewMethodId": 4,
+              "code": "AEROPRESS",
+              "description": "침지와 압력을 조합해 균형 있는 추출을 표현함",
+              "name": "에어로프레스",
+              "recommendationNote": "짧은 침지로 단맛과 산미의 균형을 맞춤"
+            }
+          ],
+          "categoryName": "싱글 오리진",
+          "coffeeProfileId": 57,
+          "coffeeProfileName": "UG Rwenzori NATURAL 미디엄",
+          "components": [],
+          "decaf": false,
+          "flavorNotes": [
+            {
+              "code": "BERRY",
+              "description": "붉거나 검은 베리류를 떠올리는 향미",
+              "flavorNoteId": 4,
+              "intensity": 4,
+              "name": "베리"
+            },
+            {
+              "code": "DRIED_FRUIT",
+              "description": "건포도와 말린 자두를 떠올리는 단맛",
+              "flavorNoteId": 23,
+              "intensity": 4,
+              "name": "건과일"
+            },
+            {
+              "code": "CHOCOLATE",
+              "description": "초콜릿을 떠올리는 부드러운 단맛",
+              "flavorNoteId": 6,
+              "intensity": 3,
+              "name": "초콜릿"
+            }
+          ],
+          "imageUrl": "https://assets-coffeeprod.ttagyulab.com/products/catalog/so012-m-v1.webp",
+          "name": "UG Rwenzori NATURAL 미디엄 200g",
+          "price": 18000,
+          "processingMethodName": "Natural",
+          "productId": 100,
+          "roastLevel": "MEDIUM",
+          "sku": "CP-SO012-M-200",
+          "sweetness": 5,
+          "varieties": [
+            {
+              "code": "NYASALAND",
+              "coffeeVarietyId": 20,
+              "description": "동아프리카에 전해진 전통 아라비카 계열",
+              "name": "Nyasaland"
+            }
+          ],
+          "weightGrams": 200
+        }
+      ]
+    },
+    {
+      "input": {
+        "decaf": null,
+        "limit": 10,
+        "preferredAcidity": 3,
+        "preferredBody": 4
+      },
+      "result": [
+        {
+          "recommendationScore": 8,
+          "reasons": [
+            "산미 선호와 일치",
+            "바디 선호와 일치"
+          ],
+          "acidity": 3,
+          "aroma": 3,
+          "beanType": "SINGLE_ORIGIN",
+          "body": 4,
+          "brewMethods": [
+            {
+              "brewMethodId": 1,
+              "code": "POUR_OVER",
+              "description": "종이 필터로 향미의 명료도를 표현함",
+              "name": "푸어오버",
+              "recommendationNote": "중간 분쇄도와 90~94C 물로 향미를 선명하게 표현함"
+            },
+            {
+              "brewMethodId": 4,
+              "code": "AEROPRESS",
+              "description": "침지와 압력을 조합해 균형 있는 추출을 표현함",
+              "name": "에어로프레스",
+              "recommendationNote": "짧은 침지로 단맛과 산미의 균형을 맞춤"
+            }
+          ],
+          "categoryName": "싱글 오리진",
+          "coffeeProfileId": 7,
+          "coffeeProfileName": "ID Java WASHED 미디엄",
+          "components": [],
+          "decaf": false,
+          "flavorNotes": [
+            {
+              "code": "BROWN_SUGAR",
+              "description": "흑설탕을 떠올리는 깊은 단맛",
+              "flavorNoteId": 9,
+              "intensity": 4,
+              "name": "흑설탕"
+            },
+            {
+              "code": "SPICE",
+              "description": "계피와 정향을 떠올리는 향신료 인상",
+              "flavorNoteId": 11,
+              "intensity": 3,
+              "name": "스파이스"
+            },
+            {
+              "code": "COCOA",
+              "description": "코코아 가루를 떠올리는 고소하고 쌉쌀한 인상",
+              "flavorNoteId": 27,
+              "intensity": 4,
+              "name": "코코아"
+            }
+          ],
+          "imageUrl": "https://assets-coffeeprod.ttagyulab.com/products/catalog/so034-m-v1.webp",
+          "name": "ID Java WASHED 미디엄 200g",
+          "price": 17000,
+          "processingMethodName": "Washed",
+          "productId": 12,
+          "roastLevel": "MEDIUM",
+          "sku": "CP-SO034-M-200",
+          "sweetness": 4,
+          "varieties": [
+            {
+              "code": "TYPICA",
+              "coffeeVarietyId": 8,
+              "description": "여러 현대 품종의 기반이 된 전통 아라비카 품종",
+              "name": "티피카"
+            },
+            {
+              "code": "CATIMOR",
+              "coffeeVarietyId": 27,
+              "description": "카투라와 하이브리드 계열을 바탕으로 한 품종군",
+              "name": "카티모르"
+            }
+          ],
+          "weightGrams": 200
+        },
+        {
+          "recommendationScore": 8,
+          "reasons": [
+            "산미 선호와 일치",
+            "바디 선호와 일치"
+          ],
+          "acidity": 3,
+          "aroma": 4,
+          "beanType": "SINGLE_ORIGIN",
+          "body": 4,
+          "brewMethods": [
+            {
+              "brewMethodId": 1,
+              "code": "POUR_OVER",
+              "description": "종이 필터로 향미의 명료도를 표현함",
+              "name": "푸어오버",
+              "recommendationNote": "중간 분쇄도와 90~94C 물로 향미를 선명하게 표현함"
+            },
+            {
+              "brewMethodId": 4,
+              "code": "AEROPRESS",
+              "description": "침지와 압력을 조합해 균형 있는 추출을 표현함",
+              "name": "에어로프레스",
+              "recommendationNote": "짧은 침지로 단맛과 산미의 균형을 맞춤"
+            }
+          ],
+          "categoryName": "싱글 오리진",
+          "coffeeProfileId": 51,
+          "coffeeProfileName": "BR Mantiqueira NATURAL 미디엄",
+          "components": [],
+          "decaf": false,
+          "flavorNotes": [
+            {
+              "code": "RED_FRUIT",
+              "description": "딸기와 체리를 떠올리는 과일 인상",
+              "flavorNoteId": 19,
+              "intensity": 4,
+              "name": "붉은 과일"
+            },
+            {
+              "code": "HONEY",
+              "description": "꿀을 떠올리는 매끄러운 단맛",
+              "flavorNoteId": 33,
+              "intensity": 4,
+              "name": "꿀"
+            },
+            {
+              "code": "NUTTY",
+              "description": "구운 견과를 떠올리는 고소한 향미",
+              "flavorNoteId": 7,
+              "intensity": 3,
+              "name": "견과류"
+            }
+          ],
+          "imageUrl": "https://assets-coffeeprod.ttagyulab.com/products/catalog/so019-m-v1.webp",
+          "name": "BR Mantiqueira NATURAL 미디엄 200g",
+          "price": 17500,
+          "processingMethodName": "Natural",
+          "productId": 72,
+          "roastLevel": "MEDIUM",
+          "sku": "CP-SO019-M-200",
+          "sweetness": 5,
+          "varieties": [
+            {
+              "code": "YELLOW_BOURBON",
+              "coffeeVarietyId": 14,
+              "description": "노란색 열매 특성을 가진 버번 계열",
+              "name": "옐로 버번"
+            }
+          ],
+          "weightGrams": 200
+        },
+        {
+          "recommendationScore": 8,
+          "reasons": [
+            "산미 선호와 일치",
+            "바디 선호와 일치"
+          ],
+          "acidity": 3,
+          "aroma": 3,
+          "beanType": "SINGLE_ORIGIN",
+          "body": 4,
+          "brewMethods": [
+            {
+              "brewMethodId": 1,
+              "code": "POUR_OVER",
+              "description": "종이 필터로 향미의 명료도를 표현함",
+              "name": "푸어오버",
+              "recommendationNote": "중간 분쇄도와 90~94C 물로 향미를 선명하게 표현함"
+            },
+            {
+              "brewMethodId": 4,
+              "code": "AEROPRESS",
+              "description": "침지와 압력을 조합해 균형 있는 추출을 표현함",
+              "name": "에어로프레스",
+              "recommendationNote": "짧은 침지로 단맛과 산미의 균형을 맞춤"
+            }
+          ],
+          "categoryName": "싱글 오리진",
+          "coffeeProfileId": 54,
+          "coffeeProfileName": "CO Sierra Nevada NATURAL 미디엄",
+          "components": [],
+          "decaf": false,
+          "flavorNotes": [
+            {
+              "code": "CHOCOLATE",
+              "description": "초콜릿을 떠올리는 부드러운 단맛",
+              "flavorNoteId": 6,
+              "intensity": 4,
+              "name": "초콜릿"
+            },
+            {
+              "code": "RED_APPLE",
+              "description": "사과를 떠올리는 산미와 단맛",
+              "flavorNoteId": 22,
+              "intensity": 3,
+              "name": "붉은 사과"
+            },
+            {
+              "code": "CARAMEL",
+              "description": "카라멜과 토피를 떠올리는 단맛",
+              "flavorNoteId": 8,
+              "intensity": 4,
+              "name": "카라멜"
+            }
+          ],
+          "imageUrl": "https://assets-coffeeprod.ttagyulab.com/products/catalog/so016-m-v1.webp",
+          "name": "CO Sierra Nevada NATURAL 미디엄 200g",
+          "price": 17500,
+          "processingMethodName": "Natural",
+          "productId": 82,
+          "roastLevel": "MEDIUM",
+          "sku": "CP-SO016-M-200",
+          "sweetness": 5,
+          "varieties": [
+            {
+              "code": "CASTILLO",
+              "coffeeVarietyId": 3,
+              "description": "콜롬비아에서 널리 재배되는 품종",
+              "name": "카스티요"
+            },
+            {
+              "code": "TYPICA",
+              "coffeeVarietyId": 8,
+              "description": "여러 현대 품종의 기반이 된 전통 아라비카 품종",
+              "name": "티피카"
+            }
+          ],
+          "weightGrams": 200
+        },
+        {
+          "recommendationScore": 8,
+          "reasons": [
+            "산미 선호와 일치",
+            "바디 선호와 일치"
+          ],
+          "acidity": 3,
+          "aroma": 4,
+          "beanType": "SINGLE_ORIGIN",
+          "body": 4,
+          "brewMethods": [
+            {
+              "brewMethodId": 1,
+              "code": "POUR_OVER",
+              "description": "종이 필터로 향미의 명료도를 표현함",
+              "name": "푸어오버",
+              "recommendationNote": "중간 분쇄도와 90~94C 물로 향미를 선명하게 표현함"
+            },
+            {
+              "brewMethodId": 4,
+              "code": "AEROPRESS",
+              "description": "침지와 압력을 조합해 균형 있는 추출을 표현함",
+              "name": "에어로프레스",
+              "recommendationNote": "짧은 침지로 단맛과 산미의 균형을 맞춤"
+            }
+          ],
+          "categoryName": "싱글 오리진",
+          "coffeeProfileId": 25,
+          "coffeeProfileName": "UG Bugisu WASHED 미디엄",
+          "components": [],
+          "decaf": false,
+          "flavorNotes": [
+            {
+              "code": "SPICE",
+              "description": "계피와 정향을 떠올리는 향신료 인상",
+              "flavorNoteId": 11,
+              "intensity": 4,
+              "name": "스파이스"
+            },
+            {
+              "code": "DARK_CHOCOLATE",
+              "description": "카카오 함량이 높은 초콜릿 같은 쌉쌀한 단맛",
+              "flavorNoteId": 25,
+              "intensity": 4,
+              "name": "다크 초콜릿"
+            },
+            {
+              "code": "CITRUS",
+              "description": "감귤류를 떠올리는 밝은 인상",
+              "flavorNoteId": 3,
+              "intensity": 3,
+              "name": "시트러스"
+            }
+          ],
+          "imageUrl": "https://assets-coffeeprod.ttagyulab.com/products/catalog/so011-m-v1.webp",
+          "name": "UG Bugisu WASHED 미디엄 200g",
+          "price": 17500,
+          "processingMethodName": "Washed",
+          "productId": 104,
+          "roastLevel": "MEDIUM",
+          "sku": "CP-SO011-M-200",
+          "sweetness": 4,
+          "varieties": [
+            {
+              "code": "SL14",
+              "coffeeVarietyId": 19,
+              "description": "동아프리카 일부 생산지에서 재배되는 품종",
+              "name": "SL14"
+            },
+            {
+              "code": "NYASALAND",
+              "coffeeVarietyId": 20,
+              "description": "동아프리카에 전해진 전통 아라비카 계열",
+              "name": "Nyasaland"
+            }
+          ],
+          "weightGrams": 200
+        },
+        {
+          "recommendationScore": 8,
+          "reasons": [
+            "산미 선호와 일치",
+            "바디 선호와 일치"
+          ],
+          "acidity": 3,
+          "aroma": 4,
+          "beanType": "SINGLE_ORIGIN",
+          "body": 4,
+          "brewMethods": [
+            {
+              "brewMethodId": 1,
+              "code": "POUR_OVER",
+              "description": "종이 필터로 향미의 명료도를 표현함",
+              "name": "푸어오버",
+              "recommendationNote": "중간 분쇄도와 90~94C 물로 향미를 선명하게 표현함"
+            },
+            {
+              "brewMethodId": 4,
+              "code": "AEROPRESS",
+              "description": "침지와 압력을 조합해 균형 있는 추출을 표현함",
+              "name": "에어로프레스",
+              "recommendationNote": "짧은 침지로 단맛과 산미의 균형을 맞춤"
+            }
+          ],
+          "categoryName": "싱글 오리진",
+          "coffeeProfileId": 57,
+          "coffeeProfileName": "UG Rwenzori NATURAL 미디엄",
+          "components": [],
+          "decaf": false,
+          "flavorNotes": [
+            {
+              "code": "BERRY",
+              "description": "붉거나 검은 베리류를 떠올리는 향미",
+              "flavorNoteId": 4,
+              "intensity": 4,
+              "name": "베리"
+            },
+            {
+              "code": "DRIED_FRUIT",
+              "description": "건포도와 말린 자두를 떠올리는 단맛",
+              "flavorNoteId": 23,
+              "intensity": 4,
+              "name": "건과일"
+            },
+            {
+              "code": "CHOCOLATE",
+              "description": "초콜릿을 떠올리는 부드러운 단맛",
+              "flavorNoteId": 6,
+              "intensity": 3,
+              "name": "초콜릿"
+            }
+          ],
+          "imageUrl": "https://assets-coffeeprod.ttagyulab.com/products/catalog/so012-m-v1.webp",
+          "name": "UG Rwenzori NATURAL 미디엄 200g",
+          "price": 18000,
+          "processingMethodName": "Natural",
+          "productId": 100,
+          "roastLevel": "MEDIUM",
+          "sku": "CP-SO012-M-200",
+          "sweetness": 5,
+          "varieties": [
+            {
+              "code": "NYASALAND",
+              "coffeeVarietyId": 20,
+              "description": "동아프리카에 전해진 전통 아라비카 계열",
+              "name": "Nyasaland"
+            }
+          ],
+          "weightGrams": 200
+        },
+        {
+          "recommendationScore": 8,
+          "reasons": [
+            "산미 선호와 일치",
+            "바디 선호와 일치"
+          ],
+          "acidity": 3,
+          "aroma": 4,
+          "beanType": "SINGLE_ORIGIN",
+          "body": 4,
+          "brewMethods": [
+            {
+              "brewMethodId": 1,
+              "code": "POUR_OVER",
+              "description": "종이 필터로 향미의 명료도를 표현함",
+              "name": "푸어오버",
+              "recommendationNote": "중간 분쇄도와 90~94C 물로 향미를 선명하게 표현함"
+            },
+            {
+              "brewMethodId": 4,
+              "code": "AEROPRESS",
+              "description": "침지와 압력을 조합해 균형 있는 추출을 표현함",
+              "name": "에어로프레스",
+              "recommendationNote": "짧은 침지로 단맛과 산미의 균형을 맞춤"
+            }
+          ],
+          "categoryName": "싱글 오리진",
+          "coffeeProfileId": 14,
+          "coffeeProfileName": "GT Antigua WASHED 미디엄",
+          "components": [],
+          "decaf": false,
+          "flavorNotes": [
+            {
+              "code": "DARK_CHOCOLATE",
+              "description": "카카오 함량이 높은 초콜릿 같은 쌉쌀한 단맛",
+              "flavorNoteId": 25,
+              "intensity": 4,
+              "name": "다크 초콜릿"
+            },
+            {
+              "code": "SPICE",
+              "description": "계피와 정향을 떠올리는 향신료 인상",
+              "flavorNoteId": 11,
+              "intensity": 4,
+              "name": "스파이스"
+            },
+            {
+              "code": "CARAMEL",
+              "description": "카라멜과 토피를 떠올리는 단맛",
+              "flavorNoteId": 8,
+              "intensity": 4,
+              "name": "카라멜"
+            }
+          ],
+          "imageUrl": "https://assets-coffeeprod.ttagyulab.com/products/catalog/so025-m-v1.webp",
+          "name": "GT Antigua WASHED 미디엄 200g",
+          "price": 18500,
+          "processingMethodName": "Washed",
+          "productId": 46,
+          "roastLevel": "MEDIUM",
+          "sku": "CP-SO025-M-200",
+          "sweetness": 5,
+          "varieties": [
+            {
+              "code": "BOURBON",
+              "coffeeVarietyId": 7,
+              "description": "다양한 지역에서 재배되는 전통 아라비카 품종",
+              "name": "버번"
+            },
+            {
+              "code": "CATURRA",
+              "coffeeVarietyId": 2,
+              "description": "버번 계열의 왜성 품종",
+              "name": "카투라"
+            }
+          ],
+          "weightGrams": 200
+        },
+        {
+          "recommendationScore": 8,
+          "reasons": [
+            "산미 선호와 일치",
+            "바디 선호와 일치"
+          ],
+          "acidity": 3,
+          "aroma": 4,
+          "beanType": "SINGLE_ORIGIN",
+          "body": 4,
+          "brewMethods": [
+            {
+              "brewMethodId": 1,
+              "code": "POUR_OVER",
+              "description": "종이 필터로 향미의 명료도를 표현함",
+              "name": "푸어오버",
+              "recommendationNote": "중간 분쇄도와 90~94C 물로 향미를 선명하게 표현함"
+            },
+            {
+              "brewMethodId": 4,
+              "code": "AEROPRESS",
+              "description": "침지와 압력을 조합해 균형 있는 추출을 표현함",
+              "name": "에어로프레스",
+              "recommendationNote": "짧은 침지로 단맛과 산미의 균형을 맞춤"
+            }
+          ],
+          "categoryName": "싱글 오리진",
+          "coffeeProfileId": 46,
+          "coffeeProfileName": "GT Atitlan NATURAL 미디엄",
+          "components": [],
+          "decaf": false,
+          "flavorNotes": [
+            {
+              "code": "STONE_FRUIT",
+              "description": "복숭아와 살구를 떠올리는 향미",
+              "flavorNoteId": 5,
+              "intensity": 4,
+              "name": "핵과류"
+            },
+            {
+              "code": "COCOA",
+              "description": "코코아 가루를 떠올리는 고소하고 쌉쌀한 인상",
+              "flavorNoteId": 27,
+              "intensity": 4,
+              "name": "코코아"
+            },
+            {
+              "code": "BROWN_SUGAR",
+              "description": "흑설탕을 떠올리는 깊은 단맛",
+              "flavorNoteId": 9,
+              "intensity": 4,
+              "name": "흑설탕"
+            }
+          ],
+          "imageUrl": "https://assets-coffeeprod.ttagyulab.com/products/catalog/so026-m-v1.webp",
+          "name": "GT Atitlan NATURAL 미디엄 200g",
+          "price": 19000,
+          "processingMethodName": "Natural",
+          "productId": 42,
+          "roastLevel": "MEDIUM",
+          "sku": "CP-SO026-M-200",
+          "sweetness": 5,
+          "varieties": [
+            {
+              "code": "TYPICA",
+              "coffeeVarietyId": 8,
+              "description": "여러 현대 품종의 기반이 된 전통 아라비카 품종",
+              "name": "티피카"
+            },
+            {
+              "code": "BOURBON",
+              "coffeeVarietyId": 7,
+              "description": "다양한 지역에서 재배되는 전통 아라비카 품종",
+              "name": "버번"
+            }
+          ],
+          "weightGrams": 200
+        },
+        {
+          "recommendationScore": 8,
+          "reasons": [
+            "산미 선호와 일치",
+            "바디 선호와 일치"
+          ],
+          "acidity": 3,
+          "aroma": 5,
+          "beanType": "BLEND",
+          "body": 4,
+          "brewMethods": [
+            {
+              "brewMethodId": 2,
+              "code": "ESPRESSO",
+              "description": "고압 추출로 농도와 질감을 표현함",
+              "name": "에스프레소",
+              "recommendationNote": "도징과 수율을 고정해 블렌드의 질감을 안정적으로 표현함"
+            },
+            {
+              "brewMethodId": 5,
+              "code": "COLD_BREW",
+              "description": "저온 장시간 추출로 부드러운 단맛을 표현함",
+              "name": "콜드브루",
+              "recommendationNote": "저온 침지로 묵직한 단맛을 표현함"
+            }
+          ],
+          "categoryName": "블렌드",
+          "coffeeProfileId": 80,
+          "coffeeProfileName": "Seasonal Red Fruit 다크",
+          "components": [
+            {
+              "componentRatio": 40.0,
+              "originCountryCode": "RW",
+              "originRegion": "Huye",
+              "processingMethod": {
+                "code": "NATURAL",
+                "description": "커피 체리를 과육째 건조해 과일 향과 단맛을 표현함",
+                "id": 2,
+                "name": "Natural"
+              }
+            },
+            {
+              "componentRatio": 35.0,
+              "originCountryCode": "SV",
+              "originRegion": "Apaneca-Ilamatepec",
+              "processingMethod": {
+                "code": "HONEY",
+                "description": "점액질 일부를 남겨 단맛과 질감의 균형을 표현함",
+                "id": 3,
+                "name": "Honey"
+              }
+            },
+            {
+              "componentRatio": 25.0,
+              "originCountryCode": "CO",
+              "originRegion": "Cauca",
+              "processingMethod": {
+                "code": "WASHED",
+                "description": "점액질을 물로 제거해 향미의 명료도와 산뜻한 인상을 표현함",
+                "id": 1,
+                "name": "Washed"
+              }
+            }
+          ],
+          "decaf": false,
+          "flavorNotes": [
+            {
+              "code": "RED_FRUIT",
+              "description": "딸기와 체리를 떠올리는 과일 인상",
+              "flavorNoteId": 19,
+              "intensity": 5,
+              "name": "붉은 과일"
+            },
+            {
+              "code": "STONE_FRUIT",
+              "description": "복숭아와 살구를 떠올리는 향미",
+              "flavorNoteId": 5,
+              "intensity": 4,
+              "name": "핵과류"
+            },
+            {
+              "code": "HONEY",
+              "description": "꿀을 떠올리는 매끄러운 단맛",
+              "flavorNoteId": 33,
+              "intensity": 4,
+              "name": "꿀"
+            }
+          ],
+          "imageUrl": "https://assets-coffeeprod.ttagyulab.com/products/catalog/bl010-d-v1.webp",
+          "name": "Seasonal Red Fruit 다크 200g",
+          "price": 21000,
+          "processingMethodName": null,
+          "productId": 146,
+          "roastLevel": "DARK",
+          "sku": "CP-BL010-D-200",
+          "sweetness": 4,
+          "varieties": [
+            {
+              "code": "BOURBON",
+              "coffeeVarietyId": 7,
+              "description": "다양한 지역에서 재배되는 전통 아라비카 품종",
+              "name": "버번"
+            },
+            {
+              "code": "PACAS",
+              "coffeeVarietyId": 22,
+              "description": "엘살바도르에서 발견된 버번 계열 왜성 품종",
+              "name": "파카스"
+            },
+            {
+              "code": "CASTILLO",
+              "coffeeVarietyId": 3,
+              "description": "콜롬비아에서 널리 재배되는 품종",
+              "name": "카스티요"
+            }
+          ],
+          "weightGrams": 200
+        },
+        {
+          "recommendationScore": 8,
+          "reasons": [
+            "산미 선호와 일치",
+            "바디 선호와 일치"
+          ],
+          "acidity": 3,
+          "aroma": 4,
+          "beanType": "BLEND",
+          "body": 4,
+          "brewMethods": [
+            {
+              "brewMethodId": 1,
+              "code": "POUR_OVER",
+              "description": "종이 필터로 향미의 명료도를 표현함",
+              "name": "푸어오버",
+              "recommendationNote": "충분한 블루밍으로 산지별 향을 고르게 표현함"
+            },
+            {
+              "brewMethodId": 2,
+              "code": "ESPRESSO",
+              "description": "고압 추출로 농도와 질감을 표현함",
+              "name": "에스프레소",
+              "recommendationNote": "중간 수율로 단맛과 산미의 균형을 맞춤"
+            }
+          ],
+          "categoryName": "블렌드",
+          "coffeeProfileId": 99,
+          "coffeeProfileName": "Morning Balance 미디엄",
+          "components": [
+            {
+              "componentRatio": 50.0,
+              "originCountryCode": "BR",
+              "originRegion": "Cerrado",
+              "processingMethod": {
+                "code": "NATURAL",
+                "description": "커피 체리를 과육째 건조해 과일 향과 단맛을 표현함",
+                "id": 2,
+                "name": "Natural"
+              }
+            },
+            {
+              "componentRatio": 30.0,
+              "originCountryCode": "CO",
+              "originRegion": "Huila",
+              "processingMethod": {
+                "code": "HONEY",
+                "description": "점액질 일부를 남겨 단맛과 질감의 균형을 표현함",
+                "id": 3,
+                "name": "Honey"
+              }
+            },
+            {
+              "componentRatio": 20.0,
+              "originCountryCode": "ET",
+              "originRegion": "Sidama",
+              "processingMethod": {
+                "code": "WASHED",
+                "description": "점액질을 물로 제거해 향미의 명료도와 산뜻한 인상을 표현함",
+                "id": 1,
+                "name": "Washed"
+              }
+            }
+          ],
+          "decaf": false,
+          "flavorNotes": [
+            {
+              "code": "CARAMEL",
+              "description": "카라멜과 토피를 떠올리는 단맛",
+              "flavorNoteId": 8,
+              "intensity": 5,
+              "name": "카라멜"
+            },
+            {
+              "code": "CHOCOLATE",
+              "description": "초콜릿을 떠올리는 부드러운 단맛",
+              "flavorNoteId": 6,
+              "intensity": 4,
+              "name": "초콜릿"
+            },
+            {
+              "code": "CITRUS",
+              "description": "감귤류를 떠올리는 밝은 인상",
+              "flavorNoteId": 3,
+              "intensity": 3,
+              "name": "시트러스"
+            }
+          ],
+          "imageUrl": "https://assets-coffeeprod.ttagyulab.com/products/catalog/bl001-m-v1.webp",
+          "name": "Morning Balance 미디엄 500g",
+          "price": 37000,
+          "processingMethodName": null,
+          "productId": 183,
+          "roastLevel": "MEDIUM",
+          "sku": "CP-BL001-M-500",
+          "sweetness": 5,
+          "varieties": [
+            {
+              "code": "CATUAI",
+              "coffeeVarietyId": 5,
+              "description": "문도 노보와 카투라 계열의 교배 품종",
+              "name": "카투아이"
+            },
+            {
+              "code": "CASTILLO",
+              "coffeeVarietyId": 3,
+              "description": "콜롬비아에서 널리 재배되는 품종",
+              "name": "카스티요"
+            },
+            {
+              "code": "ETHIOPIAN_HEIRLOOM",
+              "coffeeVarietyId": 1,
+              "description": "에티오피아 지역의 다양한 토착 품종군",
+              "name": "에티오피아 토착종"
+            }
+          ],
+          "weightGrams": 500
+        },
+        {
+          "recommendationScore": 8,
+          "reasons": [
+            "산미 선호와 일치",
+            "바디 선호와 일치"
+          ],
+          "acidity": 3,
+          "aroma": 3,
+          "beanType": "SINGLE_ORIGIN",
+          "body": 4,
+          "brewMethods": [
+            {
+              "brewMethodId": 1,
+              "code": "POUR_OVER",
+              "description": "종이 필터로 향미의 명료도를 표현함",
+              "name": "푸어오버",
+              "recommendationNote": "중간 분쇄도와 90~94C 물로 향미를 선명하게 표현함"
+            },
+            {
+              "brewMethodId": 4,
+              "code": "AEROPRESS",
+              "description": "침지와 압력을 조합해 균형 있는 추출을 표현함",
+              "name": "에어로프레스",
+              "recommendationNote": "짧은 침지로 단맛과 산미의 균형을 맞춤"
+            }
+          ],
+          "categoryName": "싱글 오리진",
+          "coffeeProfileId": 7,
+          "coffeeProfileName": "ID Java WASHED 미디엄",
+          "components": [],
+          "decaf": false,
+          "flavorNotes": [
+            {
+              "code": "BROWN_SUGAR",
+              "description": "흑설탕을 떠올리는 깊은 단맛",
+              "flavorNoteId": 9,
+              "intensity": 4,
+              "name": "흑설탕"
+            },
+            {
+              "code": "SPICE",
+              "description": "계피와 정향을 떠올리는 향신료 인상",
+              "flavorNoteId": 11,
+              "intensity": 3,
+              "name": "스파이스"
+            },
+            {
+              "code": "COCOA",
+              "description": "코코아 가루를 떠올리는 고소하고 쌉쌀한 인상",
+              "flavorNoteId": 27,
+              "intensity": 4,
+              "name": "코코아"
+            }
+          ],
+          "imageUrl": "https://assets-coffeeprod.ttagyulab.com/products/catalog/so034-m-v1.webp",
+          "name": "ID Java WASHED 미디엄 500g",
+          "price": 38500,
+          "processingMethodName": "Washed",
+          "productId": 11,
+          "roastLevel": "MEDIUM",
+          "sku": "CP-SO034-M-500",
+          "sweetness": 4,
+          "varieties": [
+            {
+              "code": "TYPICA",
+              "coffeeVarietyId": 8,
+              "description": "여러 현대 품종의 기반이 된 전통 아라비카 품종",
+              "name": "티피카"
+            },
+            {
+              "code": "CATIMOR",
+              "coffeeVarietyId": 27,
+              "description": "카투라와 하이브리드 계열을 바탕으로 한 품종군",
+              "name": "카티모르"
+            }
+          ],
+          "weightGrams": 500
+        }
+      ]
+    },
+    {
+      "input": {
+        "decaf": true,
+        "limit": 5,
+        "preferredAcidity": 3,
+        "preferredBody": 4
+      },
+      "result": [
+        {
+          "recommendationScore": 7,
+          "reasons": [
+            "디카페인 여부 조건 충족",
+            "산미 선호와 유사",
+            "바디 선호와 일치"
+          ],
+          "acidity": 2,
+          "aroma": 3,
+          "beanType": "BLEND",
+          "body": 4,
+          "brewMethods": [
+            {
+              "brewMethodId": 1,
+              "code": "POUR_OVER",
+              "description": "종이 필터로 향미의 명료도를 표현함",
+              "name": "푸어오버",
+              "recommendationNote": "충분한 블루밍으로 산지별 향을 고르게 표현함"
+            },
+            {
+              "brewMethodId": 2,
+              "code": "ESPRESSO",
+              "description": "고압 추출로 농도와 질감을 표현함",
+              "name": "에스프레소",
+              "recommendationNote": "중간 수율로 단맛과 산미의 균형을 맞춤"
+            }
+          ],
+          "categoryName": "디카페인",
+          "coffeeProfileId": 79,
+          "coffeeProfileName": "Decaf Caramel 미디엄",
+          "components": [
+            {
+              "componentRatio": 60.0,
+              "originCountryCode": "CO",
+              "originRegion": "Huila",
+              "processingMethod": {
+                "code": "WASHED",
+                "description": "점액질을 물로 제거해 향미의 명료도와 산뜻한 인상을 표현함",
+                "id": 1,
+                "name": "Washed"
+              }
+            },
+            {
+              "componentRatio": 40.0,
+              "originCountryCode": "BR",
+              "originRegion": "Sul de Minas",
+              "processingMethod": {
+                "code": "PULPED_NATURAL",
+                "description": "과육을 제거하고 점액질을 남겨 건조하는 방식을 표현함",
+                "id": 8,
+                "name": "Pulped Natural"
+              }
+            }
+          ],
+          "decaf": true,
+          "flavorNotes": [
+            {
+              "code": "CARAMEL",
+              "description": "카라멜과 토피를 떠올리는 단맛",
+              "flavorNoteId": 8,
+              "intensity": 5,
+              "name": "카라멜"
+            },
+            {
+              "code": "MILK_CHOCOLATE",
+              "description": "우유가 섞인 초콜릿 같은 부드러운 단맛",
+              "flavorNoteId": 26,
+              "intensity": 4,
+              "name": "밀크 초콜릿"
+            },
+            {
+              "code": "BROWN_SUGAR",
+              "description": "흑설탕을 떠올리는 깊은 단맛",
+              "flavorNoteId": 9,
+              "intensity": 4,
+              "name": "흑설탕"
+            }
+          ],
+          "imageUrl": "https://assets-coffeeprod.ttagyulab.com/products/catalog/bl011-m-v1.webp",
+          "name": "Decaf Caramel 미디엄 200g",
+          "price": 18500,
+          "processingMethodName": "Sugarcane Decaf",
+          "productId": 192,
+          "roastLevel": "MEDIUM",
+          "sku": "CP-BL011-M-200",
+          "sweetness": 5,
+          "varieties": [
+            {
+              "code": "CASTILLO",
+              "coffeeVarietyId": 3,
+              "description": "콜롬비아에서 널리 재배되는 품종",
+              "name": "카스티요"
+            },
+            {
+              "code": "YELLOW_BOURBON",
+              "coffeeVarietyId": 14,
+              "description": "노란색 열매 특성을 가진 버번 계열",
+              "name": "옐로 버번"
+            }
+          ],
+          "weightGrams": 200
+        },
+        {
+          "recommendationScore": 7,
+          "reasons": [
+            "디카페인 여부 조건 충족",
+            "산미 선호와 유사",
+            "바디 선호와 일치"
+          ],
+          "acidity": 2,
+          "aroma": 3,
+          "beanType": "BLEND",
+          "body": 4,
+          "brewMethods": [
+            {
+              "brewMethodId": 1,
+              "code": "POUR_OVER",
+              "description": "종이 필터로 향미의 명료도를 표현함",
+              "name": "푸어오버",
+              "recommendationNote": "충분한 블루밍으로 산지별 향을 고르게 표현함"
+            },
+            {
+              "brewMethodId": 2,
+              "code": "ESPRESSO",
+              "description": "고압 추출로 농도와 질감을 표현함",
+              "name": "에스프레소",
+              "recommendationNote": "중간 수율로 단맛과 산미의 균형을 맞춤"
+            }
+          ],
+          "categoryName": "디카페인",
+          "coffeeProfileId": 79,
+          "coffeeProfileName": "Decaf Caramel 미디엄",
+          "components": [
+            {
+              "componentRatio": 60.0,
+              "originCountryCode": "CO",
+              "originRegion": "Huila",
+              "processingMethod": {
+                "code": "WASHED",
+                "description": "점액질을 물로 제거해 향미의 명료도와 산뜻한 인상을 표현함",
+                "id": 1,
+                "name": "Washed"
+              }
+            },
+            {
+              "componentRatio": 40.0,
+              "originCountryCode": "BR",
+              "originRegion": "Sul de Minas",
+              "processingMethod": {
+                "code": "PULPED_NATURAL",
+                "description": "과육을 제거하고 점액질을 남겨 건조하는 방식을 표현함",
+                "id": 8,
+                "name": "Pulped Natural"
+              }
+            }
+          ],
+          "decaf": true,
+          "flavorNotes": [
+            {
+              "code": "CARAMEL",
+              "description": "카라멜과 토피를 떠올리는 단맛",
+              "flavorNoteId": 8,
+              "intensity": 5,
+              "name": "카라멜"
+            },
+            {
+              "code": "MILK_CHOCOLATE",
+              "description": "우유가 섞인 초콜릿 같은 부드러운 단맛",
+              "flavorNoteId": 26,
+              "intensity": 4,
+              "name": "밀크 초콜릿"
+            },
+            {
+              "code": "BROWN_SUGAR",
+              "description": "흑설탕을 떠올리는 깊은 단맛",
+              "flavorNoteId": 9,
+              "intensity": 4,
+              "name": "흑설탕"
+            }
+          ],
+          "imageUrl": "https://assets-coffeeprod.ttagyulab.com/products/catalog/bl011-m-v1.webp",
+          "name": "Decaf Caramel 미디엄 500g",
+          "price": 41500,
+          "processingMethodName": "Sugarcane Decaf",
+          "productId": 191,
+          "roastLevel": "MEDIUM",
+          "sku": "CP-BL011-M-500",
+          "sweetness": 5,
+          "varieties": [
+            {
+              "code": "CASTILLO",
+              "coffeeVarietyId": 3,
+              "description": "콜롬비아에서 널리 재배되는 품종",
+              "name": "카스티요"
+            },
+            {
+              "code": "YELLOW_BOURBON",
+              "coffeeVarietyId": 14,
+              "description": "노란색 열매 특성을 가진 버번 계열",
+              "name": "옐로 버번"
+            }
+          ],
+          "weightGrams": 500
+        },
+        {
+          "recommendationScore": 3,
+          "reasons": [
+            "디카페인 여부 조건 충족",
+            "산미 선호와 유사"
+          ],
+          "acidity": 4,
+          "aroma": 4,
+          "beanType": "BLEND",
+          "body": 2,
+          "brewMethods": [
+            {
+              "brewMethodId": 1,
+              "code": "POUR_OVER",
+              "description": "종이 필터로 향미의 명료도를 표현함",
+              "name": "푸어오버",
+              "recommendationNote": "충분한 블루밍으로 산지별 향을 고르게 표현함"
+            },
+            {
+              "brewMethodId": 2,
+              "code": "ESPRESSO",
+              "description": "고압 추출로 농도와 질감을 표현함",
+              "name": "에스프레소",
+              "recommendationNote": "중간 수율로 단맛과 산미의 균형을 맞춤"
+            }
+          ],
+          "categoryName": "디카페인",
+          "coffeeProfileId": 76,
+          "coffeeProfileName": "Decaf Floral 미디엄",
+          "components": [
+            {
+              "componentRatio": 55.0,
+              "originCountryCode": "ET",
+              "originRegion": "Sidama",
+              "processingMethod": {
+                "code": "WASHED",
+                "description": "점액질을 물로 제거해 향미의 명료도와 산뜻한 인상을 표현함",
+                "id": 1,
+                "name": "Washed"
+              }
+            },
+            {
+              "componentRatio": 45.0,
+              "originCountryCode": "RW",
+              "originRegion": "Nyamasheke",
+              "processingMethod": {
+                "code": "WASHED",
+                "description": "점액질을 물로 제거해 향미의 명료도와 산뜻한 인상을 표현함",
+                "id": 1,
+                "name": "Washed"
+              }
+            }
+          ],
+          "decaf": true,
+          "flavorNotes": [
+            {
+              "code": "FLORAL",
+              "description": "꽃을 떠올리는 향긋한 인상",
+              "flavorNoteId": 1,
+              "intensity": 4,
+              "name": "플로럴"
+            },
+            {
+              "code": "CITRUS",
+              "description": "감귤류를 떠올리는 밝은 인상",
+              "flavorNoteId": 3,
+              "intensity": 4,
+              "name": "시트러스"
+            },
+            {
+              "code": "TEA_LIKE",
+              "description": "차를 떠올리는 맑고 긴 여운",
+              "flavorNoteId": 10,
+              "intensity": 4,
+              "name": "티 라이크"
+            }
+          ],
+          "imageUrl": "https://assets-coffeeprod.ttagyulab.com/products/catalog/bl012-m-v1.webp",
+          "name": "Decaf Floral 미디엄 200g",
+          "price": 20000,
+          "processingMethodName": "Swiss Water",
+          "productId": 186,
+          "roastLevel": "MEDIUM",
+          "sku": "CP-BL012-M-200",
+          "sweetness": 4,
+          "varieties": [
+            {
+              "code": "ETHIOPIAN_HEIRLOOM",
+              "coffeeVarietyId": 1,
+              "description": "에티오피아 지역의 다양한 토착 품종군",
+              "name": "에티오피아 토착종"
+            },
+            {
+              "code": "BOURBON",
+              "coffeeVarietyId": 7,
+              "description": "다양한 지역에서 재배되는 전통 아라비카 품종",
+              "name": "버번"
+            }
+          ],
+          "weightGrams": 200
+        },
+        {
+          "recommendationScore": 3,
+          "reasons": [
+            "디카페인 여부 조건 충족",
+            "바디 선호와 유사"
+          ],
+          "acidity": 1,
+          "aroma": 3,
+          "beanType": "BLEND",
+          "body": 5,
+          "brewMethods": [
+            {
+              "brewMethodId": 2,
+              "code": "ESPRESSO",
+              "description": "고압 추출로 농도와 질감을 표현함",
+              "name": "에스프레소",
+              "recommendationNote": "도징과 수율을 고정해 블렌드의 질감을 안정적으로 표현함"
+            },
+            {
+              "brewMethodId": 5,
+              "code": "COLD_BREW",
+              "description": "저온 장시간 추출로 부드러운 단맛을 표현함",
+              "name": "콜드브루",
+              "recommendationNote": "저온 침지로 묵직한 단맛을 표현함"
+            }
+          ],
+          "categoryName": "디카페인",
+          "coffeeProfileId": 78,
+          "coffeeProfileName": "Decaf Caramel 다크",
+          "components": [
+            {
+              "componentRatio": 60.0,
+              "originCountryCode": "CO",
+              "originRegion": "Huila",
+              "processingMethod": {
+                "code": "WASHED",
+                "description": "점액질을 물로 제거해 향미의 명료도와 산뜻한 인상을 표현함",
+                "id": 1,
+                "name": "Washed"
+              }
+            },
+            {
+              "componentRatio": 40.0,
+              "originCountryCode": "BR",
+              "originRegion": "Sul de Minas",
+              "processingMethod": {
+                "code": "PULPED_NATURAL",
+                "description": "과육을 제거하고 점액질을 남겨 건조하는 방식을 표현함",
+                "id": 8,
+                "name": "Pulped Natural"
+              }
+            }
+          ],
+          "decaf": true,
+          "flavorNotes": [
+            {
+              "code": "CARAMEL",
+              "description": "카라멜과 토피를 떠올리는 단맛",
+              "flavorNoteId": 8,
+              "intensity": 5,
+              "name": "카라멜"
+            },
+            {
+              "code": "MILK_CHOCOLATE",
+              "description": "우유가 섞인 초콜릿 같은 부드러운 단맛",
+              "flavorNoteId": 26,
+              "intensity": 4,
+              "name": "밀크 초콜릿"
+            },
+            {
+              "code": "BROWN_SUGAR",
+              "description": "흑설탕을 떠올리는 깊은 단맛",
+              "flavorNoteId": 9,
+              "intensity": 4,
+              "name": "흑설탕"
+            }
+          ],
+          "imageUrl": "https://assets-coffeeprod.ttagyulab.com/products/catalog/bl011-d-v1.webp",
+          "name": "Decaf Caramel 다크 500g",
+          "price": 43000,
+          "processingMethodName": "Sugarcane Decaf",
+          "productId": 189,
+          "roastLevel": "DARK",
+          "sku": "CP-BL011-D-500",
+          "sweetness": 4,
+          "varieties": [
+            {
+              "code": "CASTILLO",
+              "coffeeVarietyId": 3,
+              "description": "콜롬비아에서 널리 재배되는 품종",
+              "name": "카스티요"
+            },
+            {
+              "code": "YELLOW_BOURBON",
+              "coffeeVarietyId": 14,
+              "description": "노란색 열매 특성을 가진 버번 계열",
+              "name": "옐로 버번"
+            }
+          ],
+          "weightGrams": 500
+        },
+        {
+          "recommendationScore": 3,
+          "reasons": [
+            "디카페인 여부 조건 충족",
+            "산미 선호와 유사"
+          ],
+          "acidity": 4,
+          "aroma": 4,
+          "beanType": "BLEND",
+          "body": 2,
+          "brewMethods": [
+            {
+              "brewMethodId": 1,
+              "code": "POUR_OVER",
+              "description": "종이 필터로 향미의 명료도를 표현함",
+              "name": "푸어오버",
+              "recommendationNote": "충분한 블루밍으로 산지별 향을 고르게 표현함"
+            },
+            {
+              "brewMethodId": 2,
+              "code": "ESPRESSO",
+              "description": "고압 추출로 농도와 질감을 표현함",
+              "name": "에스프레소",
+              "recommendationNote": "중간 수율로 단맛과 산미의 균형을 맞춤"
+            }
+          ],
+          "categoryName": "디카페인",
+          "coffeeProfileId": 76,
+          "coffeeProfileName": "Decaf Floral 미디엄",
+          "components": [
+            {
+              "componentRatio": 55.0,
+              "originCountryCode": "ET",
+              "originRegion": "Sidama",
+              "processingMethod": {
+                "code": "WASHED",
+                "description": "점액질을 물로 제거해 향미의 명료도와 산뜻한 인상을 표현함",
+                "id": 1,
+                "name": "Washed"
+              }
+            },
+            {
+              "componentRatio": 45.0,
+              "originCountryCode": "RW",
+              "originRegion": "Nyamasheke",
+              "processingMethod": {
+                "code": "WASHED",
+                "description": "점액질을 물로 제거해 향미의 명료도와 산뜻한 인상을 표현함",
+                "id": 1,
+                "name": "Washed"
+              }
+            }
+          ],
+          "decaf": true,
+          "flavorNotes": [
+            {
+              "code": "FLORAL",
+              "description": "꽃을 떠올리는 향긋한 인상",
+              "flavorNoteId": 1,
+              "intensity": 4,
+              "name": "플로럴"
+            },
+            {
+              "code": "CITRUS",
+              "description": "감귤류를 떠올리는 밝은 인상",
+              "flavorNoteId": 3,
+              "intensity": 4,
+              "name": "시트러스"
+            },
+            {
+              "code": "TEA_LIKE",
+              "description": "차를 떠올리는 맑고 긴 여운",
+              "flavorNoteId": 10,
+              "intensity": 4,
+              "name": "티 라이크"
+            }
+          ],
+          "imageUrl": "https://assets-coffeeprod.ttagyulab.com/products/catalog/bl012-m-v1.webp",
+          "name": "Decaf Floral 미디엄 500g",
+          "price": 45000,
+          "processingMethodName": "Swiss Water",
+          "productId": 185,
+          "roastLevel": "MEDIUM",
+          "sku": "CP-BL012-M-500",
+          "sweetness": 4,
+          "varieties": [
+            {
+              "code": "ETHIOPIAN_HEIRLOOM",
+              "coffeeVarietyId": 1,
+              "description": "에티오피아 지역의 다양한 토착 품종군",
+              "name": "에티오피아 토착종"
+            },
+            {
+              "code": "BOURBON",
+              "coffeeVarietyId": 7,
+              "description": "다양한 지역에서 재배되는 전통 아라비카 품종",
+              "name": "버번"
+            }
+          ],
+          "weightGrams": 500
+        }
+      ]
+    },
+    {
+      "input": {
+        "decaf": true,
+        "limit": 10,
+        "preferredAcidity": 3,
+        "preferredBody": 4
+      },
+      "result": [
+        {
+          "recommendationScore": 7,
+          "reasons": [
+            "디카페인 여부 조건 충족",
+            "산미 선호와 유사",
+            "바디 선호와 일치"
+          ],
+          "acidity": 2,
+          "aroma": 3,
+          "beanType": "BLEND",
+          "body": 4,
+          "brewMethods": [
+            {
+              "brewMethodId": 1,
+              "code": "POUR_OVER",
+              "description": "종이 필터로 향미의 명료도를 표현함",
+              "name": "푸어오버",
+              "recommendationNote": "충분한 블루밍으로 산지별 향을 고르게 표현함"
+            },
+            {
+              "brewMethodId": 2,
+              "code": "ESPRESSO",
+              "description": "고압 추출로 농도와 질감을 표현함",
+              "name": "에스프레소",
+              "recommendationNote": "중간 수율로 단맛과 산미의 균형을 맞춤"
+            }
+          ],
+          "categoryName": "디카페인",
+          "coffeeProfileId": 79,
+          "coffeeProfileName": "Decaf Caramel 미디엄",
+          "components": [
+            {
+              "componentRatio": 60.0,
+              "originCountryCode": "CO",
+              "originRegion": "Huila",
+              "processingMethod": {
+                "code": "WASHED",
+                "description": "점액질을 물로 제거해 향미의 명료도와 산뜻한 인상을 표현함",
+                "id": 1,
+                "name": "Washed"
+              }
+            },
+            {
+              "componentRatio": 40.0,
+              "originCountryCode": "BR",
+              "originRegion": "Sul de Minas",
+              "processingMethod": {
+                "code": "PULPED_NATURAL",
+                "description": "과육을 제거하고 점액질을 남겨 건조하는 방식을 표현함",
+                "id": 8,
+                "name": "Pulped Natural"
+              }
+            }
+          ],
+          "decaf": true,
+          "flavorNotes": [
+            {
+              "code": "CARAMEL",
+              "description": "카라멜과 토피를 떠올리는 단맛",
+              "flavorNoteId": 8,
+              "intensity": 5,
+              "name": "카라멜"
+            },
+            {
+              "code": "MILK_CHOCOLATE",
+              "description": "우유가 섞인 초콜릿 같은 부드러운 단맛",
+              "flavorNoteId": 26,
+              "intensity": 4,
+              "name": "밀크 초콜릿"
+            },
+            {
+              "code": "BROWN_SUGAR",
+              "description": "흑설탕을 떠올리는 깊은 단맛",
+              "flavorNoteId": 9,
+              "intensity": 4,
+              "name": "흑설탕"
+            }
+          ],
+          "imageUrl": "https://assets-coffeeprod.ttagyulab.com/products/catalog/bl011-m-v1.webp",
+          "name": "Decaf Caramel 미디엄 200g",
+          "price": 18500,
+          "processingMethodName": "Sugarcane Decaf",
+          "productId": 192,
+          "roastLevel": "MEDIUM",
+          "sku": "CP-BL011-M-200",
+          "sweetness": 5,
+          "varieties": [
+            {
+              "code": "CASTILLO",
+              "coffeeVarietyId": 3,
+              "description": "콜롬비아에서 널리 재배되는 품종",
+              "name": "카스티요"
+            },
+            {
+              "code": "YELLOW_BOURBON",
+              "coffeeVarietyId": 14,
+              "description": "노란색 열매 특성을 가진 버번 계열",
+              "name": "옐로 버번"
+            }
+          ],
+          "weightGrams": 200
+        },
+        {
+          "recommendationScore": 7,
+          "reasons": [
+            "디카페인 여부 조건 충족",
+            "산미 선호와 유사",
+            "바디 선호와 일치"
+          ],
+          "acidity": 2,
+          "aroma": 3,
+          "beanType": "BLEND",
+          "body": 4,
+          "brewMethods": [
+            {
+              "brewMethodId": 1,
+              "code": "POUR_OVER",
+              "description": "종이 필터로 향미의 명료도를 표현함",
+              "name": "푸어오버",
+              "recommendationNote": "충분한 블루밍으로 산지별 향을 고르게 표현함"
+            },
+            {
+              "brewMethodId": 2,
+              "code": "ESPRESSO",
+              "description": "고압 추출로 농도와 질감을 표현함",
+              "name": "에스프레소",
+              "recommendationNote": "중간 수율로 단맛과 산미의 균형을 맞춤"
+            }
+          ],
+          "categoryName": "디카페인",
+          "coffeeProfileId": 79,
+          "coffeeProfileName": "Decaf Caramel 미디엄",
+          "components": [
+            {
+              "componentRatio": 60.0,
+              "originCountryCode": "CO",
+              "originRegion": "Huila",
+              "processingMethod": {
+                "code": "WASHED",
+                "description": "점액질을 물로 제거해 향미의 명료도와 산뜻한 인상을 표현함",
+                "id": 1,
+                "name": "Washed"
+              }
+            },
+            {
+              "componentRatio": 40.0,
+              "originCountryCode": "BR",
+              "originRegion": "Sul de Minas",
+              "processingMethod": {
+                "code": "PULPED_NATURAL",
+                "description": "과육을 제거하고 점액질을 남겨 건조하는 방식을 표현함",
+                "id": 8,
+                "name": "Pulped Natural"
+              }
+            }
+          ],
+          "decaf": true,
+          "flavorNotes": [
+            {
+              "code": "CARAMEL",
+              "description": "카라멜과 토피를 떠올리는 단맛",
+              "flavorNoteId": 8,
+              "intensity": 5,
+              "name": "카라멜"
+            },
+            {
+              "code": "MILK_CHOCOLATE",
+              "description": "우유가 섞인 초콜릿 같은 부드러운 단맛",
+              "flavorNoteId": 26,
+              "intensity": 4,
+              "name": "밀크 초콜릿"
+            },
+            {
+              "code": "BROWN_SUGAR",
+              "description": "흑설탕을 떠올리는 깊은 단맛",
+              "flavorNoteId": 9,
+              "intensity": 4,
+              "name": "흑설탕"
+            }
+          ],
+          "imageUrl": "https://assets-coffeeprod.ttagyulab.com/products/catalog/bl011-m-v1.webp",
+          "name": "Decaf Caramel 미디엄 500g",
+          "price": 41500,
+          "processingMethodName": "Sugarcane Decaf",
+          "productId": 191,
+          "roastLevel": "MEDIUM",
+          "sku": "CP-BL011-M-500",
+          "sweetness": 5,
+          "varieties": [
+            {
+              "code": "CASTILLO",
+              "coffeeVarietyId": 3,
+              "description": "콜롬비아에서 널리 재배되는 품종",
+              "name": "카스티요"
+            },
+            {
+              "code": "YELLOW_BOURBON",
+              "coffeeVarietyId": 14,
+              "description": "노란색 열매 특성을 가진 버번 계열",
+              "name": "옐로 버번"
+            }
+          ],
+          "weightGrams": 500
+        },
+        {
+          "recommendationScore": 3,
+          "reasons": [
+            "디카페인 여부 조건 충족",
+            "산미 선호와 유사"
+          ],
+          "acidity": 4,
+          "aroma": 4,
+          "beanType": "BLEND",
+          "body": 2,
+          "brewMethods": [
+            {
+              "brewMethodId": 1,
+              "code": "POUR_OVER",
+              "description": "종이 필터로 향미의 명료도를 표현함",
+              "name": "푸어오버",
+              "recommendationNote": "충분한 블루밍으로 산지별 향을 고르게 표현함"
+            },
+            {
+              "brewMethodId": 2,
+              "code": "ESPRESSO",
+              "description": "고압 추출로 농도와 질감을 표현함",
+              "name": "에스프레소",
+              "recommendationNote": "중간 수율로 단맛과 산미의 균형을 맞춤"
+            }
+          ],
+          "categoryName": "디카페인",
+          "coffeeProfileId": 76,
+          "coffeeProfileName": "Decaf Floral 미디엄",
+          "components": [
+            {
+              "componentRatio": 55.0,
+              "originCountryCode": "ET",
+              "originRegion": "Sidama",
+              "processingMethod": {
+                "code": "WASHED",
+                "description": "점액질을 물로 제거해 향미의 명료도와 산뜻한 인상을 표현함",
+                "id": 1,
+                "name": "Washed"
+              }
+            },
+            {
+              "componentRatio": 45.0,
+              "originCountryCode": "RW",
+              "originRegion": "Nyamasheke",
+              "processingMethod": {
+                "code": "WASHED",
+                "description": "점액질을 물로 제거해 향미의 명료도와 산뜻한 인상을 표현함",
+                "id": 1,
+                "name": "Washed"
+              }
+            }
+          ],
+          "decaf": true,
+          "flavorNotes": [
+            {
+              "code": "FLORAL",
+              "description": "꽃을 떠올리는 향긋한 인상",
+              "flavorNoteId": 1,
+              "intensity": 4,
+              "name": "플로럴"
+            },
+            {
+              "code": "CITRUS",
+              "description": "감귤류를 떠올리는 밝은 인상",
+              "flavorNoteId": 3,
+              "intensity": 4,
+              "name": "시트러스"
+            },
+            {
+              "code": "TEA_LIKE",
+              "description": "차를 떠올리는 맑고 긴 여운",
+              "flavorNoteId": 10,
+              "intensity": 4,
+              "name": "티 라이크"
+            }
+          ],
+          "imageUrl": "https://assets-coffeeprod.ttagyulab.com/products/catalog/bl012-m-v1.webp",
+          "name": "Decaf Floral 미디엄 200g",
+          "price": 20000,
+          "processingMethodName": "Swiss Water",
+          "productId": 186,
+          "roastLevel": "MEDIUM",
+          "sku": "CP-BL012-M-200",
+          "sweetness": 4,
+          "varieties": [
+            {
+              "code": "ETHIOPIAN_HEIRLOOM",
+              "coffeeVarietyId": 1,
+              "description": "에티오피아 지역의 다양한 토착 품종군",
+              "name": "에티오피아 토착종"
+            },
+            {
+              "code": "BOURBON",
+              "coffeeVarietyId": 7,
+              "description": "다양한 지역에서 재배되는 전통 아라비카 품종",
+              "name": "버번"
+            }
+          ],
+          "weightGrams": 200
+        },
+        {
+          "recommendationScore": 3,
+          "reasons": [
+            "디카페인 여부 조건 충족",
+            "바디 선호와 유사"
+          ],
+          "acidity": 1,
+          "aroma": 3,
+          "beanType": "BLEND",
+          "body": 5,
+          "brewMethods": [
+            {
+              "brewMethodId": 2,
+              "code": "ESPRESSO",
+              "description": "고압 추출로 농도와 질감을 표현함",
+              "name": "에스프레소",
+              "recommendationNote": "도징과 수율을 고정해 블렌드의 질감을 안정적으로 표현함"
+            },
+            {
+              "brewMethodId": 5,
+              "code": "COLD_BREW",
+              "description": "저온 장시간 추출로 부드러운 단맛을 표현함",
+              "name": "콜드브루",
+              "recommendationNote": "저온 침지로 묵직한 단맛을 표현함"
+            }
+          ],
+          "categoryName": "디카페인",
+          "coffeeProfileId": 78,
+          "coffeeProfileName": "Decaf Caramel 다크",
+          "components": [
+            {
+              "componentRatio": 60.0,
+              "originCountryCode": "CO",
+              "originRegion": "Huila",
+              "processingMethod": {
+                "code": "WASHED",
+                "description": "점액질을 물로 제거해 향미의 명료도와 산뜻한 인상을 표현함",
+                "id": 1,
+                "name": "Washed"
+              }
+            },
+            {
+              "componentRatio": 40.0,
+              "originCountryCode": "BR",
+              "originRegion": "Sul de Minas",
+              "processingMethod": {
+                "code": "PULPED_NATURAL",
+                "description": "과육을 제거하고 점액질을 남겨 건조하는 방식을 표현함",
+                "id": 8,
+                "name": "Pulped Natural"
+              }
+            }
+          ],
+          "decaf": true,
+          "flavorNotes": [
+            {
+              "code": "CARAMEL",
+              "description": "카라멜과 토피를 떠올리는 단맛",
+              "flavorNoteId": 8,
+              "intensity": 5,
+              "name": "카라멜"
+            },
+            {
+              "code": "MILK_CHOCOLATE",
+              "description": "우유가 섞인 초콜릿 같은 부드러운 단맛",
+              "flavorNoteId": 26,
+              "intensity": 4,
+              "name": "밀크 초콜릿"
+            },
+            {
+              "code": "BROWN_SUGAR",
+              "description": "흑설탕을 떠올리는 깊은 단맛",
+              "flavorNoteId": 9,
+              "intensity": 4,
+              "name": "흑설탕"
+            }
+          ],
+          "imageUrl": "https://assets-coffeeprod.ttagyulab.com/products/catalog/bl011-d-v1.webp",
+          "name": "Decaf Caramel 다크 500g",
+          "price": 43000,
+          "processingMethodName": "Sugarcane Decaf",
+          "productId": 189,
+          "roastLevel": "DARK",
+          "sku": "CP-BL011-D-500",
+          "sweetness": 4,
+          "varieties": [
+            {
+              "code": "CASTILLO",
+              "coffeeVarietyId": 3,
+              "description": "콜롬비아에서 널리 재배되는 품종",
+              "name": "카스티요"
+            },
+            {
+              "code": "YELLOW_BOURBON",
+              "coffeeVarietyId": 14,
+              "description": "노란색 열매 특성을 가진 버번 계열",
+              "name": "옐로 버번"
+            }
+          ],
+          "weightGrams": 500
+        },
+        {
+          "recommendationScore": 3,
+          "reasons": [
+            "디카페인 여부 조건 충족",
+            "산미 선호와 유사"
+          ],
+          "acidity": 4,
+          "aroma": 4,
+          "beanType": "BLEND",
+          "body": 2,
+          "brewMethods": [
+            {
+              "brewMethodId": 1,
+              "code": "POUR_OVER",
+              "description": "종이 필터로 향미의 명료도를 표현함",
+              "name": "푸어오버",
+              "recommendationNote": "충분한 블루밍으로 산지별 향을 고르게 표현함"
+            },
+            {
+              "brewMethodId": 2,
+              "code": "ESPRESSO",
+              "description": "고압 추출로 농도와 질감을 표현함",
+              "name": "에스프레소",
+              "recommendationNote": "중간 수율로 단맛과 산미의 균형을 맞춤"
+            }
+          ],
+          "categoryName": "디카페인",
+          "coffeeProfileId": 76,
+          "coffeeProfileName": "Decaf Floral 미디엄",
+          "components": [
+            {
+              "componentRatio": 55.0,
+              "originCountryCode": "ET",
+              "originRegion": "Sidama",
+              "processingMethod": {
+                "code": "WASHED",
+                "description": "점액질을 물로 제거해 향미의 명료도와 산뜻한 인상을 표현함",
+                "id": 1,
+                "name": "Washed"
+              }
+            },
+            {
+              "componentRatio": 45.0,
+              "originCountryCode": "RW",
+              "originRegion": "Nyamasheke",
+              "processingMethod": {
+                "code": "WASHED",
+                "description": "점액질을 물로 제거해 향미의 명료도와 산뜻한 인상을 표현함",
+                "id": 1,
+                "name": "Washed"
+              }
+            }
+          ],
+          "decaf": true,
+          "flavorNotes": [
+            {
+              "code": "FLORAL",
+              "description": "꽃을 떠올리는 향긋한 인상",
+              "flavorNoteId": 1,
+              "intensity": 4,
+              "name": "플로럴"
+            },
+            {
+              "code": "CITRUS",
+              "description": "감귤류를 떠올리는 밝은 인상",
+              "flavorNoteId": 3,
+              "intensity": 4,
+              "name": "시트러스"
+            },
+            {
+              "code": "TEA_LIKE",
+              "description": "차를 떠올리는 맑고 긴 여운",
+              "flavorNoteId": 10,
+              "intensity": 4,
+              "name": "티 라이크"
+            }
+          ],
+          "imageUrl": "https://assets-coffeeprod.ttagyulab.com/products/catalog/bl012-m-v1.webp",
+          "name": "Decaf Floral 미디엄 500g",
+          "price": 45000,
+          "processingMethodName": "Swiss Water",
+          "productId": 185,
+          "roastLevel": "MEDIUM",
+          "sku": "CP-BL012-M-500",
+          "sweetness": 4,
+          "varieties": [
+            {
+              "code": "ETHIOPIAN_HEIRLOOM",
+              "coffeeVarietyId": 1,
+              "description": "에티오피아 지역의 다양한 토착 품종군",
+              "name": "에티오피아 토착종"
+            },
+            {
+              "code": "BOURBON",
+              "coffeeVarietyId": 7,
+              "description": "다양한 지역에서 재배되는 전통 아라비카 품종",
+              "name": "버번"
+            }
+          ],
+          "weightGrams": 500
+        },
+        {
+          "recommendationScore": 1,
+          "reasons": [
+            "디카페인 여부 조건 충족"
+          ],
+          "acidity": 5,
+          "aroma": 5,
+          "beanType": "BLEND",
+          "body": 1,
+          "brewMethods": [
+            {
+              "brewMethodId": 1,
+              "code": "POUR_OVER",
+              "description": "종이 필터로 향미의 명료도를 표현함",
+              "name": "푸어오버",
+              "recommendationNote": "충분한 블루밍으로 산지별 향을 고르게 표현함"
+            },
+            {
+              "brewMethodId": 2,
+              "code": "ESPRESSO",
+              "description": "고압 추출로 농도와 질감을 표현함",
+              "name": "에스프레소",
+              "recommendationNote": "중간 수율로 단맛과 산미의 균형을 맞춤"
+            }
+          ],
+          "categoryName": "디카페인",
+          "coffeeProfileId": 77,
+          "coffeeProfileName": "Decaf Floral 라이트",
+          "components": [
+            {
+              "componentRatio": 55.0,
+              "originCountryCode": "ET",
+              "originRegion": "Sidama",
+              "processingMethod": {
+                "code": "WASHED",
+                "description": "점액질을 물로 제거해 향미의 명료도와 산뜻한 인상을 표현함",
+                "id": 1,
+                "name": "Washed"
+              }
+            },
+            {
+              "componentRatio": 45.0,
+              "originCountryCode": "RW",
+              "originRegion": "Nyamasheke",
+              "processingMethod": {
+                "code": "WASHED",
+                "description": "점액질을 물로 제거해 향미의 명료도와 산뜻한 인상을 표현함",
+                "id": 1,
+                "name": "Washed"
+              }
+            }
+          ],
+          "decaf": true,
+          "flavorNotes": [
+            {
+              "code": "FLORAL",
+              "description": "꽃을 떠올리는 향긋한 인상",
+              "flavorNoteId": 1,
+              "intensity": 4,
+              "name": "플로럴"
+            },
+            {
+              "code": "CITRUS",
+              "description": "감귤류를 떠올리는 밝은 인상",
+              "flavorNoteId": 3,
+              "intensity": 4,
+              "name": "시트러스"
+            },
+            {
+              "code": "TEA_LIKE",
+              "description": "차를 떠올리는 맑고 긴 여운",
+              "flavorNoteId": 10,
+              "intensity": 4,
+              "name": "티 라이크"
+            }
+          ],
+          "imageUrl": "https://assets-coffeeprod.ttagyulab.com/products/catalog/bl012-l-v1.webp",
+          "name": "Decaf Floral 라이트 200g",
+          "price": 21000,
+          "processingMethodName": "Swiss Water",
+          "productId": 188,
+          "roastLevel": "LIGHT",
+          "sku": "CP-BL012-L-200",
+          "sweetness": 4,
+          "varieties": [
+            {
+              "code": "ETHIOPIAN_HEIRLOOM",
+              "coffeeVarietyId": 1,
+              "description": "에티오피아 지역의 다양한 토착 품종군",
+              "name": "에티오피아 토착종"
+            },
+            {
+              "code": "BOURBON",
+              "coffeeVarietyId": 7,
+              "description": "다양한 지역에서 재배되는 전통 아라비카 품종",
+              "name": "버번"
+            }
+          ],
+          "weightGrams": 200
+        },
+        {
+          "recommendationScore": 1,
+          "reasons": [
+            "디카페인 여부 조건 충족"
+          ],
+          "acidity": 5,
+          "aroma": 5,
+          "beanType": "BLEND",
+          "body": 1,
+          "brewMethods": [
+            {
+              "brewMethodId": 1,
+              "code": "POUR_OVER",
+              "description": "종이 필터로 향미의 명료도를 표현함",
+              "name": "푸어오버",
+              "recommendationNote": "충분한 블루밍으로 산지별 향을 고르게 표현함"
+            },
+            {
+              "brewMethodId": 2,
+              "code": "ESPRESSO",
+              "description": "고압 추출로 농도와 질감을 표현함",
+              "name": "에스프레소",
+              "recommendationNote": "중간 수율로 단맛과 산미의 균형을 맞춤"
+            }
+          ],
+          "categoryName": "디카페인",
+          "coffeeProfileId": 77,
+          "coffeeProfileName": "Decaf Floral 라이트",
+          "components": [
+            {
+              "componentRatio": 55.0,
+              "originCountryCode": "ET",
+              "originRegion": "Sidama",
+              "processingMethod": {
+                "code": "WASHED",
+                "description": "점액질을 물로 제거해 향미의 명료도와 산뜻한 인상을 표현함",
+                "id": 1,
+                "name": "Washed"
+              }
+            },
+            {
+              "componentRatio": 45.0,
+              "originCountryCode": "RW",
+              "originRegion": "Nyamasheke",
+              "processingMethod": {
+                "code": "WASHED",
+                "description": "점액질을 물로 제거해 향미의 명료도와 산뜻한 인상을 표현함",
+                "id": 1,
+                "name": "Washed"
+              }
+            }
+          ],
+          "decaf": true,
+          "flavorNotes": [
+            {
+              "code": "FLORAL",
+              "description": "꽃을 떠올리는 향긋한 인상",
+              "flavorNoteId": 1,
+              "intensity": 4,
+              "name": "플로럴"
+            },
+            {
+              "code": "CITRUS",
+              "description": "감귤류를 떠올리는 밝은 인상",
+              "flavorNoteId": 3,
+              "intensity": 4,
+              "name": "시트러스"
+            },
+            {
+              "code": "TEA_LIKE",
+              "description": "차를 떠올리는 맑고 긴 여운",
+              "flavorNoteId": 10,
+              "intensity": 4,
+              "name": "티 라이크"
+            }
+          ],
+          "imageUrl": "https://assets-coffeeprod.ttagyulab.com/products/catalog/bl012-l-v1.webp",
+          "name": "Decaf Floral 라이트 500g",
+          "price": 47500,
+          "processingMethodName": "Swiss Water",
+          "productId": 187,
+          "roastLevel": "LIGHT",
+          "sku": "CP-BL012-L-500",
+          "sweetness": 4,
+          "varieties": [
+            {
+              "code": "ETHIOPIAN_HEIRLOOM",
+              "coffeeVarietyId": 1,
+              "description": "에티오피아 지역의 다양한 토착 품종군",
+              "name": "에티오피아 토착종"
+            },
+            {
+              "code": "BOURBON",
+              "coffeeVarietyId": 7,
+              "description": "다양한 지역에서 재배되는 전통 아라비카 품종",
+              "name": "버번"
+            }
+          ],
+          "weightGrams": 500
+        }
+      ]
+    },
+    {
+      "input": {
+        "decaf": false,
+        "limit": 5,
+        "preferredAcidity": 3,
+        "preferredBody": 4
+      },
+      "result": [
+        {
+          "recommendationScore": 9,
+          "reasons": [
+            "디카페인 여부 조건 충족",
+            "산미 선호와 일치",
+            "바디 선호와 일치"
+          ],
+          "acidity": 3,
+          "aroma": 3,
+          "beanType": "SINGLE_ORIGIN",
+          "body": 4,
+          "brewMethods": [
+            {
+              "brewMethodId": 1,
+              "code": "POUR_OVER",
+              "description": "종이 필터로 향미의 명료도를 표현함",
+              "name": "푸어오버",
+              "recommendationNote": "중간 분쇄도와 90~94C 물로 향미를 선명하게 표현함"
+            },
+            {
+              "brewMethodId": 4,
+              "code": "AEROPRESS",
+              "description": "침지와 압력을 조합해 균형 있는 추출을 표현함",
+              "name": "에어로프레스",
+              "recommendationNote": "짧은 침지로 단맛과 산미의 균형을 맞춤"
+            }
+          ],
+          "categoryName": "싱글 오리진",
+          "coffeeProfileId": 7,
+          "coffeeProfileName": "ID Java WASHED 미디엄",
+          "components": [],
+          "decaf": false,
+          "flavorNotes": [
+            {
+              "code": "BROWN_SUGAR",
+              "description": "흑설탕을 떠올리는 깊은 단맛",
+              "flavorNoteId": 9,
+              "intensity": 4,
+              "name": "흑설탕"
+            },
+            {
+              "code": "SPICE",
+              "description": "계피와 정향을 떠올리는 향신료 인상",
+              "flavorNoteId": 11,
+              "intensity": 3,
+              "name": "스파이스"
+            },
+            {
+              "code": "COCOA",
+              "description": "코코아 가루를 떠올리는 고소하고 쌉쌀한 인상",
+              "flavorNoteId": 27,
+              "intensity": 4,
+              "name": "코코아"
+            }
+          ],
+          "imageUrl": "https://assets-coffeeprod.ttagyulab.com/products/catalog/so034-m-v1.webp",
+          "name": "ID Java WASHED 미디엄 200g",
+          "price": 17000,
+          "processingMethodName": "Washed",
+          "productId": 12,
+          "roastLevel": "MEDIUM",
+          "sku": "CP-SO034-M-200",
+          "sweetness": 4,
+          "varieties": [
+            {
+              "code": "TYPICA",
+              "coffeeVarietyId": 8,
+              "description": "여러 현대 품종의 기반이 된 전통 아라비카 품종",
+              "name": "티피카"
+            },
+            {
+              "code": "CATIMOR",
+              "coffeeVarietyId": 27,
+              "description": "카투라와 하이브리드 계열을 바탕으로 한 품종군",
+              "name": "카티모르"
+            }
+          ],
+          "weightGrams": 200
+        },
+        {
+          "recommendationScore": 9,
+          "reasons": [
+            "디카페인 여부 조건 충족",
+            "산미 선호와 일치",
+            "바디 선호와 일치"
+          ],
+          "acidity": 3,
+          "aroma": 4,
+          "beanType": "SINGLE_ORIGIN",
+          "body": 4,
+          "brewMethods": [
+            {
+              "brewMethodId": 1,
+              "code": "POUR_OVER",
+              "description": "종이 필터로 향미의 명료도를 표현함",
+              "name": "푸어오버",
+              "recommendationNote": "중간 분쇄도와 90~94C 물로 향미를 선명하게 표현함"
+            },
+            {
+              "brewMethodId": 4,
+              "code": "AEROPRESS",
+              "description": "침지와 압력을 조합해 균형 있는 추출을 표현함",
+              "name": "에어로프레스",
+              "recommendationNote": "짧은 침지로 단맛과 산미의 균형을 맞춤"
+            }
+          ],
+          "categoryName": "싱글 오리진",
+          "coffeeProfileId": 51,
+          "coffeeProfileName": "BR Mantiqueira NATURAL 미디엄",
+          "components": [],
+          "decaf": false,
+          "flavorNotes": [
+            {
+              "code": "RED_FRUIT",
+              "description": "딸기와 체리를 떠올리는 과일 인상",
+              "flavorNoteId": 19,
+              "intensity": 4,
+              "name": "붉은 과일"
+            },
+            {
+              "code": "HONEY",
+              "description": "꿀을 떠올리는 매끄러운 단맛",
+              "flavorNoteId": 33,
+              "intensity": 4,
+              "name": "꿀"
+            },
+            {
+              "code": "NUTTY",
+              "description": "구운 견과를 떠올리는 고소한 향미",
+              "flavorNoteId": 7,
+              "intensity": 3,
+              "name": "견과류"
+            }
+          ],
+          "imageUrl": "https://assets-coffeeprod.ttagyulab.com/products/catalog/so019-m-v1.webp",
+          "name": "BR Mantiqueira NATURAL 미디엄 200g",
+          "price": 17500,
+          "processingMethodName": "Natural",
+          "productId": 72,
+          "roastLevel": "MEDIUM",
+          "sku": "CP-SO019-M-200",
+          "sweetness": 5,
+          "varieties": [
+            {
+              "code": "YELLOW_BOURBON",
+              "coffeeVarietyId": 14,
+              "description": "노란색 열매 특성을 가진 버번 계열",
+              "name": "옐로 버번"
+            }
+          ],
+          "weightGrams": 200
+        },
+        {
+          "recommendationScore": 9,
+          "reasons": [
+            "디카페인 여부 조건 충족",
+            "산미 선호와 일치",
+            "바디 선호와 일치"
+          ],
+          "acidity": 3,
+          "aroma": 3,
+          "beanType": "SINGLE_ORIGIN",
+          "body": 4,
+          "brewMethods": [
+            {
+              "brewMethodId": 1,
+              "code": "POUR_OVER",
+              "description": "종이 필터로 향미의 명료도를 표현함",
+              "name": "푸어오버",
+              "recommendationNote": "중간 분쇄도와 90~94C 물로 향미를 선명하게 표현함"
+            },
+            {
+              "brewMethodId": 4,
+              "code": "AEROPRESS",
+              "description": "침지와 압력을 조합해 균형 있는 추출을 표현함",
+              "name": "에어로프레스",
+              "recommendationNote": "짧은 침지로 단맛과 산미의 균형을 맞춤"
+            }
+          ],
+          "categoryName": "싱글 오리진",
+          "coffeeProfileId": 54,
+          "coffeeProfileName": "CO Sierra Nevada NATURAL 미디엄",
+          "components": [],
+          "decaf": false,
+          "flavorNotes": [
+            {
+              "code": "CHOCOLATE",
+              "description": "초콜릿을 떠올리는 부드러운 단맛",
+              "flavorNoteId": 6,
+              "intensity": 4,
+              "name": "초콜릿"
+            },
+            {
+              "code": "RED_APPLE",
+              "description": "사과를 떠올리는 산미와 단맛",
+              "flavorNoteId": 22,
+              "intensity": 3,
+              "name": "붉은 사과"
+            },
+            {
+              "code": "CARAMEL",
+              "description": "카라멜과 토피를 떠올리는 단맛",
+              "flavorNoteId": 8,
+              "intensity": 4,
+              "name": "카라멜"
+            }
+          ],
+          "imageUrl": "https://assets-coffeeprod.ttagyulab.com/products/catalog/so016-m-v1.webp",
+          "name": "CO Sierra Nevada NATURAL 미디엄 200g",
+          "price": 17500,
+          "processingMethodName": "Natural",
+          "productId": 82,
+          "roastLevel": "MEDIUM",
+          "sku": "CP-SO016-M-200",
+          "sweetness": 5,
+          "varieties": [
+            {
+              "code": "CASTILLO",
+              "coffeeVarietyId": 3,
+              "description": "콜롬비아에서 널리 재배되는 품종",
+              "name": "카스티요"
+            },
+            {
+              "code": "TYPICA",
+              "coffeeVarietyId": 8,
+              "description": "여러 현대 품종의 기반이 된 전통 아라비카 품종",
+              "name": "티피카"
+            }
+          ],
+          "weightGrams": 200
+        },
+        {
+          "recommendationScore": 9,
+          "reasons": [
+            "디카페인 여부 조건 충족",
+            "산미 선호와 일치",
+            "바디 선호와 일치"
+          ],
+          "acidity": 3,
+          "aroma": 4,
+          "beanType": "SINGLE_ORIGIN",
+          "body": 4,
+          "brewMethods": [
+            {
+              "brewMethodId": 1,
+              "code": "POUR_OVER",
+              "description": "종이 필터로 향미의 명료도를 표현함",
+              "name": "푸어오버",
+              "recommendationNote": "중간 분쇄도와 90~94C 물로 향미를 선명하게 표현함"
+            },
+            {
+              "brewMethodId": 4,
+              "code": "AEROPRESS",
+              "description": "침지와 압력을 조합해 균형 있는 추출을 표현함",
+              "name": "에어로프레스",
+              "recommendationNote": "짧은 침지로 단맛과 산미의 균형을 맞춤"
+            }
+          ],
+          "categoryName": "싱글 오리진",
+          "coffeeProfileId": 25,
+          "coffeeProfileName": "UG Bugisu WASHED 미디엄",
+          "components": [],
+          "decaf": false,
+          "flavorNotes": [
+            {
+              "code": "SPICE",
+              "description": "계피와 정향을 떠올리는 향신료 인상",
+              "flavorNoteId": 11,
+              "intensity": 4,
+              "name": "스파이스"
+            },
+            {
+              "code": "DARK_CHOCOLATE",
+              "description": "카카오 함량이 높은 초콜릿 같은 쌉쌀한 단맛",
+              "flavorNoteId": 25,
+              "intensity": 4,
+              "name": "다크 초콜릿"
+            },
+            {
+              "code": "CITRUS",
+              "description": "감귤류를 떠올리는 밝은 인상",
+              "flavorNoteId": 3,
+              "intensity": 3,
+              "name": "시트러스"
+            }
+          ],
+          "imageUrl": "https://assets-coffeeprod.ttagyulab.com/products/catalog/so011-m-v1.webp",
+          "name": "UG Bugisu WASHED 미디엄 200g",
+          "price": 17500,
+          "processingMethodName": "Washed",
+          "productId": 104,
+          "roastLevel": "MEDIUM",
+          "sku": "CP-SO011-M-200",
+          "sweetness": 4,
+          "varieties": [
+            {
+              "code": "SL14",
+              "coffeeVarietyId": 19,
+              "description": "동아프리카 일부 생산지에서 재배되는 품종",
+              "name": "SL14"
+            },
+            {
+              "code": "NYASALAND",
+              "coffeeVarietyId": 20,
+              "description": "동아프리카에 전해진 전통 아라비카 계열",
+              "name": "Nyasaland"
+            }
+          ],
+          "weightGrams": 200
+        },
+        {
+          "recommendationScore": 9,
+          "reasons": [
+            "디카페인 여부 조건 충족",
+            "산미 선호와 일치",
+            "바디 선호와 일치"
+          ],
+          "acidity": 3,
+          "aroma": 4,
+          "beanType": "SINGLE_ORIGIN",
+          "body": 4,
+          "brewMethods": [
+            {
+              "brewMethodId": 1,
+              "code": "POUR_OVER",
+              "description": "종이 필터로 향미의 명료도를 표현함",
+              "name": "푸어오버",
+              "recommendationNote": "중간 분쇄도와 90~94C 물로 향미를 선명하게 표현함"
+            },
+            {
+              "brewMethodId": 4,
+              "code": "AEROPRESS",
+              "description": "침지와 압력을 조합해 균형 있는 추출을 표현함",
+              "name": "에어로프레스",
+              "recommendationNote": "짧은 침지로 단맛과 산미의 균형을 맞춤"
+            }
+          ],
+          "categoryName": "싱글 오리진",
+          "coffeeProfileId": 57,
+          "coffeeProfileName": "UG Rwenzori NATURAL 미디엄",
+          "components": [],
+          "decaf": false,
+          "flavorNotes": [
+            {
+              "code": "BERRY",
+              "description": "붉거나 검은 베리류를 떠올리는 향미",
+              "flavorNoteId": 4,
+              "intensity": 4,
+              "name": "베리"
+            },
+            {
+              "code": "DRIED_FRUIT",
+              "description": "건포도와 말린 자두를 떠올리는 단맛",
+              "flavorNoteId": 23,
+              "intensity": 4,
+              "name": "건과일"
+            },
+            {
+              "code": "CHOCOLATE",
+              "description": "초콜릿을 떠올리는 부드러운 단맛",
+              "flavorNoteId": 6,
+              "intensity": 3,
+              "name": "초콜릿"
+            }
+          ],
+          "imageUrl": "https://assets-coffeeprod.ttagyulab.com/products/catalog/so012-m-v1.webp",
+          "name": "UG Rwenzori NATURAL 미디엄 200g",
+          "price": 18000,
+          "processingMethodName": "Natural",
+          "productId": 100,
+          "roastLevel": "MEDIUM",
+          "sku": "CP-SO012-M-200",
+          "sweetness": 5,
+          "varieties": [
+            {
+              "code": "NYASALAND",
+              "coffeeVarietyId": 20,
+              "description": "동아프리카에 전해진 전통 아라비카 계열",
+              "name": "Nyasaland"
+            }
+          ],
+          "weightGrams": 200
+        }
+      ]
+    },
+    {
+      "input": {
+        "decaf": false,
+        "limit": 10,
+        "preferredAcidity": 3,
+        "preferredBody": 4
+      },
+      "result": [
+        {
+          "recommendationScore": 9,
+          "reasons": [
+            "디카페인 여부 조건 충족",
+            "산미 선호와 일치",
+            "바디 선호와 일치"
+          ],
+          "acidity": 3,
+          "aroma": 3,
+          "beanType": "SINGLE_ORIGIN",
+          "body": 4,
+          "brewMethods": [
+            {
+              "brewMethodId": 1,
+              "code": "POUR_OVER",
+              "description": "종이 필터로 향미의 명료도를 표현함",
+              "name": "푸어오버",
+              "recommendationNote": "중간 분쇄도와 90~94C 물로 향미를 선명하게 표현함"
+            },
+            {
+              "brewMethodId": 4,
+              "code": "AEROPRESS",
+              "description": "침지와 압력을 조합해 균형 있는 추출을 표현함",
+              "name": "에어로프레스",
+              "recommendationNote": "짧은 침지로 단맛과 산미의 균형을 맞춤"
+            }
+          ],
+          "categoryName": "싱글 오리진",
+          "coffeeProfileId": 7,
+          "coffeeProfileName": "ID Java WASHED 미디엄",
+          "components": [],
+          "decaf": false,
+          "flavorNotes": [
+            {
+              "code": "BROWN_SUGAR",
+              "description": "흑설탕을 떠올리는 깊은 단맛",
+              "flavorNoteId": 9,
+              "intensity": 4,
+              "name": "흑설탕"
+            },
+            {
+              "code": "SPICE",
+              "description": "계피와 정향을 떠올리는 향신료 인상",
+              "flavorNoteId": 11,
+              "intensity": 3,
+              "name": "스파이스"
+            },
+            {
+              "code": "COCOA",
+              "description": "코코아 가루를 떠올리는 고소하고 쌉쌀한 인상",
+              "flavorNoteId": 27,
+              "intensity": 4,
+              "name": "코코아"
+            }
+          ],
+          "imageUrl": "https://assets-coffeeprod.ttagyulab.com/products/catalog/so034-m-v1.webp",
+          "name": "ID Java WASHED 미디엄 200g",
+          "price": 17000,
+          "processingMethodName": "Washed",
+          "productId": 12,
+          "roastLevel": "MEDIUM",
+          "sku": "CP-SO034-M-200",
+          "sweetness": 4,
+          "varieties": [
+            {
+              "code": "TYPICA",
+              "coffeeVarietyId": 8,
+              "description": "여러 현대 품종의 기반이 된 전통 아라비카 품종",
+              "name": "티피카"
+            },
+            {
+              "code": "CATIMOR",
+              "coffeeVarietyId": 27,
+              "description": "카투라와 하이브리드 계열을 바탕으로 한 품종군",
+              "name": "카티모르"
+            }
+          ],
+          "weightGrams": 200
+        },
+        {
+          "recommendationScore": 9,
+          "reasons": [
+            "디카페인 여부 조건 충족",
+            "산미 선호와 일치",
+            "바디 선호와 일치"
+          ],
+          "acidity": 3,
+          "aroma": 4,
+          "beanType": "SINGLE_ORIGIN",
+          "body": 4,
+          "brewMethods": [
+            {
+              "brewMethodId": 1,
+              "code": "POUR_OVER",
+              "description": "종이 필터로 향미의 명료도를 표현함",
+              "name": "푸어오버",
+              "recommendationNote": "중간 분쇄도와 90~94C 물로 향미를 선명하게 표현함"
+            },
+            {
+              "brewMethodId": 4,
+              "code": "AEROPRESS",
+              "description": "침지와 압력을 조합해 균형 있는 추출을 표현함",
+              "name": "에어로프레스",
+              "recommendationNote": "짧은 침지로 단맛과 산미의 균형을 맞춤"
+            }
+          ],
+          "categoryName": "싱글 오리진",
+          "coffeeProfileId": 51,
+          "coffeeProfileName": "BR Mantiqueira NATURAL 미디엄",
+          "components": [],
+          "decaf": false,
+          "flavorNotes": [
+            {
+              "code": "RED_FRUIT",
+              "description": "딸기와 체리를 떠올리는 과일 인상",
+              "flavorNoteId": 19,
+              "intensity": 4,
+              "name": "붉은 과일"
+            },
+            {
+              "code": "HONEY",
+              "description": "꿀을 떠올리는 매끄러운 단맛",
+              "flavorNoteId": 33,
+              "intensity": 4,
+              "name": "꿀"
+            },
+            {
+              "code": "NUTTY",
+              "description": "구운 견과를 떠올리는 고소한 향미",
+              "flavorNoteId": 7,
+              "intensity": 3,
+              "name": "견과류"
+            }
+          ],
+          "imageUrl": "https://assets-coffeeprod.ttagyulab.com/products/catalog/so019-m-v1.webp",
+          "name": "BR Mantiqueira NATURAL 미디엄 200g",
+          "price": 17500,
+          "processingMethodName": "Natural",
+          "productId": 72,
+          "roastLevel": "MEDIUM",
+          "sku": "CP-SO019-M-200",
+          "sweetness": 5,
+          "varieties": [
+            {
+              "code": "YELLOW_BOURBON",
+              "coffeeVarietyId": 14,
+              "description": "노란색 열매 특성을 가진 버번 계열",
+              "name": "옐로 버번"
+            }
+          ],
+          "weightGrams": 200
+        },
+        {
+          "recommendationScore": 9,
+          "reasons": [
+            "디카페인 여부 조건 충족",
+            "산미 선호와 일치",
+            "바디 선호와 일치"
+          ],
+          "acidity": 3,
+          "aroma": 3,
+          "beanType": "SINGLE_ORIGIN",
+          "body": 4,
+          "brewMethods": [
+            {
+              "brewMethodId": 1,
+              "code": "POUR_OVER",
+              "description": "종이 필터로 향미의 명료도를 표현함",
+              "name": "푸어오버",
+              "recommendationNote": "중간 분쇄도와 90~94C 물로 향미를 선명하게 표현함"
+            },
+            {
+              "brewMethodId": 4,
+              "code": "AEROPRESS",
+              "description": "침지와 압력을 조합해 균형 있는 추출을 표현함",
+              "name": "에어로프레스",
+              "recommendationNote": "짧은 침지로 단맛과 산미의 균형을 맞춤"
+            }
+          ],
+          "categoryName": "싱글 오리진",
+          "coffeeProfileId": 54,
+          "coffeeProfileName": "CO Sierra Nevada NATURAL 미디엄",
+          "components": [],
+          "decaf": false,
+          "flavorNotes": [
+            {
+              "code": "CHOCOLATE",
+              "description": "초콜릿을 떠올리는 부드러운 단맛",
+              "flavorNoteId": 6,
+              "intensity": 4,
+              "name": "초콜릿"
+            },
+            {
+              "code": "RED_APPLE",
+              "description": "사과를 떠올리는 산미와 단맛",
+              "flavorNoteId": 22,
+              "intensity": 3,
+              "name": "붉은 사과"
+            },
+            {
+              "code": "CARAMEL",
+              "description": "카라멜과 토피를 떠올리는 단맛",
+              "flavorNoteId": 8,
+              "intensity": 4,
+              "name": "카라멜"
+            }
+          ],
+          "imageUrl": "https://assets-coffeeprod.ttagyulab.com/products/catalog/so016-m-v1.webp",
+          "name": "CO Sierra Nevada NATURAL 미디엄 200g",
+          "price": 17500,
+          "processingMethodName": "Natural",
+          "productId": 82,
+          "roastLevel": "MEDIUM",
+          "sku": "CP-SO016-M-200",
+          "sweetness": 5,
+          "varieties": [
+            {
+              "code": "CASTILLO",
+              "coffeeVarietyId": 3,
+              "description": "콜롬비아에서 널리 재배되는 품종",
+              "name": "카스티요"
+            },
+            {
+              "code": "TYPICA",
+              "coffeeVarietyId": 8,
+              "description": "여러 현대 품종의 기반이 된 전통 아라비카 품종",
+              "name": "티피카"
+            }
+          ],
+          "weightGrams": 200
+        },
+        {
+          "recommendationScore": 9,
+          "reasons": [
+            "디카페인 여부 조건 충족",
+            "산미 선호와 일치",
+            "바디 선호와 일치"
+          ],
+          "acidity": 3,
+          "aroma": 4,
+          "beanType": "SINGLE_ORIGIN",
+          "body": 4,
+          "brewMethods": [
+            {
+              "brewMethodId": 1,
+              "code": "POUR_OVER",
+              "description": "종이 필터로 향미의 명료도를 표현함",
+              "name": "푸어오버",
+              "recommendationNote": "중간 분쇄도와 90~94C 물로 향미를 선명하게 표현함"
+            },
+            {
+              "brewMethodId": 4,
+              "code": "AEROPRESS",
+              "description": "침지와 압력을 조합해 균형 있는 추출을 표현함",
+              "name": "에어로프레스",
+              "recommendationNote": "짧은 침지로 단맛과 산미의 균형을 맞춤"
+            }
+          ],
+          "categoryName": "싱글 오리진",
+          "coffeeProfileId": 25,
+          "coffeeProfileName": "UG Bugisu WASHED 미디엄",
+          "components": [],
+          "decaf": false,
+          "flavorNotes": [
+            {
+              "code": "SPICE",
+              "description": "계피와 정향을 떠올리는 향신료 인상",
+              "flavorNoteId": 11,
+              "intensity": 4,
+              "name": "스파이스"
+            },
+            {
+              "code": "DARK_CHOCOLATE",
+              "description": "카카오 함량이 높은 초콜릿 같은 쌉쌀한 단맛",
+              "flavorNoteId": 25,
+              "intensity": 4,
+              "name": "다크 초콜릿"
+            },
+            {
+              "code": "CITRUS",
+              "description": "감귤류를 떠올리는 밝은 인상",
+              "flavorNoteId": 3,
+              "intensity": 3,
+              "name": "시트러스"
+            }
+          ],
+          "imageUrl": "https://assets-coffeeprod.ttagyulab.com/products/catalog/so011-m-v1.webp",
+          "name": "UG Bugisu WASHED 미디엄 200g",
+          "price": 17500,
+          "processingMethodName": "Washed",
+          "productId": 104,
+          "roastLevel": "MEDIUM",
+          "sku": "CP-SO011-M-200",
+          "sweetness": 4,
+          "varieties": [
+            {
+              "code": "SL14",
+              "coffeeVarietyId": 19,
+              "description": "동아프리카 일부 생산지에서 재배되는 품종",
+              "name": "SL14"
+            },
+            {
+              "code": "NYASALAND",
+              "coffeeVarietyId": 20,
+              "description": "동아프리카에 전해진 전통 아라비카 계열",
+              "name": "Nyasaland"
+            }
+          ],
+          "weightGrams": 200
+        },
+        {
+          "recommendationScore": 9,
+          "reasons": [
+            "디카페인 여부 조건 충족",
+            "산미 선호와 일치",
+            "바디 선호와 일치"
+          ],
+          "acidity": 3,
+          "aroma": 4,
+          "beanType": "SINGLE_ORIGIN",
+          "body": 4,
+          "brewMethods": [
+            {
+              "brewMethodId": 1,
+              "code": "POUR_OVER",
+              "description": "종이 필터로 향미의 명료도를 표현함",
+              "name": "푸어오버",
+              "recommendationNote": "중간 분쇄도와 90~94C 물로 향미를 선명하게 표현함"
+            },
+            {
+              "brewMethodId": 4,
+              "code": "AEROPRESS",
+              "description": "침지와 압력을 조합해 균형 있는 추출을 표현함",
+              "name": "에어로프레스",
+              "recommendationNote": "짧은 침지로 단맛과 산미의 균형을 맞춤"
+            }
+          ],
+          "categoryName": "싱글 오리진",
+          "coffeeProfileId": 57,
+          "coffeeProfileName": "UG Rwenzori NATURAL 미디엄",
+          "components": [],
+          "decaf": false,
+          "flavorNotes": [
+            {
+              "code": "BERRY",
+              "description": "붉거나 검은 베리류를 떠올리는 향미",
+              "flavorNoteId": 4,
+              "intensity": 4,
+              "name": "베리"
+            },
+            {
+              "code": "DRIED_FRUIT",
+              "description": "건포도와 말린 자두를 떠올리는 단맛",
+              "flavorNoteId": 23,
+              "intensity": 4,
+              "name": "건과일"
+            },
+            {
+              "code": "CHOCOLATE",
+              "description": "초콜릿을 떠올리는 부드러운 단맛",
+              "flavorNoteId": 6,
+              "intensity": 3,
+              "name": "초콜릿"
+            }
+          ],
+          "imageUrl": "https://assets-coffeeprod.ttagyulab.com/products/catalog/so012-m-v1.webp",
+          "name": "UG Rwenzori NATURAL 미디엄 200g",
+          "price": 18000,
+          "processingMethodName": "Natural",
+          "productId": 100,
+          "roastLevel": "MEDIUM",
+          "sku": "CP-SO012-M-200",
+          "sweetness": 5,
+          "varieties": [
+            {
+              "code": "NYASALAND",
+              "coffeeVarietyId": 20,
+              "description": "동아프리카에 전해진 전통 아라비카 계열",
+              "name": "Nyasaland"
+            }
+          ],
+          "weightGrams": 200
+        },
+        {
+          "recommendationScore": 9,
+          "reasons": [
+            "디카페인 여부 조건 충족",
+            "산미 선호와 일치",
+            "바디 선호와 일치"
+          ],
+          "acidity": 3,
+          "aroma": 4,
+          "beanType": "SINGLE_ORIGIN",
+          "body": 4,
+          "brewMethods": [
+            {
+              "brewMethodId": 1,
+              "code": "POUR_OVER",
+              "description": "종이 필터로 향미의 명료도를 표현함",
+              "name": "푸어오버",
+              "recommendationNote": "중간 분쇄도와 90~94C 물로 향미를 선명하게 표현함"
+            },
+            {
+              "brewMethodId": 4,
+              "code": "AEROPRESS",
+              "description": "침지와 압력을 조합해 균형 있는 추출을 표현함",
+              "name": "에어로프레스",
+              "recommendationNote": "짧은 침지로 단맛과 산미의 균형을 맞춤"
+            }
+          ],
+          "categoryName": "싱글 오리진",
+          "coffeeProfileId": 14,
+          "coffeeProfileName": "GT Antigua WASHED 미디엄",
+          "components": [],
+          "decaf": false,
+          "flavorNotes": [
+            {
+              "code": "DARK_CHOCOLATE",
+              "description": "카카오 함량이 높은 초콜릿 같은 쌉쌀한 단맛",
+              "flavorNoteId": 25,
+              "intensity": 4,
+              "name": "다크 초콜릿"
+            },
+            {
+              "code": "SPICE",
+              "description": "계피와 정향을 떠올리는 향신료 인상",
+              "flavorNoteId": 11,
+              "intensity": 4,
+              "name": "스파이스"
+            },
+            {
+              "code": "CARAMEL",
+              "description": "카라멜과 토피를 떠올리는 단맛",
+              "flavorNoteId": 8,
+              "intensity": 4,
+              "name": "카라멜"
+            }
+          ],
+          "imageUrl": "https://assets-coffeeprod.ttagyulab.com/products/catalog/so025-m-v1.webp",
+          "name": "GT Antigua WASHED 미디엄 200g",
+          "price": 18500,
+          "processingMethodName": "Washed",
+          "productId": 46,
+          "roastLevel": "MEDIUM",
+          "sku": "CP-SO025-M-200",
+          "sweetness": 5,
+          "varieties": [
+            {
+              "code": "BOURBON",
+              "coffeeVarietyId": 7,
+              "description": "다양한 지역에서 재배되는 전통 아라비카 품종",
+              "name": "버번"
+            },
+            {
+              "code": "CATURRA",
+              "coffeeVarietyId": 2,
+              "description": "버번 계열의 왜성 품종",
+              "name": "카투라"
+            }
+          ],
+          "weightGrams": 200
+        },
+        {
+          "recommendationScore": 9,
+          "reasons": [
+            "디카페인 여부 조건 충족",
+            "산미 선호와 일치",
+            "바디 선호와 일치"
+          ],
+          "acidity": 3,
+          "aroma": 4,
+          "beanType": "SINGLE_ORIGIN",
+          "body": 4,
+          "brewMethods": [
+            {
+              "brewMethodId": 1,
+              "code": "POUR_OVER",
+              "description": "종이 필터로 향미의 명료도를 표현함",
+              "name": "푸어오버",
+              "recommendationNote": "중간 분쇄도와 90~94C 물로 향미를 선명하게 표현함"
+            },
+            {
+              "brewMethodId": 4,
+              "code": "AEROPRESS",
+              "description": "침지와 압력을 조합해 균형 있는 추출을 표현함",
+              "name": "에어로프레스",
+              "recommendationNote": "짧은 침지로 단맛과 산미의 균형을 맞춤"
+            }
+          ],
+          "categoryName": "싱글 오리진",
+          "coffeeProfileId": 46,
+          "coffeeProfileName": "GT Atitlan NATURAL 미디엄",
+          "components": [],
+          "decaf": false,
+          "flavorNotes": [
+            {
+              "code": "STONE_FRUIT",
+              "description": "복숭아와 살구를 떠올리는 향미",
+              "flavorNoteId": 5,
+              "intensity": 4,
+              "name": "핵과류"
+            },
+            {
+              "code": "COCOA",
+              "description": "코코아 가루를 떠올리는 고소하고 쌉쌀한 인상",
+              "flavorNoteId": 27,
+              "intensity": 4,
+              "name": "코코아"
+            },
+            {
+              "code": "BROWN_SUGAR",
+              "description": "흑설탕을 떠올리는 깊은 단맛",
+              "flavorNoteId": 9,
+              "intensity": 4,
+              "name": "흑설탕"
+            }
+          ],
+          "imageUrl": "https://assets-coffeeprod.ttagyulab.com/products/catalog/so026-m-v1.webp",
+          "name": "GT Atitlan NATURAL 미디엄 200g",
+          "price": 19000,
+          "processingMethodName": "Natural",
+          "productId": 42,
+          "roastLevel": "MEDIUM",
+          "sku": "CP-SO026-M-200",
+          "sweetness": 5,
+          "varieties": [
+            {
+              "code": "TYPICA",
+              "coffeeVarietyId": 8,
+              "description": "여러 현대 품종의 기반이 된 전통 아라비카 품종",
+              "name": "티피카"
+            },
+            {
+              "code": "BOURBON",
+              "coffeeVarietyId": 7,
+              "description": "다양한 지역에서 재배되는 전통 아라비카 품종",
+              "name": "버번"
+            }
+          ],
+          "weightGrams": 200
+        },
+        {
+          "recommendationScore": 9,
+          "reasons": [
+            "디카페인 여부 조건 충족",
+            "산미 선호와 일치",
+            "바디 선호와 일치"
+          ],
+          "acidity": 3,
+          "aroma": 5,
+          "beanType": "BLEND",
+          "body": 4,
+          "brewMethods": [
+            {
+              "brewMethodId": 2,
+              "code": "ESPRESSO",
+              "description": "고압 추출로 농도와 질감을 표현함",
+              "name": "에스프레소",
+              "recommendationNote": "도징과 수율을 고정해 블렌드의 질감을 안정적으로 표현함"
+            },
+            {
+              "brewMethodId": 5,
+              "code": "COLD_BREW",
+              "description": "저온 장시간 추출로 부드러운 단맛을 표현함",
+              "name": "콜드브루",
+              "recommendationNote": "저온 침지로 묵직한 단맛을 표현함"
+            }
+          ],
+          "categoryName": "블렌드",
+          "coffeeProfileId": 80,
+          "coffeeProfileName": "Seasonal Red Fruit 다크",
+          "components": [
+            {
+              "componentRatio": 40.0,
+              "originCountryCode": "RW",
+              "originRegion": "Huye",
+              "processingMethod": {
+                "code": "NATURAL",
+                "description": "커피 체리를 과육째 건조해 과일 향과 단맛을 표현함",
+                "id": 2,
+                "name": "Natural"
+              }
+            },
+            {
+              "componentRatio": 35.0,
+              "originCountryCode": "SV",
+              "originRegion": "Apaneca-Ilamatepec",
+              "processingMethod": {
+                "code": "HONEY",
+                "description": "점액질 일부를 남겨 단맛과 질감의 균형을 표현함",
+                "id": 3,
+                "name": "Honey"
+              }
+            },
+            {
+              "componentRatio": 25.0,
+              "originCountryCode": "CO",
+              "originRegion": "Cauca",
+              "processingMethod": {
+                "code": "WASHED",
+                "description": "점액질을 물로 제거해 향미의 명료도와 산뜻한 인상을 표현함",
+                "id": 1,
+                "name": "Washed"
+              }
+            }
+          ],
+          "decaf": false,
+          "flavorNotes": [
+            {
+              "code": "RED_FRUIT",
+              "description": "딸기와 체리를 떠올리는 과일 인상",
+              "flavorNoteId": 19,
+              "intensity": 5,
+              "name": "붉은 과일"
+            },
+            {
+              "code": "STONE_FRUIT",
+              "description": "복숭아와 살구를 떠올리는 향미",
+              "flavorNoteId": 5,
+              "intensity": 4,
+              "name": "핵과류"
+            },
+            {
+              "code": "HONEY",
+              "description": "꿀을 떠올리는 매끄러운 단맛",
+              "flavorNoteId": 33,
+              "intensity": 4,
+              "name": "꿀"
+            }
+          ],
+          "imageUrl": "https://assets-coffeeprod.ttagyulab.com/products/catalog/bl010-d-v1.webp",
+          "name": "Seasonal Red Fruit 다크 200g",
+          "price": 21000,
+          "processingMethodName": null,
+          "productId": 146,
+          "roastLevel": "DARK",
+          "sku": "CP-BL010-D-200",
+          "sweetness": 4,
+          "varieties": [
+            {
+              "code": "BOURBON",
+              "coffeeVarietyId": 7,
+              "description": "다양한 지역에서 재배되는 전통 아라비카 품종",
+              "name": "버번"
+            },
+            {
+              "code": "PACAS",
+              "coffeeVarietyId": 22,
+              "description": "엘살바도르에서 발견된 버번 계열 왜성 품종",
+              "name": "파카스"
+            },
+            {
+              "code": "CASTILLO",
+              "coffeeVarietyId": 3,
+              "description": "콜롬비아에서 널리 재배되는 품종",
+              "name": "카스티요"
+            }
+          ],
+          "weightGrams": 200
+        },
+        {
+          "recommendationScore": 9,
+          "reasons": [
+            "디카페인 여부 조건 충족",
+            "산미 선호와 일치",
+            "바디 선호와 일치"
+          ],
+          "acidity": 3,
+          "aroma": 4,
+          "beanType": "BLEND",
+          "body": 4,
+          "brewMethods": [
+            {
+              "brewMethodId": 1,
+              "code": "POUR_OVER",
+              "description": "종이 필터로 향미의 명료도를 표현함",
+              "name": "푸어오버",
+              "recommendationNote": "충분한 블루밍으로 산지별 향을 고르게 표현함"
+            },
+            {
+              "brewMethodId": 2,
+              "code": "ESPRESSO",
+              "description": "고압 추출로 농도와 질감을 표현함",
+              "name": "에스프레소",
+              "recommendationNote": "중간 수율로 단맛과 산미의 균형을 맞춤"
+            }
+          ],
+          "categoryName": "블렌드",
+          "coffeeProfileId": 99,
+          "coffeeProfileName": "Morning Balance 미디엄",
+          "components": [
+            {
+              "componentRatio": 50.0,
+              "originCountryCode": "BR",
+              "originRegion": "Cerrado",
+              "processingMethod": {
+                "code": "NATURAL",
+                "description": "커피 체리를 과육째 건조해 과일 향과 단맛을 표현함",
+                "id": 2,
+                "name": "Natural"
+              }
+            },
+            {
+              "componentRatio": 30.0,
+              "originCountryCode": "CO",
+              "originRegion": "Huila",
+              "processingMethod": {
+                "code": "HONEY",
+                "description": "점액질 일부를 남겨 단맛과 질감의 균형을 표현함",
+                "id": 3,
+                "name": "Honey"
+              }
+            },
+            {
+              "componentRatio": 20.0,
+              "originCountryCode": "ET",
+              "originRegion": "Sidama",
+              "processingMethod": {
+                "code": "WASHED",
+                "description": "점액질을 물로 제거해 향미의 명료도와 산뜻한 인상을 표현함",
+                "id": 1,
+                "name": "Washed"
+              }
+            }
+          ],
+          "decaf": false,
+          "flavorNotes": [
+            {
+              "code": "CARAMEL",
+              "description": "카라멜과 토피를 떠올리는 단맛",
+              "flavorNoteId": 8,
+              "intensity": 5,
+              "name": "카라멜"
+            },
+            {
+              "code": "CHOCOLATE",
+              "description": "초콜릿을 떠올리는 부드러운 단맛",
+              "flavorNoteId": 6,
+              "intensity": 4,
+              "name": "초콜릿"
+            },
+            {
+              "code": "CITRUS",
+              "description": "감귤류를 떠올리는 밝은 인상",
+              "flavorNoteId": 3,
+              "intensity": 3,
+              "name": "시트러스"
+            }
+          ],
+          "imageUrl": "https://assets-coffeeprod.ttagyulab.com/products/catalog/bl001-m-v1.webp",
+          "name": "Morning Balance 미디엄 500g",
+          "price": 37000,
+          "processingMethodName": null,
+          "productId": 183,
+          "roastLevel": "MEDIUM",
+          "sku": "CP-BL001-M-500",
+          "sweetness": 5,
+          "varieties": [
+            {
+              "code": "CATUAI",
+              "coffeeVarietyId": 5,
+              "description": "문도 노보와 카투라 계열의 교배 품종",
+              "name": "카투아이"
+            },
+            {
+              "code": "CASTILLO",
+              "coffeeVarietyId": 3,
+              "description": "콜롬비아에서 널리 재배되는 품종",
+              "name": "카스티요"
+            },
+            {
+              "code": "ETHIOPIAN_HEIRLOOM",
+              "coffeeVarietyId": 1,
+              "description": "에티오피아 지역의 다양한 토착 품종군",
+              "name": "에티오피아 토착종"
+            }
+          ],
+          "weightGrams": 500
+        },
+        {
+          "recommendationScore": 9,
+          "reasons": [
+            "디카페인 여부 조건 충족",
+            "산미 선호와 일치",
+            "바디 선호와 일치"
+          ],
+          "acidity": 3,
+          "aroma": 3,
+          "beanType": "SINGLE_ORIGIN",
+          "body": 4,
+          "brewMethods": [
+            {
+              "brewMethodId": 1,
+              "code": "POUR_OVER",
+              "description": "종이 필터로 향미의 명료도를 표현함",
+              "name": "푸어오버",
+              "recommendationNote": "중간 분쇄도와 90~94C 물로 향미를 선명하게 표현함"
+            },
+            {
+              "brewMethodId": 4,
+              "code": "AEROPRESS",
+              "description": "침지와 압력을 조합해 균형 있는 추출을 표현함",
+              "name": "에어로프레스",
+              "recommendationNote": "짧은 침지로 단맛과 산미의 균형을 맞춤"
+            }
+          ],
+          "categoryName": "싱글 오리진",
+          "coffeeProfileId": 7,
+          "coffeeProfileName": "ID Java WASHED 미디엄",
+          "components": [],
+          "decaf": false,
+          "flavorNotes": [
+            {
+              "code": "BROWN_SUGAR",
+              "description": "흑설탕을 떠올리는 깊은 단맛",
+              "flavorNoteId": 9,
+              "intensity": 4,
+              "name": "흑설탕"
+            },
+            {
+              "code": "SPICE",
+              "description": "계피와 정향을 떠올리는 향신료 인상",
+              "flavorNoteId": 11,
+              "intensity": 3,
+              "name": "스파이스"
+            },
+            {
+              "code": "COCOA",
+              "description": "코코아 가루를 떠올리는 고소하고 쌉쌀한 인상",
+              "flavorNoteId": 27,
+              "intensity": 4,
+              "name": "코코아"
+            }
+          ],
+          "imageUrl": "https://assets-coffeeprod.ttagyulab.com/products/catalog/so034-m-v1.webp",
+          "name": "ID Java WASHED 미디엄 500g",
+          "price": 38500,
+          "processingMethodName": "Washed",
+          "productId": 11,
+          "roastLevel": "MEDIUM",
+          "sku": "CP-SO034-M-500",
+          "sweetness": 4,
+          "varieties": [
+            {
+              "code": "TYPICA",
+              "coffeeVarietyId": 8,
+              "description": "여러 현대 품종의 기반이 된 전통 아라비카 품종",
+              "name": "티피카"
+            },
+            {
+              "code": "CATIMOR",
+              "coffeeVarietyId": 27,
+              "description": "카투라와 하이브리드 계열을 바탕으로 한 품종군",
+              "name": "카티모르"
+            }
+          ],
+          "weightGrams": 500
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "sourceHash": "0fb09c3f7a3117b0791e579bb60b413826c17c242a5742cc964ff5177190de7c",
+  "measurementHash": "168bd4d9f2b77ebc92471d9ba066157a3b874fc2edb9d43200123956400e969c",
+  "variant": "catalog",
+  "samples": [
+    {
+      "name": "authenticated-filter",
+      "elapsedNanos": 768713363,
+      "cpuNanos": 1510000000,
+      "hibernateStatements": 1,
+      "entities": 1,
+      "collections": 0,
+      "sql": [
+        "select m1_0.member_id,m1_0.created_at,m1_0.email,m1_0.grade,m1_0.mileage,m1_0.mileage_recovery_due,m1_0.name,m1_0.nickname,m1_0.password,m1_0.role,m1_0.status,m1_0.updated_at from member m1_0 where m1_0.member_id=?"
+      ]
+    }
+  ],
+  "scope": "server JVM diagnostics; not HTTP load timing",
+  "parserBuilds": 2,
+  "parseSignedClaims": 2
+}

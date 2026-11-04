@@ -1,0 +1,1156 @@
+{
+  "scope": "local dedicated PostgreSQL at original fixture scale; no production or HTTP claim",
+  "thresholds": {
+    "readReductionPercent": 20,
+    "minimumReadReductionMs": 0.2,
+    "maximumRegressionPercent": 10,
+    "batches": 3,
+    "callsPerBatch": 100,
+    "warmups": 20
+  },
+  "decisions": [
+    {
+      "family": "reviews",
+      "decision": "adopt",
+      "goals": [
+        {
+          "name": "review-10",
+          "beforeMs": 2.47325,
+          "candidateMs": 1.7494,
+          "changePercent": -29.267158596987773,
+          "eachBatchImproved": true,
+          "beforeBlocks": 1474,
+          "candidateBlocks": 103,
+          "qualifies": true
+        },
+        {
+          "name": "review-50",
+          "beforeMs": 3.51655,
+          "candidateMs": 2.57465,
+          "changePercent": -26.78477485035049,
+          "eachBatchImproved": true,
+          "beforeBlocks": 1474,
+          "candidateBlocks": 262,
+          "qualifies": true
+        }
+      ],
+      "reads": [
+        {
+          "name": "review-10",
+          "beforeMs": 2.47325,
+          "candidateMs": 1.7494,
+          "changePercent": -29.267158596987773,
+          "eachBatchImproved": true,
+          "beforeBlocks": 1474,
+          "candidateBlocks": 103,
+          "qualifies": true
+        },
+        {
+          "name": "review-10-page1",
+          "beforeMs": 2.9413,
+          "candidateMs": 2.1946,
+          "changePercent": -25.3867337571822,
+          "eachBatchImproved": true,
+          "beforeBlocks": 1474,
+          "candidateBlocks": 143,
+          "qualifies": true
+        },
+        {
+          "name": "review-10-page5",
+          "beforeMs": 2.6568,
+          "candidateMs": 1.9391,
+          "changePercent": -27.01370069256248,
+          "eachBatchImproved": true,
+          "beforeBlocks": 881,
+          "candidateBlocks": 235,
+          "qualifies": true
+        },
+        {
+          "name": "review-10-page6",
+          "beforeMs": 3.34135,
+          "candidateMs": 2.44695,
+          "changePercent": -26.76762386460563,
+          "eachBatchImproved": true,
+          "beforeBlocks": 1474,
+          "candidateBlocks": 290,
+          "qualifies": true
+        },
+        {
+          "name": "review-50",
+          "beforeMs": 3.51655,
+          "candidateMs": 2.57465,
+          "changePercent": -26.78477485035049,
+          "eachBatchImproved": true,
+          "beforeBlocks": 1474,
+          "candidateBlocks": 262,
+          "qualifies": true
+        },
+        {
+          "name": "review-50-page1",
+          "beforeMs": 2.67315,
+          "candidateMs": 1.94785,
+          "changePercent": -27.13278342030937,
+          "eachBatchImproved": true,
+          "beforeBlocks": 881,
+          "candidateBlocks": 235,
+          "qualifies": true
+        },
+        {
+          "name": "review-50-page2",
+          "beforeMs": 3.3234,
+          "candidateMs": 2.44335,
+          "changePercent": -26.480411626647403,
+          "eachBatchImproved": true,
+          "beforeBlocks": 1474,
+          "candidateBlocks": 290,
+          "qualifies": true
+        }
+      ],
+      "writes": [
+        {
+          "name": "product-insert",
+          "beforeMs": 0.5805,
+          "candidateMs": 0.5742,
+          "changePercent": -1.0852713178294615,
+          "affectedRows": 1
+        },
+        {
+          "name": "review-insert",
+          "beforeMs": 0.6156,
+          "candidateMs": 0.6059,
+          "changePercent": -1.575698505523071,
+          "affectedRows": 1
+        },
+        {
+          "name": "qna-insert",
+          "beforeMs": 0.5897,
+          "candidateMs": 0.5922,
+          "changePercent": 0.42394437849753164,
+          "affectedRows": 1
+        },
+        {
+          "name": "order-insert",
+          "beforeMs": 0.5577,
+          "candidateMs": 0.57025,
+          "changePercent": 2.2503137887753377,
+          "affectedRows": 1
+        },
+        {
+          "name": "payment-insert",
+          "beforeMs": 0.499,
+          "candidateMs": 0.49985,
+          "changePercent": 0.17034068136272396,
+          "affectedRows": 1
+        },
+        {
+          "name": "qna-answer",
+          "beforeMs": 0.5836,
+          "candidateMs": 0.58765,
+          "changePercent": 0.6939684715558503,
+          "affectedRows": 1
+        },
+        {
+          "name": "product-status",
+          "beforeMs": 0.5699,
+          "candidateMs": 0.57645,
+          "changePercent": 1.1493244428847138,
+          "affectedRows": 1
+        },
+        {
+          "name": "stock-decrease",
+          "beforeMs": 0.57435,
+          "candidateMs": 0.57615,
+          "changePercent": 0.31339775398275815,
+          "affectedRows": 1
+        },
+        {
+          "name": "order-status",
+          "beforeMs": 0.56765,
+          "candidateMs": 0.56655,
+          "changePercent": -0.19378137937109408,
+          "affectedRows": 1
+        },
+        {
+          "name": "payment-confirm",
+          "beforeMs": 0.54795,
+          "candidateMs": 0.54205,
+          "changePercent": -1.0767405785199413,
+          "affectedRows": 1
+        },
+        {
+          "name": "payment-refund",
+          "beforeMs": 0.55275,
+          "candidateMs": 0.55985,
+          "changePercent": 1.2844866576209757,
+          "affectedRows": 1
+        }
+      ],
+      "readRegressions": [],
+      "writeRegressions": [],
+      "reason": "Read gain, reduced buffers, all measured read/write regressions within 10%"
+    },
+    {
+      "family": "qna",
+      "decision": "adopt",
+      "goals": [
+        {
+          "name": "qna-10",
+          "beforeMs": 4.16805,
+          "candidateMs": 2.20395,
+          "changePercent": -47.122755245258574,
+          "eachBatchImproved": true,
+          "beforeBlocks": 1880,
+          "candidateBlocks": 166,
+          "qualifies": true
+        },
+        {
+          "name": "qna-50",
+          "beforeMs": 4.7546,
+          "candidateMs": 2.8498,
+          "changePercent": -40.0622554999369,
+          "eachBatchImproved": true,
+          "beforeBlocks": 1880,
+          "candidateBlocks": 326,
+          "qualifies": true
+        }
+      ],
+      "reads": [
+        {
+          "name": "qna-10",
+          "beforeMs": 4.16805,
+          "candidateMs": 2.20395,
+          "changePercent": -47.122755245258574,
+          "eachBatchImproved": true,
+          "beforeBlocks": 1880,
+          "candidateBlocks": 166,
+          "qualifies": true
+        },
+        {
+          "name": "qna-10-page1",
+          "beforeMs": 4.0889,
+          "candidateMs": 2.19315,
+          "changePercent": -46.36332509966006,
+          "eachBatchImproved": true,
+          "beforeBlocks": 1880,
+          "candidateBlocks": 206,
+          "qualifies": true
+        },
+        {
+          "name": "qna-10-page11",
+          "beforeMs": 3.3787,
+          "candidateMs": 2.15785,
+          "changePercent": -36.13372006984935,
+          "eachBatchImproved": true,
+          "beforeBlocks": 1085,
+          "candidateBlocks": 462,
+          "qualifies": true
+        },
+        {
+          "name": "qna-10-page12",
+          "beforeMs": 4.22795,
+          "candidateMs": 2.6624,
+          "changePercent": -37.0285835925212,
+          "eachBatchImproved": true,
+          "beforeBlocks": 1880,
+          "candidateBlocks": 578,
+          "qualifies": true
+        },
+        {
+          "name": "qna-50",
+          "beforeMs": 4.7546,
+          "candidateMs": 2.8498,
+          "changePercent": -40.0622554999369,
+          "eachBatchImproved": true,
+          "beforeBlocks": 1880,
+          "candidateBlocks": 326,
+          "qualifies": true
+        },
+        {
+          "name": "qna-50-page1",
+          "beforeMs": 4.44565,
+          "candidateMs": 2.7982,
+          "changePercent": -37.05757313328759,
+          "eachBatchImproved": true,
+          "beforeBlocks": 1880,
+          "candidateBlocks": 526,
+          "qualifies": true
+        },
+        {
+          "name": "qna-50-page2",
+          "beforeMs": 3.04525,
+          "candidateMs": 2.0404,
+          "changePercent": -32.99729086281914,
+          "eachBatchImproved": true,
+          "beforeBlocks": 1085,
+          "candidateBlocks": 462,
+          "qualifies": true
+        },
+        {
+          "name": "qna-50-page3",
+          "beforeMs": 4.10215,
+          "candidateMs": 2.5706,
+          "changePercent": -37.33529978182173,
+          "eachBatchImproved": true,
+          "beforeBlocks": 1880,
+          "candidateBlocks": 578,
+          "qualifies": true
+        }
+      ],
+      "writes": [
+        {
+          "name": "product-insert",
+          "beforeMs": 0.55515,
+          "candidateMs": 0.55405,
+          "changePercent": -0.19814464559128053,
+          "affectedRows": 1
+        },
+        {
+          "name": "review-insert",
+          "beforeMs": 0.59235,
+          "candidateMs": 0.5951,
+          "changePercent": 0.46425255338904403,
+          "affectedRows": 1
+        },
+        {
+          "name": "qna-insert",
+          "beforeMs": 0.5858,
+          "candidateMs": 0.58725,
+          "changePercent": 0.24752475247524774,
+          "affectedRows": 1
+        },
+        {
+          "name": "order-insert",
+          "beforeMs": 0.5573,
+          "candidateMs": 0.5694,
+          "changePercent": 2.1711824869908414,
+          "affectedRows": 1
+        },
+        {
+          "name": "payment-insert",
+          "beforeMs": 0.4941,
+          "candidateMs": 0.49225,
+          "changePercent": -0.37441813398098045,
+          "affectedRows": 1
+        },
+        {
+          "name": "qna-answer",
+          "beforeMs": 0.58555,
+          "candidateMs": 0.5831,
+          "changePercent": -0.4184100418409997,
+          "affectedRows": 1
+        },
+        {
+          "name": "product-status",
+          "beforeMs": 0.55715,
+          "candidateMs": 0.55165,
+          "changePercent": -0.9871668311944748,
+          "affectedRows": 1
+        },
+        {
+          "name": "stock-decrease",
+          "beforeMs": 0.5516,
+          "candidateMs": 0.5491,
+          "changePercent": -0.4532269760696206,
+          "affectedRows": 1
+        },
+        {
+          "name": "order-status",
+          "beforeMs": 0.5412,
+          "candidateMs": 0.5421,
+          "changePercent": 0.1662971175166339,
+          "affectedRows": 1
+        },
+        {
+          "name": "payment-confirm",
+          "beforeMs": 0.543,
+          "candidateMs": 0.54515,
+          "changePercent": 0.39594843462247287,
+          "affectedRows": 1
+        },
+        {
+          "name": "payment-refund",
+          "beforeMs": 0.53685,
+          "candidateMs": 0.52745,
+          "changePercent": -1.7509546428238765,
+          "affectedRows": 1
+        }
+      ],
+      "readRegressions": [],
+      "writeRegressions": [],
+      "reason": "Read gain, reduced buffers, all measured read/write regressions within 10%"
+    },
+    {
+      "family": "qna-admin",
+      "decision": "hold",
+      "goals": [
+        {
+          "name": "qna-admin-WAITING-10",
+          "beforeMs": 11.85105,
+          "candidateMs": 2.5283,
+          "changePercent": -78.66602537327915,
+          "eachBatchImproved": true,
+          "beforeBlocks": 1934,
+          "candidateBlocks": 1973,
+          "qualifies": false
+        },
+        {
+          "name": "qna-admin-ANSWERED-10",
+          "beforeMs": 21.97175,
+          "candidateMs": 4.71285,
+          "changePercent": -78.55041132363148,
+          "eachBatchImproved": true,
+          "beforeBlocks": 1937,
+          "candidateBlocks": 1976,
+          "qualifies": false
+        },
+        {
+          "name": "qna-admin-WAITING-50",
+          "beforeMs": 12.21835,
+          "candidateMs": 3.41415,
+          "changePercent": -72.05719266513073,
+          "eachBatchImproved": true,
+          "beforeBlocks": 1934,
+          "candidateBlocks": 1894,
+          "qualifies": true
+        },
+        {
+          "name": "qna-admin-ANSWERED-50",
+          "beforeMs": 21.77475,
+          "candidateMs": 5.29315,
+          "changePercent": -75.69133973983628,
+          "eachBatchImproved": true,
+          "beforeBlocks": 1937,
+          "candidateBlocks": 1897,
+          "qualifies": true
+        }
+      ],
+      "reads": [
+        {
+          "name": "qna-admin-WAITING-10",
+          "beforeMs": 11.85105,
+          "candidateMs": 2.5283,
+          "changePercent": -78.66602537327915,
+          "eachBatchImproved": true,
+          "beforeBlocks": 1934,
+          "candidateBlocks": 1973,
+          "qualifies": false
+        },
+        {
+          "name": "qna-admin-ANSWERED-10",
+          "beforeMs": 21.97175,
+          "candidateMs": 4.71285,
+          "changePercent": -78.55041132363148,
+          "eachBatchImproved": true,
+          "beforeBlocks": 1937,
+          "candidateBlocks": 1976,
+          "qualifies": false
+        },
+        {
+          "name": "qna-admin-all-10",
+          "beforeMs": 23.7594,
+          "candidateMs": 22.6426,
+          "changePercent": -4.7004553987053495,
+          "eachBatchImproved": true,
+          "beforeBlocks": 1937,
+          "candidateBlocks": 1976,
+          "qualifies": false
+        },
+        {
+          "name": "qna-admin-WAITING-50",
+          "beforeMs": 12.21835,
+          "candidateMs": 3.41415,
+          "changePercent": -72.05719266513073,
+          "eachBatchImproved": true,
+          "beforeBlocks": 1934,
+          "candidateBlocks": 1894,
+          "qualifies": true
+        },
+        {
+          "name": "qna-admin-ANSWERED-50",
+          "beforeMs": 21.77475,
+          "candidateMs": 5.29315,
+          "changePercent": -75.69133973983628,
+          "eachBatchImproved": true,
+          "beforeBlocks": 1937,
+          "candidateBlocks": 1897,
+          "qualifies": true
+        },
+        {
+          "name": "qna-admin-all-50",
+          "beforeMs": 25.1464,
+          "candidateMs": 23.5476,
+          "changePercent": -6.357967740909231,
+          "eachBatchImproved": true,
+          "beforeBlocks": 1897,
+          "candidateBlocks": 1897,
+          "qualifies": false
+        }
+      ],
+      "writes": [
+        {
+          "name": "product-insert",
+          "beforeMs": 0.6134,
+          "candidateMs": 0.61655,
+          "changePercent": 0.5135311379197871,
+          "affectedRows": 1
+        },
+        {
+          "name": "review-insert",
+          "beforeMs": 0.6153,
+          "candidateMs": 0.6236,
+          "changePercent": 1.3489354786283103,
+          "affectedRows": 1
+        },
+        {
+          "name": "qna-insert",
+          "beforeMs": 0.60325,
+          "candidateMs": 0.60945,
+          "changePercent": 1.0277662660588494,
+          "affectedRows": 1
+        },
+        {
+          "name": "order-insert",
+          "beforeMs": 0.57135,
+          "candidateMs": 0.5706,
+          "changePercent": -0.13126804935679193,
+          "affectedRows": 1
+        },
+        {
+          "name": "payment-insert",
+          "beforeMs": 0.4916,
+          "candidateMs": 0.49045,
+          "changePercent": -0.23393002441008948,
+          "affectedRows": 1
+        },
+        {
+          "name": "qna-answer",
+          "beforeMs": 0.6093,
+          "candidateMs": 0.60885,
+          "changePercent": -0.07385524372230945,
+          "affectedRows": 1
+        },
+        {
+          "name": "product-status",
+          "beforeMs": 0.5557,
+          "candidateMs": 0.55975,
+          "changePercent": 0.7288105092675856,
+          "affectedRows": 1
+        },
+        {
+          "name": "stock-decrease",
+          "beforeMs": 0.57605,
+          "candidateMs": 0.57955,
+          "changePercent": 0.6075861470358435,
+          "affectedRows": 1
+        },
+        {
+          "name": "order-status",
+          "beforeMs": 0.56395,
+          "candidateMs": 0.5593,
+          "changePercent": -0.8245411827289661,
+          "affectedRows": 1
+        },
+        {
+          "name": "payment-confirm",
+          "beforeMs": 0.5641,
+          "candidateMs": 0.5645,
+          "changePercent": 0.07090941322460687,
+          "affectedRows": 1
+        },
+        {
+          "name": "payment-refund",
+          "beforeMs": 0.53445,
+          "candidateMs": 0.53785,
+          "changePercent": 0.6361680232014111,
+          "affectedRows": 1
+        }
+      ],
+      "readRegressions": [],
+      "writeRegressions": [],
+      "reason": "Final-combination generic-plan buffer reduction was not proven; excluded from the final schema"
+    },
+    {
+      "family": "orders",
+      "decision": "hold",
+      "goals": [
+        {
+          "name": "orders-10",
+          "beforeMs": 18.23955,
+          "candidateMs": 9.21075,
+          "changePercent": -49.50122124723472,
+          "eachBatchImproved": true,
+          "beforeBlocks": 9274,
+          "candidateBlocks": 4714,
+          "qualifies": true
+        },
+        {
+          "name": "orders-50",
+          "beforeMs": 16.71095,
+          "candidateMs": 8.82815,
+          "changePercent": -47.171465416388656,
+          "eachBatchImproved": true,
+          "beforeBlocks": 10116,
+          "candidateBlocks": 5603,
+          "qualifies": true
+        }
+      ],
+      "reads": [
+        {
+          "name": "orders-10",
+          "beforeMs": 18.23955,
+          "candidateMs": 9.21075,
+          "changePercent": -49.50122124723472,
+          "eachBatchImproved": true,
+          "beforeBlocks": 9274,
+          "candidateBlocks": 4714,
+          "qualifies": true
+        },
+        {
+          "name": "orders-10-page1",
+          "beforeMs": 18.1806,
+          "candidateMs": 9.4111,
+          "changePercent": -48.23548177727908,
+          "eachBatchImproved": true,
+          "beforeBlocks": 9274,
+          "candidateBlocks": 4721,
+          "qualifies": true
+        },
+        {
+          "name": "orders-10-page14999",
+          "beforeMs": 44.4815,
+          "candidateMs": 56.7615,
+          "changePercent": 27.60698267819206,
+          "eachBatchImproved": false,
+          "beforeBlocks": 9274,
+          "candidateBlocks": 154768,
+          "qualifies": false
+        },
+        {
+          "name": "orders-10-page15000",
+          "beforeMs": 36.3111,
+          "candidateMs": 55.5895,
+          "changePercent": 53.09230510780449,
+          "eachBatchImproved": false,
+          "beforeBlocks": 9064,
+          "candidateBlocks": 154558,
+          "qualifies": false
+        },
+        {
+          "name": "orders-50",
+          "beforeMs": 16.71095,
+          "candidateMs": 8.82815,
+          "changePercent": -47.171465416388656,
+          "eachBatchImproved": true,
+          "beforeBlocks": 10116,
+          "candidateBlocks": 5603,
+          "qualifies": true
+        },
+        {
+          "name": "orders-50-page1",
+          "beforeMs": 17.00605,
+          "candidateMs": 9.151,
+          "changePercent": -46.18973835781972,
+          "eachBatchImproved": true,
+          "beforeBlocks": 10113,
+          "candidateBlocks": 5641,
+          "qualifies": true
+        },
+        {
+          "name": "orders-50-page2999",
+          "beforeMs": 38.30385,
+          "candidateMs": 57.4796,
+          "changePercent": 50.06220001383672,
+          "eachBatchImproved": false,
+          "beforeBlocks": 10116,
+          "candidateBlocks": 155610,
+          "qualifies": false
+        },
+        {
+          "name": "orders-50-page3000",
+          "beforeMs": 36.5167,
+          "candidateMs": 55.67855,
+          "changePercent": 52.47421042974858,
+          "eachBatchImproved": false,
+          "beforeBlocks": 9064,
+          "candidateBlocks": 154558,
+          "qualifies": false
+        }
+      ],
+      "writes": [
+        {
+          "name": "product-insert",
+          "beforeMs": 0.54735,
+          "candidateMs": 0.54595,
+          "changePercent": -0.25577783867726245,
+          "affectedRows": 1
+        },
+        {
+          "name": "review-insert",
+          "beforeMs": 0.5839,
+          "candidateMs": 0.58635,
+          "changePercent": 0.4195923959582126,
+          "affectedRows": 1
+        },
+        {
+          "name": "qna-insert",
+          "beforeMs": 0.5725,
+          "candidateMs": 0.5771,
+          "changePercent": 0.8034934497816559,
+          "affectedRows": 1
+        },
+        {
+          "name": "order-insert",
+          "beforeMs": 0.54945,
+          "candidateMs": 0.5521,
+          "changePercent": 0.4823004823004906,
+          "affectedRows": 1
+        },
+        {
+          "name": "payment-insert",
+          "beforeMs": 0.47425,
+          "candidateMs": 0.471,
+          "changePercent": -0.6852925672113819,
+          "affectedRows": 1
+        },
+        {
+          "name": "qna-answer",
+          "beforeMs": 0.5658,
+          "candidateMs": 0.5719,
+          "changePercent": 1.0781194768469504,
+          "affectedRows": 1
+        },
+        {
+          "name": "product-status",
+          "beforeMs": 0.5527,
+          "candidateMs": 0.54365,
+          "changePercent": -1.6374163198841996,
+          "affectedRows": 1
+        },
+        {
+          "name": "stock-decrease",
+          "beforeMs": 0.53985,
+          "candidateMs": 0.54265,
+          "changePercent": 0.5186625914605836,
+          "affectedRows": 1
+        },
+        {
+          "name": "order-status",
+          "beforeMs": 0.5429,
+          "candidateMs": 0.53235,
+          "changePercent": -1.9432676367655222,
+          "affectedRows": 1
+        },
+        {
+          "name": "payment-confirm",
+          "beforeMs": 0.53955,
+          "candidateMs": 0.5334,
+          "changePercent": -1.1398387545176525,
+          "affectedRows": 1
+        },
+        {
+          "name": "payment-refund",
+          "beforeMs": 0.54165,
+          "candidateMs": 0.5377,
+          "changePercent": -0.7292532077910141,
+          "affectedRows": 1
+        }
+      ],
+      "readRegressions": [
+        "orders-10-page14999",
+        "orders-10-page15000",
+        "orders-50-page2999",
+        "orders-50-page3000"
+      ],
+      "writeRegressions": [],
+      "reason": "Read or write regression exceeds 10%; retain the original schema"
+    },
+    {
+      "family": "payment",
+      "decision": "hold",
+      "goals": [
+        {
+          "name": "payment-day-1",
+          "beforeMs": 6.6586,
+          "candidateMs": 1.1181,
+          "changePercent": -83.20818190009912,
+          "eachBatchImproved": true,
+          "beforeBlocks": 2927,
+          "candidateBlocks": 1026,
+          "qualifies": true
+        },
+        {
+          "name": "payment-group-1",
+          "beforeMs": 6.83095,
+          "candidateMs": 1.31045,
+          "changePercent": -80.81599191913277,
+          "eachBatchImproved": true,
+          "beforeBlocks": 2935,
+          "candidateBlocks": 1026,
+          "qualifies": true
+        },
+        {
+          "name": "payment-day-30",
+          "beforeMs": 12.25715,
+          "candidateMs": 10.0239,
+          "changePercent": -18.21997772728571,
+          "eachBatchImproved": true,
+          "beforeBlocks": 25535,
+          "candidateBlocks": 29285,
+          "qualifies": false
+        },
+        {
+          "name": "payment-group-30",
+          "beforeMs": 13.24905,
+          "candidateMs": 12.19185,
+          "changePercent": -7.979440035323282,
+          "eachBatchImproved": true,
+          "beforeBlocks": 25543,
+          "candidateBlocks": 29285,
+          "qualifies": false
+        }
+      ],
+      "reads": [
+        {
+          "name": "payment-day-1",
+          "beforeMs": 6.6586,
+          "candidateMs": 1.1181,
+          "changePercent": -83.20818190009912,
+          "eachBatchImproved": true,
+          "beforeBlocks": 2927,
+          "candidateBlocks": 1026,
+          "qualifies": true
+        },
+        {
+          "name": "payment-group-1",
+          "beforeMs": 6.83095,
+          "candidateMs": 1.31045,
+          "changePercent": -80.81599191913277,
+          "eachBatchImproved": true,
+          "beforeBlocks": 2935,
+          "candidateBlocks": 1026,
+          "qualifies": true
+        },
+        {
+          "name": "payment-day-30",
+          "beforeMs": 12.25715,
+          "candidateMs": 10.0239,
+          "changePercent": -18.21997772728571,
+          "eachBatchImproved": true,
+          "beforeBlocks": 25535,
+          "candidateBlocks": 29285,
+          "qualifies": false
+        },
+        {
+          "name": "payment-group-30",
+          "beforeMs": 13.24905,
+          "candidateMs": 12.19185,
+          "changePercent": -7.979440035323282,
+          "eachBatchImproved": true,
+          "beforeBlocks": 25543,
+          "candidateBlocks": 29285,
+          "qualifies": false
+        },
+        {
+          "name": "payment-day-366",
+          "beforeMs": 40.9037,
+          "candidateMs": 90.8508,
+          "changePercent": 122.1090023640893,
+          "eachBatchImproved": false,
+          "beforeBlocks": 287963,
+          "candidateBlocks": 357297,
+          "qualifies": false
+        },
+        {
+          "name": "payment-group-366",
+          "beforeMs": 56.95095,
+          "candidateMs": 120.29955,
+          "changePercent": 111.23361418905216,
+          "eachBatchImproved": false,
+          "beforeBlocks": 287971,
+          "candidateBlocks": 357297,
+          "qualifies": false
+        }
+      ],
+      "writes": [
+        {
+          "name": "product-insert",
+          "beforeMs": 0.55065,
+          "candidateMs": 0.554,
+          "changePercent": 0.6083719240897123,
+          "affectedRows": 1
+        },
+        {
+          "name": "review-insert",
+          "beforeMs": 0.59175,
+          "candidateMs": 0.58045,
+          "changePercent": -1.9095901985635821,
+          "affectedRows": 1
+        },
+        {
+          "name": "qna-insert",
+          "beforeMs": 0.57785,
+          "candidateMs": 0.5661,
+          "changePercent": -2.0333996711949465,
+          "affectedRows": 1
+        },
+        {
+          "name": "order-insert",
+          "beforeMs": 0.52785,
+          "candidateMs": 0.53255,
+          "changePercent": 0.8904044709671322,
+          "affectedRows": 1
+        },
+        {
+          "name": "payment-insert",
+          "beforeMs": 0.4654,
+          "candidateMs": 0.4677,
+          "changePercent": 0.4941985388912773,
+          "affectedRows": 1
+        },
+        {
+          "name": "qna-answer",
+          "beforeMs": 0.5715,
+          "candidateMs": 0.57895,
+          "changePercent": 1.3035870516185488,
+          "affectedRows": 1
+        },
+        {
+          "name": "product-status",
+          "beforeMs": 0.54485,
+          "candidateMs": 0.55475,
+          "changePercent": 1.8170138570248628,
+          "affectedRows": 1
+        },
+        {
+          "name": "stock-decrease",
+          "beforeMs": 0.55025,
+          "candidateMs": 0.5484,
+          "changePercent": -0.3362108132667019,
+          "affectedRows": 1
+        },
+        {
+          "name": "order-status",
+          "beforeMs": 0.5366,
+          "candidateMs": 0.5425,
+          "changePercent": 1.0995154677599706,
+          "affectedRows": 1
+        },
+        {
+          "name": "payment-confirm",
+          "beforeMs": 0.53855,
+          "candidateMs": 0.5346,
+          "changePercent": -0.7334509330609973,
+          "affectedRows": 1
+        },
+        {
+          "name": "payment-refund",
+          "beforeMs": 0.5289,
+          "candidateMs": 0.535,
+          "changePercent": 1.1533371147665061,
+          "affectedRows": 1
+        }
+      ],
+      "readRegressions": [
+        "payment-day-366",
+        "payment-group-366"
+      ],
+      "writeRegressions": [],
+      "reason": "Read or write regression exceeds 10%; retain the original schema"
+    },
+    {
+      "family": "orders-cover",
+      "decision": "hold",
+      "goals": [
+        {
+          "name": "orders-10",
+          "beforeMs": 16.5268,
+          "candidateMs": 8.4933,
+          "changePercent": -48.608926107897474,
+          "eachBatchImproved": true,
+          "beforeBlocks": 9332,
+          "candidateBlocks": 4744,
+          "qualifies": true
+        },
+        {
+          "name": "orders-50",
+          "beforeMs": 16.8187,
+          "candidateMs": 8.75705,
+          "changePercent": -47.932658291068876,
+          "eachBatchImproved": true,
+          "beforeBlocks": 10174,
+          "candidateBlocks": 5633,
+          "qualifies": true
+        }
+      ],
+      "reads": [
+        {
+          "name": "orders-10",
+          "beforeMs": 16.5268,
+          "candidateMs": 8.4933,
+          "changePercent": -48.608926107897474,
+          "eachBatchImproved": true,
+          "beforeBlocks": 9332,
+          "candidateBlocks": 4744,
+          "qualifies": true
+        },
+        {
+          "name": "orders-10-page1",
+          "beforeMs": 17.36665,
+          "candidateMs": 8.99685,
+          "changePercent": -48.1946719718541,
+          "eachBatchImproved": true,
+          "beforeBlocks": 9332,
+          "candidateBlocks": 4751,
+          "qualifies": true
+        },
+        {
+          "name": "orders-10-page14999",
+          "beforeMs": 44.65925,
+          "candidateMs": 53.76895,
+          "changePercent": 20.39823776709193,
+          "eachBatchImproved": false,
+          "beforeBlocks": 9332,
+          "candidateBlocks": 155192,
+          "qualifies": false
+        },
+        {
+          "name": "orders-10-page15000",
+          "beforeMs": 36.6671,
+          "candidateMs": 52.768,
+          "changePercent": 43.91102650605039,
+          "eachBatchImproved": false,
+          "beforeBlocks": 9122,
+          "candidateBlocks": 154982,
+          "qualifies": false
+        },
+        {
+          "name": "orders-50",
+          "beforeMs": 16.8187,
+          "candidateMs": 8.75705,
+          "changePercent": -47.932658291068876,
+          "eachBatchImproved": true,
+          "beforeBlocks": 10174,
+          "candidateBlocks": 5633,
+          "qualifies": true
+        },
+        {
+          "name": "orders-50-page1",
+          "beforeMs": 17.2404,
+          "candidateMs": 9.1213,
+          "changePercent": -47.09345490823878,
+          "eachBatchImproved": true,
+          "beforeBlocks": 10171,
+          "candidateBlocks": 5671,
+          "qualifies": true
+        },
+        {
+          "name": "orders-50-page2999",
+          "beforeMs": 38.2752,
+          "candidateMs": 54.3415,
+          "changePercent": 41.97574408494273,
+          "eachBatchImproved": false,
+          "beforeBlocks": 10174,
+          "candidateBlocks": 156034,
+          "qualifies": false
+        },
+        {
+          "name": "orders-50-page3000",
+          "beforeMs": 36.47505,
+          "candidateMs": 52.57415,
+          "changePercent": 44.13729384880898,
+          "eachBatchImproved": false,
+          "beforeBlocks": 9122,
+          "candidateBlocks": 154982,
+          "qualifies": false
+        }
+      ],
+      "writes": [
+        {
+          "name": "product-insert",
+          "beforeMs": 0.56025,
+          "candidateMs": 0.5513,
+          "changePercent": -1.5975011155734076,
+          "affectedRows": 1
+        },
+        {
+          "name": "review-insert",
+          "beforeMs": 20.6978,
+          "candidateMs": 0.7469,
+          "changePercent": -96.39140391732455,
+          "affectedRows": 1
+        },
+        {
+          "name": "qna-insert",
+          "beforeMs": 0.56985,
+          "candidateMs": 0.5747,
+          "changePercent": 0.8511011669737556,
+          "affectedRows": 1
+        },
+        {
+          "name": "order-insert",
+          "beforeMs": 0.547,
+          "candidateMs": 0.55225,
+          "changePercent": 0.9597806215722038,
+          "affectedRows": 1
+        },
+        {
+          "name": "payment-insert",
+          "beforeMs": 0.49165,
+          "candidateMs": 0.49055,
+          "changePercent": -0.2237363978439988,
+          "affectedRows": 1
+        },
+        {
+          "name": "qna-answer",
+          "beforeMs": 0.568,
+          "candidateMs": 0.5779,
+          "changePercent": 1.7429577464788792,
+          "affectedRows": 1
+        },
+        {
+          "name": "product-status",
+          "beforeMs": 0.55415,
+          "candidateMs": 0.5522,
+          "changePercent": -0.35189028241451314,
+          "affectedRows": 1
+        },
+        {
+          "name": "stock-decrease",
+          "beforeMs": 0.5604,
+          "candidateMs": 0.55155,
+          "changePercent": -1.5792291220556698,
+          "affectedRows": 1
+        },
+        {
+          "name": "order-status",
+          "beforeMs": 0.54375,
+          "candidateMs": 0.55165,
+          "changePercent": 1.4528735632183931,
+          "affectedRows": 1
+        },
+        {
+          "name": "payment-confirm",
+          "beforeMs": 0.53,
+          "candidateMs": 0.5357,
+          "changePercent": 1.0754716981132173,
+          "affectedRows": 1
+        },
+        {
+          "name": "payment-refund",
+          "beforeMs": 0.5305,
+          "candidateMs": 0.5286,
+          "changePercent": -0.3581526861451412,
+          "affectedRows": 1
+        }
+      ],
+      "readRegressions": [
+        "orders-10-page14999",
+        "orders-10-page15000",
+        "orders-50-page2999",
+        "orders-50-page3000"
+      ],
+      "writeRegressions": [],
+      "reason": "Read or write regression exceeds 10%; retain the original schema"
+    }
+  ]
+}

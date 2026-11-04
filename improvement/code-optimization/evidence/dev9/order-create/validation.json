@@ -1,0 +1,222 @@
+{
+  "checkedAtKst": "2026-11-03 16:11:27 KST",
+  "branch": "codex/dev-task-9-code-optimization",
+  "baseRevision": "f3f5fb6dd1352543a1a7721a0d25eae906d4676a",
+  "sourceHash": "da59eaaaac30eb5ebf47702eee04036c837abb1906cba34f7e4e81cb2a25182b",
+  "measurementHash": "f67e7c5f9e4a9b2b2ea001c92e61ce58236076791274727f7532ee6b760ffbef",
+  "fixtureHash": "f9506ef0ae7f727d96eb465706d2e2ac9054f9de83afdd039299a75817c9fabd",
+  "before": {
+    "scope": "before",
+    "tests": 604,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "xmlFiles": 37
+  },
+  "initialMeasurement": {
+    "scope": "before-create-01",
+    "tests": 13,
+    "failures": 13,
+    "errors": 0,
+    "skipped": 0,
+    "xmlFiles": 1
+  },
+  "initialFailure": "new repository spy called abstract invocation.callRealMethod; corrected to its existing default delegate without changing production code or assertions",
+  "beforeMeasurement": {
+    "scope": "before-create-02",
+    "tests": 13,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "xmlFiles": 1
+  },
+  "beforePostgres": {
+    "scope": "before-postgres-01",
+    "tests": 13,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "xmlFiles": 1
+  },
+  "targeted": {
+    "scope": "targeted-01",
+    "tests": 146,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "xmlFiles": 11
+  },
+  "postgres": {
+    "scope": "postgres-01",
+    "tests": 14,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "xmlFiles": 1
+  },
+  "final": {
+    "originalTests": 604,
+    "finalTests": 618,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "xmlFiles": 38,
+    "originalTestcaseMultisetPreserved": true,
+    "newTestcases": 14,
+    "commonBeforeAfterTests": 13
+  },
+  "preservation": {
+    "originalSourceFiles": 660,
+    "changedOriginalFiles": [
+      "src/main/java/com/back/coffeeprod/domain/order/service/OrderService.java"
+    ],
+    "onlyAuthorizedFilesChanged": true,
+    "v2Files": 1460,
+    "v2Mismatches": [],
+    "original94Files": 2125,
+    "original94Mismatches": [],
+    "measurementHashUnchanged": true,
+    "fixtureHashUnchanged": true
+  },
+  "cleanup": {
+    "existingContainersPreserved": true,
+    "flywayVersions": 18,
+    "postgresVersion": "PostgreSQL 16.15 on x86_64-pc-linux-musl, compiled by gcc (Alpine 15.2.0) 15.2.0, 64-bit",
+    "ownerVerified": true,
+    "dedicatedContainerRemoved": true
+  },
+  "metrics": {
+    "scope": "local synthetic public-service calls, Hibernate StatementInspector SQL; no HTTP improvement percentage or network roundtrip count",
+    "rows": {
+      "before-create-02": [
+        {
+          "database": "H2",
+          "baseline": true,
+          "products": 1,
+          "sql": 16,
+          "productSelects": 3,
+          "conditionalUpdates": 1,
+          "nanos": 9664700
+        },
+        {
+          "database": "H2",
+          "baseline": true,
+          "products": 5,
+          "sql": 40,
+          "productSelects": 15,
+          "conditionalUpdates": 5,
+          "nanos": 17302800
+        },
+        {
+          "database": "H2",
+          "baseline": true,
+          "products": 20,
+          "sql": 130,
+          "productSelects": 60,
+          "conditionalUpdates": 20,
+          "nanos": 51386800
+        }
+      ],
+      "before-postgres-01": [
+        {
+          "database": "PostgreSQL",
+          "baseline": true,
+          "products": 1,
+          "sql": 16,
+          "productSelects": 3,
+          "conditionalUpdates": 1,
+          "nanos": 19589600
+        },
+        {
+          "database": "PostgreSQL",
+          "baseline": true,
+          "products": 5,
+          "sql": 40,
+          "productSelects": 15,
+          "conditionalUpdates": 5,
+          "nanos": 45896200
+        },
+        {
+          "database": "PostgreSQL",
+          "baseline": true,
+          "products": 20,
+          "sql": 130,
+          "productSelects": 60,
+          "conditionalUpdates": 20,
+          "nanos": 137099000
+        }
+      ],
+      "targeted-01": [
+        {
+          "database": "H2",
+          "baseline": false,
+          "products": 1,
+          "sql": 15,
+          "productSelects": 2,
+          "conditionalUpdates": 1,
+          "nanos": 8022500
+        },
+        {
+          "database": "H2",
+          "baseline": false,
+          "products": 5,
+          "sql": 35,
+          "productSelects": 10,
+          "conditionalUpdates": 5,
+          "nanos": 15907800
+        },
+        {
+          "database": "H2",
+          "baseline": false,
+          "products": 20,
+          "sql": 110,
+          "productSelects": 40,
+          "conditionalUpdates": 20,
+          "nanos": 43099600
+        }
+      ],
+      "postgres-01": [
+        {
+          "database": "PostgreSQL",
+          "baseline": false,
+          "products": 1,
+          "sql": 15,
+          "productSelects": 2,
+          "conditionalUpdates": 1,
+          "nanos": 15280200
+        },
+        {
+          "database": "PostgreSQL",
+          "baseline": false,
+          "products": 5,
+          "sql": 35,
+          "productSelects": 10,
+          "conditionalUpdates": 5,
+          "nanos": 33441500
+        },
+        {
+          "database": "PostgreSQL",
+          "baseline": false,
+          "products": 20,
+          "sql": 110,
+          "productSelects": 40,
+          "conditionalUpdates": 20,
+          "nanos": 107213400
+        }
+      ]
+    }
+  },
+  "scope": "DEV9-6 local order creation SQL/consistency verification, Hibernate public Session read-only transition for stock snapshot; no fixed home-server HTTP after, QA9 or push",
+  "pushOwner": "user after last improvement, before QA",
+  "pushed": false,
+  "commitSha": "ecf298e1e426c3b7ed905b1c33eb17ac3f4ea2b1",
+  "commitSubject": "perf: reduce order creation stock refresh queries",
+  "committedFiles": [
+    "src/main/java/com/back/coffeeprod/domain/order/service/OrderService.java",
+    "src/test/java/com/back/coffeeprod/dev/order/DevTask9OrderCreationIntegrationTest.java"
+  ],
+  "branchPreserved": true,
+  "commitMatchesTestedSources": true,
+  "firstFiveCommitsPreserved": true,
+  "originalWorktreeStatusPreserved": true
+}

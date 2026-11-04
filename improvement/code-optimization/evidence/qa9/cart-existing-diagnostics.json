@@ -1,0 +1,38 @@
+[
+  {
+    "phase": "before",
+    "repeat": 1,
+    "firstCreationSql": 60,
+    "existingReadSql": 60
+  },
+  {
+    "phase": "before",
+    "repeat": 2,
+    "firstCreationSql": 60,
+    "existingReadSql": 60
+  },
+  {
+    "phase": "before",
+    "repeat": 3,
+    "firstCreationSql": 60,
+    "existingReadSql": 60
+  },
+  {
+    "phase": "after",
+    "repeat": 1,
+    "firstCreationSql": 78,
+    "existingReadSql": 20
+  },
+  {
+    "phase": "after",
+    "repeat": 2,
+    "firstCreationSql": 69,
+    "existingReadSql": 20
+  },
+  {
+    "phase": "after",
+    "repeat": 3,
+    "firstCreationSql": 75,
+    "existingReadSql": 20
+  }
+]

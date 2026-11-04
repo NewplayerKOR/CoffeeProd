@@ -1,0 +1,270 @@
+{
+  "checkedAtKst": "2026-11-03 15:37:08 KST",
+  "branch": "codex/dev-task-9-code-optimization",
+  "baseRevision": "e8931891c5c3201ecc8b2617208b220aea5bd030",
+  "sourceHash": "568f52d2e069b7a04011b3caa5f5f4a97ffef7d2b4509675d5d72cd9b347c2ef",
+  "measurementHash": "f67e7c5f9e4a9b2b2ea001c92e61ce58236076791274727f7532ee6b760ffbef",
+  "fixtureHash": "f9506ef0ae7f727d96eb465706d2e2ac9054f9de83afdd039299a75817c9fabd",
+  "before": {
+    "scope": "before",
+    "tests": 588,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "xmlFiles": 36
+  },
+  "beforeMeasurement": {
+    "scope": "before-summary-01",
+    "tests": 12,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "xmlFiles": 1
+  },
+  "beforePostgres": {
+    "scope": "before-postgres-01",
+    "tests": 12,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "xmlFiles": 1
+  },
+  "targeted": {
+    "scope": "targeted-01",
+    "tests": 65,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "xmlFiles": 4
+  },
+  "postgres": {
+    "scope": "postgres-01",
+    "tests": 16,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "xmlFiles": 1
+  },
+  "final": {
+    "originalTests": 588,
+    "finalTests": 604,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "xmlFiles": 37,
+    "originalTestcaseMultisetPreserved": true,
+    "newTestcases": 16,
+    "commonBeforeAfterTests": 12
+  },
+  "preservation": {
+    "originalSourceFiles": 658,
+    "changedOriginalFiles": [
+      "src/main/java/com/back/coffeeprod/domain/order/dto/OrderDto.java",
+      "src/main/java/com/back/coffeeprod/domain/order/repository/OrderRepository.java",
+      "src/main/java/com/back/coffeeprod/domain/order/service/OrderService.java"
+    ],
+    "onlyAuthorizedFilesChanged": true,
+    "v2Files": 1460,
+    "v2Mismatches": [],
+    "original94Files": 2125,
+    "original94Mismatches": [],
+    "measurementHashUnchanged": true,
+    "fixtureHashUnchanged": true
+  },
+  "cleanup": {
+    "flywayVersions": 18,
+    "dedicatedContainerRemoved": true,
+    "existingContainersPreserved": true,
+    "postgresVersion": "PostgreSQL 16.15 on x86_64-pc-linux-musl, compiled by gcc (Alpine 15.2.0) 15.2.0, 64-bit",
+    "ownerVerified": true
+  },
+  "metrics": {
+    "scope": "single warmed local public service calls on equivalent synthetic fixtures; no HTTP improvement percentage",
+    "rows": {
+      "before-summary-01": [
+        {
+          "database": "H2",
+          "baseline": true,
+          "admin": false,
+          "size": 10,
+          "sql": 4,
+          "entities": 224,
+          "collections": 20,
+          "nanos": 3422400
+        },
+        {
+          "database": "H2",
+          "baseline": true,
+          "admin": false,
+          "size": 50,
+          "sql": 4,
+          "entities": 1104,
+          "collections": 100,
+          "nanos": 8672900
+        },
+        {
+          "database": "H2",
+          "baseline": true,
+          "admin": true,
+          "size": 10,
+          "sql": 4,
+          "entities": 224,
+          "collections": 20,
+          "nanos": 3032900
+        },
+        {
+          "database": "H2",
+          "baseline": true,
+          "admin": true,
+          "size": 50,
+          "sql": 4,
+          "entities": 1104,
+          "collections": 100,
+          "nanos": 7098400
+        }
+      ],
+      "before-postgres-01": [
+        {
+          "database": "PostgreSQL",
+          "baseline": true,
+          "admin": false,
+          "size": 10,
+          "sql": 4,
+          "entities": 224,
+          "collections": 20,
+          "nanos": 8975100
+        },
+        {
+          "database": "PostgreSQL",
+          "baseline": true,
+          "admin": false,
+          "size": 50,
+          "sql": 4,
+          "entities": 1104,
+          "collections": 100,
+          "nanos": 19493500
+        },
+        {
+          "database": "PostgreSQL",
+          "baseline": true,
+          "admin": true,
+          "size": 10,
+          "sql": 4,
+          "entities": 224,
+          "collections": 20,
+          "nanos": 8717000
+        },
+        {
+          "database": "PostgreSQL",
+          "baseline": true,
+          "admin": true,
+          "size": 50,
+          "sql": 4,
+          "entities": 1104,
+          "collections": 100,
+          "nanos": 16597000
+        }
+      ],
+      "targeted-01": [
+        {
+          "database": "H2",
+          "baseline": false,
+          "admin": false,
+          "size": 10,
+          "sql": 3,
+          "entities": 0,
+          "collections": 0,
+          "nanos": 2598300
+        },
+        {
+          "database": "H2",
+          "baseline": false,
+          "admin": false,
+          "size": 50,
+          "sql": 3,
+          "entities": 0,
+          "collections": 0,
+          "nanos": 2586300
+        },
+        {
+          "database": "H2",
+          "baseline": false,
+          "admin": true,
+          "size": 10,
+          "sql": 3,
+          "entities": 0,
+          "collections": 0,
+          "nanos": 1562800
+        },
+        {
+          "database": "H2",
+          "baseline": false,
+          "admin": true,
+          "size": 50,
+          "sql": 3,
+          "entities": 0,
+          "collections": 0,
+          "nanos": 1934400
+        }
+      ],
+      "postgres-01": [
+        {
+          "database": "PostgreSQL",
+          "baseline": false,
+          "admin": false,
+          "size": 10,
+          "sql": 3,
+          "entities": 0,
+          "collections": 0,
+          "nanos": 5887600
+        },
+        {
+          "database": "PostgreSQL",
+          "baseline": false,
+          "admin": false,
+          "size": 50,
+          "sql": 3,
+          "entities": 0,
+          "collections": 0,
+          "nanos": 7722800
+        },
+        {
+          "database": "PostgreSQL",
+          "baseline": false,
+          "admin": true,
+          "size": 10,
+          "sql": 3,
+          "entities": 0,
+          "collections": 0,
+          "nanos": 5115100
+        },
+        {
+          "database": "PostgreSQL",
+          "baseline": false,
+          "admin": true,
+          "size": 50,
+          "sql": 3,
+          "entities": 0,
+          "collections": 0,
+          "nanos": 9555400
+        }
+      ]
+    }
+  },
+  "scope": "DEV9-5 local summary projection functional/loading verification; no fixed home-server HTTP after, QA9 or push",
+  "pushOwner": "user after last improvement, before QA",
+  "pushed": false,
+  "commitSha": "f3f5fb6dd1352543a1a7721a0d25eae906d4676a",
+  "commitSubject": "perf: project order list summaries",
+  "committedFiles": [
+    "src/main/java/com/back/coffeeprod/domain/order/dto/OrderDto.java",
+    "src/main/java/com/back/coffeeprod/domain/order/repository/OrderRepository.java",
+    "src/main/java/com/back/coffeeprod/domain/order/repository/OrderSummaryRow.java",
+    "src/main/java/com/back/coffeeprod/domain/order/service/OrderService.java",
+    "src/test/java/com/back/coffeeprod/dev/order/DevTask9OrderSummaryIntegrationTest.java"
+  ],
+  "branchPreserved": true,
+  "commitMatchesTestedSources": true,
+  "firstFourCommitsPreserved": true,
+  "originalWorktreeStatusPreserved": true
+}

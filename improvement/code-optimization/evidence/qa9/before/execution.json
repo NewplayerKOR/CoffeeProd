@@ -1,0 +1,588 @@
+{
+  "scope": "requested mode and candidates only",
+  "protocolVersion": 2,
+  "candidates": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8
+  ],
+  "mode": "All",
+  "sourceHash": "ece5a650b88e967ce82a16635dde57dbc0bdec101b89ae44b00b0d50f2b59677",
+  "allEightCandidates": true,
+  "measurementHash": "6d63b7f073649f1804950bbf2a87dc3d77fa696f58aee363eb49f0009dfa7057",
+  "status": "PASS",
+  "samples": [
+    {
+      "result": "PASS",
+      "candidate": 1,
+      "sample": "diag-c1-catalog-r1",
+      "variant": "catalog",
+      "kind": "diagnostic"
+    },
+    {
+      "result": "PASS",
+      "candidate": 1,
+      "sample": "diag-c1-catalog-r2",
+      "variant": "catalog",
+      "kind": "diagnostic"
+    },
+    {
+      "result": "PASS",
+      "candidate": 1,
+      "sample": "diag-c1-catalog-r3",
+      "variant": "catalog",
+      "kind": "diagnostic"
+    },
+    {
+      "result": "PASS",
+      "candidate": 1,
+      "sample": "http-c1-catalog-r1",
+      "variant": "catalog",
+      "kind": "measurement"
+    },
+    {
+      "result": "PASS",
+      "candidate": 1,
+      "sample": "http-c1-catalog-r2",
+      "variant": "catalog",
+      "kind": "measurement"
+    },
+    {
+      "result": "PASS",
+      "candidate": 1,
+      "sample": "http-c1-catalog-r3",
+      "variant": "catalog",
+      "kind": "measurement"
+    },
+    {
+      "result": "PASS",
+      "candidate": 1,
+      "sample": "diag-c1-recommendation1000-r1",
+      "variant": "recommendation1000",
+      "kind": "diagnostic"
+    },
+    {
+      "result": "PASS",
+      "candidate": 1,
+      "sample": "diag-c1-recommendation1000-r2",
+      "variant": "recommendation1000",
+      "kind": "diagnostic"
+    },
+    {
+      "result": "PASS",
+      "candidate": 1,
+      "sample": "diag-c1-recommendation1000-r3",
+      "variant": "recommendation1000",
+      "kind": "diagnostic"
+    },
+    {
+      "result": "PASS",
+      "candidate": 1,
+      "sample": "http-c1-recommendation1000-r1",
+      "variant": "recommendation1000",
+      "kind": "measurement"
+    },
+    {
+      "result": "PASS",
+      "candidate": 1,
+      "sample": "http-c1-recommendation1000-r2",
+      "variant": "recommendation1000",
+      "kind": "measurement"
+    },
+    {
+      "result": "PASS",
+      "candidate": 1,
+      "sample": "http-c1-recommendation1000-r3",
+      "variant": "recommendation1000",
+      "kind": "measurement"
+    },
+    {
+      "result": "PASS",
+      "candidate": 2,
+      "sample": "diag-c2-catalog-r1",
+      "variant": "catalog",
+      "kind": "diagnostic"
+    },
+    {
+      "result": "PASS",
+      "candidate": 2,
+      "sample": "diag-c2-catalog-r2",
+      "variant": "catalog",
+      "kind": "diagnostic"
+    },
+    {
+      "result": "PASS",
+      "candidate": 2,
+      "sample": "diag-c2-catalog-r3",
+      "variant": "catalog",
+      "kind": "diagnostic"
+    },
+    {
+      "result": "PASS",
+      "candidate": 2,
+      "sample": "http-c2-catalog-r1",
+      "variant": "catalog",
+      "kind": "measurement"
+    },
+    {
+      "result": "PASS",
+      "candidate": 2,
+      "sample": "http-c2-catalog-r2",
+      "variant": "catalog",
+      "kind": "measurement"
+    },
+    {
+      "result": "PASS",
+      "candidate": 2,
+      "sample": "http-c2-catalog-r3",
+      "variant": "catalog",
+      "kind": "measurement"
+    },
+    {
+      "result": "PASS",
+      "candidate": 3,
+      "sample": "diag-c3-days1-r1",
+      "variant": "days1",
+      "kind": "diagnostic"
+    },
+    {
+      "result": "PASS",
+      "candidate": 3,
+      "sample": "diag-c3-days1-r2",
+      "variant": "days1",
+      "kind": "diagnostic"
+    },
+    {
+      "result": "PASS",
+      "candidate": 3,
+      "sample": "diag-c3-days1-r3",
+      "variant": "days1",
+      "kind": "diagnostic"
+    },
+    {
+      "result": "PASS",
+      "candidate": 3,
+      "sample": "http-c3-days1-r1",
+      "variant": "days1",
+      "kind": "measurement"
+    },
+    {
+      "result": "PASS",
+      "candidate": 3,
+      "sample": "http-c3-days1-r2",
+      "variant": "days1",
+      "kind": "measurement"
+    },
+    {
+      "result": "PASS",
+      "candidate": 3,
+      "sample": "http-c3-days1-r3",
+      "variant": "days1",
+      "kind": "measurement"
+    },
+    {
+      "result": "PASS",
+      "candidate": 3,
+      "sample": "diag-c3-days30-r1",
+      "variant": "days30",
+      "kind": "diagnostic"
+    },
+    {
+      "result": "PASS",
+      "candidate": 3,
+      "sample": "diag-c3-days30-r2",
+      "variant": "days30",
+      "kind": "diagnostic"
+    },
+    {
+      "result": "PASS",
+      "candidate": 3,
+      "sample": "diag-c3-days30-r3",
+      "variant": "days30",
+      "kind": "diagnostic"
+    },
+    {
+      "result": "PASS",
+      "candidate": 3,
+      "sample": "http-c3-days30-r1",
+      "variant": "days30",
+      "kind": "measurement"
+    },
+    {
+      "result": "PASS",
+      "candidate": 3,
+      "sample": "http-c3-days30-r2",
+      "variant": "days30",
+      "kind": "measurement"
+    },
+    {
+      "result": "PASS",
+      "candidate": 3,
+      "sample": "http-c3-days30-r3",
+      "variant": "days30",
+      "kind": "measurement"
+    },
+    {
+      "result": "PASS",
+      "candidate": 3,
+      "sample": "diag-c3-days366-r1",
+      "variant": "days366",
+      "kind": "diagnostic"
+    },
+    {
+      "result": "PASS",
+      "candidate": 3,
+      "sample": "diag-c3-days366-r2",
+      "variant": "days366",
+      "kind": "diagnostic"
+    },
+    {
+      "result": "PASS",
+      "candidate": 3,
+      "sample": "diag-c3-days366-r3",
+      "variant": "days366",
+      "kind": "diagnostic"
+    },
+    {
+      "result": "PASS",
+      "candidate": 3,
+      "sample": "http-c3-days366-r1",
+      "variant": "days366",
+      "kind": "measurement"
+    },
+    {
+      "result": "PASS",
+      "candidate": 3,
+      "sample": "http-c3-days366-r2",
+      "variant": "days366",
+      "kind": "measurement"
+    },
+    {
+      "result": "PASS",
+      "candidate": 3,
+      "sample": "http-c3-days366-r3",
+      "variant": "days366",
+      "kind": "measurement"
+    },
+    {
+      "result": "PASS",
+      "candidate": 4,
+      "sample": "diag-c4-catalog-r1",
+      "variant": "catalog",
+      "kind": "diagnostic"
+    },
+    {
+      "result": "PASS",
+      "candidate": 4,
+      "sample": "diag-c4-catalog-r2",
+      "variant": "catalog",
+      "kind": "diagnostic"
+    },
+    {
+      "result": "PASS",
+      "candidate": 4,
+      "sample": "diag-c4-catalog-r3",
+      "variant": "catalog",
+      "kind": "diagnostic"
+    },
+    {
+      "result": "PASS",
+      "candidate": 5,
+      "sample": "diag-c5-page10-r1",
+      "variant": "page10",
+      "kind": "diagnostic"
+    },
+    {
+      "result": "PASS",
+      "candidate": 5,
+      "sample": "diag-c5-page10-r2",
+      "variant": "page10",
+      "kind": "diagnostic"
+    },
+    {
+      "result": "PASS",
+      "candidate": 5,
+      "sample": "diag-c5-page10-r3",
+      "variant": "page10",
+      "kind": "diagnostic"
+    },
+    {
+      "result": "PASS",
+      "candidate": 5,
+      "sample": "http-c5-page10-r1",
+      "variant": "page10",
+      "kind": "measurement"
+    },
+    {
+      "result": "PASS",
+      "candidate": 5,
+      "sample": "http-c5-page10-r2",
+      "variant": "page10",
+      "kind": "measurement"
+    },
+    {
+      "result": "PASS",
+      "candidate": 5,
+      "sample": "http-c5-page10-r3",
+      "variant": "page10",
+      "kind": "measurement"
+    },
+    {
+      "result": "PASS",
+      "candidate": 5,
+      "sample": "diag-c5-page50-r1",
+      "variant": "page50",
+      "kind": "diagnostic"
+    },
+    {
+      "result": "PASS",
+      "candidate": 5,
+      "sample": "diag-c5-page50-r2",
+      "variant": "page50",
+      "kind": "diagnostic"
+    },
+    {
+      "result": "PASS",
+      "candidate": 5,
+      "sample": "diag-c5-page50-r3",
+      "variant": "page50",
+      "kind": "diagnostic"
+    },
+    {
+      "result": "PASS",
+      "candidate": 5,
+      "sample": "http-c5-page50-r1",
+      "variant": "page50",
+      "kind": "measurement"
+    },
+    {
+      "result": "PASS",
+      "candidate": 5,
+      "sample": "http-c5-page50-r2",
+      "variant": "page50",
+      "kind": "measurement"
+    },
+    {
+      "result": "PASS",
+      "candidate": 5,
+      "sample": "http-c5-page50-r3",
+      "variant": "page50",
+      "kind": "measurement"
+    },
+    {
+      "result": "PASS",
+      "candidate": 6,
+      "sample": "diag-c6-order1-r1",
+      "variant": "order1",
+      "kind": "diagnostic"
+    },
+    {
+      "result": "PASS",
+      "candidate": 6,
+      "sample": "diag-c6-order1-r2",
+      "variant": "order1",
+      "kind": "diagnostic"
+    },
+    {
+      "result": "PASS",
+      "candidate": 6,
+      "sample": "diag-c6-order1-r3",
+      "variant": "order1",
+      "kind": "diagnostic"
+    },
+    {
+      "result": "PASS",
+      "candidate": 6,
+      "sample": "http-c6-order1-r1",
+      "variant": "order1",
+      "kind": "measurement"
+    },
+    {
+      "result": "PASS",
+      "candidate": 6,
+      "sample": "http-c6-order1-r2",
+      "variant": "order1",
+      "kind": "measurement"
+    },
+    {
+      "result": "PASS",
+      "candidate": 6,
+      "sample": "http-c6-order1-r3",
+      "variant": "order1",
+      "kind": "measurement"
+    },
+    {
+      "result": "PASS",
+      "candidate": 6,
+      "sample": "diag-c6-order5-r1",
+      "variant": "order5",
+      "kind": "diagnostic"
+    },
+    {
+      "result": "PASS",
+      "candidate": 6,
+      "sample": "diag-c6-order5-r2",
+      "variant": "order5",
+      "kind": "diagnostic"
+    },
+    {
+      "result": "PASS",
+      "candidate": 6,
+      "sample": "diag-c6-order5-r3",
+      "variant": "order5",
+      "kind": "diagnostic"
+    },
+    {
+      "result": "PASS",
+      "candidate": 6,
+      "sample": "http-c6-order5-r1",
+      "variant": "order5",
+      "kind": "measurement"
+    },
+    {
+      "result": "PASS",
+      "candidate": 6,
+      "sample": "http-c6-order5-r2",
+      "variant": "order5",
+      "kind": "measurement"
+    },
+    {
+      "result": "PASS",
+      "candidate": 6,
+      "sample": "http-c6-order5-r3",
+      "variant": "order5",
+      "kind": "measurement"
+    },
+    {
+      "result": "PASS",
+      "candidate": 6,
+      "sample": "diag-c6-order20-r1",
+      "variant": "order20",
+      "kind": "diagnostic"
+    },
+    {
+      "result": "PASS",
+      "candidate": 6,
+      "sample": "diag-c6-order20-r2",
+      "variant": "order20",
+      "kind": "diagnostic"
+    },
+    {
+      "result": "PASS",
+      "candidate": 6,
+      "sample": "diag-c6-order20-r3",
+      "variant": "order20",
+      "kind": "diagnostic"
+    },
+    {
+      "result": "PASS",
+      "candidate": 6,
+      "sample": "http-c6-order20-r1",
+      "variant": "order20",
+      "kind": "measurement"
+    },
+    {
+      "result": "PASS",
+      "candidate": 6,
+      "sample": "http-c6-order20-r2",
+      "variant": "order20",
+      "kind": "measurement"
+    },
+    {
+      "result": "PASS",
+      "candidate": 6,
+      "sample": "http-c6-order20-r3",
+      "variant": "order20",
+      "kind": "measurement"
+    },
+    {
+      "result": "PASS",
+      "candidate": 7,
+      "sample": "diag-c7-catalog-r1",
+      "variant": "catalog",
+      "kind": "diagnostic"
+    },
+    {
+      "result": "PASS",
+      "candidate": 7,
+      "sample": "diag-c7-catalog-r2",
+      "variant": "catalog",
+      "kind": "diagnostic"
+    },
+    {
+      "result": "PASS",
+      "candidate": 7,
+      "sample": "diag-c7-catalog-r3",
+      "variant": "catalog",
+      "kind": "diagnostic"
+    },
+    {
+      "result": "PASS",
+      "candidate": 7,
+      "sample": "http-c7-catalog-r1",
+      "variant": "catalog",
+      "kind": "measurement"
+    },
+    {
+      "result": "PASS",
+      "candidate": 7,
+      "sample": "http-c7-catalog-r2",
+      "variant": "catalog",
+      "kind": "measurement"
+    },
+    {
+      "result": "PASS",
+      "candidate": 7,
+      "sample": "http-c7-catalog-r3",
+      "variant": "catalog",
+      "kind": "measurement"
+    },
+    {
+      "result": "PASS",
+      "candidate": 8,
+      "sample": "diag-c8-catalog-r1",
+      "variant": "catalog",
+      "kind": "diagnostic"
+    },
+    {
+      "result": "PASS",
+      "candidate": 8,
+      "sample": "diag-c8-catalog-r2",
+      "variant": "catalog",
+      "kind": "diagnostic"
+    },
+    {
+      "result": "PASS",
+      "candidate": 8,
+      "sample": "diag-c8-catalog-r3",
+      "variant": "catalog",
+      "kind": "diagnostic"
+    },
+    {
+      "result": "PASS",
+      "candidate": 8,
+      "sample": "http-c8-catalog-r1",
+      "variant": "catalog",
+      "kind": "measurement"
+    },
+    {
+      "result": "PASS",
+      "candidate": 8,
+      "sample": "http-c8-catalog-r2",
+      "variant": "catalog",
+      "kind": "measurement"
+    },
+    {
+      "result": "PASS",
+      "candidate": 8,
+      "sample": "http-c8-catalog-r3",
+      "variant": "catalog",
+      "kind": "measurement"
+    }
+  ]
+}

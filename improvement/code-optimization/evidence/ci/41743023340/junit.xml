@@ -1,0 +1,738 @@
+<?xml version='1.0' encoding='utf-8'?>
+<testsuites>
+  <testsuite name="com.back.coffeeprod.CoffeeprodApplicationTests" tests="1" failures="0" errors="0" skipped="0" time="14.746">
+    <testcase name="contextLoads()" classname="com.back.coffeeprod.CoffeeprodApplicationTests" time="0.401" />
+  </testsuite>
+  <testsuite name="com.back.coffeeprod.dev.auth.DevTask9JwtVerificationTest" tests="15" failures="0" errors="0" skipped="0" time="4.65">
+    <testcase name="sharedParserDoesNotMixConcurrentMemberIdentities()" classname="com.back.coffeeprod.dev.auth.DevTask9JwtVerificationTest" time="0.857" />
+    <testcase name="invalidRefreshStillRaisesInvalidToken()" classname="com.back.coffeeprod.dev.auth.DevTask9JwtVerificationTest" time="0.382" />
+    <testcase name="uninstrumentedFilterCpuSamples()" classname="com.back.coffeeprod.dev.auth.DevTask9JwtVerificationTest" time="2.994" />
+    <testcase name="claimsApiReturnsFreshVerifiedPayloads()" classname="com.back.coffeeprod.dev.auth.DevTask9JwtVerificationTest" time="0.011" />
+    <testcase name="[1] kind = &quot;malformed&quot;" classname="com.back.coffeeprod.dev.auth.DevTask9JwtVerificationTest" time="0.011" />
+    <testcase name="[2] kind = &quot;empty&quot;" classname="com.back.coffeeprod.dev.auth.DevTask9JwtVerificationTest" time="0.001" />
+    <testcase name="[3] kind = &quot;null&quot;" classname="com.back.coffeeprod.dev.auth.DevTask9JwtVerificationTest" time="0.001" />
+    <testcase name="[4] kind = &quot;unsigned&quot;" classname="com.back.coffeeprod.dev.auth.DevTask9JwtVerificationTest" time="0.006" />
+    <testcase name="[5] kind = &quot;expired&quot;" classname="com.back.coffeeprod.dev.auth.DevTask9JwtVerificationTest" time="0.003" />
+    <testcase name="[6] kind = &quot;wrong-key&quot;" classname="com.back.coffeeprod.dev.auth.DevTask9JwtVerificationTest" time="0.002" />
+    <testcase name="reissueVerifiesOneTokenOnce()" classname="com.back.coffeeprod.dev.auth.DevTask9JwtVerificationTest" time="0.232" />
+    <testcase name="expirationIsRecheckedWithoutCachingClaims()" classname="com.back.coffeeprod.dev.auth.DevTask9JwtVerificationTest" time="0.026" />
+    <testcase name="legacyTokenWithoutJtiAndStrictSubjectConversionRemainCompatible()" classname="com.back.coffeeprod.dev.auth.DevTask9JwtVerificationTest" time="0.004" />
+    <testcase name="filterVerifiesOneTokenOnce()" classname="com.back.coffeeprod.dev.auth.DevTask9JwtVerificationTest" time="0.008" />
+    <testcase name="authorizationAndRefreshBodyAreEachVerifiedOnce()" classname="com.back.coffeeprod.dev.auth.DevTask9JwtVerificationTest" time="0.018" />
+  </testsuite>
+  <testsuite name="com.back.coffeeprod.dev.cart.DevTask9CartReadIntegrationTest" tests="12" failures="0" errors="0" skipped="0" time="6.113">
+    <testcase name="twentyReadsRaceWithOrderWithoutChangingStockOrMileageTwice()" classname="com.back.coffeeprod.dev.cart.DevTask9CartReadIntegrationTest" time="0.707" />
+    <testcase name="[1] action = &quot;add&quot;" classname="com.back.coffeeprod.dev.cart.DevTask9CartReadIntegrationTest" time="0.259" />
+    <testcase name="[2] action = &quot;update&quot;" classname="com.back.coffeeprod.dev.cart.DevTask9CartReadIntegrationTest" time="0.25" />
+    <testcase name="[3] action = &quot;delete&quot;" classname="com.back.coffeeprod.dev.cart.DevTask9CartReadIntegrationTest" time="0.261" />
+    <testcase name="[4] action = &quot;clear&quot;" classname="com.back.coffeeprod.dev.cart.DevTask9CartReadIntegrationTest" time="0.256" />
+    <testcase name="[5] action = &quot;order&quot;" classname="com.back.coffeeprod.dev.cart.DevTask9CartReadIntegrationTest" time="0.25" />
+    <testcase name="existingReadsFinishWhileMemberLockIsStillHeld()" classname="com.back.coffeeprod.dev.cart.DevTask9CartReadIntegrationTest" time="0.095" />
+    <testcase name="creationRechecksAfterWaitingForConcurrentCreator()" classname="com.back.coffeeprod.dev.cart.DevTask9CartReadIntegrationTest" time="0.241" />
+    <testcase name="[1] existing = false" classname="com.back.coffeeprod.dev.cart.DevTask9CartReadIntegrationTest" time="0.054" />
+    <testcase name="[2] existing = true" classname="com.back.coffeeprod.dev.cart.DevTask9CartReadIntegrationTest" time="0.054" />
+    <testcase name="missingMemberKeepsExistingErrorAndCreatesNoCart()" classname="com.back.coffeeprod.dev.cart.DevTask9CartReadIntegrationTest" time="0.033" />
+    <testcase name="concurrentMembersReadOnlyTheirOwnItems()" classname="com.back.coffeeprod.dev.cart.DevTask9CartReadIntegrationTest" time="0.138" />
+  </testsuite>
+  <testsuite name="com.back.coffeeprod.dev.indexes.DevTask9SearchIntegrationTest" tests="14" failures="0" errors="0" skipped="0" time="4.093">
+    <testcase name="publicHttpSearchAndAdminAuthorizationArePreserved()" classname="com.back.coffeeprod.dev.indexes.DevTask9SearchIntegrationTest" time="0.743" />
+    <testcase name="activeFiltersIntersectAndNullProfileIsPreservedWithoutProfileFilters()" classname="com.back.coffeeprod.dev.indexes.DevTask9SearchIntegrationTest" time="0.048" />
+    <testcase name="individualFiltersMatchKnownMembership()" classname="com.back.coffeeprod.dev.indexes.DevTask9SearchIntegrationTest" time="0.058" />
+    <testcase name="[1] keyword = null" classname="com.back.coffeeprod.dev.indexes.DevTask9SearchIntegrationTest" time="0.028" />
+    <testcase name="[2] keyword = &quot;&quot;" classname="com.back.coffeeprod.dev.indexes.DevTask9SearchIntegrationTest" time="0.026" />
+    <testcase name="[3] keyword = &quot;에티오피아&quot;" classname="com.back.coffeeprod.dev.indexes.DevTask9SearchIntegrationTest" time="0.024" />
+    <testcase name="[4] keyword = &quot;ABC&quot;" classname="com.back.coffeeprod.dev.indexes.DevTask9SearchIntegrationTest" time="0.045" />
+    <testcase name="[5] keyword = &quot;abc&quot;" classname="com.back.coffeeprod.dev.indexes.DevTask9SearchIntegrationTest" time="0.024" />
+    <testcase name="[6] keyword = &quot; &quot;" classname="com.back.coffeeprod.dev.indexes.DevTask9SearchIntegrationTest" time="0.022" />
+    <testcase name="[7] keyword = &quot;%&quot;" classname="com.back.coffeeprod.dev.indexes.DevTask9SearchIntegrationTest" time="0.022" />
+    <testcase name="[8] keyword = &quot;_&quot;" classname="com.back.coffeeprod.dev.indexes.DevTask9SearchIntegrationTest" time="0.024" />
+    <testcase name="[9] keyword = &quot;\\&quot;" classname="com.back.coffeeprod.dev.indexes.DevTask9SearchIntegrationTest" time="0.017" />
+    <testcase name="[10] keyword = &quot;NO_MATCH&quot;" classname="com.back.coffeeprod.dev.indexes.DevTask9SearchIntegrationTest" time="0.021" />
+    <testcase name="adminStatesAndFirstAdjacentLastEmptyPagesRetainCountsAndOrdering()" classname="com.back.coffeeprod.dev.indexes.DevTask9SearchIntegrationTest" time="0.098" />
+  </testsuite>
+  <testsuite name="com.back.coffeeprod.dev.order.DevTask2OrderQueryIntegrationTest" tests="10" failures="0" errors="0" skipped="0" time="3.132">
+    <testcase name="회원 주문 목록은 주문당 한 행과 올바른 상품 요약을 반환한다" classname="com.back.coffeeprod.dev.order.DevTask2OrderQueryIntegrationTest" time="0.145" />
+    <testcase name="주문 없는 회원과 범위 초과 페이지는 빈 목록을 반환한다" classname="com.back.coffeeprod.dev.order.DevTask2OrderQueryIntegrationTest" time="0.071" />
+    <testcase name="비인증 회원 주문 목록과 상세는401이다" classname="com.back.coffeeprod.dev.order.DevTask2OrderQueryIntegrationTest" time="0.045" />
+    <testcase name="일반회원과 비인증 사용자의 관리자 주문 목록은403과401이다" classname="com.back.coffeeprod.dev.order.DevTask2OrderQueryIntegrationTest" time="0.049" />
+    <testcase name="회원 목록은 주문 시각 내림차순이며 응답 시각은 KST다" classname="com.back.coffeeprod.dev.order.DevTask2OrderQueryIntegrationTest" time="0.056" />
+    <testcase name="타인 주문은403이고 없는 주문은404다" classname="com.back.coffeeprod.dev.order.DevTask2OrderQueryIntegrationTest" time="0.073" />
+    <testcase name="관리자 목록은 전체 회원 주문과 회원 정보·페이징을 반환한다" classname="com.back.coffeeprod.dev.order.DevTask2OrderQueryIntegrationTest" time="0.106" />
+    <testcase name="회원별 목록은 다른 회원 주문을 섞지 않는다" classname="com.back.coffeeprod.dev.order.DevTask2OrderQueryIntegrationTest" time="0.05" />
+    <testcase name="주문 상세는 모든 상품과 주문 가격 스냅샷·옵션·금액을 반환한다" classname="com.back.coffeeprod.dev.order.DevTask2OrderQueryIntegrationTest" time="0.053" />
+    <testcase name="인접 페이지는 중복이 없고 전체 건수와 마지막 페이지가 일치한다" classname="com.back.coffeeprod.dev.order.DevTask2OrderQueryIntegrationTest" time="0.109" />
+  </testsuite>
+  <testsuite name="com.back.coffeeprod.dev.order.DevTask9OrderCreationIntegrationTest" tests="14" failures="0" errors="0" skipped="0" time="3.26">
+    <testcase name="repeatedCartAddsAndDifferentGrindOptionsShareOneStockMutation()" classname="com.back.coffeeprod.dev.order.DevTask9OrderCreationIntegrationTest" time="0.069" />
+    <testcase name="twoMembersCompeteForLastStockWithoutDoubleMileageUse()" classname="com.back.coffeeprod.dev.order.DevTask9OrderCreationIntegrationTest" time="0.044" />
+    <testcase name="staleContextReadsLatestLockedPriceNameAndStock()" classname="com.back.coffeeprod.dev.order.DevTask9OrderCreationIntegrationTest" time="0.032" />
+    <testcase name="purchaseWaitsForProductLockAndThenUsesCommittedValues()" classname="com.back.coffeeprod.dev.order.DevTask9OrderCreationIntegrationTest" time="0.193" />
+    <testcase name="refundIntakeAndPurchasePreserveStockAndMileage()" classname="com.back.coffeeprod.dev.order.DevTask9OrderCreationIntegrationTest" time="0.176" />
+    <testcase name="[1] readOnly = false" classname="com.back.coffeeprod.dev.order.DevTask9OrderCreationIntegrationTest" time="0.034" />
+    <testcase name="[2] readOnly = true" classname="com.back.coffeeprod.dev.order.DevTask9OrderCreationIntegrationTest" time="0.03" />
+    <testcase name="sameMemberDuplicatePurchaseConsumesCartAndMileageOnce()" classname="com.back.coffeeprod.dev.order.DevTask9OrderCreationIntegrationTest" time="0.032" />
+    <testcase name="lateStockFailureRollsBackEveryMutationAndRetainsCart()" classname="com.back.coffeeprod.dev.order.DevTask9OrderCreationIntegrationTest" time="0.043" />
+    <testcase name="failureAfterAllStockMutationsRollsBackMileageStockAndCart()" classname="com.back.coffeeprod.dev.order.DevTask9OrderCreationIntegrationTest" time="0.044" />
+    <testcase name="oppositeCartInsertionOrdersUseAscendingProductLocks()" classname="com.back.coffeeprod.dev.order.DevTask9OrderCreationIntegrationTest" time="0.062" />
+    <testcase name="[1] count = 1" classname="com.back.coffeeprod.dev.order.DevTask9OrderCreationIntegrationTest" time="0.041" />
+    <testcase name="[2] count = 5" classname="com.back.coffeeprod.dev.order.DevTask9OrderCreationIntegrationTest" time="0.15" />
+    <testcase name="[3] count = 20" classname="com.back.coffeeprod.dev.order.DevTask9OrderCreationIntegrationTest" time="0.491" />
+  </testsuite>
+  <testsuite name="com.back.coffeeprod.dev.order.DevTask9OrderSummaryIntegrationTest" tests="16" failures="0" errors="0" skipped="0" time="4.074">
+    <testcase name="representativeUsesCurrentNameRegardlessOfProductStatus()" classname="com.back.coffeeprod.dev.order.DevTask9OrderSummaryIntegrationTest" time="0.056" />
+    <testcase name="emptyIdPageSkipsSummaryQuery()" classname="com.back.coffeeprod.dev.order.DevTask9OrderSummaryIntegrationTest" time="0.014" />
+    <testcase name="[1] cancelRequested = false" classname="com.back.coffeeprod.dev.order.DevTask9OrderSummaryIntegrationTest" time="0.173" />
+    <testcase name="[2] cancelRequested = true" classname="com.back.coffeeprod.dev.order.DevTask9OrderSummaryIntegrationTest" time="0.162" />
+    <testcase name="lineCountAndMinimumItemRepresentative()" classname="com.back.coffeeprod.dev.order.DevTask9OrderSummaryIntegrationTest" time="0.032" />
+    <testcase name="[1] size = &quot;10&quot;, administrator = &quot;false&quot;" classname="com.back.coffeeprod.dev.order.DevTask9OrderSummaryIntegrationTest" time="0.34" />
+    <testcase name="[2] size = &quot;50&quot;, administrator = &quot;false&quot;" classname="com.back.coffeeprod.dev.order.DevTask9OrderSummaryIntegrationTest" time="0.357" />
+    <testcase name="[3] size = &quot;10&quot;, administrator = &quot;true&quot;" classname="com.back.coffeeprod.dev.order.DevTask9OrderSummaryIntegrationTest" time="0.539" />
+    <testcase name="[4] size = &quot;50&quot;, administrator = &quot;true&quot;" classname="com.back.coffeeprod.dev.order.DevTask9OrderSummaryIntegrationTest" time="0.291" />
+    <testcase name="everyOrderStatusIsPreserved()" classname="com.back.coffeeprod.dev.order.DevTask9OrderSummaryIntegrationTest" time="0.03" />
+    <testcase name="emptyPagesRetainExistingMetadata()" classname="com.back.coffeeprod.dev.order.DevTask9OrderSummaryIntegrationTest" time="0.022" />
+    <testcase name="detailSnapshotsAndStoredValuesArePreserved()" classname="com.back.coffeeprod.dev.order.DevTask9OrderSummaryIntegrationTest" time="0.048" />
+    <testcase name="adjacentAndLastPages()" classname="com.back.coffeeprod.dev.order.DevTask9OrderSummaryIntegrationTest" time="0.043" />
+    <testcase name="summaryProjectionRechecksMemberOwnership()" classname="com.back.coffeeprod.dev.order.DevTask9OrderSummaryIntegrationTest" time="0.019" />
+    <testcase name="httpAuthorizationAndWireFields()" classname="com.back.coffeeprod.dev.order.DevTask9OrderSummaryIntegrationTest" time="0.128" />
+    <testcase name="idPageOrderIsRetainedForEqualDatesAndSecondarySort()" classname="com.back.coffeeprod.dev.order.DevTask9OrderSummaryIntegrationTest" time="0.046" />
+  </testsuite>
+  <testsuite name="com.back.coffeeprod.dev.recommendation.DevTask9RecommendationLoadingIntegrationTest" tests="8" failures="0" errors="0" skipped="0" time="3.359">
+    <testcase name="[1] count = &quot;192&quot;, limit = &quot;5&quot;" classname="com.back.coffeeprod.dev.recommendation.DevTask9RecommendationLoadingIntegrationTest" time="0.206" />
+    <testcase name="[2] count = &quot;192&quot;, limit = &quot;10&quot;" classname="com.back.coffeeprod.dev.recommendation.DevTask9RecommendationLoadingIntegrationTest" time="0.173" />
+    <testcase name="[3] count = &quot;1000&quot;, limit = &quot;5&quot;" classname="com.back.coffeeprod.dev.recommendation.DevTask9RecommendationLoadingIntegrationTest" time="0.793" />
+    <testcase name="[4] count = &quot;1000&quot;, limit = &quot;10&quot;" classname="com.back.coffeeprod.dev.recommendation.DevTask9RecommendationLoadingIntegrationTest" time="0.436" />
+    <testcase name="candidateQueryLoadsOnlyScalarsIncludingNullableProcessingMethod()" classname="com.back.coffeeprod.dev.recommendation.DevTask9RecommendationLoadingIntegrationTest" time="0.111" />
+    <testcase name="emptyResultSkipsDetailQuery()" classname="com.back.coffeeprod.dev.recommendation.DevTask9RecommendationLoadingIntegrationTest" time="0.01" />
+    <testcase name="[1] personal = false" classname="com.back.coffeeprod.dev.recommendation.DevTask9RecommendationLoadingIntegrationTest" time="0.028" />
+    <testcase name="[2] personal = true" classname="com.back.coffeeprod.dev.recommendation.DevTask9RecommendationLoadingIntegrationTest" time="0.025" />
+  </testsuite>
+  <testsuite name="com.back.coffeeprod.dev.scheduling.DevTask9WorkerSchedulingConfigTest" tests="3" failures="0" errors="0" skipped="0" time="0.497">
+    <testcase name="[1] workers = &quot;missing&quot;" classname="com.back.coffeeprod.dev.scheduling.DevTask9WorkerSchedulingConfigTest" time="0.477" />
+    <testcase name="[2] workers = &quot;true&quot;" classname="com.back.coffeeprod.dev.scheduling.DevTask9WorkerSchedulingConfigTest" time="0.009" />
+    <testcase name="[3] workers = &quot;false&quot;" classname="com.back.coffeeprod.dev.scheduling.DevTask9WorkerSchedulingConfigTest" time="0.007" />
+  </testsuite>
+  <testsuite name="com.back.coffeeprod.dev.scheduling.DevTask9WorkerSchedulingIntegrationTest" tests="2" failures="0" errors="0" skipped="0" time="3.965">
+    <testcase name="blockedLookupAndBacklogDoNotDelayStatisticsAndLeasePreventsDuplicateCalls()" classname="com.back.coffeeprod.dev.scheduling.DevTask9WorkerSchedulingIntegrationTest" time="0.646" />
+    <testcase name="blockedStatisticsDoesNotDelayPaymentRecovery()" classname="com.back.coffeeprod.dev.scheduling.DevTask9WorkerSchedulingIntegrationTest" time="0.351" />
+  </testsuite>
+  <testsuite name="com.back.coffeeprod.dev.statistics.DevTask9StatisticsRangeIntegrationTest" tests="19" failures="1" errors="0" skipped="0" time="4.483">
+    <testcase name="overlappingRangesConvergeWithoutDuplicateDatesOrDeadlock()" classname="com.back.coffeeprod.dev.statistics.DevTask9StatisticsRangeIntegrationTest" time="0.161" />
+    <testcase name="rangeAcquiresAscendingDateLocksAndKeepsThemUntilCommit()" classname="com.back.coffeeprod.dev.statistics.DevTask9StatisticsRangeIntegrationTest" time="0.02" />
+    <testcase name="managedRowsAndSessionBatchSettingArePreserved()" classname="com.back.coffeeprod.dev.statistics.DevTask9StatisticsRangeIntegrationTest" time="0.034" />
+    <testcase name="kstMidnightLeapDayRefundAndCalendarTotalsStayConsistent()" classname="com.back.coffeeprod.dev.statistics.DevTask9StatisticsRangeIntegrationTest" time="0.027">
+      <failure message="org.opentest4j.AssertionFailedError: expected: &lt;2&gt; but was: &lt;1&gt;" type="org.opentest4j.AssertionFailedError" />
+    </testcase>
+    <testcase name="[1] days = &quot;30&quot;, state = &quot;new&quot;" classname="com.back.coffeeprod.dev.statistics.DevTask9StatisticsRangeIntegrationTest" time="0.105" />
+    <testcase name="[2] days = &quot;30&quot;, state = &quot;existing&quot;" classname="com.back.coffeeprod.dev.statistics.DevTask9StatisticsRangeIntegrationTest" time="0.049" />
+    <testcase name="[3] days = &quot;366&quot;, state = &quot;mixed&quot;" classname="com.back.coffeeprod.dev.statistics.DevTask9StatisticsRangeIntegrationTest" time="0.238" />
+    <testcase name="invalidRangesKeepErrorsAndDoNotWrite()" classname="com.back.coffeeprod.dev.statistics.DevTask9StatisticsRangeIntegrationTest" time="0.032" />
+    <testcase name="[1] refund = false" classname="com.back.coffeeprod.dev.statistics.DevTask9StatisticsRangeIntegrationTest" time="0.086" />
+    <testcase name="[2] refund = true" classname="com.back.coffeeprod.dev.statistics.DevTask9StatisticsRangeIntegrationTest" time="0.076" />
+    <testcase name="[1] days = &quot;1&quot;, state = &quot;new&quot;" classname="com.back.coffeeprod.dev.statistics.DevTask9StatisticsRangeIntegrationTest" time="0.016" />
+    <testcase name="[2] days = &quot;1&quot;, state = &quot;existing&quot;" classname="com.back.coffeeprod.dev.statistics.DevTask9StatisticsRangeIntegrationTest" time="0.017" />
+    <testcase name="[3] days = &quot;1&quot;, state = &quot;mixed&quot;" classname="com.back.coffeeprod.dev.statistics.DevTask9StatisticsRangeIntegrationTest" time="0.016" />
+    <testcase name="[4] days = &quot;30&quot;, state = &quot;new&quot;" classname="com.back.coffeeprod.dev.statistics.DevTask9StatisticsRangeIntegrationTest" time="0.048" />
+    <testcase name="[5] days = &quot;30&quot;, state = &quot;existing&quot;" classname="com.back.coffeeprod.dev.statistics.DevTask9StatisticsRangeIntegrationTest" time="0.055" />
+    <testcase name="[6] days = &quot;30&quot;, state = &quot;mixed&quot;" classname="com.back.coffeeprod.dev.statistics.DevTask9StatisticsRangeIntegrationTest" time="0.051" />
+    <testcase name="[7] days = &quot;366&quot;, state = &quot;new&quot;" classname="com.back.coffeeprod.dev.statistics.DevTask9StatisticsRangeIntegrationTest" time="0.423" />
+    <testcase name="[8] days = &quot;366&quot;, state = &quot;existing&quot;" classname="com.back.coffeeprod.dev.statistics.DevTask9StatisticsRangeIntegrationTest" time="0.486" />
+    <testcase name="[9] days = &quot;366&quot;, state = &quot;mixed&quot;" classname="com.back.coffeeprod.dev.statistics.DevTask9StatisticsRangeIntegrationTest" time="0.75" />
+  </testsuite>
+  <testsuite name="com.back.coffeeprod.domain.address.service.AddressServiceIntegrationTest" tests="2" failures="0" errors="0" skipped="0" time="0.317">
+    <testcase name="getAddress_returnsOnlyRequestedAddress()" classname="com.back.coffeeprod.domain.address.service.AddressServiceIntegrationTest" time="0.049" />
+    <testcase name="getAddress_rejectsOtherMembersAddress()" classname="com.back.coffeeprod.domain.address.service.AddressServiceIntegrationTest" time="0.024" />
+  </testsuite>
+  <testsuite name="com.back.coffeeprod.domain.cart.service.CartServiceIntegrationTest" tests="7" failures="0" errors="0" skipped="0" time="0.26">
+    <testcase name="addItem_rejectsProductThatIsNotOnSale()" classname="com.back.coffeeprod.domain.cart.service.CartServiceIntegrationTest" time="0.034" />
+    <testcase name="addItem_returnsCreatedCartItemInResponse()" classname="com.back.coffeeprod.domain.cart.service.CartServiceIntegrationTest" time="0.029" />
+    <testcase name="updateItem_withZeroQuantityDeletesCartItem()" classname="com.back.coffeeprod.domain.cart.service.CartServiceIntegrationTest" time="0.028" />
+    <testcase name="updateItem_rejectsCartItemOwnedByAnotherMember()" classname="com.back.coffeeprod.domain.cart.service.CartServiceIntegrationTest" time="0.044" />
+    <testcase name="getCart_createsAnEmptyCartForMember()" classname="com.back.coffeeprod.domain.cart.service.CartServiceIntegrationTest" time="0.019" />
+    <testcase name="addItem_createsSeparateItemsForDifferentGrindTypes()" classname="com.back.coffeeprod.domain.cart.service.CartServiceIntegrationTest" time="0.023" />
+    <testcase name="addItem_mergesQuantityForSameProductAndGrindType()" classname="com.back.coffeeprod.domain.cart.service.CartServiceIntegrationTest" time="0.022" />
+  </testsuite>
+  <testsuite name="com.back.coffeeprod.domain.coffeeprofile.service.CoffeeProfileServiceIntegrationTest" tests="9" failures="0" errors="0" skipped="0" time="0.355">
+    <testcase name="createCoffeeProfile_rejectsDecafMethodForRegularCoffee()" classname="com.back.coffeeprod.domain.coffeeprofile.service.CoffeeProfileServiceIntegrationTest" time="0.034" />
+    <testcase name="createProcessingMethod_rejectsDuplicateCode()" classname="com.back.coffeeprod.domain.coffeeprofile.service.CoffeeProfileServiceIntegrationTest" time="0.028" />
+    <testcase name="createCoffeeProfile_rejectsSingleOriginWithoutCountryCode()" classname="com.back.coffeeprod.domain.coffeeprofile.service.CoffeeProfileServiceIntegrationTest" time="0.022" />
+    <testcase name="getCoffeeProfiles_returnsPagedProfiles()" classname="com.back.coffeeprod.domain.coffeeprofile.service.CoffeeProfileServiceIntegrationTest" time="0.036" />
+    <testcase name="createCoffeeProfile_savesSingleOriginWithProcessingMethod()" classname="com.back.coffeeprod.domain.coffeeprofile.service.CoffeeProfileServiceIntegrationTest" time="0.029" />
+    <testcase name="getProcessingMethods_returnsMethodsOrderedByName()" classname="com.back.coffeeprod.domain.coffeeprofile.service.CoffeeProfileServiceIntegrationTest" time="0.033" />
+    <testcase name="createCoffeeProfile_rejectsBlendWithCountryCode()" classname="com.back.coffeeprod.domain.coffeeprofile.service.CoffeeProfileServiceIntegrationTest" time="0.019" />
+    <testcase name="updateCoffeeProfile_changesProcessingMethodAndProfileData()" classname="com.back.coffeeprod.domain.coffeeprofile.service.CoffeeProfileServiceIntegrationTest" time="0.034" />
+    <testcase name="createCoffeeProfile_rejectsInvalidAltitudeRange()" classname="com.back.coffeeprod.domain.coffeeprofile.service.CoffeeProfileServiceIntegrationTest" time="0.029" />
+  </testsuite>
+  <testsuite name="com.back.coffeeprod.domain.member.service.MemberServiceIntegrationTest" tests="7" failures="0" errors="0" skipped="0" time="0.147">
+    <testcase name="getAllMembers_excludesWithdrawnMembersByDefault()" classname="com.back.coffeeprod.domain.member.service.MemberServiceIntegrationTest" time="0.017" />
+    <testcase name="getMember_returnsAdminMemberDetail()" classname="com.back.coffeeprod.domain.member.service.MemberServiceIntegrationTest" time="0.012" />
+    <testcase name="updateMemberStatus_rejectsWithdrawnAsNextStatus()" classname="com.back.coffeeprod.domain.member.service.MemberServiceIntegrationTest" time="0.012" />
+    <testcase name="updateMemberStatus_suspendsActiveMember()" classname="com.back.coffeeprod.domain.member.service.MemberServiceIntegrationTest" time="0.011" />
+    <testcase name="getAllMembers_includesWithdrawnMembersWhenRequested()" classname="com.back.coffeeprod.domain.member.service.MemberServiceIntegrationTest" time="0.012" />
+    <testcase name="updateMemberStatus_rejectsChangingWithdrawnMember()" classname="com.back.coffeeprod.domain.member.service.MemberServiceIntegrationTest" time="0.012" />
+    <testcase name="updateMemberGrade_changesGrade()" classname="com.back.coffeeprod.domain.member.service.MemberServiceIntegrationTest" time="0.009" />
+  </testsuite>
+  <testsuite name="com.back.coffeeprod.domain.order.service.OrderServiceIntegrationTest" tests="7" failures="0" errors="0" skipped="0" time="0.436">
+    <testcase name="updateOrderStatus_requiresTrackingNoWhenShipping()" classname="com.back.coffeeprod.domain.order.service.OrderServiceIntegrationTest" time="0.085" />
+    <testcase name="getAllOrders_returnsAdminOrderSummariesWithMemberInfo()" classname="com.back.coffeeprod.domain.order.service.OrderServiceIntegrationTest" time="0.061" />
+    <testcase name="cancelOrder_restoresStockAndMileageOnce()" classname="com.back.coffeeprod.domain.order.service.OrderServiceIntegrationTest" time="0.053" />
+    <testcase name="createOrder_deductsMileageAndStock()" classname="com.back.coffeeprod.domain.order.service.OrderServiceIntegrationTest" time="0.022" />
+    <testcase name="createOrder_rollsBackMileageWhenStockIsNotEnough()" classname="com.back.coffeeprod.domain.order.service.OrderServiceIntegrationTest" time="0.022" />
+    <testcase name="getMyOrders_returnsOnlyMembersOrdersWithItems()" classname="com.back.coffeeprod.domain.order.service.OrderServiceIntegrationTest" time="0.053" />
+    <testcase name="updateOrderStatus_changesPaidOrderToShippedWithTrackingNo()" classname="com.back.coffeeprod.domain.order.service.OrderServiceIntegrationTest" time="0.057" />
+  </testsuite>
+  <testsuite name="com.back.coffeeprod.domain.payment.entity.PaymentOperationReadinessTest" tests="3" failures="0" errors="0" skipped="0" time="0.014">
+    <testcase name="[1] reconcile = false" classname="com.back.coffeeprod.domain.payment.entity.PaymentOperationReadinessTest" time="0.006" />
+    <testcase name="[2] reconcile = true" classname="com.back.coffeeprod.domain.payment.entity.PaymentOperationReadinessTest" time="0.003" />
+    <testcase name="예약된 재시도와 유효한 임대는 즉시 작업 처리로 앞당기지 않는다" classname="com.back.coffeeprod.domain.payment.entity.PaymentOperationReadinessTest" time="0.0" />
+  </testsuite>
+  <testsuite name="com.back.coffeeprod.domain.payment.gateway.TossPaymentGatewayTest" tests="5" failures="0" errors="0" skipped="0" time="0.264">
+    <testcase name="fakeReplaysOriginalPostResponseAndLookupReturnsCurrentState()" classname="com.back.coffeeprod.domain.payment.gateway.TossPaymentGatewayTest" time="0.064" />
+    <testcase name="partialOrProcessingCancellationDoesNotValidateAsFullRefund()" classname="com.back.coffeeprod.domain.payment.gateway.TossPaymentGatewayTest" time="0.083" />
+    <testcase name="confirmLookupAndFullCancelUseStoredKeysAndNormalizeProviderSnapshot()" classname="com.back.coffeeprod.domain.payment.gateway.TossPaymentGatewayTest" time="0.056" />
+    <testcase name="missingFieldsMalformedBodyAndTemporaryLookup404CannotBecomeSuccess()" classname="com.back.coffeeprod.domain.payment.gateway.TossPaymentGatewayTest" time="0.022" />
+    <testcase name="onlyExplicitFinalRejectionIsRejectedAndTemporaryOrUnknownErrorsStayUnknown()" classname="com.back.coffeeprod.domain.payment.gateway.TossPaymentGatewayTest" time="0.036" />
+  </testsuite>
+  <testsuite name="com.back.coffeeprod.domain.payment.service.DevPaymentFixIntegrationTest" tests="2" failures="0" errors="0" skipped="0" time="2.331">
+    <testcase name="상품 등록 재고는 저장하고 정보 수정의 절대 재고값은 적용하지 않는다" classname="com.back.coffeeprod.domain.payment.service.DevPaymentFixIntegrationTest" time="0.404" />
+    <testcase name="JWT가 가리키는 회원이 없으면 필터에서 UTF-8 공통 응답 401로 거부한다" classname="com.back.coffeeprod.domain.payment.service.DevPaymentFixIntegrationTest" time="0.024" />
+  </testsuite>
+  <testsuite name="com.back.coffeeprod.domain.payment.service.PaymentServiceIntegrationTest" tests="10" failures="0" errors="0" skipped="0" time="2.376">
+    <testcase name="confirmPayment_cancelsOrderAndRestoresOnAmountMismatch()" classname="com.back.coffeeprod.domain.payment.service.PaymentServiceIntegrationTest" time="0.051" />
+    <testcase name="confirmPayment_cancelsOrderAndRestoresOnGatewayFailure()" classname="com.back.coffeeprod.domain.payment.service.PaymentServiceIntegrationTest" time="0.042" />
+    <testcase name="cancelPaidOrder_restoresUsedMileageAndReclaimsEarnedMileage()" classname="com.back.coffeeprod.domain.payment.service.PaymentServiceIntegrationTest" time="0.223" />
+    <testcase name="confirmPayment_deniesSuspendedMemberBeforeGatewayCall()" classname="com.back.coffeeprod.domain.payment.service.PaymentServiceIntegrationTest" time="0.055" />
+    <testcase name="confirmPayment_savesPaymentAndMarksOrderPaid()" classname="com.back.coffeeprod.domain.payment.service.PaymentServiceIntegrationTest" time="0.062" />
+    <testcase name="confirmPayment_deniesOtherMembersOrderBeforeGatewayCall()" classname="com.back.coffeeprod.domain.payment.service.PaymentServiceIntegrationTest" time="0.041" />
+    <testcase name="confirmPayment_preservesReservationOnGatewayOrderIdMismatch()" classname="com.back.coffeeprod.domain.payment.service.PaymentServiceIntegrationTest" time="0.066" />
+    <testcase name="confirmPayment_preservesReservationOnGatewayStatusNotDone()" classname="com.back.coffeeprod.domain.payment.service.PaymentServiceIntegrationTest" time="0.065" />
+    <testcase name="confirmPayment_preservesReservationOnGatewayAmountMismatch()" classname="com.back.coffeeprod.domain.payment.service.PaymentServiceIntegrationTest" time="0.055" />
+    <testcase name="confirmPayment_deniesAlreadyPaidOrderBeforeGatewayCall()" classname="com.back.coffeeprod.domain.payment.service.PaymentServiceIntegrationTest" time="0.033" />
+  </testsuite>
+  <testsuite name="com.back.coffeeprod.domain.payment.service.PaymentWorkflowIntegrationTest" tests="19" failures="0" errors="0" skipped="0" time="3.318">
+    <testcase name="restockAndStaleEntityStatusUpdateCannotOverwriteRefundedStock()" classname="com.back.coffeeprod.domain.payment.service.PaymentWorkflowIntegrationTest" time="0.106" />
+    <testcase name="lostRefundResponseDoesNotRestoreUntilLookupAndCannotShip()" classname="com.back.coffeeprod.domain.payment.service.PaymentWorkflowIntegrationTest" time="0.072" />
+    <testcase name="sameMemberConcurrentCheckoutCannotSpendOrConsumeCartTwice()" classname="com.back.coffeeprod.domain.payment.service.PaymentWorkflowIntegrationTest" time="0.039" />
+    <testcase name="staleLeaseCannotOverwriteNewOwnerAndUnknownNeverMeansSuccess()" classname="com.back.coffeeprod.domain.payment.service.PaymentWorkflowIntegrationTest" time="0.031" />
+    <testcase name="httpAuthorizationStatusCodesAndAdminViewsRespectContract()" classname="com.back.coffeeprod.domain.payment.service.PaymentWorkflowIntegrationTest" time="0.22" />
+    <testcase name="cancellationDuringApprovalPreservesOriginalAdminActorAndSerializesRefund()" classname="com.back.coffeeprod.domain.payment.service.PaymentWorkflowIntegrationTest" time="0.039" />
+    <testcase name="spentRewardsBecomeRecoveryDueAndFutureCreditsSettleItFirst()" classname="com.back.coffeeprod.domain.payment.service.PaymentWorkflowIntegrationTest" time="0.04" />
+    <testcase name="refundExcludesOriginalKstDateAndRebuildRequestIsRetried()" classname="com.back.coffeeprod.domain.payment.service.PaymentWorkflowIntegrationTest" time="0.048" />
+    <testcase name="concurrentRefundsAndCreditsPreserveStockAndBalance()" classname="com.back.coffeeprod.domain.payment.service.PaymentWorkflowIntegrationTest" time="0.085" />
+    <testcase name="paidUserAndAdminFullCancellationAndDuplicateApprovalAreIdempotent()" classname="com.back.coffeeprod.domain.payment.service.PaymentWorkflowIntegrationTest" time="0.099" />
+    <testcase name="inactiveOwnersAreDeniedButAdminCanRecover()" classname="com.back.coffeeprod.domain.payment.service.PaymentWorkflowIntegrationTest" time="0.163" />
+    <testcase name="commitFailureAfterPgSuccessRollsBackAndDurableLeaseRecovers()" classname="com.back.coffeeprod.domain.payment.service.PaymentWorkflowIntegrationTest" time="0.049" />
+    <testcase name="lostApprovalResponsePreservesResourcesThenLookupConverges()" classname="com.back.coffeeprod.domain.payment.service.PaymentWorkflowIntegrationTest" time="0.043" />
+    <testcase name="rebuildRequestsRemainConsistentAcrossManualWorkerAndRefundPaths()" classname="com.back.coffeeprod.domain.payment.service.PaymentWorkflowIntegrationTest" time="0.064" />
+    <testcase name="pendingUserAndAdminCancellationIsExactlyOnceWithoutPg()" classname="com.back.coffeeprod.domain.payment.service.PaymentWorkflowIntegrationTest" time="0.051" />
+    <testcase name="finalApprovalAndRefundRejectionsHaveDifferentCompensation()" classname="com.back.coffeeprod.domain.payment.service.PaymentWorkflowIntegrationTest" time="0.135" />
+    <testcase name="legacyInconsistencyAndUnsupportedOrPartialPaymentNeverReplayResources()" classname="com.back.coffeeprod.domain.payment.service.PaymentWorkflowIntegrationTest" time="0.095" />
+    <testcase name="tenActualRecoveryRoundsPersistBudgetAndNewWorkerFindsDueWork()" classname="com.back.coffeeprod.domain.payment.service.PaymentWorkflowIntegrationTest" time="0.197" />
+    <testcase name="exhaustedAndExpiredOperationsOnlyLookupAndNeverPostAgain()" classname="com.back.coffeeprod.domain.payment.service.PaymentWorkflowIntegrationTest" time="0.091" />
+  </testsuite>
+  <testsuite name="com.back.coffeeprod.domain.payment.service.QaMileageFormulaTest" tests="6" failures="0" errors="0" skipped="0" time="0.026">
+    <testcase name="[1] balance = &quot;0&quot;, used = &quot;0&quot;, due = &quot;0&quot;, earned = &quot;1000&quot;, expectedBalance = &quot;0&quot;, expectedDue = &quot;1000&quot;" classname="com.back.coffeeprod.domain.payment.service.QaMileageFormulaTest" time="0.003" />
+    <testcase name="[2] balance = &quot;200&quot;, used = &quot;500&quot;, due = &quot;0&quot;, earned = &quot;1000&quot;, expectedBalance = &quot;0&quot;, expectedDue = &quot;300&quot;" classname="com.back.coffeeprod.domain.payment.service.QaMileageFormulaTest" time="0.002" />
+    <testcase name="[3] balance = &quot;0&quot;, used = &quot;500&quot;, due = &quot;300&quot;, earned = &quot;0&quot;, expectedBalance = &quot;200&quot;, expectedDue = &quot;0&quot;" classname="com.back.coffeeprod.domain.payment.service.QaMileageFormulaTest" time="0.0" />
+    <testcase name="[4] balance = &quot;0&quot;, used = &quot;200&quot;, due = &quot;500&quot;, earned = &quot;0&quot;, expectedBalance = &quot;0&quot;, expectedDue = &quot;300&quot;" classname="com.back.coffeeprod.domain.payment.service.QaMileageFormulaTest" time="0.001" />
+    <testcase name="[5] balance = &quot;500&quot;, used = &quot;0&quot;, due = &quot;0&quot;, earned = &quot;100&quot;, expectedBalance = &quot;400&quot;, expectedDue = &quot;0&quot;" classname="com.back.coffeeprod.domain.payment.service.QaMileageFormulaTest" time="0.0" />
+    <testcase name="AT1-A12 정수 범위를 넘는 적립과 음수 입력은 기존 잔액을 변경하지 않는다" classname="com.back.coffeeprod.domain.payment.service.QaMileageFormulaTest" time="0.0" />
+  </testsuite>
+  <testsuite name="com.back.coffeeprod.domain.payment.service.QaPaymentAcceptanceTest" tests="44" failures="0" errors="0" skipped="0" time="4.84">
+    <testcase name="AT1-A08 중복 승인과 환불 및 동일 회원 여러 주문의 동시 처리는 한 번만 반영한다" classname="com.back.coffeeprod.domain.payment.service.QaPaymentAcceptanceTest" time="0.184" />
+    <testcase name="[1] fault = FIVE_HUNDRED" classname="com.back.coffeeprod.domain.payment.service.QaPaymentAcceptanceTest" time="0.043" />
+    <testcase name="[2] fault = CLOSE" classname="com.back.coffeeprod.domain.payment.service.QaPaymentAcceptanceTest" time="0.042" />
+    <testcase name="[3] fault = EMPTY" classname="com.back.coffeeprod.domain.payment.service.QaPaymentAcceptanceTest" time="0.052" />
+    <testcase name="[4] fault = MALFORMED" classname="com.back.coffeeprod.domain.payment.service.QaPaymentAcceptanceTest" time="0.048" />
+    <testcase name="[5] fault = MISMATCH" classname="com.back.coffeeprod.domain.payment.service.QaPaymentAcceptanceTest" time="0.051" />
+    <testcase name="[6] fault = TIMEOUT" classname="com.back.coffeeprod.domain.payment.service.QaPaymentAcceptanceTest" time="0.699" />
+    <testcase name="[7] fault = LOST_SUCCESS" classname="com.back.coffeeprod.domain.payment.service.QaPaymentAcceptanceTest" time="0.045" />
+    <testcase name="[1] fault = FIVE_HUNDRED" classname="com.back.coffeeprod.domain.payment.service.QaPaymentAcceptanceTest" time="0.152" />
+    <testcase name="[2] fault = CLOSE" classname="com.back.coffeeprod.domain.payment.service.QaPaymentAcceptanceTest" time="0.115" />
+    <testcase name="[3] fault = EMPTY" classname="com.back.coffeeprod.domain.payment.service.QaPaymentAcceptanceTest" time="0.127" />
+    <testcase name="[4] fault = MALFORMED" classname="com.back.coffeeprod.domain.payment.service.QaPaymentAcceptanceTest" time="0.11" />
+    <testcase name="[5] fault = MISMATCH" classname="com.back.coffeeprod.domain.payment.service.QaPaymentAcceptanceTest" time="0.127" />
+    <testcase name="[6] fault = TIMEOUT" classname="com.back.coffeeprod.domain.payment.service.QaPaymentAcceptanceTest" time="0.76" />
+    <testcase name="[7] fault = LOST_SUCCESS" classname="com.back.coffeeprod.domain.payment.service.QaPaymentAcceptanceTest" time="0.131" />
+    <testcase name="AT1-A03 HTTP 권한과 소유권 거부는 결제와 자원을 변경하지 않는다" classname="com.back.coffeeprod.domain.payment.service.QaPaymentAcceptanceTest" time="0.076" />
+    <testcase name="AT1-A04 직접 결제완료와 운송장 누락 및 배송 이후 취소를 HTTP에서 거부한다" classname="com.back.coffeeprod.domain.payment.service.QaPaymentAcceptanceTest" time="0.136" />
+    <testcase name="AT1-A10 서로 반대 상품 순서의 동시 주문과 취소는 교착 없이 재고를 보존한다" classname="com.back.coffeeprod.domain.payment.service.QaPaymentAcceptanceTest" time="0.062" />
+    <testcase name="AT1-A09 동일 회원의 동시 주문은 장바구니와 사용 마일리지를 중복 소비하지 않는다" classname="com.back.coffeeprod.domain.payment.service.QaPaymentAcceptanceTest" time="0.022" />
+    <testcase name="AT1-A08 배송과 환불이 경합해도 동시에 성공하지 않는다" classname="com.back.coffeeprod.domain.payment.service.QaPaymentAcceptanceTest" time="0.034" />
+    <testcase name="[1] refund = false" classname="com.back.coffeeprod.domain.payment.service.QaPaymentAcceptanceTest" time="0.046" />
+    <testcase name="[2] refund = true" classname="com.back.coffeeprod.domain.payment.service.QaPaymentAcceptanceTest" time="0.058" />
+    <testcase name="[1] status = SUSPENDED" classname="com.back.coffeeprod.domain.payment.service.QaPaymentAcceptanceTest" time="0.087" />
+    <testcase name="[2] status = WITHDRAWN" classname="com.back.coffeeprod.domain.payment.service.QaPaymentAcceptanceTest" time="0.067" />
+    <testcase name="[1] mode = &quot;missing-payment&quot;" classname="com.back.coffeeprod.domain.payment.service.QaPaymentAcceptanceTest" time="0.054" />
+    <testcase name="[2] mode = &quot;canceled-success&quot;" classname="com.back.coffeeprod.domain.payment.service.QaPaymentAcceptanceTest" time="0.069" />
+    <testcase name="[3] mode = &quot;unsupported&quot;" classname="com.back.coffeeprod.domain.payment.service.QaPaymentAcceptanceTest" time="0.074" />
+    <testcase name="[4] mode = &quot;partial&quot;" classname="com.back.coffeeprod.domain.payment.service.QaPaymentAcceptanceTest" time="0.07" />
+    <testcase name="[1] isAdmin = false" classname="com.back.coffeeprod.domain.payment.service.QaPaymentAcceptanceTest" time="0.037" />
+    <testcase name="[2] isAdmin = true" classname="com.back.coffeeprod.domain.payment.service.QaPaymentAcceptanceTest" time="0.043" />
+    <testcase name="[1] aged = false" classname="com.back.coffeeprod.domain.payment.service.QaPaymentAcceptanceTest" time="0.137" />
+    <testcase name="[2] aged = true" classname="com.back.coffeeprod.domain.payment.service.QaPaymentAcceptanceTest" time="0.052" />
+    <testcase name="AT1-A07 승인 성공 후 적립 저장 실패는 롤백하고 PG 조회로 복구한다" classname="com.back.coffeeprod.domain.payment.service.QaPaymentAcceptanceTest" time="0.04" />
+    <testcase name="AT1-A11 worker 경쟁과 만료 임대의 늦은 응답은 완료 결과를 덮어쓰지 않는다" classname="com.back.coffeeprod.domain.payment.service.QaPaymentAcceptanceTest" time="0.064" />
+    <testcase name="AT1-A16 진행 중 다른 키와 금액은 409이고 목록과 회원 응답은 추가 필드를 보존한다" classname="com.back.coffeeprod.domain.payment.service.QaPaymentAcceptanceTest" time="0.098" />
+    <testcase name="AT1-A13 KST 월 경계의 환불은 원결제일 매출을 제외하고 실패한 집계 요청을 보존한다" classname="com.back.coffeeprod.domain.payment.service.QaPaymentAcceptanceTest" time="0.085" />
+    <testcase name="[1] remaining = 0" classname="com.back.coffeeprod.domain.payment.service.QaPaymentAcceptanceTest" time="0.046" />
+    <testcase name="[2] remaining = 200" classname="com.back.coffeeprod.domain.payment.service.QaPaymentAcceptanceTest" time="0.044" />
+    <testcase name="AT1-A10 오래된 상품 전체 수정과 입고 및 환불 경합은 재고 증감을 보존한다" classname="com.back.coffeeprod.domain.payment.service.QaPaymentAcceptanceTest" time="0.051" />
+    <testcase name="[1] method = &quot;카드&quot;, isAdmin = &quot;false&quot;" classname="com.back.coffeeprod.domain.payment.service.QaPaymentAcceptanceTest" time="0.085" />
+    <testcase name="[2] method = &quot;카드&quot;, isAdmin = &quot;true&quot;" classname="com.back.coffeeprod.domain.payment.service.QaPaymentAcceptanceTest" time="0.069" />
+    <testcase name="[3] method = &quot;간편결제&quot;, isAdmin = &quot;false&quot;" classname="com.back.coffeeprod.domain.payment.service.QaPaymentAcceptanceTest" time="0.108" />
+    <testcase name="[4] method = &quot;간편결제&quot;, isAdmin = &quot;true&quot;" classname="com.back.coffeeprod.domain.payment.service.QaPaymentAcceptanceTest" time="0.072" />
+    <testcase name="AT1-A07 환불 성공 후 DB 실패는 전체 롤백하고 조회 복구를 한 번 반영한다" classname="com.back.coffeeprod.domain.payment.service.QaPaymentAcceptanceTest" time="0.073" />
+  </testsuite>
+  <testsuite name="com.back.coffeeprod.domain.payment.service.QaPaymentRestartTest" tests="2" failures="0" errors="0" skipped="0" time="69.244">
+    <testcase name="[1] target = &quot;confirm&quot;" classname="com.back.coffeeprod.domain.payment.service.QaPaymentRestartTest" time="35.001" />
+    <testcase name="[2] target = &quot;refund&quot;" classname="com.back.coffeeprod.domain.payment.service.QaPaymentRestartTest" time="34.242" />
+  </testsuite>
+  <testsuite name="com.back.coffeeprod.domain.product.service.ProductServiceIntegrationTest" tests="29" failures="0" errors="0" skipped="0" time="0.578">
+    <testcase name="updateProduct_keepsOwnSkuAndUpdatesWeight()" classname="com.back.coffeeprod.domain.product.service.ProductServiceIntegrationTest" time="0.019" />
+    <testcase name="deleteCategory_rejectsCategoryInUse()" classname="com.back.coffeeprod.domain.product.service.ProductServiceIntegrationTest" time="0.014" />
+    <testcase name="getAdminProducts_returnsProductsRegardlessOfStatus()" classname="com.back.coffeeprod.domain.product.service.ProductServiceIntegrationTest" time="0.018" />
+    <testcase name="getAdminProduct_returnsHiddenProductDetail()" classname="com.back.coffeeprod.domain.product.service.ProductServiceIntegrationTest" time="0.014" />
+    <testcase name="createProduct_rejectsDuplicateSku()" classname="com.back.coffeeprod.domain.product.service.ProductServiceIntegrationTest" time="0.01" />
+    <testcase name="[1] imageUrl = null" classname="com.back.coffeeprod.domain.product.service.ProductServiceIntegrationTest" time="0.01" />
+    <testcase name="[2] imageUrl = &quot;&quot;" classname="com.back.coffeeprod.domain.product.service.ProductServiceIntegrationTest" time="0.01" />
+    <testcase name="[3] imageUrl = &quot; \t &quot;" classname="com.back.coffeeprod.domain.product.service.ProductServiceIntegrationTest" time="0.01" />
+    <testcase name="addStock_increasesProductStockQuantity()" classname="com.back.coffeeprod.domain.product.service.ProductServiceIntegrationTest" time="0.013" />
+    <testcase name="[1] imageUrl = &quot;https://example.com/products/catalog/so001-l-v1.webp&quot;" classname="com.back.coffeeprod.domain.product.service.ProductServiceIntegrationTest" time="0.018" />
+    <testcase name="[2] imageUrl = &quot;http://assets-coffeeprod.ttagyulab.com/products/catalog/so001-l-v1.webp&quot;" classname="com.back.coffeeprod.domain.product.service.ProductServiceIntegrationTest" time="0.013" />
+    <testcase name="[3] imageUrl = &quot;/products/catalog/so001-l-v1.webp&quot;" classname="com.back.coffeeprod.domain.product.service.ProductServiceIntegrationTest" time="0.017" />
+    <testcase name="[1] imageUrl = null" classname="com.back.coffeeprod.domain.product.service.ProductServiceIntegrationTest" time="0.014" />
+    <testcase name="[2] imageUrl = &quot;&quot;" classname="com.back.coffeeprod.domain.product.service.ProductServiceIntegrationTest" time="0.015" />
+    <testcase name="[3] imageUrl = &quot; \t &quot;" classname="com.back.coffeeprod.domain.product.service.ProductServiceIntegrationTest" time="0.012" />
+    <testcase name="[1] imageUrl = &quot;https://example.com/products/catalog/so001-l-v1.webp&quot;" classname="com.back.coffeeprod.domain.product.service.ProductServiceIntegrationTest" time="0.009" />
+    <testcase name="[2] imageUrl = &quot;http://assets-coffeeprod.ttagyulab.com/products/catalog/so001-l-v1.webp&quot;" classname="com.back.coffeeprod.domain.product.service.ProductServiceIntegrationTest" time="0.01" />
+    <testcase name="[3] imageUrl = &quot;/products/catalog/so001-l-v1.webp&quot;" classname="com.back.coffeeprod.domain.product.service.ProductServiceIntegrationTest" time="0.01" />
+    <testcase name="상품 등록은 승인 이미지 URL을 응답하고 DB에 저장한다" classname="com.back.coffeeprod.domain.product.service.ProductServiceIntegrationTest" time="0.011" />
+    <testcase name="getProducts_returnsOnlyOnSaleProducts()" classname="com.back.coffeeprod.domain.product.service.ProductServiceIntegrationTest" time="0.016" />
+    <testcase name="getCategory_returnsCategoryDetail()" classname="com.back.coffeeprod.domain.product.service.ProductServiceIntegrationTest" time="0.009" />
+    <testcase name="updateCategory_rejectsNameUsedByAnotherCategory()" classname="com.back.coffeeprod.domain.product.service.ProductServiceIntegrationTest" time="0.012" />
+    <testcase name="deleteCategory_removesCategoryWithoutProducts()" classname="com.back.coffeeprod.domain.product.service.ProductServiceIntegrationTest" time="0.01" />
+    <testcase name="상품 수정은 변경된 승인 이미지 URL을 응답하고 DB에 저장한다" classname="com.back.coffeeprod.domain.product.service.ProductServiceIntegrationTest" time="0.012" />
+    <testcase name="getProducts_filtersByCoffeeProfileId()" classname="com.back.coffeeprod.domain.product.service.ProductServiceIntegrationTest" time="0.021" />
+    <testcase name="getProduct_hidesHiddenProductFromPublicDetail()" classname="com.back.coffeeprod.domain.product.service.ProductServiceIntegrationTest" time="0.02" />
+    <testcase name="createCategory_rejectsDuplicateName()" classname="com.back.coffeeprod.domain.product.service.ProductServiceIntegrationTest" time="0.009" />
+    <testcase name="deleteProduct_hidesProductInsteadOfPhysicalDelete()" classname="com.back.coffeeprod.domain.product.service.ProductServiceIntegrationTest" time="0.013" />
+    <testcase name="createProduct_savesProductWithCategory()" classname="com.back.coffeeprod.domain.product.service.ProductServiceIntegrationTest" time="0.011" />
+  </testsuite>
+  <testsuite name="com.back.coffeeprod.domain.product.service.ProductStockConcurrencyTest" tests="1" failures="0" errors="0" skipped="0" time="0.029">
+    <testcase name="createOrder_allowsOnlyOneOrderWhenStockIsOne()" classname="com.back.coffeeprod.domain.product.service.ProductStockConcurrencyTest" time="0.021" />
+  </testsuite>
+  <testsuite name="com.back.coffeeprod.domain.qna.service.QnaServiceIntegrationTest" tests="7" failures="0" errors="0" skipped="0" time="0.205">
+    <testcase name="update_changesOwnedWaitingQna()" classname="com.back.coffeeprod.domain.qna.service.QnaServiceIntegrationTest" time="0.03" />
+    <testcase name="getProductQnas_returnsOnlyRequestedProductsQnas()" classname="com.back.coffeeprod.domain.qna.service.QnaServiceIntegrationTest" time="0.02" />
+    <testcase name="create_savesWaitingQna()" classname="com.back.coffeeprod.domain.qna.service.QnaServiceIntegrationTest" time="0.019" />
+    <testcase name="delete_removesOwnedWaitingQna()" classname="com.back.coffeeprod.domain.qna.service.QnaServiceIntegrationTest" time="0.019" />
+    <testcase name="answer_marksQnaAnsweredWithAdminInfo()" classname="com.back.coffeeprod.domain.qna.service.QnaServiceIntegrationTest" time="0.018" />
+    <testcase name="answeredQna_rejectsUpdateDeleteAndSecondAnswer()" classname="com.back.coffeeprod.domain.qna.service.QnaServiceIntegrationTest" time="0.019" />
+    <testcase name="update_rejectsOtherMembersQna()" classname="com.back.coffeeprod.domain.qna.service.QnaServiceIntegrationTest" time="0.017" />
+  </testsuite>
+  <testsuite name="com.back.coffeeprod.domain.review.service.ReviewServiceIntegrationTest" tests="7" failures="0" errors="0" skipped="0" time="0.237">
+    <testcase name="update_rejectsOtherMembersReview()" classname="com.back.coffeeprod.domain.review.service.ReviewServiceIntegrationTest" time="0.052" />
+    <testcase name="update_changesOwnedReview()" classname="com.back.coffeeprod.domain.review.service.ReviewServiceIntegrationTest" time="0.021" />
+    <testcase name="create_rejectsMemberWithoutPurchaseHistory()" classname="com.back.coffeeprod.domain.review.service.ReviewServiceIntegrationTest" time="0.019" />
+    <testcase name="create_rejectsDuplicateReviewForSameProduct()" classname="com.back.coffeeprod.domain.review.service.ReviewServiceIntegrationTest" time="0.023" />
+    <testcase name="create_savesReviewForPurchasedProduct()" classname="com.back.coffeeprod.domain.review.service.ReviewServiceIntegrationTest" time="0.017" />
+    <testcase name="delete_removesOwnedReview()" classname="com.back.coffeeprod.domain.review.service.ReviewServiceIntegrationTest" time="0.022" />
+    <testcase name="getReviews_returnsReviewsForProduct()" classname="com.back.coffeeprod.domain.review.service.ReviewServiceIntegrationTest" time="0.027" />
+  </testsuite>
+  <testsuite name="com.back.coffeeprod.domain.statistics.service.SalesStatisticsServiceIntegrationTest" tests="3" failures="0" errors="0" skipped="0" time="0.092">
+    <testcase name="aggregateSalesRange_rejectsInvalidDateRange()" classname="com.back.coffeeprod.domain.statistics.service.SalesStatisticsServiceIntegrationTest" time="0.009" />
+    <testcase name="aggregateDailySales_includesOnlySuccessfulPaymentsWithinBusinessDay()" classname="com.back.coffeeprod.domain.statistics.service.SalesStatisticsServiceIntegrationTest" time="0.014" />
+    <testcase name="getSalesStatistics_groupsDailyRowsByMonth()" classname="com.back.coffeeprod.domain.statistics.service.SalesStatisticsServiceIntegrationTest" time="0.013" />
+  </testsuite>
+  <testsuite name="com.back.coffeeprod.global.config.MonitoringIntegrationTest" tests="6" failures="0" errors="0" skipped="0" time="2.442">
+    <testcase name="공개 API 요청 후 서버 응답 시간 histogram을 수집한다" classname="com.back.coffeeprod.global.config.MonitoringIntegrationTest" time="0.427" />
+    <testcase name="관리 경로는 허용된 GET 요청 외에 인증 예외를 확대하지 않는다" classname="com.back.coffeeprod.global.config.MonitoringIntegrationTest" time="0.012" />
+    <testcase name="일반 API 포트에는 Prometheus 지표를 노출하지 않는다" classname="com.back.coffeeprod.global.config.MonitoringIntegrationTest" time="0.024" />
+    <testcase name="관리 포트에서 인증 없이 JVM CPU DB 풀의 Prometheus 지표를 조회한다" classname="com.back.coffeeprod.global.config.MonitoringIntegrationTest" time="0.039" />
+    <testcase name="별도 관리 포트에서 인증 없이 상태를 조회하고 상세 정보는 숨긴다" classname="com.back.coffeeprod.global.config.MonitoringIntegrationTest" time="0.033" />
+    <testcase name="회원 및 관리자 API의 비로그인 접근을 계속 거부한다" classname="com.back.coffeeprod.global.config.MonitoringIntegrationTest" time="0.01" />
+  </testsuite>
+  <testsuite name="com.back.coffeeprod.global.exception.GlobalExceptionHandlerTest" tests="1" failures="0" errors="0" skipped="0" time="0.084">
+    <testcase name="일반 서버 예외는500이며 CommonResponse에 내부 예외 정보를 노출하지 않는다" classname="com.back.coffeeprod.global.exception.GlobalExceptionHandlerTest" time="0.084" />
+  </testsuite>
+  <testsuite name="com.back.coffeeprod.qa.auth.DevTask9JwtHttpIntegrationTest" tests="4" failures="0" errors="0" skipped="0" time="2.983">
+    <testcase name="[1] bearer = false" classname="com.back.coffeeprod.qa.auth.DevTask9JwtHttpIntegrationTest" time="0.141" />
+    <testcase name="[2] bearer = true" classname="com.back.coffeeprod.qa.auth.DevTask9JwtHttpIntegrationTest" time="0.087" />
+    <testcase name="[1] bearer = false" classname="com.back.coffeeprod.qa.auth.DevTask9JwtHttpIntegrationTest" time="0.295" />
+    <testcase name="[2] bearer = true" classname="com.back.coffeeprod.qa.auth.DevTask9JwtHttpIntegrationTest" time="0.244" />
+  </testsuite>
+  <testsuite name="com.back.coffeeprod.qa.auth.Qa7AuthLifecycleTest" tests="28" failures="0" errors="0" skipped="0" time="3.16">
+    <testcase name="이전 시각에 발급된 유효 RefreshToken은 교체 후 재사용이 거부된다" classname="com.back.coffeeprod.qa.auth.Qa7AuthLifecycleTest" time="0.094" />
+    <testcase name="[1] kind = &quot;missing&quot;" classname="com.back.coffeeprod.qa.auth.Qa7AuthLifecycleTest" time="0.082" />
+    <testcase name="[2] kind = &quot;expired&quot;" classname="com.back.coffeeprod.qa.auth.Qa7AuthLifecycleTest" time="0.081" />
+    <testcase name="[3] kind = &quot;tampered&quot;" classname="com.back.coffeeprod.qa.auth.Qa7AuthLifecycleTest" time="0.083" />
+    <testcase name="[4] kind = &quot;malformed&quot;" classname="com.back.coffeeprod.qa.auth.Qa7AuthLifecycleTest" time="0.079" />
+    <testcase name="잘못된 &quot;email&quot;" classname="com.back.coffeeprod.qa.auth.Qa7AuthLifecycleTest" time="0.021" />
+    <testcase name="잘못된 &quot;password&quot;" classname="com.back.coffeeprod.qa.auth.Qa7AuthLifecycleTest" time="0.01" />
+    <testcase name="잘못된 &quot;name&quot;" classname="com.back.coffeeprod.qa.auth.Qa7AuthLifecycleTest" time="0.007" />
+    <testcase name="잘못된 &quot;nickname&quot;" classname="com.back.coffeeprod.qa.auth.Qa7AuthLifecycleTest" time="0.007" />
+    <testcase name="탈퇴 HTTP는 개인정보를 익명화하고 RefreshToken을 삭제한다" classname="com.back.coffeeprod.qa.auth.Qa7AuthLifecycleTest" time="0.251" />
+    <testcase name="false" classname="com.back.coffeeprod.qa.auth.Qa7AuthLifecycleTest" time="0.154" />
+    <testcase name="true" classname="com.back.coffeeprod.qa.auth.Qa7AuthLifecycleTest" time="0.082" />
+    <testcase name="가입은 비밀번호를 암호화하고 일반회원과 공개 응답을 저장한다" classname="com.back.coffeeprod.qa.auth.Qa7AuthLifecycleTest" time="0.157" />
+    <testcase name="로그인부터 재발급과 로그아웃까지 이전 RefreshToken을 거부한다" classname="com.back.coffeeprod.qa.auth.Qa7AuthLifecycleTest" time="0.192" />
+    <testcase name="빈 재발급 입력은 400이고 비인증 로그아웃은 401이다" classname="com.back.coffeeprod.qa.auth.Qa7AuthLifecycleTest" time="0.009" />
+    <testcase name="기존 토큰의 관리자 권한도 현재 DB 역할 변경을 따른다" classname="com.back.coffeeprod.qa.auth.Qa7AuthLifecycleTest" time="0.108" />
+    <testcase name="회원 삭제 후 기존 토큰과 존재하지 않는 회원 토큰은 401이다" classname="com.back.coffeeprod.qa.auth.Qa7AuthLifecycleTest" time="0.085" />
+    <testcase name="같은 초에 재발급해도 RefreshToken은 교체되고 이전 토큰은 거부된다" classname="com.back.coffeeprod.qa.auth.Qa7AuthLifecycleTest" time="0.166" />
+    <testcase name="기존 AccessToken / SUSPENDED" classname="com.back.coffeeprod.qa.auth.Qa7AuthLifecycleTest" time="0.085" />
+    <testcase name="기존 AccessToken / WITHDRAWN" classname="com.back.coffeeprod.qa.auth.Qa7AuthLifecycleTest" time="0.081" />
+    <testcase name="[1] kind = &quot;expired&quot;" classname="com.back.coffeeprod.qa.auth.Qa7AuthLifecycleTest" time="0.16" />
+    <testcase name="[2] kind = &quot;tampered&quot;" classname="com.back.coffeeprod.qa.auth.Qa7AuthLifecycleTest" time="0.172" />
+    <testcase name="[3] kind = &quot;absent&quot;" classname="com.back.coffeeprod.qa.auth.Qa7AuthLifecycleTest" time="0.158" />
+    <testcase name="[4] kind = &quot;mismatch&quot;" classname="com.back.coffeeprod.qa.auth.Qa7AuthLifecycleTest" time="0.161" />
+    <testcase name="로그인과 재발급 / SUSPENDED" classname="com.back.coffeeprod.qa.auth.Qa7AuthLifecycleTest" time="0.236" />
+    <testcase name="로그인과 재발급 / WITHDRAWN" classname="com.back.coffeeprod.qa.auth.Qa7AuthLifecycleTest" time="0.236" />
+    <testcase name="중복 &quot;email&quot;" classname="com.back.coffeeprod.qa.auth.Qa7AuthLifecycleTest" time="0.082" />
+    <testcase name="중복 &quot;nickname&quot;" classname="com.back.coffeeprod.qa.auth.Qa7AuthLifecycleTest" time="0.082" />
+  </testsuite>
+  <testsuite name="com.back.coffeeprod.qa.auth.Qa7OwnershipHttpTest" tests="77" failures="0" errors="0" skipped="0" time="18.387">
+    <testcase name="장바구니 배송지 주문 목록은 현재 회원의 자원만 반환한다" classname="com.back.coffeeprod.qa.auth.Qa7OwnershipHttpTest" time="0.273" />
+    <testcase name="[1] route = &quot;product&quot;" classname="com.back.coffeeprod.qa.auth.Qa7OwnershipHttpTest" time="0.245" />
+    <testcase name="[2] route = &quot;reviews&quot;" classname="com.back.coffeeprod.qa.auth.Qa7OwnershipHttpTest" time="0.239" />
+    <testcase name="[3] route = &quot;qnas&quot;" classname="com.back.coffeeprod.qa.auth.Qa7OwnershipHttpTest" time="0.251" />
+    <testcase name="&quot;members&quot; / &quot;anonymous&quot;" classname="com.back.coffeeprod.qa.auth.Qa7OwnershipHttpTest" time="0.245" />
+    <testcase name="&quot;members&quot; / &quot;other&quot;" classname="com.back.coffeeprod.qa.auth.Qa7OwnershipHttpTest" time="0.244" />
+    <testcase name="&quot;members&quot; / &quot;admin&quot;" classname="com.back.coffeeprod.qa.auth.Qa7OwnershipHttpTest" time="0.245" />
+    <testcase name="&quot;orders&quot; / &quot;anonymous&quot;" classname="com.back.coffeeprod.qa.auth.Qa7OwnershipHttpTest" time="0.242" />
+    <testcase name="&quot;orders&quot; / &quot;other&quot;" classname="com.back.coffeeprod.qa.auth.Qa7OwnershipHttpTest" time="0.24" />
+    <testcase name="&quot;orders&quot; / &quot;admin&quot;" classname="com.back.coffeeprod.qa.auth.Qa7OwnershipHttpTest" time="0.254" />
+    <testcase name="&quot;qnas&quot; / &quot;anonymous&quot;" classname="com.back.coffeeprod.qa.auth.Qa7OwnershipHttpTest" time="0.237" />
+    <testcase name="&quot;qnas&quot; / &quot;other&quot;" classname="com.back.coffeeprod.qa.auth.Qa7OwnershipHttpTest" time="0.233" />
+    <testcase name="&quot;qnas&quot; / &quot;admin&quot;" classname="com.back.coffeeprod.qa.auth.Qa7OwnershipHttpTest" time="0.243" />
+    <testcase name="&quot;answer&quot; / &quot;anonymous&quot;" classname="com.back.coffeeprod.qa.auth.Qa7OwnershipHttpTest" time="0.236" />
+    <testcase name="&quot;answer&quot; / &quot;other&quot;" classname="com.back.coffeeprod.qa.auth.Qa7OwnershipHttpTest" time="0.234" />
+    <testcase name="&quot;answer&quot; / &quot;admin&quot;" classname="com.back.coffeeprod.qa.auth.Qa7OwnershipHttpTest" time="0.24" />
+    <testcase name="&quot;cartUpdate&quot; / &quot;owner&quot;" classname="com.back.coffeeprod.qa.auth.Qa7OwnershipHttpTest" time="0.238" />
+    <testcase name="&quot;cartUpdate&quot; / &quot;other&quot;" classname="com.back.coffeeprod.qa.auth.Qa7OwnershipHttpTest" time="0.237" />
+    <testcase name="&quot;cartUpdate&quot; / &quot;admin&quot;" classname="com.back.coffeeprod.qa.auth.Qa7OwnershipHttpTest" time="0.237" />
+    <testcase name="&quot;cartUpdate&quot; / &quot;anonymous&quot;" classname="com.back.coffeeprod.qa.auth.Qa7OwnershipHttpTest" time="0.237" />
+    <testcase name="&quot;cartDelete&quot; / &quot;owner&quot;" classname="com.back.coffeeprod.qa.auth.Qa7OwnershipHttpTest" time="0.236" />
+    <testcase name="&quot;cartDelete&quot; / &quot;other&quot;" classname="com.back.coffeeprod.qa.auth.Qa7OwnershipHttpTest" time="0.232" />
+    <testcase name="&quot;cartDelete&quot; / &quot;admin&quot;" classname="com.back.coffeeprod.qa.auth.Qa7OwnershipHttpTest" time="0.236" />
+    <testcase name="&quot;cartDelete&quot; / &quot;anonymous&quot;" classname="com.back.coffeeprod.qa.auth.Qa7OwnershipHttpTest" time="0.233" />
+    <testcase name="&quot;addressGet&quot; / &quot;owner&quot;" classname="com.back.coffeeprod.qa.auth.Qa7OwnershipHttpTest" time="0.241" />
+    <testcase name="&quot;addressGet&quot; / &quot;other&quot;" classname="com.back.coffeeprod.qa.auth.Qa7OwnershipHttpTest" time="0.237" />
+    <testcase name="&quot;addressGet&quot; / &quot;admin&quot;" classname="com.back.coffeeprod.qa.auth.Qa7OwnershipHttpTest" time="0.24" />
+    <testcase name="&quot;addressGet&quot; / &quot;anonymous&quot;" classname="com.back.coffeeprod.qa.auth.Qa7OwnershipHttpTest" time="0.235" />
+    <testcase name="&quot;addressUpdate&quot; / &quot;owner&quot;" classname="com.back.coffeeprod.qa.auth.Qa7OwnershipHttpTest" time="0.24" />
+    <testcase name="&quot;addressUpdate&quot; / &quot;other&quot;" classname="com.back.coffeeprod.qa.auth.Qa7OwnershipHttpTest" time="0.237" />
+    <testcase name="&quot;addressUpdate&quot; / &quot;admin&quot;" classname="com.back.coffeeprod.qa.auth.Qa7OwnershipHttpTest" time="0.236" />
+    <testcase name="&quot;addressUpdate&quot; / &quot;anonymous&quot;" classname="com.back.coffeeprod.qa.auth.Qa7OwnershipHttpTest" time="0.233" />
+    <testcase name="&quot;addressDelete&quot; / &quot;owner&quot;" classname="com.back.coffeeprod.qa.auth.Qa7OwnershipHttpTest" time="0.235" />
+    <testcase name="&quot;addressDelete&quot; / &quot;other&quot;" classname="com.back.coffeeprod.qa.auth.Qa7OwnershipHttpTest" time="0.239" />
+    <testcase name="&quot;addressDelete&quot; / &quot;admin&quot;" classname="com.back.coffeeprod.qa.auth.Qa7OwnershipHttpTest" time="0.234" />
+    <testcase name="&quot;addressDelete&quot; / &quot;anonymous&quot;" classname="com.back.coffeeprod.qa.auth.Qa7OwnershipHttpTest" time="0.231" />
+    <testcase name="&quot;addressDefault&quot; / &quot;owner&quot;" classname="com.back.coffeeprod.qa.auth.Qa7OwnershipHttpTest" time="0.244" />
+    <testcase name="&quot;addressDefault&quot; / &quot;other&quot;" classname="com.back.coffeeprod.qa.auth.Qa7OwnershipHttpTest" time="0.238" />
+    <testcase name="&quot;addressDefault&quot; / &quot;admin&quot;" classname="com.back.coffeeprod.qa.auth.Qa7OwnershipHttpTest" time="0.251" />
+    <testcase name="&quot;addressDefault&quot; / &quot;anonymous&quot;" classname="com.back.coffeeprod.qa.auth.Qa7OwnershipHttpTest" time="0.231" />
+    <testcase name="&quot;orderGet&quot; / &quot;owner&quot;" classname="com.back.coffeeprod.qa.auth.Qa7OwnershipHttpTest" time="0.238" />
+    <testcase name="&quot;orderGet&quot; / &quot;other&quot;" classname="com.back.coffeeprod.qa.auth.Qa7OwnershipHttpTest" time="0.233" />
+    <testcase name="&quot;orderGet&quot; / &quot;admin&quot;" classname="com.back.coffeeprod.qa.auth.Qa7OwnershipHttpTest" time="0.237" />
+    <testcase name="&quot;orderGet&quot; / &quot;anonymous&quot;" classname="com.back.coffeeprod.qa.auth.Qa7OwnershipHttpTest" time="0.233" />
+    <testcase name="&quot;orderCancel&quot; / &quot;owner&quot;" classname="com.back.coffeeprod.qa.auth.Qa7OwnershipHttpTest" time="0.243" />
+    <testcase name="&quot;orderCancel&quot; / &quot;other&quot;" classname="com.back.coffeeprod.qa.auth.Qa7OwnershipHttpTest" time="0.236" />
+    <testcase name="&quot;orderCancel&quot; / &quot;admin&quot;" classname="com.back.coffeeprod.qa.auth.Qa7OwnershipHttpTest" time="0.235" />
+    <testcase name="&quot;orderCancel&quot; / &quot;anonymous&quot;" classname="com.back.coffeeprod.qa.auth.Qa7OwnershipHttpTest" time="0.233" />
+    <testcase name="&quot;reviewUpdate&quot; / &quot;owner&quot;" classname="com.back.coffeeprod.qa.auth.Qa7OwnershipHttpTest" time="0.239" />
+    <testcase name="&quot;reviewUpdate&quot; / &quot;other&quot;" classname="com.back.coffeeprod.qa.auth.Qa7OwnershipHttpTest" time="0.235" />
+    <testcase name="&quot;reviewUpdate&quot; / &quot;admin&quot;" classname="com.back.coffeeprod.qa.auth.Qa7OwnershipHttpTest" time="0.241" />
+    <testcase name="&quot;reviewUpdate&quot; / &quot;anonymous&quot;" classname="com.back.coffeeprod.qa.auth.Qa7OwnershipHttpTest" time="0.233" />
+    <testcase name="&quot;reviewDelete&quot; / &quot;owner&quot;" classname="com.back.coffeeprod.qa.auth.Qa7OwnershipHttpTest" time="0.235" />
+    <testcase name="&quot;reviewDelete&quot; / &quot;other&quot;" classname="com.back.coffeeprod.qa.auth.Qa7OwnershipHttpTest" time="0.234" />
+    <testcase name="&quot;reviewDelete&quot; / &quot;admin&quot;" classname="com.back.coffeeprod.qa.auth.Qa7OwnershipHttpTest" time="0.233" />
+    <testcase name="&quot;reviewDelete&quot; / &quot;anonymous&quot;" classname="com.back.coffeeprod.qa.auth.Qa7OwnershipHttpTest" time="0.23" />
+    <testcase name="&quot;qnaUpdate&quot; / &quot;owner&quot;" classname="com.back.coffeeprod.qa.auth.Qa7OwnershipHttpTest" time="0.235" />
+    <testcase name="&quot;qnaUpdate&quot; / &quot;other&quot;" classname="com.back.coffeeprod.qa.auth.Qa7OwnershipHttpTest" time="0.24" />
+    <testcase name="&quot;qnaUpdate&quot; / &quot;admin&quot;" classname="com.back.coffeeprod.qa.auth.Qa7OwnershipHttpTest" time="0.239" />
+    <testcase name="&quot;qnaUpdate&quot; / &quot;anonymous&quot;" classname="com.back.coffeeprod.qa.auth.Qa7OwnershipHttpTest" time="0.233" />
+    <testcase name="&quot;qnaDelete&quot; / &quot;owner&quot;" classname="com.back.coffeeprod.qa.auth.Qa7OwnershipHttpTest" time="0.236" />
+    <testcase name="&quot;qnaDelete&quot; / &quot;other&quot;" classname="com.back.coffeeprod.qa.auth.Qa7OwnershipHttpTest" time="0.24" />
+    <testcase name="&quot;qnaDelete&quot; / &quot;admin&quot;" classname="com.back.coffeeprod.qa.auth.Qa7OwnershipHttpTest" time="0.235" />
+    <testcase name="&quot;qnaDelete&quot; / &quot;anonymous&quot;" classname="com.back.coffeeprod.qa.auth.Qa7OwnershipHttpTest" time="0.232" />
+    <testcase name="타인의 배송지로 주문을 만들면 403이고 장바구니 재고 마일리지가 보존된다" classname="com.back.coffeeprod.qa.auth.Qa7OwnershipHttpTest" time="0.235" />
+    <testcase name="[1] name = &quot;cartUpdate&quot;" classname="com.back.coffeeprod.qa.auth.Qa7OwnershipHttpTest" time="0.233" />
+    <testcase name="[2] name = &quot;cartDelete&quot;" classname="com.back.coffeeprod.qa.auth.Qa7OwnershipHttpTest" time="0.233" />
+    <testcase name="[3] name = &quot;addressGet&quot;" classname="com.back.coffeeprod.qa.auth.Qa7OwnershipHttpTest" time="0.233" />
+    <testcase name="[4] name = &quot;addressUpdate&quot;" classname="com.back.coffeeprod.qa.auth.Qa7OwnershipHttpTest" time="0.237" />
+    <testcase name="[5] name = &quot;addressDelete&quot;" classname="com.back.coffeeprod.qa.auth.Qa7OwnershipHttpTest" time="0.236" />
+    <testcase name="[6] name = &quot;addressDefault&quot;" classname="com.back.coffeeprod.qa.auth.Qa7OwnershipHttpTest" time="0.239" />
+    <testcase name="[7] name = &quot;orderGet&quot;" classname="com.back.coffeeprod.qa.auth.Qa7OwnershipHttpTest" time="0.233" />
+    <testcase name="[8] name = &quot;orderCancel&quot;" classname="com.back.coffeeprod.qa.auth.Qa7OwnershipHttpTest" time="0.231" />
+    <testcase name="[9] name = &quot;reviewUpdate&quot;" classname="com.back.coffeeprod.qa.auth.Qa7OwnershipHttpTest" time="0.235" />
+    <testcase name="[10] name = &quot;reviewDelete&quot;" classname="com.back.coffeeprod.qa.auth.Qa7OwnershipHttpTest" time="0.235" />
+    <testcase name="[11] name = &quot;qnaUpdate&quot;" classname="com.back.coffeeprod.qa.auth.Qa7OwnershipHttpTest" time="0.235" />
+    <testcase name="[12] name = &quot;qnaDelete&quot;" classname="com.back.coffeeprod.qa.auth.Qa7OwnershipHttpTest" time="0.234" />
+  </testsuite>
+  <testsuite name="com.back.coffeeprod.qa.auth.Qa7RedisContractTest" tests="4" failures="0" errors="0" skipped="0" time="0.783">
+    <testcase name="Redis 저장 만료는 아직 유효한 JWT의 재발급을 401로 거부한다" classname="com.back.coffeeprod.qa.auth.Qa7RedisContractTest" time="0.158" />
+    <testcase name="로그인 RefreshToken은 회원 키에 밀리초 설정 TTL로 저장된다" classname="com.back.coffeeprod.qa.auth.Qa7RedisContractTest" time="0.154" />
+    <testcase name="로그아웃은 해당 회원 키만 삭제하고 반복해도 다른 회원 토큰을 보존한다" classname="com.back.coffeeprod.qa.auth.Qa7RedisContractTest" time="0.314" />
+    <testcase name="저장 교체는 한 회원 키만 갱신하고 TTL을 복원한다" classname="com.back.coffeeprod.qa.auth.Qa7RedisContractTest" time="0.149" />
+  </testsuite>
+  <testsuite name="com.back.coffeeprod.qa.auth.Qa7RefreshTokenRegressionTest" tests="1" failures="0" errors="0" skipped="0" time="0.248">
+    <testcase name="같은 초 연속 로그인은 이전 RefreshToken을 거부하고 최신 토큰만 재발급한다" classname="com.back.coffeeprod.qa.auth.Qa7RefreshTokenRegressionTest" time="0.243" />
+  </testsuite>
+  <testsuite name="com.back.coffeeprod.qa.catalog.Qa1ProductHttpTest" tests="32" failures="0" errors="0" skipped="0" time="2.214">
+    <testcase name="QA1-AUTH &quot;list&quot; / &quot;anonymous&quot;" classname="com.back.coffeeprod.qa.catalog.Qa1ProductHttpTest" time="0.033" />
+    <testcase name="QA1-AUTH &quot;list&quot; / &quot;user&quot;" classname="com.back.coffeeprod.qa.catalog.Qa1ProductHttpTest" time="0.055" />
+    <testcase name="QA1-AUTH &quot;detail&quot; / &quot;anonymous&quot;" classname="com.back.coffeeprod.qa.catalog.Qa1ProductHttpTest" time="0.007" />
+    <testcase name="QA1-AUTH &quot;detail&quot; / &quot;user&quot;" classname="com.back.coffeeprod.qa.catalog.Qa1ProductHttpTest" time="0.01" />
+    <testcase name="QA1-AUTH &quot;create&quot; / &quot;anonymous&quot;" classname="com.back.coffeeprod.qa.catalog.Qa1ProductHttpTest" time="0.007" />
+    <testcase name="QA1-AUTH &quot;create&quot; / &quot;user&quot;" classname="com.back.coffeeprod.qa.catalog.Qa1ProductHttpTest" time="0.006" />
+    <testcase name="QA1-AUTH &quot;update&quot; / &quot;anonymous&quot;" classname="com.back.coffeeprod.qa.catalog.Qa1ProductHttpTest" time="0.005" />
+    <testcase name="QA1-AUTH &quot;update&quot; / &quot;user&quot;" classname="com.back.coffeeprod.qa.catalog.Qa1ProductHttpTest" time="0.005" />
+    <testcase name="QA1-IMG-OK &quot;create&quot; / 1" classname="com.back.coffeeprod.qa.catalog.Qa1ProductHttpTest" time="0.039" />
+    <testcase name="QA1-IMG-OK &quot;create&quot; / 2" classname="com.back.coffeeprod.qa.catalog.Qa1ProductHttpTest" time="0.016" />
+    <testcase name="QA1-IMG-OK &quot;create&quot; / 3" classname="com.back.coffeeprod.qa.catalog.Qa1ProductHttpTest" time="0.02" />
+    <testcase name="QA1-IMG-OK &quot;create&quot; / 4" classname="com.back.coffeeprod.qa.catalog.Qa1ProductHttpTest" time="0.026" />
+    <testcase name="QA1-IMG-OK &quot;update&quot; / 5" classname="com.back.coffeeprod.qa.catalog.Qa1ProductHttpTest" time="0.026" />
+    <testcase name="QA1-IMG-OK &quot;update&quot; / 6" classname="com.back.coffeeprod.qa.catalog.Qa1ProductHttpTest" time="0.025" />
+    <testcase name="QA1-IMG-OK &quot;update&quot; / 7" classname="com.back.coffeeprod.qa.catalog.Qa1ProductHttpTest" time="0.017" />
+    <testcase name="QA1-IMG-OK &quot;update&quot; / 8" classname="com.back.coffeeprod.qa.catalog.Qa1ProductHttpTest" time="0.029" />
+    <testcase name="QA1-LIST 공개 목록은 판매중만 관리자 목록은 전체 상태를 페이지별 반환한다" classname="com.back.coffeeprod.qa.catalog.Qa1ProductHttpTest" time="0.138" />
+    <testcase name="QA1-DETAIL ON_SALE / admin=false" classname="com.back.coffeeprod.qa.catalog.Qa1ProductHttpTest" time="0.024" />
+    <testcase name="QA1-DETAIL ON_SALE / admin=true" classname="com.back.coffeeprod.qa.catalog.Qa1ProductHttpTest" time="0.015" />
+    <testcase name="QA1-DETAIL SOLD_OUT / admin=false" classname="com.back.coffeeprod.qa.catalog.Qa1ProductHttpTest" time="0.016" />
+    <testcase name="QA1-DETAIL SOLD_OUT / admin=true" classname="com.back.coffeeprod.qa.catalog.Qa1ProductHttpTest" time="0.012" />
+    <testcase name="QA1-DETAIL HIDDEN / admin=false" classname="com.back.coffeeprod.qa.catalog.Qa1ProductHttpTest" time="0.01" />
+    <testcase name="QA1-DETAIL HIDDEN / admin=true" classname="com.back.coffeeprod.qa.catalog.Qa1ProductHttpTest" time="0.029" />
+    <testcase name="QA1-ORDER 본인 목록·상세는 주문 가격·상품명·수량·분쇄 옵션과 회원 격리를 유지한다" classname="com.back.coffeeprod.qa.catalog.Qa1ProductHttpTest" time="0.05" />
+    <testcase name="QA1-ORDER-AUTH &quot;anonymous&quot;" classname="com.back.coffeeprod.qa.catalog.Qa1ProductHttpTest" time="0.015" />
+    <testcase name="QA1-ORDER-AUTH &quot;other&quot;" classname="com.back.coffeeprod.qa.catalog.Qa1ProductHttpTest" time="0.027" />
+    <testcase name="QA1-IMG-NG &quot;create&quot; / 1" classname="com.back.coffeeprod.qa.catalog.Qa1ProductHttpTest" time="0.012" />
+    <testcase name="QA1-IMG-NG &quot;create&quot; / 2" classname="com.back.coffeeprod.qa.catalog.Qa1ProductHttpTest" time="0.015" />
+    <testcase name="QA1-IMG-NG &quot;create&quot; / 3" classname="com.back.coffeeprod.qa.catalog.Qa1ProductHttpTest" time="0.013" />
+    <testcase name="QA1-IMG-NG &quot;update&quot; / 4" classname="com.back.coffeeprod.qa.catalog.Qa1ProductHttpTest" time="0.013" />
+    <testcase name="QA1-IMG-NG &quot;update&quot; / 5" classname="com.back.coffeeprod.qa.catalog.Qa1ProductHttpTest" time="0.014" />
+    <testcase name="QA1-IMG-NG &quot;update&quot; / 6" classname="com.back.coffeeprod.qa.catalog.Qa1ProductHttpTest" time="0.011" />
+  </testsuite>
+  <testsuite name="com.back.coffeeprod.qa.recommendation.Qa8JsonInputRegressionTest" tests="4" failures="0" errors="0" skipped="0" time="1.482">
+    <testcase name="읽을 수 없는 JSON / &quot;preference&quot; / &quot;malformed&quot;" classname="com.back.coffeeprod.qa.recommendation.Qa8JsonInputRegressionTest" time="0.046" />
+    <testcase name="읽을 수 없는 JSON / &quot;preference&quot; / &quot;objectInsteadOfNumber&quot;" classname="com.back.coffeeprod.qa.recommendation.Qa8JsonInputRegressionTest" time="0.021" />
+    <testcase name="읽을 수 없는 JSON / &quot;recommend&quot; / &quot;malformed&quot;" classname="com.back.coffeeprod.qa.recommendation.Qa8JsonInputRegressionTest" time="0.017" />
+    <testcase name="읽을 수 없는 JSON / &quot;recommend&quot; / &quot;objectInsteadOfNumber&quot;" classname="com.back.coffeeprod.qa.recommendation.Qa8JsonInputRegressionTest" time="0.02" />
+  </testsuite>
+  <testsuite name="com.back.coffeeprod.qa.recommendation.Qa8PreferenceHttpTest" tests="74" failures="0" errors="0" skipped="0" time="1.325">
+    <testcase name="가공 방식 / &quot;preference&quot; / -1" classname="com.back.coffeeprod.qa.recommendation.Qa8PreferenceHttpTest" time="0.018" />
+    <testcase name="가공 방식 / &quot;preference&quot; / 0" classname="com.back.coffeeprod.qa.recommendation.Qa8PreferenceHttpTest" time="0.015" />
+    <testcase name="가공 방식 / &quot;preference&quot; / 9223372036854775807" classname="com.back.coffeeprod.qa.recommendation.Qa8PreferenceHttpTest" time="0.016" />
+    <testcase name="가공 방식 / &quot;recommend&quot; / -1" classname="com.back.coffeeprod.qa.recommendation.Qa8PreferenceHttpTest" time="0.014" />
+    <testcase name="가공 방식 / &quot;recommend&quot; / 0" classname="com.back.coffeeprod.qa.recommendation.Qa8PreferenceHttpTest" time="0.012" />
+    <testcase name="가공 방식 / &quot;recommend&quot; / 9223372036854775807" classname="com.back.coffeeprod.qa.recommendation.Qa8PreferenceHttpTest" time="0.011" />
+    <testcase name="취향 PUT은 같은 행을 전체 교체하고 누락 필드를 null로 초기화한다" classname="com.back.coffeeprod.qa.recommendation.Qa8PreferenceHttpTest" time="0.026" />
+    <testcase name="잘못된 열거값 / &quot;preference&quot; / &quot;roastLevel&quot;" classname="com.back.coffeeprod.qa.recommendation.Qa8PreferenceHttpTest" time="0.012" />
+    <testcase name="잘못된 열거값 / &quot;preference&quot; / &quot;beanType&quot;" classname="com.back.coffeeprod.qa.recommendation.Qa8PreferenceHttpTest" time="0.013" />
+    <testcase name="잘못된 열거값 / &quot;recommend&quot; / &quot;roastLevel&quot;" classname="com.back.coffeeprod.qa.recommendation.Qa8PreferenceHttpTest" time="0.013" />
+    <testcase name="잘못된 열거값 / &quot;recommend&quot; / &quot;beanType&quot;" classname="com.back.coffeeprod.qa.recommendation.Qa8PreferenceHttpTest" time="0.011" />
+    <testcase name="두 회원의 취향 변경과 내 추천은 격리되고 직접 입력 추천과 일치한다" classname="com.back.coffeeprod.qa.recommendation.Qa8PreferenceHttpTest" time="0.047" />
+    <testcase name="미등록 취향과 내 추천은 404이고 다른 회원의 취향을 반환하지 않는다" classname="com.back.coffeeprod.qa.recommendation.Qa8PreferenceHttpTest" time="0.019" />
+    <testcase name="감각 경계 / &quot;preference&quot; / &quot;preferredAcidity&quot;=0" classname="com.back.coffeeprod.qa.recommendation.Qa8PreferenceHttpTest" time="0.013" />
+    <testcase name="감각 경계 / &quot;preference&quot; / &quot;preferredAcidity&quot;=1" classname="com.back.coffeeprod.qa.recommendation.Qa8PreferenceHttpTest" time="0.015" />
+    <testcase name="감각 경계 / &quot;preference&quot; / &quot;preferredAcidity&quot;=5" classname="com.back.coffeeprod.qa.recommendation.Qa8PreferenceHttpTest" time="0.013" />
+    <testcase name="감각 경계 / &quot;preference&quot; / &quot;preferredAcidity&quot;=6" classname="com.back.coffeeprod.qa.recommendation.Qa8PreferenceHttpTest" time="0.013" />
+    <testcase name="감각 경계 / &quot;preference&quot; / &quot;preferredBody&quot;=0" classname="com.back.coffeeprod.qa.recommendation.Qa8PreferenceHttpTest" time="0.017" />
+    <testcase name="감각 경계 / &quot;preference&quot; / &quot;preferredBody&quot;=1" classname="com.back.coffeeprod.qa.recommendation.Qa8PreferenceHttpTest" time="0.018" />
+    <testcase name="감각 경계 / &quot;preference&quot; / &quot;preferredBody&quot;=5" classname="com.back.coffeeprod.qa.recommendation.Qa8PreferenceHttpTest" time="0.021" />
+    <testcase name="감각 경계 / &quot;preference&quot; / &quot;preferredBody&quot;=6" classname="com.back.coffeeprod.qa.recommendation.Qa8PreferenceHttpTest" time="0.013" />
+    <testcase name="감각 경계 / &quot;preference&quot; / &quot;preferredSweetness&quot;=0" classname="com.back.coffeeprod.qa.recommendation.Qa8PreferenceHttpTest" time="0.012" />
+    <testcase name="감각 경계 / &quot;preference&quot; / &quot;preferredSweetness&quot;=1" classname="com.back.coffeeprod.qa.recommendation.Qa8PreferenceHttpTest" time="0.015" />
+    <testcase name="감각 경계 / &quot;preference&quot; / &quot;preferredSweetness&quot;=5" classname="com.back.coffeeprod.qa.recommendation.Qa8PreferenceHttpTest" time="0.015" />
+    <testcase name="감각 경계 / &quot;preference&quot; / &quot;preferredSweetness&quot;=6" classname="com.back.coffeeprod.qa.recommendation.Qa8PreferenceHttpTest" time="0.012" />
+    <testcase name="감각 경계 / &quot;preference&quot; / &quot;preferredAroma&quot;=0" classname="com.back.coffeeprod.qa.recommendation.Qa8PreferenceHttpTest" time="0.086" />
+    <testcase name="감각 경계 / &quot;preference&quot; / &quot;preferredAroma&quot;=1" classname="com.back.coffeeprod.qa.recommendation.Qa8PreferenceHttpTest" time="0.019" />
+    <testcase name="감각 경계 / &quot;preference&quot; / &quot;preferredAroma&quot;=5" classname="com.back.coffeeprod.qa.recommendation.Qa8PreferenceHttpTest" time="0.014" />
+    <testcase name="감각 경계 / &quot;preference&quot; / &quot;preferredAroma&quot;=6" classname="com.back.coffeeprod.qa.recommendation.Qa8PreferenceHttpTest" time="0.02" />
+    <testcase name="감각 경계 / &quot;recommend&quot; / &quot;preferredAcidity&quot;=0" classname="com.back.coffeeprod.qa.recommendation.Qa8PreferenceHttpTest" time="0.014" />
+    <testcase name="감각 경계 / &quot;recommend&quot; / &quot;preferredAcidity&quot;=1" classname="com.back.coffeeprod.qa.recommendation.Qa8PreferenceHttpTest" time="0.015" />
+    <testcase name="감각 경계 / &quot;recommend&quot; / &quot;preferredAcidity&quot;=5" classname="com.back.coffeeprod.qa.recommendation.Qa8PreferenceHttpTest" time="0.015" />
+    <testcase name="감각 경계 / &quot;recommend&quot; / &quot;preferredAcidity&quot;=6" classname="com.back.coffeeprod.qa.recommendation.Qa8PreferenceHttpTest" time="0.023" />
+    <testcase name="감각 경계 / &quot;recommend&quot; / &quot;preferredBody&quot;=0" classname="com.back.coffeeprod.qa.recommendation.Qa8PreferenceHttpTest" time="0.017" />
+    <testcase name="감각 경계 / &quot;recommend&quot; / &quot;preferredBody&quot;=1" classname="com.back.coffeeprod.qa.recommendation.Qa8PreferenceHttpTest" time="0.019" />
+    <testcase name="감각 경계 / &quot;recommend&quot; / &quot;preferredBody&quot;=5" classname="com.back.coffeeprod.qa.recommendation.Qa8PreferenceHttpTest" time="0.053" />
+    <testcase name="감각 경계 / &quot;recommend&quot; / &quot;preferredBody&quot;=6" classname="com.back.coffeeprod.qa.recommendation.Qa8PreferenceHttpTest" time="0.027" />
+    <testcase name="감각 경계 / &quot;recommend&quot; / &quot;preferredSweetness&quot;=0" classname="com.back.coffeeprod.qa.recommendation.Qa8PreferenceHttpTest" time="0.027" />
+    <testcase name="감각 경계 / &quot;recommend&quot; / &quot;preferredSweetness&quot;=1" classname="com.back.coffeeprod.qa.recommendation.Qa8PreferenceHttpTest" time="0.016" />
+    <testcase name="감각 경계 / &quot;recommend&quot; / &quot;preferredSweetness&quot;=5" classname="com.back.coffeeprod.qa.recommendation.Qa8PreferenceHttpTest" time="0.011" />
+    <testcase name="감각 경계 / &quot;recommend&quot; / &quot;preferredSweetness&quot;=6" classname="com.back.coffeeprod.qa.recommendation.Qa8PreferenceHttpTest" time="0.011" />
+    <testcase name="감각 경계 / &quot;recommend&quot; / &quot;preferredAroma&quot;=0" classname="com.back.coffeeprod.qa.recommendation.Qa8PreferenceHttpTest" time="0.013" />
+    <testcase name="감각 경계 / &quot;recommend&quot; / &quot;preferredAroma&quot;=1" classname="com.back.coffeeprod.qa.recommendation.Qa8PreferenceHttpTest" time="0.009" />
+    <testcase name="감각 경계 / &quot;recommend&quot; / &quot;preferredAroma&quot;=5" classname="com.back.coffeeprod.qa.recommendation.Qa8PreferenceHttpTest" time="0.008" />
+    <testcase name="감각 경계 / &quot;recommend&quot; / &quot;preferredAroma&quot;=6" classname="com.back.coffeeprod.qa.recommendation.Qa8PreferenceHttpTest" time="0.01" />
+    <testcase name="개인 경로 / &quot;get&quot; / &quot;anonymous&quot;" classname="com.back.coffeeprod.qa.recommendation.Qa8PreferenceHttpTest" time="0.011" />
+    <testcase name="개인 경로 / &quot;get&quot; / &quot;suspended&quot;" classname="com.back.coffeeprod.qa.recommendation.Qa8PreferenceHttpTest" time="0.01" />
+    <testcase name="개인 경로 / &quot;get&quot; / &quot;withdrawn&quot;" classname="com.back.coffeeprod.qa.recommendation.Qa8PreferenceHttpTest" time="0.01" />
+    <testcase name="개인 경로 / &quot;put&quot; / &quot;anonymous&quot;" classname="com.back.coffeeprod.qa.recommendation.Qa8PreferenceHttpTest" time="0.01" />
+    <testcase name="개인 경로 / &quot;put&quot; / &quot;suspended&quot;" classname="com.back.coffeeprod.qa.recommendation.Qa8PreferenceHttpTest" time="0.014" />
+    <testcase name="개인 경로 / &quot;put&quot; / &quot;withdrawn&quot;" classname="com.back.coffeeprod.qa.recommendation.Qa8PreferenceHttpTest" time="0.02" />
+    <testcase name="개인 경로 / &quot;recommend&quot; / &quot;anonymous&quot;" classname="com.back.coffeeprod.qa.recommendation.Qa8PreferenceHttpTest" time="0.015" />
+    <testcase name="개인 경로 / &quot;recommend&quot; / &quot;suspended&quot;" classname="com.back.coffeeprod.qa.recommendation.Qa8PreferenceHttpTest" time="0.011" />
+    <testcase name="개인 경로 / &quot;recommend&quot; / &quot;withdrawn&quot;" classname="com.back.coffeeprod.qa.recommendation.Qa8PreferenceHttpTest" time="0.016" />
+    <testcase name="관리자도 개인 경로에서는 자신의 취향을 저장하고 조회한다" classname="com.back.coffeeprod.qa.recommendation.Qa8PreferenceHttpTest" time="0.024" />
+    <testcase name="빈 조건 / &quot;preference&quot;" classname="com.back.coffeeprod.qa.recommendation.Qa8PreferenceHttpTest" time="0.022" />
+    <testcase name="빈 조건 / &quot;recommend&quot;" classname="com.back.coffeeprod.qa.recommendation.Qa8PreferenceHttpTest" time="0.039" />
+    <testcase name="빈 조건 / &quot;limitOnly&quot;" classname="com.back.coffeeprod.qa.recommendation.Qa8PreferenceHttpTest" time="0.018" />
+    <testcase name="최소 조건 / &quot;preference&quot; / &quot;roastLevel&quot;" classname="com.back.coffeeprod.qa.recommendation.Qa8PreferenceHttpTest" time="0.01" />
+    <testcase name="최소 조건 / &quot;recommend&quot; / &quot;roastLevel&quot;" classname="com.back.coffeeprod.qa.recommendation.Qa8PreferenceHttpTest" time="0.006" />
+    <testcase name="최소 조건 / &quot;preference&quot; / &quot;beanType&quot;" classname="com.back.coffeeprod.qa.recommendation.Qa8PreferenceHttpTest" time="0.008" />
+    <testcase name="최소 조건 / &quot;recommend&quot; / &quot;beanType&quot;" classname="com.back.coffeeprod.qa.recommendation.Qa8PreferenceHttpTest" time="0.008" />
+    <testcase name="최소 조건 / &quot;preference&quot; / &quot;processingMethodId&quot;" classname="com.back.coffeeprod.qa.recommendation.Qa8PreferenceHttpTest" time="0.012" />
+    <testcase name="최소 조건 / &quot;recommend&quot; / &quot;processingMethodId&quot;" classname="com.back.coffeeprod.qa.recommendation.Qa8PreferenceHttpTest" time="0.008" />
+    <testcase name="최소 조건 / &quot;preference&quot; / &quot;decaf&quot;" classname="com.back.coffeeprod.qa.recommendation.Qa8PreferenceHttpTest" time="0.008" />
+    <testcase name="최소 조건 / &quot;recommend&quot; / &quot;decaf&quot;" classname="com.back.coffeeprod.qa.recommendation.Qa8PreferenceHttpTest" time="0.006" />
+    <testcase name="최소 조건 / &quot;preference&quot; / &quot;preferredAcidity&quot;" classname="com.back.coffeeprod.qa.recommendation.Qa8PreferenceHttpTest" time="0.008" />
+    <testcase name="최소 조건 / &quot;recommend&quot; / &quot;preferredAcidity&quot;" classname="com.back.coffeeprod.qa.recommendation.Qa8PreferenceHttpTest" time="0.007" />
+    <testcase name="최소 조건 / &quot;preference&quot; / &quot;preferredBody&quot;" classname="com.back.coffeeprod.qa.recommendation.Qa8PreferenceHttpTest" time="0.009" />
+    <testcase name="최소 조건 / &quot;recommend&quot; / &quot;preferredBody&quot;" classname="com.back.coffeeprod.qa.recommendation.Qa8PreferenceHttpTest" time="0.049" />
+    <testcase name="최소 조건 / &quot;preference&quot; / &quot;preferredSweetness&quot;" classname="com.back.coffeeprod.qa.recommendation.Qa8PreferenceHttpTest" time="0.022" />
+    <testcase name="최소 조건 / &quot;recommend&quot; / &quot;preferredSweetness&quot;" classname="com.back.coffeeprod.qa.recommendation.Qa8PreferenceHttpTest" time="0.007" />
+    <testcase name="최소 조건 / &quot;preference&quot; / &quot;preferredAroma&quot;" classname="com.back.coffeeprod.qa.recommendation.Qa8PreferenceHttpTest" time="0.009" />
+    <testcase name="최소 조건 / &quot;recommend&quot; / &quot;preferredAroma&quot;" classname="com.back.coffeeprod.qa.recommendation.Qa8PreferenceHttpTest" time="0.007" />
+  </testsuite>
+  <testsuite name="com.back.coffeeprod.qa.recommendation.Qa8ProfileBoundaryTest" tests="96" failures="0" errors="0" skipped="0" time="1.638">
+    <testcase name="블렌드 단일 산지 / 수정false / &quot;originCountryCode&quot;" classname="com.back.coffeeprod.qa.recommendation.Qa8ProfileBoundaryTest" time="0.171" />
+    <testcase name="블렌드 단일 산지 / 수정false / &quot;originRegion&quot;" classname="com.back.coffeeprod.qa.recommendation.Qa8ProfileBoundaryTest" time="0.021" />
+    <testcase name="블렌드 단일 산지 / 수정false / &quot;farmOrCooperative&quot;" classname="com.back.coffeeprod.qa.recommendation.Qa8ProfileBoundaryTest" time="0.02" />
+    <testcase name="블렌드 단일 산지 / 수정false / &quot;producer&quot;" classname="com.back.coffeeprod.qa.recommendation.Qa8ProfileBoundaryTest" time="0.021" />
+    <testcase name="블렌드 단일 산지 / 수정false / &quot;altitudeMin&quot;" classname="com.back.coffeeprod.qa.recommendation.Qa8ProfileBoundaryTest" time="0.041" />
+    <testcase name="블렌드 단일 산지 / 수정false / &quot;altitudeMax&quot;" classname="com.back.coffeeprod.qa.recommendation.Qa8ProfileBoundaryTest" time="0.038" />
+    <testcase name="블렌드 단일 산지 / 수정true / &quot;originCountryCode&quot;" classname="com.back.coffeeprod.qa.recommendation.Qa8ProfileBoundaryTest" time="0.015" />
+    <testcase name="블렌드 단일 산지 / 수정true / &quot;originRegion&quot;" classname="com.back.coffeeprod.qa.recommendation.Qa8ProfileBoundaryTest" time="0.013" />
+    <testcase name="블렌드 단일 산지 / 수정true / &quot;farmOrCooperative&quot;" classname="com.back.coffeeprod.qa.recommendation.Qa8ProfileBoundaryTest" time="0.015" />
+    <testcase name="블렌드 단일 산지 / 수정true / &quot;producer&quot;" classname="com.back.coffeeprod.qa.recommendation.Qa8ProfileBoundaryTest" time="0.014" />
+    <testcase name="블렌드 단일 산지 / 수정true / &quot;altitudeMin&quot;" classname="com.back.coffeeprod.qa.recommendation.Qa8ProfileBoundaryTest" time="0.012" />
+    <testcase name="블렌드 단일 산지 / 수정true / &quot;altitudeMax&quot;" classname="com.back.coffeeprod.qa.recommendation.Qa8ProfileBoundaryTest" time="0.014" />
+    <testcase name="허용된 빈 연관 목록은 연결만 제거하고 참조 원본을 보존한다" classname="com.back.coffeeprod.qa.recommendation.Qa8ProfileBoundaryTest" time="0.02" />
+    <testcase name="싱글 거부 / 수정false / &quot;missingCountry&quot;" classname="com.back.coffeeprod.qa.recommendation.Qa8ProfileBoundaryTest" time="0.01" />
+    <testcase name="싱글 거부 / 수정false / &quot;components&quot;" classname="com.back.coffeeprod.qa.recommendation.Qa8ProfileBoundaryTest" time="0.013" />
+    <testcase name="싱글 거부 / 수정true / &quot;missingCountry&quot;" classname="com.back.coffeeprod.qa.recommendation.Qa8ProfileBoundaryTest" time="0.012" />
+    <testcase name="싱글 거부 / 수정true / &quot;components&quot;" classname="com.back.coffeeprod.qa.recommendation.Qa8ProfileBoundaryTest" time="0.011" />
+    <testcase name="구성 비율 / 수정false / &quot;60/40&quot;" classname="com.back.coffeeprod.qa.recommendation.Qa8ProfileBoundaryTest" time="0.013" />
+    <testcase name="구성 비율 / 수정false / &quot;omitted&quot;" classname="com.back.coffeeprod.qa.recommendation.Qa8ProfileBoundaryTest" time="0.01" />
+    <testcase name="구성 비율 / 수정false / &quot;partial&quot;" classname="com.back.coffeeprod.qa.recommendation.Qa8ProfileBoundaryTest" time="0.013" />
+    <testcase name="구성 비율 / 수정false / &quot;sum99&quot;" classname="com.back.coffeeprod.qa.recommendation.Qa8ProfileBoundaryTest" time="0.013" />
+    <testcase name="구성 비율 / 수정false / &quot;zero&quot;" classname="com.back.coffeeprod.qa.recommendation.Qa8ProfileBoundaryTest" time="0.012" />
+    <testcase name="구성 비율 / 수정false / &quot;negative&quot;" classname="com.back.coffeeprod.qa.recommendation.Qa8ProfileBoundaryTest" time="0.012" />
+    <testcase name="구성 비율 / 수정false / &quot;over100&quot;" classname="com.back.coffeeprod.qa.recommendation.Qa8ProfileBoundaryTest" time="0.014" />
+    <testcase name="구성 비율 / 수정false / &quot;scale3&quot;" classname="com.back.coffeeprod.qa.recommendation.Qa8ProfileBoundaryTest" time="0.012" />
+    <testcase name="구성 비율 / 수정true / &quot;60/40&quot;" classname="com.back.coffeeprod.qa.recommendation.Qa8ProfileBoundaryTest" time="0.019" />
+    <testcase name="구성 비율 / 수정true / &quot;omitted&quot;" classname="com.back.coffeeprod.qa.recommendation.Qa8ProfileBoundaryTest" time="0.018" />
+    <testcase name="구성 비율 / 수정true / &quot;partial&quot;" classname="com.back.coffeeprod.qa.recommendation.Qa8ProfileBoundaryTest" time="0.013" />
+    <testcase name="구성 비율 / 수정true / &quot;sum99&quot;" classname="com.back.coffeeprod.qa.recommendation.Qa8ProfileBoundaryTest" time="0.016" />
+    <testcase name="구성 비율 / 수정true / &quot;zero&quot;" classname="com.back.coffeeprod.qa.recommendation.Qa8ProfileBoundaryTest" time="0.013" />
+    <testcase name="구성 비율 / 수정true / &quot;negative&quot;" classname="com.back.coffeeprod.qa.recommendation.Qa8ProfileBoundaryTest" time="0.011" />
+    <testcase name="구성 비율 / 수정true / &quot;over100&quot;" classname="com.back.coffeeprod.qa.recommendation.Qa8ProfileBoundaryTest" time="0.012" />
+    <testcase name="구성 비율 / 수정true / &quot;scale3&quot;" classname="com.back.coffeeprod.qa.recommendation.Qa8ProfileBoundaryTest" time="0.009" />
+    <testcase name="구성 요소 값 / &quot;country&quot;" classname="com.back.coffeeprod.qa.recommendation.Qa8ProfileBoundaryTest" time="0.011" />
+    <testcase name="구성 요소 값 / &quot;region&quot;" classname="com.back.coffeeprod.qa.recommendation.Qa8ProfileBoundaryTest" time="0.012" />
+    <testcase name="구성 요소 값 / &quot;methodZero&quot;" classname="com.back.coffeeprod.qa.recommendation.Qa8ProfileBoundaryTest" time="0.009" />
+    <testcase name="구성 요소 값 / &quot;methodMissing&quot;" classname="com.back.coffeeprod.qa.recommendation.Qa8ProfileBoundaryTest" time="0.011" />
+    <testcase name="구성 요소 값 / &quot;nullEntry&quot;" classname="com.back.coffeeprod.qa.recommendation.Qa8ProfileBoundaryTest" time="0.011" />
+    <testcase name="프로필 수정 응답의 updatedAt은 커밋된 새 시각과 일치한다" classname="com.back.coffeeprod.qa.recommendation.Qa8ProfileBoundaryTest" time="0.009" />
+    <testcase name="연관 개수 / 수정false / &quot;flavorNotes&quot; / 초과false" classname="com.back.coffeeprod.qa.recommendation.Qa8ProfileBoundaryTest" time="0.023" />
+    <testcase name="연관 개수 / 수정false / &quot;flavorNotes&quot; / 초과true" classname="com.back.coffeeprod.qa.recommendation.Qa8ProfileBoundaryTest" time="0.022" />
+    <testcase name="연관 개수 / 수정false / &quot;brewMethods&quot; / 초과false" classname="com.back.coffeeprod.qa.recommendation.Qa8ProfileBoundaryTest" time="0.018" />
+    <testcase name="연관 개수 / 수정false / &quot;brewMethods&quot; / 초과true" classname="com.back.coffeeprod.qa.recommendation.Qa8ProfileBoundaryTest" time="0.011" />
+    <testcase name="연관 개수 / 수정false / &quot;varieties&quot; / 초과false" classname="com.back.coffeeprod.qa.recommendation.Qa8ProfileBoundaryTest" time="0.014" />
+    <testcase name="연관 개수 / 수정false / &quot;varieties&quot; / 초과true" classname="com.back.coffeeprod.qa.recommendation.Qa8ProfileBoundaryTest" time="0.013" />
+    <testcase name="연관 개수 / 수정true / &quot;flavorNotes&quot; / 초과false" classname="com.back.coffeeprod.qa.recommendation.Qa8ProfileBoundaryTest" time="0.017" />
+    <testcase name="연관 개수 / 수정true / &quot;flavorNotes&quot; / 초과true" classname="com.back.coffeeprod.qa.recommendation.Qa8ProfileBoundaryTest" time="0.01" />
+    <testcase name="연관 개수 / 수정true / &quot;brewMethods&quot; / 초과false" classname="com.back.coffeeprod.qa.recommendation.Qa8ProfileBoundaryTest" time="0.014" />
+    <testcase name="연관 개수 / 수정true / &quot;brewMethods&quot; / 초과true" classname="com.back.coffeeprod.qa.recommendation.Qa8ProfileBoundaryTest" time="0.01" />
+    <testcase name="연관 개수 / 수정true / &quot;varieties&quot; / 초과false" classname="com.back.coffeeprod.qa.recommendation.Qa8ProfileBoundaryTest" time="0.017" />
+    <testcase name="연관 개수 / 수정true / &quot;varieties&quot; / 초과true" classname="com.back.coffeeprod.qa.recommendation.Qa8ProfileBoundaryTest" time="0.012" />
+    <testcase name="향미 강도 / 0" classname="com.back.coffeeprod.qa.recommendation.Qa8ProfileBoundaryTest" time="0.012" />
+    <testcase name="향미 강도 / 1" classname="com.back.coffeeprod.qa.recommendation.Qa8ProfileBoundaryTest" time="0.016" />
+    <testcase name="향미 강도 / 5" classname="com.back.coffeeprod.qa.recommendation.Qa8ProfileBoundaryTest" time="0.013" />
+    <testcase name="향미 강도 / 6" classname="com.back.coffeeprod.qa.recommendation.Qa8ProfileBoundaryTest" time="0.011" />
+    <testcase name="연관 오류 / 수정false / &quot;flavorNotes&quot; / &quot;duplicate&quot;" classname="com.back.coffeeprod.qa.recommendation.Qa8ProfileBoundaryTest" time="0.014" />
+    <testcase name="연관 오류 / 수정false / &quot;flavorNotes&quot; / &quot;missingReference&quot;" classname="com.back.coffeeprod.qa.recommendation.Qa8ProfileBoundaryTest" time="0.012" />
+    <testcase name="연관 오류 / 수정false / &quot;flavorNotes&quot; / &quot;nullEntry&quot;" classname="com.back.coffeeprod.qa.recommendation.Qa8ProfileBoundaryTest" time="0.026" />
+    <testcase name="연관 오류 / 수정false / &quot;flavorNotes&quot; / &quot;nullId&quot;" classname="com.back.coffeeprod.qa.recommendation.Qa8ProfileBoundaryTest" time="0.014" />
+    <testcase name="연관 오류 / 수정false / &quot;brewMethods&quot; / &quot;duplicate&quot;" classname="com.back.coffeeprod.qa.recommendation.Qa8ProfileBoundaryTest" time="0.014" />
+    <testcase name="연관 오류 / 수정false / &quot;brewMethods&quot; / &quot;missingReference&quot;" classname="com.back.coffeeprod.qa.recommendation.Qa8ProfileBoundaryTest" time="0.013" />
+    <testcase name="연관 오류 / 수정false / &quot;brewMethods&quot; / &quot;nullEntry&quot;" classname="com.back.coffeeprod.qa.recommendation.Qa8ProfileBoundaryTest" time="0.012" />
+    <testcase name="연관 오류 / 수정false / &quot;brewMethods&quot; / &quot;nullId&quot;" classname="com.back.coffeeprod.qa.recommendation.Qa8ProfileBoundaryTest" time="0.013" />
+    <testcase name="연관 오류 / 수정false / &quot;varieties&quot; / &quot;duplicate&quot;" classname="com.back.coffeeprod.qa.recommendation.Qa8ProfileBoundaryTest" time="0.015" />
+    <testcase name="연관 오류 / 수정false / &quot;varieties&quot; / &quot;missingReference&quot;" classname="com.back.coffeeprod.qa.recommendation.Qa8ProfileBoundaryTest" time="0.013" />
+    <testcase name="연관 오류 / 수정false / &quot;varieties&quot; / &quot;nullEntry&quot;" classname="com.back.coffeeprod.qa.recommendation.Qa8ProfileBoundaryTest" time="0.01" />
+    <testcase name="연관 오류 / 수정false / &quot;varieties&quot; / &quot;nullId&quot;" classname="com.back.coffeeprod.qa.recommendation.Qa8ProfileBoundaryTest" time="0.012" />
+    <testcase name="연관 오류 / 수정true / &quot;flavorNotes&quot; / &quot;duplicate&quot;" classname="com.back.coffeeprod.qa.recommendation.Qa8ProfileBoundaryTest" time="0.013" />
+    <testcase name="연관 오류 / 수정true / &quot;flavorNotes&quot; / &quot;missingReference&quot;" classname="com.back.coffeeprod.qa.recommendation.Qa8ProfileBoundaryTest" time="0.013" />
+    <testcase name="연관 오류 / 수정true / &quot;flavorNotes&quot; / &quot;nullEntry&quot;" classname="com.back.coffeeprod.qa.recommendation.Qa8ProfileBoundaryTest" time="0.013" />
+    <testcase name="연관 오류 / 수정true / &quot;flavorNotes&quot; / &quot;nullId&quot;" classname="com.back.coffeeprod.qa.recommendation.Qa8ProfileBoundaryTest" time="0.018" />
+    <testcase name="연관 오류 / 수정true / &quot;brewMethods&quot; / &quot;duplicate&quot;" classname="com.back.coffeeprod.qa.recommendation.Qa8ProfileBoundaryTest" time="0.015" />
+    <testcase name="연관 오류 / 수정true / &quot;brewMethods&quot; / &quot;missingReference&quot;" classname="com.back.coffeeprod.qa.recommendation.Qa8ProfileBoundaryTest" time="0.014" />
+    <testcase name="연관 오류 / 수정true / &quot;brewMethods&quot; / &quot;nullEntry&quot;" classname="com.back.coffeeprod.qa.recommendation.Qa8ProfileBoundaryTest" time="0.012" />
+    <testcase name="연관 오류 / 수정true / &quot;brewMethods&quot; / &quot;nullId&quot;" classname="com.back.coffeeprod.qa.recommendation.Qa8ProfileBoundaryTest" time="0.013" />
+    <testcase name="연관 오류 / 수정true / &quot;varieties&quot; / &quot;duplicate&quot;" classname="com.back.coffeeprod.qa.recommendation.Qa8ProfileBoundaryTest" time="0.011" />
+    <testcase name="연관 오류 / 수정true / &quot;varieties&quot; / &quot;missingReference&quot;" classname="com.back.coffeeprod.qa.recommendation.Qa8ProfileBoundaryTest" time="0.012" />
+    <testcase name="연관 오류 / 수정true / &quot;varieties&quot; / &quot;nullEntry&quot;" classname="com.back.coffeeprod.qa.recommendation.Qa8ProfileBoundaryTest" time="0.012" />
+    <testcase name="연관 오류 / 수정true / &quot;varieties&quot; / &quot;nullId&quot;" classname="com.back.coffeeprod.qa.recommendation.Qa8ProfileBoundaryTest" time="0.014" />
+    <testcase name="추출 안내의500자는 허용하고501자는 거부한다" classname="com.back.coffeeprod.qa.recommendation.Qa8ProfileBoundaryTest" time="0.027" />
+    <testcase name="싱글과 블렌드 전환은 산지 필드와 구성요소를 새 상태에 맞춰 교체한다" classname="com.back.coffeeprod.qa.recommendation.Qa8ProfileBoundaryTest" time="0.018" />
+    <testcase name="null 목록 / &quot;flavorNotes&quot;" classname="com.back.coffeeprod.qa.recommendation.Qa8ProfileBoundaryTest" time="0.008" />
+    <testcase name="null 목록 / &quot;brewMethods&quot;" classname="com.back.coffeeprod.qa.recommendation.Qa8ProfileBoundaryTest" time="0.011" />
+    <testcase name="null 목록 / &quot;varieties&quot;" classname="com.back.coffeeprod.qa.recommendation.Qa8ProfileBoundaryTest" time="0.011" />
+    <testcase name="null 목록 / &quot;components&quot;" classname="com.back.coffeeprod.qa.recommendation.Qa8ProfileBoundaryTest" time="0.011" />
+    <testcase name="구성 수 / 수정false / 1" classname="com.back.coffeeprod.qa.recommendation.Qa8ProfileBoundaryTest" time="0.012" />
+    <testcase name="구성 수 / 수정false / 2" classname="com.back.coffeeprod.qa.recommendation.Qa8ProfileBoundaryTest" time="0.013" />
+    <testcase name="구성 수 / 수정false / 5" classname="com.back.coffeeprod.qa.recommendation.Qa8ProfileBoundaryTest" time="0.009" />
+    <testcase name="구성 수 / 수정false / 6" classname="com.back.coffeeprod.qa.recommendation.Qa8ProfileBoundaryTest" time="0.009" />
+    <testcase name="구성 수 / 수정true / 1" classname="com.back.coffeeprod.qa.recommendation.Qa8ProfileBoundaryTest" time="0.011" />
+    <testcase name="구성 수 / 수정true / 2" classname="com.back.coffeeprod.qa.recommendation.Qa8ProfileBoundaryTest" time="0.016" />
+    <testcase name="구성 수 / 수정true / 5" classname="com.back.coffeeprod.qa.recommendation.Qa8ProfileBoundaryTest" time="0.014" />
+    <testcase name="구성 수 / 수정true / 6" classname="com.back.coffeeprod.qa.recommendation.Qa8ProfileBoundaryTest" time="0.012" />
+    <testcase name="연관 목록 교체와 순서 변경은 저장되며 이전 연결 행을 삭제한다" classname="com.back.coffeeprod.qa.recommendation.Qa8ProfileBoundaryTest" time="0.027" />
+    <testcase name="프로필 관리 권한 / &quot;anonymous&quot;" classname="com.back.coffeeprod.qa.recommendation.Qa8ProfileBoundaryTest" time="0.013" />
+    <testcase name="프로필 관리 권한 / &quot;user&quot;" classname="com.back.coffeeprod.qa.recommendation.Qa8ProfileBoundaryTest" time="0.015" />
+  </testsuite>
+  <testsuite name="com.back.coffeeprod.qa.recommendation.Qa8RecommendationTest" tests="40" failures="0" errors="0" skipped="0" time="0.451">
+    <testcase name="추천은 판매중 양수재고 프로필연결 상품만 반환하고 저장소를 바꾸지 않는다" classname="com.back.coffeeprod.qa.recommendation.Qa8RecommendationTest" time="0.012" />
+    <testcase name="디카페인 / &quot;true&quot;" classname="com.back.coffeeprod.qa.recommendation.Qa8RecommendationTest" time="0.009" />
+    <testcase name="디카페인 / &quot;false&quot;" classname="com.back.coffeeprod.qa.recommendation.Qa8RecommendationTest" time="0.008" />
+    <testcase name="디카페인 / &quot;unspecified&quot;" classname="com.back.coffeeprod.qa.recommendation.Qa8RecommendationTest" time="0.01" />
+    <testcase name="점수 내림차순 다음 가격과 ID 오름차순으로 결정적으로 정렬한다" classname="com.back.coffeeprod.qa.recommendation.Qa8RecommendationTest" time="0.013" />
+    <testcase name="범주 점수 / &quot;roastLevel&quot;" classname="com.back.coffeeprod.qa.recommendation.Qa8RecommendationTest" time="0.01" />
+    <testcase name="범주 점수 / &quot;beanType&quot;" classname="com.back.coffeeprod.qa.recommendation.Qa8RecommendationTest" time="0.008" />
+    <testcase name="범주 점수 / &quot;processingMethodId&quot;" classname="com.back.coffeeprod.qa.recommendation.Qa8RecommendationTest" time="0.009" />
+    <testcase name="추천 개수 / &quot;public&quot; / -1" classname="com.back.coffeeprod.qa.recommendation.Qa8RecommendationTest" time="0.018" />
+    <testcase name="추천 개수 / &quot;public&quot; / 0" classname="com.back.coffeeprod.qa.recommendation.Qa8RecommendationTest" time="0.012" />
+    <testcase name="추천 개수 / &quot;public&quot; / 1" classname="com.back.coffeeprod.qa.recommendation.Qa8RecommendationTest" time="0.015" />
+    <testcase name="추천 개수 / &quot;public&quot; / 10" classname="com.back.coffeeprod.qa.recommendation.Qa8RecommendationTest" time="0.017" />
+    <testcase name="추천 개수 / &quot;public&quot; / 11" classname="com.back.coffeeprod.qa.recommendation.Qa8RecommendationTest" time="0.017" />
+    <testcase name="추천 개수 / &quot;personal&quot; / -1" classname="com.back.coffeeprod.qa.recommendation.Qa8RecommendationTest" time="0.021" />
+    <testcase name="추천 개수 / &quot;personal&quot; / 0" classname="com.back.coffeeprod.qa.recommendation.Qa8RecommendationTest" time="0.015" />
+    <testcase name="추천 개수 / &quot;personal&quot; / 1" classname="com.back.coffeeprod.qa.recommendation.Qa8RecommendationTest" time="0.017" />
+    <testcase name="추천 개수 / &quot;personal&quot; / 10" classname="com.back.coffeeprod.qa.recommendation.Qa8RecommendationTest" time="0.018" />
+    <testcase name="추천 개수 / &quot;personal&quot; / 11" classname="com.back.coffeeprod.qa.recommendation.Qa8RecommendationTest" time="0.015" />
+    <testcase name="후보 부족과 빈 결과도 정상이며 빈 후보에서도 잘못된 개수는 거부한다" classname="com.back.coffeeprod.qa.recommendation.Qa8RecommendationTest" time="0.015" />
+    <testcase name="모든 조건 일치의 26점과 추천 이유 및 공개 응답 필드를 확인한다" classname="com.back.coffeeprod.qa.recommendation.Qa8RecommendationTest" time="0.008" />
+    <testcase name="감각 점수 / &quot;Acidity&quot; 선호1 기대0" classname="com.back.coffeeprod.qa.recommendation.Qa8RecommendationTest" time="0.009" />
+    <testcase name="감각 점수 / &quot;Acidity&quot; 선호2 기대2" classname="com.back.coffeeprod.qa.recommendation.Qa8RecommendationTest" time="0.008" />
+    <testcase name="감각 점수 / &quot;Acidity&quot; 선호3 기대4" classname="com.back.coffeeprod.qa.recommendation.Qa8RecommendationTest" time="0.008" />
+    <testcase name="감각 점수 / &quot;Acidity&quot; 선호4 기대2" classname="com.back.coffeeprod.qa.recommendation.Qa8RecommendationTest" time="0.007" />
+    <testcase name="감각 점수 / &quot;Acidity&quot; 선호5 기대0" classname="com.back.coffeeprod.qa.recommendation.Qa8RecommendationTest" time="0.009" />
+    <testcase name="감각 점수 / &quot;Body&quot; 선호1 기대0" classname="com.back.coffeeprod.qa.recommendation.Qa8RecommendationTest" time="0.011" />
+    <testcase name="감각 점수 / &quot;Body&quot; 선호2 기대2" classname="com.back.coffeeprod.qa.recommendation.Qa8RecommendationTest" time="0.006" />
+    <testcase name="감각 점수 / &quot;Body&quot; 선호3 기대4" classname="com.back.coffeeprod.qa.recommendation.Qa8RecommendationTest" time="0.006" />
+    <testcase name="감각 점수 / &quot;Body&quot; 선호4 기대2" classname="com.back.coffeeprod.qa.recommendation.Qa8RecommendationTest" time="0.007" />
+    <testcase name="감각 점수 / &quot;Body&quot; 선호5 기대0" classname="com.back.coffeeprod.qa.recommendation.Qa8RecommendationTest" time="0.009" />
+    <testcase name="감각 점수 / &quot;Sweetness&quot; 선호1 기대0" classname="com.back.coffeeprod.qa.recommendation.Qa8RecommendationTest" time="0.008" />
+    <testcase name="감각 점수 / &quot;Sweetness&quot; 선호2 기대2" classname="com.back.coffeeprod.qa.recommendation.Qa8RecommendationTest" time="0.007" />
+    <testcase name="감각 점수 / &quot;Sweetness&quot; 선호3 기대4" classname="com.back.coffeeprod.qa.recommendation.Qa8RecommendationTest" time="0.008" />
+    <testcase name="감각 점수 / &quot;Sweetness&quot; 선호4 기대2" classname="com.back.coffeeprod.qa.recommendation.Qa8RecommendationTest" time="0.006" />
+    <testcase name="감각 점수 / &quot;Sweetness&quot; 선호5 기대0" classname="com.back.coffeeprod.qa.recommendation.Qa8RecommendationTest" time="0.007" />
+    <testcase name="감각 점수 / &quot;Aroma&quot; 선호1 기대0" classname="com.back.coffeeprod.qa.recommendation.Qa8RecommendationTest" time="0.006" />
+    <testcase name="감각 점수 / &quot;Aroma&quot; 선호2 기대2" classname="com.back.coffeeprod.qa.recommendation.Qa8RecommendationTest" time="0.005" />
+    <testcase name="감각 점수 / &quot;Aroma&quot; 선호3 기대4" classname="com.back.coffeeprod.qa.recommendation.Qa8RecommendationTest" time="0.006" />
+    <testcase name="감각 점수 / &quot;Aroma&quot; 선호4 기대2" classname="com.back.coffeeprod.qa.recommendation.Qa8RecommendationTest" time="0.007" />
+    <testcase name="감각 점수 / &quot;Aroma&quot; 선호5 기대0" classname="com.back.coffeeprod.qa.recommendation.Qa8RecommendationTest" time="0.007" />
+  </testsuite>
+</testsuites>

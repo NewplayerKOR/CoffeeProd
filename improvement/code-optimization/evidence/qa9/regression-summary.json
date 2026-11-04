@@ -1,0 +1,26 @@
+{
+  "scope": "QA9 independent Java21 H2 regression and non-server harness; no server performance evidence",
+  "priorDev9": {
+    "tests": 651,
+    "failures": 0,
+    "errors": 0,
+    "xmlFiles": 41,
+    "skipped": 0
+  },
+  "harness": {
+    "tests": 16,
+    "failures": 0,
+    "errors": 0,
+    "xmlFiles": 1,
+    "skipped": 0
+  },
+  "differences": [],
+  "sameIdentifiersAndMultiplicity": true,
+  "regression": {
+    "tests": 651,
+    "failures": 0,
+    "errors": 0,
+    "xmlFiles": 41,
+    "skipped": 0
+  }
+}

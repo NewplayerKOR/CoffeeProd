@@ -1,0 +1,426 @@
+{
+  "sourceHash": "ece5a650b88e967ce82a16635dde57dbc0bdec101b89ae44b00b0d50f2b59677",
+  "measurementHash": "6d63b7f073649f1804950bbf2a87dc3d77fa696f58aee363eb49f0009dfa7057",
+  "variant": "page50",
+  "samples": [
+    {
+      "name": "member-page-10",
+      "elapsedNanos": 253435802,
+      "cpuNanos": 520000000,
+      "hibernateStatements": 4,
+      "entities": 49,
+      "collections": 20,
+      "sql": [
+        "select o1_0.order_id from orders o1_0 where o1_0.member_id=? order by o1_0.order_date desc fetch first ? rows only",
+        "select count(o1_0.order_id) from orders o1_0 where o1_0.member_id=?",
+        "select distinct o1_0.order_id,o1_0.cancel_requested,o1_0.created_at,o1_0.delivery_address,o1_0.delivery_fee,o1_0.earned_mileage,o1_0.member_id,m1_0.member_id,m1_0.created_at,m1_0.email,m1_0.grade,m1_0.mileage,m1_0.mileage_recovery_due,m1_0.name,m1_0.nickname,m1_0.password,m1_0.role,m1_0.status,m1_0.updated_at,o1_0.order_date,oi1_0.order_id,oi1_0.order_item_id,oi1_0.grind_type,oi1_0.order_price,oi1_0.product_id,p1_0.product_id,p1_0.category_id,p1_0.coffee_profile_id,p1_0.created_at,p1_0.description,p1_0.image_url,p1_0.name,p1_0.price,p1_0.roast_level,p1_0.sku,p1_0.status,p1_0.stock_quantity,p1_0.updated_at,p1_0.weight_grams,oi1_0.quantity,o1_0.product_total_price,o1_0.status,o1_0.toss_order_id,o1_0.total_price,o1_0.tracking_no,o1_0.updated_at,o1_0.used_mileage from orders o1_0 join member m1_0 on m1_0.member_id=o1_0.member_id join order_item oi1_0 on o1_0.order_id=oi1_0.order_id join product p1_0 on p1_0.product_id=oi1_0.product_id where o1_0.order_id in (?,?,?,?,?,?,?,?,?,?) order by o1_0.order_date desc",
+        "select po1_0.order_id,po1_0.id,po1_0.actor_id,po1_0.actor_type,po1_0.amount,po1_0.attempt_count,po1_0.created_at,po1_0.first_sent_at,po1_0.idempotency_key,po1_0.last_error_code,po1_0.lease_token,po1_0.lease_until,po1_0.next_attempt_at,po1_0.payment_key,po1_0.pg_approved_at,po1_0.pg_canceled_at,po1_0.pg_transaction_key,po1_0.reason,po1_0.status,po1_0.toss_order_id,po1_0.operation_type,po1_0.updated_at,po1_0.version from payment_operation po1_0 where po1_0.order_id = any (?)"
+      ]
+    },
+    {
+      "name": "admin-page-10",
+      "elapsedNanos": 82084988,
+      "cpuNanos": 130000000,
+      "hibernateStatements": 4,
+      "entities": 40,
+      "collections": 20,
+      "sql": [
+        "select o1_0.order_id from orders o1_0 order by o1_0.order_date desc fetch first ? rows only",
+        "select count(o1_0.order_id) from orders o1_0",
+        "select distinct o1_0.order_id,o1_0.cancel_requested,o1_0.created_at,o1_0.delivery_address,o1_0.delivery_fee,o1_0.earned_mileage,o1_0.member_id,m1_0.member_id,m1_0.created_at,m1_0.email,m1_0.grade,m1_0.mileage,m1_0.mileage_recovery_due,m1_0.name,m1_0.nickname,m1_0.password,m1_0.role,m1_0.status,m1_0.updated_at,o1_0.order_date,oi1_0.order_id,oi1_0.order_item_id,oi1_0.grind_type,oi1_0.order_price,oi1_0.product_id,p1_0.product_id,p1_0.category_id,p1_0.coffee_profile_id,p1_0.created_at,p1_0.description,p1_0.image_url,p1_0.name,p1_0.price,p1_0.roast_level,p1_0.sku,p1_0.status,p1_0.stock_quantity,p1_0.updated_at,p1_0.weight_grams,oi1_0.quantity,o1_0.product_total_price,o1_0.status,o1_0.toss_order_id,o1_0.total_price,o1_0.tracking_no,o1_0.updated_at,o1_0.used_mileage from orders o1_0 join member m1_0 on m1_0.member_id=o1_0.member_id join order_item oi1_0 on o1_0.order_id=oi1_0.order_id join product p1_0 on p1_0.product_id=oi1_0.product_id where o1_0.order_id in (?,?,?,?,?,?,?,?,?,?) order by o1_0.order_date desc",
+        "select po1_0.order_id,po1_0.id,po1_0.actor_id,po1_0.actor_type,po1_0.amount,po1_0.attempt_count,po1_0.created_at,po1_0.first_sent_at,po1_0.idempotency_key,po1_0.last_error_code,po1_0.lease_token,po1_0.lease_until,po1_0.next_attempt_at,po1_0.payment_key,po1_0.pg_approved_at,po1_0.pg_canceled_at,po1_0.pg_transaction_key,po1_0.reason,po1_0.status,po1_0.toss_order_id,po1_0.operation_type,po1_0.updated_at,po1_0.version from payment_operation po1_0 where po1_0.order_id = any (?)"
+      ]
+    },
+    {
+      "name": "member-page-50",
+      "elapsedNanos": 70653510,
+      "cpuNanos": 130000000,
+      "hibernateStatements": 4,
+      "entities": 188,
+      "collections": 100,
+      "sql": [
+        "select o1_0.order_id from orders o1_0 where o1_0.member_id=? order by o1_0.order_date desc fetch first ? rows only",
+        "select count(o1_0.order_id) from orders o1_0 where o1_0.member_id=?",
+        "select distinct o1_0.order_id,o1_0.cancel_requested,o1_0.created_at,o1_0.delivery_address,o1_0.delivery_fee,o1_0.earned_mileage,o1_0.member_id,m1_0.member_id,m1_0.created_at,m1_0.email,m1_0.grade,m1_0.mileage,m1_0.mileage_recovery_due,m1_0.name,m1_0.nickname,m1_0.password,m1_0.role,m1_0.status,m1_0.updated_at,o1_0.order_date,oi1_0.order_id,oi1_0.order_item_id,oi1_0.grind_type,oi1_0.order_price,oi1_0.product_id,p1_0.product_id,p1_0.category_id,p1_0.coffee_profile_id,p1_0.created_at,p1_0.description,p1_0.image_url,p1_0.name,p1_0.price,p1_0.roast_level,p1_0.sku,p1_0.status,p1_0.stock_quantity,p1_0.updated_at,p1_0.weight_grams,oi1_0.quantity,o1_0.product_total_price,o1_0.status,o1_0.toss_order_id,o1_0.total_price,o1_0.tracking_no,o1_0.updated_at,o1_0.used_mileage from orders o1_0 join member m1_0 on m1_0.member_id=o1_0.member_id join order_item oi1_0 on o1_0.order_id=oi1_0.order_id join product p1_0 on p1_0.product_id=oi1_0.product_id where o1_0.order_id in (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) order by o1_0.order_date desc",
+        "select po1_0.order_id,po1_0.id,po1_0.actor_id,po1_0.actor_type,po1_0.amount,po1_0.attempt_count,po1_0.created_at,po1_0.first_sent_at,po1_0.idempotency_key,po1_0.last_error_code,po1_0.lease_token,po1_0.lease_until,po1_0.next_attempt_at,po1_0.payment_key,po1_0.pg_approved_at,po1_0.pg_canceled_at,po1_0.pg_transaction_key,po1_0.reason,po1_0.status,po1_0.toss_order_id,po1_0.operation_type,po1_0.updated_at,po1_0.version from payment_operation po1_0 where po1_0.order_id = any (?)"
+      ]
+    },
+    {
+      "name": "admin-page-50",
+      "elapsedNanos": 111678458,
+      "cpuNanos": 190000000,
+      "hibernateStatements": 4,
+      "entities": 282,
+      "collections": 100,
+      "sql": [
+        "select o1_0.order_id from orders o1_0 order by o1_0.order_date desc fetch first ? rows only",
+        "select count(o1_0.order_id) from orders o1_0",
+        "select distinct o1_0.order_id,o1_0.cancel_requested,o1_0.created_at,o1_0.delivery_address,o1_0.delivery_fee,o1_0.earned_mileage,o1_0.member_id,m1_0.member_id,m1_0.created_at,m1_0.email,m1_0.grade,m1_0.mileage,m1_0.mileage_recovery_due,m1_0.name,m1_0.nickname,m1_0.password,m1_0.role,m1_0.status,m1_0.updated_at,o1_0.order_date,oi1_0.order_id,oi1_0.order_item_id,oi1_0.grind_type,oi1_0.order_price,oi1_0.product_id,p1_0.product_id,p1_0.category_id,p1_0.coffee_profile_id,p1_0.created_at,p1_0.description,p1_0.image_url,p1_0.name,p1_0.price,p1_0.roast_level,p1_0.sku,p1_0.status,p1_0.stock_quantity,p1_0.updated_at,p1_0.weight_grams,oi1_0.quantity,o1_0.product_total_price,o1_0.status,o1_0.toss_order_id,o1_0.total_price,o1_0.tracking_no,o1_0.updated_at,o1_0.used_mileage from orders o1_0 join member m1_0 on m1_0.member_id=o1_0.member_id join order_item oi1_0 on o1_0.order_id=oi1_0.order_id join product p1_0 on p1_0.product_id=oi1_0.product_id where o1_0.order_id in (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) order by o1_0.order_date desc",
+        "select po1_0.order_id,po1_0.id,po1_0.actor_id,po1_0.actor_type,po1_0.amount,po1_0.attempt_count,po1_0.created_at,po1_0.first_sent_at,po1_0.idempotency_key,po1_0.last_error_code,po1_0.lease_token,po1_0.lease_until,po1_0.next_attempt_at,po1_0.payment_key,po1_0.pg_approved_at,po1_0.pg_canceled_at,po1_0.pg_transaction_key,po1_0.reason,po1_0.status,po1_0.toss_order_id,po1_0.operation_type,po1_0.updated_at,po1_0.version from payment_operation po1_0 where po1_0.order_id = any (?)"
+      ]
+    }
+  ],
+  "scope": "server JVM diagnostics; not HTTP load timing",
+  "representativeObservations": [
+    {
+      "matches": true,
+      "actual": "Deep Roast Foundation 다크 200g",
+      "minItemIdProduct": "Deep Roast Foundation 다크 200g",
+      "orderId": 820948
+    },
+    {
+      "matches": true,
+      "actual": "Latin Citrus 라이트 500g",
+      "minItemIdProduct": "Latin Citrus 라이트 500g",
+      "orderId": 853872
+    },
+    {
+      "matches": true,
+      "actual": "GT Antigua WASHED 미디엄 200g",
+      "minItemIdProduct": "GT Antigua WASHED 미디엄 200g",
+      "orderId": 890928
+    },
+    {
+      "matches": true,
+      "actual": "Deep Roast Foundation 다크 500g",
+      "minItemIdProduct": "Deep Roast Foundation 다크 500g",
+      "orderId": 795606
+    },
+    {
+      "matches": true,
+      "actual": "Latin Citrus 라이트 200g",
+      "minItemIdProduct": "Latin Citrus 라이트 200g",
+      "orderId": 898398
+    },
+    {
+      "matches": true,
+      "actual": "Deep Roast Foundation 다크 200g",
+      "minItemIdProduct": "Deep Roast Foundation 다크 200g",
+      "orderId": 752669
+    },
+    {
+      "matches": true,
+      "actual": "GT Antigua WASHED 라이트 500g",
+      "minItemIdProduct": "GT Antigua WASHED 라이트 500g",
+      "orderId": 894487
+    },
+    {
+      "matches": true,
+      "actual": "Latin Citrus 라이트 200g",
+      "minItemIdProduct": "Latin Citrus 라이트 200g",
+      "orderId": 840257
+    },
+    {
+      "matches": true,
+      "actual": "Deep Roast Foundation 다크 200g",
+      "minItemIdProduct": "Deep Roast Foundation 다크 200g",
+      "orderId": 764562
+    },
+    {
+      "matches": true,
+      "actual": "GT Antigua WASHED 미디엄 200g",
+      "minItemIdProduct": "GT Antigua WASHED 미디엄 200g",
+      "orderId": 835764
+    },
+    {
+      "matches": true,
+      "actual": "Deep Roast Foundation 다크 200g",
+      "minItemIdProduct": "Deep Roast Foundation 다크 200g",
+      "orderId": 820948
+    },
+    {
+      "matches": true,
+      "actual": "Latin Citrus 라이트 500g",
+      "minItemIdProduct": "Latin Citrus 라이트 500g",
+      "orderId": 853872
+    },
+    {
+      "matches": true,
+      "actual": "GT Antigua WASHED 미디엄 200g",
+      "minItemIdProduct": "GT Antigua WASHED 미디엄 200g",
+      "orderId": 890928
+    },
+    {
+      "matches": true,
+      "actual": "Deep Roast Foundation 다크 500g",
+      "minItemIdProduct": "Deep Roast Foundation 다크 500g",
+      "orderId": 795606
+    },
+    {
+      "matches": true,
+      "actual": "Latin Citrus 라이트 200g",
+      "minItemIdProduct": "Latin Citrus 라이트 200g",
+      "orderId": 898398
+    },
+    {
+      "matches": true,
+      "actual": "Deep Roast Foundation 다크 200g",
+      "minItemIdProduct": "Deep Roast Foundation 다크 200g",
+      "orderId": 752669
+    },
+    {
+      "matches": true,
+      "actual": "GT Antigua WASHED 라이트 500g",
+      "minItemIdProduct": "GT Antigua WASHED 라이트 500g",
+      "orderId": 894487
+    },
+    {
+      "matches": true,
+      "actual": "Latin Citrus 라이트 200g",
+      "minItemIdProduct": "Latin Citrus 라이트 200g",
+      "orderId": 840257
+    },
+    {
+      "matches": true,
+      "actual": "Deep Roast Foundation 다크 200g",
+      "minItemIdProduct": "Deep Roast Foundation 다크 200g",
+      "orderId": 764562
+    },
+    {
+      "matches": true,
+      "actual": "GT Antigua WASHED 미디엄 200g",
+      "minItemIdProduct": "GT Antigua WASHED 미디엄 200g",
+      "orderId": 835764
+    },
+    {
+      "matches": true,
+      "actual": "GT Antigua WASHED 라이트 500g",
+      "minItemIdProduct": "GT Antigua WASHED 라이트 500g",
+      "orderId": 898759
+    },
+    {
+      "matches": true,
+      "actual": "Latin Citrus 라이트 200g",
+      "minItemIdProduct": "Latin Citrus 라이트 200g",
+      "orderId": 870721
+    },
+    {
+      "matches": true,
+      "actual": "Deep Roast Foundation 다크 200g",
+      "minItemIdProduct": "Deep Roast Foundation 다크 200g",
+      "orderId": 753964
+    },
+    {
+      "matches": true,
+      "actual": "GT Antigua WASHED 미디엄 200g",
+      "minItemIdProduct": "GT Antigua WASHED 미디엄 200g",
+      "orderId": 852561
+    },
+    {
+      "matches": true,
+      "actual": "Latin Citrus 라이트 200g",
+      "minItemIdProduct": "Latin Citrus 라이트 200g",
+      "orderId": 857055
+    },
+    {
+      "matches": true,
+      "actual": "Deep Roast Foundation 다크 500g",
+      "minItemIdProduct": "Deep Roast Foundation 다크 500g",
+      "orderId": 803852
+    },
+    {
+      "matches": true,
+      "actual": "GT Antigua WASHED 미디엄 200g",
+      "minItemIdProduct": "GT Antigua WASHED 미디엄 200g",
+      "orderId": 873035
+    },
+    {
+      "matches": true,
+      "actual": "GT Antigua WASHED 라이트 500g",
+      "minItemIdProduct": "GT Antigua WASHED 라이트 500g",
+      "orderId": 891749
+    },
+    {
+      "matches": true,
+      "actual": "Latin Citrus 라이트 200g",
+      "minItemIdProduct": "Latin Citrus 라이트 200g",
+      "orderId": 843965
+    },
+    {
+      "matches": true,
+      "actual": "GT Antigua WASHED 미디엄 200g",
+      "minItemIdProduct": "GT Antigua WASHED 미디엄 200g",
+      "orderId": 841518
+    },
+    {
+      "matches": true,
+      "actual": "Deep Roast Foundation 다크 200g",
+      "minItemIdProduct": "Deep Roast Foundation 다크 200g",
+      "orderId": 778880
+    },
+    {
+      "matches": true,
+      "actual": "Latin Citrus 라이트 500g",
+      "minItemIdProduct": "Latin Citrus 라이트 500g",
+      "orderId": 837204
+    },
+    {
+      "matches": true,
+      "actual": "Deep Roast Foundation 다크 500g",
+      "minItemIdProduct": "Deep Roast Foundation 다크 500g",
+      "orderId": 756490
+    },
+    {
+      "matches": true,
+      "actual": "Latin Citrus 라이트 200g",
+      "minItemIdProduct": "Latin Citrus 라이트 200g",
+      "orderId": 893703
+    },
+    {
+      "matches": true,
+      "actual": "Latin Citrus 라이트 200g",
+      "minItemIdProduct": "Latin Citrus 라이트 200g",
+      "orderId": 865859
+    },
+    {
+      "matches": true,
+      "actual": "Deep Roast Foundation 다크 200g",
+      "minItemIdProduct": "Deep Roast Foundation 다크 200g",
+      "orderId": 770284
+    },
+    {
+      "matches": true,
+      "actual": "GT Antigua WASHED 라이트 500g",
+      "minItemIdProduct": "GT Antigua WASHED 라이트 500g",
+      "orderId": 872321
+    },
+    {
+      "matches": true,
+      "actual": "GT Antigua WASHED 미디엄 200g",
+      "minItemIdProduct": "GT Antigua WASHED 미디엄 200g",
+      "orderId": 846893
+    },
+    {
+      "matches": true,
+      "actual": "Deep Roast Foundation 다크 200g",
+      "minItemIdProduct": "Deep Roast Foundation 다크 200g",
+      "orderId": 767835
+    },
+    {
+      "matches": true,
+      "actual": "Latin Citrus 라이트 500g",
+      "minItemIdProduct": "Latin Citrus 라이트 500g",
+      "orderId": 845955
+    },
+    {
+      "matches": true,
+      "actual": "Deep Roast Foundation 다크 500g",
+      "minItemIdProduct": "Deep Roast Foundation 다크 500g",
+      "orderId": 762039
+    },
+    {
+      "matches": true,
+      "actual": "Latin Citrus 라이트 200g",
+      "minItemIdProduct": "Latin Citrus 라이트 200g",
+      "orderId": 854105
+    },
+    {
+      "matches": true,
+      "actual": "GT Antigua WASHED 라이트 500g",
+      "minItemIdProduct": "GT Antigua WASHED 라이트 500g",
+      "orderId": 862642
+    },
+    {
+      "matches": true,
+      "actual": "Deep Roast Foundation 다크 200g",
+      "minItemIdProduct": "Deep Roast Foundation 다크 200g",
+      "orderId": 752903
+    },
+    {
+      "matches": true,
+      "actual": "Latin Citrus 라이트 200g",
+      "minItemIdProduct": "Latin Citrus 라이트 200g",
+      "orderId": 854320
+    },
+    {
+      "matches": true,
+      "actual": "GT Antigua WASHED 미디엄 200g",
+      "minItemIdProduct": "GT Antigua WASHED 미디엄 200g",
+      "orderId": 895992
+    },
+    {
+      "matches": true,
+      "actual": "Deep Roast Foundation 다크 200g",
+      "minItemIdProduct": "Deep Roast Foundation 다크 200g",
+      "orderId": 781963
+    },
+    {
+      "matches": true,
+      "actual": "Latin Citrus 라이트 200g",
+      "minItemIdProduct": "Latin Citrus 라이트 200g",
+      "orderId": 885503
+    },
+    {
+      "matches": true,
+      "actual": "GT Antigua WASHED 라이트 500g",
+      "minItemIdProduct": "GT Antigua WASHED 라이트 500g",
+      "orderId": 875360
+    },
+    {
+      "matches": true,
+      "actual": "Deep Roast Foundation 다크 200g",
+      "minItemIdProduct": "Deep Roast Foundation 다크 200g",
+      "orderId": 771681
+    },
+    {
+      "matches": true,
+      "actual": "Latin Citrus 라이트 200g",
+      "minItemIdProduct": "Latin Citrus 라이트 200g",
+      "orderId": 887853
+    },
+    {
+      "matches": true,
+      "actual": "GT Antigua WASHED 미디엄 200g",
+      "minItemIdProduct": "GT Antigua WASHED 미디엄 200g",
+      "orderId": 845986
+    },
+    {
+      "matches": true,
+      "actual": "Deep Roast Foundation 다크 500g",
+      "minItemIdProduct": "Deep Roast Foundation 다크 500g",
+      "orderId": 816843
+    },
+    {
+      "matches": true,
+      "actual": "GT Antigua WASHED 미디엄 200g",
+      "minItemIdProduct": "GT Antigua WASHED 미디엄 200g",
+      "orderId": 895959
+    },
+    {
+      "matches": true,
+      "actual": "GT Antigua WASHED 라이트 500g",
+      "minItemIdProduct": "GT Antigua WASHED 라이트 500g",
+      "orderId": 885540
+    },
+    {
+      "matches": true,
+      "actual": "Latin Citrus 라이트 200g",
+      "minItemIdProduct": "Latin Citrus 라이트 200g",
+      "orderId": 836659
+    },
+    {
+      "matches": true,
+      "actual": "Deep Roast Foundation 다크 200g",
+      "minItemIdProduct": "Deep Roast Foundation 다크 200g",
+      "orderId": 796568
+    },
+    {
+      "matches": true,
+      "actual": "GT Antigua WASHED 미디엄 200g",
+      "minItemIdProduct": "GT Antigua WASHED 미디엄 200g",
+      "orderId": 871197
+    },
+    {
+      "matches": true,
+      "actual": "Latin Citrus 라이트 500g",
+      "minItemIdProduct": "Latin Citrus 라이트 500g",
+      "orderId": 832740
+    },
+    {
+      "matches": true,
+      "actual": "Deep Roast Foundation 다크 500g",
+      "minItemIdProduct": "Deep Roast Foundation 다크 500g",
+      "orderId": 769105
+    }
+  ]
+}

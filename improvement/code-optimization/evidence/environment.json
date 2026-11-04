@@ -1,0 +1,19 @@
+{
+  "serverKernel": "Linux 6.8.0-147-generic x86_64",
+  "dockerHost": "x86_64|3|3116654592|6.8.0-147-generic",
+  "jdkImage": "eclipse-temurin@sha256:fd52084c35bbac78890d95d57707d31ffc9d7a3324199e89c06be2a9dc71bfa0",
+  "postgresImage": "postgres@sha256:f4610795587492cd4fb887c2dc3de301b813278bb6f616992061141b5f15ac36",
+  "redisImage": "redis@sha256:57e4255cc971b1c8d6f8a6ca283ac01bc3ecdd914273ef6bfaede87aaecd6541",
+  "appCpuMemoryAndDbCpuMemory": "2|2g|2|2g",
+  "network": "PC to dedicated backend over private LAN; no Cloudflare",
+  "fixture": {
+    "members": 10000,
+    "orders": 150000,
+    "orderItems": 375000,
+    "products": 192,
+    "reviews": 30000,
+    "qna": 20000,
+    "recommendationExtensionEligibleCandidates": 1000
+  },
+  "scope": "Observed runtime lock; secret-key hash omitted"
+}
