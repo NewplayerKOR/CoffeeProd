@@ -82,7 +82,7 @@ V17 성공 이력과 인덱스의 정상 정의/유효 상태가 확인된 DB에
 
 ### 3.6 격리 PostgreSQL에서 DEV 자체 회귀
 
-Windows PowerShell 7, Java 21(`JAVA_HOME`), Docker, Gradle 오프라인 의존성이 준비된 프로젝트 루트에서 실행한다.
+Windows PowerShell 7, JDK 27.0.1.0.3(`JAVA_HOME`), Docker, Gradle 오프라인 의존성이 준비된 프로젝트 루트에서 실행한다.
 
 ```powershell
 pwsh -NoProfile -File scripts/database/test/run-order-index-verification.ps1 `

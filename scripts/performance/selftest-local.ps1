@@ -20,7 +20,7 @@ $identity=Get-Content -Raw -Encoding UTF8 (Join-Path $PSScriptRoot .manifest.jso
 $owner=[guid]::NewGuid().ToString();$RunId='tool-v2-real-'+$owner.Substring(0,8);$Phase='before';$BaseUrl='http://127.0.0.1:18080'
 $password=[guid]::NewGuid().ToString('N');$secret=[guid]::NewGuid().ToString('N')+[guid]::NewGuid().ToString('N')
 $lines=@("PERF_OWNER=$owner",'PERF_BIND_IP=127.0.0.1',"PERF_SOURCE_HASH=$($identity.sourceHash)","PERF_MEASUREMENT_HASH=$($identity.measurementHash)","PERF_DB_PASSWORD=$password","PERF_REDIS_PASSWORD=$password","PERF_JWT_SECRET=$secret",'PERF_APP_CPUS=2','PERF_APP_MEMORY=2g','PERF_DB_CPUS=2','PERF_DB_MEMORY=2g')
-foreach($item in @(@('JDK','eclipse-temurin:21-jdk-alpine'),@('POSTGRES','postgres:16-alpine'),@('REDIS','redis:7-alpine'))){$digest=(docker image inspect --format '{{index .RepoDigests 0}}' $item[1]).Trim();Require 'Required local base image unavailable';$lines+="PERF_$($item[0])_IMAGE=$digest";if($item[0] -eq 'JDK'){$jdk=$digest}}
+foreach($item in @(@('JDK','container-registry.oracle.com/java/openjdk:27.0.1.0.3@sha256:ec8568d488454d0087e88a38b818abc46098ab8701843e9449db3468a641a326'),@('POSTGRES','postgres:16-alpine'),@('REDIS','redis:7-alpine'))){$digest=(docker image inspect --format '{{index .RepoDigests 0}}' $item[1]).Trim();Require 'Required local base image unavailable';$lines+="PERF_$($item[0])_IMAGE=$digest";if($item[0] -eq 'JDK'){$jdk=$digest}}
 [IO.File]::WriteAllText($envFile,($lines -join "`n")+"`n",[Text.UTF8Encoding]::new($false))
 $compose=@('compose','--env-file',$envFile,'-p','coffeeprod-perf-phase2','-f',(Join-Path $PSScriptRoot compose.yml))
 $recipe=Join-Path $folder runtime;New-Item -ItemType Directory -Path $recipe|Out-Null
@@ -29,11 +29,11 @@ Copy-Item -LiteralPath (Get-ChildItem -LiteralPath build/libs -Filter '*-perf.ja
 FROM $jdk
 LABEL coffeeprod.perf.source=$($identity.sourceHash)
 ENV PERF_COMPILED_SOURCE_HASH=$($identity.sourceHash)
-RUN addgroup -S perf && adduser -S perf -G perf
+RUN groupadd --system perf && useradd --system --gid perf --no-create-home --shell /sbin/nologin perf
 WORKDIR /app
 COPY perf.jar /app/perf.jar
 USER perf
-HEALTHCHECK --interval=3s --timeout=3s --start-period=90s --retries=40 CMD wget -q -O /dev/null http://127.0.0.1:8080/api/v1/categories || exit 1
+HEALTHCHECK --interval=3s --timeout=3s --start-period=90s --retries=40 CMD curl --fail --silent --output /dev/null http://127.0.0.1:8080/api/v1/categories || exit 1
 ENTRYPOINT ["java","-jar","/app/perf.jar"]
 "@|Set-Content -Encoding UTF8 (Join-Path $recipe Dockerfile)
 $bash='C:/Program Files/Git/bin/bash.exe'
