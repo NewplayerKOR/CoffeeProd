@@ -48,7 +48,7 @@ if [[ "$command" == init ]]; then
     printf 'PERF_APP_CPUS=2\nPERF_APP_MEMORY=2g\nPERF_DB_CPUS=2\nPERF_DB_MEMORY=2g\n'
   } > "$env_file"
   # Freeze registry inputs before building. Never use the operational .env.
-  for spec in 'JDK eclipse-temurin:21-jdk-alpine' 'POSTGRES postgres:16-alpine' 'REDIS redis:7-alpine'; do
+  for spec in 'JDK container-registry.oracle.com/java/openjdk:27.0.1.0.3@sha256:ec8568d488454d0087e88a38b818abc46098ab8701843e9449db3468a641a326' 'POSTGRES postgres:16-alpine' 'REDIS redis:7-alpine'; do
     read -r key image <<< "$spec"
     docker pull "$image" >/dev/null
     digest="$(docker image inspect --format '{{index .RepoDigests 0}}' "$image")"

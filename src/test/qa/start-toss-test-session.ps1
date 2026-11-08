@@ -9,13 +9,9 @@ foreach ($name in $names) { $previous[$name] = [Environment]::GetEnvironmentVari
 $containerId = $null
 $containerName = 'coffeeprod-qa6-toss-' + (Get-Date -Format 'yyyyMMddHHmmss')
 try {
-    $env:JAVA_HOME = if ($previous.JAVA_HOME) {
-        $previous.JAVA_HOME
-    } else {
-        Join-Path ([Environment]::GetFolderPath('UserProfile')) '.jdks/graalvm-ce-21.0.2'
-    }
-    if (!(Test-Path -LiteralPath (Join-Path $env:JAVA_HOME 'bin/java.exe'))) {
-        throw 'Set JAVA_HOME to a Java 21 installation before starting the QA session.'
+    if ([string]::IsNullOrWhiteSpace($env:JAVA_HOME) -or
+        !(Test-Path -LiteralPath (Join-Path $env:JAVA_HOME 'bin/java.exe'))) {
+        throw 'QA 세션 실행 전에 JAVA_HOME에 JDK 27.0.1.0.3 경로를 지정한다.'
     }
     $env:JAVA_TOOL_OPTIONS = '-Dfile.encoding=UTF-8 -Dsun.stdout.encoding=UTF-8 -Dsun.stderr.encoding=UTF-8'
     $output = Join-Path $repository 'build/qa-task6/toss-test'
