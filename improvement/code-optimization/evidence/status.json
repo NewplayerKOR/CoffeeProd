@@ -1,0 +1,55 @@
+{
+  "archiveVersion": 1,
+  "asOf": "2026-11-04",
+  "qa9Acceptance": "incomplete; further tests prohibited by user",
+  "completedEvidence": {
+    "qa9Before": {
+      "diagnostics": 42,
+      "httpSessions": 39
+    },
+    "qa9After": {
+      "diagnostics": 9,
+      "httpSessions": 7
+    },
+    "dev8V2Before": {
+      "diagnostics": 0,
+      "httpSessions": 39
+    },
+    "dev8OriginalDiagnostics": 42,
+    "localH2": {
+      "tests": 651,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "localHarness": {
+      "tests": 16,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "mergeCI": {
+      "tests": 651,
+      "failures": 1,
+      "errors": 0,
+      "skipped": 0
+    }
+  },
+  "excludedAbortedSamples": [
+    "qa9/after/http-c2-catalog-r2"
+  ],
+  "notExecuted": [
+    "remaining QA9 after workloads",
+    "final mixed load",
+    "prepared extra PostgreSQL/Redis reruns"
+  ],
+  "originalLocations": [
+    "dedicated home-server measurement stack",
+    "collected local build/ results"
+  ],
+  "renderNeedsServer": false,
+  "appTestsExecutedByArchive": false,
+  "ciURL": "https://github.com/NewplayerKOR/CoffeeProd/actions/runs/41743023340",
+  "ciNote": "650/651 passed; one KST/leap-day statistics assertion failed; image publication skipped",
+  "historical27Percent": "Already versioned in improvement/1차개선; separate dataset, never added to QA9 percentages"
+}

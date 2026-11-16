@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='utf-8'?>
+<testsuites>
+  <testsuite name="com.back.coffeeprod.performance.PerfHarnessTest" tests="16" failures="0" errors="0" skipped="0" time="1.384">
+    <testcase name="mockDelayAndMissingLookupAreObservable()" classname="com.back.coffeeprod.performance.PerfHarnessTest" time="0.351" />
+    <testcase name="[1] key = &quot;PERF_OWNER&quot;" classname="com.back.coffeeprod.performance.PerfHarnessTest" time="0.004" />
+    <testcase name="[2] key = &quot;PERF_ALLOW_DISPOSABLE&quot;" classname="com.back.coffeeprod.performance.PerfHarnessTest" time="0.001" />
+    <testcase name="[3] key = &quot;PERF_SOURCE_HASH&quot;" classname="com.back.coffeeprod.performance.PerfHarnessTest" time="0.0" />
+    <testcase name="[4] key = &quot;PERF_MEASUREMENT_HASH&quot;" classname="com.back.coffeeprod.performance.PerfHarnessTest" time="0.0" />
+    <testcase name="lifecycleIdentityIsStableWithinOneAppInstance()" classname="com.back.coffeeprod.performance.PerfHarnessTest" time="0.006" />
+    <testcase name="jdbcArraysAreCopiedToSerializableValues()" classname="com.back.coffeeprod.performance.PerfHarnessTest" time="0.642" />
+    <testcase name="captureStoresTemplatesOnlyAndCanReset()" classname="com.back.coffeeprod.performance.PerfHarnessTest" time="0.002" />
+    <testcase name="refusesRealProvider()" classname="com.back.coffeeprod.performance.PerfHarnessTest" time="0.002" />
+    <testcase name="acceptsOnlyOwnedSettings()" classname="com.back.coffeeprod.performance.PerfHarnessTest" time="0.002" />
+    <testcase name="mockHasRealLookupAndIdempotentFullCancel()" classname="com.back.coffeeprod.performance.PerfHarnessTest" time="0.337" />
+    <testcase name="refusesUnsafeResultPaths()" classname="com.back.coffeeprod.performance.PerfHarnessTest" time="0.001" />
+    <testcase name="appInstancesHaveDifferentLifecycleIdentities()" classname="com.back.coffeeprod.performance.PerfHarnessTest" time="0.002" />
+    <testcase name="[1] url = &quot;jdbc:postgresql://db:5432/coffee_db&quot;" classname="com.back.coffeeprod.performance.PerfHarnessTest" time="0.0" />
+    <testcase name="[2] url = &quot;jdbc:postgresql://&lt;private-host&gt;:5432/coffeeprod_perf_phase2&quot;" classname="com.back.coffeeprod.performance.PerfHarnessTest" time="0.0" />
+    <testcase name="[3] url = &quot;jdbc:postgresql://&lt;private-host&gt;:5432/coffeeprod_perf_phase2&quot;" classname="com.back.coffeeprod.performance.PerfHarnessTest" time="0.0" />
+  </testsuite>
+</testsuites>

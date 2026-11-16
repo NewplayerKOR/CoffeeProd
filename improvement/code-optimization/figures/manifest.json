@@ -1,0 +1,96 @@
+{
+  "renderer": "Matplotlib 3.10.8",
+  "source": "../evidence/comparison.json",
+  "figures": [
+    {
+      "file": "recommendation-http.png",
+      "group": "recommendation-http",
+      "sha256": "74bdaecdac288e49fb7d3b46154efb68ab350979185f6e2311e2895e3d1e57d5"
+    },
+    {
+      "file": "recommendation-http.svg",
+      "group": "recommendation-http",
+      "sha256": "252a421c18f26ade605907f45721b12ff9c1027a6645e08c940d54722d894b52"
+    },
+    {
+      "file": "recommendation-entities.png",
+      "group": "recommendation-entities",
+      "sha256": "4e17b0f1c024af9db76e00500c43bd7ca494a731a4a9bbd48917489ff606dca5"
+    },
+    {
+      "file": "recommendation-entities.svg",
+      "group": "recommendation-entities",
+      "sha256": "a9adb2403439d00b7f40a5c26f30f38adecaf44d7130d08e5558020bc6e9656b"
+    },
+    {
+      "file": "cart-sql.png",
+      "group": "cart-sql",
+      "sha256": "498ae2ebb2d91228d0e280ea2153c7d0d13e9a96251f0745f7828a4a2511af18"
+    },
+    {
+      "file": "cart-sql.svg",
+      "group": "cart-sql",
+      "sha256": "db8184e23f0b9a6ffa0fe25e753dcd87b889f987e7d6a12fdaa0dfcd6584f5d6"
+    },
+    {
+      "file": "statistics-jdbc.png",
+      "group": "statistics-jdbc",
+      "sha256": "0ad40b43758f45c97f19e5555c138afe4c3239e6c06b21b3d934827a5caf9788"
+    },
+    {
+      "file": "statistics-jdbc.svg",
+      "group": "statistics-jdbc",
+      "sha256": "1fa21103532cfc791ca26d85c53ee0b9a15ad91b8f79c290d924e0f9c62dab1e"
+    },
+    {
+      "file": "order-list-sql.png",
+      "group": "order-list-sql",
+      "sha256": "735e6273e59f7506a45fa5e881a6a0f4585a84f3ccb7603aaca5028b1c176ed1"
+    },
+    {
+      "file": "order-list-sql.svg",
+      "group": "order-list-sql",
+      "sha256": "a26977cf12488d8f76ea801e3ebf3e9852614b36f1e74f628de7de8ec46827c2"
+    },
+    {
+      "file": "order-list-entities.png",
+      "group": "order-list-entities",
+      "sha256": "d41cda224cca1c9a8a63eb1ade4a0b177e635aa8afc9288cfc0e5648f00e8c18"
+    },
+    {
+      "file": "order-list-entities.svg",
+      "group": "order-list-entities",
+      "sha256": "37cb9e490de5eee9787321eac19feca9770df99421ef4b58adcf16e44c2902a9"
+    },
+    {
+      "file": "order-create-sql.png",
+      "group": "order-create-sql",
+      "sha256": "1459a545ed41a3873725ea8bf1231460835bf3ab35149d51093327203d6413ba"
+    },
+    {
+      "file": "order-create-sql.svg",
+      "group": "order-create-sql",
+      "sha256": "6816b87b58841de2f137c2cddd930d048187dc8a1e73c11f2c7fb031b38bf185"
+    },
+    {
+      "file": "jwt-verifications.png",
+      "group": "jwt-verifications",
+      "sha256": "896a8a3584cdf5158e1ee8e046ce1d4591493bd617dc9cfe509ee55dd4fe0bf5"
+    },
+    {
+      "file": "jwt-verifications.svg",
+      "group": "jwt-verifications",
+      "sha256": "492ea98c5a2b2eb65a40be91f34f61d93a4e144a99e44c19409b3d31f94cd413"
+    },
+    {
+      "file": "index-sql-replay.png",
+      "group": "index-sql-replay",
+      "sha256": "f109e577ad5460d7eabaa399a7a552e6d5b81392f7a320b254eb9bd8daa20784"
+    },
+    {
+      "file": "index-sql-replay.svg",
+      "group": "index-sql-replay",
+      "sha256": "0b408df7526763331a80e922e47f10655dfac82ce03d8dd3093a7b3af0b3c2e8"
+    }
+  ]
+}

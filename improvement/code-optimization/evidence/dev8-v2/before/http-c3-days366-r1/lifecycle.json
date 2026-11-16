@@ -1,0 +1,53 @@
+{
+  "protocolVersion": 2,
+  "candidate": 3,
+  "variant": "days366",
+  "sample": "http-c3-days366-r1",
+  "status": "PASS",
+  "checkpoints": [
+    {
+      "processStartedAt": "2026-11-02T14:37:17.105Z",
+      "diagnostic": false,
+      "sourceHash": "91a620233481ec46c77244a29bf33e70b5b0e7875d40921e8e812074641ab5f0",
+      "measurementHash": "f67e7c5f9e4a9b2b2ea001c92e61ce58236076791274727f7532ee6b760ffbef",
+      "disposable": true,
+      "protocolVersion": 2,
+      "instanceId": "6a47098d-479c-4fb3-b067-fdf407945712",
+      "point": "beforeWarmup",
+      "observedAtUtc": "2026-11-02T14:37:40.6956324+00:00"
+    },
+    {
+      "processStartedAt": "2026-11-02T14:37:17.105Z",
+      "diagnostic": false,
+      "sourceHash": "91a620233481ec46c77244a29bf33e70b5b0e7875d40921e8e812074641ab5f0",
+      "measurementHash": "f67e7c5f9e4a9b2b2ea001c92e61ce58236076791274727f7532ee6b760ffbef",
+      "disposable": true,
+      "protocolVersion": 2,
+      "instanceId": "6a47098d-479c-4fb3-b067-fdf407945712",
+      "point": "afterWarmup",
+      "observedAtUtc": "2026-11-02T14:38:20.2511266+00:00"
+    },
+    {
+      "processStartedAt": "2026-11-02T14:37:17.105Z",
+      "diagnostic": false,
+      "sourceHash": "91a620233481ec46c77244a29bf33e70b5b0e7875d40921e8e812074641ab5f0",
+      "measurementHash": "f67e7c5f9e4a9b2b2ea001c92e61ce58236076791274727f7532ee6b760ffbef",
+      "disposable": true,
+      "protocolVersion": 2,
+      "instanceId": "6a47098d-479c-4fb3-b067-fdf407945712",
+      "point": "beforeMeasurement",
+      "observedAtUtc": "2026-11-02T14:38:20.2585425+00:00"
+    },
+    {
+      "processStartedAt": "2026-11-02T14:37:17.105Z",
+      "diagnostic": false,
+      "sourceHash": "91a620233481ec46c77244a29bf33e70b5b0e7875d40921e8e812074641ab5f0",
+      "measurementHash": "f67e7c5f9e4a9b2b2ea001c92e61ce58236076791274727f7532ee6b760ffbef",
+      "disposable": true,
+      "protocolVersion": 2,
+      "instanceId": "6a47098d-479c-4fb3-b067-fdf407945712",
+      "point": "afterMeasurement",
+      "observedAtUtc": "2026-11-02T14:38:30.4323778+00:00"
+    }
+  ]
+}

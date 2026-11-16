@@ -1,0 +1,50 @@
+{
+  "passed": 11,
+  "cases": [
+    {
+      "passed": true,
+      "case": "upgrade"
+    },
+    {
+      "passed": true,
+      "case": "fresh"
+    },
+    {
+      "passed": true,
+      "case": "second-ddl-failure"
+    },
+    {
+      "passed": true,
+      "case": "name:idx_reviews_product_created_at"
+    },
+    {
+      "passed": true,
+      "case": "duplicate:idx_reviews_product_created_at"
+    },
+    {
+      "passed": true,
+      "case": "included:idx_reviews_product_created_at"
+    },
+    {
+      "passed": true,
+      "case": "reversed:idx_reviews_product_created_at"
+    },
+    {
+      "passed": true,
+      "case": "name:idx_product_qna_product_created_at"
+    },
+    {
+      "passed": true,
+      "case": "duplicate:idx_product_qna_product_created_at"
+    },
+    {
+      "passed": true,
+      "case": "included:idx_product_qna_product_created_at"
+    },
+    {
+      "passed": true,
+      "case": "reversed:idx_product_qna_product_created_at"
+    }
+  ],
+  "failed": 0
+}

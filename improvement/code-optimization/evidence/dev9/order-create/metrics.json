@@ -1,0 +1,121 @@
+{
+  "scope": "local synthetic public-service calls, Hibernate StatementInspector SQL; no HTTP improvement percentage or network roundtrip count",
+  "rows": {
+    "before-create-02": [
+      {
+        "database": "H2",
+        "baseline": true,
+        "products": 1,
+        "sql": 16,
+        "productSelects": 3,
+        "conditionalUpdates": 1,
+        "nanos": 9664700
+      },
+      {
+        "database": "H2",
+        "baseline": true,
+        "products": 5,
+        "sql": 40,
+        "productSelects": 15,
+        "conditionalUpdates": 5,
+        "nanos": 17302800
+      },
+      {
+        "database": "H2",
+        "baseline": true,
+        "products": 20,
+        "sql": 130,
+        "productSelects": 60,
+        "conditionalUpdates": 20,
+        "nanos": 51386800
+      }
+    ],
+    "before-postgres-01": [
+      {
+        "database": "PostgreSQL",
+        "baseline": true,
+        "products": 1,
+        "sql": 16,
+        "productSelects": 3,
+        "conditionalUpdates": 1,
+        "nanos": 19589600
+      },
+      {
+        "database": "PostgreSQL",
+        "baseline": true,
+        "products": 5,
+        "sql": 40,
+        "productSelects": 15,
+        "conditionalUpdates": 5,
+        "nanos": 45896200
+      },
+      {
+        "database": "PostgreSQL",
+        "baseline": true,
+        "products": 20,
+        "sql": 130,
+        "productSelects": 60,
+        "conditionalUpdates": 20,
+        "nanos": 137099000
+      }
+    ],
+    "targeted-01": [
+      {
+        "database": "H2",
+        "baseline": false,
+        "products": 1,
+        "sql": 15,
+        "productSelects": 2,
+        "conditionalUpdates": 1,
+        "nanos": 8022500
+      },
+      {
+        "database": "H2",
+        "baseline": false,
+        "products": 5,
+        "sql": 35,
+        "productSelects": 10,
+        "conditionalUpdates": 5,
+        "nanos": 15907800
+      },
+      {
+        "database": "H2",
+        "baseline": false,
+        "products": 20,
+        "sql": 110,
+        "productSelects": 40,
+        "conditionalUpdates": 20,
+        "nanos": 43099600
+      }
+    ],
+    "postgres-01": [
+      {
+        "database": "PostgreSQL",
+        "baseline": false,
+        "products": 1,
+        "sql": 15,
+        "productSelects": 2,
+        "conditionalUpdates": 1,
+        "nanos": 15280200
+      },
+      {
+        "database": "PostgreSQL",
+        "baseline": false,
+        "products": 5,
+        "sql": 35,
+        "productSelects": 10,
+        "conditionalUpdates": 5,
+        "nanos": 33441500
+      },
+      {
+        "database": "PostgreSQL",
+        "baseline": false,
+        "products": 20,
+        "sql": 110,
+        "productSelects": 40,
+        "conditionalUpdates": 20,
+        "nanos": 107213400
+      }
+    ]
+  }
+}

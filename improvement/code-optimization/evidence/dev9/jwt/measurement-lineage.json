@@ -1,0 +1,15 @@
+{
+  "baseRevision": "ecf298e1e426c3b7ed905b1c33eb17ac3f4ea2b1",
+  "originalMeasurementHash": "f67e7c5f9e4a9b2b2ea001c92e61ce58236076791274727f7532ee6b760ffbef",
+  "correctedMeasurementHash": "6d63b7f073649f1804950bbf2a87dc3d77fa696f58aee363eb49f0009dfa7057",
+  "fixtureHash": "f9506ef0ae7f727d96eb465706d2e2ac9054f9de83afdd039299a75817c9fabd",
+  "measurementChangedFiles": [
+    "src/test/performance/java/com/back/coffeeprod/performance/PerfServerTest.java"
+  ],
+  "otherScenariosUnchanged": true,
+  "originalResultsUntouched": true,
+  "scope": "JWT JUnit diagnostic instrumentation only; k6 and fixture unchanged; matching corrected before/after required",
+  "baselineArchive": "<local-path-omitted>",
+  "baselineArchiveSha256": "9494a17ca055abeae303b41f8d3cb0b22f643acf78df1f1560599c3994b89d8a",
+  "actualHomeServerRun": false
+}

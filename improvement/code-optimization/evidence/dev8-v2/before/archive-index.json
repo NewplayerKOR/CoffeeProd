@@ -1,0 +1,400 @@
+{
+  "sourceRevision": "b04bf9e30d5109dc934e230c2a50c80c140099c0",
+  "sourceHash": "91a620233481ec46c77244a29bf33e70b5b0e7875d40921e8e812074641ab5f0",
+  "measurementHash": "f67e7c5f9e4a9b2b2ea001c92e61ce58236076791274727f7532ee6b760ffbef",
+  "fixtureHash": "f9506ef0ae7f727d96eb465706d2e2ac9054f9de83afdd039299a75817c9fabd",
+  "diagnostics": [],
+  "sessions": [
+    {
+      "sample": "http-c1-catalog-r1",
+      "candidate": 1,
+      "variant": "catalog",
+      "repeat": 1,
+      "businessOperations": 1200,
+      "meanMs": 19.891666666666666,
+      "p95Ms": 24.0,
+      "percentileInterpretationAllowed": true
+    },
+    {
+      "sample": "http-c1-catalog-r2",
+      "candidate": 1,
+      "variant": "catalog",
+      "repeat": 2,
+      "businessOperations": 1201,
+      "meanMs": 19.492922564529557,
+      "p95Ms": 24.0,
+      "percentileInterpretationAllowed": true
+    },
+    {
+      "sample": "http-c1-catalog-r3",
+      "candidate": 1,
+      "variant": "catalog",
+      "repeat": 3,
+      "businessOperations": 1201,
+      "meanMs": 19.79683597002498,
+      "p95Ms": 25.0,
+      "percentileInterpretationAllowed": true
+    },
+    {
+      "sample": "http-c1-recommendation1000-r1",
+      "candidate": 1,
+      "variant": "recommendation1000",
+      "repeat": 1,
+      "businessOperations": 1200,
+      "meanMs": 28.8975,
+      "p95Ms": 34.0,
+      "percentileInterpretationAllowed": true
+    },
+    {
+      "sample": "http-c1-recommendation1000-r2",
+      "candidate": 1,
+      "variant": "recommendation1000",
+      "repeat": 2,
+      "businessOperations": 1201,
+      "meanMs": 30.029975020815986,
+      "p95Ms": 36.0,
+      "percentileInterpretationAllowed": true
+    },
+    {
+      "sample": "http-c1-recommendation1000-r3",
+      "candidate": 1,
+      "variant": "recommendation1000",
+      "repeat": 3,
+      "businessOperations": 1200,
+      "meanMs": 28.756666666666668,
+      "p95Ms": 34.0,
+      "percentileInterpretationAllowed": true
+    },
+    {
+      "sample": "http-c2-catalog-r1",
+      "candidate": 2,
+      "variant": "catalog",
+      "repeat": 1,
+      "businessOperations": 1201,
+      "meanMs": 7.044129891756869,
+      "p95Ms": 9.0,
+      "percentileInterpretationAllowed": true
+    },
+    {
+      "sample": "http-c2-catalog-r2",
+      "candidate": 2,
+      "variant": "catalog",
+      "repeat": 2,
+      "businessOperations": 1201,
+      "meanMs": 7.905079100749376,
+      "p95Ms": 10.0,
+      "percentileInterpretationAllowed": true
+    },
+    {
+      "sample": "http-c2-catalog-r3",
+      "candidate": 2,
+      "variant": "catalog",
+      "repeat": 3,
+      "businessOperations": 1201,
+      "meanMs": 8.552039966694421,
+      "p95Ms": 11.0,
+      "percentileInterpretationAllowed": true
+    },
+    {
+      "sample": "http-c3-days1-r1",
+      "candidate": 3,
+      "variant": "days1",
+      "repeat": 1,
+      "businessOperations": 1,
+      "meanMs": 36,
+      "p95Ms": 36.0,
+      "percentileInterpretationAllowed": false
+    },
+    {
+      "sample": "http-c3-days1-r2",
+      "candidate": 3,
+      "variant": "days1",
+      "repeat": 2,
+      "businessOperations": 1,
+      "meanMs": 25,
+      "p95Ms": 25.0,
+      "percentileInterpretationAllowed": false
+    },
+    {
+      "sample": "http-c3-days1-r3",
+      "candidate": 3,
+      "variant": "days1",
+      "repeat": 3,
+      "businessOperations": 1,
+      "meanMs": 44,
+      "p95Ms": 44.0,
+      "percentileInterpretationAllowed": false
+    },
+    {
+      "sample": "http-c3-days30-r1",
+      "candidate": 3,
+      "variant": "days30",
+      "repeat": 1,
+      "businessOperations": 1,
+      "meanMs": 529,
+      "p95Ms": 529.0,
+      "percentileInterpretationAllowed": false
+    },
+    {
+      "sample": "http-c3-days30-r2",
+      "candidate": 3,
+      "variant": "days30",
+      "repeat": 2,
+      "businessOperations": 1,
+      "meanMs": 595,
+      "p95Ms": 595.0,
+      "percentileInterpretationAllowed": false
+    },
+    {
+      "sample": "http-c3-days30-r3",
+      "candidate": 3,
+      "variant": "days30",
+      "repeat": 3,
+      "businessOperations": 1,
+      "meanMs": 537,
+      "p95Ms": 537.0,
+      "percentileInterpretationAllowed": false
+    },
+    {
+      "sample": "http-c3-days366-r1",
+      "candidate": 3,
+      "variant": "days366",
+      "repeat": 1,
+      "businessOperations": 1,
+      "meanMs": 6805,
+      "p95Ms": 6805.0,
+      "percentileInterpretationAllowed": false
+    },
+    {
+      "sample": "http-c3-days366-r2",
+      "candidate": 3,
+      "variant": "days366",
+      "repeat": 2,
+      "businessOperations": 1,
+      "meanMs": 6909,
+      "p95Ms": 6909.0,
+      "percentileInterpretationAllowed": false
+    },
+    {
+      "sample": "http-c3-days366-r3",
+      "candidate": 3,
+      "variant": "days366",
+      "repeat": 3,
+      "businessOperations": 1,
+      "meanMs": 6829,
+      "p95Ms": 6829.0,
+      "percentileInterpretationAllowed": false
+    },
+    {
+      "sample": "http-c5-page10-r1",
+      "candidate": 5,
+      "variant": "page10",
+      "repeat": 1,
+      "businessOperations": 1201,
+      "meanMs": 52.4029975020816,
+      "p95Ms": 73.0,
+      "percentileInterpretationAllowed": true
+    },
+    {
+      "sample": "http-c5-page10-r2",
+      "candidate": 5,
+      "variant": "page10",
+      "repeat": 2,
+      "businessOperations": 1201,
+      "meanMs": 53.21815154038301,
+      "p95Ms": 73.0,
+      "percentileInterpretationAllowed": true
+    },
+    {
+      "sample": "http-c5-page10-r3",
+      "candidate": 5,
+      "variant": "page10",
+      "repeat": 3,
+      "businessOperations": 1200,
+      "meanMs": 53.565,
+      "p95Ms": 75.0,
+      "percentileInterpretationAllowed": true
+    },
+    {
+      "sample": "http-c5-page50-r1",
+      "candidate": 5,
+      "variant": "page50",
+      "repeat": 1,
+      "businessOperations": 1200,
+      "meanMs": 59.56666666666667,
+      "p95Ms": 82.0,
+      "percentileInterpretationAllowed": true
+    },
+    {
+      "sample": "http-c5-page50-r2",
+      "candidate": 5,
+      "variant": "page50",
+      "repeat": 2,
+      "businessOperations": 1200,
+      "meanMs": 59.2525,
+      "p95Ms": 80.0,
+      "percentileInterpretationAllowed": true
+    },
+    {
+      "sample": "http-c5-page50-r3",
+      "candidate": 5,
+      "variant": "page50",
+      "repeat": 3,
+      "businessOperations": 1201,
+      "meanMs": 59.56452955870108,
+      "p95Ms": 82.0,
+      "percentileInterpretationAllowed": true
+    },
+    {
+      "sample": "http-c6-order1-r1",
+      "candidate": 6,
+      "variant": "order1",
+      "repeat": 1,
+      "businessOperations": 121,
+      "meanMs": 44.85123966942149,
+      "p95Ms": 55.0,
+      "percentileInterpretationAllowed": true
+    },
+    {
+      "sample": "http-c6-order1-r2",
+      "candidate": 6,
+      "variant": "order1",
+      "repeat": 2,
+      "businessOperations": 121,
+      "meanMs": 44.13223140495868,
+      "p95Ms": 56.0,
+      "percentileInterpretationAllowed": true
+    },
+    {
+      "sample": "http-c6-order1-r3",
+      "candidate": 6,
+      "variant": "order1",
+      "repeat": 3,
+      "businessOperations": 121,
+      "meanMs": 49.47933884297521,
+      "p95Ms": 59.0,
+      "percentileInterpretationAllowed": true
+    },
+    {
+      "sample": "http-c6-order20-r1",
+      "candidate": 6,
+      "variant": "order20",
+      "repeat": 1,
+      "businessOperations": 121,
+      "meanMs": 186.6694214876033,
+      "p95Ms": 226.0,
+      "percentileInterpretationAllowed": true
+    },
+    {
+      "sample": "http-c6-order20-r2",
+      "candidate": 6,
+      "variant": "order20",
+      "repeat": 2,
+      "businessOperations": 121,
+      "meanMs": 213.40495867768595,
+      "p95Ms": 258.0,
+      "percentileInterpretationAllowed": true
+    },
+    {
+      "sample": "http-c6-order20-r3",
+      "candidate": 6,
+      "variant": "order20",
+      "repeat": 3,
+      "businessOperations": 121,
+      "meanMs": 210.28099173553719,
+      "p95Ms": 258.0,
+      "percentileInterpretationAllowed": true
+    },
+    {
+      "sample": "http-c6-order5-r1",
+      "candidate": 6,
+      "variant": "order5",
+      "repeat": 1,
+      "businessOperations": 121,
+      "meanMs": 91.0495867768595,
+      "p95Ms": 114.0,
+      "percentileInterpretationAllowed": true
+    },
+    {
+      "sample": "http-c6-order5-r2",
+      "candidate": 6,
+      "variant": "order5",
+      "repeat": 2,
+      "businessOperations": 121,
+      "meanMs": 83.5702479338843,
+      "p95Ms": 107.0,
+      "percentileInterpretationAllowed": true
+    },
+    {
+      "sample": "http-c6-order5-r3",
+      "candidate": 6,
+      "variant": "order5",
+      "repeat": 3,
+      "businessOperations": 120,
+      "meanMs": 82.76666666666667,
+      "p95Ms": 109.05,
+      "percentileInterpretationAllowed": true
+    },
+    {
+      "sample": "http-c7-catalog-r1",
+      "candidate": 7,
+      "variant": "catalog",
+      "repeat": 1,
+      "businessOperations": 1200,
+      "meanMs": 7.595,
+      "p95Ms": 10.0,
+      "percentileInterpretationAllowed": true
+    },
+    {
+      "sample": "http-c7-catalog-r2",
+      "candidate": 7,
+      "variant": "catalog",
+      "repeat": 2,
+      "businessOperations": 1201,
+      "meanMs": 8.131557035803498,
+      "p95Ms": 10.0,
+      "percentileInterpretationAllowed": true
+    },
+    {
+      "sample": "http-c7-catalog-r3",
+      "candidate": 7,
+      "variant": "catalog",
+      "repeat": 3,
+      "businessOperations": 1200,
+      "meanMs": 7.223333333333334,
+      "p95Ms": 10.0,
+      "percentileInterpretationAllowed": true
+    },
+    {
+      "sample": "http-c8-catalog-r1",
+      "candidate": 8,
+      "variant": "catalog",
+      "repeat": 1,
+      "businessOperations": 1200,
+      "meanMs": 17.343333333333334,
+      "p95Ms": 56.0,
+      "percentileInterpretationAllowed": true
+    },
+    {
+      "sample": "http-c8-catalog-r2",
+      "candidate": 8,
+      "variant": "catalog",
+      "repeat": 2,
+      "businessOperations": 1201,
+      "meanMs": 16.89758534554538,
+      "p95Ms": 56.0,
+      "percentileInterpretationAllowed": true
+    },
+    {
+      "sample": "http-c8-catalog-r3",
+      "candidate": 8,
+      "variant": "catalog",
+      "repeat": 3,
+      "businessOperations": 1200,
+      "meanMs": 16.85,
+      "p95Ms": 55.049999999999955,
+      "percentileInterpretationAllowed": true
+    }
+  ],
+  "scope": "Completed evidence only; missing after conditions remain unmeasured"
+}

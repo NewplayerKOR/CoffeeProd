@@ -1,0 +1,3 @@
+# Evidence hashes must survive Windows/macOS/Linux Git checkouts unchanged.
+evidence/** -text -whitespace
+figures/** -text -whitespace
