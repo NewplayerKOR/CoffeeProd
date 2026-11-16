@@ -85,7 +85,7 @@ public class SecurityConfig {
                                 "/api/v1/auth/reissue",
                                 "/api/v1/auth/check-email"
                         ).permitAll()
-                        .requestMatchers("/api/v1/auth/oauth/**").permitAll()
+                        .requestMatchers("/api/v1/auth/oauth/**", "/api/v1/auth/password-reset/**").permitAll()
                         .requestMatchers(
                                 HttpMethod.POST,
                                 "/api/v1/coffee-recommendations"

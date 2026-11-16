@@ -22,6 +22,10 @@ public class EmailVerificationService {
     }
     private String binding(Purpose purpose,String email,String transaction) {return digest(purpose+":"+email.trim().toLowerCase(Locale.ROOT)+":"+transaction);}
     public void send(Purpose purpose,String email,String transaction,String ip) {
+        send(purpose,email,transaction,ip,true);
+    }
+    // 가입 여부와 무관하게 동일한 예약·한도를 적용하며 비대상 주소에는 발송하지 않는다.
+    public void send(Purpose purpose,String email,String transaction,String ip,boolean deliver) {
         String bind=binding(purpose,email,transaction), who=digest(email.trim().toLowerCase(Locale.ROOT)), source=digest(ip), attempt=AuthStore.random();
         long now=System.currentTimeMillis(); var date=LocalDate.now(ZoneOffset.UTC);
         List<String> keys=List.of("auth:mail:pending:"+bind,"auth:mail:cooldown:"+who,"auth:mail:eh:"+who,"auth:mail:ed:"+who+":"+date,
@@ -40,6 +44,7 @@ public class EmailVerificationService {
             return 'OK'
             """,keys,""+now,attempt);
         if(!"OK".equals(result))throw new CustomException(ErrorCode.AUTH_RATE_LIMIT);
+        if (!deliver) return;
         String code=String.format(Locale.ROOT,"%06d",RANDOM.nextInt(1000000));
         long expiresAt=System.currentTimeMillis()+300000;
         MailSender.Outcome outcome=sender.send(email,code,attempt);

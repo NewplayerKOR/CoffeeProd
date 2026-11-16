@@ -73,8 +73,8 @@ public class MemberService {
         }
 
         // 비밀번호 일치시 토큰 발급
-        String accessToken = jwtUtil.generateAccessToken(member.getId(), member.getRole());
-        String refreshToken = jwtUtil.generateRefreshToken(member.getId());
+        String accessToken = jwtUtil.generateAccessToken(member.getId(), member.getRole(), member.getTokenVersion());
+        String refreshToken = jwtUtil.generateRefreshToken(member.getId(), member.getTokenVersion());
 
         // 발급한 RefreshToken을 Redis에 저장
         // Key: "refresh: {memberId}", TTL: jwt.refresh-expiration
@@ -110,9 +110,13 @@ public class MemberService {
             throw new CustomException(ErrorCode.SUSPENDED_MEMBER);
         }
 
+        if (!JwtUtil.matchesVersion(claims, member.getTokenVersion())) {
+            throw new CustomException(ErrorCode.INVALID_TOKEN);
+        }
+
         // 5. 새 토큰 발급
-        String newAccessToken = jwtUtil.generateAccessToken(member.getId(), member.getRole());
-        String newRefreshToken = jwtUtil.generateRefreshToken(member.getId());
+        String newAccessToken = jwtUtil.generateAccessToken(member.getId(), member.getRole(), member.getTokenVersion());
+        String newRefreshToken = jwtUtil.generateRefreshToken(member.getId(), member.getTokenVersion());
 
         // 6. Redis의 RefreshToken 갱신
         refreshTokenService.save(member.getId(), newRefreshToken);

@@ -1,6 +1,6 @@
 # OAuth·인증 메일 준비와 개발 계약
 
-DEV-OAUTH-001의 Google·카카오·Resend 설정 안내. 실제 비밀값은 문서·Git·프론트 번들에 넣지 않는다. 비밀번호 복구 API·화면은 DEV-PASSWORD-RESET-001에서 추가한다.
+DEV-OAUTH-001의 Google·카카오·Resend 설정 안내. 실제 비밀값은 문서·Git·프론트 번들에 넣지 않는다. 비밀번호 복구 API·화면은 [비밀번호 복구 안내](password-reset.md)를 참고한다.
 
 ## Google
 
@@ -71,7 +71,7 @@ TTL은 Auto로 두고 프록시 선택이 있다면 DNS only로 설정한다. �
 - POST /signup: email/name/nickname/grant. 검증된 제공사 이메일을 그대로 쓰는 경우에만 grant를 생략한다.
 - POST /email/send: email. POST /email/verify: email/code, 응답 grant는 5분·일회성이다.
 - POST /link 및 /withdraw: confirmed=true와 현재 회원 JWT가 필요하다. 권한은 회원·목적과 5분 만료에 귀속한다.
-- 메일 공통 인터페이스는 EmailVerificationService.send/verify/consume과 MailSender다. PASSWORD_RESET과 OAUTH_SIGNUP_EMAIL은 코드·권한을 공유하지 않는다. 복구 업무는 계정 자격 검증 후 이 인터페이스를 사용해야 하며 이번 변경은 복구 API를 공개하지 않는다.
+- 메일 공통 인터페이스는 EmailVerificationService.send/verify/consume과 MailSender다. PASSWORD_RESET과 OAUTH_SIGNUP_EMAIL은 코드·권한을 공유하지 않는다. 복구 API는 계정 자격 검증 후 이 인터페이스를 사용한다. [복구 API 계약](password-reset.md)을 참고한다.
 - 발송 결과가 불명확하면 예약량과 기존 코드를 보존하며 새 코드는 활성화하지 않는다. 자동 재발송하지 않는다. Resend 요청은 발송별 고정 idempotency key를 사용한다.
 
 실제 Google·카카오 로그인, Resend 수신, 독립 QA와 운영 확인은 모의 테스트 통과로 대체하지 않는다. 결과는 PR과 TASKS 검증 기록을 따른다.
