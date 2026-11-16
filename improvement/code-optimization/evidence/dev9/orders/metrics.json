@@ -1,0 +1,173 @@
+{
+  "scope": "single warmed local public service calls on equivalent synthetic fixtures; no HTTP improvement percentage",
+  "rows": {
+    "before-summary-01": [
+      {
+        "database": "H2",
+        "baseline": true,
+        "admin": false,
+        "size": 10,
+        "sql": 4,
+        "entities": 224,
+        "collections": 20,
+        "nanos": 3422400
+      },
+      {
+        "database": "H2",
+        "baseline": true,
+        "admin": false,
+        "size": 50,
+        "sql": 4,
+        "entities": 1104,
+        "collections": 100,
+        "nanos": 8672900
+      },
+      {
+        "database": "H2",
+        "baseline": true,
+        "admin": true,
+        "size": 10,
+        "sql": 4,
+        "entities": 224,
+        "collections": 20,
+        "nanos": 3032900
+      },
+      {
+        "database": "H2",
+        "baseline": true,
+        "admin": true,
+        "size": 50,
+        "sql": 4,
+        "entities": 1104,
+        "collections": 100,
+        "nanos": 7098400
+      }
+    ],
+    "before-postgres-01": [
+      {
+        "database": "PostgreSQL",
+        "baseline": true,
+        "admin": false,
+        "size": 10,
+        "sql": 4,
+        "entities": 224,
+        "collections": 20,
+        "nanos": 8975100
+      },
+      {
+        "database": "PostgreSQL",
+        "baseline": true,
+        "admin": false,
+        "size": 50,
+        "sql": 4,
+        "entities": 1104,
+        "collections": 100,
+        "nanos": 19493500
+      },
+      {
+        "database": "PostgreSQL",
+        "baseline": true,
+        "admin": true,
+        "size": 10,
+        "sql": 4,
+        "entities": 224,
+        "collections": 20,
+        "nanos": 8717000
+      },
+      {
+        "database": "PostgreSQL",
+        "baseline": true,
+        "admin": true,
+        "size": 50,
+        "sql": 4,
+        "entities": 1104,
+        "collections": 100,
+        "nanos": 16597000
+      }
+    ],
+    "targeted-01": [
+      {
+        "database": "H2",
+        "baseline": false,
+        "admin": false,
+        "size": 10,
+        "sql": 3,
+        "entities": 0,
+        "collections": 0,
+        "nanos": 2598300
+      },
+      {
+        "database": "H2",
+        "baseline": false,
+        "admin": false,
+        "size": 50,
+        "sql": 3,
+        "entities": 0,
+        "collections": 0,
+        "nanos": 2586300
+      },
+      {
+        "database": "H2",
+        "baseline": false,
+        "admin": true,
+        "size": 10,
+        "sql": 3,
+        "entities": 0,
+        "collections": 0,
+        "nanos": 1562800
+      },
+      {
+        "database": "H2",
+        "baseline": false,
+        "admin": true,
+        "size": 50,
+        "sql": 3,
+        "entities": 0,
+        "collections": 0,
+        "nanos": 1934400
+      }
+    ],
+    "postgres-01": [
+      {
+        "database": "PostgreSQL",
+        "baseline": false,
+        "admin": false,
+        "size": 10,
+        "sql": 3,
+        "entities": 0,
+        "collections": 0,
+        "nanos": 5887600
+      },
+      {
+        "database": "PostgreSQL",
+        "baseline": false,
+        "admin": false,
+        "size": 50,
+        "sql": 3,
+        "entities": 0,
+        "collections": 0,
+        "nanos": 7722800
+      },
+      {
+        "database": "PostgreSQL",
+        "baseline": false,
+        "admin": true,
+        "size": 10,
+        "sql": 3,
+        "entities": 0,
+        "collections": 0,
+        "nanos": 5115100
+      },
+      {
+        "database": "PostgreSQL",
+        "baseline": false,
+        "admin": true,
+        "size": 50,
+        "sql": 3,
+        "entities": 0,
+        "collections": 0,
+        "nanos": 9555400
+      }
+    ]
+  }
+}

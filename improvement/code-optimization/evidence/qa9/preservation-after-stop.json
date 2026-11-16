@@ -1,0 +1,9 @@
+{
+  "sourceFiles": 628,
+  "additionalTestsStopped": true,
+  "changedHistoricalFiles": [],
+  "historicalFiles": 3585,
+  "changedExistingSourceFiles": [],
+  "scope": "File integrity checks only; no application or load tests executed",
+  "stopEvidence": "user-stop.json"
+}

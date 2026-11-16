@@ -1,0 +1,102 @@
+{
+  "checkedAtKst": "2026-11-03 15:08:14 KST",
+  "branch": "codex/dev-task-9-code-optimization",
+  "baseRevision": "5037daf6fa55247ad33ff36dcd496cdb72f4ca09",
+  "sourceHash": "293ff51febbe3682236b76ec5218e44bb3339818785947778aa27a9171bdcbaa",
+  "measurementHash": "f67e7c5f9e4a9b2b2ea001c92e61ce58236076791274727f7532ee6b760ffbef",
+  "fixtureHash": "f9506ef0ae7f727d96eb465706d2e2ac9054f9de83afdd039299a75817c9fabd",
+  "before": {
+    "scope": "before",
+    "tests": 583,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "xmlFiles": 34
+  },
+  "initialTargeted": {
+    "scope": "targeted-01",
+    "tests": 68,
+    "failures": 3,
+    "errors": 0,
+    "skipped": 0,
+    "xmlFiles": 4
+  },
+  "initialFailure": "new config test assumed concrete ScheduledMethodRunnable; actual 7.0.8 uses OutcomeTrackingRunnable; corrected to public SchedulingAwareRunnable with qualifier counts and method annotations",
+  "targeted": {
+    "scope": "targeted-02",
+    "tests": 68,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "xmlFiles": 4
+  },
+  "postgres": {
+    "scope": "postgres-01",
+    "tests": 5,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "xmlFiles": 2,
+    "integrationTests": 2,
+    "configurationTests": 3
+  },
+  "final": {
+    "originalTests": 583,
+    "finalTests": 588,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "xmlFiles": 36,
+    "originalTestcaseMultisetPreserved": true,
+    "newTestcases": 5
+  },
+  "execution": {
+    "scope": "actual @Scheduled with 50ms test-only delays and latch-gated synthetic PG; not fixed HTTP 45s baseline",
+    "queueNanosIncludes": "stale fixture insert, enqueue and 10ms polling",
+    "targeted-02": [
+      "database=H2 scope=blocked-payment backlog=3 statisticsQueueNanos=67182000 paymentThread=payment-recovery-1 statisticsThread=sales-statistics-1",
+      "database=H2 scope=blocked-statistics paymentRecovered=true paymentThread=payment-recovery-1 statisticsThread=sales-statistics-1"
+    ],
+    "postgres-01": [
+      "database=PostgreSQL scope=blocked-payment backlog=3 statisticsQueueNanos=100500000 paymentThread=payment-recovery-1 statisticsThread=sales-statistics-1",
+      "database=PostgreSQL scope=blocked-statistics paymentRecovered=true paymentThread=payment-recovery-1 statisticsThread=sales-statistics-1"
+    ]
+  },
+  "preservation": {
+    "originalSourceFiles": 612,
+    "changedOriginalFiles": [
+      "src/main/java/com/back/coffeeprod/domain/payment/service/PaymentRecoveryScheduler.java",
+      "src/main/java/com/back/coffeeprod/domain/statistics/scheduler/SalesRebuildScheduler.java",
+      "src/main/java/com/back/coffeeprod/domain/statistics/scheduler/SalesStatisticsScheduler.java"
+    ],
+    "onlyAuthorizedFilesChanged": true,
+    "v2Files": 1460,
+    "v2Mismatches": [],
+    "original94Files": 2125,
+    "original94Mismatches": [],
+    "measurementHashUnchanged": true,
+    "fixtureHashUnchanged": true
+  },
+  "cleanup": {
+    "flywayVersions": 18,
+    "ownerVerified": true,
+    "postgresVersion": "PostgreSQL 16.15 on x86_64-pc-linux-musl, compiled by gcc (Alpine 15.2.0) 15.2.0, 64-bit",
+    "dedicatedContainerRemoved": true,
+    "existingContainersPreserved": true
+  },
+  "scope": "DEV9-4 local scheduler separation/lifecycle and PG workflow validation; no home-server fixed 45s after, QA9 or push",
+  "commitSha": "e8931891c5c3201ecc8b2617208b220aea5bd030",
+  "commitSubject": "perf: isolate payment recovery and statistics schedulers",
+  "committedFiles": [
+    "src/main/java/com/back/coffeeprod/domain/payment/service/PaymentRecoveryScheduler.java",
+    "src/main/java/com/back/coffeeprod/domain/statistics/scheduler/SalesRebuildScheduler.java",
+    "src/main/java/com/back/coffeeprod/domain/statistics/scheduler/SalesStatisticsScheduler.java",
+    "src/main/java/com/back/coffeeprod/global/config/WorkerSchedulingConfig.java",
+    "src/test/java/com/back/coffeeprod/dev/scheduling/DevTask9WorkerSchedulingConfigTest.java",
+    "src/test/java/com/back/coffeeprod/dev/scheduling/DevTask9WorkerSchedulingIntegrationTest.java"
+  ],
+  "pushed": false,
+  "branchPreserved": true,
+  "commitMatchesTestedSources": true,
+  "pushOwner": "user after last improvement, before QA"
+}

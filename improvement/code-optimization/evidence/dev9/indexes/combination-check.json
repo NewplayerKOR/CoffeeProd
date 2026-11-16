@@ -1,0 +1,858 @@
+{
+  "passed": true,
+  "readConditions": 72,
+  "reads": [
+    {
+      "name": "review-10",
+      "beforeMs": 2.9912,
+      "candidateMs": 1.707,
+      "changePercent": -42.932602300080234,
+      "eachBatchImproved": true,
+      "beforeBlocks": 1760,
+      "candidateBlocks": 103,
+      "qualifies": true,
+      "family": "reviews"
+    },
+    {
+      "name": "qna-10",
+      "beforeMs": 3.3822,
+      "candidateMs": 2.0231,
+      "changePercent": -40.18390396783159,
+      "eachBatchImproved": true,
+      "beforeBlocks": 1936,
+      "candidateBlocks": 166,
+      "qualifies": true,
+      "family": "qna"
+    },
+    {
+      "name": "qna-admin-WAITING-10",
+      "beforeMs": 10.17145,
+      "candidateMs": 10.18785,
+      "changePercent": 0.1612356153743999,
+      "eachBatchImproved": false,
+      "beforeBlocks": 2164,
+      "candidateBlocks": 2164,
+      "qualifies": false,
+      "family": "qna-admin"
+    },
+    {
+      "name": "qna-admin-ANSWERED-10",
+      "beforeMs": 19.6875,
+      "candidateMs": 19.58635,
+      "changePercent": -0.5137777777777797,
+      "eachBatchImproved": true,
+      "beforeBlocks": 2167,
+      "candidateBlocks": 2167,
+      "qualifies": false,
+      "family": "qna-admin"
+    },
+    {
+      "name": "qna-admin-all-10",
+      "beforeMs": 21.49055,
+      "candidateMs": 21.46525,
+      "changePercent": -0.11772616336017672,
+      "eachBatchImproved": false,
+      "beforeBlocks": 2167,
+      "candidateBlocks": 2167,
+      "qualifies": false,
+      "family": "qna-admin"
+    },
+    {
+      "name": "qna-admin-null-10-page1",
+      "beforeMs": 20.76495,
+      "candidateMs": 21.2047,
+      "changePercent": 2.117751306889737,
+      "eachBatchImproved": false,
+      "beforeBlocks": 2167,
+      "candidateBlocks": 2167,
+      "qualifies": false,
+      "family": "qna-admin"
+    },
+    {
+      "name": "qna-admin-null-10-page1999",
+      "beforeMs": 40.95025,
+      "candidateMs": 40.92265,
+      "changePercent": -0.06739885592883521,
+      "eachBatchImproved": false,
+      "beforeBlocks": 2167,
+      "candidateBlocks": 2167,
+      "qualifies": false,
+      "family": "qna-admin"
+    },
+    {
+      "name": "qna-admin-null-10-page2000",
+      "beforeMs": 41.51345,
+      "candidateMs": 41.3196,
+      "changePercent": -0.466957094628373,
+      "eachBatchImproved": true,
+      "beforeBlocks": 2167,
+      "candidateBlocks": 2167,
+      "qualifies": false,
+      "family": "qna-admin"
+    },
+    {
+      "name": "qna-admin-WAITING-10-page1",
+      "beforeMs": 10.20985,
+      "candidateMs": 10.28625,
+      "changePercent": 0.7482969877128376,
+      "eachBatchImproved": false,
+      "beforeBlocks": 2164,
+      "candidateBlocks": 2164,
+      "qualifies": false,
+      "family": "qna-admin"
+    },
+    {
+      "name": "qna-admin-WAITING-10-page399",
+      "beforeMs": 14.8862,
+      "candidateMs": 14.74845,
+      "changePercent": -0.9253536832771303,
+      "eachBatchImproved": true,
+      "beforeBlocks": 2164,
+      "candidateBlocks": 2164,
+      "qualifies": false,
+      "family": "qna-admin"
+    },
+    {
+      "name": "qna-admin-WAITING-10-page400",
+      "beforeMs": 14.74465,
+      "candidateMs": 14.6555,
+      "changePercent": -0.6046260847154761,
+      "eachBatchImproved": false,
+      "beforeBlocks": 2164,
+      "candidateBlocks": 2164,
+      "qualifies": false,
+      "family": "qna-admin"
+    },
+    {
+      "name": "qna-admin-ANSWERED-10-page1",
+      "beforeMs": 19.27975,
+      "candidateMs": 19.32475,
+      "changePercent": 0.23340551615036453,
+      "eachBatchImproved": false,
+      "beforeBlocks": 2167,
+      "candidateBlocks": 2167,
+      "qualifies": false,
+      "family": "qna-admin"
+    },
+    {
+      "name": "qna-admin-ANSWERED-10-page1599",
+      "beforeMs": 37.08605,
+      "candidateMs": 36.8831,
+      "changePercent": -0.5472408088755709,
+      "eachBatchImproved": true,
+      "beforeBlocks": 2167,
+      "candidateBlocks": 2167,
+      "qualifies": false,
+      "family": "qna-admin"
+    },
+    {
+      "name": "qna-admin-ANSWERED-10-page1600",
+      "beforeMs": 39.43765,
+      "candidateMs": 39.34825,
+      "changePercent": -0.2266869349466849,
+      "eachBatchImproved": true,
+      "beforeBlocks": 2167,
+      "candidateBlocks": 2167,
+      "qualifies": false,
+      "family": "qna-admin"
+    },
+    {
+      "name": "orders-10",
+      "beforeMs": 15.2181,
+      "candidateMs": 15.42015,
+      "changePercent": 1.3276953101898359,
+      "eachBatchImproved": false,
+      "beforeBlocks": 5157,
+      "candidateBlocks": 5157,
+      "qualifies": false,
+      "family": "orders"
+    },
+    {
+      "name": "review-10-page1",
+      "beforeMs": 3.4263,
+      "candidateMs": 2.08675,
+      "changePercent": -39.09610950588098,
+      "eachBatchImproved": true,
+      "beforeBlocks": 1760,
+      "candidateBlocks": 143,
+      "qualifies": true,
+      "family": "reviews"
+    },
+    {
+      "name": "review-10-page5",
+      "beforeMs": 2.7519,
+      "candidateMs": 1.89045,
+      "changePercent": -31.303826447181947,
+      "eachBatchImproved": true,
+      "beforeBlocks": 1167,
+      "candidateBlocks": 235,
+      "qualifies": true,
+      "family": "reviews"
+    },
+    {
+      "name": "review-10-page6",
+      "beforeMs": 3.88535,
+      "candidateMs": 2.3451,
+      "changePercent": -39.642503249385506,
+      "eachBatchImproved": true,
+      "beforeBlocks": 1760,
+      "candidateBlocks": 290,
+      "qualifies": true,
+      "family": "reviews"
+    },
+    {
+      "name": "qna-10-page1",
+      "beforeMs": 3.43235,
+      "candidateMs": 1.9823,
+      "changePercent": -42.246565763980946,
+      "eachBatchImproved": true,
+      "beforeBlocks": 1936,
+      "candidateBlocks": 206,
+      "qualifies": true,
+      "family": "qna"
+    },
+    {
+      "name": "qna-10-page11",
+      "beforeMs": 2.8629,
+      "candidateMs": 2.07135,
+      "changePercent": -27.648538195536,
+      "eachBatchImproved": true,
+      "beforeBlocks": 1145,
+      "candidateBlocks": 462,
+      "qualifies": true,
+      "family": "qna"
+    },
+    {
+      "name": "qna-10-page12",
+      "beforeMs": 3.8213,
+      "candidateMs": 2.5656,
+      "changePercent": -32.860544840760994,
+      "eachBatchImproved": true,
+      "beforeBlocks": 1936,
+      "candidateBlocks": 578,
+      "qualifies": true,
+      "family": "qna"
+    },
+    {
+      "name": "orders-10-page1",
+      "beforeMs": 15.84335,
+      "candidateMs": 15.93755,
+      "changePercent": 0.5945712238888845,
+      "eachBatchImproved": false,
+      "beforeBlocks": 5157,
+      "candidateBlocks": 5157,
+      "qualifies": false,
+      "family": "orders"
+    },
+    {
+      "name": "orders-10-page14999",
+      "beforeMs": 45.06245,
+      "candidateMs": 44.87685,
+      "changePercent": -0.4118728564469931,
+      "eachBatchImproved": false,
+      "beforeBlocks": 5157,
+      "candidateBlocks": 5157,
+      "qualifies": false,
+      "family": "orders"
+    },
+    {
+      "name": "orders-10-page15000",
+      "beforeMs": 35.2631,
+      "candidateMs": 34.76335,
+      "changePercent": -1.4172038192898473,
+      "eachBatchImproved": true,
+      "beforeBlocks": 4947,
+      "candidateBlocks": 4947,
+      "qualifies": false,
+      "family": "orders"
+    },
+    {
+      "name": "review-50",
+      "beforeMs": 4.00645,
+      "candidateMs": 2.44645,
+      "changePercent": -38.937213742839674,
+      "eachBatchImproved": true,
+      "beforeBlocks": 1760,
+      "candidateBlocks": 262,
+      "qualifies": true,
+      "family": "reviews"
+    },
+    {
+      "name": "qna-50",
+      "beforeMs": 4.1577,
+      "candidateMs": 2.7228,
+      "changePercent": -34.51186954325709,
+      "eachBatchImproved": true,
+      "beforeBlocks": 1936,
+      "candidateBlocks": 326,
+      "qualifies": true,
+      "family": "qna"
+    },
+    {
+      "name": "qna-admin-WAITING-50",
+      "beforeMs": 12.40465,
+      "candidateMs": 12.67335,
+      "changePercent": 2.166123187675595,
+      "eachBatchImproved": false,
+      "beforeBlocks": 2164,
+      "candidateBlocks": 2164,
+      "qualifies": false,
+      "family": "qna-admin"
+    },
+    {
+      "name": "qna-admin-ANSWERED-50",
+      "beforeMs": 21.4041,
+      "candidateMs": 21.5994,
+      "changePercent": 0.9124420087740281,
+      "eachBatchImproved": false,
+      "beforeBlocks": 2167,
+      "candidateBlocks": 2167,
+      "qualifies": false,
+      "family": "qna-admin"
+    },
+    {
+      "name": "qna-admin-all-50",
+      "beforeMs": 24.0263,
+      "candidateMs": 24.2457,
+      "changePercent": 0.9131659889371146,
+      "eachBatchImproved": false,
+      "beforeBlocks": 2167,
+      "candidateBlocks": 2167,
+      "qualifies": false,
+      "family": "qna-admin"
+    },
+    {
+      "name": "qna-admin-null-50-page1",
+      "beforeMs": 23.3227,
+      "candidateMs": 23.51525,
+      "changePercent": 0.8255905191079993,
+      "eachBatchImproved": false,
+      "beforeBlocks": 2167,
+      "candidateBlocks": 2167,
+      "qualifies": false,
+      "family": "qna-admin"
+    },
+    {
+      "name": "qna-admin-null-50-page399",
+      "beforeMs": 43.6903,
+      "candidateMs": 43.71025,
+      "changePercent": 0.04566230948288563,
+      "eachBatchImproved": false,
+      "beforeBlocks": 2167,
+      "candidateBlocks": 2167,
+      "qualifies": false,
+      "family": "qna-admin"
+    },
+    {
+      "name": "qna-admin-null-50-page400",
+      "beforeMs": 43.54955,
+      "candidateMs": 43.38385,
+      "changePercent": -0.3804861359072542,
+      "eachBatchImproved": false,
+      "beforeBlocks": 2167,
+      "candidateBlocks": 2167,
+      "qualifies": false,
+      "family": "qna-admin"
+    },
+    {
+      "name": "qna-admin-WAITING-50-page1",
+      "beforeMs": 11.8909,
+      "candidateMs": 12.1288,
+      "changePercent": 2.0006896029737042,
+      "eachBatchImproved": false,
+      "beforeBlocks": 2164,
+      "candidateBlocks": 2164,
+      "qualifies": false,
+      "family": "qna-admin"
+    },
+    {
+      "name": "qna-admin-WAITING-50-page79",
+      "beforeMs": 15.314,
+      "candidateMs": 15.45065,
+      "changePercent": 0.8923207522528509,
+      "eachBatchImproved": false,
+      "beforeBlocks": 2164,
+      "candidateBlocks": 2164,
+      "qualifies": false,
+      "family": "qna-admin"
+    },
+    {
+      "name": "qna-admin-WAITING-50-page80",
+      "beforeMs": 14.868,
+      "candidateMs": 14.9811,
+      "changePercent": 0.7606941081517382,
+      "eachBatchImproved": false,
+      "beforeBlocks": 2164,
+      "candidateBlocks": 2164,
+      "qualifies": false,
+      "family": "qna-admin"
+    },
+    {
+      "name": "qna-admin-ANSWERED-50-page1",
+      "beforeMs": 19.5412,
+      "candidateMs": 19.8782,
+      "changePercent": 1.7245614394203024,
+      "eachBatchImproved": false,
+      "beforeBlocks": 2167,
+      "candidateBlocks": 2167,
+      "qualifies": false,
+      "family": "qna-admin"
+    },
+    {
+      "name": "qna-admin-ANSWERED-50-page319",
+      "beforeMs": 36.9492,
+      "candidateMs": 36.8904,
+      "changePercent": -0.1591374102822285,
+      "eachBatchImproved": false,
+      "beforeBlocks": 2167,
+      "candidateBlocks": 2167,
+      "qualifies": false,
+      "family": "qna-admin"
+    },
+    {
+      "name": "qna-admin-ANSWERED-50-page320",
+      "beforeMs": 36.6417,
+      "candidateMs": 36.6209,
+      "changePercent": -0.05676592516177248,
+      "eachBatchImproved": false,
+      "beforeBlocks": 2167,
+      "candidateBlocks": 2167,
+      "qualifies": false,
+      "family": "qna-admin"
+    },
+    {
+      "name": "orders-50",
+      "beforeMs": 14.71495,
+      "candidateMs": 14.9509,
+      "changePercent": 1.6034712995966593,
+      "eachBatchImproved": false,
+      "beforeBlocks": 5999,
+      "candidateBlocks": 5999,
+      "qualifies": false,
+      "family": "orders"
+    },
+    {
+      "name": "review-50-page1",
+      "beforeMs": 2.626,
+      "candidateMs": 1.8331,
+      "changePercent": -30.194211728865195,
+      "eachBatchImproved": true,
+      "beforeBlocks": 1167,
+      "candidateBlocks": 235,
+      "qualifies": true,
+      "family": "reviews"
+    },
+    {
+      "name": "review-50-page2",
+      "beforeMs": 3.73425,
+      "candidateMs": 2.29755,
+      "changePercent": -38.47358907411127,
+      "eachBatchImproved": true,
+      "beforeBlocks": 1760,
+      "candidateBlocks": 290,
+      "qualifies": true,
+      "family": "reviews"
+    },
+    {
+      "name": "qna-50-page1",
+      "beforeMs": 3.9556,
+      "candidateMs": 2.7478,
+      "changePercent": -30.53392658509455,
+      "eachBatchImproved": true,
+      "beforeBlocks": 1936,
+      "candidateBlocks": 526,
+      "qualifies": true,
+      "family": "qna"
+    },
+    {
+      "name": "qna-50-page2",
+      "beforeMs": 2.7352,
+      "candidateMs": 2.0432,
+      "changePercent": -25.299795261772452,
+      "eachBatchImproved": true,
+      "beforeBlocks": 1145,
+      "candidateBlocks": 462,
+      "qualifies": true,
+      "family": "qna"
+    },
+    {
+      "name": "qna-50-page3",
+      "beforeMs": 3.71555,
+      "candidateMs": 2.50475,
+      "changePercent": -32.5873692992962,
+      "eachBatchImproved": true,
+      "beforeBlocks": 1936,
+      "candidateBlocks": 578,
+      "qualifies": true,
+      "family": "qna"
+    },
+    {
+      "name": "orders-50-page1",
+      "beforeMs": 15.14185,
+      "candidateMs": 15.3435,
+      "changePercent": 1.3317395166376533,
+      "eachBatchImproved": false,
+      "beforeBlocks": 5996,
+      "candidateBlocks": 5996,
+      "qualifies": false,
+      "family": "orders"
+    },
+    {
+      "name": "orders-50-page2999",
+      "beforeMs": 33.4586,
+      "candidateMs": 33.5134,
+      "changePercent": 0.16378449785705573,
+      "eachBatchImproved": false,
+      "beforeBlocks": 5999,
+      "candidateBlocks": 5999,
+      "qualifies": false,
+      "family": "orders"
+    },
+    {
+      "name": "orders-50-page3000",
+      "beforeMs": 31.63615,
+      "candidateMs": 31.5685,
+      "changePercent": -0.21383765091517182,
+      "eachBatchImproved": false,
+      "beforeBlocks": 4947,
+      "candidateBlocks": 4947,
+      "qualifies": false,
+      "family": "orders"
+    },
+    {
+      "name": "payment-day-1",
+      "beforeMs": 6.01805,
+      "candidateMs": 5.8481,
+      "changePercent": -2.824004453269746,
+      "eachBatchImproved": true,
+      "beforeBlocks": 2876,
+      "candidateBlocks": 2876,
+      "qualifies": false,
+      "family": "payment"
+    },
+    {
+      "name": "payment-group-1",
+      "beforeMs": 6.22375,
+      "candidateMs": 6.1947,
+      "changePercent": -0.46676039365334265,
+      "eachBatchImproved": true,
+      "beforeBlocks": 2884,
+      "candidateBlocks": 2884,
+      "qualifies": false,
+      "family": "payment"
+    },
+    {
+      "name": "payment-day-30",
+      "beforeMs": 10.5219,
+      "candidateMs": 10.46605,
+      "changePercent": -0.530797669622407,
+      "eachBatchImproved": true,
+      "beforeBlocks": 25484,
+      "candidateBlocks": 25484,
+      "qualifies": false,
+      "family": "payment"
+    },
+    {
+      "name": "payment-group-30",
+      "beforeMs": 11.76455,
+      "candidateMs": 11.72995,
+      "changePercent": -0.29410389687662963,
+      "eachBatchImproved": false,
+      "beforeBlocks": 25492,
+      "candidateBlocks": 25492,
+      "qualifies": false,
+      "family": "payment"
+    },
+    {
+      "name": "payment-day-366",
+      "beforeMs": 38.68155,
+      "candidateMs": 38.74375,
+      "changePercent": 0.1608001747603227,
+      "eachBatchImproved": false,
+      "beforeBlocks": 287912,
+      "candidateBlocks": 287912,
+      "qualifies": false,
+      "family": "payment"
+    },
+    {
+      "name": "payment-group-366",
+      "beforeMs": 56.6811,
+      "candidateMs": 56.195,
+      "changePercent": -0.8576050923500111,
+      "eachBatchImproved": false,
+      "beforeBlocks": 287920,
+      "candidateBlocks": 287920,
+      "qualifies": false,
+      "family": "payment"
+    },
+    {
+      "name": "statistics-read",
+      "beforeMs": 0.47495,
+      "candidateMs": 0.47525,
+      "changePercent": 0.06316454363617385,
+      "eachBatchImproved": false,
+      "beforeBlocks": 3,
+      "candidateBlocks": 3,
+      "qualifies": false,
+      "family": "control"
+    },
+    {
+      "name": "product-null",
+      "beforeMs": 1.44805,
+      "candidateMs": 1.47475,
+      "changePercent": 1.8438589827699303,
+      "eachBatchImproved": false,
+      "beforeBlocks": 487,
+      "candidateBlocks": 487,
+      "qualifies": false,
+      "family": "control"
+    },
+    {
+      "name": "product-",
+      "beforeMs": 1.8994,
+      "candidateMs": 1.9011,
+      "changePercent": 0.08950194798358346,
+      "eachBatchImproved": false,
+      "beforeBlocks": 487,
+      "candidateBlocks": 487,
+      "qualifies": false,
+      "family": "control"
+    },
+    {
+      "name": "product-에티오피아",
+      "beforeMs": 0.93235,
+      "candidateMs": 0.93325,
+      "changePercent": 0.09653027296616656,
+      "eachBatchImproved": false,
+      "beforeBlocks": 10,
+      "candidateBlocks": 10,
+      "qualifies": false,
+      "family": "control"
+    },
+    {
+      "name": "product-NO_MATCH_PHASE2",
+      "beforeMs": 0.94085,
+      "candidateMs": 0.9325,
+      "changePercent": -0.8874953499495186,
+      "eachBatchImproved": true,
+      "beforeBlocks": 10,
+      "candidateBlocks": 10,
+      "qualifies": false,
+      "family": "control"
+    },
+    {
+      "name": "product-a",
+      "beforeMs": 1.80075,
+      "candidateMs": 1.8169,
+      "changePercent": 0.8968485353324951,
+      "eachBatchImproved": false,
+      "beforeBlocks": 381,
+      "candidateBlocks": 381,
+      "qualifies": false,
+      "family": "control"
+    },
+    {
+      "name": "product-%",
+      "beforeMs": 1.8433,
+      "candidateMs": 1.87275,
+      "changePercent": 1.5976780773612642,
+      "eachBatchImproved": false,
+      "beforeBlocks": 487,
+      "candidateBlocks": 487,
+      "qualifies": false,
+      "family": "control"
+    },
+    {
+      "name": "product-_",
+      "beforeMs": 1.916,
+      "candidateMs": 1.92825,
+      "changePercent": 0.6393528183715969,
+      "eachBatchImproved": false,
+      "beforeBlocks": 487,
+      "candidateBlocks": 487,
+      "qualifies": false,
+      "family": "control"
+    },
+    {
+      "name": "product-\\",
+      "beforeMs": 0.90455,
+      "candidateMs": 0.9093,
+      "changePercent": 0.5251229893317166,
+      "eachBatchImproved": false,
+      "beforeBlocks": 10,
+      "candidateBlocks": 10,
+      "qualifies": false,
+      "family": "control"
+    },
+    {
+      "name": "product-active-filter-0",
+      "beforeMs": 1.3537,
+      "candidateMs": 1.35205,
+      "changePercent": -0.12188815838073408,
+      "eachBatchImproved": false,
+      "beforeBlocks": 430,
+      "candidateBlocks": 430,
+      "qualifies": false,
+      "family": "control"
+    },
+    {
+      "name": "product-active-filter-1",
+      "beforeMs": 1.13485,
+      "candidateMs": 1.139,
+      "changePercent": 0.36568709521083154,
+      "eachBatchImproved": false,
+      "beforeBlocks": 23,
+      "candidateBlocks": 23,
+      "qualifies": false,
+      "family": "control"
+    },
+    {
+      "name": "product-active-filter-2",
+      "beforeMs": 1.79305,
+      "candidateMs": 1.8012,
+      "changePercent": 0.4545327793424647,
+      "eachBatchImproved": false,
+      "beforeBlocks": 350,
+      "candidateBlocks": 350,
+      "qualifies": false,
+      "family": "control"
+    },
+    {
+      "name": "product-active-filter-3",
+      "beforeMs": 1.83145,
+      "candidateMs": 1.83945,
+      "changePercent": 0.43681236178982896,
+      "eachBatchImproved": false,
+      "beforeBlocks": 430,
+      "candidateBlocks": 430,
+      "qualifies": false,
+      "family": "control"
+    },
+    {
+      "name": "product-active-filter-4",
+      "beforeMs": 1.87665,
+      "candidateMs": 1.84525,
+      "changePercent": -1.6731942557216328,
+      "eachBatchImproved": false,
+      "beforeBlocks": 466,
+      "candidateBlocks": 466,
+      "qualifies": false,
+      "family": "control"
+    },
+    {
+      "name": "product-active-filter-5",
+      "beforeMs": 1.59565,
+      "candidateMs": 1.6225,
+      "changePercent": 1.6826998401905158,
+      "eachBatchImproved": false,
+      "beforeBlocks": 99,
+      "candidateBlocks": 99,
+      "qualifies": false,
+      "family": "control"
+    },
+    {
+      "name": "product-active-filter-6",
+      "beforeMs": 0.98755,
+      "candidateMs": 1.00435,
+      "changePercent": 1.7011796871044593,
+      "eachBatchImproved": false,
+      "beforeBlocks": 23,
+      "candidateBlocks": 23,
+      "qualifies": false,
+      "family": "control"
+    },
+    {
+      "name": "product-admin-null",
+      "beforeMs": 1.9047,
+      "candidateMs": 1.92255,
+      "changePercent": 0.9371554575523744,
+      "eachBatchImproved": false,
+      "beforeBlocks": 530,
+      "candidateBlocks": 530,
+      "qualifies": false,
+      "family": "control"
+    },
+    {
+      "name": "product-admin-HIDDEN",
+      "beforeMs": 1.02355,
+      "candidateMs": 1.03475,
+      "changePercent": 1.0942308631722852,
+      "eachBatchImproved": false,
+      "beforeBlocks": 29,
+      "candidateBlocks": 29,
+      "qualifies": false,
+      "family": "control"
+    },
+    {
+      "name": "product-admin-SOLD_OUT",
+      "beforeMs": 1.57825,
+      "candidateMs": 1.5594,
+      "changePercent": -1.194360842705533,
+      "eachBatchImproved": false,
+      "beforeBlocks": 63,
+      "candidateBlocks": 63,
+      "qualifies": false,
+      "family": "control"
+    }
+  ],
+  "writes": [
+    {
+      "name": "product-insert",
+      "changePercent": -0.8362989323843384,
+      "affectedRows": 1
+    },
+    {
+      "name": "review-insert",
+      "changePercent": 1.0092514718250678,
+      "affectedRows": 1
+    },
+    {
+      "name": "qna-insert",
+      "changePercent": 0.6512678013198991,
+      "affectedRows": 1
+    },
+    {
+      "name": "order-insert",
+      "changePercent": 0.781741396351876,
+      "affectedRows": 1
+    },
+    {
+      "name": "payment-insert",
+      "changePercent": 1.0607621009268708,
+      "affectedRows": 1
+    },
+    {
+      "name": "qna-answer",
+      "changePercent": -0.3611698379140216,
+      "affectedRows": 1
+    },
+    {
+      "name": "product-status",
+      "changePercent": -1.3445531875971861,
+      "affectedRows": 1
+    },
+    {
+      "name": "stock-decrease",
+      "changePercent": 1.017441860465107,
+      "affectedRows": 1
+    },
+    {
+      "name": "order-status",
+      "changePercent": -0.7054673721340388,
+      "affectedRows": 1
+    },
+    {
+      "name": "payment-confirm",
+      "changePercent": 1.071394709396034,
+      "affectedRows": 1
+    },
+    {
+      "name": "payment-refund",
+      "changePercent": 0.9024252679074918,
+      "affectedRows": 1
+    }
+  ],
+  "regressions": [],
+  "writeRegressions": [],
+  "gainMissing": []
+}

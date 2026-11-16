@@ -1,0 +1,53 @@
+{
+  "protocolVersion": 2,
+  "candidate": 3,
+  "variant": "days1",
+  "sample": "http-c3-days1-r1",
+  "status": "PASS",
+  "checkpoints": [
+    {
+      "processStartedAt": "2026-11-03T13:44:50.597Z",
+      "instanceId": "b70fd9e1-b8bf-45a5-99ec-ab7f6907c586",
+      "protocolVersion": 2,
+      "disposable": true,
+      "measurementHash": "6d63b7f073649f1804950bbf2a87dc3d77fa696f58aee363eb49f0009dfa7057",
+      "sourceHash": "ece5a650b88e967ce82a16635dde57dbc0bdec101b89ae44b00b0d50f2b59677",
+      "diagnostic": false,
+      "point": "beforeWarmup",
+      "observedAtUtc": "2026-11-03T13:45:13.7721264+00:00"
+    },
+    {
+      "processStartedAt": "2026-11-03T13:44:50.597Z",
+      "instanceId": "b70fd9e1-b8bf-45a5-99ec-ab7f6907c586",
+      "protocolVersion": 2,
+      "disposable": true,
+      "measurementHash": "6d63b7f073649f1804950bbf2a87dc3d77fa696f58aee363eb49f0009dfa7057",
+      "sourceHash": "ece5a650b88e967ce82a16635dde57dbc0bdec101b89ae44b00b0d50f2b59677",
+      "diagnostic": false,
+      "point": "afterWarmup",
+      "observedAtUtc": "2026-11-03T13:45:47.2777351+00:00"
+    },
+    {
+      "processStartedAt": "2026-11-03T13:44:50.597Z",
+      "instanceId": "b70fd9e1-b8bf-45a5-99ec-ab7f6907c586",
+      "protocolVersion": 2,
+      "disposable": true,
+      "measurementHash": "6d63b7f073649f1804950bbf2a87dc3d77fa696f58aee363eb49f0009dfa7057",
+      "sourceHash": "ece5a650b88e967ce82a16635dde57dbc0bdec101b89ae44b00b0d50f2b59677",
+      "diagnostic": false,
+      "point": "beforeMeasurement",
+      "observedAtUtc": "2026-11-03T13:45:47.2833164+00:00"
+    },
+    {
+      "processStartedAt": "2026-11-03T13:44:50.597Z",
+      "instanceId": "b70fd9e1-b8bf-45a5-99ec-ab7f6907c586",
+      "protocolVersion": 2,
+      "disposable": true,
+      "measurementHash": "6d63b7f073649f1804950bbf2a87dc3d77fa696f58aee363eb49f0009dfa7057",
+      "sourceHash": "ece5a650b88e967ce82a16635dde57dbc0bdec101b89ae44b00b0d50f2b59677",
+      "diagnostic": false,
+      "point": "afterMeasurement",
+      "observedAtUtc": "2026-11-03T13:45:50.3817262+00:00"
+    }
+  ]
+}

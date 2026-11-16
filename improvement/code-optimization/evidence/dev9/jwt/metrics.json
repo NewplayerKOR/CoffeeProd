@@ -1,0 +1,101 @@
+{
+  "scope": "actual parsing counts in local filter/service calls; uninstrumented local CPU with mocked user lookup, warmup1000 then10000x3; no HTTP improvement claim",
+  "samples": {
+    "before-jwt-01": {
+      "counts": [
+        {
+          "scope": "reissue",
+          "baseline": true,
+          "initializationBuilds": 0,
+          "requestBuilds": 2,
+          "parseSignedClaims": 2
+        },
+        {
+          "scope": "filter",
+          "baseline": true,
+          "initializationBuilds": 0,
+          "requestBuilds": 2,
+          "parseSignedClaims": 2
+        },
+        {
+          "scope": "header-and-body",
+          "baseline": true,
+          "initializationBuilds": 0,
+          "requestBuilds": 4,
+          "parseSignedClaims": 4
+        }
+      ],
+      "cpu": [
+        {
+          "baseline": true,
+          "sample": 1,
+          "calls": 10000,
+          "cpuNanos": 500000000,
+          "elapsedNanos": 523072500
+        },
+        {
+          "baseline": true,
+          "sample": 2,
+          "calls": 10000,
+          "cpuNanos": 312500000,
+          "elapsedNanos": 322558700
+        },
+        {
+          "baseline": true,
+          "sample": 3,
+          "calls": 10000,
+          "cpuNanos": 187500000,
+          "elapsedNanos": 244651800
+        }
+      ]
+    },
+    "targeted-01": {
+      "counts": [
+        {
+          "scope": "reissue",
+          "baseline": false,
+          "initializationBuilds": 1,
+          "requestBuilds": 0,
+          "parseSignedClaims": 1
+        },
+        {
+          "scope": "filter",
+          "baseline": false,
+          "initializationBuilds": 1,
+          "requestBuilds": 0,
+          "parseSignedClaims": 1
+        },
+        {
+          "scope": "header-and-body",
+          "baseline": false,
+          "initializationBuilds": 1,
+          "requestBuilds": 0,
+          "parseSignedClaims": 2
+        }
+      ],
+      "cpu": [
+        {
+          "baseline": false,
+          "sample": 1,
+          "calls": 10000,
+          "cpuNanos": 437500000,
+          "elapsedNanos": 446316200
+        },
+        {
+          "baseline": false,
+          "sample": 2,
+          "calls": 10000,
+          "cpuNanos": 296875000,
+          "elapsedNanos": 319402700
+        },
+        {
+          "baseline": false,
+          "sample": 3,
+          "calls": 10000,
+          "cpuNanos": 218750000,
+          "elapsedNanos": 220772400
+        }
+      ]
+    }
+  }
+}

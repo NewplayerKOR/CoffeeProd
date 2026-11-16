@@ -1,0 +1,14 @@
+{
+  "sourceHash": "0fb09c3f7a3117b0791e579bb60b413826c17c242a5742cc964ff5177190de7c",
+  "measurementHash": "168bd4d9f2b77ebc92471d9ba066157a3b874fc2edb9d43200123956400e969c",
+  "variant": "catalog",
+  "samples": [],
+  "scope": "server JVM diagnostics; not HTTP load timing",
+  "statisticsQueueNanos": 135456299915,
+  "mockCalls": {
+    "posts": 3,
+    "uniquePosts": 3,
+    "lookups": 3,
+    "lookupDelayMillis": 45000
+  }
+}

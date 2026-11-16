@@ -1,0 +1,13 @@
+{
+  "result": "PASS",
+  "checkedOnKst": "2026-11-16",
+  "baselineSemanticSha256": "21aee7cc032351fea4d31824cbc68b66400a5528ee3d47778efecf168e7a2f51",
+  "currentSemanticSha256": "21aee7cc032351fea4d31824cbc68b66400a5528ee3d47778efecf168e7a2f51",
+  "ignoredDisplayFields": [
+    "cases[].title",
+    "cases[].summary"
+  ],
+  "unchanged": "모든 수치·단위·표본·본문·측정 조건·해석 범위·출처",
+  "footerRemovedImages": 10,
+  "titlesMatchedImages": 10
+}

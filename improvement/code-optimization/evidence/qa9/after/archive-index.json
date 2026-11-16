@@ -1,0 +1,90 @@
+{
+  "sourceRevision": "008d443ba92932c04c609c2d60633344d69bb9cc",
+  "sourceHash": "e384b70701c36faf0b61a956e59c7d8b48d4eb893f35e92a4a3fb0a478b25f81",
+  "measurementHash": "6d63b7f073649f1804950bbf2a87dc3d77fa696f58aee363eb49f0009dfa7057",
+  "fixtureHash": "f9506ef0ae7f727d96eb465706d2e2ac9054f9de83afdd039299a75817c9fabd",
+  "diagnostics": [
+    "diag-c1-catalog-r1",
+    "diag-c1-catalog-r2",
+    "diag-c1-catalog-r3",
+    "diag-c1-recommendation1000-r1",
+    "diag-c1-recommendation1000-r2",
+    "diag-c1-recommendation1000-r3",
+    "diag-c2-catalog-r1",
+    "diag-c2-catalog-r2",
+    "diag-c2-catalog-r3"
+  ],
+  "sessions": [
+    {
+      "sample": "http-c1-catalog-r1",
+      "candidate": 1,
+      "variant": "catalog",
+      "repeat": 1,
+      "businessOperations": 1201,
+      "meanMs": 13.619483763530392,
+      "p95Ms": 17.0,
+      "percentileInterpretationAllowed": true
+    },
+    {
+      "sample": "http-c1-catalog-r2",
+      "candidate": 1,
+      "variant": "catalog",
+      "repeat": 2,
+      "businessOperations": 1201,
+      "meanMs": 13.430474604496252,
+      "p95Ms": 17.0,
+      "percentileInterpretationAllowed": true
+    },
+    {
+      "sample": "http-c1-catalog-r3",
+      "candidate": 1,
+      "variant": "catalog",
+      "repeat": 3,
+      "businessOperations": 1201,
+      "meanMs": 13.312239800166529,
+      "p95Ms": 17.0,
+      "percentileInterpretationAllowed": true
+    },
+    {
+      "sample": "http-c1-recommendation1000-r1",
+      "candidate": 1,
+      "variant": "recommendation1000",
+      "repeat": 1,
+      "businessOperations": 1200,
+      "meanMs": 15.48,
+      "p95Ms": 19.0,
+      "percentileInterpretationAllowed": true
+    },
+    {
+      "sample": "http-c1-recommendation1000-r2",
+      "candidate": 1,
+      "variant": "recommendation1000",
+      "repeat": 2,
+      "businessOperations": 1200,
+      "meanMs": 15.645,
+      "p95Ms": 20.0,
+      "percentileInterpretationAllowed": true
+    },
+    {
+      "sample": "http-c1-recommendation1000-r3",
+      "candidate": 1,
+      "variant": "recommendation1000",
+      "repeat": 3,
+      "businessOperations": 1201,
+      "meanMs": 15.53788509575354,
+      "p95Ms": 20.0,
+      "percentileInterpretationAllowed": true
+    },
+    {
+      "sample": "http-c2-catalog-r1",
+      "candidate": 2,
+      "variant": "catalog",
+      "repeat": 1,
+      "businessOperations": 1201,
+      "meanMs": 5.250624479600333,
+      "p95Ms": 7.0,
+      "percentileInterpretationAllowed": true
+    }
+  ],
+  "scope": "Completed evidence only; missing after conditions remain unmeasured"
+}

@@ -1,0 +1,152 @@
+{
+  "status": "PASS",
+  "fixtureHash": "f9506ef0ae7f727d96eb465706d2e2ac9054f9de83afdd039299a75817c9fabd",
+  "sourceHash": "ece5a650b88e967ce82a16635dde57dbc0bdec101b89ae44b00b0d50f2b59677",
+  "measurementHash": "6d63b7f073649f1804950bbf2a87dc3d77fa696f58aee363eb49f0009dfa7057",
+  "samples": 81,
+  "rows": [
+    {
+      "candidate": 1,
+      "variant": "catalog",
+      "values": [
+        25,
+        25,
+        25
+      ],
+      "median": 25,
+      "metric": "businessP95Ms"
+    },
+    {
+      "candidate": 1,
+      "variant": "recommendation1000",
+      "values": [
+        35,
+        35,
+        36
+      ],
+      "median": 35,
+      "metric": "businessP95Ms"
+    },
+    {
+      "candidate": 2,
+      "variant": "catalog",
+      "values": [
+        10,
+        10,
+        10
+      ],
+      "median": 10,
+      "metric": "businessP95Ms"
+    },
+    {
+      "candidate": 3,
+      "variant": "days1",
+      "values": [
+        24,
+        23,
+        23
+      ],
+      "median": 23,
+      "metric": "singleRequestMs"
+    },
+    {
+      "candidate": 3,
+      "variant": "days30",
+      "values": [
+        520,
+        531,
+        525
+      ],
+      "median": 525,
+      "metric": "singleRequestMs"
+    },
+    {
+      "candidate": 3,
+      "variant": "days366",
+      "values": [
+        6946,
+        6859,
+        6943
+      ],
+      "median": 6943,
+      "metric": "singleRequestMs"
+    },
+    {
+      "candidate": 5,
+      "variant": "page10",
+      "values": [
+        73,
+        74,
+        74
+      ],
+      "median": 74,
+      "metric": "businessP95Ms"
+    },
+    {
+      "candidate": 5,
+      "variant": "page50",
+      "values": [
+        81,
+        83,
+        81
+      ],
+      "median": 81,
+      "metric": "businessP95Ms"
+    },
+    {
+      "candidate": 6,
+      "variant": "order1",
+      "values": [
+        56,
+        59,
+        57
+      ],
+      "median": 57,
+      "metric": "businessP95Ms"
+    },
+    {
+      "candidate": 6,
+      "variant": "order20",
+      "values": [
+        236,
+        270.1,
+        264
+      ],
+      "median": 264,
+      "metric": "businessP95Ms"
+    },
+    {
+      "candidate": 6,
+      "variant": "order5",
+      "values": [
+        108.19999999999999,
+        111,
+        106
+      ],
+      "median": 108.19999999999999,
+      "metric": "businessP95Ms"
+    },
+    {
+      "candidate": 7,
+      "variant": "catalog",
+      "values": [
+        11,
+        10,
+        11
+      ],
+      "median": 11,
+      "metric": "businessP95Ms"
+    },
+    {
+      "candidate": 8,
+      "variant": "catalog",
+      "values": [
+        56,
+        56,
+        54
+      ],
+      "median": 56,
+      "metric": "businessP95Ms"
+    }
+  ]
+}

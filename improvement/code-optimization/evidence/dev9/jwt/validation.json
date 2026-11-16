@@ -1,0 +1,231 @@
+{
+  "checkedAtKst": "2026-11-03 16:56:54 KST",
+  "branch": "codex/dev-task-9-code-optimization",
+  "baseRevision": "ecf298e1e426c3b7ed905b1c33eb17ac3f4ea2b1",
+  "sourceHash": "cad589b6dc023bb1fc891fadf35f3b7faf955c2fd33ad92e6f9cd93b91db7f63",
+  "measurementHash": "6d63b7f073649f1804950bbf2a87dc3d77fa696f58aee363eb49f0009dfa7057",
+  "fixtureHash": "f9506ef0ae7f727d96eb465706d2e2ac9054f9de83afdd039299a75817c9fabd",
+  "before": {
+    "scope": "before",
+    "tests": 618,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "xmlFiles": 38
+  },
+  "beforeMeasurement": {
+    "scope": "before-jwt-01",
+    "tests": 18,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "xmlFiles": 2
+  },
+  "beforeHarness": {
+    "scope": "before-harness-01",
+    "tests": 16,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "xmlFiles": 1
+  },
+  "targeted": {
+    "scope": "targeted-01",
+    "tests": 136,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "xmlFiles": 7
+  },
+  "redis": {
+    "scope": "redis-01",
+    "tests": 114,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "xmlFiles": 5
+  },
+  "final": {
+    "originalTests": 618,
+    "finalTests": 637,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "xmlFiles": 40,
+    "originalTestcaseMultisetPreserved": true,
+    "newTestcases": 19,
+    "commonBeforeAfterTests": 18,
+    "harnessTestcaseMultisetPreserved": true
+  },
+  "harnessFinal": {
+    "scope": "harness-final",
+    "tests": 16,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "xmlFiles": 1
+  },
+  "preservation": {
+    "originalSourceFiles": 661,
+    "changedOriginalFiles": [
+      "src/main/java/com/back/coffeeprod/domain/member/service/MemberService.java",
+      "src/main/java/com/back/coffeeprod/global/security/jwt/JwtAuthenticationFilter.java",
+      "src/main/java/com/back/coffeeprod/global/security/jwt/JwtUtil.java",
+      "src/test/performance/java/com/back/coffeeprod/performance/PerfServerTest.java"
+    ],
+    "onlyAuthorizedFilesChanged": true,
+    "v2Files": 1460,
+    "v2Mismatches": [],
+    "original94Files": 2125,
+    "original94Mismatches": [],
+    "originalResultsUnchanged": true,
+    "correctedMeasurementHashUnchanged": true,
+    "fixtureHashUnchanged": true,
+    "otherPerformanceCasesUnchanged": true,
+    "baselineArchiveVerified": true
+  },
+  "cleanup": {
+    "dedicatedContainerRemoved": true,
+    "existingContainersPreserved": true,
+    "ownerVerified": true,
+    "redisVersion": "redis_version:7.4.11"
+  },
+  "metrics": {
+    "scope": "actual parsing counts in local filter/service calls; uninstrumented local CPU with mocked user lookup, warmup1000 then10000x3; no HTTP improvement claim",
+    "samples": {
+      "before-jwt-01": {
+        "counts": [
+          {
+            "scope": "reissue",
+            "baseline": true,
+            "initializationBuilds": 0,
+            "requestBuilds": 2,
+            "parseSignedClaims": 2
+          },
+          {
+            "scope": "filter",
+            "baseline": true,
+            "initializationBuilds": 0,
+            "requestBuilds": 2,
+            "parseSignedClaims": 2
+          },
+          {
+            "scope": "header-and-body",
+            "baseline": true,
+            "initializationBuilds": 0,
+            "requestBuilds": 4,
+            "parseSignedClaims": 4
+          }
+        ],
+        "cpu": [
+          {
+            "baseline": true,
+            "sample": 1,
+            "calls": 10000,
+            "cpuNanos": 500000000,
+            "elapsedNanos": 523072500
+          },
+          {
+            "baseline": true,
+            "sample": 2,
+            "calls": 10000,
+            "cpuNanos": 312500000,
+            "elapsedNanos": 322558700
+          },
+          {
+            "baseline": true,
+            "sample": 3,
+            "calls": 10000,
+            "cpuNanos": 187500000,
+            "elapsedNanos": 244651800
+          }
+        ]
+      },
+      "targeted-01": {
+        "counts": [
+          {
+            "scope": "reissue",
+            "baseline": false,
+            "initializationBuilds": 1,
+            "requestBuilds": 0,
+            "parseSignedClaims": 1
+          },
+          {
+            "scope": "filter",
+            "baseline": false,
+            "initializationBuilds": 1,
+            "requestBuilds": 0,
+            "parseSignedClaims": 1
+          },
+          {
+            "scope": "header-and-body",
+            "baseline": false,
+            "initializationBuilds": 1,
+            "requestBuilds": 0,
+            "parseSignedClaims": 2
+          }
+        ],
+        "cpu": [
+          {
+            "baseline": false,
+            "sample": 1,
+            "calls": 10000,
+            "cpuNanos": 437500000,
+            "elapsedNanos": 446316200
+          },
+          {
+            "baseline": false,
+            "sample": 2,
+            "calls": 10000,
+            "cpuNanos": 296875000,
+            "elapsedNanos": 319402700
+          },
+          {
+            "baseline": false,
+            "sample": 3,
+            "calls": 10000,
+            "cpuNanos": 218750000,
+            "elapsedNanos": 220772400
+          }
+        ]
+      }
+    }
+  },
+  "measurementLineage": {
+    "baseRevision": "ecf298e1e426c3b7ed905b1c33eb17ac3f4ea2b1",
+    "originalMeasurementHash": "f67e7c5f9e4a9b2b2ea001c92e61ce58236076791274727f7532ee6b760ffbef",
+    "correctedMeasurementHash": "6d63b7f073649f1804950bbf2a87dc3d77fa696f58aee363eb49f0009dfa7057",
+    "fixtureHash": "f9506ef0ae7f727d96eb465706d2e2ac9054f9de83afdd039299a75817c9fabd",
+    "measurementChangedFiles": [
+      "src/test/performance/java/com/back/coffeeprod/performance/PerfServerTest.java"
+    ],
+    "otherScenariosUnchanged": true,
+    "originalResultsUntouched": true,
+    "scope": "JWT JUnit diagnostic instrumentation only; k6 and fixture unchanged; matching corrected before/after required",
+    "baselineArchive": "<local-path-omitted>",
+    "baselineArchiveSha256": "9494a17ca055abeae303b41f8d3cb0b22f643acf78df1f1560599c3994b89d8a",
+    "actualHomeServerRun": false
+  },
+  "scope": "DEV9-7 local JWT parsing/HTTP/Redis/CPU verification; corrected server case7 compiled, not executed; no home-server before/after or QA9",
+  "pushOwner": "user after last improvement, before QA",
+  "pushed": false,
+  "commitSha": "f59723e0375ad83829e2b4543ab0641f47934c3d",
+  "commitSubject": "perf: reuse JWT parser and verified claims",
+  "committedFiles": [
+    "src/main/java/com/back/coffeeprod/domain/member/service/MemberService.java",
+    "src/main/java/com/back/coffeeprod/global/security/jwt/JwtAuthenticationFilter.java",
+    "src/main/java/com/back/coffeeprod/global/security/jwt/JwtUtil.java",
+    "src/test/java/com/back/coffeeprod/dev/auth/DevTask9JwtVerificationTest.java",
+    "src/test/java/com/back/coffeeprod/dev/auth/JwtParserProbe.java",
+    "src/test/java/com/back/coffeeprod/qa/auth/DevTask9JwtHttpIntegrationTest.java"
+  ],
+  "localMeasurementCorrection": {
+    "path": "src/test/performance/java/com/back/coffeeprod/performance/PerfServerTest.java",
+    "committed": false,
+    "scope": "authorized local DEV8 correction; diff and matching baseline archive recorded"
+  },
+  "branchPreserved": true,
+  "commitMatchesTestedSources": true,
+  "firstSixCommitsPreserved": true,
+  "originalWorktreeStatusPreserved": true
+}
