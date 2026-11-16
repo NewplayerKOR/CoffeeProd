@@ -2,12 +2,22 @@
 
 이 디렉터리는 GHCR에 게시된 Backend 이미지를 서버에서 한 명령으로 갱신하기 위한 절차를 관리한다.
 
+## 빌드 도구 버전 (2026-11-08)
+
+JDK `27.0.1.0.3`, Gradle `9.9.0`, Spring Boot `4.1.2`, springdoc `3.2.0`을 사용한다. Starter·Lombok·JDBC 등은 Boot BOM으로 정렬한다. CI는 Oracle JDK 전체 버전을 확인하고 `java-version.log`를 테스트 근거에 포함한다.
+
+CI는 Oracle 공식 고정 ZIP의 SHA-256을 확인한 뒤 `setup-java`의 `jdkfile` 입력으로 설치한다. Oracle 설치기가 `27.0.1.0.3`을 SemVer로 정규화하면서 다운로드 URL을 바꾸는 문제를 피한다. 버전 갱신 시 공식 ZIP URL·SHA-256·설치 버전·설치 후 검사 값을 함께 바꾼다.
+
+Docker의 `JDK_IMAGE` 기본값은 Oracle JDK `27.0.1.0.3` 공식 이미지의 digest로 고정한다. Oracle Linux의 시스템 계정과 `curl` 헬스체크를 사용하며 `spring` 계정으로 실행한다. `BUILD_JDK_IMAGE`는 기본적으로 같은 이미지다. 외부 Gradle 배포 서버 장애 등으로 사전 캐시를 제공할 때만 동일한 JDK와 공식 SHA-256을 검증한 Gradle 배포 파일을 담은 빌드 이미지를 지정한다. 이 인수는 최종 실행 이미지에 영향을 주지 않는다. Wrapper의 배포 SHA-256 검증은 유지한다.
+
+버전 갱신 시 로컬 JDK·CI의 JDK 버전·Docker 태그와 digest·Gradle Wrapper 배포 해시·성능 실행기의 이미지 설정을 함께 확인한다. Foojay는 이미 설치된 JDK의 보안 패치를 자동 갱신하지 않는다. 기존 운영 데이터와 PostgreSQL 16·Redis 7 메이저 버전은 유지한다.
+
 ## 1. 배포 구조
 
 ```text
 GitHub develop/main push
 또는 workflow_dispatch 수동 실행
--> 동일 commit SHA의 Java 21 전체 테스트 및 결과 보관
+-> 동일 commit SHA의 JDK 27.0.1.0.3 전체 테스트 및 결과 보관
 -> 테스트 job 성공 후 동일 SHA의 Docker 이미지 빌드
 -> GHCR 이미지 게시
 -> 서버 deploy.sh 실행
@@ -21,7 +31,7 @@ GitHub develop/main push
 
 브랜치 push와 수동 실행 모두 `test` job이 성공해야 `publish` job이 시작된다. Gradle 실패, 취소, 건너뜀 또는 결과 보관 실패 시 해당 실행의 이미지를 게시하지 않는다. 테스트 job은 패키지 쓰기 권한이 없고 GHCR 인증은 게시 job에서만 수행한다.
 
-테스트 job은 Windows runner의 Temurin Java 21에서 다음 명령을 실행한다. 기존 JVM 재시작 테스트가 `java.exe`를 호출하므로 Windows를 사용하며, Docker 게시는 Ubuntu runner를 유지한다.
+테스트 job은 Windows runner의 Oracle JDK 27.0.1.0.3에서 다음 명령을 실행한다. 기존 JVM 재시작 테스트가 `java.exe`를 호출하므로 Windows를 사용하며, Docker 게시는 Ubuntu runner를 유지한다.
 
 ```powershell
 .\gradlew.bat --no-daemon test --rerun-tasks --console=plain

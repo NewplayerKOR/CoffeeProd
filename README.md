@@ -1,7 +1,7 @@
 # ☕ CoffeeProd 백엔드 서버
 
-![Java](https://img.shields.io/badge/Java-21-orange.svg)
-![Spring Boot](https://img.shields.io/badge/Spring%20Boot-4.1.0--SNAPSHOT-green.svg)
+![Java](https://img.shields.io/badge/Java-27-orange.svg)
+![Spring Boot](https://img.shields.io/badge/Spring%20Boot-4.1.2-green.svg)
 ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-16-blue.svg)
 ![Redis](https://img.shields.io/badge/Redis-7-red.svg)
 
@@ -43,8 +43,8 @@ Toss Payments 결제 연동, 쿠폰/마일리지, 동시성 재고 차감, JWT �
 
 | 분류 | 기술 |
 | --- | --- |
-| **Language** | Java 21 |
-| **Framework** | Spring Boot `4.1.0-SNAPSHOT` |
+| **Language** | JDK `27.0.1.0.3` |
+| **Framework** | Spring Boot `4.1.2` |
 | **Web** | Spring WebMVC |
 | **Database** | PostgreSQL 16, H2 (Test) |
 | **ORM** | Spring Data JPA, Hibernate |
@@ -59,9 +59,28 @@ Toss Payments 결제 연동, 쿠폰/마일리지, 동시성 재고 차감, JWT �
 ## 🚀 시작하기 (Getting Started)
 
 ### 1. 필수 요구사항
-* Java 21
+* JDK 27.0.1.0.3
 * Docker & Docker Compose
 * Gradle (Wrapper 포함)
+
+#### JDK·Gradle Sync 설정
+
+2026-11-08 기준으로 Gradle `9.9.0`, Spring Boot `4.1.2`, springdoc `3.2.0` 정식 버전을 사용한다. Spring Starter·Lombok·PostgreSQL JDBC 등은 Spring Boot BOM으로 관리한다. 프로젝트 자체 버전의 `SNAPSHOT`은 외부 SNAPSHOT 의존성 사용을 의미하지 않는다.
+
+IntelliJ의 Project SDK와 Gradle JVM을 설치된 JDK 27로 지정하고 Gradle 배포판은 Wrapper를 사용한다. Gradle 실행용 JVM과 컴파일용 Java Toolchain은 별도 설정이며, 이 프로젝트의 Toolchain은 Java 27을 요구한다.
+
+Windows CLI에서는 현재 터미널의 JDK 경로를 지정한다. 아래 경로는 PC의 실제 설치 위치에 맞춘다.
+
+```powershell
+$env:JAVA_HOME = 'C:\Users\사용자\.jdks\openjdk-27.0.1.0.3'
+$env:PATH = "$env:JAVA_HOME\bin;$env:PATH"
+.\gradlew.bat --version
+.\gradlew.bat javaToolchains --warning-mode all
+```
+
+Foojay 플러그인은 누락된 Toolchain을 내려받지만 이미 설치된 JDK의 보안 패치를 자동 갱신하지 않는다. 최초 의존성·Toolchain 다운로드는 온라인으로 실행한다. 이후 업데이트에서는 JDK 전체 버전, CI의 Oracle JDK 버전, Docker 이미지 태그·digest와 Gradle 배포 SHA-256을 함께 확인한다. CI와 Docker는 JDK `27.0.1.0.3`으로 고정한다.
+
+공식 근거: [Spring Boot 요구사항](https://docs.spring.io/spring-boot/system-requirements.html), [Gradle Java 호환성](https://docs.gradle.org/current/userguide/compatibility.html), [JDK 보안 패치](https://www.oracle.com/java/technologies/javase/27-0-1-0-3-relnotes.html), [Toolchain 자동 설치의 범위](https://docs.gradle.org/current/userguide/toolchains.html#sec:provisioning).
 
 ### 2. 인프라 실행 (DB & Redis)
 프로젝트 루트에서 Docker Compose를 사용하여 PostgreSQL과 Redis를 백그라운드에서 실행합니다.

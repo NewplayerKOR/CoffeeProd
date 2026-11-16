@@ -30,7 +30,7 @@ env:
 
 jobs:
   test:
-    name: Java 21 full regression
+    name: Java 27 full regression
     # The existing JVM restart regression launches java.exe.
     runs-on: windows-latest
     timeout-minutes: 20
@@ -48,11 +48,26 @@ jobs:
           ref: ${{ github.sha }}
           persist-credentials: false
 
-      - name: Set up Java 21
+      # Oracle 설치기의 다섯 자리 패치 버전 정규화를 피하고 공식 ZIP의 바이트를 검증한다.
+      - name: Download verified Oracle JDK 27.0.1.0.3
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = 'Stop'
+          $archive = Join-Path $env:RUNNER_TEMP 'jdk-27.0.1.0.3_windows-x64_bin.zip'
+          Invoke-WebRequest -Uri 'https://download.oracle.com/java/27/archive/jdk-27.0.1.0.3_windows-x64_bin.zip' -OutFile $archive
+          $actualHash = (Get-FileHash -Algorithm SHA256 -LiteralPath $archive).Hash.ToLowerInvariant()
+          if ($actualHash -ne '9655f039e3482fd365eec297fe6bd85885ea408853ca4a4e799affc2989df313') {
+            throw 'Oracle JDK archive SHA-256 mismatch'
+          }
+
+      - name: Set up Java 27.0.1.0.3
         uses: actions/setup-java@v6
         with:
-          distribution: temurin
-          java-version: "21"
+          distribution: jdkfile
+          java-version: "27.0.1.0.3"
+          jdk-file: ${{ runner.temp }}/jdk-27.0.1.0.3_windows-x64_bin.zip
+          force-download: true
+          cache-jdk: false
           cache: gradle
 
       - name: Record tested revision
@@ -69,6 +84,11 @@ jobs:
             throw 'Test checkout does not match the workflow revision'
           }
           New-Item -ItemType Directory -Path build/ci-results -Force | Out-Null
+          $javaRelease = Get-Content -Raw -Encoding UTF8 -LiteralPath (Join-Path $env:JAVA_HOME 'release')
+          if ($javaRelease -notmatch '(?m)^JAVA_VERSION="27\.0\.1\.0\.3"\r?$') {
+            throw 'CI requires JDK 27.0.1.0.3'
+          }
+          & java -version 2>&1 | Tee-Object -FilePath build/ci-results/java-version.log
           [ordered]@{
             commitSha = $sha
             runId = $env:GITHUB_RUN_ID
@@ -76,7 +96,7 @@ jobs:
             ref = $env:GITHUB_REF
             event = $env:GITHUB_EVENT_NAME
             startedUtc = [DateTimeOffset]::UtcNow.ToString('o')
-            environment = 'Java 21; H2; Redis double; localhost PG stub'
+            environment = 'Oracle JDK 27.0.1.0.3; H2; Redis double; localhost PG stub'
           } | ConvertTo-Json | Set-Content -LiteralPath build/ci-results/revision.json -Encoding utf8
           "sha=$sha" >> $env:GITHUB_OUTPUT
 

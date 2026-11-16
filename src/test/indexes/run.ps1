@@ -8,7 +8,7 @@ $destination=[IO.Path]::GetFullPath((Join-Path $repo $Results))
 if(-not $destination.StartsWith((Join-Path $repo 'build/dev-task9')+[IO.Path]::DirectorySeparatorChar)){throw 'Evidence must stay under build/dev-task9'}
 New-Item -ItemType Directory -Force -Path $destination | Out-Null
 $settingsFile=Join-Path $destination 'postgres-settings.json'
-$env:JAVA_HOME=Join-Path $env:USERPROFILE '.jdks/graalvm-ce-21.0.2'
+if([string]::IsNullOrWhiteSpace($env:JAVA_HOME) -or !(Test-Path -LiteralPath (Join-Path $env:JAVA_HOME 'bin/java.exe'))){throw 'JAVA_HOME에 JDK 27.0.1.0.3 경로를 지정한다.'}
 $env:PATH="$env:JAVA_HOME/bin;$env:PATH"
 $env:JAVA_TOOL_OPTIONS='-Dfile.encoding=UTF-8 -Dsun.stdout.encoding=UTF-8 -Dsun.stderr.encoding=UTF-8'
 function CheckExit {if($LASTEXITCODE -ne 0){throw "Command failed: $LASTEXITCODE"}}

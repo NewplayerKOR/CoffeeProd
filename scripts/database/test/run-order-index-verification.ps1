@@ -10,7 +10,9 @@ $buildRoot = [IO.Path]::GetFullPath((Join-Path $repo 'build')) + [IO.Path]::Dire
 if (!$output.StartsWith($buildRoot, [StringComparison]::OrdinalIgnoreCase) -or (Test-Path -LiteralPath $output)) {
     throw 'OutputDirectory must be a new directory below this repository build directory'
 }
-if (!(Test-Path -LiteralPath (Join-Path $JavaHome 'bin/java.exe'))) { throw 'JavaHome must point to Java 21' }
+if ([string]::IsNullOrWhiteSpace($JavaHome) -or !(Test-Path -LiteralPath (Join-Path $JavaHome 'bin/java.exe'))) {
+    throw 'JavaHome에 JDK 27.0.1.0.3 경로를 지정한다.'
+}
 New-Item -ItemType Directory -Path $output | Out-Null
 [Console]::OutputEncoding = [Text.UTF8Encoding]::new($false)
 $OutputEncoding = [Console]::OutputEncoding

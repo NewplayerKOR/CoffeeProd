@@ -1,10 +1,18 @@
 # DEV8 측정 도구
 
+## Java 27 실행 환경 (2026-11-08)
+
+현재 빌드·컨테이너는 Oracle JDK `27.0.1.0.3`, Gradle `9.9.0`, Spring Boot `4.1.2`를 사용한다. 기본 JDK 이미지는 `container-registry.oracle.com/java/openjdk:27.0.1.0.3`의 검증된 digest로 고정한다. Oracle Linux에서는 시스템 계정 생성과 `curl` 헬스체크를 사용한다.
+
+`BUILD_JDK_IMAGE`를 지정하면 빌드 단계에만 동일 JDK의 검증된 Gradle 캐시 이미지를 사용할 수 있다. 실행 이미지는 `JDK_IMAGE`를 사용한다. 기본값은 두 단계 모두 같은 공식 이미지다.
+
+Java 21 기반의 과거 결과·보고서·기준선은 보존한다. 현재 소스로 manifest를 새로 생성하고 새 실행 ID·기준선을 사용한다. JDK·의존성·measurementHash가 다른 결과를 같은 조건의 before/after로 합치지 않는다. 기존 `.env.perf`의 이미지 digest도 자동으로 덮어쓰지 않는다.
+
 홈 서버의 **전용** Docker Backend에 로컬 PC가 부하를 보내는 DEV8/DEV9/QA9 공용 측정기다. 운영 코드의 구조 개선을 포함하지 않는다. 일반 `test`, `bootJar`, GHCR CI에는 performance source set을 넣지 않는다.
 
 현재 절차는 **protocolVersion 2**다. 각 HTTP 반복은 `복원 → 앱 준비 → 예열30초 → 같은 앱에서 본 측정 → 수집` 순서이며 3회 반복한다. 두 단계 사이에 앱/DB/Redis/mock을 초기화하지 않는다. 전체 `All`은 진단42개 + HTTP39세션 =81개이고, HTTP 세션마다 `warmup/`·`measurement/`·`lifecycle.json`을 보존한다. 기존94개 실행 원본은 당시 절차의 PASS 자료로 보존하며 변경하지 않는다.
 
-실행 순서·SSH/소스 전달·Docker·DB·복원·결과 판정은 [홈 서버 실행 안내](../../improvement/code-optimization/README.md)를 따른다. 현재 업무 상태는 Git 제외 문서 `.md/TASKS.md`의 DEV TASK8에서 관리한다.
+실행 순서·SSH/소스 전달·Docker·DB·복원·결과 판정은 [홈 서버 실행 안내](../../improvement/code-optimization/README.md)를 따른다. 현재 업무 상태는 Git 제외 문서 `.md/root/TASKS.md`에서 관리한다.
 
 로컬 도구 자체 확인:
 
@@ -31,14 +39,14 @@ pwsh -NoProfile -File scripts/performance/runner-flow.test.ps1
 Windows 로컬 Docker 자체 검증(홈 서버 접속 없음):
 
 ```powershell
-# Docker Desktop 실행, Java21 빌드와 manifest 생성 후 새 결과 경로 사용
+# Docker Desktop 실행, JDK 27.0.1.0.3 빌드와 manifest 생성 후 새 결과 경로 사용
 .\gradlew.bat --offline --no-daemon test perfTest perfBootJar bootJar --rerun-tasks --console=plain
 node scripts/performance/manifest.mjs write
 pwsh -NoProfile -File scripts/performance/selftest-local.ps1 `
   -OutputDirectory "$PWD/build/dev-task8/local-warmup-v2-01"
 ```
 
-전용 로컬 프로젝트·`.env.perf`가 이미 있으면 보존하고 중단한다. 로컬에 캐시된 PostgreSQL16·Redis7·JDK21 기반 이미지와 Git Bash가 필요하다. 패키징된 측정 JAR로 로컬 runtime 이미지를 한 번 빌드하고 실제 V1~V18·시드·snapshot/복원 뒤 추천/주문5종/30일 통계를 각각1회 확인한다. 조회·주문은 예열30초+본 측정2분이며 통계는30초 순차 예열+단일 측정이다. 같은 소유 UUID의 컨테이너·전용 볼륨만 정리한다. 운영 JAR·운영 DB·홈 서버를 사용하지 않는다.
+전용 로컬 프로젝트·`.env.perf`가 이미 있으면 보존하고 중단한다. 로컬에 캐시된 PostgreSQL16·Redis7·JDK 27.0.1.0.3 기반 이미지와 Git Bash가 필요하다. 패키징된 측정 JAR로 로컬 runtime 이미지를 한 번 빌드하고 실제 V1~V19·시드·snapshot/복원 뒤 추천/주문5종/30일 통계를 각각1회 확인한다. 조회·주문은 예열30초+본 측정2분이며 통계는30초 순차 예열+단일 측정이다. 같은 소유 UUID의 컨테이너·전용 볼륨만 정리한다. 운영 JAR·운영 DB·홈 서버를 사용하지 않는다.
 
 실행 모드는 `-Mode All`(기본), `Diagnostics`(42개), `Http`(39세션)다. 일부 모드는 전체 인수를 주장하지 않는다. 예열은 일반 조회300업무회·쓰기30업무회이며 기간 집계는 단일 VU로30초 동안 반복하고 진행 중 요청을 마친다. 본 측정의 일반 조회10업무회/s·2분, 쓰기1업무회/s·2분, 기간 집계1회는 유지한다. 쓰기 예열30건의 주문·항목·상품별 재고·마일리지 변화를 별도 검사한다.
 

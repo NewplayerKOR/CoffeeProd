@@ -59,7 +59,7 @@ services:
       context: ../..
       dockerfile: scripts/performance/Dockerfile
       args:
-        JDK_IMAGE: ${PERF_JDK_IMAGE:-eclipse-temurin:21-jdk-alpine}
+        JDK_IMAGE: ${PERF_JDK_IMAGE:-container-registry.oracle.com/java/openjdk:27.0.1.0.3@sha256:ec8568d488454d0087e88a38b818abc46098ab8701843e9449db3468a641a326}
         PERF_SOURCE_HASH: ${PERF_SOURCE_HASH}
         PERF_MEASUREMENT_HASH: ${PERF_MEASUREMENT_HASH}
     labels: *labels
@@ -77,7 +77,7 @@ services:
       context: ../..
       dockerfile: scripts/performance/Dockerfile
       args:
-        JDK_IMAGE: ${PERF_JDK_IMAGE:-eclipse-temurin:21-jdk-alpine}
+        JDK_IMAGE: ${PERF_JDK_IMAGE:-container-registry.oracle.com/java/openjdk:27.0.1.0.3@sha256:ec8568d488454d0087e88a38b818abc46098ab8701843e9449db3468a641a326}
         PERF_SOURCE_HASH: ${PERF_SOURCE_HASH}
         PERF_MEASUREMENT_HASH: ${PERF_MEASUREMENT_HASH}
     labels: *labels
@@ -102,7 +102,7 @@ services:
       dockerfile: scripts/performance/Dockerfile
       target: harness
       args:
-        JDK_IMAGE: ${PERF_JDK_IMAGE:-eclipse-temurin:21-jdk-alpine}
+        JDK_IMAGE: ${PERF_JDK_IMAGE:-container-registry.oracle.com/java/openjdk:27.0.1.0.3@sha256:ec8568d488454d0087e88a38b818abc46098ab8701843e9449db3468a641a326}
         PERF_SOURCE_HASH: ${PERF_SOURCE_HASH}
         PERF_MEASUREMENT_HASH: ${PERF_MEASUREMENT_HASH}
     labels: *labels

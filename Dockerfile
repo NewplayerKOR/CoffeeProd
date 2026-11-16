@@ -1,4 +1,6 @@
-FROM eclipse-temurin:21-jdk-alpine AS builder
+ARG JDK_IMAGE=container-registry.oracle.com/java/openjdk:27.0.1.0.3@sha256:ec8568d488454d0087e88a38b818abc46098ab8701843e9449db3468a641a326
+ARG BUILD_JDK_IMAGE=${JDK_IMAGE}
+FROM ${BUILD_JDK_IMAGE} AS builder
 
 WORKDIR /workspace
 
@@ -15,10 +17,10 @@ RUN ./gradlew --no-daemon bootJar \
     && test -n "$JAR_FILE" \
     && cp "$JAR_FILE" /workspace/app.jar
 
-FROM eclipse-temurin:21-jre-alpine AS runtime
+FROM ${JDK_IMAGE} AS runtime
 
-RUN addgroup -S spring \
-    && adduser -S spring -G spring
+RUN groupadd --system spring \
+    && useradd --system --gid spring --no-create-home --shell /sbin/nologin spring
 
 WORKDIR /app
 
@@ -29,7 +31,7 @@ USER spring:spring
 EXPOSE 8080
 
 HEALTHCHECK --interval=15s --timeout=5s --start-period=60s --retries=8 \
-    CMD wget -q --spider http://127.0.0.1:8080/api/v1/categories || exit 1
+    CMD curl --fail --silent --output /dev/null http://127.0.0.1:8080/api/v1/categories || exit 1
 
 STOPSIGNAL SIGTERM
 
