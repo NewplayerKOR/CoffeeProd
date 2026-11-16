@@ -58,7 +58,7 @@ public class MemberService {
                 .orElseThrow(() -> new CustomException(ErrorCode.INVALID_CREDENTIALS));
 
         // 비밀번호 검증 (실패 시 통합 에러)
-        if (!passwordEncoder.matches(request.getPassword(), member.getPassword())) {
+        if (member.getPassword() == null || !passwordEncoder.matches(request.getPassword(), member.getPassword())) {
             throw new CustomException(ErrorCode.INVALID_CREDENTIALS);
         }
 
@@ -160,7 +160,7 @@ public class MemberService {
         Member member = memberRepository.findLockedById(memberId).orElseThrow(() -> new CustomException(ErrorCode.MEMBER_NOT_FOUND));
 
         // 현재 비밀번호 일치 여부 검증
-        if (!passwordEncoder.matches(request.getCurrentPassword(), member.getPassword())) {
+        if (member.getPassword() == null || !passwordEncoder.matches(request.getCurrentPassword(), member.getPassword())) {
             throw new CustomException(ErrorCode.INVALID_PASSWORD);
         }
 
@@ -175,7 +175,7 @@ public class MemberService {
         Member member = memberRepository.findLockedById(memberId).orElseThrow(() -> new CustomException(ErrorCode.MEMBER_NOT_FOUND));
 
         // 탈퇴 전 현재 비밀번호로 본인 확인
-        if (!passwordEncoder.matches(currentPassword, member.getPassword())) {
+        if (member.getPassword() == null || !passwordEncoder.matches(currentPassword, member.getPassword())) {
             throw new CustomException(ErrorCode.INVALID_PASSWORD);
         }
 

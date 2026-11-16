@@ -100,7 +100,7 @@ jobs:
           } | ConvertTo-Json | Set-Content -LiteralPath build/ci-results/revision.json -Encoding utf8
           "sha=$sha" >> $env:GITHUB_OUTPUT
 
-      - name: Run all tests
+      - name: Run Windows JVM regression
         id: tests
         shell: pwsh
         run: |
@@ -108,7 +108,7 @@ jobs:
           $PSNativeCommandUseErrorActionPreference = $false
           [Console]::OutputEncoding = [Text.UTF8Encoding]::new($false)
           $OutputEncoding = [Console]::OutputEncoding
-          & .\gradlew.bat --no-daemon test --rerun-tasks --console=plain 2>&1 |
+          & .\gradlew.bat --no-daemon test -PwindowsJvmTests --rerun-tasks --console=plain 2>&1 |
             Tee-Object -FilePath build/ci-results/gradle.log
           $code = $LASTEXITCODE
           if ($null -eq $code) { throw 'Gradle did not return an exit code' }
@@ -157,9 +157,52 @@ jobs:
             build/qa-task6/restart/**/processes.json
             build/qa-task6/restart/**/recovery-result.json
 
+  oauth-test:
+    name: OAuth PostgreSQL and Redis integration
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          ref: ${{ github.sha }}
+          persist-credentials: false
+      - name: Download verified Oracle Linux JDK
+        run: |
+          curl --fail --location --retry 2 'https://download.oracle.com/java/27/archive/jdk-27.0.1.0.3_linux-x64_bin.tar.gz' -o "$RUNNER_TEMP/jdk.tar.gz"
+          echo "d41bdc29a13920e90ee0f8e97a5bb9cb854ac06e0aa648a7fda1620db6c4e1ee  $RUNNER_TEMP/jdk.tar.gz" | sha256sum --check
+      - uses: actions/setup-java@v6
+        with:
+          distribution: jdkfile
+          java-version: "27.0.1.0.3"
+          jdk-file: ${{ runner.temp }}/jdk.tar.gz
+          force-download: true
+          cache-jdk: false
+          cache: gradle
+      - name: Run Docker integration on tested revision
+        run: |
+          set -o pipefail
+          mkdir -p build/ci-results
+          test "$(git rev-parse HEAD)" = "$GITHUB_SHA"
+          grep -Fx 'JAVA_VERSION="27.0.1.0.3"' "$JAVA_HOME/release"
+          git rev-parse HEAD > build/ci-results/revision.txt
+          java -version 2>&1 | tee build/ci-results/java-version.log
+          docker info > build/ci-results/docker-info.log
+          sh ./gradlew --no-daemon test --tests '*OAuthIntegrationTest' --tests '*OAuthMigrationTest' --console=plain 2>&1 | tee build/ci-results/gradle.log
+      - name: Preserve OAuth integration evidence
+        if: ${{ always() }}
+        uses: actions/upload-artifact@v7
+        with:
+          name: oauth-tests-${{ github.sha }}-${{ github.run_id }}-${{ github.run_attempt }}
+          retention-days: 14
+          if-no-files-found: error
+          path: |
+            build/ci-results/
+            build/test-results/test/TEST-*.xml
+            build/reports/tests/test/
+
   publish:
     name: Build and publish
-    needs: test
+    needs: [test, oauth-test]
     runs-on: ubuntu-latest
     permissions:
       contents: read

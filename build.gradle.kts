@@ -34,6 +34,7 @@ dependencies {
     runtimeOnly("org.flywaydb:flyway-database-postgresql")  // PostgreSQL 전용 Flyway 지원을 추가함
     implementation("org.postgresql:postgresql") // PostgreSQL JDBC 드라이버
     implementation("org.springframework.boot:spring-boot-starter-security")
+    implementation("org.springframework.boot:spring-boot-starter-oauth2-client")
     implementation("io.jsonwebtoken:jjwt-api:0.13.0") // JWT 라이브러리
     implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:3.2.0") // Swagger
     implementation("org.springframework.boot:spring-boot-starter-data-redis")    // Redis
@@ -46,10 +47,19 @@ dependencies {
     testImplementation("org.springframework.boot:spring-boot-starter-data-jpa-test")
     testImplementation("org.springframework.boot:spring-boot-starter-webmvc-test")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
+    testImplementation("org.testcontainers:testcontainers-junit-jupiter")
 }
 
 tasks.withType<Test> {
     useJUnitPlatform()
+}
+
+// Windows 전용 JVM 회귀와 Linux Docker 통합 검증을 CI의 필수 작업 두 개로 나눈다.
+// 기본 test는 Docker 통합 검증도 포함한다.
+tasks.named<Test>("test") {
+    if (providers.gradleProperty("windowsJvmTests").isPresent) {
+        useJUnitPlatform { excludeTags("oauth-infra") }
+    }
 }
 
 // DEV8 harness is deliberately absent from test, bootJar and the publishing workflow.
