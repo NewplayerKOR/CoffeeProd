@@ -6,6 +6,13 @@ import lombok.RequiredArgsConstructor;
 @Getter
 @RequiredArgsConstructor
 public enum ErrorCode {
+    AI_UNAVAILABLE(503, "AI 추천을 사용할 수 없습니다. 아래 취향 조건으로 추천을 받아 주세요."),
+    AI_TIMEOUT(504, "AI 추천 응답이 늦어지고 있습니다. 아래 취향 조건으로 추천을 받아 주세요."),
+    AI_RATE_LIMIT(429, "AI 추천 이용 횟수를 초과했습니다. 아래 취향 조건을 이용하거나 잠시 후 다시 시도해 주세요."),
+    AI_BUDGET_LIMIT(429, "이번 달 AI 추천 한도에 도달했습니다. 아래 취향 조건으로 추천을 받아 주세요."),
+    AI_NO_CANDIDATES(404, "현재 AI로 추천할 수 있는 판매 상품이 없습니다. 아래 취향 조건을 이용해 주세요."),
+    AI_INVALID_RESPONSE(502, "AI 추천 결과를 확인하지 못했습니다. 아래 취향 조건으로 추천을 받아 주세요."),
+    AI_INPUT_TOO_LARGE(400, "취향 설명이 너무 깁니다. 내용을 줄여 다시 입력해 주세요."),
     OAUTH_TRANSACTION_INVALID(400, "인증 거래가 만료되었거나 이미 사용되었습니다. 다시 시작해 주세요."),
     OAUTH_CONFIRMATION_REQUIRED(403, "계정 본인 확인이 필요합니다."),
     OAUTH_CONFLICT(409, "이미 연결된 계정입니다. 기존 계정으로 로그인해 주세요."),
