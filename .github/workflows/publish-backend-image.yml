@@ -187,7 +187,7 @@ jobs:
           git rev-parse HEAD > build/ci-results/revision.txt
           java -version 2>&1 | tee build/ci-results/java-version.log
           docker info > build/ci-results/docker-info.log
-          sh ./gradlew --no-daemon test --tests '*OAuthIntegrationTest' --tests '*OAuthMigrationTest' --tests '*PasswordResetIntegrationTest' --console=plain 2>&1 | tee build/ci-results/gradle.log
+          sh ./gradlew --no-daemon test --tests '*OAuthIntegrationTest' --tests '*OAuthMigrationTest' --tests '*PasswordResetIntegrationTest' --tests '*AiRecommendationIntegrationTest' --console=plain 2>&1 | tee build/ci-results/gradle.log
       - name: Preserve OAuth integration evidence
         if: ${{ always() }}
         uses: actions/upload-artifact@v7

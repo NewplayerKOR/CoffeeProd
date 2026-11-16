@@ -88,6 +88,15 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
     @Query("SELECT p FROM Product p WHERE p.id IN :productIds")
     List<Product> findRecommendationDetailsByIdIn(@Param("productIds") List<Long> productIds);
 
+    // AI 후보는 DB에서 최대 20개만 읽고 자유 형식 상품 설명을 외부에 보내지 않는다.
+    @EntityGraph(attributePaths = {"coffeeProfile"})
+    @Query("SELECT p FROM Product p JOIN p.coffeeProfile c WHERE p.status = com.back.coffeeprod.domain.product.entity.ProductStatus.ON_SALE AND p.stockQuantity > 0 ORDER BY p.id")
+    List<Product> findAiCandidates(Pageable pageable);
+
+    @EntityGraph(attributePaths = {"coffeeProfile"})
+    @Query("SELECT p FROM Product p JOIN p.coffeeProfile c WHERE p.id IN :ids AND p.status = com.back.coffeeprod.domain.product.entity.ProductStatus.ON_SALE AND p.stockQuantity > 0")
+    List<Product> findAiAvailable(@Param("ids") List<Long> ids);
+
     // 특정 카테고리에 연결된 상품 존재 여부를 확인함
     boolean existsByCategoryId(Long categoryId);
 
