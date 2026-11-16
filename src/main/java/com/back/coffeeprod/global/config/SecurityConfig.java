@@ -38,6 +38,9 @@ public class SecurityConfig {
     @Value("${app.cors.allowed-origins}")
     private List<String> allowedOrigins;
 
+    @Value("${APP_FRONTEND_URL:http://localhost:3000}")
+    private String oauthFrontendUrl;
+
     // Spring Security에서 사용할 PasswordEncoder 빈을 정의
     @Bean
     public PasswordEncoder passwordEncoder() {
@@ -82,6 +85,7 @@ public class SecurityConfig {
                                 "/api/v1/auth/reissue",
                                 "/api/v1/auth/check-email"
                         ).permitAll()
+                        .requestMatchers("/api/v1/auth/oauth/**").permitAll()
                         .requestMatchers(
                                 HttpMethod.POST,
                                 "/api/v1/coffee-recommendations"
@@ -129,6 +133,13 @@ public class SecurityConfig {
         configuration.setMaxAge(3600L);
 
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        CorsConfiguration oauth = new CorsConfiguration();
+        oauth.setAllowedOrigins(List.of(oauthFrontendUrl));
+        oauth.setAllowedMethods(List.of("GET", "POST", "OPTIONS"));
+        oauth.setAllowedHeaders(List.of("Authorization", "Content-Type", "X-OAuth-Request"));
+        oauth.setAllowCredentials(true);
+        oauth.setMaxAge(3600L);
+        source.registerCorsConfiguration("/api/v1/auth/oauth/**", oauth);
         source.registerCorsConfiguration("/**", configuration);
         return source;
     }

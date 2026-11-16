@@ -83,6 +83,7 @@ public class MemberDto {
     // 회원 정보 응답 DTO
     @Getter
     public static class Response {
+        private final boolean hasLocalPassword;
         private final Long id;
         private final String email;
         private final String name;
@@ -93,6 +94,7 @@ public class MemberDto {
         private final MemberStatus status;
 
         public Response(Member member) {
+            this.hasLocalPassword = member.getPassword() != null;
             this.id = member.getId();
             this.email = member.getEmail();
             this.name = member.getName();

@@ -6,6 +6,11 @@ import lombok.RequiredArgsConstructor;
 @Getter
 @RequiredArgsConstructor
 public enum ErrorCode {
+    OAUTH_TRANSACTION_INVALID(400, "인증 거래가 만료되었거나 이미 사용되었습니다. 다시 시작해 주세요."),
+    OAUTH_CONFIRMATION_REQUIRED(403, "계정 본인 확인이 필요합니다."),
+    OAUTH_CONFLICT(409, "이미 연결된 계정입니다. 기존 계정으로 로그인해 주세요."),
+    AUTH_PROVIDER_UNAVAILABLE(503, "인증 서비스를 사용할 수 없습니다. 잠시 후 다시 시도해 주세요."),
+    AUTH_RATE_LIMIT(429, "인증 요청 한도를 초과했습니다. 잠시 후 다시 시도해 주세요."),
 
     // [회원 관련]
     MEMBER_NOT_FOUND(404, "회원 정보를 찾을 수 없습니다."),
