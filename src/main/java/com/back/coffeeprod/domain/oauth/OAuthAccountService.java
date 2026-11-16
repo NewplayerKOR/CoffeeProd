@@ -43,7 +43,7 @@ public class OAuthAccountService {
     }
     private MemberDto.TokenResponse tokens(Member m) {
         active(m.getId());
-        String access=jwt.generateAccessToken(m.getId(),m.getRole()), r=jwt.generateRefreshToken(m.getId());
+        String access=jwt.generateAccessToken(m.getId(),m.getRole(),m.getTokenVersion()), r=jwt.generateRefreshToken(m.getId(),m.getTokenVersion());
         refresh.save(m.getId(),r);return new MemberDto.TokenResponse(access,r);
     }
     public Map<String,Object> exchange(String id,Map<String,String> tx,Long authenticatedId) {

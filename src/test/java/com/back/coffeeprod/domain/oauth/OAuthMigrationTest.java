@@ -8,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 @org.junit.jupiter.api.Tag("oauth-infra")
 class OAuthMigrationTest {
-    @Test void v20PreservesExistingMemberAndConstrainsSocialIdentities() throws Exception {
+    @Test void v20And21PreserveExistingMemberAndConstrainSocialIdentities() throws Exception {
         try(var db=new GenericContainer<>("postgres:16-alpine").withEnv("POSTGRES_PASSWORD","migration-synthetic-password").withExposedPorts(5432)) {
             db.start();String url="jdbc:postgresql://"+db.getHost()+":"+db.getMappedPort(5432)+"/postgres";
             // PostgreSQL이 실제 연결을 수락할 때까지 준비 상태를 확인한다.
@@ -22,7 +22,8 @@ class OAuthMigrationTest {
             }
             Flyway.configure().dataSource(url,"postgres","migration-synthetic-password").locations("classpath:db/migration").load().migrate();
             try(var c=DriverManager.getConnection(url,"postgres","migration-synthetic-password");var sql=c.createStatement()) {
-                try(var row=sql.executeQuery("SELECT password FROM member WHERE email='preserved@example.test'")){assertTrue(row.next());assertEquals("existing-password-hash",row.getString(1));}
+                try(var row=sql.executeQuery("SELECT password, token_version FROM member WHERE email='preserved@example.test'")){assertTrue(row.next());assertEquals("existing-password-hash",row.getString(1));assertEquals(0,row.getLong(2));}
+                try(var row=sql.executeQuery("SELECT count(*) FROM flyway_schema_history WHERE success AND version='21'")){assertTrue(row.next());assertEquals(1,row.getInt(1));}
                 sql.executeUpdate("INSERT INTO member(email,password,name,nickname,role,grade,status) VALUES ('social@example.test',NULL,'소셜회원','소셜닉네임','USER','BRONZE','ACTIVE')");
                 sql.executeUpdate("INSERT INTO social_account(member_id,provider,subject_hash) SELECT member_id,'google',repeat('a',64) FROM member WHERE email='social@example.test'");
                 assertThrows(SQLException.class,()->sql.executeUpdate("INSERT INTO social_account(member_id,provider,subject_hash) SELECT member_id,'google',repeat('a',64) FROM member WHERE email='preserved@example.test'"));

@@ -42,14 +42,24 @@ public class JwtUtil {
         this.refreshExpiration = refreshExpiration;
     }
 
+    public static boolean matchesVersion(Claims claims, long version) {
+        Object value = claims.get("ver");
+        return value == null ? version == 0 : value instanceof Number n && n.longValue() == version;
+    }
+
     // Access Token 생성(API 요청 시 헤더에 담아 전달)
     public String generateAccessToken(Long memberId, Role role) {
+        return generateAccessToken(memberId, role, 0);
+    }
+
+    public String generateAccessToken(Long memberId, Role role, long version) {
         Date now = new Date();
         Date expiryDate = new Date(now.getTime() + accessExpiration);
 
         return Jwts.builder()
                 .subject(memberId.toString())
                 .claim("role", role.name())
+                .claim("ver", version)
                 .issuedAt(now)
                 .expiration(expiryDate)
                 .signWith(secretKey)
@@ -61,12 +71,17 @@ public class JwtUtil {
      * 권한 정보 없이 회원 ID와 발급별 고유 식별자(jti)를 담음
      */
     public String generateRefreshToken(Long memberId) {
+        return generateRefreshToken(memberId, 0);
+    }
+
+    public String generateRefreshToken(Long memberId, long version) {
         Date now = new Date();
         Date expiryDate = new Date(now.getTime() + refreshExpiration);
 
         return Jwts.builder()
                 .subject(memberId.toString())
                 .id(UUID.randomUUID().toString())
+                .claim("ver", version)
                 .issuedAt(now)
                 .expiration(expiryDate)
                 .signWith(secretKey)

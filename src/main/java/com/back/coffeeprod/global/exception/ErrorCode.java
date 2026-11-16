@@ -101,6 +101,7 @@ public enum ErrorCode {
     STATISTICS_DATE_RANGE_TOO_LARGE(400, "매출 통계 재집계 기간은 최대 366일까지 가능합니다."),
 
     // [공통 에러]
+    PASSWORD_RESET_INVALID(400, "인증 정보가 올바르지 않거나 만료되었습니다. 인증번호를 다시 요청해 주세요."),
     INVALID_INPUT_VALUE(400, "잘못된 입력 값입니다."),
     INTERNAL_SERVER_ERROR(500, "서버 내부 오류입니다.");
 

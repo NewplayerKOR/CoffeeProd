@@ -52,6 +52,13 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
                 return;
             }
 
+            if (userdetails instanceof com.back.coffeeprod.global.security.auth.CustomUserDetails custom
+                    && !JwtUtil.matchesVersion(claims.get(), custom.getMember().getTokenVersion())) {
+                SecurityContextHolder.clearContext();
+                authenticationEntryPoint.commence(request, response, new org.springframework.security.authentication.BadCredentialsException("만료된 인증입니다."));
+                return;
+            }
+
             // 5. '인증 완료'인 Authentication 객체 생성
             UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(userdetails,
                     null, userdetails.getAuthorities());

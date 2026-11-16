@@ -30,6 +30,14 @@ public class Member extends BaseTimeEntity {
     @Column
     private String password;
 
+    @Column(nullable = false)
+    private long tokenVersion = 0;
+
+    public void resetPassword(String encodedPassword) {
+        this.password = encodedPassword;
+        this.tokenVersion++;
+    }
+
     @Column(nullable = false, length = 50)
     private String name;
 
