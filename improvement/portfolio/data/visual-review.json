@@ -1,0 +1,96 @@
+{
+  "result": "PASS",
+  "reviewer": "Codex QA_DEVOPS",
+  "checkedAtKst": "2026-11-16T16:11:37+09:00",
+  "scope": "제목 축약·공통 하단 삭제 후 원본 10장과 960px 미리보기 10장을 각각 열어 확인함",
+  "nativeDisplay": "2400×1800 원본 파일과 960×720 미리보기 파일 열람",
+  "changes": [
+    "요약 제목 개선 사항 및 사례 제목·소제목 축약",
+    "주의 문구·출처·측정일·분류·구분선의 공통 하단 삭제",
+    "글꼴·색상·가로축 유지, 본문·그래프 세로 간격 배분"
+  ],
+  "figures": [
+    {
+      "file": "figures/00-summary.png",
+      "sha256": "14d80cdb6843f9d98732e7ba32dd2fb96ea82fe7a93bbb8e50daf96726a74273",
+      "previewSha256": "cff6a1631ffba1801e3151d82dd84895ba7b3ca60eb9af423fa3f0312e6d6a9a",
+      "nativeOpened": true,
+      "preview960Opened": true,
+      "result": "PASS"
+    },
+    {
+      "file": "figures/01-order-index.png",
+      "sha256": "346b52b04fbcb62b07d167885a183c460f5ecc40a13213f7111112efb6695940",
+      "previewSha256": "6514ddbf4544add1111f3461711afdcfb48bedb2b6ddd3e330741dba37bad22c",
+      "nativeOpened": true,
+      "preview960Opened": true,
+      "result": "PASS"
+    },
+    {
+      "file": "figures/02-recommendation.png",
+      "sha256": "66009b2a11e4403130428fc4ee629ed0a31bf2f568561b900eafd8f9b1e30def",
+      "previewSha256": "b73da8334389a6b625cec9c2fd28cee5e60ce008a1be9b688a17f49607937be9",
+      "nativeOpened": true,
+      "preview960Opened": true,
+      "result": "PASS"
+    },
+    {
+      "file": "figures/03-cart.png",
+      "sha256": "24c3b2b3af49be7b64809afef95fed9b5c457e30c5725d6bb45c1d1b5f1e40e6",
+      "previewSha256": "b2460aa8bb3c437bc67f7f043408762a376b13fed674254eefe0e88c6a46ac04",
+      "nativeOpened": true,
+      "preview960Opened": true,
+      "result": "PASS"
+    },
+    {
+      "file": "figures/04-statistics.png",
+      "sha256": "b4e8a015f5dc4953e62acdb9f92c1a6756572e1ebdbcb6f900fc4d126aaa38af",
+      "previewSha256": "69492221e594249412b317d5bf880f9b69657c7da2ae3677f971c9a63f12d591",
+      "nativeOpened": true,
+      "preview960Opened": true,
+      "result": "PASS"
+    },
+    {
+      "file": "figures/05-schedulers.png",
+      "sha256": "450ae8c3bd23adca1b3b648354081879642c7672918450c14c4455822bbcb691",
+      "previewSha256": "e472b25779bc22a0d82ddf824049f517f4403b02d64b43feaf7cc8fcef366ee9",
+      "nativeOpened": true,
+      "preview960Opened": true,
+      "result": "PASS"
+    },
+    {
+      "file": "figures/06-order-summary.png",
+      "sha256": "7d2f71e40a8b3a66a4956a524ad66b6b933e2bcfebef47fd2eb6418d217a76c8",
+      "previewSha256": "f7df0f6e9749289243f8845a57e3b9b2c093ae31cf9c232b5dda91dff14ddbeb",
+      "nativeOpened": true,
+      "preview960Opened": true,
+      "result": "PASS"
+    },
+    {
+      "file": "figures/07-order-create.png",
+      "sha256": "fe992d246c104e79e06fbbbaa8d0de0618292f8004c397a6381678eccd16712e",
+      "previewSha256": "5366f664f7a9cf9c80139389953d1a84c80002019133ed02c798c05d0d83886c",
+      "nativeOpened": true,
+      "preview960Opened": true,
+      "result": "PASS"
+    },
+    {
+      "file": "figures/08-jwt.png",
+      "sha256": "c6ab476754d97de149faf3df3bdb889df96692699200a2eb174174aca81c3a4a",
+      "previewSha256": "7328629e9860d4c97333d9c6a481536bf557594aa891761df8244cfa0fd38245",
+      "nativeOpened": true,
+      "preview960Opened": true,
+      "result": "PASS"
+    },
+    {
+      "file": "figures/09-review-qna-index.png",
+      "sha256": "70553cfdf3f0a596dfd10782b61821ab070214b50125c2a49822140bf6de1274",
+      "previewSha256": "1a8f8a656788a12d3a04f4d97b43434bf2bd7b9d1e2beafe973628472c046c61",
+      "nativeOpened": true,
+      "preview960Opened": true,
+      "result": "PASS"
+    }
+  ],
+  "copyEditValidation": "data/copy-edit-validation.json",
+  "newLoadTests": 0
+}

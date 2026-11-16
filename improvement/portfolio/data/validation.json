@@ -1,0 +1,13 @@
+{
+  "result": "PASS",
+  "evidenceFiles": 641,
+  "comparisonRows": 21,
+  "recalculatedHttpSessions": 46,
+  "images": 10,
+  "previews": 10,
+  "checkedTextBounds": 383,
+  "localMarkdownLinks": 70,
+  "visualReview": "PASS",
+  "newLoadTests": 0,
+  "applicationTestsExecuted": 0
+}

@@ -1,206 +1,70 @@
-# ☕ CoffeeProd 백엔드 서버
+# CoffeeProd
 
-![Java](https://img.shields.io/badge/Java-27-orange.svg)
-![Spring Boot](https://img.shields.io/badge/Spring%20Boot-4.1.2-green.svg)
-![PostgreSQL](https://img.shields.io/badge/PostgreSQL-16-blue.svg)
-![Redis](https://img.shields.io/badge/Redis-7-red.svg)
+CoffeeProd는 커피 원두를 비교하고, 취향에 맞는 상품을 추천받아 주문하는 흐름을 구현한 포트폴리오 프로젝트다. 원산지·가공 방식·로스팅·향미 정보를 바탕으로 원두를 탐색하고, 장바구니와 결제, 주문 관리까지 이어지는 과정을 담았다.
 
-커피 원두 커머스 서비스를 위한 Spring Boot 기반 REST API 서버입니다.
-회원가입/인증부터 상품 관리, 장바구니, 주문, 결제 승인, 리뷰, QnA, 통계까지 온라인 커머스의 핵심 흐름을 제공합니다.
+이 저장소는 Spring Boot 기반 백엔드다. 회원 인증, 상품과 커피 프로필, 취향 추천, 주문·결제 API를 제공하며, 관리자가 카탈로그와 재고를 관리하고 주문·매출 현황을 확인하는 기능도 포함한다.
 
----
+[사이트 보기](https://coffeeprod.ttagyulab.com/)
 
-## 📖 프로젝트 개요
+공개 사이트는 기능 시연용이며 실제 상품 판매와 배송은 하지 않는다.
 
-CoffeeProd는 원두 커피 판매를 가정한 B2C 커머스 플랫폼 백엔드입니다.
-Toss Payments 결제 연동, 쿠폰/마일리지, 동시성 재고 차감, JWT 기반의 인증 시스템 등 실제 서비스 운영에 필요한 핵심 로직을 구현하는 데 중점을 두었습니다.
+## 서비스 화면
 
----
+상품명으로 원두를 검색하고, 로스팅·용량·가격을 비교하는 상품 목록이다.
 
-## ✨ 핵심 기능 (Features)
+![메인 페이지](docs/images/product-catalog.jpg)
 
-### 🧑‍💻 사용자 (User)
-* **인증 & 회원**: JWT 기반 회원가입/로그인, 이메일 중복 확인, RefreshToken Rotation, 마이페이지, 회원 탈퇴 (Soft Delete)
-* **상품 & 카테고리**: 카테고리별 상품 조회, 로스팅 정도/키워드 필터링, 상품 상세 조회
-* **장바구니**: 수량 및 분쇄 옵션 변경, 조건부 상품 담기
-* **주문 & 결제**:
-  * 장바구니 기반 주문서 생성 및 스냅샷 저장
-  * **Toss Payments** 연동 결제 승인
-  * 마일리지 선차감 및 동시성 제어가 적용된 조건부 재고 차감 (초과 판매 방지)
-  * 주문 취소 시 재고 및 마일리지 자동 복구
-* **리뷰 & QnA**: 구매 이력 기반 상품 리뷰 작성 (1인 1리뷰 제한), 상품 QnA 등록/수정/삭제
+로스팅과 산미·바디·단맛 선호도를 선택한 취향 추천 화면이다.
 
-### 🛠️ 관리자 (Admin)
-* **회원 관리**: 전체 회원 조회, 등급(`BRONZE`, `SILVER`, `GOLD`) 및 상태(`ACTIVE`, `SUSPENDED`) 변경
-* **상품/카테고리 관리**: 신규 상품 등록, 재고 입고, 상품 숨김(`HIDDEN`) 처리
-* **주문 관리**: 전체 주문 현황 조회, 주문 상태 전이 (`PENDING` -> `PAID` -> `SHIPPED` -> `DELIVERED`), 운송장 등록
-* **매출 통계**: 매일 자정 스케줄러 기반 전일 매출 자동 집계, 일/월/년 단위 통계 조회, 수동 재집계 기능
-* **고객 지원 (QnA)**: 대기 중인 문의 확인 및 관리자 답변 등록
+![취향 조건 선택과 원두 추천 결과](docs/images/coffee-recommendations.jpg)
 
----
+## 주요 기능
 
-## ⚙️ 기술 스택 (Tech Stack)
+| 구분 | 내용 |
+| --- | --- |
+| 원두 탐색 | 상품 검색·필터·정렬, 원산지·품종·가공 방식·향미·추출 방법 등 커피 프로필 조회 |
+| 취향 추천 | 로스팅·원두 구성·디카페인 여부와 향미 선호도에 따른 추천, 추천 점수와 이유 제공, 회원 취향 저장 |
+| 회원·장바구니 | 회원가입·로그인과 토큰 재발급, 배송지 관리, 상품 수량·분쇄 옵션 변경 |
+| 주문·결제 | 장바구니 기반 주문, 배송비 계산, 마일리지 사용·적립, Toss Payments 승인과 주문 취소 |
+| 리뷰·문의 | 구매 이력에 따른 상품 리뷰 작성, 회원당 같은 상품에 리뷰 1개 작성, 상품 문의와 관리자 답변 |
+| 관리자 | 회원 등급·상태 변경, 상품·커피 프로필·재고 관리, 주문 상태·배송 정보 관리, 일·월·년 매출 통계와 재집계 |
+
+## 구현에서 다룬 점
+
+### 취향 조건과 추천 근거
+
+사용자가 선택한 로스팅과 향미 선호도를 상품의 커피 프로필과 비교해 추천 점수를 계산한다. 결과에는 상품 정보와 함께 어떤 조건이 맞았는지 보여주는 추천 이유를 담는다. 회원은 취향을 저장해 같은 조건으로 다시 추천받을 수 있다.
+
+추천 후보의 점수 계산에는 필요한 값만 조회하고, 선정한 상품의 상세 정보를 따로 불러온다. 전체 후보의 연관 데이터를 모두 읽던 구조를 바꾸면서 기존 추천 점수와 결과 순서를 유지했다.
+
+### 주문과 결제 상태의 일관성
+
+주문 생성 시 재고와 마일리지를 함께 처리하고, 조건부 재고 차감과 잠금으로 동시 주문을 제어한다. 상품 가격과 배송지는 주문 시점의 값으로 보관해 이후 상품·주소 변경이 과거 주문 내역에 영향을 주지 않도록 했다.
+
+결제는 Toss Payments 승인·전체 취소와 연동한다. 요청과 결과를 작업 상태로 기록하고, 응답 시간 초과처럼 성공 여부가 불분명한 경우에는 재고·마일리지를 보존한 채 결제사 조회로 결과를 다시 확인한다. 멱등키와 복구 작업을 통해 중복 요청과 서버 재시작 이후의 처리도 다룬다.
+
+### 조회와 집계 개선
+
+주문 목록은 화면에 필요한 요약 정보만 조회하고, 조회 조건에 맞는 인덱스로 데이터 접근 경로를 개선했다. 매출 통계는 일별로 집계하며, 기간 재집계에서는 범위 조회와 배치 쓰기로 DB 호출을 줄였다. 결제 복구와 통계 작업에는 각각 전용 스케줄러를 두었다.
+
+재고 경합, 결제 복구, 인증·권한 등 주요 흐름에 회귀 테스트를 두고, CI에서는 전체 테스트가 성공한 뒤 같은 소스 리비전의 이미지를 게시하도록 구성했다. 개선 과정의 측정 조건과 결과는 아래 관련 문서에 정리했다.
+
+## 기술 구성
+
+저장소의 현재 빌드·설정 기준이다.
 
 | 분류 | 기술 |
 | --- | --- |
-| **Language** | JDK `27.0.1.0.3` |
-| **Framework** | Spring Boot `4.1.2` |
-| **Web** | Spring WebMVC |
-| **Database** | PostgreSQL 16, H2 (Test) |
-| **ORM** | Spring Data JPA, Hibernate |
-| **Cache & Token** | Redis 7 |
-| **Security** | Spring Security, JWT, BCrypt |
-| **API Docs** | Springdoc OpenAPI, Swagger UI |
-| **Payment** | Toss Payments 연동 (`FakePaymentGateway` 지원) |
-| **Infra** | Docker Compose, GitHub Actions, GHCR |
+| 언어·빌드 | Java 27, Gradle 9.9.0 |
+| 웹·데이터 접근 | Spring Boot 4.1.2, Spring WebMVC, Spring Data JPA, Hibernate |
+| 데이터 저장·변경 관리 | PostgreSQL 16, Redis 7, Flyway |
+| 인증·권한 | Spring Security, JWT, BCrypt, Redis 기반 Refresh Token Rotation |
+| 결제 | Toss Payments, 개발·테스트용 Fake Payment Gateway |
+| API 문서·관측 | Springdoc OpenAPI, Swagger UI, Actuator, Prometheus |
+| 테스트·성능 측정 | JUnit, H2, PostgreSQL 연동 검증, k6 |
+| 배포 | Docker Compose, GitHub Actions, GHCR, Cloudflare Tunnel |
 
----
+## 관련 문서
 
-## 🚀 시작하기 (Getting Started)
-
-### 1. 필수 요구사항
-* JDK 27.0.1.0.3
-* Docker & Docker Compose
-* Gradle (Wrapper 포함)
-
-#### JDK·Gradle Sync 설정
-
-2026-11-08 기준으로 Gradle `9.9.0`, Spring Boot `4.1.2`, springdoc `3.2.0` 정식 버전을 사용한다. Spring Starter·Lombok·PostgreSQL JDBC 등은 Spring Boot BOM으로 관리한다. 프로젝트 자체 버전의 `SNAPSHOT`은 외부 SNAPSHOT 의존성 사용을 의미하지 않는다.
-
-IntelliJ의 Project SDK와 Gradle JVM을 설치된 JDK 27로 지정하고 Gradle 배포판은 Wrapper를 사용한다. Gradle 실행용 JVM과 컴파일용 Java Toolchain은 별도 설정이며, 이 프로젝트의 Toolchain은 Java 27을 요구한다.
-
-Windows CLI에서는 현재 터미널의 JDK 경로를 지정한다. 아래 경로는 PC의 실제 설치 위치에 맞춘다.
-
-```powershell
-$env:JAVA_HOME = 'C:\Users\사용자\.jdks\openjdk-27.0.1.0.3'
-$env:PATH = "$env:JAVA_HOME\bin;$env:PATH"
-.\gradlew.bat --version
-.\gradlew.bat javaToolchains --warning-mode all
-```
-
-Foojay 플러그인은 누락된 Toolchain을 내려받지만 이미 설치된 JDK의 보안 패치를 자동 갱신하지 않는다. 최초 의존성·Toolchain 다운로드는 온라인으로 실행한다. 이후 업데이트에서는 JDK 전체 버전, CI의 Oracle JDK 버전, Docker 이미지 태그·digest와 Gradle 배포 SHA-256을 함께 확인한다. CI와 Docker는 JDK `27.0.1.0.3`으로 고정한다.
-
-공식 근거: [Spring Boot 요구사항](https://docs.spring.io/spring-boot/system-requirements.html), [Gradle Java 호환성](https://docs.gradle.org/current/userguide/compatibility.html), [JDK 보안 패치](https://www.oracle.com/java/technologies/javase/27-0-1-0-3-relnotes.html), [Toolchain 자동 설치의 범위](https://docs.gradle.org/current/userguide/toolchains.html#sec:provisioning).
-
-### 2. 인프라 실행 (DB & Redis)
-프로젝트 루트에서 Docker Compose를 사용하여 PostgreSQL과 Redis를 백그라운드에서 실행합니다.
-```bash
-docker compose up -d
-```
-
-### 3. 환경 변수 설정
-`application.yml` 또는 `.env`에 다음 환경 변수 설정이 필요합니다.
-(개발 환경인 `dev` 프로필에서는 로컬 기본값이 적용되어 있어 별도 설정 없이 실행 가능합니다.)
-
-```env
-DB_URL=jdbc:postgresql://localhost:5432/coffee_db
-DB_USERNAME=coffee_user
-DB_PASSWORD=coffee_password
-REDIS_HOST=localhost
-REDIS_PORT=6379
-REDIS_PASSWORD=redis_password
-JWT_SECRET_KEY=your-256-bit-secret-key
-TOSS_CLIENT_KEY=your-toss-client-key
-TOSS_SECRET_KEY=your-toss-secret-key
-```
-
-### 4. 애플리케이션 실행
-기본 프로필은 `dev` (H2 또는 Local DB + Fake 결제 모듈) 로 설정되어 있습니다.
-
-```bash
-# Mac/Linux
-./gradlew bootRun
-
-# Windows
-./gradlew.bat bootRun
-```
-
-> **프로필 안내 (`spring.profiles.active`)**
-> * `dev`: 로컬 개발용 (Fake Payment)
-> * `test`: 테스트용 (H2, Fake Payment)
-> * `local-toss`: 실제 Toss 승인 테스트용
-> * `prod`: 운영 배포용
-
-### 5. 운영 서버 배포
-
-운영 배포는 Spring Boot, PostgreSQL, Redis를 `docker-compose.prod.yml`로 관리한다. `develop` 또는 `main` 브랜치에 배포 관련 변경이 push되면 GitHub Actions가 Docker 이미지를 빌드해 GHCR에 게시한다.
-
-서버는 전체 소스를 다시 빌드하지 않고 다음 명령으로 새 이미지를 내려받아 컨테이너를 갱신한다.
-
-```bash
-bash scripts/deploy/deploy.sh
-```
-
-운영 구성의 주요 원칙:
-
-* Backend는 `127.0.0.1:8080`에만 바인딩하고 Cloudflare Tunnel을 통해 공개합니다.
-* PostgreSQL과 Redis 포트는 서버 외부에 공개하지 않습니다.
-* `.env`, `postgres-data`, `redis-data`는 이미지와 Git에 포함하지 않습니다.
-* Flyway는 Backend 시작 시 자동 실행합니다.
-* 카탈로그 시드는 일반 배포와 분리하고 승인된 데이터 갱신 시에만 실행합니다.
-* GHCR의 `sha-*` 태그를 사용해 특정 애플리케이션 버전으로 롤백할 수 있습니다.
-
-최초 전환, GHCR 로그인, 환경변수, 카탈로그 적재 및 롤백 절차는 [`scripts/deploy/README.md`](scripts/deploy/README.md)를 따릅니다.
-
----
-
-## 📚 API 문서 (Swagger)
-
-서버가 실행된 후 아래 URL에서 전체 API 명세를 확인하고 테스트할 수 있습니다.
-- **Swagger UI**: [http://localhost:8080/swagger-ui/index.html](http://localhost:8080/swagger-ui/index.html)
-- **OpenAPI JSON**: [http://localhost:8080/v3/api-docs](http://localhost:8080/v3/api-docs)
-
-### API 공통 응답 포맷
-```json
-{
-  "status": 200,
-  "message": "성공",
-  "data": { ... },
-  "errors": null
-}
-```
-
----
-
-## 🔒 보안 및 인증 규칙
-
-1. **접근 권한**
-   * **공개 API**: 로그인/회원가입, 상품/카테고리 조회(GET)
-   * **사용자 API**: `Authorization: Bearer {accessToken}` 필수
-   * **관리자 API**: `/api/v1/admin/**` 경로는 `ROLE_ADMIN` 권한 필수
-2. **토큰 관리**
-   * Access Token은 클라이언트 메모리/스토리지에 보관합니다.
-   * Refresh Token은 서버의 Redis에 보관되며 재발급 시 1회성(Rotation)으로 갱신됩니다.
-
----
-
-## 🗄️ 도메인 및 DB 설계 핵심
-
-* **동시성 제어**: `주문 생성 시` 상품의 재고는 DB의 `조건부 UPDATE` 쿼리(`stockQuantity >= requestQuantity`)를 사용하여 동시 주문에 의한 초과 판매를 방지합니다.
-* **트랜잭션 정합성**: 주문 실패 또는 결제 위변조 발생 시 즉시 주문을 `CANCELED` 처리하고 차감된 마일리지와 재고를 복구합니다.
-* **스냅샷 패턴**: 주문 발생 시점의 상품 가격, 배송지 주소는 주문 엔티티(`OrderItem`, `Orders`)에 스냅샷 형태로 복사되어, 이후 상품 정보가 변경되더라도 과거 주문 내역이 영향받지 않습니다.
-* **통계 집계 로직**: 스케줄러가 매일 `00:10` 전일 결제 데이터를 1개의 `SalesStatistics` 레코드로 요약(Upsert)하여 조회 성능을 높였습니다.
-
----
-
-## 🧪 테스트 (Testing)
-
-현업 수준의 서비스 통합 테스트가 작성되어 있습니다.
-```bash
-./gradlew test
-```
-* **주요 테스트 커버리지**:
-  * 결제 금액 위변조 및 보상 트랜잭션 (Refund/Cancel)
-  * 다중 스레드 환경에서의 `재고 차감 동시성` 테스트
-  * 관리자 상태 전이 및 배송 정책 테스트
-
----
-
-## 📌 향후 로드맵 (Roadmap)
-
-- [ ] Spring Security & Controller 통합 테스트 강화
-- [ ] 주문 결제 실패 시 예약된 주문 데이터 정리 (Scheduler)
-- [ ] 통계 스케줄러 분산 락 적용 방안 (다중 인스턴스 대비)
-- [ ] 리뷰 / QnA 신고 시스템
-- [x] GitHub Actions 및 GHCR 기반 Backend 이미지 빌드·게시
-- [ ] 운영 서버 원격 배포 트리거 자동화
+- [성능 개선 기록](improvement/README.md): 주문 조회와 코드 최적화 과정, 측정 결과와 해석 범위
+- [개선 사례와 이미지](improvement/portfolio/README.md): 사례별 문제·변경·검증 조건과 결과
