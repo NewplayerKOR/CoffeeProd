@@ -1,0 +1,95 @@
+---
+config:
+  layout: elk
+  theme: base
+  look: classic
+  htmlLabels: false
+  themeVariables:
+    primaryColor: '#f2f7f4'
+    primaryTextColor: '#172b22'
+    primaryBorderColor: '#718477'
+    lineColor: '#718477'
+    secondaryColor: '#ffffff'
+    tertiaryColor: '#ffffff'
+    fontFamily: 'Arial, sans-serif'
+    fontSize: '18px'
+  er:
+    diagramPadding: 20
+    entityPadding: 12
+    fontSize: 18
+---
+%% Flyway V1~V19 기준. 전체 ERD에서 구매·결제의 9개 테이블·9개 FK를 추렸다.
+%% 기준정보와 그 FK는 전체 ERD를 참고한다. 장바구니와 주문 사이에 가상 FK를 만들지 않는다.
+erDiagram
+    direction TB
+    accTitle: CoffeeProd 핵심 ERD
+    accDescr: 회원, 커피 프로필과 상품, 장바구니와 항목, 주문과 항목, 결제와 결제 작업의 핵심 9개 테이블과 실제 외래키 관계.
+
+    member {
+        bigint member_id PK
+        varchar email UK
+        int mileage
+        varchar status
+    }
+    coffee_profile {
+        bigint coffee_profile_id PK
+        varchar profile_name
+        varchar roast_level
+        boolean decaf
+    }
+    product {
+        bigint product_id PK
+        bigint coffee_profile_id FK
+        varchar name
+        int price
+        int stock_quantity
+    }
+    cart {
+        bigint cart_id PK
+        bigint member_id FK, UK
+    }
+    cart_item {
+        bigint cart_item_id PK
+        bigint cart_id FK
+        bigint product_id FK
+        int quantity
+        varchar grind_type
+    }
+    orders {
+        bigint order_id PK
+        bigint member_id FK
+        varchar status
+        int total_price
+        varchar delivery_address
+    }
+    order_item {
+        bigint order_item_id PK
+        bigint order_id FK
+        bigint product_id FK
+        int order_price
+        int quantity
+    }
+    payment {
+        bigint payment_id PK
+        bigint order_id FK, UK
+        varchar status
+        timestamptz paid_at
+        timestamptz refunded_at
+    }
+    payment_operation {
+        bigint id PK
+        bigint order_id FK
+        varchar operation_type
+        varchar status
+        varchar idempotency_key UK
+    }
+
+    member |o..o| cart : member_id
+    cart |o..o{ cart_item : cart_id
+    product |o..o{ cart_item : product_id
+    member ||..o{ orders : member_id
+    orders ||..o{ order_item : order_id
+    product ||..o{ order_item : product_id
+    orders ||..o| payment : order_id
+    orders ||..o{ payment_operation : order_id
+    coffee_profile |o..o{ product : coffee_profile_id
