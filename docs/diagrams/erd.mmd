@@ -1,0 +1,236 @@
+---
+config:
+  layout: elk
+  theme: base
+  look: classic
+  htmlLabels: false
+  themeVariables:
+    primaryColor: '#f2f7f4'
+    primaryTextColor: '#172b22'
+    primaryBorderColor: '#718477'
+    lineColor: '#718477'
+    secondaryColor: '#ffffff'
+    tertiaryColor: '#ffffff'
+    fontFamily: 'Arial, sans-serif'
+    fontSize: '16px'
+  er:
+    diagramPadding: 24
+    entityPadding: 16
+    fontSize: 16
+---
+%% Flyway V1~V19 기준. 전체 24개 테이블, 실제 FK 27개.
+%% PK·FK와 주요 컬럼만 표시한다. 일반 감사 시각·본문 등 부가 컬럼은 생략한다.
+erDiagram
+    direction TB
+    accTitle: CoffeeProd 전체 ERD
+    accDescr: 회원, 상품과 커피 프로필, 취향, 장바구니, 주문과 결제, 리뷰와 문의, 통계의 전체 24개 테이블과 실제 외래키 관계.
+
+    member {
+        bigint member_id PK
+        varchar email UK
+        varchar nickname UK
+        varchar role
+        varchar grade
+        int mileage
+        int mileage_recovery_due
+        varchar status
+    }
+    address {
+        bigint address_id PK
+        bigint member_id FK
+        varchar recipient
+        varchar zipcode
+        varchar address_line1
+        boolean is_default
+    }
+    cart {
+        bigint cart_id PK
+        bigint member_id FK, UK
+    }
+    cart_item {
+        bigint cart_item_id PK
+        bigint cart_id FK
+        bigint product_id FK
+        int quantity
+        varchar grind_type
+    }
+    orders {
+        bigint order_id PK
+        bigint member_id FK
+        varchar toss_order_id UK
+        varchar status
+        timestamptz order_date
+        int total_price
+        int used_mileage
+        boolean cancel_requested
+    }
+    order_item {
+        bigint order_item_id PK
+        bigint order_id FK
+        bigint product_id FK
+        int order_price
+        int quantity
+        varchar grind_type
+    }
+    payment {
+        bigint payment_id PK
+        bigint order_id FK, UK
+        varchar payment_key UK
+        varchar status
+        timestamptz paid_at
+        timestamptz refunded_at
+    }
+    payment_operation {
+        bigint id PK
+        bigint order_id FK
+        varchar operation_type
+        varchar status
+        varchar idempotency_key UK
+        int amount
+        int attempt_count
+        timestamptz next_attempt_at
+        timestamptz lease_until
+    }
+    category {
+        bigint category_id PK
+        varchar name UK
+    }
+    product {
+        bigint product_id PK
+        bigint category_id FK
+        bigint coffee_profile_id FK
+        varchar sku UK
+        varchar name
+        int weight_grams
+        int price
+        int stock_quantity
+        varchar status
+    }
+    coffee_profile {
+        bigint coffee_profile_id PK
+        bigint processing_method_id FK
+        varchar catalog_key UK
+        varchar profile_name
+        varchar bean_type
+        varchar origin_country_code
+        varchar roast_level
+        boolean decaf
+        smallint acidity
+        smallint body
+        smallint sweetness
+        smallint aroma
+    }
+    processing_method {
+        bigint processing_method_id PK
+        varchar code UK
+        varchar name
+    }
+    coffee_profile_component {
+        bigint coffee_profile_component_id PK
+        bigint coffee_profile_id FK
+        bigint processing_method_id FK
+        varchar origin_country_code
+        numeric component_ratio
+        smallint display_order
+    }
+    flavor_note {
+        bigint flavor_note_id PK
+        varchar code UK
+        varchar name
+    }
+    coffee_profile_flavor_note {
+        bigint coffee_profile_flavor_note_id PK
+        bigint coffee_profile_id FK
+        bigint flavor_note_id FK
+        smallint display_order
+        smallint intensity
+    }
+    brew_method {
+        bigint brew_method_id PK
+        varchar code UK
+        varchar name
+    }
+    coffee_profile_brew_method {
+        bigint coffee_profile_brew_method_id PK
+        bigint coffee_profile_id FK
+        bigint brew_method_id FK
+        smallint display_order
+        varchar recommendation_note
+    }
+    coffee_variety {
+        bigint coffee_variety_id PK
+        varchar code UK
+        varchar name
+    }
+    coffee_profile_variety {
+        bigint coffee_profile_variety_id PK
+        bigint coffee_profile_id FK
+        bigint coffee_variety_id FK
+        smallint display_order
+    }
+    member_coffee_preference {
+        bigint member_coffee_preference_id PK
+        bigint member_id FK, UK
+        bigint processing_method_id FK
+        varchar bean_type
+        varchar roast_level
+        boolean decaf
+        smallint preferred_acidity
+        smallint preferred_body
+        smallint preferred_sweetness
+        smallint preferred_aroma
+    }
+    reviews {
+        bigint review_id PK
+        bigint member_id FK
+        bigint product_id FK
+        int rating
+    }
+    product_qna {
+        bigint qna_id PK
+        bigint member_id FK
+        bigint product_id FK
+        bigint answerer_id FK
+        varchar title
+        varchar status
+    }
+    sales_statistics {
+        bigint sales_statistics_id PK
+        date stat_date UK
+        bigint order_count
+        bigint product_sales_amount
+        bigint payment_amount
+    }
+    sales_rebuild_request {
+        date stat_date PK
+        timestamptz requested_at
+        varchar last_error_code
+    }
+
+    member |o..o{ address : member_id
+    member |o..o| cart : member_id
+    cart |o..o{ cart_item : cart_id
+    product |o..o{ cart_item : product_id
+    member ||..o{ orders : member_id
+    orders ||..o{ order_item : order_id
+    product ||..o{ order_item : product_id
+    orders ||..o| payment : order_id
+    orders ||..o{ payment_operation : order_id
+    category ||..o{ product : category_id
+    processing_method |o..o{ coffee_profile : processing_method_id
+    coffee_profile |o..o{ product : coffee_profile_id
+    coffee_profile ||..o{ coffee_profile_component : coffee_profile_id
+    processing_method |o..o{ coffee_profile_component : processing_method_id
+    coffee_profile ||..o{ coffee_profile_flavor_note : coffee_profile_id
+    flavor_note ||..o{ coffee_profile_flavor_note : flavor_note_id
+    coffee_profile ||..o{ coffee_profile_brew_method : coffee_profile_id
+    brew_method ||..o{ coffee_profile_brew_method : brew_method_id
+    coffee_profile ||..o{ coffee_profile_variety : coffee_profile_id
+    coffee_variety ||..o{ coffee_profile_variety : coffee_variety_id
+    member ||..o| member_coffee_preference : member_id
+    processing_method |o..o{ member_coffee_preference : processing_method_id
+    member ||..o{ reviews : member_id
+    product ||..o{ reviews : product_id
+    member ||..o{ product_qna : member_id
+    product ||..o{ product_qna : product_id
+    member |o..o{ product_qna : answerer_id
