@@ -4,7 +4,7 @@ services:
     container_name: coffee-postgres
     restart: always
     ports:
-      - "5432:5432"
+      - "${DB_PORT:-5432}:5432"
     environment:
       POSTGRES_DB: coffee_db
       POSTGRES_USER: ${DB_USERNAME}
@@ -19,7 +19,7 @@ services:
     container_name: coffee-redis
     restart: always
     ports:
-      - "6379:6379" # redis 기본 포트
+      - "${REDIS_PORT:-6379}:6379" # 애플리케이션의 로컬 Redis 포트와 맞춘다.
     command: redis-server --requirepass ${REDIS_PASSWORD}
     volumes:
       - ./redis-data:/data
