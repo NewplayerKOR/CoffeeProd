@@ -37,7 +37,9 @@ CoffeeProd는 커피 원두를 비교하고, 취향에 맞는 상품을 추천�
 
 [![CoffeeProd 구매·결제의 핵심 9개 테이블과 외래키 관계](docs/images/erd-core.svg)](docs/images/erd-core.svg)
 
-[전체 ERD 확대 보기 — 24개 테이블](docs/images/erd.svg) · [핵심 ERD 원본](docs/diagrams/erd-core.mmd) · [테이블 구성과 관계 설명](docs/diagrams/README.md)
+[V1~V19 ERD 확대 보기 — 24개 테이블](docs/images/erd.svg) · [핵심 ERD 원본](docs/diagrams/erd-core.mmd) · [테이블 구성과 관계 설명](docs/diagrams/README.md)
+
+ERD는 V1~V19 기준 자료다. 이후 V20의 소셜 계정·인증 권한 테이블과 V21의 회원 토큰 버전 변경은 [현재 migration](src/main/resources/db/migration)을 확인한다.
 
 PK는 기본키, FK는 외래키, UK는 단일 컬럼 UNIQUE 제약이다. 관계는 실제 DB 제약을 따르며, 카테고리·커피 기준정보·리뷰·문의·통계 등 나머지 구조는 전체 ERD에서 확인할 수 있다.
 
@@ -93,5 +95,7 @@ PK는 기본키, FK는 외래키, UK는 단일 컬럼 UNIQUE 제약이다. 관�
 
 ## 관련 문서
 
+- [OAuth 연동 안내](docs/oauth-setup.md) · [비밀번호 복구](docs/password-reset.md) · [AI 추천](docs/ai-recommendations.md)
+- [외부 서비스 정책](docs/integrations/README.md): 서비스 선정 당시 정책과 준비 목록
 - [성능 개선 기록](improvement/README.md): 주문 조회와 코드 최적화 과정, 측정 결과와 해석 범위
 - [개선 사례와 이미지](improvement/portfolio/README.md): 사례별 문제·변경·검증 조건과 결과
