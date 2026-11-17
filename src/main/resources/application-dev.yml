@@ -1,5 +1,6 @@
 spring:
   config:
+    import: optional:file:.env[.properties] # 개발 실행 시 로컬 비밀 설정을 읽는다.
     activate:
       on-profile: dev
 
