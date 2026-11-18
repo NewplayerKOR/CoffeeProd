@@ -1,6 +1,15 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+copy_only=false
+case "${1-}" in
+  --copy-only) copy_only=true; shift ;;
+esac
+if (( $# != 0 )); then
+  echo "사용법: bash scripts/seed/catalog/load_catalog.sh [--copy-only]" >&2
+  exit 2
+fi
+
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 PROJECT_ROOT="$(cd "$SCRIPT_DIR/../../.." && pwd)"
 CSV_DIR="$SCRIPT_DIR/csv"
@@ -33,13 +42,15 @@ cd "$PROJECT_ROOT"
 node scripts/seed/catalog/generate_catalog.mjs --check
 
 # 컨테이너 내부 계정으로 트랜잭션 적재를 실행함
-docker compose exec -T db sh -lc \
-  'psql -U "$POSTGRES_USER" -d "$POSTGRES_DB" -v ON_ERROR_STOP=1' \
+docker compose exec -T -e "CATALOG_COPY_ONLY=$copy_only" db sh -lc \
+  'psql -U "$POSTGRES_USER" -d "$POSTGRES_DB" -v ON_ERROR_STOP=1 -v copy_only="$CATALOG_COPY_ONLY"' \
   < "$SCRIPT_DIR/sql/load_catalog.sql"
 
-# 커밋된 카탈로그의 관계 정합성을 다시 검증함
-docker compose exec -T db sh -lc \
-  'psql -U "$POSTGRES_USER" -d "$POSTGRES_DB" -v ON_ERROR_STOP=1' \
-  < "$SCRIPT_DIR/sql/verify_catalog.sql"
+if [[ "$copy_only" == false ]]; then
+  # 전체 적재에서 생성한 관계의 정합성을 다시 검증한다.
+  docker compose exec -T db sh -lc \
+    'psql -U "$POSTGRES_USER" -d "$POSTGRES_DB" -v ON_ERROR_STOP=1' \
+    < "$SCRIPT_DIR/sql/verify_catalog.sql"
+fi
 
 echo "카탈로그 적재와 검증이 완료되었습니다."
