@@ -236,7 +236,7 @@ class ProductServiceIntegrationTest {
         productService.updateProductStatus(hiddenProduct.getId(), statusRequest(ProductStatus.HIDDEN));
 
         // status 필터를 비우면 관리자는 ON_SALE, SOLD_OUT, HIDDEN 상품을 모두 조회한다.
-        Page<ProductDto.SummaryResponse> response = productService.getAdminProducts(
+        Page<ProductDto.AdminSummaryResponse> response = productService.getAdminProducts(
                 null,
                 null,
                 null,

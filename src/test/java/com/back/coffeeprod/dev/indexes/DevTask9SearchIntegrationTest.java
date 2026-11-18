@@ -4,6 +4,8 @@ import com.back.coffeeprod.domain.coffeeprofile.entity.*;
 import com.back.coffeeprod.domain.product.entity.*;
 import com.back.coffeeprod.domain.product.service.ProductService;
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityManagerFactory;
+import org.hibernate.SessionFactory;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.*;
@@ -28,6 +30,7 @@ import static org.junit.jupiter.api.Assertions.*;
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @ActiveProfiles("test")
 @TestPropertySource(properties = {"spring.jpa.show-sql=false", "spring.jpa.open-in-view=false",
+        "spring.jpa.properties.hibernate.generate_statistics=true",
         "app.payment.workers-enabled=false", "spring.data.redis.host=127.0.0.1", "spring.data.redis.port=1",
         "spring.data.redis.password=unused", "jwt.secret-key=dev9-search-synthetic-secret-key-at-least-32-bytes",
         "jwt.access-expiration=1800000", "jwt.refresh-expiration=1209600000", "pg.toss.client-key=unused", "pg.toss.secret-key=unused"})
@@ -45,6 +48,7 @@ class DevTask9SearchIntegrationTest {
     }
     @Autowired ProductService service;
     @Autowired EntityManager em;
+    @Autowired EntityManagerFactory entityManagerFactory;
     @Autowired JdbcTemplate jdbc;
     @Autowired PlatformTransactionManager transactions;
     @LocalServerPort int port;
@@ -122,6 +126,21 @@ class DevTask9SearchIntegrationTest {
         assertEquals(products.subList(0, 6).reversed().stream().map(Product::getId).toList(), collected);
         assertThrows(com.back.coffeeprod.global.exception.CustomException.class, () -> service.getProduct(products.get(7).getId()));
     }
+    @ParameterizedTest
+    @ValueSource(ints = {1, 4})
+    void adminStockListUsesOnlyPageAndCountQueries(int size) {
+        var statistics = entityManagerFactory.unwrap(SessionFactory.class).getStatistics();
+        statistics.clear();
+
+        var result = service.getAdminProducts(null, null, null, null, null, null, null, null,
+                PageRequest.of(0, size, Sort.by("id")));
+
+        assertEquals(size, result.getNumberOfElements());
+        assertEquals(8, result.getTotalElements());
+        assertTrue(result.stream().allMatch(product -> product.getStockQuantity() == 10));
+        assertEquals(2, statistics.getPrepareStatementCount());
+    }
+
     @Test void publicHttpSearchAndAdminAuthorizationArePreserved() throws Exception {
         var client = HttpClient.newHttpClient();
         String query = URLEncoder.encode("에티오피아", java.nio.charset.StandardCharsets.UTF_8);

@@ -39,6 +39,7 @@ public class AdminProductController {
             description = """
                     관리자가 전체 상품 목록을 조회합니다.
                     - ON_SALE, SOLD_OUT, HIDDEN 상품 모두 조회 가능
+                    - 각 상품의 현재 재고 수량(stockQuantity)을 반환
                     - 카테고리, 커피 프로필, 로스팅강도, 상품상태, 키워드로 필터링 가능
                     """
     )
@@ -48,7 +49,7 @@ public class AdminProductController {
             @ApiResponse(responseCode = "403", description = "관리자 권한 없음")
     })
     @GetMapping
-    public ResponseEntity<CommonResponse<Page<ProductDto.SummaryResponse>>> getAdminProducts(
+    public ResponseEntity<CommonResponse<Page<ProductDto.AdminSummaryResponse>>> getAdminProducts(
             @RequestParam(required = false) Long categoryId,
             @RequestParam(required = false) Long coffeeProfileId,
             @RequestParam(required = false) Long processingMethodId,
@@ -61,7 +62,7 @@ public class AdminProductController {
             @PageableDefault(size = 20, sort = "createdAt", direction = Sort.Direction.DESC)
             Pageable pageable) {
 
-        Page<ProductDto.SummaryResponse> response =
+        Page<ProductDto.AdminSummaryResponse> response =
                 productService.getAdminProducts(categoryId, coffeeProfileId, processingMethodId, beanType, decaf, roastLevel, status, keyword, pageable);
 
         return ResponseEntity.ok(CommonResponse.success(response));
