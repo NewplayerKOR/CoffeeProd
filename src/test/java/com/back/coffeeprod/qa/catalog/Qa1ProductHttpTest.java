@@ -78,9 +78,12 @@ class Qa1ProductHttpTest {
         return new TransactionTemplate(manager).execute(s -> { em.clear(); T result = action.get(); em.flush(); return result; });
     }
     Product product(ProductStatus status) {
+        return product(status, 12);
+    }
+    Product product(ProductStatus status, int stockQuantity) {
         return tx(() -> {
             var p = Product.builder().category(category).sku(unique()).weightGrams(200).name("QA1 원본 원두")
-                    .price(10000).stockQuantity(12).roastLevel(RoastLevel.MEDIUM).description("원본 설명").imageUrl(IMAGE).build();
+                    .price(10000).stockQuantity(stockQuantity).roastLevel(RoastLevel.MEDIUM).description("원본 설명").imageUrl(IMAGE).build();
             p.updateStatus(status); return products.saveAndFlush(p);
         });
     }
@@ -163,22 +166,61 @@ class Qa1ProductHttpTest {
     }
     @Test @DisplayName("QA1-LIST 공개 목록은 판매중만 관리자 목록은 전체 상태를 페이지별 반환한다")
     void lists() throws Exception {
-        var sale = product(ProductStatus.ON_SALE); var sold = product(ProductStatus.SOLD_OUT); var hidden = product(ProductStatus.HIDDEN);
+        var sale = product(ProductStatus.ON_SALE, 1);
+        var sold = product(ProductStatus.SOLD_OUT, 0);
+        var hidden = product(ProductStatus.HIDDEN, 12);
         var before = state(); String query = "?categoryId=" + category.getId() + "&size=1&sort=id,asc&page=";
         var publicPage = data(http("GET", "/api/v1/products" + query + "0", null, null), 200);
         assertEquals(1, publicPage.path("totalElements").asInt()); assertEquals(1, publicPage.path("content").size());
         assertEquals(sale.getId().longValue(), publicPage.path("content").get(0).path("id").asLong());
         assertEquals(IMAGE, publicPage.path("content").get(0).path("imageUrl").asText());
+        assertFalse(publicPage.path("content").get(0).has("stockQuantity"));
         assertEquals(0, data(http("GET", "/api/v1/products" + query + "1", null, null), 200).path("content").size());
         var expected = List.of(sale, sold, hidden);
         for (int i = 0; i < 3; i++) {
             var page = data(http("GET", ADMIN + query + i, null, admin), 200);
             assertEquals(3, page.path("totalElements").asInt()); assertEquals(1, page.path("content").size());
+            assertEquals(3, page.path("totalPages").asInt());
+            assertEquals(i, page.path("number").asInt());
             var item = page.path("content").get(0);
             assertEquals(expected.get(i).getId().longValue(), item.path("id").asLong());
             assertEquals(expected.get(i).getStatus().name(), item.path("status").asText()); assertEquals(IMAGE, item.path("imageUrl").asText());
+            assertTrue(item.path("stockQuantity").isIntegralNumber());
+            assertEquals(expected.get(i).getStockQuantity(), item.path("stockQuantity").intValue());
         }
         unchanged(before);
+    }
+
+    @Test @DisplayName("관리자 상품 목록은 재고 추가 이후 최신 수량을 반환한다")
+    void adminListReturnsUpdatedStock() throws Exception {
+        var product = product(ProductStatus.SOLD_OUT, 0);
+        String list = ADMIN + "?categoryId=" + category.getId() + "&status=SOLD_OUT";
+
+        var item = data(http("GET", list, null, admin), 200).path("content").get(0);
+        assertTrue(item.path("stockQuantity").isIntegralNumber());
+        assertEquals(0, item.path("stockQuantity").intValue());
+        var updated = data(http("PATCH", ADMIN + "/" + product.getId() + "/stock", Map.of("quantity", 3), admin), 200);
+        assertEquals(3, updated.path("stockQuantity").intValue());
+
+        var page = data(http("GET", list, null, admin), 200);
+        assertEquals(1, page.path("totalElements").intValue());
+        var refreshed = page.path("content").get(0);
+        assertEquals(product.getId().longValue(), refreshed.path("id").longValue());
+        assertEquals("SOLD_OUT", refreshed.path("status").asText());
+        assertTrue(refreshed.path("stockQuantity").isIntegralNumber());
+        assertEquals(3, refreshed.path("stockQuantity").intValue());
+    }
+
+    @Test @DisplayName("OpenAPI는 관리자 목록 재고만 필수 정수로 정의한다")
+    void openApiDocumentsAdminStock() throws Exception {
+        var response = http("GET", "/v3/api-docs", null, null);
+        assertEquals(200, response.statusCode());
+        var schemas = JSON.readTree(response.body()).path("components").path("schemas");
+        var adminSummary = schemas.path("AdminSummaryResponse");
+        assertEquals("integer", adminSummary.path("properties").path("stockQuantity").path("type").asText());
+        assertTrue(adminSummary.path("required").valueStream().anyMatch(field -> "stockQuantity".equals(field.asText())));
+        assertTrue(schemas.path("SummaryResponse").path("properties").isObject());
+        assertFalse(schemas.path("SummaryResponse").path("properties").has("stockQuantity"));
     }
     static Stream<Arguments> details() {
         return Arrays.stream(ProductStatus.values()).flatMap(status -> Stream.of(false, true).map(admin -> Arguments.of(status, admin)));

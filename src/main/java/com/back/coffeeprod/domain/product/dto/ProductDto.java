@@ -6,6 +6,7 @@ import com.back.coffeeprod.domain.coffeeprofile.entity.CoffeeProfile;
 import com.back.coffeeprod.domain.product.entity.Product;
 import com.back.coffeeprod.domain.product.entity.ProductStatus;
 import com.back.coffeeprod.domain.product.entity.RoastLevel;
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -86,6 +87,17 @@ public class ProductDto {
             this.roastLevel = product.getRoastLevel();
             this.imageUrl = product.getImageUrl();
             this.status = product.getStatus();
+        }
+    }
+
+    @Getter
+    public static class AdminSummaryResponse extends SummaryResponse {
+        @Schema(description = "현재 재고 수량", requiredMode = Schema.RequiredMode.REQUIRED)
+        private final int stockQuantity;
+
+        public AdminSummaryResponse(Product product) {
+            super(product);
+            this.stockQuantity = product.getStockQuantity();
         }
     }
 

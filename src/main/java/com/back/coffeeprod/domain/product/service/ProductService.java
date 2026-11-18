@@ -67,7 +67,7 @@ public class ProductService {
     }
 
     // [관리자] 상품 목록 조회
-    public Page<ProductDto.SummaryResponse> getAdminProducts(
+    public Page<ProductDto.AdminSummaryResponse> getAdminProducts(
             Long categoryId,
             Long coffeeProfileId,
             Long processingMethodId,
@@ -81,7 +81,7 @@ public class ProductService {
         // 관리자는 ON_SALE, SOLD_OUT, HIDDEN 상품을 모두 조회 가능
         return productRepository
                 .findAllWithFilters(categoryId, coffeeProfileId, processingMethodId, beanType, decaf, roastLevel, status, keyword, pageable)
-                .map(ProductDto.SummaryResponse::new);
+                .map(ProductDto.AdminSummaryResponse::new);
     }
 
     // [관리자] 상품 상세 조회
