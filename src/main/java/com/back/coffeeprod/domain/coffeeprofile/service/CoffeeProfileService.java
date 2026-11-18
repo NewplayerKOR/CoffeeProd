@@ -22,9 +22,12 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Objects;
 import java.util.Set;
+import java.util.function.BiPredicate;
 
 @Service
 @RequiredArgsConstructor
@@ -95,8 +98,10 @@ public class CoffeeProfileService {
     ) {
         validateCoffeeProfileRequest(request);
 
-        CoffeeProfile coffeeProfile = findCoffeeProfileById(coffeeProfileId);
+        CoffeeProfile coffeeProfile = coffeeProfileRepository.findForUpdate(coffeeProfileId)
+                .orElseThrow(() -> new CustomException(ErrorCode.COFFEE_PROFILE_NOT_FOUND));
         ProcessingMethod processingMethod = resolveProcessingMethod(request.getProcessingMethodId());
+        replaceCoffeeProfileContents(coffeeProfile, request);
 
         coffeeProfile.update(
                 processingMethod,
@@ -117,8 +122,6 @@ public class CoffeeProfileService {
                 request.getAroma(),
                 request.getSummary()
         );
-
-        replaceCoffeeProfileContents(coffeeProfile, request);
 
         coffeeProfileRepository.flush();
         return new CoffeeProfileDto.Response(coffeeProfile);
@@ -255,10 +258,67 @@ public class CoffeeProfileService {
             ));
         }
 
-        coffeeProfile.replaceFlavorNotes(flavorNotes);
-        coffeeProfile.replaceBrewMethods(brewMethods);
-        coffeeProfile.replaceVarieties(varieties);
-        coffeeProfile.replaceComponents(components);
+        if (coffeeProfile.getId() == null) {
+            coffeeProfile.replaceFlavorNotes(flavorNotes);
+            coffeeProfile.replaceBrewMethods(brewMethods);
+            coffeeProfile.replaceVarieties(varieties);
+            coffeeProfile.replaceComponents(components);
+            return;
+        }
+
+        boolean flavorNotesChanged = !sameContents(coffeeProfile.getFlavorNotes(), flavorNotes, (current, next) ->
+                current.getFlavorNote().getId().equals(next.getFlavorNote().getId())
+                        && current.getIntensity() == next.getIntensity()
+                        && current.getDisplayOrder() == next.getDisplayOrder());
+        boolean brewMethodsChanged = !sameContents(coffeeProfile.getBrewMethods(), brewMethods, (current, next) ->
+                current.getBrewMethod().getId().equals(next.getBrewMethod().getId())
+                        && Objects.equals(current.getRecommendationNote(), next.getRecommendationNote())
+                        && current.getDisplayOrder() == next.getDisplayOrder());
+        boolean varietiesChanged = !sameContents(coffeeProfile.getVarieties(), varieties, (current, next) ->
+                current.getCoffeeVariety().getId().equals(next.getCoffeeVariety().getId())
+                        && current.getDisplayOrder() == next.getDisplayOrder());
+        boolean componentsChanged = !sameContents(coffeeProfile.getComponents(), components,
+                CoffeeProfileService::sameComponent);
+
+        if (!flavorNotesChanged && !brewMethodsChanged && !varietiesChanged && !componentsChanged) {
+            return;
+        }
+
+        // 프로필·참조 ID 및 표시 순서의 고유 제약을 지키도록 기존 연결을 먼저 삭제한다.
+        if (flavorNotesChanged) coffeeProfile.replaceFlavorNotes(List.of());
+        if (brewMethodsChanged) coffeeProfile.replaceBrewMethods(List.of());
+        if (varietiesChanged) coffeeProfile.replaceVarieties(List.of());
+        if (componentsChanged) coffeeProfile.replaceComponents(List.of());
+        coffeeProfileRepository.flush();
+
+        if (flavorNotesChanged) coffeeProfile.replaceFlavorNotes(flavorNotes);
+        if (brewMethodsChanged) coffeeProfile.replaceBrewMethods(brewMethods);
+        if (varietiesChanged) coffeeProfile.replaceVarieties(varieties);
+        if (componentsChanged) coffeeProfile.replaceComponents(components);
+    }
+
+    private static <T> boolean sameContents(List<T> current, List<T> next, BiPredicate<T, T> matches) {
+        if (current.size() != next.size()) {
+            return false;
+        }
+        for (int i = 0; i < current.size(); i++) {
+            if (!matches.test(current.get(i), next.get(i))) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private static boolean sameComponent(CoffeeProfileComponent current, CoffeeProfileComponent next) {
+        return current.getDisplayOrder() == next.getDisplayOrder()
+                && current.getOriginCountryCode().equals(next.getOriginCountryCode())
+                && Objects.equals(current.getOriginRegion(), next.getOriginRegion())
+                && Objects.equals(processingMethodId(current.getProcessingMethod()), processingMethodId(next.getProcessingMethod()))
+                && Comparator.nullsFirst(BigDecimal::compareTo).compare(current.getComponentRatio(), next.getComponentRatio()) == 0;
+    }
+
+    private static Long processingMethodId(ProcessingMethod method) {
+        return method == null ? null : method.getId();
     }
 
     // 향미 노트 입력값과 중복을 검증함
