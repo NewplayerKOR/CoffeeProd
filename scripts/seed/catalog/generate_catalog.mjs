@@ -172,6 +172,25 @@ const products = [];
 const roastName = { LIGHT: "라이트", MEDIUM: "미디엄", DARK: "다크" };
 const roastSuffix = { LIGHT: "L", MEDIUM: "M", DARK: "D" };
 const deepRoastCountries = new Set(["BR", "UG", "ID", "IN"]);
+const countryNames = {
+    ET: "에티오피아", KE: "케냐", RW: "르완다", BI: "부룬디", UG: "우간다",
+    CO: "콜롬비아", BR: "브라질", CR: "코스타리카", GT: "과테말라", SV: "엘살바도르",
+    HN: "온두라스", PA: "파나마", ID: "인도네시아", PG: "파푸아뉴기니", IN: "인도"
+};
+const processingLabels = {
+    WASHED: "워시드", NATURAL: "내추럴", HONEY: "허니", PULPED_NATURAL: "펄프드 내추럴",
+    WET_HULLED: "웻 헐드", ANAEROBIC: "무산소 발효", CARBONIC_MACERATION: "탄산 침용",
+    SWISS_WATER: "스위스 워터", SUGARCANE: "사탕수수"
+};
+const flavorNames = new Map(flavorNotes.map(({ code, name }) => [code, name]));
+
+function originLabel(country, region) {
+    return `${countryNames[country]} ${region}`;
+}
+
+function flavorLabel(flavors) {
+    return flavors.map(([code]) => flavorNames.get(code)).join(" · ");
+}
 
 function clampScore(value) {
     return Math.max(1, Math.min(5, value));
@@ -228,7 +247,7 @@ function addProducts(profile, basePrice) {
             price,
             stock_quantity: stock,
             roast_level: profile.roast_level,
-            description: `${profile.summary} ${weight}g 포장으로 로스팅 단계와 원산지 메타데이터를 확인할 수 있음`,
+            description: `${profile.summary} ${weight}g 포장입니다.`,
             image_url: productImageUrlFor(profile.profile_key),
             status,
             display_order: index + 1
@@ -244,9 +263,11 @@ originLots.forEach((lot) => {
     roasts.forEach((roast) => {
         const profileKey = `SO${String(lot.lotNo).padStart(3, "0")}_${roastSuffix[roast]}`;
         const [acidity, body, sweetness, aroma] = scoresForRoast(lot.scores, roast);
+        const origin = originLabel(lot.country, lot.region);
+        const roastLabel = `${roastName[roast]} 로스트`;
         const profile = {
             profile_key: profileKey,
-            profile_name: `${lot.country} ${lot.region} ${lot.process} ${roastName[roast]}`,
+            profile_name: `${origin} ${roastLabel}`,
             bean_type: "SINGLE_ORIGIN",
             processing_method_code: lot.process,
             origin_country_code: lot.country,
@@ -259,7 +280,7 @@ originLots.forEach((lot) => {
             decaf: false,
             decaf_method: "",
             acidity, body, sweetness, aroma,
-            summary: `${lot.region} 산지의 ${lot.process} 커피를 ${roastName[roast]} 로스트로 구성한 합성 싱글 오리진 프로필`
+            summary: `${origin}의 ${processingLabels[lot.process]} 원두를 담은 ${roastLabel}입니다. 대표 향미는 ${flavorLabel(lot.flavors)}입니다.`
         };
         profiles.push(profile);
         addRelations(
@@ -282,9 +303,14 @@ blendRecipes.forEach((recipe) => {
     roasts.forEach((roast) => {
         const profileKey = `BL${String(recipe.recipeNo).padStart(3, "0")}_${roastSuffix[roast]}`;
         const [acidity, body, sweetness, aroma] = scoresForRoast(recipe.scores, roast);
+        const roastLabel = `${roastName[roast]} 로스트`;
+        const origins = recipe.components.map(([country, region, process]) =>
+            `${originLabel(country, region)}(${processingLabels[process]})`
+        ).join(", ");
+        const decafNote = recipe.decaf ? ` 디카페인 가공 방식은 ${processingLabels[recipe.decafMethod]}입니다.` : "";
         const profile = {
             profile_key: profileKey,
-            profile_name: `${recipe.name} ${roastName[roast]}`,
+            profile_name: `${recipe.name} ${roastLabel}`,
             bean_type: "BLEND",
             processing_method_code: recipe.decaf ? recipe.decafMethod : "",
             origin_country_code: "",
@@ -297,7 +323,7 @@ blendRecipes.forEach((recipe) => {
             decaf: recipe.decaf,
             decaf_method: recipe.decaf ? recipe.decafMethod : "",
             acidity, body, sweetness, aroma,
-            summary: `${recipe.components.length}개 산지의 균형을 ${roastName[roast]} 로스트로 설계한 합성 블렌드 프로필`
+            summary: `${origins} 원두를 배합한 ${roastLabel} ${recipe.decaf ? "디카페인 " : ""}블렌드입니다.${decafNote} 대표 향미는 ${flavorLabel(recipe.flavors)}입니다.`
         };
         profiles.push(profile);
 

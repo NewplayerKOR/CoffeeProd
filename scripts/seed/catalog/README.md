@@ -77,7 +77,7 @@ bash scripts/seed/catalog/load_catalog.sh
 3. 기준정보·프로필·연결정보·상품의 트랜잭션 upsert
 4. 프로필 96개, SKU 192개, 이미지 URL 96개와 관계 건수 검증
 
-`load_catalog.sql`은 중간 검증이 실패하면 전체 트랜잭션을 롤백한다. `verify_catalog.sql`은 적재가 끝난 DB를 독립적으로 재검증한다.
+`load_catalog.sql`은 중간 검증이 실패하면 전체 트랜잭션을 롤백한다. `verify_catalog.sql`은 적재가 끝난 DB를 독립적으로 재검증한다. 전체 적재를 다시 실행하면 같은 SKU의 가격·재고·판매 상태와 기존 카탈로그 프로필의 연결도 CSV 기준으로 갱신한다.
 
 기존 DB의 `/images/catalog/*` 값은 수정된 CSV만으로 자동 변경되지 않는다. 아래 적재 명령을 다시 실행하면 SKU 기준 upsert가 카탈로그 상품 192개의 `image_url`을 승인된 R2 URL로 교체한다.
 
@@ -92,3 +92,13 @@ docker compose exec -T db sh -lc \
   'psql -U "$POSTGRES_USER" -d "$POSTGRES_DB" -v ON_ERROR_STOP=1' \
   < scripts/seed/catalog/sql/verify_catalog.sql
 ```
+
+### 이미 적재한 카탈로그의 고객용 문구 갱신
+
+현재 체크아웃의 CSV를 마운트한 로컬 Compose 프로젝트에서 실행한다. Compose 프로젝트를 따로 지정해 시작했다면 같은 `COMPOSE_PROJECT_NAME`을 사용한다.
+
+```bash
+bash scripts/seed/catalog/load_catalog.sh --copy-only
+```
+
+프로필 키 96개와 SKU 192개가 모두 일치하면 프로필명·요약과 상품명·설명을 한 트랜잭션에서 갱신한다. 누락된 키가 있으면 롤백한다. ID, 가격, 재고, 이미지 URL, 판매 상태, 프로필 관계, 주문 데이터는 보존한다. 최초 적재에는 전체 적재 명령을 사용한다.

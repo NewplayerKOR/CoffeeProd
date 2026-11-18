@@ -1,5 +1,16 @@
 \set ON_ERROR_STOP on
 
+\if :{?copy_only}
+\else
+    \set copy_only false
+\endif
+SELECT :'copy_only'::boolean AS copy_only \gset
+\if :{?catalog_csv_dir}
+\else
+    \set catalog_csv_dir /seed/catalog
+\endif
+\cd :catalog_csv_dir
+
 BEGIN;
 
 -- Flyway V16 적용 여부를 확인함
@@ -124,17 +135,17 @@ CREATE TEMP TABLE stg_product
 ) ON COMMIT DROP;
 
 -- 컨테이너에 읽기 전용으로 연결된 CSV를 적재함
-\copy stg_category FROM '/seed/catalog/categories.csv' WITH (FORMAT CSV, HEADER TRUE, ENCODING 'UTF8');
-\copy stg_processing_method FROM '/seed/catalog/processing_methods.csv' WITH (FORMAT CSV, HEADER TRUE, ENCODING 'UTF8');
-\copy stg_flavor_note FROM '/seed/catalog/flavor_notes.csv' WITH (FORMAT CSV, HEADER TRUE, ENCODING 'UTF8');
-\copy stg_brew_method FROM '/seed/catalog/brew_methods.csv' WITH (FORMAT CSV, HEADER TRUE, ENCODING 'UTF8');
-\copy stg_coffee_variety FROM '/seed/catalog/coffee_varieties.csv' WITH (FORMAT CSV, HEADER TRUE, ENCODING 'UTF8');
-\copy stg_coffee_profile FROM '/seed/catalog/coffee_profiles.csv' WITH (FORMAT CSV, HEADER TRUE, ENCODING 'UTF8');
-\copy stg_profile_component FROM '/seed/catalog/coffee_profile_components.csv' WITH (FORMAT CSV, HEADER TRUE, ENCODING 'UTF8');
-\copy stg_profile_flavor_note FROM '/seed/catalog/profile_flavor_notes.csv' WITH (FORMAT CSV, HEADER TRUE, ENCODING 'UTF8');
-\copy stg_profile_brew_method FROM '/seed/catalog/profile_brew_methods.csv' WITH (FORMAT CSV, HEADER TRUE, ENCODING 'UTF8');
-\copy stg_profile_variety FROM '/seed/catalog/profile_varieties.csv' WITH (FORMAT CSV, HEADER TRUE, ENCODING 'UTF8');
-\copy stg_product FROM '/seed/catalog/products.csv' WITH (FORMAT CSV, HEADER TRUE, ENCODING 'UTF8');
+\copy stg_category FROM 'categories.csv' WITH (FORMAT CSV, HEADER TRUE, ENCODING 'UTF8');
+\copy stg_processing_method FROM 'processing_methods.csv' WITH (FORMAT CSV, HEADER TRUE, ENCODING 'UTF8');
+\copy stg_flavor_note FROM 'flavor_notes.csv' WITH (FORMAT CSV, HEADER TRUE, ENCODING 'UTF8');
+\copy stg_brew_method FROM 'brew_methods.csv' WITH (FORMAT CSV, HEADER TRUE, ENCODING 'UTF8');
+\copy stg_coffee_variety FROM 'coffee_varieties.csv' WITH (FORMAT CSV, HEADER TRUE, ENCODING 'UTF8');
+\copy stg_coffee_profile FROM 'coffee_profiles.csv' WITH (FORMAT CSV, HEADER TRUE, ENCODING 'UTF8');
+\copy stg_profile_component FROM 'coffee_profile_components.csv' WITH (FORMAT CSV, HEADER TRUE, ENCODING 'UTF8');
+\copy stg_profile_flavor_note FROM 'profile_flavor_notes.csv' WITH (FORMAT CSV, HEADER TRUE, ENCODING 'UTF8');
+\copy stg_profile_brew_method FROM 'profile_brew_methods.csv' WITH (FORMAT CSV, HEADER TRUE, ENCODING 'UTF8');
+\copy stg_profile_variety FROM 'profile_varieties.csv' WITH (FORMAT CSV, HEADER TRUE, ENCODING 'UTF8');
+\copy stg_product FROM 'products.csv' WITH (FORMAT CSV, HEADER TRUE, ENCODING 'UTF8');
 
 -- 공백 이미지 값을 null로 정규화함
 UPDATE stg_product
@@ -307,6 +318,49 @@ BEGIN
     END IF;
 END
 $$;
+
+\if :copy_only
+
+-- 검증과 갱신 사이에 대상 행의 키가 바뀌거나 삭제되지 않도록 잠근다.
+DO $$
+DECLARE
+    matched_count INTEGER;
+BEGIN
+    PERFORM 1
+    FROM coffee_profile profile
+    JOIN stg_coffee_profile staging ON staging.profile_key = profile.catalog_key
+    ORDER BY profile.coffee_profile_id
+    FOR NO KEY UPDATE OF profile;
+    GET DIAGNOSTICS matched_count = ROW_COUNT;
+    IF matched_count <> 96 THEN
+        RAISE EXCEPTION '문구를 갱신할 카탈로그 프로필 키 96개가 모두 필요합니다.';
+    END IF;
+
+    PERFORM 1
+    FROM product product
+    JOIN stg_product staging ON staging.sku = product.sku
+    ORDER BY product.product_id
+    FOR NO KEY UPDATE OF product;
+    GET DIAGNOSTICS matched_count = ROW_COUNT;
+    IF matched_count <> 192 THEN
+        RAISE EXCEPTION '문구를 갱신할 카탈로그 상품 SKU 192개가 모두 필요합니다.';
+    END IF;
+END
+$$;
+
+UPDATE coffee_profile profile
+SET profile_name = staging.profile_name, summary = staging.summary
+FROM stg_coffee_profile staging
+WHERE profile.catalog_key = staging.profile_key
+  AND (profile.profile_name, profile.summary) IS DISTINCT FROM (staging.profile_name, staging.summary);
+
+UPDATE product product
+SET name = staging.name, description = staging.description
+FROM stg_product staging
+WHERE product.sku = staging.sku
+  AND (product.name, product.description) IS DISTINCT FROM (staging.name, staging.description);
+
+\else
 
 -- 변경 가능한 기준정보를 코드 기준으로 동기화함
 INSERT INTO category (name)
@@ -610,6 +664,8 @@ BEGIN
     END IF;
 END
 $$;
+
+\endif
 
 COMMIT;
 
